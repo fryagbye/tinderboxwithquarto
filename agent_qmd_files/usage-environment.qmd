@@ -1,0 +1,81 @@
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+# Usage environment {#sec-usage-environment }
+
+Please refer to the output results of `quato check`.
+
+* quarto is using the released version 1.5.57.
+* R is version 4.4.0
+* I use luaLatex for output in Japanese. I have installed MacTex because TinyTex doesn't include it.
+* It may be better to uninstall TinyTex.
+* I have set it to use `lightbox` extension ( included in Quarto v1.4+.)
+
+
+```{.sh}
+# Quarto check output
+Quarto 1.5.57
+[✓] Checking versions of quarto binary dependencies...
+      Pandoc version 3.2.0: OK
+      Dart Sass version 1.70.0: OK
+      Deno version 1.41.0: OK
+      Typst version 0.11.0: OK
+[✓] Checking versions of quarto dependencies......OK
+[✓] Checking Quarto installation......OK
+      Version: 1.5.57
+      Path: /Applications/quarto/bin
+
+[✓] Checking tools....................OK
+      TinyTeX: (not installed)
+      Chromium: (not installed)
+
+[✓] Checking LaTeX....................OK
+      Using: Installation From Path
+      Path: /usr/local/texlive/2024/bin/universal-darwin
+      Version: 2024
+
+[✓] Checking basic markdown render....OK
+
+[✓] Checking Python 3 installation....OK
+      Version: 3.12.7
+      Path: /Users/tk4o2ka/github/tinderboxwithquarto/.venv/bin/python3
+      Jupyter: 5.7.2
+      Kernels: python3
+
+[✓] Checking Jupyter engine render....OK
+
+[✓] Checking R installation...........OK
+      Version: 4.4.0
+      Path: /Library/Frameworks/R.framework/Resources
+      LibPaths:
+        - /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library
+      knitr: 1.46
+      rmarkdown: 2.26
+
+[✓] Checking Knitr engine render......OK
+```
+
+
+## RStudio Session information { #sec-session-information }
+```{r}
+#| echo: false
+sessionInfo()
+```
+
+
+## installed packages { #sec-installed-packages }
+
+```{r}
+#| echo: false
+#| message: false
+pacman::p_load(tidyverse, gt)
+installed.packages() |> 
+  as_tibble() |> 
+  select(Package, Version, Built) |> 
+  gt::gt()
+```
+
+
+
