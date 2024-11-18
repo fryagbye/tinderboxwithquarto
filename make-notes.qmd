@@ -1,0 +1,30 @@
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+# Make notes {#sec-make-notes }
+
+1. Make notes with Prototype pNote and pSubnote
+
+pNote is for Sections and pSubnote is for Subsections.
+Please set the Prototype of pNote to level 1 and pSubnote below level.
+ * When creating a note, please enter "#pNote" or "#pSubnote" following the title. (or apply the pNote Prototype or pSubnote to notes you make )
+
+    e.g. Note title -> わが輩は猫である#pSubnote
+
+ * The note title (`$Name`) is the header for pNote or pSubnote.
+ * Depending on the hierarchy level, the level of the header also changes.
+
+     e.g. If the title of pSubnote in level 2 depth is "わが輩は猫である", it will be output as follows when exporting.
+
+     > \#\# わが輩は猫である
+
+2. Index file settings
+
+ In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of index.qmd is set to `true`.
+
+
+
+
+

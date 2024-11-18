@@ -1,0 +1,182 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Tinderbox file for Quarto",
+    "section": "",
+    "text": "Introduction\nThis tinderbox file supports creating a book with Quarto.\nYou can make qmd files and _quarto.yml easily with it. Here is an example of books created with Quarto. * R for Data Science (2e)(Wickham and Grolemund (2016))\n\n\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. “O’Reilly Media, Inc.”",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "table-of-contents.html",
+    "href": "table-of-contents.html",
+    "title": "Table of Contents",
+    "section": "",
+    "text": "1  Usage environment\n\n1.1 RStudio Session information\n1.2 installed packages\n\n2  Setting\n3  Make notes\n5  Part in Book format\n6  Cross-Reference using Ziplink\n\n6.1 How to set the label of the diagram\n6.1.1 R chunk\n6.1.2 Image link in markdown format\n6.2 How to set the label of the table\n6.3 How to quote\n6.4 Restrictions on quoted labels\n\n7  Export\n8  Restrictions\n9  References",
+    "crumbs": [
+      "Table of Contents"
+    ]
+  },
+  {
+    "objectID": "usage-environment.html",
+    "href": "usage-environment.html",
+    "title": "1  Usage environment",
+    "section": "",
+    "text": "1.1 RStudio Session information\nR version 4.4.0 (2024-04-24)\nPlatform: aarch64-apple-darwin20\nRunning under: macOS 15.0.1\n\nMatrix products: default\nBLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib \nLAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0\n\nlocale:\n[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8\n\ntime zone: Asia/Tokyo\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] gtExtras_0.5.0   gt_0.10.1        kableExtra_1.4.0 knitr_1.46      \n [5] lubridate_1.9.3  forcats_1.0.0    stringr_1.5.1    dplyr_1.1.4     \n [9] purrr_1.0.2      readr_2.1.5      tidyr_1.3.1      tibble_3.2.1    \n[13] ggplot2_3.5.1    tidyverse_2.0.0 \n\nloaded via a namespace (and not attached):\n [1] utf8_1.2.4        generics_0.1.3    xml2_1.3.6        stringi_1.8.3    \n [5] hms_1.1.3         digest_0.6.35     magrittr_2.0.3    evaluate_0.23    \n [9] grid_4.4.0        timechange_0.3.0  fastmap_1.1.1     jsonlite_1.8.8   \n[13] rematch2_2.1.2    fansi_1.0.6       viridisLite_0.4.2 scales_1.3.0     \n[17] textshaping_0.3.7 cli_3.6.2         rlang_1.1.3       munsell_0.5.1    \n[21] withr_3.0.0       yaml_2.3.8        tools_4.4.0       tzdb_0.4.0       \n[25] colorspace_2.1-0  pacman_0.5.1      paletteer_1.6.0   vctrs_0.6.5      \n[29] R6_2.5.1          lifecycle_1.0.4   htmlwidgets_1.6.4 ragg_1.3.0       \n[33] fontawesome_0.5.2 pkgconfig_2.0.3   pillar_1.9.0      gtable_0.3.5     \n[37] glue_1.7.0        systemfonts_1.0.6 xfun_0.43         tidyselect_1.2.1 \n[41] rstudioapi_0.16.0 htmltools_0.5.8.1 rmarkdown_2.26    svglite_2.1.3    \n[45] compiler_4.4.0",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Usage environment</span>"
+    ]
+  },
+  {
+    "objectID": "usage-environment.html#sec-installed-packages",
+    "href": "usage-environment.html#sec-installed-packages",
+    "title": "1  Usage environment",
+    "section": "\n1.2 installed packages",
+    "text": "1.2 installed packages\n\n\n\n\n\n\nPackage\nVersion\nBuilt\n\n\n\naskpass\n1.2.0\n4.4.0\n\n\nbackports\n1.4.1\n4.4.0\n\n\nbase\n4.4.0\n4.4.0\n\n\nbase64enc\n0.1-3\n4.4.0\n\n\nbigD\n0.2.0\n4.4.0\n\n\nbit\n4.0.5\n4.4.0\n\n\nbit64\n4.0.5\n4.4.0\n\n\nbitops\n1.0-7\n4.4.0\n\n\nblob\n1.2.4\n4.4.0\n\n\nboot\n1.3-30\n4.4.0\n\n\nbrew\n1.0-10\n4.4.0\n\n\nbrio\n1.1.5\n4.4.0\n\n\nbroom\n1.0.5\n4.4.0\n\n\nbslib\n0.7.0\n4.4.0\n\n\ncachem\n1.0.8\n4.4.0\n\n\ncallr\n3.7.6\n4.4.0\n\n\ncellranger\n1.1.0\n4.4.0\n\n\nclass\n7.3-22\n4.4.0\n\n\ncli\n3.6.2\n4.4.0\n\n\nclipr\n0.8.0\n4.4.0\n\n\ncluster\n2.1.6\n4.4.0\n\n\ncodetools\n0.2-20\n4.4.0\n\n\ncollections\n0.3.7\n4.4.0\n\n\ncolorspace\n2.1-0\n4.4.0\n\n\ncommonmark\n1.9.1\n4.4.0\n\n\ncompiler\n4.4.0\n4.4.0\n\n\nconflicted\n1.2.0\n4.4.0\n\n\ncpp11\n0.4.7\n4.4.0\n\n\ncrayon\n1.5.2\n4.4.0\n\n\ncurl\n5.2.1\n4.4.0\n\n\ncyclocomp\n1.1.1\n4.4.0\n\n\ndata.table\n1.15.4\n4.4.0\n\n\ndatasets\n4.4.0\n4.4.0\n\n\nDBI\n1.2.2\n4.4.0\n\n\ndbplyr\n2.5.0\n4.4.0\n\n\ndesc\n1.4.3\n4.4.0\n\n\ndigest\n0.6.35\n4.4.0\n\n\ndownlit\n0.4.3\n4.4.0\n\n\ndplyr\n1.1.4\n4.4.0\n\n\ndtplyr\n1.3.1\n4.4.0\n\n\nellipsis\n0.3.2\n4.4.0\n\n\nevaluate\n0.23\n4.4.0\n\n\nfansi\n1.0.6\n4.4.0\n\n\nfarver\n2.1.1\n4.4.0\n\n\nfastmap\n1.1.1\n4.4.0\n\n\nfontawesome\n0.5.2\n4.4.0\n\n\nforcats\n1.0.0\n4.4.0\n\n\nforeign\n0.8-86\n4.4.0\n\n\nfs\n1.6.4\n4.4.0\n\n\ngargle\n1.5.2\n4.4.0\n\n\ngenerics\n0.1.3\n4.4.0\n\n\nggplot2\n3.5.1\n4.4.0\n\n\ngitcreds\n0.1.2\n4.4.0\n\n\nglue\n1.7.0\n4.4.0\n\n\ngoogledrive\n2.1.1\n4.4.0\n\n\ngooglesheets4\n1.1.1\n4.4.0\n\n\ngraphics\n4.4.0\n4.4.0\n\n\ngrDevices\n4.4.0\n4.4.0\n\n\ngrid\n4.4.0\n4.4.0\n\n\ngt\n0.10.1\n4.4.0\n\n\ngtable\n0.3.5\n4.4.0\n\n\ngtExtras\n0.5.0\n4.4.0\n\n\nhaven\n2.5.4\n4.4.0\n\n\nhighr\n0.10\n4.4.0\n\n\nhms\n1.1.3\n4.4.0\n\n\nhtmltools\n0.5.8.1\n4.4.0\n\n\nhtmlwidgets\n1.6.4\n4.4.0\n\n\nhttr\n1.4.7\n4.4.0\n\n\nids\n1.0.1\n4.4.0\n\n\nisoband\n0.2.7\n4.4.0\n\n\njquerylib\n0.1.4\n4.4.0\n\n\njsonlite\n1.8.8\n4.4.0\n\n\njuicyjuice\n0.1.0\n4.4.0\n\n\nkableExtra\n1.4.0\n4.4.0\n\n\nKernSmooth\n2.23-22\n4.4.0\n\n\nknitr\n1.46\n4.4.0\n\n\nlabeling\n0.4.3\n4.4.0\n\n\nlanguageserver\n0.3.16\n4.4.0\n\n\nlattice\n0.22-6\n4.4.0\n\n\nlazyeval\n0.2.2\n4.4.0\n\n\nlifecycle\n1.0.4\n4.4.0\n\n\nlintr\n3.1.2\n4.4.0\n\n\nlubridate\n1.9.3\n4.4.0\n\n\nmagrittr\n2.0.3\n4.4.0\n\n\nmarkdown\n1.12\n4.4.0\n\n\nMASS\n7.3-60.2\n4.4.0\n\n\nMatrix\n1.7-0\n4.4.0\n\n\nmemoise\n2.0.1\n4.4.0\n\n\nmethods\n4.4.0\n4.4.0\n\n\nmgcv\n1.9-1\n4.4.0\n\n\nmime\n0.12\n4.4.0\n\n\nmodelr\n0.1.11\n4.4.0\n\n\nmunsell\n0.5.1\n4.4.0\n\n\nnlme\n3.1-164\n4.4.0\n\n\nnnet\n7.3-19\n4.4.0\n\n\nnvimcom\n0.9.42\n4.4.0\n\n\nopenssl\n2.1.2\n4.4.0\n\n\npacman\n0.5.1\n4.4.0\n\n\npaletteer\n1.6.0\n4.4.0\n\n\nparallel\n4.4.0\n4.4.0\n\n\npillar\n1.9.0\n4.4.0\n\n\npkgbuild\n1.4.4\n4.4.0\n\n\npkgconfig\n2.0.3\n4.4.0\n\n\npkgload\n1.3.4\n4.4.0\n\n\nprettyunits\n1.2.0\n4.4.0\n\n\nprismatic\n1.1.2\n4.4.0\n\n\nprocessx\n3.8.4\n4.4.0\n\n\nprogress\n1.2.3\n4.4.0\n\n\nps\n1.7.6\n4.4.0\n\n\npurrr\n1.0.2\n4.4.0\n\n\nR.cache\n0.16.0\n4.4.0\n\n\nR.methodsS3\n1.8.2\n4.4.0\n\n\nR.oo\n1.26.0\n4.4.0\n\n\nR.utils\n2.12.3\n4.4.0\n\n\nR6\n2.5.1\n4.4.0\n\n\nragg\n1.3.0\n4.4.0\n\n\nrappdirs\n0.3.3\n4.4.0\n\n\nRColorBrewer\n1.1-3\n4.4.0\n\n\nRcpp\n1.0.12\n4.4.0\n\n\nreactable\n0.4.4\n4.4.0\n\n\nreactR\n0.5.0\n4.4.0\n\n\nreadr\n2.1.5\n4.4.0\n\n\nreadxl\n1.4.3\n4.4.0\n\n\nrematch\n2.0.0\n4.4.0\n\n\nrematch2\n2.1.2\n4.4.0\n\n\nremotes\n2.5.0\n4.4.0\n\n\nreprex\n2.1.0\n4.4.0\n\n\nrex\n1.2.1\n4.4.0\n\n\nrlang\n1.1.3\n4.4.0\n\n\nrmarkdown\n2.26\n4.4.0\n\n\nroxygen2\n7.3.1\n4.4.0\n\n\nrpart\n4.1.23\n4.4.0\n\n\nrprojroot\n2.0.4\n4.4.0\n\n\nrstudioapi\n0.16.0\n4.4.0\n\n\nrvest\n1.0.4\n4.4.0\n\n\nsass\n0.4.9\n4.4.0\n\n\nscales\n1.3.0\n4.4.0\n\n\nselectr\n0.4-2\n4.4.0\n\n\nspatial\n7.3-17\n4.4.0\n\n\nsplines\n4.4.0\n4.4.0\n\n\nstats\n4.4.0\n4.4.0\n\n\nstats4\n4.4.0\n4.4.0\n\n\nstringi\n1.8.3\n4.4.0\n\n\nstringr\n1.5.1\n4.4.0\n\n\nstyler\n1.10.3\n4.4.0\n\n\nsurvival\n3.5-8\n4.4.0\n\n\nsvglite\n2.1.3\n4.4.0\n\n\nsys\n3.4.2\n4.4.0\n\n\nsystemfonts\n1.0.6\n4.4.0\n\n\ntcltk\n4.4.0\n4.4.0\n\n\ntextshaping\n0.3.7\n4.4.0\n\n\ntibble\n3.2.1\n4.4.0\n\n\ntidyr\n1.3.1\n4.4.0\n\n\ntidyselect\n1.2.1\n4.4.0\n\n\ntidyverse\n2.0.0\n4.4.0\n\n\ntimechange\n0.3.0\n4.4.0\n\n\ntinytex\n0.50\n4.4.0\n\n\ntools\n4.4.0\n4.4.0\n\n\ntzdb\n0.4.0\n4.4.0\n\n\nutf8\n1.2.4\n4.4.0\n\n\nutils\n4.4.0\n4.4.0\n\n\nuuid\n1.2-0\n4.4.0\n\n\nV8\n4.4.2\n4.4.0\n\n\nvctrs\n0.6.5\n4.4.0\n\n\nviridisLite\n0.4.2\n4.4.0\n\n\nvroom\n1.6.5\n4.4.0\n\n\nwithr\n3.0.0\n4.4.0\n\n\nxfun\n0.43\n4.4.0\n\n\nxml2\n1.3.6\n4.4.0\n\n\nxmlparsedata\n1.0.5\n4.4.0\n\n\nyaml\n2.3.8\n4.4.0",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Usage environment</span>"
+    ]
+  },
+  {
+    "objectID": "setting.html",
+    "href": "setting.html",
+    "title": "2  Setting",
+    "section": "",
+    "text": "Setting up with “TBXConfig” note\n\nYou need to change values of the following “TBXConfig” attributes for configuration.\n\n\n$Indent_Charactor -&gt; Set the symbol that represents the depth of indentation. (default value = ★)\n\n$ExList -&gt; List of notes excluded from cross-reference search ( default value = “List and Agent etc”)\n\n$ExportFolder -&gt; path of exported files. ( for Stamp “Move qmd files”)\n\n$Q_TableOfContainsNoteName -&gt; $Path of TOC note. ( default value = /Table of Contents)\n\n\nMaking a _quarto.yml\n\n\nYou can change values of attributes of “_quarto” note to change quarto options. The quarto options are attributes that starts with “Q” in this file. The initial setting specified in _quarto.yml is for Japanese output.\nPlease refer Quarto Book Structure and PDF Basics in detail.\nIf you use Custom Translations, you need to make $Q_Has_Language_YML true and set $Q_Language_YML for the filename. “_language” note in this file is for translating to japanese.\n\nChanging _common.R file. ( optional )\n\nYou can set up knitr package options for R chunk.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting</span>"
+    ]
+  },
+  {
+    "objectID": "make-notes.html",
+    "href": "make-notes.html",
+    "title": "3  Make notes",
+    "section": "",
+    "text": "Make notes with Prototype pNote and pSubnote\n\npNote is for Sections and pSubnote is for Subsections. Please set the Prototype of pNote to level 1 and pSubnote below level. * When creating a note, please enter “#pNote” or “#pSubnote” following the title. (or apply the pNote Prototype or pSubnote to notes you make )\ne.g. Note title -&gt; わが輩は猫である#pSubnote\n\nThe note title ($Name) is the header for pNote or pSubnote.\n\nDepending on the hierarchy level, the level of the header also changes.\ne.g. If the title of pSubnote in level 2 depth is “わが輩は猫である”, it will be output as follows when exporting.\n\n## わが輩は猫である\n\n\n\n\nIndex file settings\n\nIn the quarto book format, only one index.qmd is required, $IsIndexqmd of index.qmd is set to true.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Make notes</span>"
+    ]
+  },
+  {
+    "objectID": "translate-and-rename-htmlexportfilename.html#footnotes",
+    "href": "translate-and-rename-htmlexportfilename.html#footnotes",
+    "title": "4  Rename HTMLExportFileName of a note with translation (Optional)",
+    "section": "",
+    "text": "Translate-shell installation required.\n&gt;brew install translate-shell\n↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rename HTMLExportFileName of a note with translation (Optional)</span>"
+    ]
+  },
+  {
+    "objectID": "part-in-book-format.html#footnotes",
+    "href": "part-in-book-format.html#footnotes",
+    "title": "5  Part in Book format",
+    "section": "",
+    "text": "In quarto, you can specify a qmd file for part, but this file does not support it.↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Part in Book format</span>"
+    ]
+  },
+  {
+    "objectID": "cross-reference-using-ziplink.html",
+    "href": "cross-reference-using-ziplink.html",
+    "title": "6  Cross-Reference using Ziplink",
+    "section": "",
+    "text": "6.1 How to set the label of the diagram",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
+    ]
+  },
+  {
+    "objectID": "cross-reference-using-ziplink.html#sec-how-to-set-the-label-of-the-diagram",
+    "href": "cross-reference-using-ziplink.html#sec-how-to-set-the-label-of-the-diagram",
+    "title": "6  Cross-Reference using Ziplink",
+    "section": "",
+    "text": "6.1.1 R chunk\nAutomatically recognize and collect R chunk labels in the following format (#| labe: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote Figure 6.1.\n#| label: fig-airquality \n#| fig-cap: \"Temperature and ozone level.\"\n#| warning: false\n\nlibrary(ggplot2)\n\nggplot(airquality, aes(Temp, Ozone)) + \n  geom_point() + \n  geom_smooth(method = \"loess\")\n\nlibrary(ggplot2)\n\nggplot(airquality, aes(Temp, Ozone)) + \n  geom_point() + \n  geom_smooth(method = \"loess\")\n\n\n\n\n\n\nFigure 6.1: Temperature and ozone level.\n\n\n\n\n\n6.1.2 Image link in markdown format\nRecognize and collect labels in format that extend the markdown.\n![Test image](screenshots/toolbar.png){#fig-test fig-alt=“test” fig-align=“left” width=100%}\n\n\n\n\n\nFigure 6.2: label:@fig-test",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
+    ]
+  },
+  {
+    "objectID": "cross-reference-using-ziplink.html#sec-how-to-set-the-label-of-the-table",
+    "href": "cross-reference-using-ziplink.html#sec-how-to-set-the-label-of-the-table",
+    "title": "6  Cross-Reference using Ziplink",
+    "section": "\n6.2 How to set the label of the table",
+    "text": "6.2 How to set the label of the table\nThere are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.3\n:明度・彩度の修飾子(label:@tbl-brightness ) {#tbl-brightness-saturation}\n \n|項目|効果|\n|----|------------|\n|dark|暗くする|\n|darker|より暗くする|\n|darkest|最も暗くする|\n|light| 明るくする|",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
+    ]
+  },
+  {
+    "objectID": "cross-reference-using-ziplink.html#sec-how-to-quote",
+    "href": "cross-reference-using-ziplink.html#sec-how-to-quote",
+    "title": "6  Cross-Reference using Ziplink",
+    "section": "\n6.3 How to quote",
+    "text": "6.3 How to quote\nIf you enter two square brackets “[[”, the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.\n\n\n引用の種類\nラベル\n引用\n\n\n\n章、セクション等\n#sec-\n@sec-\n\n\n図\n#| label:\n@fig-\n\n\n表　\n#tbl-\n@tbl-",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
+    ]
+  },
+  {
+    "objectID": "cross-reference-using-ziplink.html#sec-restrictions-on-quoted-labels",
+    "href": "cross-reference-using-ziplink.html#sec-restrictions-on-quoted-labels",
+    "title": "6  Cross-Reference using Ziplink",
+    "section": "\n6.4 Restrictions on quoted labels",
+    "text": "6.4 Restrictions on quoted labels\n\nThe label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.\nCross-ref detection is carried out by regular execution. If it is executed in the middle of input, it will be duplicated with a short label.\n\nIn this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.\n\nMake: Clear Cross-Reference List（Delete all citation labels under the Reference List.）\nMake: Cross-Reference List（Re-detect the quoted label.）",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
+    ]
+  },
+  {
+    "objectID": "cross-reference-using-ziplink.html#sec-add-dummy-links-to-cross-ref",
+    "href": "cross-reference-using-ziplink.html#sec-add-dummy-links-to-cross-ref",
+    "title": "6  Cross-Reference using Ziplink",
+    "section": "\n6.5 Dummy links for cross-reference (optional)",
+    "text": "6.5 Dummy links for cross-reference (optional)\nYou can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.\n\nexecute “Make: Dummy Link Data For Cross-Reference” stamp\nselect cross-ref label notes ( start with “@” ) and execute “Make: Dummy Link between Reference and Selected notes” stamp.\n\n\n\n\n\nAnderson, Mark. 2024. “A Tinderbox Reference File.” 2024.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
+    ]
+  },
+  {
+    "objectID": "cross-reference-using-ziplink.html#footnotes",
+    "href": "cross-reference-using-ziplink.html#footnotes",
+    "title": "6  Cross-Reference using Ziplink",
+    "section": "",
+    "text": "The diagrams and tables are extracted in regular expressions.↩︎\nPlease refer to “Text link creation via the Ziplinking method” in A Tinderbox Reference File.(Anderson (2024))↩︎\nFor other formats, please refer to quarto cross-reference.↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
+    ]
+  },
+  {
+    "objectID": "export.html",
+    "href": "export.html",
+    "title": "7  Export",
+    "section": "",
+    "text": "Export _quarto.yml\n\n\nYou can change output format “pdf” or “html” with the stamp “Change quarto.yml template”. If you use a _language.yml, you export “_language” note (optional. See Chapter 2 Setting)\n\nExport .qmd files ( pNote notes only)\n\nThe pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).\nIf you select the pNote notes below “agent_qmd_files” and output it ( Figure 7.1 (a) ), then execute the “Move qmd files” stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( Figure 7.1 (b) ) . This is a method to avoid having to consider the folder structure when referencing image files with a relative path.\n\n\n\n\n\n\n\n\n\n(a) Before\n\n\n\n\n\n\n\n\n\n(b) After\n\n\n\n\n\n\nFigure 7.1: qmd files are moved to project path by stamp\n\n\n\npreview html output.( optional )\n\n# preview for only html output\n&gt; quarto preview index.qmd --to html --no-watch-inputs --no-browse\n\nrender pdf or html.\n\n&gt; quarto render\nyou can use RStudio for preview and render.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Export</span>"
+    ]
+  },
+  {
+    "objectID": "restrictions.html",
+    "href": "restrictions.html",
+    "title": "8  Restrictions",
+    "section": "",
+    "text": "It seems that the section label customization function cannot be used in the latest release ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML).\nIf you turn on $IsUnnumbered and $HasSectionLabel, the display of the quote will be fixed to the number + title, so please turn off $IsUnnumbered.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Restrictions</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "9  References",
+    "section": "",
+    "text": "Anderson, Mark. 2024. “A Tinderbox Reference File.” 2024.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. “O’Reilly\nMedia, Inc.”",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>References</span>"
+    ]
+  }
+]

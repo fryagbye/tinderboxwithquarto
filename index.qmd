@@ -1,0 +1,14 @@
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+# Introduction { .unnumbered }
+
+This tinderbox file supports creating a book with [Quarto](https://quarto.org/).
+
+You can make qmd files and _quarto.yml easily with it. 
+Here is an example of books created with Quarto.
+* [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
+
+

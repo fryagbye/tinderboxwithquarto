@@ -1,0 +1,10 @@
+/.quarto/
+.Rproj.user
+citation/.DS_Store
+.DS_Store
+_freeze
+index_files/libs
+cross-reference-using-ziplink_files/figure-pdf
+*/site_libs/
+xxPreviewxx.html
+agent_qmd_files/
