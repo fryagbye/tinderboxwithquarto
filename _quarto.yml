@@ -23,16 +23,19 @@ book:
     pinned: true
   chapters:
     - index.qmd
-    - table-of-contents.qmd
-    - usage-environment.qmd
-    - setting.qmd
-    - make-notes.qmd
-    - translate-and-rename-htmlexportfilename.qmd
-    - part-in-book-format.qmd
-    - cross-reference-using-ziplink.qmd
-    - export.qmd
-    - restrictions.qmd
-    - references.qmd
+    - part: part-1.qmd
+      chapters:
+        - usage-environment.qmd
+        - setting.qmd
+        - make-notes.qmd
+        - translate-and-rename-htmlexportfilename.qmd
+        - part-in-book-format.qmd
+        - cross-reference-using-ziplink.qmd
+        - export.qmd
+    - part: Part 2
+      chapters:
+        - restrictions.qmd
+        - references.qmd
 
 format:
   html:
