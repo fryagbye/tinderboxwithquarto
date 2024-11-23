@@ -12,16 +12,15 @@ pNote is compatible with quarto's **Part** or **Chapter**.
 If pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1. In this case, the hierarchy level and header level are one different, so the header level is set based on the user attribute `$OutlineDepthBase`.
 
 pNote, which is treated as a Part, is turned on (`true`) for `$Is_Part_qmd`. The lower pNote contains the export file name (e.g. filename.qmd) of the pNote, which is Part, in `$Part_file`.
-
-In the current situation, even if the note treated as Part is output as a qmd file, only the title (`$Name`) is reflected in _quarto.yml, as shown in the **"Dice"** in the example below. It will be. Therefore, the file is output, but in quarto, it is only used as the title of Part (Part ○).[^parts]
-
-
-[^parts]: In quarto, you can specify a qmd file for part, but this file does not support it.
+If a Part note is empty, only the title (`$Name`) of the note is reflected in _quarto.yml, as shown in the **"Dice"** in the example below. 
+If the dice.qmd is not empty, the part title (as a level one header) as well as some introductory content for the part. 
 
 ```{.yml} 
 #_quarto.yml
-- part: "Dice" #Note title
-#part: The dice.qmd format is not supported.
+chapters:
+  - index.qmd
+  - preface.qmd
+  - part: "Dice" # if $Text("Dice").wordCount == 0 
   chapters: 
     - basics.qmd
     - packages.qmd
@@ -30,16 +29,15 @@ In the current situation, even if the note treated as Part is output as a qmd fi
 
 The figure below shows the export example when Part is supported and the output result of _quarto.yml.
 
-![Folder configuration at the time of output and _quarto.yml](./screenshots/readme01.png)
+![Folder configuration at the time of output and _quarto.yml](./screenshots/tree01.png)
 
-Currently, the following patterns using qmd files for Part are not supported.
 
 ```{.yml}
 #_quarto.yml
 chapters:
   - index.qmd
   - preface.qmd
-  - part: dice.qmd
+  - part: dice.qmd # if $Text("Dice").wordCount >0 
     chapters: 
       - basics.qmd
       - packages.qmd

@@ -11,7 +11,6 @@ You can change output format "pdf" or "html"  with the stamp "Change quarto.yml 
 If you use a _language.yml, you export "_language" note (optional. See  @sec-setting Setting)
 
 
-
 2. Export  `.qmd` files ( pNote notes only)
 
 The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
