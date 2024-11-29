@@ -248,7 +248,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-![label: @fig-airquality](/Users/tk4o2ka/github/tinderboxwithquarto/_bookhtml/cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png)
+![label: @fig-airquality](./_bookhtml/cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png)
 
 
 ### Image link in markdown format
