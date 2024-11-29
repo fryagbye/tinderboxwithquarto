@@ -202,11 +202,6 @@ chapters:
 ```
 
 
-The figure below shows the export example when Part is supported and the output result of _quarto.yml.
-
-![Folder configuration at the time of output and _quarto.yml](./screenshots/tree01.png)
-
-
 ```{.yml}
 #_quarto.yml
 chapters:
@@ -217,6 +212,12 @@ chapters:
       - basics.qmd
       - packages.qmd
 ```
+
+The figure below shows the export example when Part is supported and the output result of _quarto.yml.
+
+![Folder configuration at the time of output and _quarto.yml](./screenshots/tree01.png)
+
+
 
 # Cross-Reference using Ziplink
 
@@ -247,17 +248,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-```{r}
-#| label: fig-airquality 
-#| fig-cap: "Temperature and ozone level."
-#| warning: false
-
-library(ggplot2)
-
-ggplot(airquality, aes(Temp, Ozone)) + 
-  geom_point() + 
-  geom_smooth(method = "loess")
-```
+![label: @fig-airquality](/Users/tk4o2ka/github/tinderboxwithquarto/_bookhtml/cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png)
 
 
 ### Image link in markdown format
