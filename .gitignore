@@ -11,3 +11,5 @@ agent_qmd_files/
 ignore
 output_all_files
 temp.md
+_bookhtml/index_files/libs
+Agent
