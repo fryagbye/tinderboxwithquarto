@@ -3,7 +3,7 @@
 out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 source("_common.R")
 ```
-# References {#sec-references }
+# References {#sec-references .appendix }
 
 ::: {#refs}
 :::

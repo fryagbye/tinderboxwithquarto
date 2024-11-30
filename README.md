@@ -7,10 +7,6 @@ Here is an example of books created with Quarto.
 
 * [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
 
-# Part 1
-
-
-
 # Usage environment
 
 Please refer to the output results of `quato check`.
@@ -351,18 +347,14 @@ qmd files are moved to project path by stamp
 
 [Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/main/_bookpdf/Tinderbox-file-for-Quarto.pdf)
 
-# Part 2
+# References
 
-Parts can have a content.
+::: {#refs}
+:::
 
 # Restrictions
 
 It seems that the section label customization function cannot be used in the latest release [ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML)](https://github.com/quarto-dev/quarto-cli/issues/5946). 
 
 If you turn on `$IsUnnumbered` and `$HasSectionLabel`, the display of the quote will be fixed to the number + title, so please turn off `$IsUnnumbered`.
-
-# References
-
-::: {#refs}
-:::
 

@@ -27,11 +27,6 @@ chapters:
 ```
 
 
-The figure below shows the export example when Part is supported and the output result of _quarto.yml.
-
-![Folder configuration at the time of output and _quarto.yml](./screenshots/tree01.png)
-
-
 ```{.yml}
 #_quarto.yml
 chapters:
@@ -42,5 +37,11 @@ chapters:
       - basics.qmd
       - packages.qmd
 ```
+
+The figure below shows the export example when Part is supported and the output result of _quarto.yml.
+
+![Folder configuration at the time of output and _quarto.yml](./screenshots/tree01.png)
+
+
 
 

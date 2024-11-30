@@ -30,17 +30,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-```{r}
-#| label: fig-airquality 
-#| fig-cap: "Temperature and ozone level."
-#| warning: false
-
-library(ggplot2)
-
-ggplot(airquality, aes(Temp, Ozone)) + 
-  geom_point() + 
-  geom_smooth(method = "loess")
-```
+![label: @fig-airquality](./_bookhtml/cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png)
 
 
 
@@ -76,11 +66,11 @@ There are multiple ways to specify labels, but they are only supported if it is 
 If you enter two square brackets "[[", the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.
 
 
-|引用の種類  |ラベル  |引用|
+|Types of quotations  |Lable  |Quote|
 |---|---|---|
-|章、セクション等   |#sec-   |\@sec-|
-|図   |#\| label:    |\@fig-|
-|表　|#tbl-|\@tbl-|
+|Chapter, Section etc.   |#sec-   |\@sec-|
+|Figure   |#\| label:    |\@fig-|
+|Chart　|#tbl-|\@tbl-|
 
 
 ## Restrictions on quoted labels { #sec-restrictions-on-quoted-labels }
