@@ -5,7 +5,79 @@ This tinderbox file supports creating a book with [Quarto](https://quarto.org/).
 You can make qmd files and _quarto.yml easily with it. 
 Here is an example of books created with Quarto.
 
+My Workflow is @fig-workflow.
+
 * [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
+
+```{mermaid} 
+%%| label: fig-workflow
+%%| fig-cap: Tinderbox Work Flow with Quarto.
+flowchart TB
+    A["Snippety"] -.->  B["Tinderbox"]
+    B["Tinderbox"] -->  C["Mermaid"]
+    C["Mermaid"] -->  B["Tinderbox"]
+    D["RMarkdown ( .qmd )"] -->|"Read qmd files"| E["R Studio"]
+    D["RMarkdown ( .qmd )"] -->|"Call"| F["quarto CLI"]
+    E["R Studio"] -->|"Call"| F["quarto CLI"]
+    F["quarto CLI
+quarto render
+"] ==>|"Export"| G["HTML
+(Book)"]
+    F["quarto CLI
+quarto render
+"] -->|"Export"| H["PDF
+(Book)"]
+    J["Bookends"] -->|"opt + drag"| B["Tinderbox"]
+
+ subgraph Sub1["Applications"]
+    direction LR
+    A
+    B
+    J
+    C
+end 
+
+ subgraph Sub2["Quarto"]
+    D
+    E
+    F
+end 
+
+ subgraph Sub3["Output"]
+    direction LR
+    H
+    G
+    I
+end 
+
+Sub1 --> Sub2["Quarto"]
+Sub1 --> I["Marked 2
+(Streaming Preview)"]
+
+%% Styles & Links
+    style A fill:#a3bed9,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 
+    click A href "https://snippety.app/" _blank
+    style B fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px
+    click B href "https://www.eastgate.com/Tinderbox/" _blank
+    style C fill:#990000,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    style D fill:#002244,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    style E fill:#002244,color:#ffffff,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 
+    click E href "https://posit.co/products/open-source/rstudio/" _blank
+    style F fill:#002244,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    click F href "https://quarto.org/" _blank
+    style G fill:#006600,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    style H fill:#006600,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    style I fill:#aaaaff,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    click I href "https://marked2app.com/" _blank
+    style J fill:#ff8800,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    style Sub1 fill:#59b3b3,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    style Sub2 fill:#cfdae6,color:#000000,stroke:#003366,stroke-width:2px
+    style Sub3 fill:#e6e673,color:#000000,stroke:#dc490b,stroke-width:2px
+
+```
+
+
+
 
 # Usage environment
 
@@ -158,12 +230,25 @@ Please set the Prototype of pNote to level 1 and pSubnote below level.
 
      > \#\# わが輩は猫である
 
-2. Index file settings
+2. Index.qmd
 
     In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of index.qmd is set to `true`.
+You can make the note for index.qmd with the pIndexQmd rototype.
 
 
 
+## Special Notes Prototype
+
+1. pReferenceQmd
+    This prototype is inherited from pNote and $Text has a div with id `refs` to call a works cited list (below). ([Quarto Bibliography Generation](https://quarto.org/docs/authoring/citations.html#bibliography-generation))
+
+    ::: {#refs}
+
+    :::
+
+
+2. pAppendixQmd
+    This prototype is inherited from pNote and $IsAppendix is `true`.
 
 # Rename HTMLExportFileName of a note with translation (Optional)
 
@@ -263,7 +348,7 @@ There are multiple ways to specify labels, but they are only supported if it is 
 [^table-cross-ref]: For other formats, please refer to [quarto cross-reference](https://quarto.org/docs/authoring/cross-references.html#tables).
 
 ```{.txt}
-:明度・彩度の修飾子(label:@tbl-brightness ) {#tbl-brightness-saturation}
+:明度・彩度の修飾子 {#tbl-brightness-saturation}
  
 |項目|効果|
 |----|------------|
@@ -273,6 +358,17 @@ There are multiple ways to specify labels, but they are only supported if it is 
 |light| 明るくする|
 ```
 
+
+## Equations
+
+Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:
+
+$$
+\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
+  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
+  \mathrm r \mathrm C 
+$$ {#eq-black-scholes}
 
 ## How to quote
 
