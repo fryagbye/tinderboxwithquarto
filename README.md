@@ -9,7 +9,7 @@ My Workflow is @fig-workflow.
 
 * [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
 
-```{mermaid} 
+```mermaid
 %%| label: fig-workflow
 %%| fig-cap: Tinderbox Work Flow with Quarto.
 flowchart TB
@@ -426,18 +426,18 @@ qmd files are moved to project path by stamp
 
 3. preview html output.( optional )
 
-    ```{.sh}
+```{.sh}
 # preview for only html output
 > quarto preview index.qmd --to html --no-watch-inputs --no-browse
 ```
 
 4. render pdf or html.
 
-    ```{.sh}
+```{.sh}
 > quarto render
 ```
 
-    you can use RStudio for preview and render.
+you can use RStudio for preview and render.
 
 # Example
 
