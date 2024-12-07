@@ -30,7 +30,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-![label: fig-airquality](./_bookhtml/cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png)
+![label: \@fig-airquality](./_bookhtml/cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png)
 
 
 
@@ -50,7 +50,7 @@ There are multiple ways to specify labels, but they are only supported if it is 
 [^table-cross-ref]: For other formats, please refer to [quarto cross-reference](https://quarto.org/docs/authoring/cross-references.html#tables).
 
 ```{.txt}
-:明度・彩度の修飾子(label:@tbl-brightness ) {#tbl-brightness-saturation}
+:明度・彩度の修飾子 {#tbl-brightness-saturation}
  
 |項目|効果|
 |----|------------|
@@ -60,6 +60,17 @@ There are multiple ways to specify labels, but they are only supported if it is 
 |light| 明るくする|
 ```
 
+
+
+## Equations { #sec-Equations }
+Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:
+
+$$
+\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
+  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
+  \mathrm r \mathrm C 
+$$ {#eq-black-scholes}
 
 
 ## How to quote { #sec-how-to-quote }

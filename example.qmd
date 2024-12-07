@@ -3,7 +3,7 @@
 out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 source("_common.R")
 ```
-# Example
+# Example {#sec-example }
 
 [Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/main/_bookpdf/Tinderbox-file-for-Quarto.pdf)
 
