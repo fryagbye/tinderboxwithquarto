@@ -445,8 +445,8 @@ you can use RStudio for preview and render.
 
 # References
 
-::: {#refs}
-:::
+Anderson, Mark. 2024. “A Tinderbox Reference File.” 2024.
+Wickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. “O’Reilly Media, Inc.”
 
 # Restrictions
 
