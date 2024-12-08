@@ -338,7 +338,7 @@ Recognize and collect labels in format that extend the markdown.
 
 \!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
-![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+![label:@fig-test](screenshots/toolbar.png)
 
 
 ## How to set the label of the table
