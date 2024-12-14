@@ -5,19 +5,20 @@ This tinderbox file supports creating a book with [Quarto](https://quarto.org/).
 You can make qmd files and _quarto.yml easily with it. 
 Here is an example of books created with Quarto.
 
-My Workflow is @fig-workflow.
-
 * [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
 
-```mermaid
+My Workflow is @fig-workflow.
+
+```mermaid 
 %%| label: fig-workflow
 %%| fig-cap: Tinderbox Work Flow with Quarto.
+%%| fig-width: 5
 flowchart TB
     A["Snippety"] -.->  B["Tinderbox"]
     B["Tinderbox"] -->  C["Mermaid"]
     C["Mermaid"] -->  B["Tinderbox"]
-    D["RMarkdown ( .qmd )"] -->|"Read qmd files"| E["R Studio"]
     D["RMarkdown ( .qmd )"] -->|"Call"| F["quarto CLI"]
+    D["RMarkdown ( .qmd )"] -->|"Read qmd files"| E["R Studio"]
     E["R Studio"] -->|"Call"| F["quarto CLI"]
     F["quarto CLI
 quarto render
@@ -67,7 +68,7 @@ Sub1 --> I["Marked 2
     click F href "https://quarto.org/" _blank
     style G fill:#006600,color:#ffffff,stroke:#dc490b,stroke-width:2px
     style H fill:#006600,color:#ffffff,stroke:#dc490b,stroke-width:2px
-    style I fill:#aaaaff,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    style I fill:#aaaaff,color:#000000,stroke:#dc490b,stroke-width:2px
     click I href "https://marked2app.com/" _blank
     style J fill:#ff8800,color:#ffffff,stroke:#dc490b,stroke-width:2px
     style Sub1 fill:#59b3b3,color:#ffffff,stroke:#dc490b,stroke-width:2px
@@ -75,7 +76,6 @@ Sub1 --> I["Marked 2
     style Sub3 fill:#e6e673,color:#000000,stroke:#dc490b,stroke-width:2px
 
 ```
-
 
 
 
@@ -89,6 +89,7 @@ Please refer to the output results of `quato check`.
 * It may be better to uninstall TinyTex.
 * I have set it to use `lightbox` extension ( included in Quarto v1.4+.)
 
+`quarto check` output
 
 <details>
 
@@ -118,7 +119,7 @@ Quarto 1.5.57
 
 [✓] Checking Python 3 installation....OK
       Version: 3.12.7
-      Path: /Users/tk4o2ka/github/tinderboxwithquarto/.venv/bin/python3
+      Path: ~/github/tinderboxwithquarto/.venv/bin/python3
       Jupyter: 5.7.2
       Kernels: python3
 
@@ -136,8 +137,6 @@ Quarto 1.5.57
 ```
 
 </details>
-
-
 
 ## RStudio Session information
 
@@ -164,7 +163,6 @@ attached base packages:
 
 loaded via a namespace (and not attached):
 [1] compiler_4.4.0 tools_4.4.0   
-
 ## Installed packages
 
 ```{.r}
@@ -359,7 +357,6 @@ installed.packages() |>
 
 
 
-
 # Setting
 
 1. Setting up with "TBXConfig" note
@@ -368,7 +365,8 @@ installed.packages() |>
 
 * `$Indent_Charactor` -> Set the symbol that represents the depth of indentation. (default value = ★)
 * `$ExList` -> List of notes excluded from cross-reference search ( default value = "List and Agent etc")
-* `$ExportFolder` -> path of exported files. ( for Stamp "Move qmd files")
+* `$ExportFolder` -> Path of exported files. ( for Stamp "Move qmd files")
+* `$ToggleTOC` -> If you don't use Quarto 
 * `$Q_TableOfContainsNoteName` -> **$Path** of TOC note. ( default value = /Table of Contents)
 
 2. Making a `_quarto.yml`
@@ -385,7 +383,6 @@ The initial setting specified in `_quarto.yml` is for Japanese output.
 
     You can set up `knitr` package options for R chunk.  
     
-
 # Make notes
 
 1. Make notes with Prototype pNote and pSubnote
@@ -406,8 +403,7 @@ Please set the Prototype of pNote to level 1 and pSubnote below level.
 2. Index.qmd
 
     In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of index.qmd is set to `true`.
-You can make the note for index.qmd with the pIndexQmd rototype.
-
+You can make the note for index.qmd with the pIndexQmd Prototype.
 
 
 ## Special Notes Prototype
@@ -415,23 +411,22 @@ You can make the note for index.qmd with the pIndexQmd rototype.
 1. pReferenceQmd
     This prototype is inherited from pNote and $Text has a div with id `refs` to call a works cited list (below). ([Quarto Bibliography Generation](https://quarto.org/docs/authoring/citations.html#bibliography-generation))
 
+```
     ::: {#refs}
 
     :::
-
+````
 
 2. pAppendixQmd
     This prototype is inherited from pNote and $IsAppendix is `true`.
-
 # Rename HTMLExportFileName of a note with translation (Optional)
 
-There is  a stamp **"Rename in English"** that translates the Japanese title (`$Name`) into English and automatically sets `$HTMLExportFileName` [^translate-shell]. and you can sets `$SectionLabel` with stamp "Set: Section Label". The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with `$Rename_in` in the TBX configuration note (**TBXConfig**). ( By default, from Japanese to English).
+There is  a stamp **"Notes: Tranlate Section Labels"** that translates the Japanese title (`$Name`) into English and automatically sets `$HTMLExportFileName` [^translate-shell]. and you can sets `$SectionLabel` with stamp "Set: Section Label". The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with `$Rename_in` in the TBX configuration note (**TBXConfig**). ( By default, from Japanese to English).
 
 [^translate-shell]: [Translate-shell](https://github.com/soimort/translate-shell) installation required. 
 ```{.sh}
 >brew install translate-shell
 ```
-
 # Part in Book format
 
 For Part, please refer to [Quarto's "Book Structure" reference](https://quarto.org/docs/books/book-structure.html).
@@ -472,7 +467,6 @@ The figure below shows the export example when Part is supported and the output 
 ![Folder configuration at the time of output and _quarto.yml](./screenshots/tree01.png)
 
 
-
 # Cross-Reference using Ziplink
 
 In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the **Tinderbox** file at the bottom of the **Reference List** note.[^regrex]
@@ -481,9 +475,7 @@ Convert it to a quoteable title (citation name starting with @) and create a not
 [^regrex]: The diagrams and tables are extracted in regular expressions.
 
 [^ziplink]: Please refer to "Text link creation via the Ziplinking method" in [A Tinderbox Reference File](https://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html).(@Anderson2024Tinde)
-
 ## How to set the label of the diagram
-
 
 
 ### R chunk
@@ -504,7 +496,6 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 ![label: \@fig-airquality](./_bookhtml/cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png)
 
-
 ### Image link in markdown format
 
 Recognize and collect labels in format that extend the markdown.
@@ -512,7 +503,6 @@ Recognize and collect labels in format that extend the markdown.
 \!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
 ![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
-
 
 ## How to set the label of the table
 
@@ -531,18 +521,16 @@ There are multiple ways to specify labels, but they are only supported if it is 
 |light| 明るくする|
 ```
 
-
 ## Equations
+
+Equation Example
 
 Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:
 
 $$
 \frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
-  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
-  \mathrm r \mathrm C 
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
 $$ {#eq-black-scholes}
-
 ## How to quote
 
 If you enter two square brackets "[[", the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.
@@ -550,9 +538,10 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 
 |Types of quotations  |Lable  |Quote|
 |---|---|---|
-|Chapter, Section etc.   |#sec-   |\@sec-|
-|Figure   |#\| label:    |\@fig-|
-|Chart　|#tbl-|\@tbl-|
+|Chapters, Sections etc.   |#sec-   |\@sec-|
+|Figures  |#\| label:    |\@fig-|
+|Charts　|#tbl-|\@tbl-|
+|Equations | #eq-| \@eq-|
 
 ## Restrictions on quoted labels
 
@@ -561,9 +550,8 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 
 In this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.
 
-1. Make: Clear Cross-Reference List（Delete all citation labels under the Reference List.）
-2. Make: Cross-Reference List（Re-detect the quoted label.）
-
+1. Labels: Clear Cross-Reference List（Delete all citation labels under the Reference List.）
+2. Labels: Make Cross-Reference List（Re-detect the quoted label.）
 
 
 
@@ -571,9 +559,8 @@ In this case, if necessary, delete the quoted label name in Stamp and perform th
 
 You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
 
-1. execute "Make: Dummy Link Data For Cross-Reference" stamp
-2. select cross-ref label notes ( start with "@" ) and  execute "Make: Dummy Link between Reference and Selected notes" stamp.
-
+1. execute "Labels: Make Dummy Link Data For Cross-Reference" stamp
+2. select cross-ref label notes ( start with "@" ) and  execute "Labels: Dummy Link between Reference and Selected notes" stamp.
 # Export
 
 1. Export `_quarto.yml`
@@ -599,31 +586,27 @@ qmd files are moved to project path by stamp
 
 3. preview html output.( optional )
 
-    ```{.sh}
+```{.sh}
 # preview for only html output
 > quarto preview index.qmd --to html --no-watch-inputs --no-browse
 ```
 
 4. render pdf or html.
 
-    ```{.sh}
+```{.sh}
 > quarto render
 ```
 
     you can use RStudio for preview and render.
-
 # Example
 
 [Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/main/_bookpdf/Tinderbox-file-for-Quarto.pdf)
-
 # References
 
-::: {#refs}
-:::
-
+Anderson, Mark. 2024. “A Tinderbox Reference File.” 2024.
+Wickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. “O’Reilly Media, Inc.”
 # Restrictions
 
 It seems that the section label customization function cannot be used in the latest release [ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML)](https://github.com/quarto-dev/quarto-cli/issues/5946). 
 
 If you turn on `$IsUnnumbered` and `$HasSectionLabel`, the display of the quote will be fixed to the number + title, so please turn off `$IsUnnumbered`.
-
