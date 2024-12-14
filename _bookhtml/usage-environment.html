@@ -249,7 +249,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>It may be better to uninstall TinyTex.</li>
 <li>I have set it to use <code>lightbox</code> extension ( included in Quarto v1.4+.)</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quarto check output</span></span>
+<p><code>quarto check</code> output</p>
+<details><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quarto check output</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Quarto</span> 1.5.57</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking versions of quarto binary dependencies...</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Pandoc</span> version 3.2.0: OK</span>
@@ -274,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking Python 3 installation....OK</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Version:</span> 3.12.7</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Path:</span> /Users/tk4o2ka/github/tinderboxwithquarto/.venv/bin/python3</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Path:</span> ~/github/tinderboxwithquarto/.venv/bin/python3</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Jupyter:</span> 5.7.2</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Kernels:</span> python3</span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
@@ -289,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>      <span class="ex">rmarkdown:</span> 2.26</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking Knitr engine render......OK</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="sec-session-information" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="sec-session-information">
+</details><section id="sec-session-information" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="sec-session-information">
 <span class="header-section-number">1.1</span> RStudio Session information</h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| echo: false</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -308,6 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">Package</span>, <span class="va">Version</span>, <span class="va">Built</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><p><summery>Package List</summery></p>
 <table class="caption-top table">
 <thead><tr class="header">
 <th>Name</th>
@@ -365,9 +367,813 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>1.3-30</td>
 <td>4.4.0</td>
 </tr>
+<tr class="odd">
+<td>brew</td>
+<td>1.0-10</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>brio</td>
+<td>1.1.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>broom</td>
+<td>1.0.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>bslib</td>
+<td>0.7.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>cachem</td>
+<td>1.0.8</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>callr</td>
+<td>3.7.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>cellranger</td>
+<td>1.1.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>class</td>
+<td>7.3-22</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>cli</td>
+<td>3.6.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>clipr</td>
+<td>0.8.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td>2.1.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>codetools</td>
+<td>0.2-20</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>collections</td>
+<td>0.3.7</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>colorspace</td>
+<td>2.1-0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>commonmark</td>
+<td>1.9.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>compiler</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>conflicted</td>
+<td>1.2.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>cpp11</td>
+<td>0.4.7</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>crayon</td>
+<td>1.5.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>curl</td>
+<td>5.2.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>cyclocomp</td>
+<td>1.1.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>data.table</td>
+<td>1.15.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>datasets</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>DBI</td>
+<td>1.2.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>dbplyr</td>
+<td>2.5.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>desc</td>
+<td>1.4.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>digest</td>
+<td>0.6.35</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>downlit</td>
+<td>0.4.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>dplyr</td>
+<td>1.1.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>dtplyr</td>
+<td>1.3.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>ellipsis</td>
+<td>0.3.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>evaluate</td>
+<td>0.23</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>fansi</td>
+<td>1.0.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>farver</td>
+<td>2.1.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>fastmap</td>
+<td>1.1.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>fontawesome</td>
+<td>0.5.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>forcats</td>
+<td>1.0.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>foreign</td>
+<td>0.8-86</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>fs</td>
+<td>1.6.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>gargle</td>
+<td>1.5.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>generics</td>
+<td>0.1.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>ggplot2</td>
+<td>3.5.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>gitcreds</td>
+<td>0.1.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>glue</td>
+<td>1.7.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>googledrive</td>
+<td>2.1.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>googlesheets4</td>
+<td>1.1.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>graphics</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>grDevices</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>grid</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>gt</td>
+<td>0.10.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>gtable</td>
+<td>0.3.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>gtExtras</td>
+<td>0.5.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>haven</td>
+<td>2.5.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>highr</td>
+<td>0.10</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>hms</td>
+<td>1.1.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>htmltools</td>
+<td>0.5.8.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>htmlwidgets</td>
+<td>1.6.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>httr</td>
+<td>1.4.7</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>ids</td>
+<td>1.0.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>isoband</td>
+<td>0.2.7</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>jquerylib</td>
+<td>0.1.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>jsonlite</td>
+<td>1.8.8</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>juicyjuice</td>
+<td>0.1.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>kableExtra</td>
+<td>1.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>KernSmooth</td>
+<td>2.23-22</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>knitr</td>
+<td>1.46</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>labeling</td>
+<td>0.4.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>languageserver</td>
+<td>0.3.16</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>lattice</td>
+<td>0.22-6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>lazyeval</td>
+<td>0.2.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>lifecycle</td>
+<td>1.0.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>lintr</td>
+<td>3.1.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>lubridate</td>
+<td>1.9.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>magrittr</td>
+<td>2.0.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>markdown</td>
+<td>1.12</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>MASS</td>
+<td>7.3-60.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>Matrix</td>
+<td>1.7-0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>memoise</td>
+<td>2.0.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>methods</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>mgcv</td>
+<td>1.9-1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>mime</td>
+<td>0.12</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>modelr</td>
+<td>0.1.11</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>munsell</td>
+<td>0.5.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>nlme</td>
+<td>3.1-164</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>nnet</td>
+<td>7.3-19</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>nvimcom</td>
+<td>0.9.42</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>openssl</td>
+<td>2.1.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>pacman</td>
+<td>0.5.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>paletteer</td>
+<td>1.6.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>parallel</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>pillar</td>
+<td>1.9.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>pkgbuild</td>
+<td>1.4.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>pkgconfig</td>
+<td>2.0.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>pkgload</td>
+<td>1.3.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>prettyunits</td>
+<td>1.2.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>prismatic</td>
+<td>1.1.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>processx</td>
+<td>3.8.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>progress</td>
+<td>1.2.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>ps</td>
+<td>1.7.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>purrr</td>
+<td>1.0.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>R.cache</td>
+<td>0.16.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>R.methodsS3</td>
+<td>1.8.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>R.oo</td>
+<td>1.26.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>R.utils</td>
+<td>2.12.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>R6</td>
+<td>2.5.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>ragg</td>
+<td>1.3.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>rappdirs</td>
+<td>0.3.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>RColorBrewer</td>
+<td>1.1-3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>Rcpp</td>
+<td>1.0.12</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>reactable</td>
+<td>0.4.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>reactR</td>
+<td>0.5.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>readr</td>
+<td>2.1.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>readxl</td>
+<td>1.4.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>rematch</td>
+<td>2.0.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>rematch2</td>
+<td>2.1.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>remotes</td>
+<td>2.5.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>reprex</td>
+<td>2.1.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>rex</td>
+<td>1.2.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>rlang</td>
+<td>1.1.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>rmarkdown</td>
+<td>2.26</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>roxygen2</td>
+<td>7.3.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>rpart</td>
+<td>4.1.23</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>rprojroot</td>
+<td>2.0.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>rstudioapi</td>
+<td>0.16.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>rvest</td>
+<td>1.0.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>sass</td>
+<td>0.4.9</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>scales</td>
+<td>1.3.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>selectr</td>
+<td>0.4-2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>spatial</td>
+<td>7.3-17</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>splines</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>stats</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>stats4</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>stringi</td>
+<td>1.8.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>stringr</td>
+<td>1.5.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>styler</td>
+<td>1.10.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>survival</td>
+<td>3.5-8</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>svglite</td>
+<td>2.1.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>sys</td>
+<td>3.4.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>systemfonts</td>
+<td>1.0.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>tcltk</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>textshaping</td>
+<td>0.3.7</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>tibble</td>
+<td>3.2.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>tidyr</td>
+<td>1.3.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>tidyselect</td>
+<td>1.2.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>tidyverse</td>
+<td>2.0.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>timechange</td>
+<td>0.3.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>tinytex</td>
+<td>0.50</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>tools</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>tzdb</td>
+<td>0.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>utf8</td>
+<td>1.2.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>utils</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>uuid</td>
+<td>1.2-0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>V8</td>
+<td>4.4.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>vctrs</td>
+<td>0.6.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>viridisLite</td>
+<td>0.4.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>vroom</td>
+<td>1.6.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>withr</td>
+<td>3.0.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>xfun</td>
+<td>0.43</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>xml2</td>
+<td>1.3.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>xmlparsedata</td>
+<td>1.0.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>yaml</td>
+<td>2.3.8</td>
+<td>4.4.0</td>
+</tr>
 </tbody>
-</table>
-
+</table></details>
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

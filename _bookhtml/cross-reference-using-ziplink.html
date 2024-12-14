@@ -122,6 +122,32 @@ div.csl-indent {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar docked">
 
@@ -246,9 +272,10 @@ div.csl-indent {
   <ul class="collapse">
 <li><a href="#sec-how-to-set-the-label-of-the-diagram" id="toc-sec-how-to-set-the-label-of-the-diagram" class="nav-link active" data-scroll-target="#sec-how-to-set-the-label-of-the-diagram"><span class="header-section-number">6.1</span> How to set the label of the diagram</a></li>
   <li><a href="#sec-how-to-set-the-label-of-the-table" id="toc-sec-how-to-set-the-label-of-the-table" class="nav-link" data-scroll-target="#sec-how-to-set-the-label-of-the-table"><span class="header-section-number">6.2</span> How to set the label of the table</a></li>
-  <li><a href="#sec-how-to-quote" id="toc-sec-how-to-quote" class="nav-link" data-scroll-target="#sec-how-to-quote"><span class="header-section-number">6.3</span> How to quote</a></li>
-  <li><a href="#sec-restrictions-on-quoted-labels" id="toc-sec-restrictions-on-quoted-labels" class="nav-link" data-scroll-target="#sec-restrictions-on-quoted-labels"><span class="header-section-number">6.4</span> Restrictions on quoted labels</a></li>
-  <li><a href="#sec-add-dummy-links-to-cross-ref" id="toc-sec-add-dummy-links-to-cross-ref" class="nav-link" data-scroll-target="#sec-add-dummy-links-to-cross-ref"><span class="header-section-number">6.5</span> Dummy links for cross-reference (optional)</a></li>
+  <li><a href="#sec-Equations" id="toc-sec-Equations" class="nav-link" data-scroll-target="#sec-Equations"><span class="header-section-number">6.3</span> Equations</a></li>
+  <li><a href="#sec-how-to-quote" id="toc-sec-how-to-quote" class="nav-link" data-scroll-target="#sec-how-to-quote"><span class="header-section-number">6.4</span> How to quote</a></li>
+  <li><a href="#sec-restrictions-on-quoted-labels" id="toc-sec-restrictions-on-quoted-labels" class="nav-link" data-scroll-target="#sec-restrictions-on-quoted-labels"><span class="header-section-number">6.5</span> Restrictions on quoted labels</a></li>
+  <li><a href="#sec-add-dummy-links-to-cross-ref" id="toc-sec-add-dummy-links-to-cross-ref" class="nav-link" data-scroll-target="#sec-add-dummy-links-to-cross-ref"><span class="header-section-number">6.6</span> Dummy links for cross-reference (optional)</a></li>
   </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/cross-reference-using-ziplink.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -290,18 +317,18 @@ div.csl-indent {
 <span class="header-section-number">6.1.2</span> Image link in markdown format</h3>
 <p>Recognize and collect labels in format that extend the markdown.</p>
 <p>![Test image](screenshots/toolbar.png){#fig-test fig-alt=“test” fig-align=“left” width=100%}</p>
-<div id="fig-test" class="quarto-float quarto-figure quarto-figure-left anchored" alt="test" data-fig-align="left">
+<div id="fig-test" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="test">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="screenshots/toolbar.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;6.1: label:@fig-test"><img src="screenshots/toolbar.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%" alt="test"></a>
+<a href="screenshots/toolbar.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;6.1: label:Figure&nbsp;fig-test"><img src="screenshots/toolbar.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%" alt="test"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.1: label:@fig-test
+Figure&nbsp;6.1: label:<a href="#fig-test" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>
 </figcaption></figure>
 </div>
 </section></section><section id="sec-how-to-set-the-label-of-the-table" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="sec-how-to-set-the-label-of-the-table">
 <span class="header-section-number">6.2</span> How to set the label of the table</h2>
 <p>There are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>:明度・彩度の修飾子(label:@tbl-brightness ) {#tbl-brightness-saturation}</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>:明度・彩度の修飾子 {#tbl-brightness-saturation}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>|項目|効果|</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>|----|------------|</span>
@@ -309,8 +336,17 @@ Figure&nbsp;6.1: label:@fig-test
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>|darker|より暗くする|</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>|darkest|最も暗くする|</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>|light| 明るくする|</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="sec-how-to-quote" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="sec-how-to-quote">
-<span class="header-section-number">6.3</span> How to quote</h2>
+</section><section id="sec-Equations" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="sec-Equations">
+<span class="header-section-number">6.3</span> Equations</h2>
+<p>Black-Scholes (<a href="#eq-black-scholes" class="quarto-xref">Equation&nbsp;<span>6.1</span></a> ) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:</p>
+<p><span id="eq-black-scholes"><span class="math display">\[
+\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
+  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
+  \mathrm r \mathrm C
+\tag{6.1}\]</span></span></p>
+</section><section id="sec-how-to-quote" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="sec-how-to-quote">
+<span class="header-section-number">6.4</span> How to quote</h2>
 <p>If you enter two square brackets “[[”, the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.</p>
 <table class="caption-top table">
 <thead><tr class="header">
@@ -335,8 +371,8 @@ Figure&nbsp;6.1: label:@fig-test
 <td>@tbl-</td>
 </tr>
 </tbody>
-</table></section><section id="sec-restrictions-on-quoted-labels" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="sec-restrictions-on-quoted-labels">
-<span class="header-section-number">6.4</span> Restrictions on quoted labels</h2>
+</table></section><section id="sec-restrictions-on-quoted-labels" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="sec-restrictions-on-quoted-labels">
+<span class="header-section-number">6.5</span> Restrictions on quoted labels</h2>
 <ul>
 <li>The label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.</li>
 <li>Cross-ref detection is carried out by regular execution. If it is executed in the middle of input, it will be duplicated with a short label.</li>
@@ -345,8 +381,8 @@ Figure&nbsp;6.1: label:@fig-test
 <ol type="1">
 <li>Make: Clear Cross-Reference List（Delete all citation labels under the Reference List.）</li>
 <li>Make: Cross-Reference List（Re-detect the quoted label.）</li>
-</ol></section><section id="sec-add-dummy-links-to-cross-ref" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="sec-add-dummy-links-to-cross-ref">
-<span class="header-section-number">6.5</span> Dummy links for cross-reference (optional)</h2>
+</ol></section><section id="sec-add-dummy-links-to-cross-ref" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="sec-add-dummy-links-to-cross-ref">
+<span class="header-section-number">6.6</span> Dummy links for cross-reference (optional)</h2>
 <p>You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.</p>
 <ol type="1">
 <li>execute “Make: Dummy Link Data For Cross-Reference” stamp</li>

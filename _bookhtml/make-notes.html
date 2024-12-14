@@ -183,8 +183,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#special-notes-prototype" id="toc-special-notes-prototype" class="nav-link active" data-scroll-target="#special-notes-prototype"><span class="header-section-number">3.1</span> Special Notes Prototype</a></li>
+  </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/make-notes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -226,14 +230,23 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <ol start="2" type="1">
 <li>
-<p>Index file settings</p>
-<p>In the quarto book format, <strong>only one index.qmd is required</strong>, <code>$IsIndexqmd</code> of index.qmd is set to <code>true</code>.</p>
+<p>Index.qmd</p>
+<p>In the quarto book format, <strong>only one index.qmd is required</strong>, <code>$IsIndexqmd</code> of index.qmd is set to <code>true</code>. You can make the note for index.qmd with the pIndexQmd rototype.</p>
 </li>
+</ol>
+<section id="special-notes-prototype" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="special-notes-prototype">
+<span class="header-section-number">3.1</span> Special Notes Prototype</h2>
+<ol type="1">
+<li>
+<p>pReferenceQmd This prototype is inherited from pNote and $Text has a div with id <code>refs</code> to call a works cited list (below). (<a href="https://quarto.org/docs/authoring/citations.html#bibliography-generation">Quarto Bibliography Generation</a>)</p>
+<p>::: {#refs}</p>
+<p>:::</p>
+</li>
+<li><p>pAppendixQmd This prototype is inherited from pNote and $IsAppendix is <code>true</code>.</p></li>
 </ol>
 
 
-
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -672,7 +685,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/make-notes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/make-notes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>footer right</p>
 </div>
