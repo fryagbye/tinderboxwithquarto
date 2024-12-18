@@ -374,6 +374,7 @@ installed.packages() |>
 * `$ManuscriptOutlineBaseControl` -> Adjustment of section levels in Markdown. ( default = 1 )
 
      e.g. $ManuscriptOutlineBaseControl = 0 -> \#\# Title
+
 $ManuscriptOutlineBaseControl = 1 -> \# Title 
 
 
@@ -568,6 +569,54 @@ You can create dummy links showing where each cross-reference, starting with the
 
 1. execute "Labels: Make Dummy Link Data For Cross-Reference" stamp
 2. select cross-ref label notes ( start with "@" ) and  execute "Labels: Dummy Link between Reference and Selected notes" stamp.
+# Mermaid flowchart ( Optional )
+
+This file can generate Mermaid flowchart from notes, links and adornments.
+
+Work Flow is a sample of Mermaid flowchart.  
+Please check it in Map view.
+
+
+## How to use
+
+
+1. You make a container and set pMermaidContainer.
+2. You make notes ( pMermaid ) and links. if you want to make a subgraph, make a adorment ( pMermaidAdorments )
+3. You choose a direction for drawing like TD or LR.($M_Direction)
+4. run stamp ( Mermaid: Make a Flowchart ).
+5. pMermaidContainer has the code for mermaid flowchart.
+
+## Subgraph support (by Adornments)
+
+This is controled by $OnAdd and $OnRemove of Adornments.
+if you delete or move adornment without runnning $OnRemove for all notes, you need to fix a value of $M_Subgraph and $M_adornments.
+
+
+## Supported shapes
+
+* rectangle (<- normal and other shapes)
+* rounded
+* oval
+* ozenge
+* diamond
+* hex
+
+## Supported line types (Priority)
+
+* normal 	 -->			(4th)
+* bold     	 ==>			(3rd)
+* dotted  	 -.->		    (2nd)
+* invisible	 ~~~		   	(1st)
+
+## Supported arrow types
+
+* arrow only 
+
+## Limitation
+
+Notes with the same name will not be reflected correctly.
+
+It is not perfect, so please fix the generated code as you needed.
 # Export
 
 1. Export `_quarto.yml`
