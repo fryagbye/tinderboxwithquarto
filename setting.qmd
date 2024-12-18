@@ -9,11 +9,17 @@ source("_common.R")
 
     You need to change values of the following "TBXConfig" attributes for configuration.
 
-* `$Indent_Charactor` -> Set the symbol that represents the depth of indentation. (default value = ★)
-* `$ExList` -> List of notes excluded from cross-reference search ( default value = "List and Agent etc")
-* `$ExportFolder` -> Path of exported files. ( for Stamp "Move qmd files")
-* `$ToggleTOC` -> If you don't use Quarto 
-* `$Q_TableOfContainsNoteName` -> **$Path** of TOC note. ( default value = /Table of Contents)
+* `$Indent_Charactor` -> Set the symbol that represents the depth of indentation. ( default value = ★ )
+* `$ExList` -> List of notes excluded from cross-reference search ( default value = "List and Agent etc" )
+* `$ExportFolder` -> Path of exported files. ( for Stamp "Move qmd files" )
+* `$ToggleTOC` -> Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml. 
+* `$Q_TableOfContainsNote` -> **$Name** of TOC note. ( default value = Table of Contents )
+* `$Rename_in` -> Setting for translating a label. ( default value = ja:en )
+* `$Q_PDFEngine` -> Setting for [pdf engine](https://quarto.org/docs/output-formats/pdf-engine.html) This file is tested only with lualatex. ( default value = lualatex )
+* `$ManuscriptOutlineBaseControl` -> Adjust for depth of section. ( default = 1 )
+     e.g. $ManuscriptOutlineBaseControl = 0 -> \#\# Title
+$ManuscriptOutlineBaseControl = 1 -> \# Title 
+
 
 2. Making a `_quarto.yml`
 

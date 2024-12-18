@@ -16,7 +16,7 @@ Convert it to a quoteable title (citation name starting with @) and create a not
 
 
 ### R chunk { #sec-r-chunk }
-Automatically recognize and collect R chunk labels in the following format (#| labe: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote **\@fig-airquality**.
+Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote **\@fig-airquality**.
 
 ```{.r}
 #| label: fig-airquality 
@@ -63,13 +63,13 @@ There are multiple ways to specify labels, but they are only supported if it is 
 
 
 ## Equations { #sec-Equations }
+Equation Example
+
 Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:
 
 $$
 \frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
-  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
-  \mathrm r \mathrm C 
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
 $$ {#eq-black-scholes}
 
 
@@ -79,9 +79,10 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 
 |Types of quotations  |Lable  |Quote|
 |---|---|---|
-|Chapter, Section etc.   |#sec-   |\@sec-|
-|Figure   |#\| label:    |\@fig-|
-|Chart　|#tbl-|\@tbl-|
+|Chapters, Sections etc.   |#sec-   |\@sec-|
+|Figures  |#\| label:    |\@fig-|
+|Charts　|#tbl-|\@tbl-|
+|Equations | #eq-| \@eq-|
 
 
 ## Restrictions on quoted labels { #sec-restrictions-on-quoted-labels }
@@ -90,8 +91,8 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 
 In this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.
 
-1. Make: Clear Cross-Reference List（Delete all citation labels under the Reference List.）
-2. Make: Cross-Reference List（Re-detect the quoted label.）
+1. Labels: Clear Cross-Reference List（Delete all citation labels under the Reference List.）
+2. Labels: Make Cross-Reference List（Re-detect the quoted label.）
 
 
 
@@ -100,8 +101,8 @@ In this case, if necessary, delete the quoted label name in Stamp and perform th
 ## Dummy links for cross-reference (optional) { #sec-add-dummy-links-to-cross-ref }
 You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
 
-1. execute "Make: Dummy Link Data For Cross-Reference" stamp
-2. select cross-ref label notes ( start with "@" ) and  execute "Make: Dummy Link between Reference and Selected notes" stamp.
+1. execute "Labels: Make Dummy Link Data For Cross-Reference" stamp
+2. select cross-ref label notes ( start with "@" ) and  execute "Labels: Dummy Link between Reference and Selected notes" stamp.
 
 
 

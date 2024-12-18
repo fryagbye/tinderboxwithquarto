@@ -5,14 +5,15 @@ source("_common.R")
 ```
 # Introduction { .unnumbered }
 
-This tinderbox file supports creating a book with [Quarto](https://quarto.org/).
+This tinderbox file supports creating a book and manuscript (beta) with [Quarto](https://quarto.org/).
 
 You can make qmd files and _quarto.yml easily with it. 
 Here is an example of books created with Quarto.
 
-My Workflow is @fig-workflow.
-
 * [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
+
+
+My Workflow is @fig-workflow.
 
 ```{mermaid} 
 %%| label: fig-workflow
