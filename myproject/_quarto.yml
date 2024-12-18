@@ -1,0 +1,21 @@
+project:
+  type: manuscript
+
+manuscript:
+  article: main.qmd
+
+format:
+  html:
+    comments:
+      hypothesis: true
+  docx: default
+
+  pdf:
+    pdf-engine: lualatex
+
+bibliography: ../citation/references.bib
+execute:
+  cache: false
+  freeze: auto
+
+
