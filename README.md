@@ -1,11 +1,12 @@
 # Introduction
 
-This tinderbox file supports creating a book with [Quarto](https://quarto.org/).
+This tinderbox file supports creating a book and manuscript (beta) with [Quarto](https://quarto.org/).
 
 You can make qmd files and _quarto.yml easily with it. 
 Here is an example of books created with Quarto.
 
 * [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
+
 
 My Workflow is @fig-workflow.
 
@@ -363,11 +364,18 @@ installed.packages() |>
 
     You need to change values of the following "TBXConfig" attributes for configuration.
 
-* `$Indent_Charactor` -> Set the symbol that represents the depth of indentation. (default value = ★)
-* `$ExList` -> List of notes excluded from cross-reference search ( default value = "List and Agent etc")
-* `$ExportFolder` -> Path of exported files. ( for Stamp "Move qmd files")
-* `$ToggleTOC` -> If you don't use Quarto 
-* `$Q_TableOfContainsNoteName` -> **$Path** of TOC note. ( default value = /Table of Contents)
+* `$Indent_Charactor` -> Set the symbol that represents the depth of indentation. ( default value = ★ )
+* `$ExList` -> List of notes excluded from cross-reference search ( default value = "List and Agent etc" )
+* `$ExportFolder` -> Path of exported files. ( for Stamp "Move qmd files" )
+* `$ToggleTOC` -> Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml. 
+* `$Q_TableOfContainsNote` -> **$Name** of TOC note. ( default value = Table of Contents )
+* `$Rename_in` -> Setting for translating a label. ( default value = ja:en )
+* `$Q_PDFEngine` -> Setting for [pdf engine](https://quarto.org/docs/output-formats/pdf-engine.html) This file is tested only with lualatex. ( default value = lualatex )
+* `$ManuscriptOutlineBaseControl` -> Adjustment of section levels in Markdown. ( default = 1 )
+
+     e.g. $ManuscriptOutlineBaseControl = 0 -> \#\# Title
+$ManuscriptOutlineBaseControl = 1 -> \# Title 
+
 
 2. Making a `_quarto.yml`
 
@@ -480,7 +488,7 @@ Convert it to a quoteable title (citation name starting with @) and create a not
 
 ### R chunk
 
-Automatically recognize and collect R chunk labels in the following format (#| labe: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote **\@fig-airquality**.
+Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote **\@fig-airquality**.
 
 ```{.r}
 #| label: fig-airquality 
@@ -542,7 +550,6 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 |Figures  |#\| label:    |\@fig-|
 |Charts　|#tbl-|\@tbl-|
 |Equations | #eq-| \@eq-|
-
 ## Restrictions on quoted labels
 
 * The label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.
@@ -586,7 +593,7 @@ qmd files are moved to project path by stamp
 
 3. preview html output.( optional )
 
-```{.sh}
+    ```{.sh}
 # preview for only html output
 > quarto preview index.qmd --to html --no-watch-inputs --no-browse
 ```
@@ -603,8 +610,8 @@ qmd files are moved to project path by stamp
 [Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/main/_bookpdf/Tinderbox-file-for-Quarto.pdf)
 # References
 
-Anderson, Mark. 2024. “A Tinderbox Reference File.” 2024.
-Wickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. “O’Reilly Media, Inc.”
+::: {#refs}
+:::
 # Restrictions
 
 It seems that the section label customization function cannot be used in the latest release [ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML)](https://github.com/quarto-dev/quarto-cli/issues/5946). 
