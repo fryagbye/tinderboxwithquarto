@@ -8,6 +8,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+matplotlib = "^3.10.0"
+plotly = "^5.24.1"
+pandas = "^2.2.3"
+jupyter-cache = "^1.0.1"
+kaleido = "0.2.1"
 
 
 [build-system]
