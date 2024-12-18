@@ -20,6 +20,7 @@ book:
     - translate-and-rename-htmlexportfilename.qmd
     - part-in-book-format.qmd
     - cross-reference-using-ziplink.qmd
+    - mermaid-flowchart.qmd
     - export.qmd
     - example.qmd
     - references.qmd
