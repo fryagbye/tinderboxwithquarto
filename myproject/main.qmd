@@ -48,25 +48,24 @@ author:
 
 
 abstract: >
-  The characteristic theme of the works of Stone is 
-  the bridge between culture and society. ...
+  This is a demo of quarto manuscript
 keywords: Plotly,Python,Quarto
 
 
 license: "CC BY"
 copyright:
   holder: quarto-dev
-  year: 2024
+  year: [2023,2024]
 citation:
   container-title: Test
   volume: 1
   issue: 1
-  doi: 10.5555/12345678
+  doi: 10.xxxx/12345678
 funding: "The author received no specific funding for this work."
 ---
 
 
-## NumPy
+# NumPy
 ```{python}
 import numpy as np
 a = np.arange(15).reshape(3, 5)
@@ -76,7 +75,7 @@ a
 Reference test @Wickham2016Data
 
 
-## Matplotlib { #sec-data-methods }
+# Matplotlib { #sec-data-methods }
 ```{python}
 import matplotlib.pyplot as plt
 fig = plt.figure()
@@ -99,7 +98,7 @@ plt.show(fig)
 ```
 
 
-## Plotly
+# Plotly
 
 
 ```{python .content-hidden unless-format="html"}
@@ -125,7 +124,7 @@ Image(img_bytes)
 
 
 
-## References { .unnumbered }
+# References { .unnumbered }
 :::{#refs}
 
 :::

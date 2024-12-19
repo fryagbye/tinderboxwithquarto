@@ -190,7 +190,7 @@
   });
 </script>  
       <meta name="citation_title" content="DEMO: Quarto Computations">
-<meta name="citation_abstract" content="The characteristic theme of the works of Stone is the bridge between culture and society. ...
+<meta name="citation_abstract" content="This is a demo of quarto manuscript
 ">
 <meta name="citation_keywords" content="Plotly,Python,Quarto">
 <meta name="citation_author" content="Yamada Ichiro SAMPLE">
@@ -200,7 +200,7 @@
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-06-29">
 <meta name="citation_issue" content="1">
-<meta name="citation_doi" content="10.5555/12345678">
+<meta name="citation_doi" content="10.xxxx/12345678">
 <meta name="citation_volume" content="1">
 <meta name="citation_language" content="en">
 <meta name="citation_journal_title" content="Test">
@@ -275,7 +275,7 @@
     <div>
       <div class="abstract">
         <div class="block-title">Abstract</div>
-        <p>The characteristic theme of the works of Stone is the bridge between culture and society. …</p>
+        <p>This is a demo of quarto manuscript</p>
       </div>
     </div>
 
@@ -304,25 +304,25 @@
 </div>
 <main class="content quarto-banner-title-block" id="quarto-document-content">      
 
-       <section id="numpy" class="level2">
-<h2 class="anchored" data-anchor-id="numpy">NumPy</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="9b4f1912" class="cell" data-execution_count="1">
+       <section id="numpy" class="level1">
+<h1>NumPy</h1>
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="b251c62d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.arange(<span class="dv">15</span>).reshape(<span class="dv">3</span>, <span class="dv">5</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>array([[ 0,  1,  2,  3,  4],
        [ 5,  6,  7,  8,  9],
        [10, 11, 12, 13, 14]])</code></pre>
 </div>
 </div></div>
-<div id="3cb23912" class="cell markdown">
-<p>ref test <span class="citation" data-cites="Anderson2024Tinde">Anderson (<a href="#ref-Anderson2024Tinde" role="doc-biblioref">2024</a>)</span></p>
-<section id="sec-data-methods" class="level2">
-<h2 class="anchored" data-anchor-id="sec-data-methods">Matplotlib</h2>
+<div id="7fa74a68" class="cell markdown">
+<p>Reference test <span class="citation" data-cites="Wickham2016Data">Wickham and Grolemund (<a href="#ref-Wickham2016Data" role="doc-biblioref">2016</a>)</span></p>
+<section id="sec-data-methods" class="level1">
+<h1>Matplotlib</h1>
 </section>
 </div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="b75f08d5" class="cell" data-execution_count="2">
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="ec3040c8" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
@@ -350,12 +350,12 @@
 </div>
 </div></div>
 </section>
-<div id="d5a4a5d9" class="cell markdown">
-<section id="plotly" class="level2">
-<h2 class="anchored" data-anchor-id="plotly">Plotly</h2>
+<div id="27fd20d7" class="cell markdown">
+<section id="plotly" class="level1">
+<h1>Plotly</h1>
 </section>
 </div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="e380d226" class="cell" data-execution_count="3">
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="eaf9c272" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.io <span class="im">as</span> pio</span>
@@ -367,12 +367,12 @@
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                 hover_name<span class="op">=</span><span class="st">"country"</span>)</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#fig.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="2cbd2ca9" class="cell" data-execution_count="4">
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="88917460" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> kaleido</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>img_bytes <span class="op">=</span> fig.to_image(<span class="bu">format</span><span class="op">=</span><span class="st">"png"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Image(img_bytes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div class="">
 <figure class="figure">
 <p class=""><a href="main_files/figure-html/cell-5-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="main_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></a></p>
@@ -380,12 +380,12 @@
 </div>
 </div>
 </div></div>
-<div id="9b318015" class="cell markdown">
-<section id="references" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+<div id="5b0248b0" class="cell markdown">
+<section id="references" class="level1 unnumbered">
+<h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-Anderson2024Tinde" class="csl-entry" role="listitem">
-Anderson, Mark. 2024. <span>“A Tinderbox Reference File.”</span> 2024.
+<div id="ref-Wickham2016Data" class="csl-entry" role="listitem">
+Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. <span>“O’Reilly Media, Inc.”</span>
 </div>
 </div>
 </section>
