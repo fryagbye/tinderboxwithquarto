@@ -3,7 +3,7 @@
 out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 source("_common.R")
 ```
-# Export {#sec-export }
+# Export and Render {#sec-export }
 
 1. Export `_quarto.yml`
 

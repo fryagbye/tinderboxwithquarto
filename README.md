@@ -392,6 +392,9 @@ The initial setting specified in `_quarto.yml` is for Japanese output.
 
     You can set up `knitr` package options for R chunk.  
     
+# Book format
+
+
 # Make notes
 
 1. Make notes with Prototype pNote and pSubnote
@@ -569,6 +572,103 @@ You can create dummy links showing where each cross-reference, starting with the
 
 1. execute "Labels: Make Dummy Link Data For Cross-Reference" stamp
 2. select cross-ref label notes ( start with "@" ) and  execute "Labels: Dummy Link between Reference and Selected notes" stamp.
+# Export and Render
+
+1. Export `_quarto.yml`
+
+    You can change output format "pdf" or "html"  with the stamp "Change quarto.yml template".
+If you use a _language.yml, you export "_language" note (optional. See  @sec-setting Setting)
+
+
+2. Export  `.qmd` files ( pNote notes only)
+
+    The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
+
+    If you select the pNote notes below "For Export" and output it ( @fig-before ), then execute the "Move qmd files" stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( @fig-after ) . This is a method to avoid having to consider the folder structure when referencing image files with a relative path.
+
+::: {#fig-move-qmd layout-ncol=2}
+
+![Before](screenshots/folder01.png){#fig-before}
+
+![After](screenshots/folder02.png){#fig-after}
+
+qmd files are moved to project path by stamp
+:::
+
+3. preview html output.( optional )
+
+    ```{.sh}
+# preview for only html output
+> quarto preview index.qmd --to html --no-watch-inputs --no-browse
+```
+
+4. render pdf or html.
+
+```{.sh}
+> quarto render
+```
+
+    you can use RStudio for preview and render.
+# Example
+
+[Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/main/_bookpdf/Tinderbox-file-for-Quarto.pdf)
+# Manuscript format
+
+
+# Make sub-project folder
+
+Make a note for sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
+
+# Make _quarto.yml for the sub-project
+
+you have to set a qmd file name.
+manuscript has only one qmd file.
+
+# Make notes
+
+Manuscript has a only one qmd file.
+## Front Matter and Subnote
+
+
+1. pFrontmatterManuscript
+    
+    This is a qmd file that contains a Front Matter. When you export, it has  contents of descendants.
+
+you can set data for author(s) with the path of note that has pAuther notes. ( like Authors )
+
+`$IsManuscript = true`
+
+2. pSubnoteManuscript
+
+    This is a dammy file for pFrontmatterManuscript. markdown level depends on indent level.
+ 
+`$IsManuscript = true`
+# Export and Render
+
+1. Export
+    You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in sub-project folder.
+
+2. Activate a virtual environment
+if you use a virtual environment, activate it.
+
+e.g.
+
+```{.sh}
+poetry shell
+```
+
+3. Render sub-project
+
+```{.sh}
+# quarto render "your project name"
+quarto render myproject
+
+# For preview
+quarto preview myproject --to html --no-watch-inputs --no-browse
+
+```
+
+
 # Mermaid flowchart ( Optional )
 
 This file can generate Mermaid flowchart from notes, links and adornments.
@@ -617,46 +717,6 @@ if you delete or move adornment without runnning $OnRemove for all notes, you ne
 Notes with the same name will not be reflected correctly.
 
 It is not perfect, so please fix the generated code as you needed.
-# Export
-
-1. Export `_quarto.yml`
-
-    You can change output format "pdf" or "html"  with the stamp "Change quarto.yml template".
-If you use a _language.yml, you export "_language" note (optional. See  @sec-setting Setting)
-
-
-2. Export  `.qmd` files ( pNote notes only)
-
-    The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
-
-    If you select the pNote notes below "For Export" and output it ( @fig-before ), then execute the "Move qmd files" stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( @fig-after ) . This is a method to avoid having to consider the folder structure when referencing image files with a relative path.
-
-::: {#fig-move-qmd layout-ncol=2}
-
-![Before](screenshots/folder01.png){#fig-before}
-
-![After](screenshots/folder02.png){#fig-after}
-
-qmd files are moved to project path by stamp
-:::
-
-3. preview html output.( optional )
-
-    ```{.sh}
-# preview for only html output
-> quarto preview index.qmd --to html --no-watch-inputs --no-browse
-```
-
-4. render pdf or html.
-
-```{.sh}
-> quarto render
-```
-
-    you can use RStudio for preview and render.
-# Example
-
-[Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/main/_bookpdf/Tinderbox-file-for-Quarto.pdf)
 # References
 
 ::: {#refs}

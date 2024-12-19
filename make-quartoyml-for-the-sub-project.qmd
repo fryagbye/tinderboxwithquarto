@@ -1,0 +1,12 @@
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+# Make _quarto.yml for the sub-project
+
+you have to set a qmd file name.
+manuscript has only one qmd file.
+
+
+
