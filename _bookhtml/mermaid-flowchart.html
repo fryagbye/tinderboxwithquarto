@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.6.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="fryagbye">
-<title>14&nbsp; References – Tinderbox file for Quarto</title>
+<title>13&nbsp; Mermaid flowchart ( Optional ) – Tinderbox file for Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,26 +18,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -45,8 +26,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./restrictions.html" rel="next">
-<link href="./mermaid-flowchart.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./export-and-render.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -92,7 +73,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mermaid-flowchart.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart ( Optional )</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -223,13 +204,13 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mermaid-flowchart.html" class="sidebar-item-text sidebar-link">
+  <a href="./mermaid-flowchart.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart ( Optional )</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
@@ -243,12 +224,21 @@ div.csl-indent {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#how-to-use" id="toc-how-to-use" class="nav-link active" data-scroll-target="#how-to-use"><span class="header-section-number">13.1</span> How to use</a></li>
+  <li><a href="#subgraph-support-by-adornments" id="toc-subgraph-support-by-adornments" class="nav-link" data-scroll-target="#subgraph-support-by-adornments"><span class="header-section-number">13.2</span> Subgraph support (by Adornments)</a></li>
+  <li><a href="#supported-shapes" id="toc-supported-shapes" class="nav-link" data-scroll-target="#supported-shapes"><span class="header-section-number">13.3</span> Supported shapes</a></li>
+  <li><a href="#supported-line-types-priority" id="toc-supported-line-types-priority" class="nav-link" data-scroll-target="#supported-line-types-priority"><span class="header-section-number">13.4</span> Supported line types (Priority)</a></li>
+  <li><a href="#supported-arrow-types" id="toc-supported-arrow-types" class="nav-link" data-scroll-target="#supported-arrow-types"><span class="header-section-number">13.5</span> Supported arrow types</a></li>
+  <li><a href="#limitation" id="toc-limitation" class="nav-link" data-scroll-target="#limitation"><span class="header-section-number">13.6</span> Limitation</a></li>
+  </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/mermaid-flowchart.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-references" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span></h1>
+<h1 class="title"><span id="sec-mermaid-flowchart" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart ( Optional )</span></span></h1>
 </div>
 
 
@@ -262,20 +252,47 @@ div.csl-indent {
   
 
 
-</header><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-Anderson2024Tinde" class="csl-entry" role="listitem">
-Anderson, Mark. 2024. <span>“A Tinderbox Reference File.”</span> 2024.
-</div>
-<div id="ref-Wickham2016Data" class="csl-entry" role="listitem">
-Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science:
-Import, Tidy, Transform, Visualize, and Model Data</em>. <span>“O’Reilly
-Media, Inc.”</span>
-</div>
-</div>
+</header><p>This file can generate Mermaid flowchart from notes, links and adornments.</p>
+<p>Work Flow is a sample of Mermaid flowchart.<br>
+Please check it in Map view.</p>
+<section id="how-to-use" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="how-to-use">
+<span class="header-section-number">13.1</span> How to use</h2>
+<ol type="1">
+<li>You make a container and set pMermaidContainer.</li>
+<li>You make notes ( pMermaid ) and links. if you want to make a subgraph, make a adorment ( pMermaidAdorments )</li>
+<li>You choose a direction for drawing like TD or LR.($M_Direction)</li>
+<li>run stamp ( Mermaid: Make a Flowchart ).</li>
+<li>pMermaidContainer has the code for mermaid flowchart.</li>
+</ol></section><section id="subgraph-support-by-adornments" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="subgraph-support-by-adornments">
+<span class="header-section-number">13.2</span> Subgraph support (by Adornments)</h2>
+<p>This is controled by $OnAdd and $OnRemove of Adornments. if you delete or move adornment without runnning $OnRemove for all notes, you need to fix a value of $M_Subgraph and $M_adornments.</p>
+</section><section id="supported-shapes" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="supported-shapes">
+<span class="header-section-number">13.3</span> Supported shapes</h2>
+<ul>
+<li>rectangle (&lt;- normal and other shapes)</li>
+<li>rounded</li>
+<li>oval</li>
+<li>ozenge</li>
+<li>diamond</li>
+<li>hex</li>
+</ul></section><section id="supported-line-types-priority" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="supported-line-types-priority">
+<span class="header-section-number">13.4</span> Supported line types (Priority)</h2>
+<ul>
+<li>normal –&gt; (4th)</li>
+<li>bold ==&gt; (3rd)</li>
+<li>dotted -.-&gt; (2nd)</li>
+<li>invisible ~~~ (1st)</li>
+</ul></section><section id="supported-arrow-types" class="level2" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="supported-arrow-types">
+<span class="header-section-number">13.5</span> Supported arrow types</h2>
+<ul>
+<li>arrow only</li>
+</ul></section><section id="limitation" class="level2" data-number="13.6"><h2 data-number="13.6" class="anchored" data-anchor-id="limitation">
+<span class="header-section-number">13.6</span> Limitation</h2>
+<p>Notes with the same name will not be reflected correctly.</p>
+<p>It is not perfect, so please fix the generated code as you needed.</p>
 
 
-
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -697,13 +714,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./mermaid-flowchart.html" class="pagination-link" aria-label="Mermaid flowchart ( Optional )">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart ( Optional )</span></span>
+      <a href="./export-and-render.html" class="pagination-link" aria-label="Export and Render">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Export and Render</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./restrictions.html" class="pagination-link" aria-label="Restrictions">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Restrictions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -714,7 +731,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/references.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/mermaid-flowchart.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>footer right</p>
 </div>
