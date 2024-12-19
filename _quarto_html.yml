@@ -23,16 +23,25 @@ book:
     pinned: true
   chapters:
     - index.qmd
-    - table-of-contents.qmd
     - usage-environment.qmd
     - setting.qmd
-    - make-notes.qmd
-    - translate-and-rename-htmlexportfilename.qmd
-    - part-in-book-format.qmd
-    - cross-reference-using-ziplink.qmd
-    - export.qmd
-    - restrictions.qmd
+    - part: Book format
+      chapters:
+        - make-notes.qmd
+        - translate-and-rename-htmlexportfilename.qmd
+        - part-in-book-format.qmd
+        - cross-reference-using-ziplink.qmd
+        - export.qmd
+        - example.qmd
+    - part: Manuscript format
+      chapters:
+        - make-sub-project-folder.qmd
+        - make-quartoyml-for-the-sub-project.qmd
+        - make-notes.qmd
+        - export-and-render.qmd
+    - mermaid-flowchart.qmd
     - references.qmd
+    - restrictions.qmd
 
 format:
   html:
