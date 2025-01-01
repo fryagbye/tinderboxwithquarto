@@ -431,7 +431,7 @@ You can make the note for index.qmd with the pIndexQmd Prototype.
 
 2. pAppendixQmd
     This prototype is inherited from pNote and $IsAppendix is `true`.
-# Rename HTMLExportFileName of a note with translation (Optional)
+# Rename HTMLExportFileName of a note with translation
 
 There is  a stamp **"Notes: Tranlate Section Labels"** that translates the Japanese title (`$Name`) into English and automatically sets `$HTMLExportFileName` [^translate-shell]. and you can sets `$SectionLabel` with stamp "Set: Section Label". The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with `$Rename_in` in the TBX configuration note (**TBXConfig**). ( By default, from Japanese to English).
 
@@ -566,7 +566,7 @@ In this case, if necessary, delete the quoted label name in Stamp and perform th
 
 
 
-## Dummy links for cross-reference (optional)
+## Dummy links for cross-reference
 
 You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
 
@@ -626,7 +626,7 @@ manuscript has only one qmd file.
 
 # Make notes
 
-Manuscript has a only one qmd file.
+Manuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
 ## Front Matter and Subnote
 
 
@@ -640,7 +640,11 @@ you can set data for author(s) with the path of note that has pAuther notes. ( l
 
 2. pSubnoteManuscript
 
-    This is a dammy file for pFrontmatterManuscript. markdown level depends on indent level.
+    This is a dammy file for pFrontmatterManuscript. markdown level depends on indent level and `$ManuscriptOutlineBaseControl` of TBXConfig.
+
+```
+"#" * ($OutlineDepthBase - $ManuscriptOutlineBaseControl("TBXConfig")
+```
  
 `$IsManuscript = true`
 # Export and Render
@@ -669,7 +673,7 @@ quarto preview myproject --to html --no-watch-inputs --no-browse
 ```
 
 
-# Mermaid flowchart ( Optional )
+# Mermaid flowchart (optional)
 
 This file can generate Mermaid flowchart from notes, links and adornments.
 
@@ -726,3 +730,6 @@ It is not perfect, so please fix the generated code as you needed.
 It seems that the section label customization function cannot be used in the latest release [ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML)](https://github.com/quarto-dev/quarto-cli/issues/5946). 
 
 If you turn on `$IsUnnumbered` and `$HasSectionLabel`, the display of the quote will be fixed to the number + title, so please turn off `$IsUnnumbered`.
+
+Please do not use parentheses in note titles.The section label list is not being generated correctly.
+
