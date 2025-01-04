@@ -1,26 +1,17 @@
 project:
   type: book
-  output-dir: _bookhtml
+  output-dir: _bookpdf
 
 book:
   title: Tinderbox file for Quarto
+  subtitle: How to use this file
   author: fryagbye
-  reader-mode: true
 
   page-footer:
     left: |
       footer left
     right: |
       footer right
-  cover-image: cover.png
-  
-  
-  repo-url: https://github.com/fryagbye/tinderboxwithquarto
-  repo-branch: main
-  repo-actions: [edit, issue]
-  sidebar:
-    style: docked
-    pinned: true
   chapters:
     - index.qmd
     - usage-environment.qmd
@@ -28,7 +19,7 @@ book:
     - part: Book format
       chapters:
         - make-notes.qmd
-        - translate-and-rename-htmlexportfilename.qmd
+        - translate-and-rename.qmd
         - part-in-book-format.qmd
         - cross-reference-using-ziplink.qmd
         - export.qmd
@@ -36,7 +27,7 @@ book:
     - part: Manuscript format
       chapters:
         - make-sub-project-folder.qmd
-        - make-quartoyml-for-the-sub-project.qmd
+        - make-quartoyml.qmd
         - make-notes.qmd
         - export-and-render.qmd
     - mermaid-flowchart.qmd
@@ -44,50 +35,10 @@ book:
     - restrictions.qmd
 
 format:
-  html:
-    theme:
-      - cosmo
-      
-    code-link: true
+  pdf:
     toc: true
     toc-depth: 2
     number-sections: true
     number-depth: 3
-    highlight-style: base16-atelier-dune
-    link-external-newwindow: true
-    pdf-engine: lualatex
-    author-meta: "fryagbye"
-    indent: true
-    include-in-header:
-     - text: |
-         <link rel="preconnect" href="https://fonts.googleapis.com">
-         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
-         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-    mainfont: "Noto Sans JP"
-    monofont: "Noto Sans Mono"
-    callout-appearance: default
-
-lightbox:
-  match: auto
-  effect: zoom
-  desc-position: bottom
-  loop: true
-
-
-lang: en
-bibliography: citation/references.bib
-
-language: _language.yml
-classoption: fleqn
-
-
-execute:
-  cache: false
-  
-  freeze: auto
-  crossrefs-hover: false	
-
-editor: source
-
+    pdf-engine: xelatex
+    
