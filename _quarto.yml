@@ -40,5 +40,43 @@ format:
     toc-depth: 2
     number-sections: true
     number-depth: 3
-    pdf-engine: xelatex
+    pdf-engine: lualatex
+    cite-method: citeproc
+    code-link: true
+
+    author-meta: "fryagbye"
+    indent: true
+    include-in-header:
+     - text: |
+         \usepackage{float}
+         \renewcommand{\topfraction}{.85}
+         \renewcommand{\bottomfraction}{.7}
+         \renewcommand{\textfraction}{.15}
+         \renewcommand{\floatpagefraction}{.66}
+         \setcounter{topnumber}{3}
+         \setcounter{bottomnumber}{3}
+         \setcounter{totalnumber}{4}
+         \usepackage{calc}
+         \usepackage {bxjalipsum}
+         \usepackage{pxrubrica}
+
+    callout-appearance: default
     
+
+lang: en
+
+bibliography: citation/references.bib
+
+language: _language.yml
+
+documentclass: bxjsbook
+classoption: A4paper,10pt,lualatex,ja=standard,textwidth=50zw,english
+papersize: a4
+
+execute:
+  cache: false
+  
+  freeze: auto
+
+editor: source
+
