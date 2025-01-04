@@ -5,7 +5,7 @@ source("_common.R")
 ```
 # Make notes
 
-Manuscript has a only one qmd file.
+Manuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
 
 ## Front Matter and Subnote
 
@@ -19,7 +19,11 @@ you can set data for author(s) with the path of note that has pAuther notes. ( l
 
 2. pSubnoteManuscript
 
-    This is a dammy file for pFrontmatterManuscript. markdown level depends on indent level.
+    This is a dammy file for pFrontmatterManuscript. markdown level depends on indent level and `$ManuscriptOutlineBaseControl` of TBXConfig.
+
+```
+"#" * ($OutlineDepthBase - $ManuscriptOutlineBaseControl("TBXConfig")
+```
  
 `$IsManuscript = true`
 

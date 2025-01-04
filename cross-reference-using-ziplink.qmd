@@ -12,7 +12,7 @@ Convert it to a quoteable title (citation name starting with @) and create a not
 
 [^ziplink]: Please refer to "Text link creation via the Ziplinking method" in [A Tinderbox Reference File](https://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html).(@Anderson2024Tinde)
 
-## How to set the label of the diagram { #sec-how-to-set-the-label-of-the-diagram }
+## How to set the label of the diagram { #sec-how-to-set-the-label }
 
 
 ### R chunk { #sec-r-chunk }
@@ -30,7 +30,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-![label: \@fig-airquality](./_bookhtml/cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png)
+![label: \@fig-airquality](./screenshots/fig-airquality-1.png)
 
 
 
@@ -98,7 +98,7 @@ In this case, if necessary, delete the quoted label name in Stamp and perform th
 
 
 
-## Dummy links for cross-reference (optional) { #sec-add-dummy-links-to-cross-ref }
+## Dummy links for cross-reference { #sec-add-dummy-links-to-cross-ref }
 You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
 
 1. execute "Labels: Make Dummy Link Data For Cross-Reference" stamp

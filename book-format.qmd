@@ -3,7 +3,7 @@
 out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 source("_common.R")
 ```
-# Book format
+# Book format {#sec-book-format }
 
 
 

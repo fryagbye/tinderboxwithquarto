@@ -3,7 +3,7 @@
 out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 source("_common.R")
 ```
-# Mermaid flowchart ( Optional ) {#sec-mermaid-flowchart }
+# Mermaid flowchart (optional) {#sec-mermaid-flowchart }
 
 This file can generate Mermaid flowchart from notes, links and adornments.
 

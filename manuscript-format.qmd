@@ -3,7 +3,7 @@
 out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 source("_common.R")
 ```
-# Manuscript format
+# Manuscript format {#sec-manuscript-format }
 
 
 

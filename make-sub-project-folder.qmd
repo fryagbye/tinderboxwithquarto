@@ -3,7 +3,7 @@
 out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 source("_common.R")
 ```
-# Make sub-project folder
+# Make sub-project folder {#sec-make-sub-project-folder }
 
 Make a note for sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
 
