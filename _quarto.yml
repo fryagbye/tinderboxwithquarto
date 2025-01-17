@@ -46,7 +46,7 @@ book:
 format:
   html:
     theme:
-      - zephyr
+      - cosmo
       
     code-link: true
     toc: true
