@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Tinderbox file for Quarto",
     "section": "",
-    "text": "Introduction\nThis tinderbox file supports creating a book and manuscript (beta) with Quarto.\nYou can make qmd files and _quarto.yml easily with it. Here is an example of books created with Quarto.\n\n\nR for Data Science (2e)(Wickham and Grolemund (2016))\n\nMy Workflow is Figure 1.\n\n\n\n\n\nflowchart TB\n    A[\"Snippety\"] -.-&gt;  B[\"Tinderbox\"]\n    B[\"Tinderbox\"] --&gt;  C[\"Mermaid\"]\n    C[\"Mermaid\"] --&gt;  B[\"Tinderbox\"]\n    D[\"RMarkdown ( .qmd )\"] --&gt;|\"Call\"| F[\"quarto CLI\"]\n    D[\"RMarkdown ( .qmd )\"] --&gt;|\"Read qmd files\"| E[\"R Studio\"]\n    E[\"R Studio\"] --&gt;|\"Call\"| F[\"quarto CLI\"]\n    F[\"quarto CLI\nquarto render\n\"] ==&gt;|\"Export\"| G[\"HTML\n(Book)\"]\n    F[\"quarto CLI\nquarto render\n\"] --&gt;|\"Export\"| H[\"PDF\n(Book)\"]\n    J[\"Bookends\"] --&gt;|\"opt + drag\"| B[\"Tinderbox\"]\n\n subgraph Sub1[\"Applications\"]\n    direction LR\n    A\n    B\n    J\n    C\nend \n\n subgraph Sub2[\"Quarto\"]\n    D\n    E\n    F\nend \n\n subgraph Sub3[\"Output\"]\n    direction LR\n    H\n    G\n    I\nend \n\nSub1 --&gt; Sub2[\"Quarto\"]\nSub1 --&gt; I[\"Marked 2\n(Streaming Preview)\"]\n\n%% Styles & Links\n    style A fill:#a3bed9,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 \n    click A href \"https://snippety.app/\" _blank\n    style B fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px\n    click B href \"https://www.eastgate.com/Tinderbox/\" _blank\n    style C fill:#990000,color:#ffffff,stroke:#dc490b,stroke-width:2px\n    style D fill:#002244,color:#ffffff,stroke:#dc490b,stroke-width:2px\n    style E fill:#002244,color:#ffffff,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 \n    click E href \"https://posit.co/products/open-source/rstudio/\" _blank\n    style F fill:#002244,color:#ffffff,stroke:#dc490b,stroke-width:2px\n    click F href \"https://quarto.org/\" _blank\n    style G fill:#006600,color:#ffffff,stroke:#dc490b,stroke-width:2px\n    style H fill:#006600,color:#ffffff,stroke:#dc490b,stroke-width:2px\n    style I fill:#aaaaff,color:#000000,stroke:#dc490b,stroke-width:2px\n    click I href \"https://marked2app.com/\" _blank\n    style J fill:#ff8800,color:#ffffff,stroke:#dc490b,stroke-width:2px\n    style Sub1 fill:#59b3b3,color:#ffffff,stroke:#dc490b,stroke-width:2px\n    style Sub2 fill:#cfdae6,color:#000000,stroke:#003366,stroke-width:2px\n    style Sub3 fill:#e6e673,color:#000000,stroke:#dc490b,stroke-width:2px\n\n\n\n\n\nFigure 1: Tinderbox Work Flow with Quarto.\n\n\n\n\n\n\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. “O’Reilly Media, Inc.”",
+    "text": "Introduction\nThis tinderbox file supports creating a book and manuscript (beta) with Quarto.\nTinderbox file for Quarto (Web version)\nYou can make qmd files and _quarto.yml easily with it. Here is an example of books created with Quarto.\n\n\nR for Data Science (2e)(Wickham and Grolemund (2016))\n\n\n\n\n\n\n\nFigure 1: Tinderbox with Quarto part1 (English & Japanese sub)\n\n\nMy Workflow is Figure 2.\n\n\n\n\n\nflowchart TB\n    A[\"Snippety\"] -.-&gt;  Sub1[\"Tinderbox\"]\n    B[\"Mermaid\"]\n    C[\"Bookends\"] --&gt;|\"opt + drag\"| Sub1[\"Tinderbox\"]\n    D[\"R Studio\"] --&gt;|\"Call\"| F[\"quarto CLI\"]\n    E[\"RMarkdown ( .qmd )\"] --&gt;|\"Read qmd files\"| D[\"R Studio\"]\n    E[\"RMarkdown ( .qmd )\"] --&gt;|\"Call\"| F[\"quarto CLI\"]\n    F[\"quarto CLI\"] ==&gt;|\"Export\"| G[\"HTML\n(Book)\"]\n    F[\"quarto CLI\"] --&gt;|\"Export\"| H[\"PDF\n(Book)\"]\n    G[\"HTML\n(Book)\"]\n    H[\"PDF\n(Book)\"]\n    I[\"Marked 2\n(Streaming Preview)\"]\n\n subgraph Sub1[\"Tinderbox\"]\n    B\nend \n\n subgraph Sub2[\"Applications\"]\n    direction LR\n    A\n    Sub1\n    C\nend \n\n subgraph Sub3[\"Quarto\"]\n    D\n    E\n    F\nend \n\n subgraph Sub4[\"Output\"]\n    direction LR\n    G\n    H\n    I\nend \n\n    Sub1[\"Tinderbox\"] --&gt;  I[\"Marked 2\n(Streaming Preview)\"]\n    Sub1[\"Tinderbox\"] --&gt;  E[\"RMarkdown ( .qmd )\"]\n\n%% Styles & Links\n    style A fill:#a3bed9,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 \n    click A href \"https://snippety.app/\" _blank\n    style B fill:#009900,color:#000000,stroke:#dc490b,stroke-width:2px\n    style C fill:#ff8800,color:#000000,stroke:#dc490b,stroke-width:2px\n    style D fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 \n    click D href \"https://posit.co/products/open-source/rstudio/\" _blank\n    style E fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px\n    style F fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px\n    click F href \"https://quarto.org/\" _blank\n    style G fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px\n    style H fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px\n    style I fill:#aaaaff,color:#000000,stroke:#dc490b,stroke-width:2px\n    click I href \"https://marked2app.com/\" _blank\n    style Sub1 fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub2 fill:#e7f3e7,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub3 fill:#fff4e6,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub4 fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px\n\n\n\n\n\nFigure 2: Tinderbox Work Flow with Quarto.\n\n\n\n\n\n\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. “O’Reilly Media, Inc.”",
     "crumbs": [
       "Introduction"
     ]
@@ -54,7 +54,7 @@
     "href": "make-notes.html",
     "title": "\n3  Make notes\n",
     "section": "",
-    "text": "3.1 Front Matter and Subnote\nManuscript has a only one qmd file.\nyou can set data for author(s) with the path of note that has pAuther notes. ( like Authors )\n$IsManuscript = true\n$IsManuscript = true",
+    "text": "3.1 Front Matter and Subnote\nManuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).\nyou can set data for author(s) with the path of note that has pAuther notes. ( like Authors )\n$IsManuscript = true\n$IsManuscript = true",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Make notes</span>"
@@ -65,32 +65,32 @@
     "href": "make-notes.html#front-matter-and-subnote",
     "title": "\n3  Make notes\n",
     "section": "",
-    "text": "pFrontmatterManuscript\nThis is a qmd file that contains a Front Matter. When you export, it has contents of descendants.\n\n\n\n\n\n\npSubnoteManuscript\nThis is a dammy file for pFrontmatterManuscript. markdown level depends on indent level.",
+    "text": "pFrontmatterManuscript\nThis is a qmd file that contains a Front Matter. When you export, it has contents of descendants.\n\n\n\n\n\n\npSubnoteManuscript\nThis is a dammy file for pFrontmatterManuscript. markdown level depends on indent level and $ManuscriptOutlineBaseControl of TBXConfig.\n\n\n\"#\" * ($OutlineDepthBase - $ManuscriptOutlineBaseControl(\"TBXConfig\")",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Make notes</span>"
     ]
   },
   {
-    "objectID": "translate-and-rename-htmlexportfilename.html",
-    "href": "translate-and-rename-htmlexportfilename.html",
-    "title": "4  Rename HTMLExportFileName of a note with translation (Optional)",
+    "objectID": "translate-and-rename.html",
+    "href": "translate-and-rename.html",
+    "title": "4  Rename HTMLExportFileName of a note with translation",
     "section": "",
     "text": "There is a stamp “Notes: Tranlate Section Labels” that translates the Japanese title ($Name) into English and automatically sets $HTMLExportFileName 1. and you can sets $SectionLabel with stamp “Set: Section Label”. The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with $Rename_in in the TBX configuration note (TBXConfig). ( By default, from Japanese to English).",
     "crumbs": [
       "Book format",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rename HTMLExportFileName of a note with translation (Optional)</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rename HTMLExportFileName of a note with translation</span>"
     ]
   },
   {
-    "objectID": "translate-and-rename-htmlexportfilename.html#footnotes",
-    "href": "translate-and-rename-htmlexportfilename.html#footnotes",
-    "title": "4  Rename HTMLExportFileName of a note with translation (Optional)",
+    "objectID": "translate-and-rename.html#footnotes",
+    "href": "translate-and-rename.html#footnotes",
+    "title": "4  Rename HTMLExportFileName of a note with translation",
     "section": "",
     "text": "Translate-shell installation required.\n&gt;brew install translate-shell\n↩︎",
     "crumbs": [
       "Book format",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rename HTMLExportFileName of a note with translation (Optional)</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rename HTMLExportFileName of a note with translation</span>"
     ]
   },
   {
@@ -116,8 +116,8 @@
     ]
   },
   {
-    "objectID": "cross-reference-using-ziplink.html#sec-how-to-set-the-label-of-the-diagram",
-    "href": "cross-reference-using-ziplink.html#sec-how-to-set-the-label-of-the-diagram",
+    "objectID": "cross-reference-using-ziplink.html#sec-how-to-set-the-label",
+    "href": "cross-reference-using-ziplink.html#sec-how-to-set-the-label",
     "title": "6  Cross-Reference using Ziplink",
     "section": "",
     "text": "6.1.1 R chunk\nAutomatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.\n#| label: fig-airquality \n#| fig-cap: \"Temperature and ozone level.\"\n#| warning: false\n\nlibrary(ggplot2)\n\nggplot(airquality, aes(Temp, Ozone)) + \n  geom_point() + \n  geom_smooth(method = \"loess\")\n\n\nlabel: @fig-airquality\n\n\n6.1.2 Image link in markdown format\nRecognize and collect labels in format that extend the markdown.\n![Test image](screenshots/toolbar.png){#fig-test fig-alt=“test” fig-align=“left” width=100%}\n\n\n\n\n\nFigure 6.1: label:Figure 6.1",
@@ -174,8 +174,8 @@
     "objectID": "cross-reference-using-ziplink.html#sec-add-dummy-links-to-cross-ref",
     "href": "cross-reference-using-ziplink.html#sec-add-dummy-links-to-cross-ref",
     "title": "6  Cross-Reference using Ziplink",
-    "section": "\n6.6 Dummy links for cross-reference (optional)",
-    "text": "6.6 Dummy links for cross-reference (optional)\nYou can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.\n\nexecute “Labels: Make Dummy Link Data For Cross-Reference” stamp\nselect cross-ref label notes ( start with “@” ) and execute “Labels: Dummy Link between Reference and Selected notes” stamp.\n\n\n\n\n\nAnderson, Mark. 2024. “A Tinderbox Reference File.” 2024.",
+    "section": "\n6.6 Dummy links for cross-reference",
+    "text": "6.6 Dummy links for cross-reference\nYou can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.\n\nexecute “Labels: Make Dummy Link Data For Cross-Reference” stamp\nselect cross-ref label notes ( start with “@” ) and execute “Labels: Dummy Link between Reference and Selected notes” stamp.\n\n\n\n\n\nAnderson, Mark. 2024. “A Tinderbox Reference File.” 2024.",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -210,14 +210,13 @@
     "section": "",
     "text": "Example PDF",
     "crumbs": [
-      "Book format",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Example</span>"
     ]
   },
   {
     "objectID": "make-sub-project-folder.html",
     "href": "make-sub-project-folder.html",
-    "title": "\n9  Make sub-project folder\n",
+    "title": "9  Make sub-project folder",
     "section": "",
     "text": "Make a note for sub-project with pSubfolderManuscript like this ( _quarto_manuscript ).",
     "crumbs": [
@@ -226,14 +225,14 @@
     ]
   },
   {
-    "objectID": "make-quartoyml-for-the-sub-project.html",
-    "href": "make-quartoyml-for-the-sub-project.html",
-    "title": "\n10  Make _quarto.yml for the sub-project\n",
+    "objectID": "make-quartoyml.html",
+    "href": "make-quartoyml.html",
+    "title": "10  Make _quarto.yml for the sub-project",
     "section": "",
     "text": "you have to set a qmd file name. manuscript has only one qmd file.",
     "crumbs": [
       "Manuscript format",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Make _quarto.yml for the sub-project</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Make \\_quarto.yml for the sub-project</span>"
     ]
   },
   {
@@ -250,71 +249,61 @@
   {
     "objectID": "mermaid-flowchart.html",
     "href": "mermaid-flowchart.html",
-    "title": "13  Mermaid flowchart ( Optional )",
+    "title": "13  Mermaid flowchart (optional)",
     "section": "",
-    "text": "13.1 How to use\nThis file can generate Mermaid flowchart from notes, links and adornments.\nWork Flow is a sample of Mermaid flowchart.\nPlease check it in Map view.",
+    "text": "13.1 How to use\nThis file can generate Mermaid flowchart from notes, links.\nWork Flow is a sample of Mermaid flowchart.\nPlease check it in Map view.",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart ( Optional )</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
   },
   {
-    "objectID": "mermaid-flowchart.html#how-to-use",
-    "href": "mermaid-flowchart.html#how-to-use",
-    "title": "13  Mermaid flowchart ( Optional )",
+    "objectID": "mermaid-flowchart.html#sec-how-to-use",
+    "href": "mermaid-flowchart.html#sec-how-to-use",
+    "title": "13  Mermaid flowchart (optional)",
     "section": "",
-    "text": "You make a container and set pMermaidContainer.\nYou make notes ( pMermaid ) and links. if you want to make a subgraph, make a adorment ( pMermaidAdorments )\nYou choose a direction for drawing like TD or LR.($M_Direction)\nrun stamp ( Mermaid: Make a Flowchart ).\npMermaidContainer has the code for mermaid flowchart.",
+    "text": "You make a container noto for Flowchart and set pMFlowchartContainer.\nYou make notes ( pMFlowchart ) and links.\nYou choose a direction for drawing like TD or LR.($M_Direction)\nRun the stamp ( Mermaid: Make a Flowchart ).\nPrototypes of container notes has a child note change from pMFlowchart to pMFlowchartContainer automatically by the stamp.\nThe note (pMFlowchartContainer) has the code for mermaid flowchart.",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart ( Optional )</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
   },
   {
-    "objectID": "mermaid-flowchart.html#subgraph-support-by-adornments",
-    "href": "mermaid-flowchart.html#subgraph-support-by-adornments",
-    "title": "13  Mermaid flowchart ( Optional )",
-    "section": "\n13.2 Subgraph support (by Adornments)",
-    "text": "13.2 Subgraph support (by Adornments)\nThis is controled by $OnAdd and $OnRemove of Adornments. if you delete or move adornment without runnning $OnRemove for all notes, you need to fix a value of $M_Subgraph and $M_adornments.",
+    "objectID": "mermaid-flowchart.html#sec-supported-shapes",
+    "href": "mermaid-flowchart.html#sec-supported-shapes",
+    "title": "13  Mermaid flowchart (optional)",
+    "section": "\n13.2 Supported shapes",
+    "text": "13.2 Supported shapes\n\nrectangle (&lt;- normal and other shapes)\nrounded\noval\nozenge\ndiamond\nhex",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart ( Optional )</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
   },
   {
-    "objectID": "mermaid-flowchart.html#supported-shapes",
-    "href": "mermaid-flowchart.html#supported-shapes",
-    "title": "13  Mermaid flowchart ( Optional )",
-    "section": "\n13.3 Supported shapes",
-    "text": "13.3 Supported shapes\n\nrectangle (&lt;- normal and other shapes)\nrounded\noval\nozenge\ndiamond\nhex",
+    "objectID": "mermaid-flowchart.html#sec-supported-line-types-priority",
+    "href": "mermaid-flowchart.html#sec-supported-line-types-priority",
+    "title": "13  Mermaid flowchart (optional)",
+    "section": "\n13.3 Supported line types (Priority)",
+    "text": "13.3 Supported line types (Priority)\n\nnormal –&gt; (4th)\nbold ==&gt; (3rd)\ndotted -.-&gt; (2nd)\ninvisible ~~~ (1st)",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart ( Optional )</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
   },
   {
-    "objectID": "mermaid-flowchart.html#supported-line-types-priority",
-    "href": "mermaid-flowchart.html#supported-line-types-priority",
-    "title": "13  Mermaid flowchart ( Optional )",
-    "section": "\n13.4 Supported line types (Priority)",
-    "text": "13.4 Supported line types (Priority)\n\nnormal –&gt; (4th)\nbold ==&gt; (3rd)\ndotted -.-&gt; (2nd)\ninvisible ~~~ (1st)",
+    "objectID": "mermaid-flowchart.html#sec-supported-arrow-types",
+    "href": "mermaid-flowchart.html#sec-supported-arrow-types",
+    "title": "13  Mermaid flowchart (optional)",
+    "section": "\n13.4 Supported arrow types",
+    "text": "13.4 Supported arrow types\n\narrow only",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart ( Optional )</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
   },
   {
-    "objectID": "mermaid-flowchart.html#supported-arrow-types",
-    "href": "mermaid-flowchart.html#supported-arrow-types",
-    "title": "13  Mermaid flowchart ( Optional )",
-    "section": "\n13.5 Supported arrow types",
-    "text": "13.5 Supported arrow types\n\narrow only",
+    "objectID": "mermaid-flowchart.html#sec-example",
+    "href": "mermaid-flowchart.html#sec-example",
+    "title": "13  Mermaid flowchart (optional)",
+    "section": "\n13.5 Example",
+    "text": "13.5 Example\nFigure 2",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart ( Optional )</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#limitation",
-    "href": "mermaid-flowchart.html#limitation",
-    "title": "13  Mermaid flowchart ( Optional )",
-    "section": "\n13.6 Limitation",
-    "text": "13.6 Limitation\nNotes with the same name will not be reflected correctly.\nIt is not perfect, so please fix the generated code as you needed.",
-    "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart ( Optional )</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
   },
   {
@@ -330,11 +319,12 @@
   {
     "objectID": "restrictions.html",
     "href": "restrictions.html",
-    "title": "15  Restrictions",
+    "title": "Appendix A — Restrictions",
     "section": "",
-    "text": "It seems that the section label customization function cannot be used in the latest release ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML).\nIf you turn on $IsUnnumbered and $HasSectionLabel, the display of the quote will be fixed to the number + title, so please turn off $IsUnnumbered.",
+    "text": "It seems that the section label customization function cannot be used in the latest release ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML).\nIf you turn on $IsUnnumbered and $HasSectionLabel, the display of the quote will be fixed to the number + title, so please turn off $IsUnnumbered.\nPlease do not use parentheses in note titles.The section label list is not being generated correctly.",
     "crumbs": [
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Restrictions</span>"
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Restrictions</span>"
     ]
   }
 ]

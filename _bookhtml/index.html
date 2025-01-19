@@ -160,8 +160,8 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./translate-and-rename-htmlexportfilename.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation (Optional)</span></span></a>
+  <a href="./translate-and-rename.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -182,13 +182,13 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+      </ul>
+</li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./example.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example</span></span></a>
   </div>
-</li>
-      </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
@@ -207,7 +207,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./make-quartoyml-for-the-sub-project.html" class="sidebar-item-text sidebar-link">
+  <a href="./make-quartoyml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Make _quarto.yml for the sub-project</span></span></a>
   </div>
 </li>
@@ -228,7 +228,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mermaid-flowchart.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart ( Optional )</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -237,11 +237,22 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./restrictions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Restrictions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Restrictions</span></span></a>
   </div>
+</li>
+      </ul>
 </li>
     </ul>
 </div>
@@ -279,84 +290,97 @@ div.csl-indent {
 </header><p><a href="cover.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="cover.png" title="Tinderbox file for Quarto" class="quarto-cover-image img-fluid"></a></p>
 <section id="introduction" class="level1 unnumbered"><h1 class="unnumbered">Introduction</h1>
 <p>This tinderbox file supports creating a book and manuscript (beta) with <a href="https://quarto.org/">Quarto</a>.</p>
+<p><a href="https://fryagbye.quarto.pub/tinderbox-file-for-quarto/">Tinderbox file for Quarto (Web version)</a></p>
 <p>You can make qmd files and _quarto.yml easily with it. Here is an example of books created with Quarto.</p>
 <ul>
 <li>
 <a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a>(<span class="citation" data-cites="Wickham2016Data">Wickham and Grolemund (<a href="references.html#ref-Wickham2016Data" role="doc-biblioref">2016</a>)</span>)</li>
 </ul>
-<p>My Workflow is <a href="#fig-workflow" class="quarto-xref">Figure&nbsp;<span>1</span></a>.</p>
+<div id="fig-cern" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p><br></p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/lhmjIBFW_Lc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Tinderbox with Quarto part1 (English &amp; Japanese sub)
+</figcaption></figure>
+</div>
+<p>My Workflow is <a href="#fig-workflow" class="quarto-xref">Figure&nbsp;<span>2</span></a>.</p>
 <div class="cell" data-fig-width="5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-workflow" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
 <pre class="mermaid mermaid-js" data-label="fig-workflow">flowchart TB
-    A["Snippety"] -.-&gt;  B["Tinderbox"]
-    B["Tinderbox"] --&gt;  C["Mermaid"]
-    C["Mermaid"] --&gt;  B["Tinderbox"]
-    D["RMarkdown ( .qmd )"] --&gt;|"Call"| F["quarto CLI"]
-    D["RMarkdown ( .qmd )"] --&gt;|"Read qmd files"| E["R Studio"]
-    E["R Studio"] --&gt;|"Call"| F["quarto CLI"]
-    F["quarto CLI
-quarto render
-"] ==&gt;|"Export"| G["HTML
+    A["Snippety"] -.-&gt;  Sub1["Tinderbox"]
+    B["Mermaid"]
+    C["Bookends"] --&gt;|"opt + drag"| Sub1["Tinderbox"]
+    D["R Studio"] --&gt;|"Call"| F["quarto CLI"]
+    E["RMarkdown ( .qmd )"] --&gt;|"Read qmd files"| D["R Studio"]
+    E["RMarkdown ( .qmd )"] --&gt;|"Call"| F["quarto CLI"]
+    F["quarto CLI"] ==&gt;|"Export"| G["HTML
 (Book)"]
-    F["quarto CLI
-quarto render
-"] --&gt;|"Export"| H["PDF
+    F["quarto CLI"] --&gt;|"Export"| H["PDF
 (Book)"]
-    J["Bookends"] --&gt;|"opt + drag"| B["Tinderbox"]
+    G["HTML
+(Book)"]
+    H["PDF
+(Book)"]
+    I["Marked 2
+(Streaming Preview)"]
 
- subgraph Sub1["Applications"]
+ subgraph Sub1["Tinderbox"]
+    B
+end 
+
+ subgraph Sub2["Applications"]
     direction LR
     A
-    B
-    J
+    Sub1
     C
 end 
 
- subgraph Sub2["Quarto"]
+ subgraph Sub3["Quarto"]
     D
     E
     F
 end 
 
- subgraph Sub3["Output"]
+ subgraph Sub4["Output"]
     direction LR
-    H
     G
+    H
     I
 end 
 
-Sub1 --&gt; Sub2["Quarto"]
-Sub1 --&gt; I["Marked 2
+    Sub1["Tinderbox"] --&gt;  I["Marked 2
 (Streaming Preview)"]
+    Sub1["Tinderbox"] --&gt;  E["RMarkdown ( .qmd )"]
 
 %% Styles &amp; Links
     style A fill:#a3bed9,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 
     click A href "https://snippety.app/" _blank
-    style B fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px
-    click B href "https://www.eastgate.com/Tinderbox/" _blank
-    style C fill:#990000,color:#ffffff,stroke:#dc490b,stroke-width:2px
-    style D fill:#002244,color:#ffffff,stroke:#dc490b,stroke-width:2px
-    style E fill:#002244,color:#ffffff,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 
-    click E href "https://posit.co/products/open-source/rstudio/" _blank
-    style F fill:#002244,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    style B fill:#009900,color:#000000,stroke:#dc490b,stroke-width:2px
+    style C fill:#ff8800,color:#000000,stroke:#dc490b,stroke-width:2px
+    style D fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 
+    click D href "https://posit.co/products/open-source/rstudio/" _blank
+    style E fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px
+    style F fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px
     click F href "https://quarto.org/" _blank
-    style G fill:#006600,color:#ffffff,stroke:#dc490b,stroke-width:2px
-    style H fill:#006600,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    style G fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px
+    style H fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px
     style I fill:#aaaaff,color:#000000,stroke:#dc490b,stroke-width:2px
     click I href "https://marked2app.com/" _blank
-    style J fill:#ff8800,color:#ffffff,stroke:#dc490b,stroke-width:2px
-    style Sub1 fill:#59b3b3,color:#ffffff,stroke:#dc490b,stroke-width:2px
-    style Sub2 fill:#cfdae6,color:#000000,stroke:#003366,stroke-width:2px
-    style Sub3 fill:#e6e673,color:#000000,stroke:#dc490b,stroke-width:2px
+    style Sub1 fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px
+    style Sub2 fill:#e7f3e7,color:#000000,stroke:#dc490b,stroke-width:2px
+    style Sub3 fill:#fff4e6,color:#000000,stroke:#dc490b,stroke-width:2px
+    style Sub4 fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px
 
 </pre>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Tinderbox Work Flow with Quarto.
+Figure&nbsp;2: Tinderbox Work Flow with Quarto.
 </figcaption></figure>
 </div>
 </div>
