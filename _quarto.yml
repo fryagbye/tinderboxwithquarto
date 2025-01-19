@@ -32,7 +32,7 @@ book:
         - part-in-book-format.qmd
         - cross-reference-using-ziplink.qmd
         - export.qmd
-        - example.qmd
+    - example.qmd
     - part: Manuscript format
       chapters:
         - make-sub-project-folder.qmd
@@ -41,6 +41,7 @@ book:
         - export-and-render.qmd
     - mermaid-flowchart.qmd
     - references.qmd
+  appendices:
     - restrictions.qmd
 
 format:

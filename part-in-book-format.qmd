@@ -40,7 +40,7 @@ chapters:
 
 The figure below shows the export example when Part is supported and the output result of _quarto.yml.
 
-![Folder configuration at the time of output and _quarto.yml](./screenshots/tree01.png)
+![Folder configuration at the time of output and _quarto.yml](./screenshots/PartandChapter.png)
 
 
 

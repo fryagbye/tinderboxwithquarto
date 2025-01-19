@@ -5,31 +5,28 @@ source("_common.R")
 ```
 # Mermaid flowchart (optional) {#sec-mermaid-flowchart }
 
-This file can generate Mermaid flowchart from notes, links and adornments.
+This file can generate Mermaid flowchart from notes, links.
+
+* Container notes -> Subgraphs ( pMFSubgraph )
+* Non Container notes -> Nodes ( pMFNode)
 
 Work Flow is a sample of Mermaid flowchart.  
 Please check it in Map view.
 
 
 
-## How to use
+## How to use { #sec-how-to-use }
 
-1. You make a container and set pMermaidContainer.
-2. You make notes ( pMermaid ) and links. if you want to make a subgraph, make a adorment ( pMermaidAdorments )
+1. You make a container noto for Flowchart and set pMFContainer.
+2. You make notes ( pMFNode) and links. 
 3. You choose a direction for drawing like TD or LR.($M_Direction)
-4. run stamp ( Mermaid: Make a Flowchart ).
-5. pMermaidContainer has the code for mermaid flowchart.
+4. Run the stamp ( `Mermaid: Make a Flowchart` ).
+5. Prototypes of container notes **has** a child note change from pMFNodeto pMFContainer automatically by the stamp.
+6. The note (pMFContainer) has the code for mermaid flowchart.
 
 
 
-## Subgraph support (by Adornments)
-This is controled by $OnAdd and $OnRemove of Adornments.
-if you delete or move adornment without runnning $OnRemove for all notes, you need to fix a value of $M_Subgraph and $M_adornments.
-
-
-
-
-## Supported shapes
+## Supported shapes { #sec-supported-shapes }
 * rectangle (<- normal and other shapes)
 * rounded
 * oval
@@ -39,7 +36,7 @@ if you delete or move adornment without runnning $OnRemove for all notes, you ne
 
 
 
-## Supported line types (Priority)
+## Supported line types (Priority) { #sec-supported-line-types-priority }
 * normal 	 -->			(4th)
 * bold     	 ==>			(3rd)
 * dotted  	 -.->		    (2nd)
@@ -47,15 +44,13 @@ if you delete or move adornment without runnning $OnRemove for all notes, you ne
 
 
 
-## Supported arrow types
+## Supported arrow types { #sec-supported-arrow-types }
 * arrow only 
 
 
 
-## Limitation
-Notes with the same name will not be reflected correctly.
-
-It is not perfect, so please fix the generated code as you needed.
+## Example { #sec-example }
+@fig-workflow
 
 
 
