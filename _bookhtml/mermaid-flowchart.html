@@ -214,12 +214,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./restrictions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Restrictions</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
@@ -232,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./restrictions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Restrictions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Restrictions</span></span></a>
   </div>
 </li>
       </ul>
@@ -270,20 +264,20 @@ ul.task-list li input[type="checkbox"] {
 
 </header><p>This file can generate Mermaid flowchart from notes, links.</p>
 <ul>
-<li>Container notes -&gt; Subgraphs ( pMFlowchartSubgraph )</li>
-<li>Non Container notes -&gt; Nodes ( pMFlowchart )</li>
+<li>Container notes -&gt; Subgraphs ( pMFSubgraph )</li>
+<li>Non Container notes -&gt; Nodes ( pMFNode)</li>
 </ul>
 <p>Work Flow is a sample of Mermaid flowchart.<br>
 Please check it in Map view.</p>
 <section id="sec-how-to-use" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="sec-how-to-use">
 <span class="header-section-number">13.1</span> How to use</h2>
 <ol type="1">
-<li>You make a container noto for Flowchart and set pMFlowchartContainer.</li>
-<li>You make notes ( pMFlowchart ) and links.</li>
+<li>You make a container noto for Flowchart and set pMFContainer.</li>
+<li>You make notes ( pMFNode) and links.</li>
 <li>You choose a direction for drawing like TD or LR.($M_Direction)</li>
 <li>Run the stamp ( <code>Mermaid: Make a Flowchart</code> ).</li>
-<li>Prototypes of container notes <strong>has</strong> a child note change from pMFlowchart to pMFlowchartContainer automatically by the stamp.</li>
-<li>The note (pMFlowchartContainer) has the code for mermaid flowchart.</li>
+<li>Prototypes of container notes <strong>has</strong> a child note change from pMFNodeto pMFContainer automatically by the stamp.</li>
+<li>The note (pMFContainer) has the code for mermaid flowchart.</li>
 </ol></section><section id="sec-supported-shapes" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="sec-supported-shapes">
 <span class="header-section-number">13.2</span> Supported shapes</h2>
 <ul>

@@ -299,7 +299,7 @@ div.csl-indent {
 <div id="fig-cern" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <p><br></p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/lhmjIBFW_Lc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/4BEroHg-F8Y" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Tinderbox with Quarto part1 (English &amp; Japanese sub)
@@ -330,7 +330,7 @@ Figure&nbsp;1: Tinderbox with Quarto part1 (English &amp; Japanese sub)
 (Streaming Preview)"]
 
  subgraph Sub1["Tinderbox"]
-    B
+    Sub5
 end 
 
  subgraph Sub2["Applications"]
@@ -341,6 +341,7 @@ end
 end 
 
  subgraph Sub3["Quarto"]
+    direction LR
     D
     E
     F
@@ -353,9 +354,20 @@ end
     I
 end 
 
-    Sub1["Tinderbox"] --&gt;  I["Marked 2
+ subgraph Sub5["Demo_TBX_for_Quarto.tbx"]
+    B
+end 
+
+ subgraph Sub6["Work Flow"]
+    direction TB
+    Sub2
+    Sub3
+    Sub4
+end 
+
+    Sub5["Demo_TBX_for_Quarto.tbx"] --&gt;  E["RMarkdown ( .qmd )"]
+    Sub5["Demo_TBX_for_Quarto.tbx"] -.-&gt;|"Streaming Preview"| I["Marked 2
 (Streaming Preview)"]
-    Sub1["Tinderbox"] --&gt;  E["RMarkdown ( .qmd )"]
 
 %% Styles &amp; Links
     style A fill:#a3bed9,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 
@@ -375,6 +387,8 @@ end
     style Sub2 fill:#e7f3e7,color:#000000,stroke:#dc490b,stroke-width:2px
     style Sub3 fill:#fff4e6,color:#000000,stroke:#dc490b,stroke-width:2px
     style Sub4 fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px
+    style Sub5 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
+    style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
 
 </pre>
 </div>
