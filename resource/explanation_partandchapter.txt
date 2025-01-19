@@ -1,0 +1,22 @@
+
+  chapters:
+    - index.qmd
+    - usage-environment.qmd
+    - setting.qmd
+    - part: Book format
+      chapters:
+        - make-notes.qmd
+        - translate-and-rename.qmd
+        - part-in-book-format.qmd
+        - cross-reference-using-ziplink.qmd
+        - export.qmd
+        - example.qmd
+    - part: Manuscript format
+      chapters:
+        - make-sub-project-folder.qmd
+        - make-quartoyml.qmd
+        - make-notes.qmd
+        - export-and-render.qmd
+    - mermaid-flowchart.qmd
+    - references.qmd
+    - restrictions.qmd

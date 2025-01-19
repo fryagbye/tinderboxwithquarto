@@ -1,0 +1,48 @@
+.
+├── book-format
+│   ├── cross-reference-using-ziplink
+│   │   ├── add-dummy-links-to-cross-ref.txt
+│   │   ├── equations.txt
+│   │   ├── how-to-quote.txt
+│   │   ├── how-to-set-the-label-of-the-diagram
+│   │   │   ├── image-link-in-markdown-format.txt
+│   │   │   └── r-chunk.txt
+│   │   ├── how-to-set-the-label-of-the-diagram.txt
+│   │   ├── how-to-set-the-label-of-the-table.txt
+│   │   └── restrictions-on-quoted-labels.txt
+│   ├── cross-reference-using-ziplink.qmd
+│   ├── example.qmd
+│   ├── export.qmd
+│   ├── make-notes
+│   │   └── Special Notes Prototype.txt
+│   ├── make-notes.qmd
+│   ├── part-in-book-format.qmd
+│   └── translate-and-rename.qmd
+├── book-format.qmd
+├── index.qmd
+├── manuscript-format
+│   ├── export-and-render.qmd
+│   ├── make-notes
+│   │   └── Front Matter and Subnote.txt
+│   ├── make-notes.qmd
+│   ├── make-quartoyml.qmd
+│   └── make-sub-project-folder.qmd
+├── manuscript-format.qmd
+├── mermaid-flowchart
+│   ├── How to use.txt
+│   ├── Limitation.txt
+│   ├── Subgraph support by Adornments.txt
+│   ├── Supported arrow types.txt
+│   ├── Supported line types Priority.txt
+│   └── Supported shapes.txt
+├── mermaid-flowchart.qmd
+├── references.qmd
+├── restrictions.qmd
+├── setting.qmd
+├── tree_output_all.txt
+├── usage-environment
+│   ├── installed-packages.txt
+│   └── session-information.txt
+└── usage-environment.qmd
+
+9 directories, 37 files
