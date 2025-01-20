@@ -9,15 +9,11 @@ Here is an example of books created with Quarto.
 
 - [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
 
-`r switch(out_type, latex = "", html = "::: {#fig-cern}
+
 
 <br>
 
-{{< video <https://youtu.be/4BEroHg-F8Y> >}}
-
-Tinderbox with Quarto part1 (English & Japanese sub)
-
-:::")`
+[![how to use](https://github.com/user-attachments/assets/946d5851-dafb-4429-99f2-a0b572109bb5)](https://youtu.be/4BEroHg-F8Y)
 
 My Workflow is @fig-workflow.
 
