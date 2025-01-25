@@ -15,7 +15,7 @@ pNote, which is treated as a Part, is turned on (`true`) for `$Is_Part_qmd`. The
 If a Part note is empty, only the title (`$Name`) of the note is reflected in _quarto.yml, as shown in the **"Dice"** in the example below. 
 If the dice.qmd is not empty, the part title (as a level one header) as well as some introductory content for the part. 
 
-```{.yml} 
+```yml 
 #_quarto.yml
 chapters:
   - index.qmd
@@ -27,7 +27,7 @@ chapters:
 ```
 
 
-```{.yml}
+```yml
 #_quarto.yml
 chapters:
   - index.qmd

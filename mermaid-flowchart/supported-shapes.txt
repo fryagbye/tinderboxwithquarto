@@ -1,0 +1,12 @@
+
+## Supported shapes { #sec-supported-shapes }
+* rectangle (<- normal and other shapes)
+* rounded
+* oval
+* ozenge
+* diamond
+* hex
+
+![Convert chapes](./screenshot/convertshapes.png){#fig-shapes fig-alt="Converted shapes" fig-align="center" width=100%}
+
+

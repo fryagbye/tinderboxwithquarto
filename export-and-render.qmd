@@ -13,13 +13,13 @@ if you use a virtual environment, activate it.
 
 e.g.
 
-```{.sh}
+```zsh
 poetry shell
 ```
 
 3. Render sub-project
 
-```{.sh}
+```zsh
 # quarto render "your project name"
 quarto render myproject
 

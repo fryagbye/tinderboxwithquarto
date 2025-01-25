@@ -15,6 +15,7 @@ Please check it in Map view.
 
 
 
+
 ## How to use { #sec-how-to-use }
 
 1. You make a container noto for Flowchart and set pMFContainer.
@@ -24,15 +25,24 @@ Please check it in Map view.
 5. Prototypes of container notes **has** a child note change from pMFNodeto pMFContainer automatically by the stamp.
 6. The note (pMFContainer) has the code for mermaid flowchart.
 
+<br>
+
+[![Tinderbox with Quarto part2 (English & Japanese sub)](./screenshots/opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
+
+
 
 
 ## Supported shapes { #sec-supported-shapes }
 * rectangle (<- normal and other shapes)
 * rounded
 * oval
-* ozenge
+* lozenge
 * diamond
 * hex
+
+![Convert shapes](./screenshots/convertshapes.png)
+
+
 
 
 
@@ -44,13 +54,47 @@ Please check it in Map view.
 
 
 
+
 ## Supported arrow types { #sec-supported-arrow-types }
 * arrow only 
 
 
 
+
 ## Example { #sec-example }
-@fig-workflow
+
+```{mermaid} 
+%%| label: fig-flowchart
+%%| fig-width: 5
+flowchart TB
+    A["Christmas"] -->|"Get money"| B["Go shopping"]
+    B["Go shopping"] -->  Sub1["Let me think"]
+    C["Laptop"]
+    D["iPhone"]
+    E["Car"]
+
+ subgraph Sub1["Let me think"]
+    C
+    D
+    E
+end 
+
+ subgraph Sub2["Subgraph"]
+    A
+    B
+    Sub1
+end 
+
+    Sub1["Let me think"] -->|"One"| C["Laptop"]
+    Sub1["Let me think"] -->|"Two"| D["iPhone"]
+    Sub1["Let me think"] -->|"Three"| E["Car"]
+
+%% Styles & Links
+    style Sub2 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
+
+```
+
+
 
 
 

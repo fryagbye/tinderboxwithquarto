@@ -17,7 +17,7 @@ Please refer to the output results of `quato check`.
 
 <details>
 
-```{.sh}
+```{.zsh}
 # Quarto check output
 Quarto 1.5.57
 [✓] Checking versions of quarto binary dependencies...
@@ -63,6 +63,7 @@ Quarto 1.5.57
 </details>
 
 
+
 ## RStudio Session information { #sec-session-information }
 ```{.r}
 #| echo: false
@@ -87,6 +88,7 @@ attached base packages:
 
 loaded via a namespace (and not attached):
 [1] compiler_4.4.0 tools_4.4.0   
+
 
 
 ## Installed packages { #sec-installed-packages }

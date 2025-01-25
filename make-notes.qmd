@@ -7,6 +7,7 @@ source("_common.R")
 
 Manuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
 
+
 ## Front Matter and Subnote
 
 1. pFrontmatterManuscript
@@ -16,6 +17,7 @@ Manuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_qu
 you can set data for author(s) with the path of note that has pAuther notes. ( like Authors )
 
 `$IsManuscript = true`
+
 
 2. pSubnoteManuscript
 

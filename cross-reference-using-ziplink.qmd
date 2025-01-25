@@ -12,13 +12,15 @@ Convert it to a quoteable title (citation name starting with @) and create a not
 
 [^ziplink]: Please refer to "Text link creation via the Ziplinking method" in [A Tinderbox Reference File](https://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html).(@Anderson2024Tinde)
 
+
 ## How to set the label of the diagram { #sec-how-to-set-the-label }
+
 
 
 ### R chunk { #sec-r-chunk }
 Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote **\@fig-airquality**.
 
-```{.r}
+```r
 #| label: fig-airquality 
 #| fig-cap: "Temperature and ozone level."
 #| warning: false
@@ -34,12 +36,14 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 
 
+
 ### Image link in markdown format { #sec-image-link-in-markdown-format }
 Recognize and collect labels in format that extend the markdown.
 
 \!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
 ![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+
 
 
 
@@ -62,6 +66,7 @@ There are multiple ways to specify labels, but they are only supported if it is 
 
 
 
+
 ## Equations { #sec-Equations }
 Equation Example
 
@@ -71,6 +76,7 @@ $$
 \frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
 $$ {#eq-black-scholes}
+
 
 
 ## How to quote { #sec-how-to-quote }
@@ -85,6 +91,7 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 |Equations | #eq-| \@eq-|
 
 
+
 ## Restrictions on quoted labels { #sec-restrictions-on-quoted-labels }
 * The label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.
 * Cross-ref detection is carried out by regular execution. If it is executed in the middle of input, it will be duplicated with a short label.
@@ -93,6 +100,7 @@ In this case, if necessary, delete the quoted label name in Stamp and perform th
 
 1. Labels: Clear Cross-Reference List（Delete all citation labels under the Reference List.）
 2. Labels: Make Cross-Reference List（Re-detect the quoted label.）
+
 
 
 

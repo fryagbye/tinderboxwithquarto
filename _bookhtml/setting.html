@@ -255,11 +255,9 @@ ul.task-list li input[type="checkbox"] {
 
 
 </header><ol type="1">
-<li>
-<p>Setting up with “TBXConfig” note</p>
-<p>You need to change values of the following “TBXConfig” attributes for configuration.</p>
-</li>
+<li>Setting up with “TBXConfig” note</li>
 </ol>
+<p>You need to change values of the following “TBXConfig” attributes for configuration.</p>
 <ul>
 <li><p><code>$Indent_Charactor</code> -&gt; Set the symbol that represents the depth of indentation. ( default value = ★ )</p></li>
 <li><p><code>$ExList</code> -&gt; List of notes excluded from cross-reference search ( default value = “List and Agent etc” )</p></li>
@@ -275,17 +273,16 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>$ManuscriptOutlineBaseControl = 1 -&gt; # Title</p>
 <ol start="2" type="1">
-<li>
-<p>Making a <code>_quarto.yml</code></p>
+<li>Making a <code>_quarto.yml</code>
+</li>
+</ol>
 <p>You can change values of attributes of “_quarto” note to change quarto options. The quarto options are attributes that starts with “Q” in this file. The initial setting specified in <code>_quarto.yml</code> is for Japanese output.</p>
 <p>Please refer <a href="https://quarto.org/docs/books/book-structure.html">Quarto Book Structure</a> and <a href="https://quarto.org/docs/output-formats/pdf-basics.html">PDF Basics</a> in detail.</p>
 <p>If you use <a href="https://quarto.org/docs/authoring/language.html#custom-translations">Custom Translations</a>, you need to make <code>$Q_Has_Language_YML</code> <code>true</code> and set <code>$Q_Language_YML</code> for the filename. “_language” note in this file is for translating to japanese.</p>
-</li>
-<li>
-<p>Changing <code>_common.R</code> file. ( optional )</p>
-<p>You can set up <code>knitr</code> package options for R chunk.</p>
-</li>
+<ol start="3" type="1">
+<li>Changing <code>_common.R</code> file. ( optional )</li>
 </ol>
+<p>You can set up <code>knitr</code> package options for R chunk.</p>
 
 
 
