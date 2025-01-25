@@ -9,15 +9,9 @@ Here is an example of books created with Quarto.
 
 - [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
 
-`r switch(out_type, latex = "", html = "
-
 <br>
 
-{{< video <https://youtu.be/4BEroHg-F8Y> >}}
-
-Tinderbox with Quarto part1 (English & Japanese sub)
-
-")`
+[![Tinderbox with Quarto part1 (English & Japanese sub)](https://github.com/user-attachments/assets/946d5851-dafb-4429-99f2-a0b572109bb5)](https://youtu.be/4BEroHg-F8Y)
 
 My Workflow is @fig-workflow.
 
@@ -447,11 +441,12 @@ You can set up `knitr` package options for R chunk.
 ## Special Notes Prototype
 
 1. pReferenceQmd
-   This prototype is inherited from pNote and $Text has a div with id `refs` to call a works cited list (below). ([Quarto Bibliography Generation](https://quarto.org/docs/authoring/citations.html#bibliography-generation))
+
+This prototype is inherited from pNote and $Text has a div with id `refs` to call a works cited list (below). ([Quarto Bibliography Generation](https://quarto.org/docs/authoring/citations.html#bibliography-generation))
 
 ```
-::: {#refs}
-:::
+
+
 ```
 
 2. pAppendixQmd
@@ -715,15 +710,9 @@ Please check it in Map view.
 5. Prototypes of container notes **has** a child note change from pMFNodeto pMFContainer automatically by the stamp.
 6. The note (pMFContainer) has the code for mermaid flowchart.
 
-`r switch(out_type, latex = "", html = "
-
 <br>
 
-{{< video <https://youtu.be/of2TkCyJ2xY> >}}
-
-Tinderbox with Quarto part2 (English & Japanese sub)
-
-")`
+[![Tinderbox with Quarto part2 (English & Japanese sub)](./screenshots/opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
 
 ## Supported shapes
 
@@ -734,7 +723,7 @@ Tinderbox with Quarto part2 (English & Japanese sub)
 - diamond
 - hex
 
-![Convert chapes](./screenshot/convertshapes.png)
+![Convert chapes](./screenshots/convertshapes.png)
 
 ## Supported line types (Priority)
 
