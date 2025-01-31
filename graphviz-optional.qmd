@@ -1,0 +1,114 @@
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+# Graphviz α version (optional) {#sec-graphviz-optional }
+
+
+
+
+## How to use { #sec-how-to-use-graphviz }
+1. You make a container noto for graph and set pGContainer.
+2. You make notes ( pGNode) and links. you can't make links cluster (subgraph).
+3. You choose a direction for drawing like TB or LR.($GG_Rankdir)
+4. Run the stamp ( `Graphviz: Make a Dot graph` ).
+5. Prototypes of container notes **has** a child note change from pGNode to pGContainer automatically by the stamp.
+6. The note (pGContainer) has the code for Graphviz.
+
+
+
+## Example { #sec- }
+```{dot} 
+//| label: fig-workflow-graphviz
+//| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
+//| fig-width: 5
+digraph {
+compound=true
+layout=sfdp
+  graph [    charset = "UTF-8";
+  ];
+subgraph cluster_1{
+        label="Applications";
+        color="#dc490b";
+        penwidth="1";
+        style="filled";
+        fillcolor="#e7f3e7";
+        fontname="HiraginoSans-W4";
+        fontcolor="#000000";
+        fontsize="14";
+        A B C 
+}
+subgraph cluster_2{
+        label="Demo_TBX_for_Quarto.tbx";
+        color="#dc490b";
+        penwidth="1";
+        style="filled";
+        fillcolor="#eeebe9";
+        fontname="HiraginoSans-W4";
+        fontcolor="#000000";
+        fontsize="10";
+        D 
+}
+subgraph cluster_3{
+        label="Quarto";
+        color="#dc490b";
+        penwidth="1";
+        style="filled";
+        fillcolor="#fff4e6";
+        fontname="HiraginoSans-W4";
+        fontcolor="#000000";
+        fontsize="14";
+        E F G 
+}
+subgraph cluster_4{
+        label="Output";
+        color="#dc490b";
+        penwidth="1";
+        style="filled";
+        fillcolor="#ffffff";
+        fontname="HiraginoSans-W4";
+        fontcolor="#000000";
+        fontsize="14";
+        H I J 
+}
+A[label="Bookends",colorscheme="Blues8",color="#dc490b",penwidth="1",style="filled",fillcolor="#ff8800",fontname="HiraginoSans-W4",fontcolor="#000000",fontsize="14",URL="https://www.sonnysoftware.com/bookends-for-mac",]
+
+B[label="Snippety",colorscheme="Blues8",color="#990000",penwidth="1",style="filled",fillcolor="#a3bed9",fontname="HiraginoSans-W4",fontcolor="#000000",fontsize="14",URL="https://snippety.app/",]
+
+C[label="Tinderbox",colorscheme="Blues8",color="#dc490b",penwidth="1",style="filled",fillcolor="#f6e04d",fontname="HiraginoSans-W4",fontcolor="#000000",fontsize="14",URL="https://www.eastgate.com/Tinderbox/",]
+
+D[label="Mermaid",colorscheme="Blues8",color="#dc490b",penwidth="1",style="filled",fillcolor="#ffffff",fontname="HiraginoSans-W4",fontcolor="#000000",fontsize="14",]
+
+E[label="R Studio",colorscheme="Blues8",color="#dc490b",penwidth="1",style="filled",fillcolor="#88aacc",fontname="HiraginoSans-W4",fontcolor="#000000",fontsize="14",URL="https://posit.co/products/open-source/rstudio/",]
+
+F[label="RMarkdown ( .qmd )",colorscheme="Blues8",color="#dc490b",penwidth="1",style="filled",fillcolor="#88aacc",fontname="HiraginoSans-W4",fontcolor="#000000",fontsize="14",]
+
+G[label="quarto CLI",colorscheme="Blues8",color="#dc490b",penwidth="1",style="filled",fillcolor="#88aacc",fontname="HiraginoSans-W4",fontcolor="#000000",fontsize="14",URL="https://quarto.org/",]
+
+H[label="PDF",colorscheme="Blues8",color="#dc490b",penwidth="1",style="filled",fillcolor="#93dd93",fontname="HiraginoSans-W4",fontcolor="#000000",fontsize="14",]
+
+I[label="HTML",colorscheme="Blues8",color="#dc490b",penwidth="1",style="filled",fillcolor="#93dd93",fontname="HiraginoSans-W4",fontcolor="#000000",fontsize="14",]
+
+J[label="Marked 2",colorscheme="Blues8",color="#dc490b",penwidth="1",style="filled",fillcolor="#aaaaff",fontname="HiraginoSans-W4",fontcolor="#000000",fontsize="14",URL="https://marked2app.com/",]
+
+A->C
+B->C
+C->D
+C->J
+D->F
+E->G
+F->E
+F->G
+G->H
+G->I
+H
+I
+J
+}
+```
+
+
+
+
+

@@ -18,8 +18,7 @@ Here is an example of books created with Quarto.
 <br>
 
 
-[![Tinderbox with Quarto part1 (English & Japanese sub)](https://github.com/user-attachments/assets/946d5851-dafb-4429-99f2-a0b572109bb5)](https://youtu.be/4BEroHg-F8Y)
-
+[![Tinderbox with Quarto part1](./screenshots/youtube_opening.png)](https://youtu.be/of2TkCyJ2xY)
 
 
 My Workflow is @fig-workflow.
