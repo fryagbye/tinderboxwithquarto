@@ -40,6 +40,7 @@ book:
         - make-notes.qmd
         - export-and-render.qmd
     - mermaid-flowchart.qmd
+    - graphviz-optional.qmd
     - references.qmd
   appendices:
     - restrictions.qmd
