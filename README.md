@@ -99,8 +99,8 @@ end
     style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
 
 ```
-
-```{dot}
+<details>
+```dot
 //| label: fig-workflow-graphviz
 //| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
 //| fig-width: 5
@@ -211,7 +211,7 @@ H -> I [label = "Export" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolo
 H -> J [label = "Export" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ]
 }
 ```
-
+</details>
 # Usage environment
 
 Please refer to the output results of `quato check`.
