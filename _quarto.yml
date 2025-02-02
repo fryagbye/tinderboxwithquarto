@@ -36,8 +36,6 @@ book:
     - part: Manuscript format
       chapters:
         - make-sub-project-folder.qmd
-        - make-quartoyml.qmd
-        - make-notes.qmd
         - export-and-render.qmd
     - mermaid-flowchart.qmd
     - graphviz-optional.qmd

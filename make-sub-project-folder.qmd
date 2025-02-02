@@ -9,3 +9,31 @@ Make a note for sub-project with **pSubfolderManuscript** like this ( _quarto_ma
 
 
 
+## Make notes
+Manuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
+
+
+### Front Matter and Subnote
+
+1. pFrontmatterManuscript
+    
+    This is a qmd file that contains a Front Matter. When you export, it has  contents of descendants.
+
+you can set data for author(s) with the path of note that has pAuther notes. ( like Authors )
+
+`$IsManuscript = true`
+
+
+2. pSubnoteManuscript
+
+    This is a dammy file for pFrontmatterManuscript. markdown level depends on indent level and `$ManuscriptOutlineBaseControl` of TBXConfig.
+
+```
+"#" * ($OutlineDepthBase - $ManuscriptOutlineBaseControl("TBXConfig")
+```
+ 
+`$IsManuscript = true`
+
+
+
+

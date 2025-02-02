@@ -5,6 +5,8 @@ source("_common.R")
 ```
 # Rename HTMLExportFileName of a note with translation {#sec-translate-and-rename }
 
+
+
 There is  a stamp **"Notes: Tranlate Section Labels"** that translates the Japanese title (`$Name`) into English and automatically sets `$HTMLExportFileName` [^translate-shell]. and you can sets `$SectionLabel` with stamp "Set: Section Label". The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with `$Rename_in` in the TBX configuration note (**TBXConfig**). ( By default, from Japanese to English).
 
 [^translate-shell]: [Translate-shell](https://github.com/soimort/translate-shell) installation required. 

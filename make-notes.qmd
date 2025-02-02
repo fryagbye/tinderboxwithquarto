@@ -3,31 +3,43 @@
 out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 source("_common.R")
 ```
-# Make notes
+# Make notes {#sec-make-notes }
 
-Manuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
+1. Make notes with Prototype pNote and pSubnote
+
+    pNote is for Sections and pSubnote is for Subsections.
+Please set the Prototype of pNote to level 1 and pSubnote below level.
+ * When creating a note, please enter "#pNote" or "#pSubnote" following the title. (or apply the pNote Prototype or pSubnote to notes you make )
+
+    e.g. Note title -> わが輩は猫である#pSubnote
+
+     * The note title (`$Name`) is the header for pNote or pSubnote.
+ * Depending on the hierarchy level, the level of the header also changes.
+
+     e.g. If the title of pSubnote in level 2 depth is "わが輩は猫である", it will be output as follows when exporting.
+
+     > \#\# わが輩は猫である
+
+2. Index.qmd
+
+    In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of index.qmd is set to `true`.
+You can make the note for index.qmd with the pIndexQmd Prototype.
 
 
-## Front Matter and Subnote
-
-1. pFrontmatterManuscript
-    
-    This is a qmd file that contains a Front Matter. When you export, it has  contents of descendants.
-
-you can set data for author(s) with the path of note that has pAuther notes. ( like Authors )
-
-`$IsManuscript = true`
 
 
-2. pSubnoteManuscript
-
-    This is a dammy file for pFrontmatterManuscript. markdown level depends on indent level and `$ManuscriptOutlineBaseControl` of TBXConfig.
-
-```
-"#" * ($OutlineDepthBase - $ManuscriptOutlineBaseControl("TBXConfig")
-```
+## Special Notes Prototype
+1. pReferenceQmd
  
-`$IsManuscript = true`
+    This prototype is inherited from pNote and $Text has a div with id `refs` to call a works cited list (below). ([Quarto Bibliography Generation](https://quarto.org/docs/authoring/citations.html#bibliography-generation))
+
+    `::: {#refs}`
+
+    `:::`
+
+2. pAppendixQmd
+
+     This prototype is inherited from pNote and $IsAppendix is `true`.
 
 
 

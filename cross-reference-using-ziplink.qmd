@@ -6,6 +6,7 @@ source("_common.R")
 # Cross-Reference using Ziplink {#sec-cross-reference-using-ziplink }
 
 In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the **Tinderbox** file at the bottom of the **Reference List** note.[^regrex]
+
 Convert it to a quoteable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.。
 
 [^regrex]: The diagrams and tables are extracted in regular expressions.
@@ -77,6 +78,13 @@ $$
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
 $$ {#eq-black-scholes}
 
+```latex
+$$
+\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
+$$ {#eq-black-scholes}
+```
+
 
 
 ## How to quote { #sec-how-to-quote }
@@ -86,7 +94,7 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 |Types of quotations  |Lable  |Quote|
 |---|---|---|
 |Chapters, Sections etc.   |#sec-   |\@sec-|
-|Figures  |#\| label:    |\@fig-|
+|Figures  |{#fig- }<br>#\| label:fig-<br>%%\| label:fig-<br> \/\/\| label:fig-<br>   |\@fig-|
 |Charts　|#tbl-|\@tbl-|
 |Equations | #eq-| \@eq-|
 
@@ -94,7 +102,7 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 
 ## Restrictions on quoted labels { #sec-restrictions-on-quoted-labels }
 * The label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.
-* Cross-ref detection is carried out by regular execution. If it is executed in the middle of input, it will be duplicated with a short label.
+* Cross-ref detection is carried out by regular expression. If it is executed in the middle of input, it will be duplicated with a short label.
 
 In this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.
 

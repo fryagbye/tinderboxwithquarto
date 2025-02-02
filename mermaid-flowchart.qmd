@@ -16,13 +16,13 @@ Please check it in Map view.
 
 
 
-## How to use { #sec-how-to-use }
+## How to use { #sec-how-to-use-mermaid }
 
 1. You make a container noto for Flowchart and set pMFContainer.
 2. You make notes ( pMFNode) and links. 
 3. You choose a direction for drawing like TD or LR.($M_Direction)
 4. Run the stamp ( `Mermaid: Make a Flowchart` ).
-5. Prototypes of container notes **has** a child note change from pMFNodeto pMFContainer automatically by the stamp.
+5. Prototypes of container notes **has** a child note change from pMFNode to pMFContainer automatically by the stamp.
 6. The note (pMFContainer) has the code for mermaid flowchart.
 
 <br>

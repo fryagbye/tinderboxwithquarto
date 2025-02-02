@@ -7,7 +7,7 @@ source("_common.R")
 
 Please refer to the output results of `quato check`.
 
-* quarto is using the released version 1.5.57.
+* Quarto is using the released version 1.5.57.
 * R is version 4.4.0
 * I use luaLatex for output in Japanese. I have installed MacTex because TinyTex doesn't include it.
 * It may be better to uninstall TinyTex.
