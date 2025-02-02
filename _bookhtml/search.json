@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Tinderbox file for Quarto",
     "section": "",
-    "text": "Introduction\nThis tinderbox file supports creating a book and manuscript (beta) with Quarto.\nTinderbox file for Quarto (Web version)\nYou can make qmd files and _quarto.yml easily with it. Here is an example of books created with Quarto.\n\n\nR for Data Science (2e)(Wickham and Grolemund (2016))\n\n\n\n\nTinderbox with Quarto part1 (English & Japanese sub)\n\nMy Workflow is Figure 1.\n\n\n\n\n\nflowchart TB\n    A[\"Snippety\"] -.-&gt;  Sub1[\"Tinderbox\"]\n    B[\"Mermaid\"]\n    C[\"Bookends\"] --&gt;|\"opt + drag\"| Sub1[\"Tinderbox\"]\n    D[\"R Studio\"] --&gt;|\"Call\"| F[\"quarto CLI\"]\n    E[\"RMarkdown ( .qmd )\"] --&gt;|\"Read qmd files\"| D[\"R Studio\"]\n    E[\"RMarkdown ( .qmd )\"] --&gt;|\"Call\"| F[\"quarto CLI\"]\n    F[\"quarto CLI\"] ==&gt;|\"Export\"| G[\"HTML\n(Book)\"]\n    F[\"quarto CLI\"] --&gt;|\"Export\"| H[\"PDF\n(Book)\"]\n    G[\"HTML\n(Book)\"]\n    H[\"PDF\n(Book)\"]\n    I[\"Marked 2\n(Streaming Preview)\"]\n\n subgraph Sub1[\"Tinderbox\"]\n    Sub5\nend \n\n subgraph Sub2[\"Applications\"]\n    direction LR\n    A\n    Sub1\n    C\nend \n\n subgraph Sub3[\"Quarto\"]\n    direction LR\n    D\n    E\n    F\nend \n\n subgraph Sub4[\"Output\"]\n    direction LR\n    G\n    H\n    I\nend \n\n subgraph Sub5[\"Demo_TBX_for_Quarto.tbx\"]\n    B\nend \n\n subgraph Sub6[\"Work Flow\"]\n    direction TB\n    Sub2\n    Sub3\n    Sub4\nend \n\n    Sub5[\"Demo_TBX_for_Quarto.tbx\"] --&gt;  E[\"RMarkdown ( .qmd )\"]\n    Sub5[\"Demo_TBX_for_Quarto.tbx\"] -.-&gt;|\"Streaming Preview\"| I[\"Marked 2\n(Streaming Preview)\"]\n\n%% Styles & Links\n    style A fill:#a3bed9,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 \n    click A href \"https://snippety.app/\" _blank\n    style B fill:#009900,color:#000000,stroke:#dc490b,stroke-width:2px\n    style C fill:#ff8800,color:#000000,stroke:#dc490b,stroke-width:2px\n    style D fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 \n    click D href \"https://posit.co/products/open-source/rstudio/\" _blank\n    style E fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px\n    style F fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px\n    click F href \"https://quarto.org/\" _blank\n    style G fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px\n    style H fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px\n    style I fill:#aaaaff,color:#000000,stroke:#dc490b,stroke-width:2px\n    click I href \"https://marked2app.com/\" _blank\n    style Sub1 fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub2 fill:#e7f3e7,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub3 fill:#fff4e6,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub4 fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub5 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px\n\n\n\n\n\nFigure 1: Tinderbox Work Flow with Quarto.\n\n\n\n\n\n\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. “O’Reilly Media, Inc.”",
+    "text": "Introduction\nThis tinderbox file supports creating a book and manuscript (beta) with Quarto.\nTinderbox file for Quarto (Web version)\nYou can make qmd files and _quarto.yml easily with it. Here is an example of books created with Quarto.\n\n\nR for Data Science (2e)(Wickham and Grolemund (2016))\n\n\n\n\nTinderbox with Quarto part1\n\nMy Workflow is Figure 1 and Figure 2.\n\n\n\n\n\n\n\n\n\n\nflowchart TB\n    A[\"Snippety\"] -.-&gt;  Sub1[\"Tinderbox\"]\n    B[\"Mermaid\"]\n    C[\"Bookends\"] --&gt;|\"opt + drag\"| Sub1[\"Tinderbox\"]\n    D[\"R Studio\"] --&gt;|\"Call\"| F[\"quarto CLI\"]\n    E[\"RMarkdown ( .qmd )\"] --&gt;|\"Read qmd files\"| D[\"R Studio\"]\n    E[\"RMarkdown ( .qmd )\"] --&gt;|\"Call\"| F[\"quarto CLI\"]\n    F[\"quarto CLI\"] ==&gt;|\"Export\"| G[\"HTML\n(Book)\"]\n    F[\"quarto CLI\"] --&gt;|\"Export\"| H[\"PDF\n(Book)\"]\n    G[\"HTML\n(Book)\"]\n    H[\"PDF\n(Book)\"]\n    I[\"Marked 2\n(Streaming Preview)\"]\n\n subgraph Sub1[\"Tinderbox\"]\n    Sub5\nend \n\n subgraph Sub2[\"Applications\"]\n    direction LR\n    A\n    Sub1\n    C\nend \n\n subgraph Sub3[\"Quarto\"]\n    direction LR\n    D\n    E\n    F\nend \n\n subgraph Sub4[\"Output\"]\n    direction LR\n    G\n    H\n    I\nend \n\n subgraph Sub5[\"Demo_TBX_for_Quarto.tbx\"]\n    B\nend \n\n subgraph Sub6[\"Work Flow\"]\n    direction TB\n    Sub2\n    Sub3\n    Sub4\nend \n\n    Sub5[\"Demo_TBX_for_Quarto.tbx\"] --&gt;  E[\"RMarkdown ( .qmd )\"]\n    Sub5[\"Demo_TBX_for_Quarto.tbx\"] -.-&gt;|\"Streaming Preview\"| I[\"Marked 2\n(Streaming Preview)\"]\n\n%% Styles & Links\n    style A fill:#a3bed9,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 \n    click A href \"https://snippety.app/\" _blank\n    style B fill:#009900,color:#000000,stroke:#dc490b,stroke-width:2px\n    style C fill:#ff8800,color:#000000,stroke:#dc490b,stroke-width:2px\n    style D fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 \n    click D href \"https://posit.co/products/open-source/rstudio/\" _blank\n    style E fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px\n    style F fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px\n    click F href \"https://quarto.org/\" _blank\n    style G fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px\n    style H fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px\n    style I fill:#aaaaff,color:#000000,stroke:#dc490b,stroke-width:2px\n    click I href \"https://marked2app.com/\" _blank\n    style Sub1 fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub2 fill:#e7f3e7,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub3 fill:#fff4e6,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub4 fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub5 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px\n    style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px\n\n\n\n\n\nFigure 1: Tinderbox Work Flow with Quarto ( Mermaid version ).\n\n\n\n\n\n\n\n\n\ncluster_A\nApplicationscluster_B\n\nTinderbox\ncluster_C\n\nDemo_TBX_for_Quarto.tbx\ncluster_D\nQuartocluster_E\nOutputA\n\nBookends\nD\n\nMermaid\nA-&gt;D\nB\n\nSnippety\nB-&gt;C\nK\n\nMarked 2\nC-&gt;K\nG\nRMarkdown ( .qmd )D-&gt;G\nE\nGraphvizF\n\nR Studio\nH\n\nquarto CLI\nF-&gt;H\nCallG-&gt;F\nRead qmd filesG-&gt;H\nCallI\nPDFH-&gt;I\nExportJ\nHTMLH-&gt;J\nExport\n\n\n\nFigure 2: Tinderbox Work Flow with Quarto. ( Graphviz version )\n\n\n\n\n\n\n\n\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. “O’Reilly Media, Inc.”",
     "crumbs": [
       "Introduction"
     ]
@@ -44,7 +44,7 @@
     "href": "setting.html",
     "title": "2  Setting",
     "section": "",
-    "text": "Setting up with “TBXConfig” note\n\nYou need to change values of the following “TBXConfig” attributes for configuration.\n\n$Indent_Charactor -&gt; Set the symbol that represents the depth of indentation. ( default value = ★ )\n$ExList -&gt; List of notes excluded from cross-reference search ( default value = “List and Agent etc” )\n$ExportFolder -&gt; Path of exported files. ( for Stamp “Move qmd files” )\n$ToggleTOC -&gt; Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml.\n$Q_TableOfContainsNote -&gt; $Name of TOC note. ( default value = Table of Contents )\n$Rename_in -&gt; Setting for translating a label. ( default value = ja:en )\n$Q_PDFEngine -&gt; Setting for pdf engine This file is tested only with lualatex. ( default value = lualatex )\n\n$ManuscriptOutlineBaseControl -&gt; Adjustment of section levels in Markdown. ( default = 1 )\ne.g. $ManuscriptOutlineBaseControl = 0 -&gt; ## Title\n\n\n$ManuscriptOutlineBaseControl = 1 -&gt; # Title\n\nMaking a _quarto.yml\n\n\nYou can change values of attributes of “_quarto” note to change quarto options. The quarto options are attributes that starts with “Q” in this file. The initial setting specified in _quarto.yml is for Japanese output.\nPlease refer Quarto Book Structure and PDF Basics in detail.\nIf you use Custom Translations, you need to make $Q_Has_Language_YML true and set $Q_Language_YML for the filename. “_language” note in this file is for translating to japanese.\n\nChanging _common.R file. ( optional )\n\nYou can set up knitr package options for R chunk.",
+    "text": "Setting up with “TBXConfig” note\nYou need to change values of the following “TBXConfig” attributes for configuration.\n\n\n\n$Indent_Charactor -&gt; Set the symbol that represents the depth of indentation. ( default value = ★ )\n$ExList -&gt; List of notes excluded from cross-reference search ( default value = “List and Agent etc” )\n$ExportFolder -&gt; Path of exported files. ( for Stamp “Move qmd files” )\n$ToggleTOC -&gt; Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml.\n$Q_TableOfContainsNote -&gt; $Name of TOC note. ( default value = Table of Contents )\n$Rename_in -&gt; Setting for translating a label. ( default value = ja:en )\n$Q_PDFEngine -&gt; Setting for pdf engine This file is tested only with lualatex. ( default value = lualatex )\n\n$ManuscriptOutlineBaseControl -&gt; Adjustment of section levels in Markdown. ( default = 1 )\ne.g. \n\n$ManuscriptOutlineBaseControl = 0 -&gt; ## Title\n$ManuscriptOutlineBaseControl = 1 -&gt; # Title\n\n\n\n\n\nMaking a _quarto.yml\nYou can change values of attributes of “_quarto” note to change quarto options. The quarto options are attributes that starts with “Q” in this file.The initial setting specified in _quarto.yml is for Japanese output.Please refer Quarto Book Structure and PDF Basics in detail.\nIf you use Custom Translations, you need to make $Q_Has_Language_YML true and set $Q_Language_YML for the filename. “_language” note in this file is for translating to japanese.\n\n\nChanging _common.R file. ( optional )\nYou can set up knitr package options for R chunk.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting</span>"
     ]
@@ -52,20 +52,20 @@
   {
     "objectID": "make-notes.html",
     "href": "make-notes.html",
-    "title": "\n3  Make notes\n",
+    "title": "3  Make notes",
     "section": "",
-    "text": "3.1 Front Matter and Subnote\nManuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).\nyou can set data for author(s) with the path of note that has pAuther notes. ( like Authors )\n$IsManuscript = true\n$IsManuscript = true",
+    "text": "3.1 Special Notes Prototype",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Make notes</span>"
     ]
   },
   {
-    "objectID": "make-notes.html#front-matter-and-subnote",
-    "href": "make-notes.html#front-matter-and-subnote",
-    "title": "\n3  Make notes\n",
+    "objectID": "make-notes.html#special-notes-prototype",
+    "href": "make-notes.html#special-notes-prototype",
+    "title": "3  Make notes",
     "section": "",
-    "text": "pFrontmatterManuscript\nThis is a qmd file that contains a Front Matter. When you export, it has contents of descendants.\n\n\n\n\n\n\npSubnoteManuscript\nThis is a dammy file for pFrontmatterManuscript. markdown level depends on indent level and $ManuscriptOutlineBaseControl of TBXConfig.\n\n\n\"#\" * ($OutlineDepthBase - $ManuscriptOutlineBaseControl(\"TBXConfig\")",
+    "text": "pReferenceQmd\nThis prototype is inherited from pNote and $Text has a div with id refs to call a works cited list (below). (Quarto Bibliography Generation)\n::: {#refs}\n:::\n\n\npAppendixQmd\nThis prototype is inherited from pNote and $IsAppendix is true.",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Make notes</span>"
@@ -98,7 +98,7 @@
     "href": "part-in-book-format.html",
     "title": "5  Part in Book format",
     "section": "",
-    "text": "For Part, please refer to Quarto’s “Book Structure” reference.\npNote is compatible with quarto’s Part or Chapter.\nIf pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1. In this case, the hierarchy level and header level are one different, so the header level is set based on the user attribute $OutlineDepthBase.\npNote, which is treated as a Part, is turned on (true) for $Is_Part_qmd. The lower pNote contains the export file name (e.g. filename.qmd) of the pNote, which is Part, in $Part_file. If a Part note is empty, only the title ($Name) of the note is reflected in _quarto.yml, as shown in the “Dice” in the example below. If the dice.qmd is not empty, the part title (as a level one header) as well as some introductory content for the part.\n#_quarto.yml\nchapters:\n  - index.qmd\n  - preface.qmd\n  - part: \"Dice\" # if $Text(\"Dice\").wordCount == 0 \n  chapters: \n    - basics.qmd\n    - packages.qmd\n#_quarto.yml\nchapters:\n  - index.qmd\n  - preface.qmd\n  - part: dice.qmd # if $Text(\"Dice\").wordCount &gt;0 \n    chapters: \n      - basics.qmd\n      - packages.qmd\nThe figure below shows the export example when Part is supported and the output result of _quarto.yml.\n\n\nFolder configuration at the time of output and _quarto.yml",
+    "text": "For Part, please refer to Quarto’s “Book Structure” reference.\npNote is compatible with quarto’s Part or Chapter.\nIf pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1.\nIn this case, the hierarchy level and header level are one different, so the header level is set based on the user attribute $OutlineDepthBase.\npNote, which is treated as a Part, is turned on (true) for $Is_Part_qmd. The lower pNote contains the export file name (e.g. filename.qmd) of the pNote, which is Part, in $Part_file.\nIf a Part note is empty, only the title ($Name) of the note is reflected in _quarto.yml, as shown in the “Dice” in the example below. If the dice.qmd is not empty, the part title (as a level one header) as well as some introductory content for the part.\n#_quarto.yml\nchapters:\n  - index.qmd\n  - preface.qmd\n  - part: \"Dice\" # if $Text(\"Dice\").wordCount == 0 \n  chapters: \n    - basics.qmd\n    - packages.qmd\n#_quarto.yml\nchapters:\n  - index.qmd\n  - preface.qmd\n  - part: dice.qmd # if $Text(\"Dice\").wordCount &gt;0 \n    chapters: \n      - basics.qmd\n      - packages.qmd\nThe figure below shows the export example when Part is supported and the output result of _quarto.yml.\n\n\nFolder configuration at the time of output and _quarto.yml",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Part in Book format</span>"
@@ -109,7 +109,7 @@
     "href": "cross-reference-using-ziplink.html",
     "title": "6  Cross-Reference using Ziplink",
     "section": "",
-    "text": "6.1 How to set the label of the diagram\nIn Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the Tinderbox file at the bottom of the Reference List note.1 Convert it to a quoteable title (citation name starting with @) and create a note for the corresponding part. Tinderbox’s Ziplink function 2 is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.。",
+    "text": "6.1 How to set the label of the diagram\nIn Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the Tinderbox file at the bottom of the Reference List note.1\nConvert it to a quoteable title (citation name starting with @) and create a note for the corresponding part. Tinderbox’s Ziplink function 2 is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.。",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -142,7 +142,7 @@
     "href": "cross-reference-using-ziplink.html#sec-Equations",
     "title": "6  Cross-Reference using Ziplink",
     "section": "\n6.3 Equations",
-    "text": "6.3 Equations\nEquation Example\nBlack-Scholes (Equation 6.1 ) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:\n\\[\n\\frac{\\partial \\mathrm C}{ \\partial \\mathrm t } + \\frac{1}{2}\\sigma^{2} \\mathrm S^{2}\n\\frac{\\partial^{2} \\mathrm C}{\\partial \\mathrm S^2}  + \\mathrm r \\mathrm S \\frac{\\partial \\mathrm C}{\\partial \\mathrm S}\\ =  \\mathrm r \\mathrm C\n\\tag{6.1}\\]",
+    "text": "6.3 Equations\nEquation Example\nBlack-Scholes (Equation 6.1 ) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:\n\\[\n\\frac{\\partial \\mathrm C}{ \\partial \\mathrm t } + \\frac{1}{2}\\sigma^{2} \\mathrm S^{2}\n\\frac{\\partial^{2} \\mathrm C}{\\partial \\mathrm S^2}  + \\mathrm r \\mathrm S \\frac{\\partial \\mathrm C}{\\partial \\mathrm S}\\ =  \\mathrm r \\mathrm C\n\\tag{6.1}\\]\n$$\n\\frac{\\partial \\mathrm C}{ \\partial \\mathrm t } + \\frac{1}{2}\\sigma^{2} \\mathrm S^{2}\n\\frac{\\partial^{2} \\mathrm C}{\\partial \\mathrm S^2}  + \\mathrm r \\mathrm S \\frac{\\partial \\mathrm C}{\\partial \\mathrm S}\\ =  \\mathrm r \\mathrm C \n$$ {#eq-black-scholes}",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -153,7 +153,7 @@
     "href": "cross-reference-using-ziplink.html#sec-how-to-quote",
     "title": "6  Cross-Reference using Ziplink",
     "section": "\n6.4 How to quote",
-    "text": "6.4 How to quote\nIf you enter two square brackets “[[”, the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.\n\n\nTypes of quotations\nLable\nQuote\n\n\n\nChapters, Sections etc.\n#sec-\n@sec-\n\n\nFigures\n#| label:\n@fig-\n\n\nCharts　\n#tbl-\n@tbl-\n\n\nEquations\n#eq-\n@eq-",
+    "text": "6.4 How to quote\nIf you enter two square brackets “[[”, the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.\n\n\n\n\n\n\n\nTypes of quotations\nLable\nQuote\n\n\n\nChapters, Sections etc.\n#sec-\n@sec-\n\n\nFigures\n{#fig- }#| label:fig-%%| label:fig- //| label:fig-\n\n@fig-\n\n\nCharts　\n#tbl-\n@tbl-\n\n\nEquations\n#eq-\n@eq-",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -164,7 +164,7 @@
     "href": "cross-reference-using-ziplink.html#sec-restrictions-on-quoted-labels",
     "title": "6  Cross-Reference using Ziplink",
     "section": "\n6.5 Restrictions on quoted labels",
-    "text": "6.5 Restrictions on quoted labels\n\nThe label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.\nCross-ref detection is carried out by regular execution. If it is executed in the middle of input, it will be duplicated with a short label.\n\nIn this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.\n\nLabels: Clear Cross-Reference List（Delete all citation labels under the Reference List.）\nLabels: Make Cross-Reference List（Re-detect the quoted label.）",
+    "text": "6.5 Restrictions on quoted labels\n\nThe label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.\nCross-ref detection is carried out by regular expression. If it is executed in the middle of input, it will be duplicated with a short label.\n\nIn this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.\n\nLabels: Clear Cross-Reference List（Delete all citation labels under the Reference List.）\nLabels: Make Cross-Reference List（Re-detect the quoted label.）",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -218,102 +218,132 @@
     "href": "make-sub-project-folder.html",
     "title": "9  Make sub-project folder",
     "section": "",
-    "text": "Make a note for sub-project with pSubfolderManuscript like this ( _quarto_manuscript ).",
+    "text": "9.1 Make notes\nMake a note for sub-project with pSubfolderManuscript like this ( _quarto_manuscript ).\nManuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).",
     "crumbs": [
       "Manuscript format",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Make sub-project folder</span>"
     ]
   },
   {
-    "objectID": "make-quartoyml.html",
-    "href": "make-quartoyml.html",
-    "title": "10  Make _quarto.yml for the sub-project",
+    "objectID": "make-sub-project-folder.html#make-notes",
+    "href": "make-sub-project-folder.html#make-notes",
+    "title": "9  Make sub-project folder",
     "section": "",
-    "text": "you have to set a qmd file name. manuscript has only one qmd file.",
+    "text": "9.1.1 Front Matter and Subnote\n\n\npFrontmatterManuscript\nThis is a qmd file that contains a Front Matter. When you export, it has contents of descendants.\n\n\nyou can set data for author(s) with the path of note that has pAuther notes. ( like Authors )\n$IsManuscript = true\n\n\npSubnoteManuscript\nThis is a dammy file for pFrontmatterManuscript. markdown level depends on indent level and $ManuscriptOutlineBaseControl of TBXConfig.\n\n\n\"#\" * ($OutlineDepthBase - $ManuscriptOutlineBaseControl(\"TBXConfig\")\n$IsManuscript = true",
     "crumbs": [
       "Manuscript format",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Make \\_quarto.yml for the sub-project</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Make sub-project folder</span>"
     ]
   },
   {
     "objectID": "export-and-render.html",
     "href": "export-and-render.html",
-    "title": "\n12  Export and Render\n",
+    "title": "\n10  Export and Render\n",
     "section": "",
     "text": "Export You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in sub-project folder.\nActivate a virtual environment if you use a virtual environment, activate it.\n\ne.g.\npoetry shell\n\nRender sub-project\n\n# quarto render \"your project name\"\nquarto render myproject\n\n# For preview\nquarto preview myproject --to html --no-watch-inputs --no-browse",
     "crumbs": [
       "Manuscript format",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Export and Render</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Export and Render</span>"
     ]
   },
   {
     "objectID": "mermaid-flowchart.html",
     "href": "mermaid-flowchart.html",
-    "title": "13  Mermaid flowchart (optional)",
+    "title": "11  Mermaid flowchart (optional)",
     "section": "",
-    "text": "13.1 How to use\nThis file can generate Mermaid flowchart from notes, links.\nWork Flow is a sample of Mermaid flowchart.\nPlease check it in Map view.",
+    "text": "11.1 How to use\nThis file can generate Mermaid flowchart from notes, links.\nWork Flow is a sample of Mermaid flowchart.\nPlease check it in Map view.",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
   },
   {
     "objectID": "mermaid-flowchart.html#sec-how-to-use",
     "href": "mermaid-flowchart.html#sec-how-to-use",
-    "title": "13  Mermaid flowchart (optional)",
+    "title": "11  Mermaid flowchart (optional)",
     "section": "",
     "text": "You make a container noto for Flowchart and set pMFContainer.\nYou make notes ( pMFNode) and links.\nYou choose a direction for drawing like TD or LR.($M_Direction)\nRun the stamp ( Mermaid: Make a Flowchart ).\nPrototypes of container notes has a child note change from pMFNodeto pMFContainer automatically by the stamp.\nThe note (pMFContainer) has the code for mermaid flowchart.\n\n\n\n\nTinderbox with Quarto part2 (English & Japanese sub)",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
   },
   {
     "objectID": "mermaid-flowchart.html#sec-supported-shapes",
     "href": "mermaid-flowchart.html#sec-supported-shapes",
-    "title": "13  Mermaid flowchart (optional)",
-    "section": "\n13.2 Supported shapes",
-    "text": "13.2 Supported shapes\n\nrectangle (&lt;- normal and other shapes)\nrounded\noval\nlozenge\ndiamond\nhex\n\n\n\nConvert shapes",
+    "title": "11  Mermaid flowchart (optional)",
+    "section": "\n11.2 Supported shapes",
+    "text": "11.2 Supported shapes\n\nrectangle (&lt;- normal and other shapes)\nrounded\noval\nlozenge\ndiamond\nhex\n\n\n\nConvert shapes",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
   },
   {
     "objectID": "mermaid-flowchart.html#sec-supported-line-types-priority",
     "href": "mermaid-flowchart.html#sec-supported-line-types-priority",
-    "title": "13  Mermaid flowchart (optional)",
-    "section": "\n13.3 Supported line types (Priority)",
-    "text": "13.3 Supported line types (Priority)\n\nnormal –&gt; (4th)\nbold ==&gt; (3rd)\ndotted -.-&gt; (2nd)\ninvisible ~~~ (1st)",
+    "title": "11  Mermaid flowchart (optional)",
+    "section": "\n11.3 Supported line types (Priority)",
+    "text": "11.3 Supported line types (Priority)\n\nnormal –&gt; (4th)\nbold ==&gt; (3rd)\ndotted -.-&gt; (2nd)\ninvisible ~~~ (1st)",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
   },
   {
     "objectID": "mermaid-flowchart.html#sec-supported-arrow-types",
     "href": "mermaid-flowchart.html#sec-supported-arrow-types",
-    "title": "13  Mermaid flowchart (optional)",
-    "section": "\n13.4 Supported arrow types",
-    "text": "13.4 Supported arrow types\n\narrow only",
+    "title": "11  Mermaid flowchart (optional)",
+    "section": "\n11.4 Supported arrow types",
+    "text": "11.4 Supported arrow types\n\narrow only",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
   },
   {
     "objectID": "mermaid-flowchart.html#sec-example",
     "href": "mermaid-flowchart.html#sec-example",
-    "title": "13  Mermaid flowchart (optional)",
-    "section": "\n13.5 Example",
-    "text": "13.5 Example\n\n\n\n\n\nflowchart TB\n    A[\"Christmas\"] --&gt;|\"Get money\"| B[\"Go shopping\"]\n    B[\"Go shopping\"] --&gt;  Sub1[\"Let me think\"]\n    C[\"Laptop\"]\n    D[\"iPhone\"]\n    E[\"Car\"]\n\n subgraph Sub1[\"Let me think\"]\n    C\n    D\n    E\nend \n\n subgraph Sub2[\"Subgraph\"]\n    A\n    B\n    Sub1\nend \n\n    Sub1[\"Let me think\"] --&gt;|\"One\"| C[\"Laptop\"]\n    Sub1[\"Let me think\"] --&gt;|\"Two\"| D[\"iPhone\"]\n    Sub1[\"Let me think\"] --&gt;|\"Three\"| E[\"Car\"]\n\n%% Styles & Links\n    style Sub2 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px\n\n\n\n\n\nFigure 13.1",
+    "title": "11  Mermaid flowchart (optional)",
+    "section": "\n11.5 Example",
+    "text": "11.5 Example\n\n\n\n\n\nflowchart TB\n    A[\"Christmas\"] --&gt;|\"Get money\"| B[\"Go shopping\"]\n    B[\"Go shopping\"] --&gt;  Sub1[\"Let me think\"]\n    C[\"Laptop\"]\n    D[\"iPhone\"]\n    E[\"Car\"]\n\n subgraph Sub1[\"Let me think\"]\n    C\n    D\n    E\nend \n\n subgraph Sub2[\"Subgraph\"]\n    A\n    B\n    Sub1\nend \n\n    Sub1[\"Let me think\"] --&gt;|\"One\"| C[\"Laptop\"]\n    Sub1[\"Let me think\"] --&gt;|\"Two\"| D[\"iPhone\"]\n    Sub1[\"Let me think\"] --&gt;|\"Three\"| E[\"Car\"]\n\n%% Styles & Links\n    style Sub2 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px\n\n\n\n\n\nFigure 11.1",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
+    ]
+  },
+  {
+    "objectID": "graphviz-optional.html",
+    "href": "graphviz-optional.html",
+    "title": "12  Graphviz β version (optional)",
+    "section": "",
+    "text": "12.1 How to use",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Graphviz β version (optional)</span>"
+    ]
+  },
+  {
+    "objectID": "graphviz-optional.html#sec-how-to-use-graphviz",
+    "href": "graphviz-optional.html#sec-how-to-use-graphviz",
+    "title": "12  Graphviz β version (optional)",
+    "section": "",
+    "text": "You make a container noto for graph and set pGContainer.\nYou make notes ( pGNode) and links. you can’t make links cluster (subgraph).\nYou choose a direction for drawing like TB or LR.($GG_Rankdir)\nRun the stamp ( Graphviz: Make a Dot graph ).\nPrototypes of container notes has a child note change from pGNode to pGContainer automatically by the stamp.\nThe note (pGContainer) has the code for Graphviz.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Graphviz β version (optional)</span>"
+    ]
+  },
+  {
+    "objectID": "graphviz-optional.html#sec-",
+    "href": "graphviz-optional.html#sec-",
+    "title": "12  Graphviz β version (optional)",
+    "section": "\n12.2 Example",
+    "text": "12.2 Example\nFigure 2 and Figure 12.1 .\n\n\n\n\n\ncluster_B\nCluster Acluster_A\nCluster BA\nnode2B\nnode4C\nnode6D\nnode8E\nnode1E-&gt;A\n1F\nnode3F-&gt;B\n2G\nnode5G-&gt;C\n3H\nnode7H-&gt;D\n4\n\n\n\nFigure 12.1: Graphviz Test",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Graphviz β version (optional)</span>"
     ]
   },
   {
     "objectID": "references.html",
     "href": "references.html",
-    "title": "14  References",
+    "title": "13  References",
     "section": "",
     "text": "Anderson, Mark. 2024. “A Tinderbox Reference File.” 2024.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. “O’Reilly\nMedia, Inc.”",
     "crumbs": [
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>References</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>References</span>"
     ]
   },
   {

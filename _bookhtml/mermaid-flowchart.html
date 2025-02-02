@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.6.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="fryagbye">
-<title>13&nbsp; Mermaid flowchart (optional) – Tinderbox file for Quarto</title>
+<title>11&nbsp; Mermaid flowchart (optional) – Tinderbox file for Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,7 +26,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./graphviz-optional.html" rel="next">
 <link href="./export-and-render.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -77,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mermaid-flowchart.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mermaid-flowchart.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,20 +188,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./make-quartoyml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Make _quarto.yml for the sub-project</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./make-notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./export-and-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
       </ul>
@@ -209,13 +197,19 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mermaid-flowchart.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphviz-optional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -243,16 +237,16 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-<li><a href="#sec-how-to-use" id="toc-sec-how-to-use" class="nav-link active" data-scroll-target="#sec-how-to-use"><span class="header-section-number">13.1</span> How to use</a></li>
-  <li><a href="#sec-supported-shapes" id="toc-sec-supported-shapes" class="nav-link" data-scroll-target="#sec-supported-shapes"><span class="header-section-number">13.2</span> Supported shapes</a></li>
-  <li><a href="#sec-supported-line-types-priority" id="toc-sec-supported-line-types-priority" class="nav-link" data-scroll-target="#sec-supported-line-types-priority"><span class="header-section-number">13.3</span> Supported line types (Priority)</a></li>
-  <li><a href="#sec-supported-arrow-types" id="toc-sec-supported-arrow-types" class="nav-link" data-scroll-target="#sec-supported-arrow-types"><span class="header-section-number">13.4</span> Supported arrow types</a></li>
-  <li><a href="#sec-example" id="toc-sec-example" class="nav-link" data-scroll-target="#sec-example"><span class="header-section-number">13.5</span> Example</a></li>
+<li><a href="#sec-how-to-use" id="toc-sec-how-to-use" class="nav-link active" data-scroll-target="#sec-how-to-use"><span class="header-section-number">11.1</span> How to use</a></li>
+  <li><a href="#sec-supported-shapes" id="toc-sec-supported-shapes" class="nav-link" data-scroll-target="#sec-supported-shapes"><span class="header-section-number">11.2</span> Supported shapes</a></li>
+  <li><a href="#sec-supported-line-types-priority" id="toc-sec-supported-line-types-priority" class="nav-link" data-scroll-target="#sec-supported-line-types-priority"><span class="header-section-number">11.3</span> Supported line types (Priority)</a></li>
+  <li><a href="#sec-supported-arrow-types" id="toc-sec-supported-arrow-types" class="nav-link" data-scroll-target="#sec-supported-arrow-types"><span class="header-section-number">11.4</span> Supported arrow types</a></li>
+  <li><a href="#sec-example" id="toc-sec-example" class="nav-link" data-scroll-target="#sec-example"><span class="header-section-number">11.5</span> Example</a></li>
   </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/mermaid-flowchart.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-mermaid-flowchart" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></h1>
+<h1 class="title"><span id="sec-mermaid-flowchart" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></h1>
 </div>
 
 
@@ -273,8 +267,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Work Flow is a sample of Mermaid flowchart.<br>
 Please check it in Map view.</p>
-<section id="sec-how-to-use" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="sec-how-to-use">
-<span class="header-section-number">13.1</span> How to use</h2>
+<section id="sec-how-to-use" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="sec-how-to-use">
+<span class="header-section-number">11.1</span> How to use</h2>
 <ol type="1">
 <li>You make a container noto for Flowchart and set pMFContainer.</li>
 <li>You make notes ( pMFNode) and links.</li>
@@ -288,8 +282,8 @@ Please check it in Map view.</p>
 <figure class="figure"><p><img src="./screenshots/opening_part2.png" class="img-fluid figure-img"></p>
 <figcaption>Tinderbox with Quarto part2 (English &amp; Japanese sub)</figcaption></figure>
 </div>
-</section><section id="sec-supported-shapes" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="sec-supported-shapes">
-<span class="header-section-number">13.2</span> Supported shapes</h2>
+</section><section id="sec-supported-shapes" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="sec-supported-shapes">
+<span class="header-section-number">11.2</span> Supported shapes</h2>
 <ul>
 <li>rectangle (&lt;- normal and other shapes)</li>
 <li>rounded</li>
@@ -302,19 +296,19 @@ Please check it in Map view.</p>
 <figure class="figure"><p><a href="./screenshots/convertshapes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Convert shapes"><img src="./screenshots/convertshapes.png" class="img-fluid figure-img" alt="Convert shapes"></a></p>
 <figcaption>Convert shapes</figcaption></figure>
 </div>
-</section><section id="sec-supported-line-types-priority" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="sec-supported-line-types-priority">
-<span class="header-section-number">13.3</span> Supported line types (Priority)</h2>
+</section><section id="sec-supported-line-types-priority" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="sec-supported-line-types-priority">
+<span class="header-section-number">11.3</span> Supported line types (Priority)</h2>
 <ul>
 <li>normal –&gt; (4th)</li>
 <li>bold ==&gt; (3rd)</li>
 <li>dotted -.-&gt; (2nd)</li>
 <li>invisible ~~~ (1st)</li>
-</ul></section><section id="sec-supported-arrow-types" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="sec-supported-arrow-types">
-<span class="header-section-number">13.4</span> Supported arrow types</h2>
+</ul></section><section id="sec-supported-arrow-types" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="sec-supported-arrow-types">
+<span class="header-section-number">11.4</span> Supported arrow types</h2>
 <ul>
 <li>arrow only</li>
-</ul></section><section id="sec-example" class="level2" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="sec-example">
-<span class="header-section-number">13.5</span> Example</h2>
+</ul></section><section id="sec-example" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="sec-example">
+<span class="header-section-number">11.5</span> Example</h2>
 <div class="cell" data-fig-width="5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-flowchart" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -350,7 +344,7 @@ end
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-flowchart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.1
+Figure&nbsp;11.1
 </figcaption></figure>
 </div>
 </div>
@@ -780,12 +774,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./export-and-render.html" class="pagination-link" aria-label="Export and Render">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Export and Render</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./graphviz-optional.html" class="pagination-link" aria-label="Graphviz β version (optional)">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

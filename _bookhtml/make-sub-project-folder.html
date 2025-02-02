@@ -26,7 +26,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./make-quartoyml.html" rel="next">
+<link href="./export-and-render.html" rel="next">
 <link href="./example.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -184,20 +184,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./make-quartoyml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Make _quarto.yml for the sub-project</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./make-notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./export-and-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
       </ul>
@@ -205,13 +193,19 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mermaid-flowchart.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphviz-optional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -235,8 +229,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#make-notes" id="toc-make-notes" class="nav-link active" data-scroll-target="#make-notes"><span class="header-section-number">9.1</span> Make notes</a></li>
+  </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/make-sub-project-folder.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-sub-project-folder.html">Manuscript format</a></li><li class="breadcrumb-item"><a href="./make-sub-project-folder.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></a></li></ol></nav><div class="quarto-title">
@@ -255,10 +253,30 @@ ul.task-list li input[type="checkbox"] {
 
 
 </header><p>Make a note for sub-project with <strong>pSubfolderManuscript</strong> like this ( _quarto_manuscript ).</p>
+<section id="make-notes" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="make-notes">
+<span class="header-section-number">9.1</span> Make notes</h2>
+<p>Manuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).</p>
+<section id="front-matter-and-subnote" class="level3" data-number="9.1.1"><h3 data-number="9.1.1" class="anchored" data-anchor-id="front-matter-and-subnote">
+<span class="header-section-number">9.1.1</span> Front Matter and Subnote</h3>
+<ol type="1">
+<li>
+<p>pFrontmatterManuscript</p>
+<p>This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.</p>
+</li>
+</ol>
+<p>you can set data for author(s) with the path of note that has pAuther notes. ( like Authors )</p>
+<p><code>$IsManuscript = true</code></p>
+<ol start="2" type="1">
+<li>
+<p>pSubnoteManuscript</p>
+<p>This is a dammy file for pFrontmatterManuscript. markdown level depends on indent level and <code>$ManuscriptOutlineBaseControl</code> of TBXConfig.</p>
+</li>
+</ol>
+<pre><code>"#" * ($OutlineDepthBase - $ManuscriptOutlineBaseControl("TBXConfig")</code></pre>
+<p><code>$IsManuscript = true</code></p>
 
 
-
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -685,8 +703,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./make-quartoyml.html" class="pagination-link" aria-label="Make \_quarto.yml for the sub-project">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Make _quarto.yml for the sub-project</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./export-and-render.html" class="pagination-link" aria-label="Export and Render">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -697,7 +715,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/make-sub-project-folder.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/make-sub-project-folder.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>footer right</p>
 </div>

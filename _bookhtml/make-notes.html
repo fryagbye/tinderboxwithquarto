@@ -184,20 +184,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./make-quartoyml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Make _quarto.yml for the sub-project</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./make-notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./export-and-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
       </ul>
@@ -205,13 +193,19 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mermaid-flowchart.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphviz-optional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -239,14 +233,12 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-<li><a href="#front-matter-and-subnote" id="toc-front-matter-and-subnote" class="nav-link active" data-scroll-target="#front-matter-and-subnote"><span class="header-section-number">3.1</span> Front Matter and Subnote</a></li>
+<li><a href="#special-notes-prototype" id="toc-special-notes-prototype" class="nav-link active" data-scroll-target="#special-notes-prototype"><span class="header-section-number">3.1</span> Special Notes Prototype</a></li>
   </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/make-notes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-notes.html">Book format</a></li><li class="breadcrumb-item"><a href="./make-notes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span>
-</h1>
+<h1 class="title"><span id="sec-make-notes" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></span></h1>
 </div>
 
 
@@ -260,25 +252,48 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header><p>Manuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).</p>
-<section id="front-matter-and-subnote" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="front-matter-and-subnote">
-<span class="header-section-number">3.1</span> Front Matter and Subnote</h2>
-<ol type="1">
+</header><ol type="1">
 <li>
-<p>pFrontmatterManuscript</p>
-<p>This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.</p>
+<p>Make notes with Prototype pNote and pSubnote</p>
+<p>pNote is for Sections and pSubnote is for Subsections. Please set the Prototype of pNote to level 1 and pSubnote below level.</p>
 </li>
 </ol>
-<p>you can set data for author(s) with the path of note that has pAuther notes. ( like Authors )</p>
-<p><code>$IsManuscript = true</code></p>
+<ul>
+<li>
+<p>When creating a note, please enter “#pNote” or “#pSubnote” following the title. (or apply the pNote Prototype or pSubnote to notes you make )</p>
+<p>e.g.&nbsp;Note title -&gt; わが輩は猫である#pSubnote</p>
+<ul>
+<li>The note title (<code>$Name</code>) is the header for pNote or pSubnote.</li>
+</ul>
+</li>
+<li>
+<p>Depending on the hierarchy level, the level of the header also changes.</p>
+<p>e.g.&nbsp;If the title of pSubnote in level 2 depth is “わが輩は猫である”, it will be output as follows when exporting.</p>
+<blockquote class="blockquote">
+<p>## わが輩は猫である</p>
+</blockquote>
+</li>
+</ul>
 <ol start="2" type="1">
 <li>
-<p>pSubnoteManuscript</p>
-<p>This is a dammy file for pFrontmatterManuscript. markdown level depends on indent level and <code>$ManuscriptOutlineBaseControl</code> of TBXConfig.</p>
+<p>Index.qmd</p>
+<p>In the quarto book format, <strong>only one index.qmd is required</strong>, <code>$IsIndexqmd</code> of index.qmd is set to <code>true</code>. You can make the note for index.qmd with the pIndexQmd Prototype.</p>
 </li>
 </ol>
-<pre><code>"#" * ($OutlineDepthBase - $ManuscriptOutlineBaseControl("TBXConfig")</code></pre>
-<p><code>$IsManuscript = true</code></p>
+<section id="special-notes-prototype" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="special-notes-prototype">
+<span class="header-section-number">3.1</span> Special Notes Prototype</h2>
+<ol type="1">
+<li>
+<p>pReferenceQmd</p>
+<p>This prototype is inherited from pNote and $Text has a div with id <code>refs</code> to call a works cited list (below). (<a href="https://quarto.org/docs/authoring/citations.html#bibliography-generation">Quarto Bibliography Generation</a>)</p>
+<p><code>::: {#refs}</code></p>
+<p><code>:::</code></p>
+</li>
+<li>
+<p>pAppendixQmd</p>
+<p>This prototype is inherited from pNote and $IsAppendix is <code>true</code>.</p>
+</li>
+</ol>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

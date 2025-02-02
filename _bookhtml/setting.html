@@ -184,20 +184,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./make-quartoyml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Make _quarto.yml for the sub-project</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./make-notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./export-and-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
       </ul>
@@ -205,13 +193,19 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mermaid-flowchart.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphviz-optional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -255,9 +249,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 </header><ol type="1">
-<li>Setting up with “TBXConfig” note</li>
-</ol>
+<li>
+<p>Setting up with “TBXConfig” note</p>
 <p>You need to change values of the following “TBXConfig” attributes for configuration.</p>
+</li>
+</ol>
 <ul>
 <li><p><code>$Indent_Charactor</code> -&gt; Set the symbol that represents the depth of indentation. ( default value = ★ )</p></li>
 <li><p><code>$ExList</code> -&gt; List of notes excluded from cross-reference search ( default value = “List and Agent etc” )</p></li>
@@ -268,21 +264,24 @@ ul.task-list li input[type="checkbox"] {
 <li><p><code>$Q_PDFEngine</code> -&gt; Setting for <a href="https://quarto.org/docs/output-formats/pdf-engine.html">pdf engine</a> This file is tested only with lualatex. ( default value = lualatex )</p></li>
 <li>
 <p><code>$ManuscriptOutlineBaseControl</code> -&gt; Adjustment of section levels in Markdown. ( default = 1 )</p>
-<p>e.g.&nbsp;$ManuscriptOutlineBaseControl = 0 -&gt; ## Title</p>
+<p>e.g.&nbsp;</p>
+<ul>
+<li><p>$ManuscriptOutlineBaseControl = 0 -&gt; ## Title</p></li>
+<li><p>$ManuscriptOutlineBaseControl = 1 -&gt; # Title</p></li>
+</ul>
 </li>
 </ul>
-<p>$ManuscriptOutlineBaseControl = 1 -&gt; # Title</p>
 <ol start="2" type="1">
-<li>Making a <code>_quarto.yml</code>
+<li>
+<p>Making a <code>_quarto.yml</code></p>
+<p>You can change values of attributes of “_quarto” note to change quarto options. The quarto options are attributes that starts with “Q” in this file.The initial setting specified in <code>_quarto.yml</code> is for Japanese output.Please refer <a href="https://quarto.org/docs/books/book-structure.html">Quarto Book Structure</a> and <a href="https://quarto.org/docs/output-formats/pdf-basics.html">PDF Basics</a> in detail.</p>
+<p>If you use <a href="https://quarto.org/docs/authoring/language.html#custom-translations">Custom Translations</a>, you need to make <code>$Q_Has_Language_YML</code> <code>true</code> and set <code>$Q_Language_YML</code> for the filename. “_language” note in this file is for translating to japanese.</p>
+</li>
+<li>
+<p>Changing <code>_common.R</code> file. ( optional )</p>
+<p>You can set up <code>knitr</code> package options for R chunk.</p>
 </li>
 </ol>
-<p>You can change values of attributes of “_quarto” note to change quarto options. The quarto options are attributes that starts with “Q” in this file. The initial setting specified in <code>_quarto.yml</code> is for Japanese output.</p>
-<p>Please refer <a href="https://quarto.org/docs/books/book-structure.html">Quarto Book Structure</a> and <a href="https://quarto.org/docs/output-formats/pdf-basics.html">PDF Basics</a> in detail.</p>
-<p>If you use <a href="https://quarto.org/docs/authoring/language.html#custom-translations">Custom Translations</a>, you need to make <code>$Q_Has_Language_YML</code> <code>true</code> and set <code>$Q_Language_YML</code> for the filename. “_language” note in this file is for translating to japanese.</p>
-<ol start="3" type="1">
-<li>Changing <code>_common.R</code> file. ( optional )</li>
-</ol>
-<p>You can set up <code>knitr</code> package options for R chunk.</p>
 
 
 

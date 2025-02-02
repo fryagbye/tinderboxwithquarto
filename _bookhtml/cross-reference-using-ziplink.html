@@ -267,20 +267,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./make-quartoyml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Make _quarto.yml for the sub-project</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./make-notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./export-and-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
       </ul>
@@ -288,13 +276,19 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mermaid-flowchart.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphviz-optional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -346,7 +340,8 @@ window.Quarto = {
   
 
 
-</header><p>In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the <strong>Tinderbox</strong> file at the bottom of the <strong>Reference List</strong> note.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Convert it to a quoteable title (citation name starting with @) and create a note for the corresponding part. <strong>Tinderbox</strong>’s <strong>Ziplink</strong> function <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.。</p>
+</header><p>In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the <strong>Tinderbox</strong> file at the bottom of the <strong>Reference List</strong> note.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Convert it to a quoteable title (citation name starting with @) and create a note for the corresponding part. <strong>Tinderbox</strong>’s <strong>Ziplink</strong> function <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.。</p>
 <section id="sec-how-to-set-the-label" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="sec-how-to-set-the-label">
 <span class="header-section-number">6.1</span> How to set the label of the diagram</h2>
 <section id="sec-r-chunk" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="sec-r-chunk">
@@ -396,10 +391,19 @@ Figure&nbsp;6.1: label:<a href="#fig-test" class="quarto-xref">Figure&nbsp;<span
 \frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C
 \tag{6.1}\]</span></span></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">\frac</span><span class="ss">{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> C}{ </span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> t } + </span><span class="sc">\frac</span><span class="ss">{1}{2}</span><span class="sc">\sigma</span><span class="ss">^{2} </span><span class="sc">\mathrm</span><span class="ss"> S^{2}</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="sc">\frac</span><span class="ss">{</span><span class="sc">\partial</span><span class="ss">^{2} </span><span class="sc">\mathrm</span><span class="ss"> C}{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> S^2}  + </span><span class="sc">\mathrm</span><span class="ss"> r </span><span class="sc">\mathrm</span><span class="ss"> S </span><span class="sc">\frac</span><span class="ss">{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> C}{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> S}</span><span class="sc">\ </span><span class="ss">=  </span><span class="sc">\mathrm</span><span class="ss"> r </span><span class="sc">\mathrm</span><span class="ss"> C </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span> {#eq-black-scholes}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="sec-how-to-quote" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="sec-how-to-quote">
 <span class="header-section-number">6.4</span> How to quote</h2>
 <p>If you enter two square brackets “[[”, the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead><tr class="header">
 <th>Types of quotations</th>
 <th>Lable</th>
@@ -413,7 +417,8 @@ Figure&nbsp;6.1: label:<a href="#fig-test" class="quarto-xref">Figure&nbsp;<span
 </tr>
 <tr class="even">
 <td>Figures</td>
-<td>#| label:</td>
+<td>{#fig- }<br>#| label:fig-<br>%%| label:fig-<br> //| label:fig-<br>
+</td>
 <td>@fig-</td>
 </tr>
 <tr class="odd">
@@ -431,7 +436,7 @@ Figure&nbsp;6.1: label:<a href="#fig-test" class="quarto-xref">Figure&nbsp;<span
 <span class="header-section-number">6.5</span> Restrictions on quoted labels</h2>
 <ul>
 <li>The label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.</li>
-<li>Cross-ref detection is carried out by regular execution. If it is executed in the middle of input, it will be duplicated with a short label.</li>
+<li>Cross-ref detection is carried out by regular expression. If it is executed in the middle of input, it will be duplicated with a short label.</li>
 </ul>
 <p>In this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.</p>
 <ol type="1">

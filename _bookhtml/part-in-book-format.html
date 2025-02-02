@@ -221,20 +221,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./make-quartoyml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Make _quarto.yml for the sub-project</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./make-notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./export-and-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
       </ul>
@@ -242,13 +230,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mermaid-flowchart.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphviz-optional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -293,8 +287,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><p>For Part, please refer to <a href="https://quarto.org/docs/books/book-structure.html">Quarto’s “Book Structure” reference</a>.</p>
 <p>pNote is compatible with quarto’s <strong>Part</strong> or <strong>Chapter</strong>.</p>
-<p>If pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1. In this case, the hierarchy level and header level are one different, so the header level is set based on the user attribute <code>$OutlineDepthBase</code>.</p>
-<p>pNote, which is treated as a Part, is turned on (<code>true</code>) for <code>$Is_Part_qmd</code>. The lower pNote contains the export file name (e.g.&nbsp;filename.qmd) of the pNote, which is Part, in <code>$Part_file</code>. If a Part note is empty, only the title (<code>$Name</code>) of the note is reflected in _quarto.yml, as shown in the <strong>“Dice”</strong> in the example below. If the dice.qmd is not empty, the part title (as a level one header) as well as some introductory content for the part.</p>
+<p>If pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1.</p>
+<p>In this case, the hierarchy level and header level are one different, so the header level is set based on the user attribute <code>$OutlineDepthBase</code>.</p>
+<p>pNote, which is treated as a Part, is turned on (<code>true</code>) for <code>$Is_Part_qmd</code>. The lower pNote contains the export file name (e.g.&nbsp;filename.qmd) of the pNote, which is Part, in <code>$Part_file</code>.</p>
+<p>If a Part note is empty, only the title (<code>$Name</code>) of the note is reflected in _quarto.yml, as shown in the <strong>“Dice”</strong> in the example below. If the dice.qmd is not empty, the part title (as a level one header) as well as some introductory content for the part.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#_quarto.yml</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chapters</span><span class="kw">:</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> index.qmd</span></span>
