@@ -11,7 +11,7 @@ Here is an example of books created with Quarto.
 
 <br>
 
-[![Tinderbox with Quarto part1](./screenshots/youtube_opening.png)](https://youtu.be/of2TkCyJ2xY)
+[![Tinderbox with Quarto part1](./screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
 
 My Workflow is @fig-workflow and @fig-workflow-graphviz.
 
@@ -99,8 +99,8 @@ end
     style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
 
 ```
-<details>
-```dot
+
+```{dot}
 //| label: fig-workflow-graphviz
 //| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
 //| fig-width: 5
@@ -211,7 +211,7 @@ H -> I [label = "Export" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolo
 H -> J [label = "Export" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ]
 }
 ```
-</details>
+
 # Usage environment
 
 Please refer to the output results of `quato check`.
@@ -220,7 +220,7 @@ Please refer to the output results of `quato check`.
 - R is version 4.4.0
 - I use luaLatex for output in Japanese. I have installed MacTex because TinyTex doesn't include it.
 - It may be better to uninstall TinyTex.
-- I have set it to use `lightbox` extension ( included in Quarto v1.4+.)
+- I have set it to use the `lightbox` extension ( included in Quarto v1.4+.)
 
 `quarto check` output
 
@@ -493,9 +493,9 @@ installed.packages() |>
 
 1. Setting up with "TBXConfig" note
 
-   You need to change values of the following "TBXConfig" attributes for configuration.
+   You need to change the values of the following "TBXConfig" attributes for configuration.
 
-- `$Indent_Charactor` -> Set the symbol that represents the depth of indentation. ( default value = ★ )
+- `$Indent_Charactor` -> Set the symbol representing the depth of indentation. ( default value = ★ )
 - `$ExList` -> List of notes excluded from cross-reference search ( default value = "List and Agent etc" )
 - `$ExportFolder` -> Path of exported files. ( for Stamp "Move qmd files" )
 - `$ToggleTOC` -> Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in \_quarto.yml.
@@ -511,13 +511,13 @@ installed.packages() |>
 
 2. Making a `_quarto.yml`
 
-        You can change values of  attributes of  "_quarto" note to change quarto options. The quarto options are attributes that starts with "Q" in this file.The initial setting specified in `_quarto.yml` is for Japanese output.Please refer [Quarto Book Structure](https://quarto.org/docs/books/book-structure.html) and [PDF Basics](https://quarto.org/docs/output-formats/pdf-basics.html) in detail.
+        You can change the values of attributes of the "_quarto" note to change quarto options. The quarto options are attributes that start with "Q" in this file. The initial setting specified in `_quarto.yml` is for Japanese output. Please refer to [Quarto Book Structure](https://quarto.org/docs/books/book-structure.html) and [PDF Basics](https://quarto.org/docs/output-formats/pdf-basics.html) in detail.
 
         If you use [Custom Translations](https://quarto.org/docs/authoring/language.html#custom-translations), you need to make `$Q_Has_Language_YML` `true` and set `$Q_Language_YML` for the filename.
 
-    "\_language" note in this file is for translating to japanese.
+    The "\_language" note in this file is for translating to Japanese.
 
-3. Changing `_common.R` file. ( optional )
+3. Changing the `_common.R` file. ( optional )
 
     You can set up `knitr` package options for R chunk.
 
@@ -545,7 +545,7 @@ installed.packages() |>
 
 2. Index.qmd
 
-        In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of index.qmd is set to `true`.
+        In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of the index.qmd is set to `true`.
 
     You can make the note for index.qmd with the pIndexQmd Prototype.
 
@@ -565,7 +565,7 @@ installed.packages() |>
 
 # Rename HTMLExportFileName of a note with translation
 
-There is a stamp **"Notes: Tranlate Section Labels"** that translates the Japanese title (`$Name`) into English and automatically sets `$HTMLExportFileName` [^translate-shell]. and you can sets `$SectionLabel` with stamp "Set: Section Label". The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with `$Rename_in` in the TBX configuration note (**TBXConfig**). ( By default, from Japanese to English).
+There is a stamp **"Notes: Tranlate Section Labels"** that translates the Japanese title (`$Name`) into English and automatically sets `$HTMLExportFileName` [^translate-shell]. and you can set `$SectionLabel` with stamp "Set: Section Label". The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with `$Rename_in` in the TBX configuration note (**TBXConfig**). ( By default, from Japanese to English).
 
 [^translate-shell]: [Translate-shell](https://github.com/soimort/translate-shell) installation required.
 
@@ -581,7 +581,7 @@ pNote is compatible with quarto's **Part** or **Chapter**.
 
 If pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1.
 
-In this case, the hierarchy level and header level are one different, so the header level is set based on the user attribute `$OutlineDepthBase`.
+In this case, the hierarchy level and header level are different, so the header level is set based on the user attribute `$OutlineDepthBase`.
 
 pNote, which is treated as a Part, is turned on (`true`) for `$Is_Part_qmd`. The lower pNote contains the export file name (e.g. filename.qmd) of the pNote, which is Part, in `$Part_file`.
 
@@ -618,7 +618,7 @@ The figure below shows the export example when Part is supported and the output 
 
 In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the **Tinderbox** file at the bottom of the **Reference List** note.[^regrex]
 
-Convert it to a quoteable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.。
+Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
 
 [^regrex]: The diagrams and tables are extracted in regular expressions.
 
@@ -646,7 +646,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 ### Image link in markdown format
 
-Recognize and collect labels in format that extend the markdown.
+Recognize and collect labels in a format that extends the markdown.
 
 \!\[Test image](screenshots/toolbar.png)
 
@@ -712,42 +712,42 @@ In this case, if necessary, delete the quoted label name in Stamp and perform th
 
 You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
 
-1. execute "Labels: Make Dummy Link Data For Cross-Reference" stamp
-2. select cross-ref label notes ( start with "@" ) and execute "Labels: Dummy Link between Reference and Selected notes" stamp.
+1. execute the "Labels: Make Dummy Link Data For Cross-Reference" stamp
+2. select cross-ref label notes ( start with "@" ) and execute the "Labels: Dummy Link between Reference and Selected notes" stamp.
 
 # Export and Render
 
 1. Export `_quarto.yml`
 
-You can change output format "pdf" or "html" with the stamp "Change quarto.yml template".
+You can change the output format to "pdf" or "html" with the stamp "Change quarto.yml template".
 If you use a \_language.yml, you export "\_language" note (optional. See @sec-setting Setting)
 
 2. Export `.qmd` files ( pNote notes only)
 
 The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
 
-If you select the pNote notes below "For Export" and output it ( @fig-before ), then execute the "Move qmd files" stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( @fig-after ) . This is a method to avoid having to consider the folder structure when referencing image files with a relative path.
+If you select the pNote notes below "For Export" and output it ( @fig-before ), then execute the "Move qmd files" stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( @fig-after ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.
 
 ![Before](screenshots/folder01.png)
 
 ![After](screenshots/folder02.png)
 
-qmd files are moved to project path by stamp
+qmd files are moved to the project path by stamp
 
-3. preview html output.( optional )
+3. Preview HTML output. ( optional )
 
 ```zsh
 # preview for only html output
 > quarto preview index.qmd --to html --no-watch-inputs --no-browse
 ```
 
-4. render pdf or html.
+4. Render pdf or html.
 
 ```zsh
 > quarto render
 ```
 
-    you can use RStudio for preview and render.
+    You can use RStudio for preview and render.
 
 # Example
 
@@ -757,11 +757,11 @@ qmd files are moved to project path by stamp
 
 # Make sub-project folder
 
-Make a note for sub-project with **pSubfolderManuscript** like this ( \_quarto_manuscript ).
+Make a note for the sub-project with **pSubfolderManuscript** like this ( \_quarto_manuscript ).
 
 ## Make notes
 
-Manuscript has a only one qmd file. The qmd file name is set in \_quarto.yml (\_quarto_manuscript).
+The manuscript has only one qmd file. The qmd file name is set in \_quarto.yml (\_quarto_manuscript).
 
 ### Front Matter and Subnote
 
@@ -786,7 +786,7 @@ you can set data for author(s) with the path of note that has pAuther notes. ( l
 # Export and Render
 
 1. Export
-   You have to export \_quarto.yml ( \_quarto_manuscript ) and one qmd ( main ) in sub-project folder.
+   You have to export \_quarto.yml ( \_quarto_manuscript ) and one qmd ( main ) in the sub-project folder.
 
 2. Activate a virtual environment
    if you use a virtual environment, activate it.
@@ -829,7 +829,7 @@ Please check it in Map view.
 
 <br>
 
-[![Tinderbox with Quarto part2 (English & Japanese sub)](./screenshots/opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
+[![Tinderbox with Quarto part2 (English & Japanese sub)](./screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
 
 ## Supported shapes
 
@@ -890,12 +890,14 @@ end
 
 ## How to use
 
-1. You make a container noto for graph and set pGContainer.
-2. You make notes ( pGNode) and links. you can't make links cluster (subgraph).
+1. You make a container noto for the graph and set pGContainer.
+2. You make notes ( pGNode) and links. **You can't make links to cluster (subgraph)**.
 3. You choose a direction for drawing like TB or LR.($GG_Rankdir)
 4. Run the stamp ( `Graphviz: Make a Dot graph` ).
-5. Prototypes of container notes **has** a child note change from pGNode to pGContainer automatically by the stamp.
+5. Prototypes of container notes **have** a child note change from pGNode to pGContainer automatically by the stamp.
 6. The note (pGContainer) has the code for Graphviz.
+
+[![Tinderbox with Quarto part3](./screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
 
 ## Example
 
@@ -973,4 +975,4 @@ It seems that the section label customization function cannot be used in the lat
 
 If you turn on `$IsUnnumbered` and `$HasSectionLabel`, the display of the quote will be fixed to the number + title, so please turn off `$IsUnnumbered`.
 
-Please do not use parentheses in note titles.The section label list is not being generated correctly.
+Please do not use parentheses in note titles. The section label list is not being generated correctly.
