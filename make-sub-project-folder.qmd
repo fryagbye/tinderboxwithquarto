@@ -5,12 +5,12 @@ source("_common.R")
 ```
 # Make sub-project folder {#sec-make-sub-project-folder }
 
-Make a note for sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
+Make a note for the sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
 
 
 
 ## Make notes
-Manuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
+The manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
 
 
 ### Front Matter and Subnote

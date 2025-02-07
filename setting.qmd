@@ -7,9 +7,9 @@ source("_common.R")
 
 1. Setting up with "TBXConfig" note
 
-    You need to change values of the following "TBXConfig" attributes for configuration.
+    You need to change the values of the following "TBXConfig" attributes for configuration.
 
-* `$Indent_Charactor` -> Set the symbol that represents the depth of indentation. ( default value = ★ )
+* `$Indent_Charactor` -> Set the symbol representing the depth of indentation. ( default value = ★ )
 * `$ExList` -> List of notes excluded from cross-reference search ( default value = "List and Agent etc" )
 * `$ExportFolder` -> Path of exported files. ( for Stamp "Move qmd files" )
 * `$ToggleTOC` -> Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml. 
@@ -25,12 +25,12 @@ source("_common.R")
 
 2. Making a `_quarto.yml`
 
-    You can change values of  attributes of  "_quarto" note to change quarto options. The quarto options are attributes that starts with "Q" in this file.The initial setting specified in `_quarto.yml` is for Japanese output.Please refer [Quarto Book Structure](https://quarto.org/docs/books/book-structure.html) and [PDF Basics](https://quarto.org/docs/output-formats/pdf-basics.html) in detail.
+    You can change the values of attributes of the "_quarto" note to change quarto options. The quarto options are attributes that start with "Q" in this file. The initial setting specified in `_quarto.yml` is for Japanese output. Please refer to [Quarto Book Structure](https://quarto.org/docs/books/book-structure.html) and [PDF Basics](https://quarto.org/docs/output-formats/pdf-basics.html) in detail.
 
     If you use [Custom Translations](https://quarto.org/docs/authoring/language.html#custom-translations), you need to make `$Q_Has_Language_YML` `true` and set `$Q_Language_YML` for the filename.
-"_language" note in this file is for translating to japanese.
+The "_language" note in this file is for translating to Japanese.
 
-3. Changing `_common.R` file. ( optional )
+3. Changing the `_common.R` file. ( optional )
 
     You can set up `knitr` package options for R chunk.  
     

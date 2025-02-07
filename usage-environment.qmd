@@ -11,7 +11,7 @@ Please refer to the output results of `quato check`.
 * R is version 4.4.0
 * I use luaLatex for output in Japanese. I have installed MacTex because TinyTex doesn't include it.
 * It may be better to uninstall TinyTex.
-* I have set it to use `lightbox` extension ( included in Quarto v1.4+.)
+* I have set it to use the `lightbox` extension ( included in Quarto v1.4+.)
 
 `quarto check` output
 

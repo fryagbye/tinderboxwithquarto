@@ -9,7 +9,7 @@ It seems that the section label customization function cannot be used in the lat
 
 If you turn on `$IsUnnumbered` and `$HasSectionLabel`, the display of the quote will be fixed to the number + title, so please turn off `$IsUnnumbered`.
 
-Please do not use parentheses in note titles.The section label list is not being generated correctly.
+Please do not use parentheses in note titles. The section label list is not being generated correctly.
 
 
 

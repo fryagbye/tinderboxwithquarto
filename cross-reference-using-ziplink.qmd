@@ -7,7 +7,7 @@ source("_common.R")
 
 In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the **Tinderbox** file at the bottom of the **Reference List** note.[^regrex]
 
-Convert it to a quoteable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.。
+Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
 
 [^regrex]: The diagrams and tables are extracted in regular expressions.
 
@@ -39,7 +39,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 
 ### Image link in markdown format { #sec-image-link-in-markdown-format }
-Recognize and collect labels in format that extend the markdown.
+Recognize and collect labels in a format that extends the markdown.
 
 \!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
@@ -94,7 +94,7 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 |Types of quotations  |Lable  |Quote|
 |---|---|---|
 |Chapters, Sections etc.   |#sec-   |\@sec-|
-|Figures  |{#fig- }<br>#\| label:fig-<br>%%\| label:fig-<br> \/\/\| label:fig-<br>   |\@fig-|
+|Figures  |#fig- <br>#\| label:fig-<br>%%\| label:fig-<br> \/\/\| label:fig-<br>   |\@fig-|
 |Charts　|#tbl-|\@tbl-|
 |Equations | #eq-| \@eq-|
 
@@ -117,8 +117,8 @@ In this case, if necessary, delete the quoted label name in Stamp and perform th
 ## Dummy links for cross-reference { #sec-add-dummy-links-to-cross-ref }
 You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
 
-1. execute "Labels: Make Dummy Link Data For Cross-Reference" stamp
-2. select cross-ref label notes ( start with "@" ) and  execute "Labels: Dummy Link between Reference and Selected notes" stamp.
+1. execute the "Labels: Make Dummy Link Data For Cross-Reference" stamp
+2. select cross-ref label notes ( start with "@" ) and execute the "Labels: Dummy Link between Reference and Selected notes" stamp.
 
 
 

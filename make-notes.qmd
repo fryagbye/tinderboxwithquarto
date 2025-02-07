@@ -22,7 +22,7 @@ Please set the Prototype of pNote to level 1 and pSubnote below level.
 
 2. Index.qmd
 
-    In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of index.qmd is set to `true`.
+    In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of the index.qmd is set to `true`.
 You can make the note for index.qmd with the pIndexQmd Prototype.
 
 

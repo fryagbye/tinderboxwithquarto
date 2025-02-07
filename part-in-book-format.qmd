@@ -11,7 +11,7 @@ pNote is compatible with quarto's **Part** or **Chapter**.
 
 If pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1. 
 
-In this case, the hierarchy level and header level are one different, so the header level is set based on the user attribute `$OutlineDepthBase`.
+In this case, the hierarchy level and header level are different, so the header level is set based on the user attribute `$OutlineDepthBase`.
 
 pNote, which is treated as a Part, is turned on (`true`) for `$Is_Part_qmd`. The lower pNote contains the export file name (e.g. filename.qmd) of the pNote, which is Part, in `$Part_file`.
 

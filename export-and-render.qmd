@@ -6,7 +6,7 @@ source("_common.R")
 # Export and Render
 
 1. Export
-    You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in sub-project folder.
+    You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in the sub-project folder.
 
 2. Activate a virtual environment
 if you use a virtual environment, activate it.
