@@ -237,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
 <li><a href="#sec-how-to-use-graphviz" id="toc-sec-how-to-use-graphviz" class="nav-link active" data-scroll-target="#sec-how-to-use-graphviz"><span class="header-section-number">12.1</span> How to use</a></li>
-  <li><a href="#sec-" id="toc-sec-" class="nav-link" data-scroll-target="#sec-"><span class="header-section-number">12.2</span> Example</a></li>
+  <li><a href="#sec-graphviz-example" id="toc-sec-graphviz-example" class="nav-link" data-scroll-target="#sec-graphviz-example"><span class="header-section-number">12.2</span> Example</a></li>
   </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/graphviz-optional.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -262,6 +262,14 @@ ul.task-list li input[type="checkbox"] {
 <li>You make a container noto for the graph and set pGContainer.</li>
 <li>You make notes ( pGNode) and links. <strong>You can’t make links to cluster (subgraph)</strong>.</li>
 <li>You choose a direction for drawing like TB or LR.($GG_Rankdir)</li>
+<li>You can choose a Layout Engin like <code>dot</code>, <code>neato</code>, <code>fdp</code> and so on.</li>
+<li>Change attributes for Graphviz.
+<ul>
+<li>Attributes starting with <code>GG_</code> are for the Subgraph ( cluster ) options</li>
+<li>Attributes starting with <code>GN_</code> are for the Note options</li>
+<li>Attributes starting with <code>GE_</code> are for the Edge options</li>
+</ul>
+</li>
 <li>Run the stamp ( <code>Graphviz: Make a Dot graph</code> ).</li>
 <li>Prototypes of container notes <strong>have</strong> a child note change from pGNode to pGContainer automatically by the stamp.</li>
 <li>The note (pGContainer) has the code for Graphviz.</li>
@@ -270,9 +278,13 @@ ul.task-list li input[type="checkbox"] {
 <figure class="figure"><p><img src="./screenshots/youtube_opening_part3.png" class="img-fluid figure-img"></p>
 <figcaption>Tinderbox with Quarto part3</figcaption></figure>
 </div>
-</section><section id="sec-" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="sec-">
+</section><section id="sec-graphviz-example" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="sec-graphviz-example">
 <span class="header-section-number">12.2</span> Example</h2>
 <p><a href="index.html#fig-workflow-graphviz" class="quarto-xref">Figure&nbsp;<span>2</span></a> and <a href="#fig-graphviz-test" class="quarto-xref">Figure&nbsp;<span>12.1</span></a> .</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="./resource/workflow.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Workflow"><img src="./resource/workflow.png" class="img-fluid figure-img" alt="Workflow"></a></p>
+<figcaption>Workflow</figcaption></figure>
+</div>
 <div class="cell" data-fig-width="5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-graphviz-test" class="quarto-float quarto-figure quarto-figure-center anchored">
