@@ -44,7 +44,7 @@
     "href": "setting.html",
     "title": "2  Setting",
     "section": "",
-    "text": "Setting up with “TBXConfig” note\nYou need to change values of the following “TBXConfig” attributes for configuration.\n\n\n\n$Indent_Charactor -&gt; Set the symbol that represents the depth of indentation. ( default value = ★ )\n$ExList -&gt; List of notes excluded from cross-reference search ( default value = “List and Agent etc” )\n$ExportFolder -&gt; Path of exported files. ( for Stamp “Move qmd files” )\n$ToggleTOC -&gt; Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml.\n$Q_TableOfContainsNote -&gt; $Name of TOC note. ( default value = Table of Contents )\n$Rename_in -&gt; Setting for translating a label. ( default value = ja:en )\n$Q_PDFEngine -&gt; Setting for pdf engine This file is tested only with lualatex. ( default value = lualatex )\n\n$ManuscriptOutlineBaseControl -&gt; Adjustment of section levels in Markdown. ( default = 1 )\ne.g. \n\n$ManuscriptOutlineBaseControl = 0 -&gt; ## Title\n$ManuscriptOutlineBaseControl = 1 -&gt; # Title\n\n\n\n\n\nMaking a _quarto.yml\nYou can change values of attributes of “_quarto” note to change quarto options. The quarto options are attributes that starts with “Q” in this file.The initial setting specified in _quarto.yml is for Japanese output.Please refer Quarto Book Structure and PDF Basics in detail.\nIf you use Custom Translations, you need to make $Q_Has_Language_YML true and set $Q_Language_YML for the filename. “_language” note in this file is for translating to japanese.\n\n\nChanging _common.R file. ( optional )\nYou can set up knitr package options for R chunk.",
+    "text": "Setting up with “TBXConfig” note\nYou need to change the values of the following “TBXConfig” attributes for configuration.\n\n\n\n$Indent_Charactor -&gt; Set the symbol representing the depth of indentation. ( default value = ★ )\n$ExList -&gt; List of notes excluded from cross-reference search ( default value = “List and Agent etc” )\n$ExportFolder -&gt; Path of exported files. ( for Stamp “Move qmd files” )\n$ToggleTOC -&gt; Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml.\n$Q_TableOfContainsNote -&gt; $Name of TOC note. ( default value = Table of Contents )\n$Rename_in -&gt; Setting for translating a label. ( default value = ja:en )\n$Q_PDFEngine -&gt; Setting for pdf engine This file is tested only with lualatex. ( default value = lualatex )\n\n$ManuscriptOutlineBaseControl -&gt; Adjustment of section levels in Markdown. ( default = 1 )\ne.g. \n\n$ManuscriptOutlineBaseControl = 0 -&gt; ## Title\n$ManuscriptOutlineBaseControl = 1 -&gt; # Title\n\n\n\n\n\nMaking a _quarto.yml\nYou can change the values of attributes of the “_quarto” note to change quarto options. The quarto options are attributes that start with “Q” in this file. The initial setting specified in _quarto.yml is for Japanese output. Please refer to Quarto Book Structure and PDF Basics in detail.\nIf you use Custom Translations, you need to make $Q_Has_Language_YML true and set $Q_Language_YML for the filename. The “_language” note in this file is for translating to Japanese.\n\n\nChanging the _common.R file. ( optional )\nYou can set up knitr package options for R chunk.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting</span>"
     ]
@@ -76,7 +76,7 @@
     "href": "translate-and-rename.html",
     "title": "4  Rename HTMLExportFileName of a note with translation",
     "section": "",
-    "text": "There is a stamp “Notes: Tranlate Section Labels” that translates the Japanese title ($Name) into English and automatically sets $HTMLExportFileName 1. and you can sets $SectionLabel with stamp “Set: Section Label”. The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with $Rename_in in the TBX configuration note (TBXConfig). ( By default, from Japanese to English).",
+    "text": "There is a stamp “Notes: Tranlate Section Labels” that translates the Japanese title ($Name) into English and automatically sets $HTMLExportFileName 1. and you can set $SectionLabel with stamp “Set: Section Label”. The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with $Rename_in in the TBX configuration note (TBXConfig). ( By default, from Japanese to English).",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rename HTMLExportFileName of a note with translation</span>"
@@ -98,7 +98,7 @@
     "href": "part-in-book-format.html",
     "title": "5  Part in Book format",
     "section": "",
-    "text": "For Part, please refer to Quarto’s “Book Structure” reference.\npNote is compatible with quarto’s Part or Chapter.\nIf pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1.\nIn this case, the hierarchy level and header level are one different, so the header level is set based on the user attribute $OutlineDepthBase.\npNote, which is treated as a Part, is turned on (true) for $Is_Part_qmd. The lower pNote contains the export file name (e.g. filename.qmd) of the pNote, which is Part, in $Part_file.\nIf a Part note is empty, only the title ($Name) of the note is reflected in _quarto.yml, as shown in the “Dice” in the example below. If the dice.qmd is not empty, the part title (as a level one header) as well as some introductory content for the part.\n#_quarto.yml\nchapters:\n  - index.qmd\n  - preface.qmd\n  - part: \"Dice\" # if $Text(\"Dice\").wordCount == 0 \n  chapters: \n    - basics.qmd\n    - packages.qmd\n#_quarto.yml\nchapters:\n  - index.qmd\n  - preface.qmd\n  - part: dice.qmd # if $Text(\"Dice\").wordCount &gt;0 \n    chapters: \n      - basics.qmd\n      - packages.qmd\nThe figure below shows the export example when Part is supported and the output result of _quarto.yml.\n\n\nFolder configuration at the time of output and _quarto.yml",
+    "text": "For Part, please refer to Quarto’s “Book Structure” reference.\npNote is compatible with quarto’s Part or Chapter.\nIf pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1.\nIn this case, the hierarchy level and header level are different, so the header level is set based on the user attribute $OutlineDepthBase.\npNote, which is treated as a Part, is turned on (true) for $Is_Part_qmd. The lower pNote contains the export file name (e.g. filename.qmd) of the pNote, which is Part, in $Part_file.\nIf a Part note is empty, only the title ($Name) of the note is reflected in _quarto.yml, as shown in the “Dice” in the example below. If the dice.qmd is not empty, the part title (as a level one header) as well as some introductory content for the part.\n#_quarto.yml\nchapters:\n  - index.qmd\n  - preface.qmd\n  - part: \"Dice\" # if $Text(\"Dice\").wordCount == 0 \n  chapters: \n    - basics.qmd\n    - packages.qmd\n#_quarto.yml\nchapters:\n  - index.qmd\n  - preface.qmd\n  - part: dice.qmd # if $Text(\"Dice\").wordCount &gt;0 \n    chapters: \n      - basics.qmd\n      - packages.qmd\nThe figure below shows the export example when Part is supported and the output result of _quarto.yml.\n\n\nFolder configuration at the time of output and _quarto.yml",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Part in Book format</span>"
@@ -109,7 +109,7 @@
     "href": "cross-reference-using-ziplink.html",
     "title": "6  Cross-Reference using Ziplink",
     "section": "",
-    "text": "6.1 How to set the label of the diagram\nIn Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the Tinderbox file at the bottom of the Reference List note.1\nConvert it to a quoteable title (citation name starting with @) and create a note for the corresponding part. Tinderbox’s Ziplink function 2 is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.。",
+    "text": "6.1 How to set the label of the diagram\nIn Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the Tinderbox file at the bottom of the Reference List note.1\nConvert it to a quotable title (citation name starting with @) and create a note for the corresponding part. Tinderbox’s Ziplink function 2 is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -120,7 +120,7 @@
     "href": "cross-reference-using-ziplink.html#sec-how-to-set-the-label",
     "title": "6  Cross-Reference using Ziplink",
     "section": "",
-    "text": "6.1.1 R chunk\nAutomatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.\n#| label: fig-airquality \n#| fig-cap: \"Temperature and ozone level.\"\n#| warning: false\n\nlibrary(ggplot2)\n\nggplot(airquality, aes(Temp, Ozone)) + \n  geom_point() + \n  geom_smooth(method = \"loess\")\n\n\nlabel: @fig-airquality\n\n\n6.1.2 Image link in markdown format\nRecognize and collect labels in format that extend the markdown.\n![Test image](screenshots/toolbar.png){#fig-test fig-alt=“test” fig-align=“left” width=100%}\n\n\n\n\n\nFigure 6.1: label:Figure 6.1",
+    "text": "6.1.1 R chunk\nAutomatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.\n#| label: fig-airquality \n#| fig-cap: \"Temperature and ozone level.\"\n#| warning: false\n\nlibrary(ggplot2)\n\nggplot(airquality, aes(Temp, Ozone)) + \n  geom_point() + \n  geom_smooth(method = \"loess\")\n\n\nlabel: @fig-airquality\n\n\n6.1.2 Image link in markdown format\nRecognize and collect labels in a format that extends the markdown.\n![Test image](screenshots/toolbar.png){#fig-test fig-alt=“test” fig-align=“left” width=100%}\n\n\n\n\n\nFigure 6.1: label:Figure 6.1",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -153,7 +153,7 @@
     "href": "cross-reference-using-ziplink.html#sec-how-to-quote",
     "title": "6  Cross-Reference using Ziplink",
     "section": "\n6.4 How to quote",
-    "text": "6.4 How to quote\nIf you enter two square brackets “[[”, the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.\n\n\n\n\n\n\n\nTypes of quotations\nLable\nQuote\n\n\n\nChapters, Sections etc.\n#sec-\n@sec-\n\n\nFigures\n{#fig- }#| label:fig-%%| label:fig- //| label:fig-\n\n@fig-\n\n\nCharts　\n#tbl-\n@tbl-\n\n\nEquations\n#eq-\n@eq-",
+    "text": "6.4 How to quote\nIf you enter two square brackets “[[”, the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.\n\n\n\n\n\n\n\nTypes of quotations\nLable\nQuote\n\n\n\nChapters, Sections etc.\n#sec-\n@sec-\n\n\nFigures\n#fig- #| label:fig-%%| label:fig- //| label:fig-\n\n@fig-\n\n\nCharts　\n#tbl-\n@tbl-\n\n\nEquations\n#eq-\n@eq-",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -175,7 +175,7 @@
     "href": "cross-reference-using-ziplink.html#sec-add-dummy-links-to-cross-ref",
     "title": "6  Cross-Reference using Ziplink",
     "section": "\n6.6 Dummy links for cross-reference",
-    "text": "6.6 Dummy links for cross-reference\nYou can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.\n\nexecute “Labels: Make Dummy Link Data For Cross-Reference” stamp\nselect cross-ref label notes ( start with “@” ) and execute “Labels: Dummy Link between Reference and Selected notes” stamp.\n\n\n\n\n\nAnderson, Mark. 2024. “A Tinderbox Reference File.” 2024.",
+    "text": "6.6 Dummy links for cross-reference\nYou can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.\n\nexecute the “Labels: Make Dummy Link Data For Cross-Reference” stamp\nselect cross-ref label notes ( start with “@” ) and execute the “Labels: Dummy Link between Reference and Selected notes” stamp.\n\n\n\n\n\nAnderson, Mark. 2024. “A Tinderbox Reference File.” 2024.",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -197,7 +197,7 @@
     "href": "export.html",
     "title": "7  Export and Render",
     "section": "",
-    "text": "Export _quarto.yml\n\n\nYou can change output format “pdf” or “html” with the stamp “Change quarto.yml template”. If you use a _language.yml, you export “_language” note (optional. See Chapter 2 Setting)\n\nExport .qmd files ( pNote notes only)\n\nThe pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).\nIf you select the pNote notes below “For Export” and output it ( Figure 7.1 (a) ), then execute the “Move qmd files” stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( Figure 7.1 (b) ) . This is a method to avoid having to consider the folder structure when referencing image files with a relative path.\n\n\n\n\n\n\n\n\n\n(a) Before\n\n\n\n\n\n\n\n\n\n(b) After\n\n\n\n\n\n\nFigure 7.1: qmd files are moved to project path by stamp\n\n\n\npreview html output.( optional )\n\n# preview for only html output\n&gt; quarto preview index.qmd --to html --no-watch-inputs --no-browse\n\nrender pdf or html.\n\n&gt; quarto render\nyou can use RStudio for preview and render.",
+    "text": "Export _quarto.yml\n\n\nYou can change the output format to “pdf” or “html” with the stamp “Change quarto.yml template”. If you use a _language.yml, you export “_language” note (optional. See Chapter 2 Setting)\n\nExport .qmd files ( pNote notes only)\n\nThe pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).\nIf you select the pNote notes below “For Export” and output it ( Figure 7.1 (a) ), then execute the “Move qmd files” stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( Figure 7.1 (b) ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.\n\n\n\n\n\n\n\n\n\n(a) Before\n\n\n\n\n\n\n\n\n\n(b) After\n\n\n\n\n\n\nFigure 7.1: qmd files are moved to the project path by stamp\n\n\n\nPreview HTML output. ( optional )\n\n# preview for only html output\n&gt; quarto preview index.qmd --to html --no-watch-inputs --no-browse\n\nRender pdf or html.\n\n&gt; quarto render\nYou can use RStudio for preview and render.",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Export and Render</span>"
@@ -218,7 +218,7 @@
     "href": "make-sub-project-folder.html",
     "title": "9  Make sub-project folder",
     "section": "",
-    "text": "9.1 Make notes\nMake a note for sub-project with pSubfolderManuscript like this ( _quarto_manuscript ).\nManuscript has a only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).",
+    "text": "9.1 Make notes\nMake a note for the sub-project with pSubfolderManuscript like this ( _quarto_manuscript ).\nThe manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).",
     "crumbs": [
       "Manuscript format",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Make sub-project folder</span>"
@@ -240,7 +240,7 @@
     "href": "export-and-render.html",
     "title": "\n10  Export and Render\n",
     "section": "",
-    "text": "Export You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in sub-project folder.\nActivate a virtual environment if you use a virtual environment, activate it.\n\ne.g.\npoetry shell\n\nRender sub-project\n\n# quarto render \"your project name\"\nquarto render myproject\n\n# For preview\nquarto preview myproject --to html --no-watch-inputs --no-browse",
+    "text": "Export You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in the sub-project folder.\nActivate a virtual environment if you use a virtual environment, activate it.\n\ne.g.\npoetry shell\n\nRender sub-project\n\n# quarto render \"your project name\"\nquarto render myproject\n\n# For preview\nquarto preview myproject --to html --no-watch-inputs --no-browse",
     "crumbs": [
       "Manuscript format",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Export and Render</span>"
@@ -257,11 +257,11 @@
     ]
   },
   {
-    "objectID": "mermaid-flowchart.html#sec-how-to-use",
-    "href": "mermaid-flowchart.html#sec-how-to-use",
+    "objectID": "mermaid-flowchart.html#sec-how-to-use-mermaid",
+    "href": "mermaid-flowchart.html#sec-how-to-use-mermaid",
     "title": "11  Mermaid flowchart (optional)",
     "section": "",
-    "text": "You make a container noto for Flowchart and set pMFContainer.\nYou make notes ( pMFNode) and links.\nYou choose a direction for drawing like TD or LR.($M_Direction)\nRun the stamp ( Mermaid: Make a Flowchart ).\nPrototypes of container notes has a child note change from pMFNodeto pMFContainer automatically by the stamp.\nThe note (pMFContainer) has the code for mermaid flowchart.\n\n\n\n\nTinderbox with Quarto part2 (English & Japanese sub)",
+    "text": "You make a container noto for Flowchart and set pMFContainer.\nYou make notes ( pMFNode) and links.\nYou choose a direction for drawing like TD or LR.($M_Direction)\nRun the stamp ( Mermaid: Make a Flowchart ).\nPrototypes of container notes has a child note change from pMFNode to pMFContainer automatically by the stamp.\nThe note (pMFContainer) has the code for mermaid flowchart.\n\n\n\n\nTinderbox with Quarto part2 (English & Japanese sub)",
     "crumbs": [
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
@@ -321,7 +321,7 @@
     "href": "graphviz-optional.html#sec-how-to-use-graphviz",
     "title": "12  Graphviz β version (optional)",
     "section": "",
-    "text": "You make a container noto for graph and set pGContainer.\nYou make notes ( pGNode) and links. you can’t make links cluster (subgraph).\nYou choose a direction for drawing like TB or LR.($GG_Rankdir)\nRun the stamp ( Graphviz: Make a Dot graph ).\nPrototypes of container notes has a child note change from pGNode to pGContainer automatically by the stamp.\nThe note (pGContainer) has the code for Graphviz.",
+    "text": "You make a container noto for the graph and set pGContainer.\nYou make notes ( pGNode) and links. You can’t make links to cluster (subgraph).\nYou choose a direction for drawing like TB or LR.($GG_Rankdir)\nRun the stamp ( Graphviz: Make a Dot graph ).\nPrototypes of container notes have a child note change from pGNode to pGContainer automatically by the stamp.\nThe note (pGContainer) has the code for Graphviz.\n\n\n\nTinderbox with Quarto part3",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Graphviz β version (optional)</span>"
     ]
@@ -351,7 +351,7 @@
     "href": "restrictions.html",
     "title": "Appendix A — Restrictions",
     "section": "",
-    "text": "It seems that the section label customization function cannot be used in the latest release ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML).\nIf you turn on $IsUnnumbered and $HasSectionLabel, the display of the quote will be fixed to the number + title, so please turn off $IsUnnumbered.\nPlease do not use parentheses in note titles.The section label list is not being generated correctly.",
+    "text": "It seems that the section label customization function cannot be used in the latest release ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML).\nIf you turn on $IsUnnumbered and $HasSectionLabel, the display of the quote will be fixed to the number + title, so please turn off $IsUnnumbered.\nPlease do not use parentheses in note titles. The section label list is not being generated correctly.",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Restrictions</span>"

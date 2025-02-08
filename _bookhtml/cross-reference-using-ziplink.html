@@ -341,7 +341,7 @@ window.Quarto = {
 
 
 </header><p>In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the <strong>Tinderbox</strong> file at the bottom of the <strong>Reference List</strong> note.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p>Convert it to a quoteable title (citation name starting with @) and create a note for the corresponding part. <strong>Tinderbox</strong>’s <strong>Ziplink</strong> function <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.。</p>
+<p>Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. <strong>Tinderbox</strong>’s <strong>Ziplink</strong> function <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.</p>
 <section id="sec-how-to-set-the-label" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="sec-how-to-set-the-label">
 <span class="header-section-number">6.1</span> How to set the label of the diagram</h2>
 <section id="sec-r-chunk" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="sec-r-chunk">
@@ -362,9 +362,9 @@ window.Quarto = {
 </div>
 </section><section id="sec-image-link-in-markdown-format" class="level3" data-number="6.1.2"><h3 data-number="6.1.2" class="anchored" data-anchor-id="sec-image-link-in-markdown-format">
 <span class="header-section-number">6.1.2</span> Image link in markdown format</h3>
-<p>Recognize and collect labels in format that extend the markdown.</p>
+<p>Recognize and collect labels in a format that extends the markdown.</p>
 <p>![Test image](screenshots/toolbar.png){#fig-test fig-alt=“test” fig-align=“left” width=100%}</p>
-<div id="fig-test" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="test">
+<div id="fig-test" class="quarto-float quarto-figure quarto-figure-left anchored" alt="test" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="screenshots/toolbar.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;6.1: label:Figure&nbsp;fig-test"><img src="screenshots/toolbar.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%" alt="test"></a>
 </div>
@@ -417,7 +417,7 @@ Figure&nbsp;6.1: label:<a href="#fig-test" class="quarto-xref">Figure&nbsp;<span
 </tr>
 <tr class="even">
 <td>Figures</td>
-<td>{#fig- }<br>#| label:fig-<br>%%| label:fig-<br> //| label:fig-<br>
+<td>#fig- <br>#| label:fig-<br>%%| label:fig-<br> //| label:fig-<br>
 </td>
 <td>@fig-</td>
 </tr>
@@ -446,8 +446,8 @@ Figure&nbsp;6.1: label:<a href="#fig-test" class="quarto-xref">Figure&nbsp;<span
 <span class="header-section-number">6.6</span> Dummy links for cross-reference</h2>
 <p>You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.</p>
 <ol type="1">
-<li>execute “Labels: Make Dummy Link Data For Cross-Reference” stamp</li>
-<li>select cross-ref label notes ( start with “@” ) and execute “Labels: Dummy Link between Reference and Selected notes” stamp.</li>
+<li>execute the “Labels: Make Dummy Link Data For Cross-Reference” stamp</li>
+<li>select cross-ref label notes ( start with “@” ) and execute the “Labels: Dummy Link between Reference and Selected notes” stamp.</li>
 </ol>
 
 

@@ -1,0 +1,87 @@
+digraph {
+    layout=dot
+    compound=true
+    graph [charset = "UTF-8" splines = "spline" ];
+subgraph cluster_A{
+                label="Applications"
+                spline="curved"
+                color="#dc490b"
+                penwidth="1"
+                style="filled"
+                fillcolor="#e7f3e7"
+                fontcolor="#000000"
+                fontsize="14"
+        A B 
+
+        subgraph cluster_B{
+                    label="Tinderbox"
+                    color="#dc490b"
+                    penwidth="1"
+                    style="filled"
+                    fillcolor="#f6e04d"
+                    fontcolor="#000000"
+                    fontsize="14"
+                    URL="https://www.eastgate.com/Tinderbox/"
+        C 
+
+        subgraph cluster_C{
+                        label="Demo_TBX_for_Quarto.tbx"
+                        color="#dc490b"
+                        penwidth="1"
+                        style="filled"
+                        fillcolor="#ffffff"
+                        fontcolor="#000000"
+                        fontsize="10"
+                        URL="https://github.com/fryagbye/tinderboxwithquarto"
+        D E 
+}
+
+}
+
+}
+
+subgraph cluster_D{
+                label="Quarto"
+                color="#dc490b"
+                penwidth="1"
+                style="filled"
+                fillcolor="#fff4e6"
+                fontcolor="#000000"
+                fontsize="14"
+        F G H 
+}
+
+subgraph cluster_E{
+                label="Output"
+                color="#dc490b"
+                penwidth="1"
+                style="filled"
+                fillcolor="#ffffff"
+                fontcolor="#000000"
+                fontsize="14"
+        I J K 
+}
+
+
+A [ style="filled"  label="Bookends" colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#fcbd63", fontcolor="#000000", fontsize="12", URL="https://www.sonnysoftware.com/bookends-for-mac"]
+B [ style="filled"  label="Snippety" colorscheme="Blues8", color="#990000", penwidth="1", fillcolor="#5c9dfe", fontcolor="#000000", fontsize="12", URL="https://snippety.app/"]
+C [ style="invis"  label="dummy" colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontcolor="#000000", fontsize="12"]
+D [ style="filled"  label="Mermaid" colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#c735e9", fontcolor="#ffffff", fontsize="12", URL="https://mermaid.js.org/"]
+E [ style="filled"  label="Graphviz" colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#30638d", fontcolor="#ffffff", fontsize="12", URL="https://graphviz.org/"]
+F [ style="filled"  label="R Studio" colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#80a9d7", fontcolor="#000000", fontsize="12", URL="https://posit.co/products/open-source/rstudio/"]
+G [ style="filled"  label="RMarkdown ( .qmd )" colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#74bbff", fontcolor="#000000", fontsize="12"]
+H [ style="filled"  label="quarto CLI" colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#74bbff", fontcolor="#000000", fontsize="12", URL="https://quarto.org/"]
+I [ style="filled"  label="PDF" colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#93dd93", fontcolor="#000000", fontsize="12"]
+J [ style="filled"  label="HTML" colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#93dd93", fontcolor="#000000", fontsize="12"]
+K [ style="filled"  label="Marked 2" colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#0fb1da", fontcolor="#000000", fontsize="12", URL="https://marked2app.com/"]
+
+A -> D [fillcolor="#cbd9d7" fontcolor="#000000" fontsize="10" labelfloat="false" penwidth="1" lhead = "cluster_C" ltail = "cluster_A" ]
+B -> C [fillcolor="#cbd9d7" fontcolor="#000000" fontsize="10" labelfloat="false" penwidth="1" lhead = "cluster_B" ]
+C -> K [fillcolor="#cbd9d7" fontcolor="#000000" fontsize="10" labelfloat="false" penwidth="1" ltail = "cluster_B" ]
+D -> G [fillcolor="#cbd9d7" fontcolor="#000000" fontsize="10" labelfloat="false" penwidth="1" lhead = "cluster_D" ltail = "cluster_C" ]
+F -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" fontsize="10" labelfloat="false" penwidth="1" ]
+G -> F [label = "Read qmd files" fillcolor="#cbd9d7" fontcolor="#000000" fontsize="10" labelfloat="false" penwidth="1" ]
+G -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" fontsize="10" labelfloat="false" penwidth="1" ]
+H -> I [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" fontsize="10" labelfloat="false" penwidth="1" ]
+H -> J [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" fontsize="10" labelfloat="false" penwidth="1" ]
+}

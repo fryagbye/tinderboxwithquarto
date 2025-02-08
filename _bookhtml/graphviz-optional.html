@@ -35,7 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2f99e3a5c547bdccb284d1db76b1481e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-2f99e3a5c547bdccb284d1db76b1481e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -256,13 +259,18 @@ ul.task-list li input[type="checkbox"] {
 </header><section id="sec-how-to-use-graphviz" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="sec-how-to-use-graphviz">
 <span class="header-section-number">12.1</span> How to use</h2>
 <ol type="1">
-<li>You make a container noto for graph and set pGContainer.</li>
-<li>You make notes ( pGNode) and links. you can’t make links cluster (subgraph).</li>
+<li>You make a container noto for the graph and set pGContainer.</li>
+<li>You make notes ( pGNode) and links. <strong>You can’t make links to cluster (subgraph)</strong>.</li>
 <li>You choose a direction for drawing like TB or LR.($GG_Rankdir)</li>
 <li>Run the stamp ( <code>Graphviz: Make a Dot graph</code> ).</li>
-<li>Prototypes of container notes <strong>has</strong> a child note change from pGNode to pGContainer automatically by the stamp.</li>
+<li>Prototypes of container notes <strong>have</strong> a child note change from pGNode to pGContainer automatically by the stamp.</li>
 <li>The note (pGContainer) has the code for Graphviz.</li>
-</ol></section><section id="sec-" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="sec-">
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="./screenshots/youtube_opening_part3.png" class="img-fluid figure-img"></p>
+<figcaption>Tinderbox with Quarto part3</figcaption></figure>
+</div>
+</section><section id="sec-" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="sec-">
 <span class="header-section-number">12.2</span> Example</h2>
 <p><a href="index.html#fig-workflow-graphviz" class="quarto-xref">Figure&nbsp;<span>2</span></a> and <a href="#fig-graphviz-test" class="quarto-xref">Figure&nbsp;<span>12.1</span></a> .</p>
 <div class="cell" data-fig-width="5" data-layout-align="default">
@@ -739,7 +747,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p>footer right</p>
 </div>
   </div>
-</footer>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":true,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 </body></html>
