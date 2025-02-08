@@ -61,7 +61,7 @@ Please check it in Map view.
 
 
 
-## Example { #sec-example }
+## Example { #sec-mermaid-example }
 
 ```{mermaid} 
 %%| label: fig-flowchart

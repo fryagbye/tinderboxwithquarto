@@ -12,6 +12,11 @@ source("_common.R")
 1. You make a container noto for the graph and set pGContainer.
 2. You make notes ( pGNode) and links. **You can't make links to cluster (subgraph)**.
 3. You choose a direction for drawing like TB or LR.($GG_Rankdir)
+4. You can choose a Layout Engin like `dot`,  `neato`, `fdp` and so on.
+4. Change attributes for Graphviz.
+    * Attributes starting with `GG_` are for the Subgraph ( cluster ) options
+    * Attributes starting with `GN_` are for the Note options
+    * Attributes starting with `GE_` are for the Edge options
 4. Run the stamp ( `Graphviz: Make a Dot graph` ).
 5. Prototypes of container notes **have** a child note change from pGNode to pGContainer automatically by the stamp.
 6. The note (pGContainer) has the code for Graphviz.
@@ -20,9 +25,10 @@ source("_common.R")
 
 
 
-## Example { #sec- }
+## Example { #sec-graphviz-example }
 @fig-workflow-graphviz  and @fig-graphviz-test .
 
+![Workflow](./resource/workflow.png)
 
 ```{dot} 
 //| label: fig-graphviz-test
