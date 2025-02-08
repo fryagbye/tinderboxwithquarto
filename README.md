@@ -100,7 +100,7 @@ end
 
 ```
 
-```{dot}
+```dot
 //| label: fig-workflow-graphviz
 //| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
 //| fig-width: 5
@@ -893,9 +893,14 @@ end
 1. You make a container noto for the graph and set pGContainer.
 2. You make notes ( pGNode) and links. **You can't make links to cluster (subgraph)**.
 3. You choose a direction for drawing like TB or LR.($GG_Rankdir)
-4. Run the stamp ( `Graphviz: Make a Dot graph` ).
-5. Prototypes of container notes **have** a child note change from pGNode to pGContainer automatically by the stamp.
-6. The note (pGContainer) has the code for Graphviz.
+4. You can choose a Layout Engin like `dot`, `neato`, `fdp` and so on.
+5. Change attributes for Graphviz.
+   - Attributes starting with `GG_` are for the Subgraph ( cluster ) options
+   - Attributes starting with `GN_` are for the Note options
+   - Attributes starting with `GE_` are for the Edge options
+6. Run the stamp ( `Graphviz: Make a Dot graph` ).
+7. Prototypes of container notes **have** a child note change from pGNode to pGContainer automatically by the stamp.
+8. The note (pGContainer) has the code for Graphviz.
 
 [![Tinderbox with Quarto part3](./screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
 
@@ -903,7 +908,9 @@ end
 
 @fig-workflow-graphviz and @fig-graphviz-test .
 
-```{dot}
+![Workflow](./resource/workflow.png)
+
+```dot
 //| label: fig-graphviz-test
 //| fig-cap: Graphviz Test
 //| fig-width: 5
