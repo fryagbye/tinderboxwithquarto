@@ -21,14 +21,14 @@ source("_common.R")
 5. Prototypes of container notes **have** a child note change from pGNode to pGContainer automatically by the stamp.
 6. The note (pGContainer) has the code for Graphviz.
 
-[![Tinderbox with Quarto part3](./screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
+[![Tinderbox with Quarto part3](screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
 
 
 
 ## Example { #sec-graphviz-example }
 @fig-workflow-graphviz  and @fig-graphviz-test .
 
-![Workflow](./resource/workflow.png)
+![Workflow](screenshots/workflow.png)
 
 ```{dot} 
 //| label: fig-graphviz-test

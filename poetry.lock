@@ -1123,6 +1123,26 @@ test = ["hypothesis (>=6.46.1)", "pytest (>=7.3.2)", "pytest-xdist (>=2.2.0)"]
 xml = ["lxml (>=4.9.2)"]
 
 [[package]]
+name = "panflute"
+version = "2.3.1"
+description = "Pythonic Pandoc filters"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "panflute-2.3.1-py3-none-any.whl", hash = "sha256:e44afd875b7b17ffebbbe58282849df06d9f1b20a45a2f933cd51bdcf4e89130"},
+    {file = "panflute-2.3.1.tar.gz", hash = "sha256:5f1bd02a34ef3982ee025ec5b58fb3a6eedfc31d994b8ae39d8dc9915a2d8f1f"},
+]
+
+[package.dependencies]
+click = ">=6,<9"
+pyyaml = ">=3,<7"
+
+[package.extras]
+dev = ["configparser", "coverage", "flake8", "pandocfilters", "pytest", "pytest-cov", "requests"]
+extras = ["yamlloader (>=1,<2)"]
+pypi = ["Pygments", "docutils", "twine", "wheel"]
+
+[[package]]
 name = "parso"
 version = "0.8.4"
 description = "A Python Parser"
@@ -1988,4 +2008,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "aed39d5d8351d8682a5baf203176ea5942665a50a13b672b6cef7a9cfd07a75c"
+content-hash = "7d09996ea5ee2c172ced6935b0762f903e2e9da23424ef7ccadeee386336f7ef"

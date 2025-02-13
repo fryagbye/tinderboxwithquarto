@@ -27,7 +27,7 @@ Please check it in Map view.
 
 <br>
 
-[![Tinderbox with Quarto part2 (English & Japanese sub)](./screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
+[![Tinderbox with Quarto part2 (English & Japanese sub)](screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
 
 
 
@@ -40,7 +40,7 @@ Please check it in Map view.
 * diamond
 * hex
 
-![Convert shapes](./screenshots/convertshapes.png)
+![Convert shapes](screenshots/convertshapes.png)
 
 
 

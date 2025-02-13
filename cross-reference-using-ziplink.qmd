@@ -33,7 +33,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-![label: \@fig-airquality](./screenshots/fig-airquality-1.png)
+![label: \@fig-airquality](screenshots/fig-airquality-1.png)
 
 
 
@@ -71,10 +71,10 @@ There are multiple ways to specify labels, but they are only supported if it is 
 ## Equations { #sec-Equations }
 Equation Example
 
-Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:
+Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain
 
 $$
-\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+ma^{2} \mathrm S^{2}
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
 $$ {#eq-black-scholes}
 
