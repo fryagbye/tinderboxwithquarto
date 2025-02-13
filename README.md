@@ -4,7 +4,7 @@ This tinderbox file supports creating a book and manuscript (beta) with [Quarto]
 
 [Tinderbox file for Quarto (Web version)](https://fryagbye.quarto.pub/tinderbox-file-for-quarto/)
 
-You can make qmd files and \_quarto.yml easily with it.
+You can easily make qmd files and \_quarto.yml with it.
 Here is an example of books created with Quarto.
 
 - [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
@@ -13,10 +13,10 @@ Here is an example of books created with Quarto.
 
 [![Tinderbox with Quarto part1](./screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
 
-My Workflow is @fig-workflow and @fig-workflow-graphviz.
+My Workflow is @fig-workflow-mermaid and @fig-workflow-graphviz.
 
 ```mermaid
-%%| label: fig-workflow
+%%| label: fig-workflow-mermaid
 %%| fig-cap: Tinderbox Work Flow with Quarto ( Mermaid version ).
 %%| fig-width: 5
 flowchart TB
@@ -73,8 +73,8 @@ end
     Sub4
 end
 
-    Sub5["Demo_TBX_for_Quarto.tbx"] -->  E["RMarkdown ( .qmd )"]
-    Sub5["Demo_TBX_for_Quarto.tbx"] -.->|"Streaming Preview"| I["Marked 2
+ Sub5["Demo_TBX_for_Quarto.tbx"] -->  E["RMarkdown ( .qmd )"]
+ Sub5["Demo_TBX_for_Quarto.tbx"] -.->|"Streaming Preview"| I["Marked 2
 (Streaming Preview)"]
 
 %% Styles & Links
@@ -563,6 +563,24 @@ installed.packages() |>
 
    This prototype is inherited from pNote and $IsAppendix is `true`.
 
+## Equations
+
+Equation Example
+
+Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain
+
+$$
+ma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C
+$$
+
+```latex
+$$
+\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C
+$$
+```
+
 # Rename HTMLExportFileName of a note with translation
 
 There is a stamp **"Notes: Tranlate Section Labels"** that translates the Japanese title (`$Name`) into English and automatically sets `$HTMLExportFileName` [^translate-shell]. and you can set `$SectionLabel` with stamp "Set: Section Label". The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with `$Rename_in` in the TBX configuration note (**TBXConfig**). ( By default, from Japanese to English).
@@ -612,7 +630,7 @@ chapters:
 
 The figure below shows the export example when Part is supported and the output result of \_quarto.yml.
 
-![Folder configuration at the time of output and _quarto.yml](./screenshots/PartandChapter.png)
+![Folder configuration at the time of output and _quarto.yml](screenshots/PartandChapter.png)
 
 # Cross-Reference using Ziplink
 
@@ -642,7 +660,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-![label: @fig-airquality](./screenshots/fig-airquality-1.png)
+![label: @fig-airquality](screenshots/fig-airquality-1.png)
 
 ### Image link in markdown format
 
@@ -673,10 +691,10 @@ There are multiple ways to specify labels, but they are only supported if it is 
 
 Equation Example
 
-Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:
+Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain
 
 $$
-\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+ma^{2} \mathrm S^{2}
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C
 $$
 
@@ -829,7 +847,7 @@ Please check it in Map view.
 
 <br>
 
-[![Tinderbox with Quarto part2 (English & Japanese sub)](./screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
+[![Tinderbox with Quarto part2 (English & Japanese sub)](screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
 
 ## Supported shapes
 
@@ -840,7 +858,7 @@ Please check it in Map view.
 - diamond
 - hex
 
-![Convert shapes](./screenshots/convertshapes.png)
+![Convert shapes](screenshots/convertshapes.png)
 
 ## Supported line types (Priority)
 
@@ -902,13 +920,13 @@ end
 7. Prototypes of container notes **have** a child note change from pGNode to pGContainer automatically by the stamp.
 8. The note (pGContainer) has the code for Graphviz.
 
-[![Tinderbox with Quarto part3](./screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
+[![Tinderbox with Quarto part3](screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
 
 ## Example
 
 @fig-workflow-graphviz and @fig-graphviz-test .
 
-![Workflow](./resource/workflow.png)
+![Workflow](screenshots/workflow.png)
 
 ```dot
 //| label: fig-graphviz-test
