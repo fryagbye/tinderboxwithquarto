@@ -28,7 +28,7 @@ book:
     - part: Book format
       chapters:
         - make-notes.qmd
-        - translate-and-rename.qmd
+        - rename-htmlexportfilename-of-a-note-with-translation.qmd
         - part-in-book-format.qmd
         - cross-reference-using-ziplink.qmd
         - export.qmd
@@ -77,7 +77,7 @@ lightbox:
 
 
 lang: en
-bibliography: citation/references.bib
+bibliography: /Users/tk4o2ka/github/tinderboxwithquarto/citation/references.bib
 
 language: _language.yml
 classoption: fleqn
