@@ -160,7 +160,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./translate-and-rename.html" class="sidebar-item-text sidebar-link">
+  <a href="./rename-htmlexportfilename-of-a-note-with-translation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></span></a>
   </div>
 </li>
@@ -285,7 +285,7 @@ div.csl-indent {
 <section id="introduction" class="level1 unnumbered"><h1 class="unnumbered">Introduction</h1>
 <p>This tinderbox file supports creating a book and manuscript (beta) with <a href="https://quarto.org/">Quarto</a>.</p>
 <p><a href="https://fryagbye.quarto.pub/tinderbox-file-for-quarto/">Tinderbox file for Quarto (Web version)</a></p>
-<p>You can make qmd files and _quarto.yml easily with it. Here is an example of books created with Quarto.</p>
+<p>You can easily make qmd files and _quarto.yml with it. Here is an example of books created with Quarto.</p>
 <ul>
 <li>
 <a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a>(<span class="citation" data-cites="Wickham2016Data">Wickham and Grolemund (<a href="references.html#ref-Wickham2016Data" role="doc-biblioref">2016</a>)</span>)</li>
@@ -295,7 +295,7 @@ div.csl-indent {
 <figure class="figure"><p><img src="./screenshots/youtube_opening.png" class="img-fluid figure-img"></p>
 <figcaption>Tinderbox with Quarto part1</figcaption></figure>
 </div>
-<p>My Workflow is <a href="#fig-workflow" class="quarto-xref">Figure&nbsp;<span>1</span></a> and <a href="#fig-workflow-graphviz" class="quarto-xref">Figure&nbsp;<span>2</span></a>.</p>
+<p>My Workflow is <a href="#fig-workflow-mermaid" class="quarto-xref">Figure&nbsp;<span>1</span></a> and <a href="#fig-workflow-graphviz" class="quarto-xref">Figure&nbsp;<span>2</span></a>.</p>
 <div>
 
 </div>
@@ -303,10 +303,10 @@ div.csl-indent {
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" data-fig-width="5" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div id="fig-workflow" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-workflow-mermaid" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-workflow-mermaid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-workflow">flowchart TB
+<pre class="mermaid mermaid-js" data-label="fig-workflow-mermaid">flowchart TB
     A["Snippety"] -.-&gt;  Sub1["Tinderbox"]
     B["Mermaid"]
     C["Bookends"] --&gt;|"opt + drag"| Sub1["Tinderbox"]
@@ -360,8 +360,8 @@ end
     Sub4
 end 
 
-    Sub5["Demo_TBX_for_Quarto.tbx"] --&gt;  E["RMarkdown ( .qmd )"]
-    Sub5["Demo_TBX_for_Quarto.tbx"] -.-&gt;|"Streaming Preview"| I["Marked 2
+ Sub5["Demo_TBX_for_Quarto.tbx"] --&gt;  E["RMarkdown ( .qmd )"]
+ Sub5["Demo_TBX_for_Quarto.tbx"] -.-&gt;|"Streaming Preview"| I["Marked 2
 (Streaming Preview)"]
 
 %% Styles &amp; Links
@@ -388,7 +388,7 @@ end
 </pre>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-mermaid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Tinderbox Work Flow with Quarto ( Mermaid version ).
 </figcaption></figure>
 </div>
