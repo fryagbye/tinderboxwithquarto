@@ -23,4 +23,5 @@ graphviz-optional_cache/html
 mermaid-flowchart_cache/html
 tempforstreamingpreview.html
 *_cache/html
-pandoc_filter
+.RData
+.Rhistory
