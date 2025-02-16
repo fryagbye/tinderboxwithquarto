@@ -342,7 +342,7 @@
     "href": "graphviz-optional.html#sec-graphviz-example",
     "title": "12  Graphviz β version (optional)",
     "section": "\n12.2 Example",
-    "text": "12.2 Example\nFigure 2 and Figure 12.1 .\n\n\nWorkflow\n\n\n\n\n\n\ncluster_A\nCluster Bcluster_B\nCluster AA\nnode2B\nnode4C\nnode6D\nnode8E\nnode1E-&gt;A\n1F\nnode3F-&gt;B\n2G\nnode5G-&gt;C\n3H\nnode7H-&gt;D\n4\n\n\n\nFigure 12.1: Graphviz Test",
+    "text": "12.2 Example\nFigure 2 and Figure 12.1 .\n\n\nWorkflow\n\n\n\n\n\n\ncluster_B\nCluster Acluster_A\nCluster BA\nnode2B\nnode4C\nnode6D\nnode8E\nnode1E-&gt;A\n1F\nnode3F-&gt;B\n2G\nnode5G-&gt;C\n3H\nnode7H-&gt;D\n4\n\n\n\nFigure 12.1: Graphviz Test",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Graphviz β version (optional)</span>"
     ]
