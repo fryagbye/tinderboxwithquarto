@@ -16,12 +16,12 @@ source("_common.R")
 * `$Q_TableOfContainsNote` -> **$Name** of TOC note. ( default value = Table of Contents )
 * `$Rename_in` -> Setting for translating a label. ( default value = ja:en )
 * `$Q_PDFEngine` -> Setting for [pdf engine](https://quarto.org/docs/output-formats/pdf-engine.html) This file is tested only with lualatex. ( default value = lualatex )
-* `$ManuscriptOutlineBaseControl` -> Adjustment of section levels in Markdown. ( default = 1 )
+* ~~`$OutlineBaseControl` -> Adjustment of section levels in Markdown. ( default = 1 )~~
 
      e.g. 
-    * $ManuscriptOutlineBaseControl = 0 -> \#\# Title
+    * $OutlineBaseControl = 0 -> \#\# Title
     
-    * $ManuscriptOutlineBaseControl = 1 -> \# Title 
+    * $OutlineBaseControl = 1 -> \# Title 
 
 2. Making a `_quarto.yml`
 
