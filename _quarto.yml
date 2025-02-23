@@ -32,11 +32,14 @@ book:
         - part-in-book-format.qmd
         - cross-reference-using-ziplink.qmd
         - export.qmd
-    - example.qmd
+        - example.qmd
     - part: Manuscript format
       chapters:
         - make-sub-project-folder.qmd
         - export-and-render.qmd
+    - part: revealjs format
+      chapters:
+        - make-sub-project-folder.qmd
     - mermaid-flowchart.qmd
     - graphviz-optional.qmd
     - references.qmd
