@@ -1,0 +1,14 @@
+format: live-revealjs
+webr:
+  packages:
+    - ggplot2
+    - dplyr
+
+
+
+bibliography: ../citation/references.bib
+execute:
+  cache: false
+  freeze: auto
+
+
