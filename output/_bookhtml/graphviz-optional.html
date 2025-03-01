@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.7.13">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="fryagbye">
-<title>Tinderbox file for Quarto</title>
+<title>13&nbsp; Graphviz β version (optional) – Tinderbox file for Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,27 +18,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -46,7 +26,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./usage-environment.html" rel="next">
+<link href="./references.html" rel="next">
+<link href="./mermaid-flowchart.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -84,8 +65,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+}</script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
@@ -97,7 +77,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graphviz-optional.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -128,7 +108,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
@@ -239,7 +219,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphviz-optional.html" class="sidebar-item-text sidebar-link">
+  <a href="./graphviz-optional.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></span></a>
   </div>
 </li>
@@ -274,24 +254,19 @@ div.csl-indent {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<li><a href="#sec-how-to-use-graphviz" id="toc-sec-how-to-use-graphviz" class="nav-link active" data-scroll-target="#sec-how-to-use-graphviz"><span class="header-section-number">13.1</span> How to use</a></li>
+  <li><a href="#sec-graphviz-example" id="toc-sec-graphviz-example" class="nav-link" data-scroll-target="#sec-graphviz-example"><span class="header-section-number">13.2</span> Example</a></li>
+  </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/graphviz-optional.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Tinderbox file for Quarto</h1>
+<h1 class="title"><span id="sec-graphviz-optional" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>fryagbye </p>
-          </div>
-  </div>
     
   
     
@@ -299,181 +274,65 @@ div.csl-indent {
   
 
 
-</header>
-<section id="introduction" class="level1 unnumbered"><h1 class="unnumbered">Introduction</h1><p><img src="cover.png" title="Tinderbox file for Quarto" class="quarto-cover-image nolightbox img-fluid"></p>
-<p>This tinderbox file supports creating a book and manuscript (beta) with <a href="https://quarto.org/">Quarto</a>.</p>
-<p><a href="https://fryagbye.quarto.pub/tinderbox-file-for-quarto/">Tinderbox file for Quarto (Web version)</a></p>
-<p>You can easily make qmd files and _quarto.yml with it. Here is an example of books created with Quarto.</p>
+</header><section id="sec-how-to-use-graphviz" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="sec-how-to-use-graphviz">
+<span class="header-section-number">13.1</span> How to use</h2>
+<ol type="1">
+<li>You make a container noto for the graph and set pGContainer.</li>
+<li>You make notes ( pGNode) and links. <strong>You can’t make links to cluster (subgraph)</strong>.</li>
+<li>You choose a direction for drawing like TB or LR.($GG_Rankdir)</li>
+<li>You can choose a Layout Engin like <code>dot</code>, <code>neato</code>, <code>fdp</code> and so on.</li>
+<li>Change attributes for Graphviz.
 <ul>
-<li>
-<a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a>(<span class="citation" data-cites="Wickham2016Data">Wickham and Grolemund (<a href="references.html#ref-Wickham2016Data" role="doc-biblioref">2016</a>)</span>)</li>
+<li>Attributes starting with <code>GG_</code> are for the Subgraph ( cluster ) options</li>
+<li>Attributes starting with <code>GN_</code> are for the Note options</li>
+<li>Attributes starting with <code>GE_</code> are for the Edge options</li>
 </ul>
-<p><br></p>
+</li>
+<li>Run the stamp ( <code>Graphviz: Make a Dot graph</code> ).</li>
+<li>Prototypes of container notes <strong>have</strong> a child note change from pGNode to pGContainer automatically by the stamp.</li>
+<li>The note (pGContainer) has the code for Graphviz.</li>
+</ol>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="./screenshots/youtube_opening.png" class="img-fluid figure-img"></p>
-<figcaption>Tinderbox with Quarto part1</figcaption></figure>
+<figure class="figure"><p><img src="screenshots/youtube_opening_part3.png" class="img-fluid figure-img"></p>
+<figcaption>Tinderbox with Quarto part3</figcaption></figure>
 </div>
-<p>My Workflow is <a href="#fig-workflow-mermaid" class="quarto-xref">Figure&nbsp;<span>1</span></a> and <a href="#fig-workflow-graphviz" class="quarto-xref">Figure&nbsp;<span>2</span></a>.</p>
-<div>
-
+</section><section id="sec-graphviz-example" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="sec-graphviz-example">
+<span class="header-section-number">13.2</span> Example</h2>
+<p><a href="index.html#fig-workflow-graphviz" class="quarto-xref">Figure&nbsp;<span>2</span></a> and <a href="#fig-graphviz-test" class="quarto-xref">Figure&nbsp;<span>13.1</span></a> .</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="screenshots/workflow.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Workflow"><img src="screenshots/workflow.png" class="img-fluid figure-img" alt="Workflow"></a></p>
+<figcaption>Workflow</figcaption></figure>
 </div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="cell quarto-layout-cell" data-fig-width="5" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell" data-fig-width="5" data-layout-align="default">
 <div class="cell-output-display">
-<div id="fig-workflow-mermaid" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-workflow-mermaid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-graphviz-test" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-graphviz-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<pre class="mermaid mermaid-js" data-label="fig-workflow-mermaid">flowchart TB
-    A["Snippety"] -.-&gt;  Sub1["Tinderbox"]
-    B["Mermaid"]
-    C["Bookends"] --&gt;|"opt + drag"| Sub1["Tinderbox"]
-    D["R Studio"] --&gt;|"Call"| F["quarto CLI"]
-    E["RMarkdown ( .qmd )"] --&gt;|"Read qmd files"| D["R Studio"]
-    E["RMarkdown ( .qmd )"] --&gt;|"Call"| F["quarto CLI"]
-    F["quarto CLI"] ==&gt;|"Export"| G["HTML
-(Book)"]
-    F["quarto CLI"] --&gt;|"Export"| H["PDF
-(Book)"]
-    G["HTML
-(Book)"]
-    H["PDF
-(Book)"]
-    I["Marked 2
-(Streaming Preview)"]
-
- subgraph Sub1["Tinderbox"]
-    Sub5
-end 
-
- subgraph Sub2["Applications"]
-    direction LR
-    A
-    Sub1
-    C
-end 
-
- subgraph Sub3["Quarto"]
-    direction LR
-    D
-    E
-    F
-end 
-
- subgraph Sub4["Output"]
-    direction LR
-    G
-    H
-    I
-end 
-
- subgraph Sub5["Demo_TBX_for_Quarto.tbx"]
-    B
-end 
-
- subgraph Sub6["Work Flow"]
-    direction TB
-    Sub2
-    Sub3
-    Sub4
-end 
-
- Sub5["Demo_TBX_for_Quarto.tbx"] --&gt;  E["RMarkdown ( .qmd )"]
- Sub5["Demo_TBX_for_Quarto.tbx"] -.-&gt;|"Streaming Preview"| I["Marked 2
-(Streaming Preview)"]
-
-%% Styles &amp; Links
-    style A fill:#a3bed9,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 
-    click A href "https://snippety.app/" _blank
-    style B fill:#009900,color:#000000,stroke:#dc490b,stroke-width:2px
-    style C fill:#ff8800,color:#000000,stroke:#dc490b,stroke-width:2px
-    style D fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 
-    click D href "https://posit.co/products/open-source/rstudio/" _blank
-    style E fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px
-    style F fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px
-    click F href "https://quarto.org/" _blank
-    style G fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px
-    style H fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px
-    style I fill:#aaaaff,color:#000000,stroke:#dc490b,stroke-width:2px
-    click I href "https://marked2app.com/" _blank
-    style Sub1 fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub2 fill:#e7f3e7,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub3 fill:#fff4e6,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub4 fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub5 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
-</pre>
+<svg width="480" height="480" viewbox="0.00 0.00 326.00 207.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 203.6)"><polygon fill="white" stroke="transparent" points="-4,4 -4,-203.6 322,-203.6 322,4 -4,4"></polygon><g id="clust2" class="cluster"><title>cluster_B</title>
+<polygon fill="#eeebe9" stroke="#dc490b" points="8,-114.8 8,-191.6 310,-191.6 310,-114.8 8,-114.8"></polygon><text text-anchor="middle" x="159" y="-175" font-family="HiraginoSans-W4" font-size="14.00" fill="#000000">Cluster A</text></g><g id="clust1" class="cluster"><title>cluster_A</title>
+<polygon fill="#eeebe9" stroke="#dc490b" points="8,-8 8,-84.8 310,-84.8 310,-8 8,-8"></polygon><text text-anchor="middle" x="159" y="-68.2" font-family="HiraginoSans-W4" font-size="14.00" fill="#000000">Cluster B</text></g><!-- A --><g id="node1" class="node"><title>A</title>
+<ellipse fill="#ffffff" stroke="#dc490b" cx="45" cy="-34" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="45" y="-30.4" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node2</text></g><!-- B --><g id="node2" class="node"><title>B</title>
+<ellipse fill="#ffffff" stroke="#dc490b" cx="121" cy="-34" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="121" y="-30.4" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node4</text></g><!-- C --><g id="node3" class="node"><title>C</title>
+<ellipse fill="#ffffff" stroke="#dc490b" cx="197" cy="-34" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="197" y="-30.4" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node6</text></g><!-- D --><g id="node4" class="node"><title>D</title>
+<ellipse fill="#ffffff" stroke="#dc490b" cx="273" cy="-34" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="273" y="-30.4" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node8</text></g><!-- E --><g id="node5" class="node"><title>E</title>
+<ellipse fill="#ffffff" stroke="#dc490b" cx="45" cy="-140.8" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="45" y="-137.2" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node1</text></g><!-- E&#45;&gt;A --><g id="edge1" class="edge"><title>E-&gt;A</title>
+<path fill="none" stroke="black" d="M45,-122.68C45,-122.68 45,-62.21 45,-62.21"></path><polygon fill="#605850" stroke="black" points="48.5,-62.21 45,-52.21 41.5,-62.21 48.5,-62.21"></polygon><text text-anchor="middle" x="47.5" y="-95.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">1</text></g><!-- F --><g id="node6" class="node"><title>F</title>
+<ellipse fill="#ffffff" stroke="#dc490b" cx="121" cy="-140.8" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="121" y="-137.2" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node3</text></g><!-- F&#45;&gt;B --><g id="edge2" class="edge"><title>F-&gt;B</title>
+<path fill="none" stroke="black" d="M121,-114.8C121,-98.42 121,-62.21 121,-62.21"></path><polygon fill="#605850" stroke="black" points="124.5,-62.21 121,-52.21 117.5,-62.21 124.5,-62.21"></polygon><text text-anchor="middle" x="123.5" y="-95.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">2</text></g><!-- G --><g id="node7" class="node"><title>G</title>
+<ellipse fill="#ffffff" stroke="#dc490b" cx="197" cy="-140.8" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="197" y="-137.2" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node5</text></g><!-- G&#45;&gt;C --><g id="edge3" class="edge"><title>G-&gt;C</title>
+<path fill="none" stroke="black" d="M197,-122.68C197,-122.68 197,-109.27 197,-95.09"></path><polygon fill="#605850" stroke="black" points="200.5,-94.8 197,-84.8 193.5,-94.8 200.5,-94.8"></polygon><text text-anchor="middle" x="199.5" y="-95.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">3</text></g><!-- H --><g id="node8" class="node"><title>H</title>
+<ellipse fill="#ffffff" stroke="#dc490b" cx="273" cy="-140.8" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="273" y="-137.2" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node7</text></g><!-- H&#45;&gt;D --><g id="edge4" class="edge"><title>H-&gt;D</title>
+<path fill="none" stroke="black" d="M273,-114.8C273,-109.62 273,-102.46 273,-95.09"></path><polygon fill="#605850" stroke="black" points="276.5,-94.8 273,-84.8 269.5,-94.8 276.5,-94.8"></polygon><text text-anchor="middle" x="275.5" y="-95.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">4</text></g></g></svg>
 </div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-mermaid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Tinderbox Work Flow with Quarto ( Mermaid version ).
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graphviz-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.1: Graphviz Test
 </figcaption></figure>
 </div>
 </div>
 </div>
-<div class="cell quarto-layout-cell" data-fig-width="5" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="cell-output-display">
-<div id="fig-workflow-graphviz" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-workflow-graphviz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-<svg width="480" height="480" viewbox="0.00 0.00 397.00 609.20" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 605.2)"><polygon fill="white" stroke="transparent" points="-4,4 -4,-605.2 393,-605.2 393,4 -4,4"></polygon><g id="clust4" class="cluster"><title>cluster_D</title>
-<polygon fill="#fff4e6" stroke="#dc490b" points="24,-114.8 24,-359.6 190,-359.6 190,-114.8 24,-114.8"></polygon><text text-anchor="middle" x="107" y="-343" font-family="HiraginoSans-W4" font-size="14.00" fill="#000000">Quarto</text></g><g id="clust1" class="cluster"><title>cluster_A</title>
-<polygon fill="#e7f3e7" stroke="#dc490b" points="84,-376.6 84,-593.2 381,-593.2 381,-376.6 84,-376.6"></polygon><text text-anchor="middle" x="232.5" y="-576.6" font-family="HiraginoSans-W4" font-size="14.00" fill="#000000">Applications</text></g><g id="clust2" class="cluster"><title>cluster_B</title>
-<g id="a_clust2"><a href="https://www.eastgate.com/Tinderbox/" title="Tinderbox">
-<polygon fill="#f6e04d" stroke="#dc490b" points="92,-384.6 92,-497.4 373,-497.4 373,-384.6 92,-384.6"></polygon><text text-anchor="middle" x="232.5" y="-480.8" font-family="HiraginoSans-W4" font-size="14.00" fill="#000000">Tinderbox</text></a>
-</g></g><g id="clust3" class="cluster"><title>cluster_C</title>
-<g id="a_clust3"><a href="https://github.com/fryagbye/tinderboxwithquarto" title="Demo_TBX_for_Quarto.tbx">
-<polygon fill="#eeebe9" stroke="#dc490b" points="177,-392.6 177,-464.6 365,-464.6 365,-392.6 177,-392.6"></polygon><text text-anchor="middle" x="271" y="-451.6" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">Demo_TBX_for_Quarto.tbx</text></a>
-</g></g><g id="clust5" class="cluster"><title>cluster_E</title>
-<polygon fill="#ffffff" stroke="#dc490b" points="8,-8 8,-84.8 258,-84.8 258,-8 8,-8"></polygon><text text-anchor="middle" x="133" y="-68.2" font-family="HiraginoSans-W4" font-size="14.00" fill="#000000">Output</text></g><!-- A --><g id="node1" class="node"><title>A</title>
-<g id="a_node1"><a href="https://www.sonnysoftware.com/bookends-for-mac" title="Bookends">
-<ellipse fill="#ff8800" stroke="#dc490b" cx="319" cy="-542.4" rx="40.75" ry="18"></ellipse><text text-anchor="middle" x="319" y="-538.8" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">Bookends</text></a>
-</g></g><!-- D --><g id="node4" class="node"><title>D</title>
-<g id="a_node4"><a href="https://mermaid.js.org/" title="Mermaid">
-<ellipse fill="#ffffff" stroke="#dc490b" cx="319" cy="-418.6" rx="38.13" ry="18"></ellipse><text text-anchor="middle" x="319" y="-415" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">Mermaid</text></a>
-</g></g><!-- A&#45;&gt;D --><g id="edge1" class="edge"><title>A-&gt;D</title>
-<path fill="none" stroke="black" d="M319,-524.21C319,-511.22 319,-492.64 319,-474.73"></path><polygon fill="#cbd9d7" stroke="black" points="322.5,-474.6 319,-464.6 315.5,-474.6 322.5,-474.6"></polygon></g><!-- B --><g id="node2" class="node"><title>B</title>
-<g id="a_node2"><a href="https://snippety.app/" title="Snippety">
-<ellipse fill="#a3bed9" stroke="#990000" cx="134" cy="-542.4" rx="37.44" ry="18"></ellipse><text text-anchor="middle" x="134" y="-538.8" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">Snippety</text></a>
-</g></g><!-- C --><!-- B&#45;&gt;C --><g id="edge2" class="edge"><title>B-&gt;C</title>
-<path fill="none" stroke="black" d="M134,-524.21C134,-519.3 134,-513.59 134,-507.42"></path><polygon fill="#cbd9d7" stroke="black" points="137.5,-507.4 134,-497.4 130.5,-507.4 137.5,-507.4"></polygon></g><!-- K --><g id="node11" class="node"><title>K</title>
-<g id="a_node11"><a href="https://marked2app.com/" title="Marked 2">
-<ellipse fill="#aaaaff" stroke="#dc490b" cx="210" cy="-34" rx="39.61" ry="18"></ellipse><text text-anchor="middle" x="210" y="-30.4" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">Marked 2</text></a>
-</g></g><!-- C&#45;&gt;K --><g id="edge3" class="edge"><title>C-&gt;K</title>
-<path fill="none" stroke="black" d="M164.66,-384.6C167.43,-381.85 170.24,-379.15 173,-376.6 181.82,-368.45 187.21,-369.51 194,-359.6 207.14,-340.42 210,-333.05 210,-309.8 210,-309.8 210,-309.8 210,-139.8 210,-113.46 210,-83.4 210,-62.25"></path><polygon fill="#cbd9d7" stroke="black" points="213.5,-62.06 210,-52.06 206.5,-62.06 213.5,-62.06"></polygon></g><!-- G --><g id="node7" class="node"><title>G</title>
-<ellipse fill="#88aacc" stroke="#dc490b" cx="107" cy="-308.8" rx="75.22" ry="18"></ellipse><text text-anchor="middle" x="107" y="-305.2" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">RMarkdown ( .qmd )</text></g><!-- D&#45;&gt;G --><g id="edge4" class="edge"><title>D-&gt;G</title>
-<path fill="none" stroke="black" d="M293.44,-392.6C286.79,-386.88 279.41,-381.15 272,-376.6 249.64,-362.86 223.95,-350.88 199.61,-341.01"></path><polygon fill="#cbd9d7" stroke="black" points="200.58,-337.63 190,-337.19 198,-344.14 200.58,-337.63"></polygon></g><!-- E --><g id="node5" class="node"><title>E</title>
-<ellipse fill="#bcffff" stroke="#dc490b" cx="224" cy="-418.6" rx="38.97" ry="18"></ellipse><text text-anchor="middle" x="224" y="-415" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">Graphviz</text></g><!-- F --><g id="node6" class="node"><title>F</title>
-<g id="a_node6"><a href="https://posit.co/products/open-source/rstudio/" title="R Studio">
-<ellipse fill="#88aacc" stroke="#dc490b" cx="80" cy="-224.8" rx="37.03" ry="18"></ellipse><text text-anchor="middle" x="80" y="-221.2" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">R Studio</text></a>
-</g></g><!-- H --><g id="node8" class="node"><title>H</title>
-<g id="a_node8"><a href="https://quarto.org/" title="quarto CLI">
-<ellipse fill="#88aacc" stroke="#dc490b" cx="90" cy="-140.8" rx="44.12" ry="18"></ellipse><text text-anchor="middle" x="90" y="-137.2" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">quarto CLI</text></a>
-</g></g><!-- F&#45;&gt;H --><g id="edge5" class="edge"><title>F-&gt;H</title>
-<path fill="none" stroke="black" d="M82.07,-206.81C83.39,-196 85.13,-181.75 86.64,-169.34"></path><polygon fill="#cbd9d7" stroke="black" points="90.16,-169.4 87.9,-159.05 83.21,-168.55 90.16,-169.4"></polygon><text text-anchor="middle" x="94.33" y="-179.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">Call</text></g><!-- G&#45;&gt;F --><g id="edge6" class="edge"><title>G-&gt;F</title>
-<path fill="none" stroke="black" d="M96,-290.92C92.8,-285.34 89.6,-278.98 87.46,-272.8 85.29,-266.55 83.75,-259.61 82.66,-253.03"></path><polygon fill="#cbd9d7" stroke="black" points="86.13,-252.54 81.28,-243.12 79.19,-253.51 86.13,-252.54"></polygon><text text-anchor="middle" x="118.27" y="-263.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">Read qmd files</text></g><!-- G&#45;&gt;H --><g id="edge7" class="edge"><title>G-&gt;H</title>
-<path fill="none" stroke="black" d="M132.77,-291.67C138.9,-286.46 144.63,-280.11 148,-272.8 150.23,-267.96 149.03,-266.03 148,-260.8 141.21,-226.15 121.69,-190.24 107.16,-167.05"></path><polygon fill="#cbd9d7" stroke="black" points="110.03,-165.05 101.67,-158.53 104.14,-168.83 110.03,-165.05"></polygon><text text-anchor="middle" x="152.33" y="-221.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">Call</text></g><!-- I --><g id="node9" class="node"><title>I</title>
-<ellipse fill="#93dd93" stroke="#dc490b" cx="43" cy="-34" rx="27" ry="18"></ellipse><text text-anchor="middle" x="43" y="-30.4" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">PDF</text></g><!-- H&#45;&gt;I --><g id="edge8" class="edge"><title>H-&gt;I</title>
-<path fill="none" stroke="black" d="M79.58,-123C76.25,-117.32 72.68,-110.88 69.78,-104.8 63.06,-90.7 56.74,-74.44 51.93,-61.16"></path><polygon fill="#cbd9d7" stroke="black" points="55.2,-59.92 48.56,-51.67 48.61,-62.26 55.2,-59.92"></polygon><text text-anchor="middle" x="83.61" y="-95.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">Export</text></g><!-- J --><g id="node10" class="node"><title>J</title>
-<ellipse fill="#93dd93" stroke="#dc490b" cx="120" cy="-34" rx="31.87" ry="18"></ellipse><text text-anchor="middle" x="120" y="-30.4" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">HTML</text></g><!-- H&#45;&gt;J --><g id="edge9" class="edge"><title>H-&gt;J</title>
-<path fill="none" stroke="black" d="M94.95,-122.49C99.69,-105.94 106.91,-80.73 112.38,-61.61"></path><polygon fill="#cbd9d7" stroke="black" points="115.75,-62.56 115.14,-51.98 109.02,-60.63 115.75,-62.56"></polygon><text text-anchor="middle" x="117.61" y="-95.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">Export</text></g></g></svg>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-graphviz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Tinderbox Work Flow with Quarto. ( Graphviz version )
-</figcaption></figure>
-</div>
-</div>
-</div>
-</div>
-</div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-Wickham2016Data" class="csl-entry" role="listitem">
-Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. <span>“O’Reilly Media, Inc.”</span>
-</div>
-</div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -896,10 +755,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./mermaid-flowchart.html" class="pagination-link" aria-label="Mermaid flowchart (optional)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./usage-environment.html" class="pagination-link" aria-label="Usage environment">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Usage environment</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -910,7 +772,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/graphviz-optional.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>footer right</p>
 </div>

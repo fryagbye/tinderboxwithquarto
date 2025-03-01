@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.7.13">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="fryagbye">
-<title>13&nbsp; Graphviz β version (optional) – Tinderbox file for Quarto</title>
+<title>1&nbsp; Usage environment – Tinderbox file for Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,6 +18,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -26,8 +60,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./mermaid-flowchart.html" rel="prev">
+<link href="./setting.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -36,10 +70,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-324f2794ca3c62d1651739705d61c15c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-324f2794ca3c62d1651739705d61c15c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -77,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graphviz-optional.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./usage-environment.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Usage environment</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -114,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./usage-environment.html" class="sidebar-item-text sidebar-link">
+  <a href="./usage-environment.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Usage environment</span></span></a>
   </div>
 </li>
@@ -219,7 +250,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphviz-optional.html" class="sidebar-item-text sidebar-link active">
+  <a href="./graphviz-optional.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></span></a>
   </div>
 </li>
@@ -254,13 +285,13 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-<li><a href="#sec-how-to-use-graphviz" id="toc-sec-how-to-use-graphviz" class="nav-link active" data-scroll-target="#sec-how-to-use-graphviz"><span class="header-section-number">13.1</span> How to use</a></li>
-  <li><a href="#sec-graphviz-example" id="toc-sec-graphviz-example" class="nav-link" data-scroll-target="#sec-graphviz-example"><span class="header-section-number">13.2</span> Example</a></li>
-  </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/graphviz-optional.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<li><a href="#sec-session-information" id="toc-sec-session-information" class="nav-link active" data-scroll-target="#sec-session-information"><span class="header-section-number">1.1</span> RStudio Session information</a></li>
+  <li><a href="#sec-installed-packages" id="toc-sec-installed-packages" class="nav-link" data-scroll-target="#sec-installed-packages"><span class="header-section-number">1.2</span> Installed packages</a></li>
+  </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/usage-environment.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-graphviz-optional" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Graphviz β version (optional)</span></span></h1>
+<h1 class="title"><span id="sec-usage-environment" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Usage environment</span></span></h1>
 </div>
 
 
@@ -274,66 +305,953 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header><section id="sec-how-to-use-graphviz" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="sec-how-to-use-graphviz">
-<span class="header-section-number">13.1</span> How to use</h2>
-<ol type="1">
-<li>You make a container noto for the graph and set pGContainer.</li>
-<li>You make notes ( pGNode) and links. <strong>You can’t make links to cluster (subgraph)</strong>.</li>
-<li>You choose a direction for drawing like TB or LR.($GG_Rankdir)</li>
-<li>You can choose a Layout Engin like <code>dot</code>, <code>neato</code>, <code>fdp</code> and so on.</li>
-<li>Change attributes for Graphviz.
+</header><p>Please refer to the output results of <code>quato check</code>.</p>
 <ul>
-<li>Attributes starting with <code>GG_</code> are for the Subgraph ( cluster ) options</li>
-<li>Attributes starting with <code>GN_</code> are for the Note options</li>
-<li>Attributes starting with <code>GE_</code> are for the Edge options</li>
+<li>Quarto is using the released version 1.7.13 (pre-release)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
+<li>R is version 4.4.2.</li>
+<li>I use luaLatex for output in Japanese. I have installed MacTex because TinyTex doesn’t include it.</li>
+<li>It may be better to uninstall TinyTex.</li>
+<li>I have set it to use the <code>lightbox</code> extension ( included in Quarto v1.4+.). *I have set it to use the <code>quarto-live</code> extension for revealjs.</li>
 </ul>
-</li>
-<li>Run the stamp ( <code>Graphviz: Make a Dot graph</code> ).</li>
-<li>Prototypes of container notes <strong>have</strong> a child note change from pGNode to pGContainer automatically by the stamp.</li>
-<li>The note (pGContainer) has the code for Graphviz.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="screenshots/youtube_opening_part3.png" class="img-fluid figure-img"></p>
-<figcaption>Tinderbox with Quarto part3</figcaption></figure>
-</div>
-</section><section id="sec-graphviz-example" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="sec-graphviz-example">
-<span class="header-section-number">13.2</span> Example</h2>
-<p><a href="index.html#fig-workflow-graphviz" class="quarto-xref">Figure&nbsp;<span>2</span></a> and <a href="#fig-graphviz-test" class="quarto-xref">Figure&nbsp;<span>13.1</span></a> .</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="screenshots/workflow.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Workflow"><img src="screenshots/workflow.png" class="img-fluid figure-img" alt="Workflow"></a></p>
-<figcaption>Workflow</figcaption></figure>
-</div>
-<div class="cell" data-fig-width="5" data-layout-align="default">
-<div class="cell-output-display">
-<div id="fig-graphviz-test" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-graphviz-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-<svg width="480" height="480" viewbox="0.00 0.00 326.00 207.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 203.6)"><polygon fill="white" stroke="transparent" points="-4,4 -4,-203.6 322,-203.6 322,4 -4,4"></polygon><g id="clust1" class="cluster"><title>cluster_A</title>
-<polygon fill="#eeebe9" stroke="#dc490b" points="8,-8 8,-84.8 310,-84.8 310,-8 8,-8"></polygon><text text-anchor="middle" x="159" y="-68.2" font-family="HiraginoSans-W4" font-size="14.00" fill="#000000">Cluster B</text></g><g id="clust2" class="cluster"><title>cluster_B</title>
-<polygon fill="#eeebe9" stroke="#dc490b" points="8,-114.8 8,-191.6 310,-191.6 310,-114.8 8,-114.8"></polygon><text text-anchor="middle" x="159" y="-175" font-family="HiraginoSans-W4" font-size="14.00" fill="#000000">Cluster A</text></g><!-- A --><g id="node1" class="node"><title>A</title>
-<ellipse fill="#ffffff" stroke="#dc490b" cx="45" cy="-34" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="45" y="-30.4" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node2</text></g><!-- B --><g id="node2" class="node"><title>B</title>
-<ellipse fill="#ffffff" stroke="#dc490b" cx="121" cy="-34" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="121" y="-30.4" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node4</text></g><!-- C --><g id="node3" class="node"><title>C</title>
-<ellipse fill="#ffffff" stroke="#dc490b" cx="197" cy="-34" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="197" y="-30.4" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node6</text></g><!-- D --><g id="node4" class="node"><title>D</title>
-<ellipse fill="#ffffff" stroke="#dc490b" cx="273" cy="-34" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="273" y="-30.4" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node8</text></g><!-- E --><g id="node5" class="node"><title>E</title>
-<ellipse fill="#ffffff" stroke="#dc490b" cx="45" cy="-140.8" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="45" y="-137.2" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node1</text></g><!-- E&#45;&gt;A --><g id="edge1" class="edge"><title>E-&gt;A</title>
-<path fill="none" stroke="black" d="M45,-122.68C45,-122.68 45,-62.21 45,-62.21"></path><polygon fill="#605850" stroke="black" points="48.5,-62.21 45,-52.21 41.5,-62.21 48.5,-62.21"></polygon><text text-anchor="middle" x="47.5" y="-95.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">1</text></g><!-- F --><g id="node6" class="node"><title>F</title>
-<ellipse fill="#ffffff" stroke="#dc490b" cx="121" cy="-140.8" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="121" y="-137.2" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node3</text></g><!-- F&#45;&gt;B --><g id="edge2" class="edge"><title>F-&gt;B</title>
-<path fill="none" stroke="black" d="M121,-114.8C121,-98.42 121,-62.21 121,-62.21"></path><polygon fill="#605850" stroke="black" points="124.5,-62.21 121,-52.21 117.5,-62.21 124.5,-62.21"></polygon><text text-anchor="middle" x="123.5" y="-95.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">2</text></g><!-- G --><g id="node7" class="node"><title>G</title>
-<ellipse fill="#ffffff" stroke="#dc490b" cx="197" cy="-140.8" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="197" y="-137.2" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node5</text></g><!-- G&#45;&gt;C --><g id="edge3" class="edge"><title>G-&gt;C</title>
-<path fill="none" stroke="black" d="M197,-122.68C197,-122.68 197,-109.27 197,-95.09"></path><polygon fill="#605850" stroke="black" points="200.5,-94.8 197,-84.8 193.5,-94.8 200.5,-94.8"></polygon><text text-anchor="middle" x="199.5" y="-95.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">3</text></g><!-- H --><g id="node8" class="node"><title>H</title>
-<ellipse fill="#ffffff" stroke="#dc490b" cx="273" cy="-140.8" rx="28.9" ry="18"></ellipse><text text-anchor="middle" x="273" y="-137.2" font-family="HiraginoSans-W4" font-size="12.00" fill="#000000">node7</text></g><!-- H&#45;&gt;D --><g id="edge4" class="edge"><title>H-&gt;D</title>
-<path fill="none" stroke="black" d="M273,-114.8C273,-109.62 273,-102.46 273,-95.09"></path><polygon fill="#605850" stroke="black" points="276.5,-94.8 273,-84.8 269.5,-94.8 276.5,-94.8"></polygon><text text-anchor="middle" x="275.5" y="-95.8" font-family="HiraginoSans-W4" font-size="10.00" fill="#000000">4</text></g></g></svg>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graphviz-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.1: Graphviz Test
-</figcaption></figure>
-</div>
-</div>
-</div>
+<p><code>quarto check</code> output</p>
+<details><div class="sourceCode" id="cb1"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quarto check output</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Quarto</span> 1.7.13</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking environment information...</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Quarto</span> cache location: /Users/tk4o2ka/Library/Caches/quarto</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking versions of quarto binary dependencies...</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Pandoc</span> version 3.4.0: OK</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Dart</span> Sass version 1.70.0: OK</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Deno</span> version 1.46.3: OK</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Typst</span> version 0.11.0: OK</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking versions of quarto dependencies......OK</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking Quarto installation......OK</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Version:</span> 1.7.13</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Path:</span> /Applications/quarto/bin</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking tools....................OK</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Chromium:</span> 869685</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="ex">TinyTeX:</span> <span class="pp">(</span><span class="ss">not installed</span><span class="pp">)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking LaTeX....................OK</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Using:</span> Installation From Path</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Path:</span> /usr/local/texlive/2024/bin/universal-darwin</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Version:</span> 2024</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking Chrome Headless....................OK</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Using:</span> Chrome found on system</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Path:</span> /Applications/Google Chrome.app/Contents/MacOS/Google Chrome</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Source:</span> MacOS known location</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking basic markdown render....OK</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking Python 3 installation....OK</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Version:</span> 3.13.2</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Path:</span> /opt/homebrew/opt/python@3.13/bin/python3.13</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Jupyter:</span> <span class="op">(No</span>n<span class="op">e)</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>      Jupyter is not available in this Python installation.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>      Install with python3 -m pip install jupyter</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>      There is an unactivated Python environment in .venv. Did you forget to activate it?</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>[✓] Checking R installation...........OK</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>      Version: 4.4.2</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>      Path: /Library/Frameworks/R.framework/Resources</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>      LibPaths:</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        - /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>      knitr: 1.49</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>      rmarkdown: 2.29</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>[✓] Checking Knitr engine render......OK</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><section id="sec-session-information" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="sec-session-information">
+<span class="header-section-number">1.1</span> RStudio Session information</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| echo: false</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Platform: aarch64-apple-darwin20 Running under: macOS 15.1.1</p>
+<p>Matrix products: default BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib; LAPACK version 3.12.0</p>
+<p>locale: [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</p>
+<p>time zone: Asia/Tokyo tzcode source: internal</p>
+<p>attached base packages: [1] stats graphics grDevices utils datasets methods base</p>
+<p>loaded via a namespace (and not attached): [1] compiler_4.4.0 tools_4.4.0</p>
+</section><section id="sec-installed-packages" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="sec-installed-packages">
+<span class="header-section-number">1.2</span> Installed packages</h2>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| echo: false</span></span>
+<span><span class="co">#| message: false</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="va">gt</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">Package</span>, <span class="va">Version</span>, <span class="va">Built</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><p><summery>Package List</summery></p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Name</th>
+<th>Version</th>
+<th>Built</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>askpass</td>
+<td>1.2.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>backports</td>
+<td>1.4.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>base</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>base64enc</td>
+<td>0.1-3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>bigD</td>
+<td>0.2.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>bit</td>
+<td>4.0.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>bit64</td>
+<td>4.0.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>bitops</td>
+<td>1.0-7</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>blob</td>
+<td>1.2.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>boot</td>
+<td>1.3-30</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>brew</td>
+<td>1.0-10</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>brio</td>
+<td>1.1.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>broom</td>
+<td>1.0.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>bslib</td>
+<td>0.7.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>cachem</td>
+<td>1.0.8</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>callr</td>
+<td>3.7.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>cellranger</td>
+<td>1.1.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>class</td>
+<td>7.3-22</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>cli</td>
+<td>3.6.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>clipr</td>
+<td>0.8.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>cluster</td>
+<td>2.1.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>codetools</td>
+<td>0.2-20</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>collections</td>
+<td>0.3.7</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>colorspace</td>
+<td>2.1-0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>commonmark</td>
+<td>1.9.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>compiler</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>conflicted</td>
+<td>1.2.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>cpp11</td>
+<td>0.4.7</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>crayon</td>
+<td>1.5.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>curl</td>
+<td>5.2.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>cyclocomp</td>
+<td>1.1.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>data.table</td>
+<td>1.15.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>datasets</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>DBI</td>
+<td>1.2.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>dbplyr</td>
+<td>2.5.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>desc</td>
+<td>1.4.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>digest</td>
+<td>0.6.35</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>downlit</td>
+<td>0.4.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>dplyr</td>
+<td>1.1.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>dtplyr</td>
+<td>1.3.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>ellipsis</td>
+<td>0.3.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>evaluate</td>
+<td>0.23</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>fansi</td>
+<td>1.0.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>farver</td>
+<td>2.1.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>fastmap</td>
+<td>1.1.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>fontawesome</td>
+<td>0.5.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>forcats</td>
+<td>1.0.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>foreign</td>
+<td>0.8-86</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>fs</td>
+<td>1.6.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>gargle</td>
+<td>1.5.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>generics</td>
+<td>0.1.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>ggplot2</td>
+<td>3.5.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>gitcreds</td>
+<td>0.1.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>glue</td>
+<td>1.7.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>googledrive</td>
+<td>2.1.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>googlesheets4</td>
+<td>1.1.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>graphics</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>grDevices</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>grid</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>gt</td>
+<td>0.10.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>gtable</td>
+<td>0.3.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>gtExtras</td>
+<td>0.5.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>haven</td>
+<td>2.5.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>highr</td>
+<td>0.10</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>hms</td>
+<td>1.1.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>htmltools</td>
+<td>0.5.8.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>htmlwidgets</td>
+<td>1.6.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>httr</td>
+<td>1.4.7</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>ids</td>
+<td>1.0.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>isoband</td>
+<td>0.2.7</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>jquerylib</td>
+<td>0.1.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>jsonlite</td>
+<td>1.8.8</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>juicyjuice</td>
+<td>0.1.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>kableExtra</td>
+<td>1.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>KernSmooth</td>
+<td>2.23-22</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>knitr</td>
+<td>1.46</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>labeling</td>
+<td>0.4.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>languageserver</td>
+<td>0.3.16</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>lattice</td>
+<td>0.22-6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>lazyeval</td>
+<td>0.2.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>lifecycle</td>
+<td>1.0.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>lintr</td>
+<td>3.1.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>lubridate</td>
+<td>1.9.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>magrittr</td>
+<td>2.0.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>markdown</td>
+<td>1.12</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>MASS</td>
+<td>7.3-60.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>Matrix</td>
+<td>1.7-0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>memoise</td>
+<td>2.0.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>methods</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>mgcv</td>
+<td>1.9-1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>mime</td>
+<td>0.12</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>modelr</td>
+<td>0.1.11</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>munsell</td>
+<td>0.5.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>nlme</td>
+<td>3.1-164</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>nnet</td>
+<td>7.3-19</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>nvimcom</td>
+<td>0.9.42</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>openssl</td>
+<td>2.1.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>pacman</td>
+<td>0.5.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>paletteer</td>
+<td>1.6.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>parallel</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>pillar</td>
+<td>1.9.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>pkgbuild</td>
+<td>1.4.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>pkgconfig</td>
+<td>2.0.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>pkgload</td>
+<td>1.3.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>prettyunits</td>
+<td>1.2.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>prismatic</td>
+<td>1.1.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>processx</td>
+<td>3.8.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>progress</td>
+<td>1.2.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>ps</td>
+<td>1.7.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>purrr</td>
+<td>1.0.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>R.cache</td>
+<td>0.16.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>R.methodsS3</td>
+<td>1.8.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>R.oo</td>
+<td>1.26.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>R.utils</td>
+<td>2.12.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>R6</td>
+<td>2.5.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>ragg</td>
+<td>1.3.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>rappdirs</td>
+<td>0.3.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>RColorBrewer</td>
+<td>1.1-3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>Rcpp</td>
+<td>1.0.12</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>reactable</td>
+<td>0.4.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>reactR</td>
+<td>0.5.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>readr</td>
+<td>2.1.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>readxl</td>
+<td>1.4.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>rematch</td>
+<td>2.0.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>rematch2</td>
+<td>2.1.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>remotes</td>
+<td>2.5.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>reprex</td>
+<td>2.1.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>rex</td>
+<td>1.2.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>rlang</td>
+<td>1.1.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>rmarkdown</td>
+<td>2.26</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>roxygen2</td>
+<td>7.3.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>rpart</td>
+<td>4.1.23</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>rprojroot</td>
+<td>2.0.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>rstudioapi</td>
+<td>0.16.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>rvest</td>
+<td>1.0.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>sass</td>
+<td>0.4.9</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>scales</td>
+<td>1.3.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>selectr</td>
+<td>0.4-2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>spatial</td>
+<td>7.3-17</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>splines</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>stats</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>stats4</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>stringi</td>
+<td>1.8.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>stringr</td>
+<td>1.5.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>styler</td>
+<td>1.10.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>survival</td>
+<td>3.5-8</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>svglite</td>
+<td>2.1.3</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>sys</td>
+<td>3.4.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>systemfonts</td>
+<td>1.0.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>tcltk</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>textshaping</td>
+<td>0.3.7</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>tibble</td>
+<td>3.2.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>tidyr</td>
+<td>1.3.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>tidyselect</td>
+<td>1.2.1</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>tidyverse</td>
+<td>2.0.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>timechange</td>
+<td>0.3.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>tinytex</td>
+<td>0.50</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>tools</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>tzdb</td>
+<td>0.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>utf8</td>
+<td>1.2.4</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>utils</td>
+<td>4.4.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>uuid</td>
+<td>1.2-0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>V8</td>
+<td>4.4.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>vctrs</td>
+<td>0.6.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>viridisLite</td>
+<td>0.4.2</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>vroom</td>
+<td>1.6.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>withr</td>
+<td>3.0.0</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>xfun</td>
+<td>0.43</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>xml2</td>
+<td>1.3.6</td>
+<td>4.4.0</td>
+</tr>
+<tr class="even">
+<td>xmlparsedata</td>
+<td>1.0.5</td>
+<td>4.4.0</td>
+</tr>
+<tr class="odd">
+<td>yaml</td>
+<td>2.3.8</td>
+<td>4.4.0</td>
+</tr>
+</tbody>
+</table></details>
 
-
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -755,13 +1673,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./mermaid-flowchart.html" class="pagination-link" aria-label="Mermaid flowchart (optional)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span>
+      <a href="./index.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./setting.html" class="pagination-link" aria-label="Setting">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -772,43 +1690,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/graphviz-optional.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/usage-environment.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>footer right</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":true,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
+</footer>
 
 
 </body></html>
