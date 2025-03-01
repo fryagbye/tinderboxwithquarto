@@ -1,0 +1,44 @@
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+# Export and Render {#sec-export }
+
+1. Export `_quarto.yml`
+
+You can change the output format to "pdf" or "html"  with the stamp "Change quarto.yml template".
+If you use a _language.yml, you export "_language" note (optional. See  @sec-setting Setting)
+
+
+2. Export  `.qmd` files ( pNote notes only)
+
+The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
+
+If you select the pNote notes below "For Export" and output it ( @fig-before ), then execute the "Move qmd files" stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( @fig-after ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.
+
+::: {#fig-move-qmd layout-ncol=2}
+
+![Before](screenshots/folder01.png){#fig-before}
+
+![After](screenshots/folder02.png){#fig-after}
+
+qmd files are moved to the project path by stamp
+:::
+
+3. Preview HTML output. ( optional )
+
+```zsh
+# preview for only html output
+> quarto preview index.qmd --to html --no-watch-inputs --no-browse
+```
+
+4. Render pdf or html.
+
+```zsh
+> quarto render
+```
+
+    You can use RStudio for preview and render.
+
+

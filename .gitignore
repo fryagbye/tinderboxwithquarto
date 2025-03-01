@@ -19,9 +19,8 @@ myproject/.jupyter_cache
 _publish.yml
 Prototypes
 *.afphoto
-graphviz-optional_cache/html
-mermaid-flowchart_cache/html
 tempforstreamingpreview.html
 *_cache/html
+*_cache/pdf
 .RData
 .Rhistory

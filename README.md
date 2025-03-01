@@ -19,6 +19,7 @@ My Workflow is @fig-workflow-mermaid and @fig-workflow-graphviz.
 %%| label: fig-workflow-mermaid
 %%| fig-cap: Tinderbox Work Flow with Quarto ( Mermaid version ).
 %%| fig-width: 5
+
 flowchart TB
     A["Snippety"] -.->  Sub1["Tinderbox"]
     B["Mermaid"]
@@ -97,7 +98,6 @@ end
     style Sub4 fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px
     style Sub5 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
     style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
-
 ```
 
 ```dot
@@ -216,11 +216,13 @@ H -> J [label = "Export" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolo
 
 Please refer to the output results of `quato check`.
 
-- Quarto is using the released version 1.5.57.
-- R is version 4.4.0
+- Quarto is using the released version 1.7.13 (pre-release)[^noteinstallversion].
+- R is version 4.4.2.
 - I use luaLatex for output in Japanese. I have installed MacTex because TinyTex doesn't include it.
 - It may be better to uninstall TinyTex.
 - I have set it to use the `lightbox` extension ( included in Quarto v1.4+.)
+
+[^noteinstallversion]: Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.
 
 `quarto check` output
 
@@ -502,12 +504,14 @@ installed.packages() |>
 - `$Q_TableOfContainsNote` -> **$Name** of TOC note. ( default value = Table of Contents )
 - `$Rename_in` -> Setting for translating a label. ( default value = ja:en )
 - `$Q_PDFEngine` -> Setting for [pdf engine](https://quarto.org/docs/output-formats/pdf-engine.html) This file is tested only with lualatex. ( default value = lualatex )
-- `$ManuscriptOutlineBaseControl` -> Adjustment of section levels in Markdown. ( default = 1 )
+- ~~`$OutlineBaseControl` -> Adjustment of section levels in Markdown. ( default = 1 )~~
 
   e.g.
 
-  - $ManuscriptOutlineBaseControl = 0 -> \#\# Title
-  - $ManuscriptOutlineBaseControl = 1 -> \# Title
+  - $OutlineBaseControl = 1 -> \#\# Title
+  - $OutlineBaseControl = 1 -> \# Title
+
+\*`$RScriptLibraryPath` -> R Library Resource Path ( default Value
 
 2. Making a `_quarto.yml`
 
@@ -562,24 +566,6 @@ installed.packages() |>
 2. pAppendixQmd
 
    This prototype is inherited from pNote and $IsAppendix is `true`.
-
-## Equations
-
-Equation Example
-
-Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain
-
-$$
-ma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C
-$$
-
-```latex
-$$
-\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C
-$$
-```
 
 # Rename HTMLExportFileName of a note with translation
 
@@ -687,6 +673,15 @@ There are multiple ways to specify labels, but they are only supported if it is 
 |light| 明るくする|
 ```
 
+:明度・彩度の修飾子
+
+| 項目    | 効果         |
+| ------- | ------------ |
+| dark    | 暗くする     |
+| darker  | より暗くする |
+| darkest | 最も暗くする |
+| light   | 明るくする   |
+
 ## Equations
 
 Equation Example
@@ -784,19 +779,17 @@ The manuscript has only one qmd file. The qmd file name is set in \_quarto.yml (
 ### Front Matter and Subnote
 
 1. pFrontmatterManuscript
-
-   This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.
-
-you can set data for author(s) with the path of note that has pAuther notes. ( like Authors )
+        This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.
+    You can set data for author(s) with the path of note with pAuther notes. ( like Authors )
 
 `$IsManuscript = true`
 
 2. pSubnoteManuscript
 
-   This is a dammy file for pFrontmatterManuscript. markdown level depends on indent level and `$ManuscriptOutlineBaseControl` of TBXConfig.
+   This is a dummy file for pFrontmatterManuscript. The markdown level depends on the indent level and `$OutlineBaseControl` of of the subproject folder.
 
 ```
-"#" * ($OutlineDepthBase - $ManuscriptOutlineBaseControl("TBXConfig")
+"#" * $OutlineDepthBase + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
 ```
 
 `$IsManuscript = true`
@@ -826,6 +819,41 @@ quarto preview myproject --to html --no-watch-inputs --no-browse
 
 ```
 
+# revealjs format
+
+# Make sub-project folder
+
+Make a note for the sub-project with **pSubfolderRevealjs** .
+
+## Front Matter and Subnote
+
+1. pFrontmatterRevealjs
+
+   This is a qmd file that contains a Front Matter. When you export, it has descendants' contents.
+
+`$IsRevealjs = true`
+
+2. pSubnoteRevealjs
+
+   This is a dummy file for pFrontmatterRevealjs. The markdown level depends on the indent level and `$OutlineBaseControl` of the subproject folder.
+
+```
+"#" * $OutlineDepthBase + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
+```
+
+`$IsRevealjs = true`
+
+3. Quote chunk code blocks
+
+   You can chunk code blocks with a quote tag like the one below from a child note (pRChunk or pPChunk).
+   <chunk:chunknotename>
+
+## quarto-live extention (β version)
+
+This file supports [quarto-live](https://r-wasm.github.io/quarto-live/).
+You add the quarto-live extension to your subproject path.
+(If you add it to the project folder and call it with a relative path, an error will occur.)
+
 # Mermaid flowchart (optional)
 
 This file can generate Mermaid flowchart from notes, links.
@@ -835,6 +863,10 @@ This file can generate Mermaid flowchart from notes, links.
 
 Work Flow is a sample of Mermaid flowchart.  
 Please check it in Map view.
+
+You need to use pre-release version [^chromeheadlessmodeissue]
+
+[^chromeheadlessmodeissue]: Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.([Transition to Chrome new headless mode · Issue #10532 · quarto-dev/quarto-cli](https://github.com/quarto-dev/quarto-cli/issues/10532))
 
 ## How to use
 
