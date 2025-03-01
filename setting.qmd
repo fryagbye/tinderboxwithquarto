@@ -19,9 +19,12 @@ source("_common.R")
 * ~~`$OutlineBaseControl` -> Adjustment of section levels in Markdown. ( default = 1 )~~
 
      e.g. 
-    * $OutlineBaseControl = 0 -> \#\# Title
+    * $OutlineBaseControl = 1 -> \#\# Title
     
     * $OutlineBaseControl = 1 -> \# Title 
+
+*`$RScriptLibraryPath` -> R Library Resource Path ( default Value 
+    
 
 2. Making a `_quarto.yml`
 

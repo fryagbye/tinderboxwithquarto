@@ -13,6 +13,10 @@ This file can generate Mermaid flowchart from notes, links.
 Work Flow is a sample of Mermaid flowchart.  
 Please check it in Map view.
 
+You need to use pre-release version [^chromeheadlessmodeissue]
+
+[^chromeheadlessmodeissue]:Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.([Transition to Chrome new headless mode · Issue #10532 · quarto-dev/quarto-cli](https://github.com/quarto-dev/quarto-cli/issues/10532))
+
 
 
 

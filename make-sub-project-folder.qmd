@@ -3,37 +3,44 @@
 out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 source("_common.R")
 ```
-# Make sub-project folder {#sec-make-sub-project-folder }
+# Make sub-project folder {#sec-make-revealjs-subproject }
 
-Make a note for the sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
-
-
-
-## Make notes
-The manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
+Make a note for the sub-project with **pSubfolderRevealjs** .
 
 
-### Front Matter and Subnote
 
-1. pFrontmatterManuscript
+## Front Matter and Subnote
+
+1. pFrontmatterRevealjs
     
-    This is a qmd file that contains a Front Matter. When you export, it has  contents of descendants.
-
-you can set data for author(s) with the path of note that has pAuther notes. ( like Authors )
-
-`$IsManuscript = true`
+    This is a qmd file that contains a Front Matter. When you export, it has descendants' contents.
 
 
-2. pSubnoteManuscript
+`$IsRevealjs = true`
 
-    This is a dammy file for pFrontmatterManuscript. markdown level depends on indent level and `$ManuscriptOutlineBaseControl` of TBXConfig.
+
+2. pSubnoteRevealjs
+
+    This is a dummy file for pFrontmatterRevealjs. The markdown level depends on the indent level and `$OutlineBaseControl` of the subproject folder.
 
 ```
-"#" * ($OutlineDepthBase - $ManuscriptOutlineBaseControl("TBXConfig")
+"#" * $OutlineDepthBase + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
 ```
  
-`$IsManuscript = true`
+`$IsRevealjs = true`
 
+3. Quote chunk code blocks
+
+    You can chunk code blocks with a quote tag like the one below from a child note (pRChunk or pPChunk).
+    <chunk:chunknotename>
+ 
+
+
+
+## quarto-live extention (β version)
+This file supports [quarto-live](https://r-wasm.github.io/quarto-live/).
+You add the quarto-live extension to your subproject path.
+(If you add it to the project folder and call it with a relative path, an error will occur.)
 
 
 

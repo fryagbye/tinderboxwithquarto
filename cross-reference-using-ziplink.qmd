@@ -65,10 +65,19 @@ There are multiple ways to specify labels, but they are only supported if it is 
 |light| 明るくする|
 ```
 
+:明度・彩度の修飾子 {#tbl-brightness-saturation}
+ 
+|項目|効果|
+|----|------------|
+|dark|暗くする|
+|darker|より暗くする|
+|darkest|最も暗くする|
+|light| 明るくする|
 
 
 
-## Equations { #sec-Equations }
+
+## Equations { #sec-equations }
 Equation Example
 
 Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain

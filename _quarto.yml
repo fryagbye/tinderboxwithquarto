@@ -35,7 +35,7 @@ book:
         - example.qmd
     - part: Manuscript format
       chapters:
-        - make-sub-project-folder.qmd
+        - make-manuscript-subproject.qmd
         - export-and-render.qmd
     - part: revealjs format
       chapters:

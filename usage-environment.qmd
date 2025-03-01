@@ -7,11 +7,13 @@ source("_common.R")
 
 Please refer to the output results of `quato check`.
 
-* Quarto is using the released version 1.5.57.
-* R is version 4.4.0
+* Quarto is using the released version 1.7.13 (pre-release)[^noteinstallversion].
+* R is version 4.4.2.
 * I use luaLatex for output in Japanese. I have installed MacTex because TinyTex doesn't include it.
 * It may be better to uninstall TinyTex.
 * I have set it to use the `lightbox` extension ( included in Quarto v1.4+.)
+
+[^noteinstallversion]:Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.
 
 `quarto check` output
 
