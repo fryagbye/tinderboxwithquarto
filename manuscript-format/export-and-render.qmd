@@ -1,0 +1,33 @@
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+# Export and Render
+
+1. Export
+    You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in the sub-project folder.
+
+2. Activate a virtual environment
+if you use a virtual environment, activate it.
+
+e.g.
+
+```zsh
+poetry shell
+```
+
+3. Render sub-project
+
+```zsh
+# quarto render "your project name"
+quarto render myproject
+
+# For preview
+quarto preview myproject --to html --no-watch-inputs --no-browse
+
+```
+
+
+
+

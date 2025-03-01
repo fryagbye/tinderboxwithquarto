@@ -1,0 +1,38 @@
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+# Make sub-project folder {#sec-make-manuscript-subproject-folder }
+
+Make a note for the sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
+
+
+
+## Make notes
+The manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
+
+
+### Front Matter and Subnote
+
+1. pFrontmatterManuscript
+    
+    This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.
+You can set data for author(s) with the path of note with pAuther notes. ( like Authors )
+
+`$IsManuscript = true`
+
+
+2. pSubnoteManuscript
+
+    This is a dummy file for pFrontmatterManuscript. The markdown level depends on the indent level and `$OutlineBaseControl` of of the subproject folder.
+
+```
+"#" * $OutlineDepthBase + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
+```
+ 
+`$IsManuscript = true`
+
+
+
+
