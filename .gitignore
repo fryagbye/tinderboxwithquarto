@@ -20,7 +20,6 @@ _publish.yml
 Prototypes
 *.afphoto
 tempforstreamingpreview.html
-*_cache/html
-*_cache/pdf
+output/*_cache/*
 .RData
 .Rhistory

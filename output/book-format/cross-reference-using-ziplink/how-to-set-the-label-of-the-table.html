@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+ <link rel="stylesheet" href="../../resources/github.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"></script>
+</head>
+<body>
+
+
+<h2>How to set the label of the table</h2>
+
+There are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.[^ table-cross-ref]
+
+[^ table-cross-ref]: For other formats, please refer to [quarto cross-reference](https://quarto.org/docs/authoring/cross-references.html#tables).
+
+```{.txt}
+:明度・彩度の修飾子 {#tbl-brightness-saturation}
+ 
+|項目|効果|
+|----|------------|
+|dark|暗くする|
+|darker|より暗くする|
+|darkest|最も暗くする|
+|light| 明るくする|
+```
+
+:明度・彩度の修飾子 {#tbl-brightness-saturation}
+ 
+|項目|効果|
+|----|------------|
+|dark|暗くする|
+|darker|より暗くする|
+|darkest|最も暗くする|
+|light| 明るくする|
+
+
+
+
+</body>
+</html>

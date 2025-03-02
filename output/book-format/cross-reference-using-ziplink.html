@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+ <link rel="stylesheet" href="../resources/github.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"></script>
+</head>
+<body>
+
+
+<h1>Cross-Reference using Ziplink</h1>
+
+<p>In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the <strong>Tinderbox</strong> file at the bottom of the <strong>Reference List</strong> note. [regrex]</p>
+<p>Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. <strong>Tinderbox</strong>'s <strong>Ziplink</strong> function [ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.</p>
+<p>[regrex]: The diagrams and tables are extracted in regular expressions.</p>
+<p>[ziplink]: Please refer to &quot;Text link creation via the Ziplinking method&quot; in <a href="%5Bhttps://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html%5D(https://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html)">A Tinderbox Reference File</a>.(@Anderson2024Tinde)</p>
+
+
+
+<h2>How to set the label of the diagram</h2>
+
+
+
+
+
+
+<h3>Image link in markdown format</h3>
+
+
+Recognize and collect labels in a format that extends the markdown.
+
+\!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+
+![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+
+
+
+
+
+
+<h2>R chunk</h2>
+
+
+Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote **\@fig-airquality**.
+
+```r
+#| label: fig-airquality 
+#| fig-cap: "Temperature and ozone level."
+#| warning: false
+
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+![label: \@fig-airquality](screenshots/fig-airquality-1.png)
+
+
+
+
+
+<h2>How to set the label of the table</h2>
+
+
+There are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.[^ table-cross-ref]
+
+[^ table-cross-ref]: For other formats, please refer to [quarto cross-reference](https://quarto.org/docs/authoring/cross-references.html#tables).
+
+```{.txt}
+:明度・彩度の修飾子 {#tbl-brightness-saturation}
+ 
+|項目|効果|
+|----|------------|
+|dark|暗くする|
+|darker|より暗くする|
+|darkest|最も暗くする|
+|light| 明るくする|
+```
+
+:明度・彩度の修飾子 {#tbl-brightness-saturation}
+ 
+|項目|効果|
+|----|------------|
+|dark|暗くする|
+|darker|より暗くする|
+|darkest|最も暗くする|
+|light| 明るくする|
+
+
+
+
+
+<h2>Equations</h2>
+
+
+Equation Example
+
+Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain
+
+$$
+ma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
+$$ {#eq-black-scholes}
+
+```latex
+$$
+\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
+$$ {#eq-black-scholes}
+```
+
+
+
+
+<h2>How to quote</h2>
+
+
+If you enter two square brackets "[[", the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.
+
+
+|Types of quotations  |Lable  |Quote|
+|---|---|---|
+|Chapters, Sections etc.   |#sec-   |\@sec-|
+|Figures  |#fig- <br>#\| label:fig-<br>%%\| label:fig-<br> \/\/\| label:fig-<br>   |\@fig-|
+|Charts　|#tbl-|\@tbl-|
+|Equations | #eq-| \@eq-|
+
+
+
+
+<h2>Restrictions on quoted labels</h2>
+
+
+* The label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.
+* Cross-ref detection is carried out by regular expression. If it is executed in the middle of input, it will be duplicated with a short label.
+
+In this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.
+
+1. Labels: Clear Cross-Reference List（Delete all citation labels under the Reference List.）
+2. Labels: Make Cross-Reference List（Re-detect the quoted label.）
+
+
+
+
+
+
+
+<h2>Dummy links for cross-reference</h2>
+
+
+You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
+
+1. execute the "Labels: Make Dummy Link Data For Cross-Reference" stamp
+2. select cross-ref label notes ( start with "@" ) and execute the "Labels: Dummy Link between Reference and Selected notes" stamp.
+
+
+
+
+
+</body>
+</html>

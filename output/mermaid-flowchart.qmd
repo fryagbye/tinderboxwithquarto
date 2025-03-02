@@ -1,0 +1,129 @@
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+# Mermaid flowchart (optional) {#sec-mermaid-flowchart }
+
+This file can generate Mermaid flowchart from notes, links.
+
+* Container notes -> Subgraphs ( pMFSubgraph )
+* Non Container notes -> Nodes ( pMFNode)
+
+Work Flow is a sample of Mermaid flowchart.  
+Please check it in Map view.
+
+You need to use pre-release version [^chromeheadlessmodeissue]
+
+[^chromeheadlessmodeissue]:Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.([Transition to Chrome new headless mode · Issue #10532 · quarto-dev/quarto-cli](https://github.com/quarto-dev/quarto-cli/issues/10532))
+
+
+
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+## How to use {#sec-how-to-use-mermaid }
+
+
+1. You make a container noto for Flowchart and set pMFContainer.
+2. You make notes ( pMFNode) and links. 
+3. You choose a direction for drawing like TD or LR.($M_Direction)
+4. Run the stamp ( `Mermaid: Make a Flowchart` ).
+5. Prototypes of container notes **has** a child note change from pMFNode to pMFContainer automatically by the stamp.
+6. The note (pMFContainer) has the code for mermaid flowchart.
+
+<br>
+
+[![Tinderbox with Quarto part2 (English & Japanese sub)](screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
+
+
+
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+## Supported shapes {#sec-supported-shapes }
+
+* rectangle (<- normal and other shapes)
+* rounded
+* oval
+* lozenge
+* diamond
+* hex
+
+![Convert shapes](screenshots/convertshapes.png)
+
+
+
+
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+## Supported line types (Priority) {#sec-supported-line-types-priority }
+
+* normal 	 -->			(4th)
+* bold     	 ==>			(3rd)
+* dotted  	 -.->		    (2nd)
+* invisible	 ~~~		   	(1st)
+
+
+
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+## Supported arrow types {#sec-supported-arrow-types }
+
+* arrow only 
+
+
+
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+## Example {#sec-mermaid-example }
+
+
+```{mermaid} 
+%%| label: fig-flowchart
+%%| fig-width: 5
+flowchart TB
+    A["Christmas"] -->|"Get money"| B["Go shopping"]
+    B["Go shopping"] -->  Sub1["Let me think"]
+    C["Laptop"]
+    D["iPhone"]
+    E["Car"]
+
+ subgraph Sub1["Let me think"]
+    C
+    D
+    E
+end 
+
+ subgraph Sub2["Subgraph"]
+    A
+    B
+    Sub1
+end 
+
+    Sub1["Let me think"] -->|"One"| C["Laptop"]
+    Sub1["Let me think"] -->|"Two"| D["iPhone"]
+    Sub1["Let me think"] -->|"Three"| E["Car"]
+
+%% Styles & Links
+    style Sub2 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
+
+```
+
+
+
+
+

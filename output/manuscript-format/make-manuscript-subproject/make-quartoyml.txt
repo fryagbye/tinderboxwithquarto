@@ -1,0 +1,7 @@
+
+## Make \_quarto.yml for the sub-project { #sec-make-quartoyml }
+You have to set a qmd file name.
+Manuscript has only one qmd file.
+
+
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+ <link rel="stylesheet" href="../../resources/github.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"></script>
+</head>
+<body>
+
+
+<h2>Make notes</h2>
+
+The manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
+
+<h3>Front Matter and Subnote</h3>
+
+
+
+1. pFrontmatterManuscript
+    
+    This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.
+You can set data for author(s) with the path of note with pAuther notes. ( like Authors )
+
+`$IsManuscript = true`
+
+
+2. pSubnoteManuscript
+
+    This is a dummy file for pFrontmatterManuscript. The markdown level depends on the indent level and `$OutlineBaseControl` of of the subproject folder.
+
+```
+"#" * $OutlineDepthBase + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
+```
+ 
+`$IsManuscript = true`
+
+
+
+
+</body>
+</html>

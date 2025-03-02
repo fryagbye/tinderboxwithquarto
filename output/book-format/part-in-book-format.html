@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+ <link rel="stylesheet" href="../resources/github.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"></script>
+</head>
+<body>
+
+
+<h1>Part in Book format</h1>
+
+<p>For Part, please refer to <a
+href="https://quarto.org/docs/books/book-structure.html">Quarto’s “Book
+Structure” reference</a>.</p>
+<p>pNote is compatible with quarto’s <strong>Part</strong> or
+<strong>Chapter</strong>.</p>
+<p>If pNote is at the bottom of pNote, the top pNote will be Part (Part
+○), and the lower pNote will be Chapter (Chapter ○). You can place pNote
+at hierarchical level 2 only if you are under pNote of hierarchy level
+1.</p>
+<p>In this case, the hierarchy level and header level are different, so
+the header level is set based on the user attribute
+<code>$OutlineDepthBase</code>.</p>
+<p>pNote, which is treated as a Part, is turned on (<code>true</code>)
+for <code>$Is_Part_qmd</code>. The lower pNote contains the export file
+name (e.g. filename.qmd) of the pNote, which is Part, in
+<code>$Part_file</code>.</p>
+<p>If a Part note is empty, only the title (<code>$Name</code>) of the
+note is reflected in _quarto.yml, as shown in the
+<strong>“Dice”</strong> in the example below. If the dice.qmd is not
+empty, the part title (as a level one header) as well as some
+introductory content for the part.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#_quarto.yml</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chapters</span><span class="kw">:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> index.qmd</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> preface.qmd</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">part</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Dice&quot;</span><span class="co"> # if $Text(&quot;Dice&quot;).wordCount == 0 </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">chapters</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> basics.qmd</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> packages.qmd</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#_quarto.yml</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chapters</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> index.qmd</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> preface.qmd</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">part</span><span class="kw">:</span><span class="at"> dice.qmd</span><span class="co"> # if $Text(&quot;Dice&quot;).wordCount &gt;0 </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">chapters</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> basics.qmd</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> packages.qmd</span></span></code></pre></div>
+<p>The figure below shows the export example when Part is supported and
+the output result of _quarto.yml.</p>
+<figure>
+<img src="screenshots/PartandChapter.png"
+alt="Folder configuration at the time of output and _quarto.yml" />
+<figcaption aria-hidden="true">Folder configuration at the time of
+output and _quarto.yml</figcaption>
+</figure>
+
+
+
+
+</body>
+</html>

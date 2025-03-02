@@ -1,0 +1,106 @@
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+# Graphviz β version (optional) {#sec-graphviz-optional }
+
+
+
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+## How to use {#sec-how-to-use-graphviz }
+
+1. You make a container noto for the graph and set pGContainer.
+2. You make notes ( pGNode) and links. **You can't make links to cluster (subgraph)**.
+3. You choose a direction for drawing like TB or LR.($GG_Rankdir)
+4. You can choose a Layout Engin like `dot`,  `neato`, `fdp` and so on.
+4. Change attributes for Graphviz.
+    * Attributes starting with `GG_` are for the Subgraph ( cluster ) options
+    * Attributes starting with `GN_` are for the Note options
+    * Attributes starting with `GE_` are for the Edge options
+4. Run the stamp ( `Graphviz: Make a Dot graph` ).
+5. Prototypes of container notes **have** a child note change from pGNode to pGContainer automatically by the stamp.
+6. The note (pGContainer) has the code for Graphviz.
+
+[![Tinderbox with Quarto part3](screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
+
+
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+## Example {#sec-graphviz-example }
+
+@fig-workflow-graphviz  and @fig-graphviz-test .
+
+![Workflow](screenshots/workflow.png)
+
+```{dot} 
+//| label: fig-graphviz-test
+//| fig-cap: Graphviz Test
+//| fig-width: 5
+digraph {
+compound=true
+layout=dot
+  graph [    charset = "UTF-8";
+    splines = "ortho",
+  ];
+subgraph cluster_A{
+        label="Cluster B"
+        spline="line"
+        color="#dc490b"
+        penwidth="1"
+        style="filled"
+        fillcolor="#eeebe9"
+        fontname="HiraginoSans-W4"
+        fontcolor="#000000"
+        fontsize="14"
+        A B C D 
+}
+
+subgraph cluster_B{
+        label="Cluster A"
+        spline="line"
+        color="#dc490b"
+        penwidth="1"
+        style="filled"
+        fillcolor="#eeebe9"
+        fontname="HiraginoSans-W4"
+        fontcolor="#000000"
+        fontsize="14"
+        E F G H 
+}
+
+
+A [ style="filled"label="node2", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
+
+B [ style="filled"label="node4", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
+
+C [ style="filled"label="node6", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
+
+D [ style="filled"label="node8", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
+
+E [ style="filled"label="node1", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
+
+F [ style="filled"label="node3", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
+
+G [ style="filled"label="node5", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
+
+H [ style="filled"label="node7", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
+
+E -> A [label = "1" fillcolor="#605850" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ]
+F -> B [label = "2" fillcolor="#605850" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ltail = "cluster_B" ]
+G -> C [label = "3" fillcolor="#605850" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" lhead = "cluster_A" ]
+H -> D [label = "4" fillcolor="#605850" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" lhead = "cluster_A" ltail = "cluster_B" ]
+}
+```
+
+
+
+
+

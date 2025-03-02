@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+ <link rel="stylesheet" href="../resources/github.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"></script>
+</head>
+<body>
+
+
+<h1>Export and Render</h1>
+
+<ol>
+<li>Export <code>_quarto.yml</code></li>
+</ol>
+<p>You can change the output format to &quot;pdf&quot; or &quot;html&quot;  with the stamp &quot;Change quarto.yml template&quot;.
+If you use a _language.yml, you export &quot;_language&quot; note (optional. See  @sec-setting Setting)</p>
+<ol start="2">
+<li>Export  <code>.qmd</code> files ( pNote notes only)</li>
+</ol>
+<p>The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).</p>
+<p>If you select the pNote notes below &quot;For Export&quot; and output it ( @fig-before ), then execute the &quot;Move qmd files&quot; stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( @fig-after ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.</p>
+<p>::: {#fig-move-qmd layout-ncol=2}</p>
+<p><img src="screenshots/folder01.png" alt="Before" />{#fig-before}</p>
+<p><img src="screenshots/folder02.png" alt="After" />{#fig-after}</p>
+<p>qmd files are moved to the project path by stamp
+:::</p>
+<ol start="3">
+<li>Preview HTML output. ( optional )</li>
+</ol>
+<pre><code class="language-zsh"># preview for only html output
+&gt; quarto preview index.qmd --to html --no-watch-inputs --no-browse
+</code></pre>
+<ol start="4">
+<li>Render pdf or html.</li>
+</ol>
+<pre><code class="language-zsh">&gt; quarto render
+</code></pre>
+<pre><code>You can use RStudio for preview and render.
+</code></pre>
+
+
+
+
+</body>
+</html>
