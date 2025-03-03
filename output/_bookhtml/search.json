@@ -40,16 +40,6 @@
     ]
   },
   {
-    "objectID": "usage-environment.html#footnotes",
-    "href": "usage-environment.html#footnotes",
-    "title": "1  Usage environment",
-    "section": "",
-    "text": "Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.↩︎",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Usage environment</span>"
-    ]
-  },
-  {
     "objectID": "setting.html",
     "href": "setting.html",
     "title": "2  Setting",
@@ -87,17 +77,6 @@
     "title": "4  Rename HTMLExportFileName of a note with translation",
     "section": "",
     "text": "There is a stamp “Notes: Tranlate Section Labels” that translates the Japanese title ($Name) into English and automatically sets $HTMLExportFileName 1. and you can set $SectionLabel with stamp “Set: Section Label”. The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with $Rename_in in the TBX configuration note (TBXConfig). ( By default, from Japanese to English).\n\n\n\nTranslate-shell installation required.\n&gt;brew install translate-shell",
-    "crumbs": [
-      "Book format",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rename HTMLExportFileName of a note with translation</span>"
-    ]
-  },
-  {
-    "objectID": "rename-htmlexportfilename-of-a-note-with-translation.html#footnotes",
-    "href": "rename-htmlexportfilename-of-a-note-with-translation.html#footnotes",
-    "title": "4  Rename HTMLExportFileName of a note with translation",
-    "section": "",
-    "text": "Translate-shell installation required.\n&gt;brew install translate-shell\n↩︎",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rename HTMLExportFileName of a note with translation</span>"
@@ -152,7 +131,7 @@
     "href": "cross-reference-using-ziplink.html#sec-how-to-set-the-label-of-the-table",
     "title": "6  Cross-Reference using Ziplink",
     "section": "\n6.3 How to set the label of the table",
-    "text": "6.3 How to set the label of the table\nThere are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.3\n:明度・彩度の修飾子 {#tbl-brightness-saturation}\n \n|項目|効果|\n|----|------------|\n|dark|暗くする|\n|darker|より暗くする|\n|darkest|最も暗くする|\n|light| 明るくする|\n\n\nTable 6.1: 明度・彩度の修飾子\n\n\n\n項目\n効果\n\n\n\ndark\n暗くする\n\n\ndarker\nより暗くする\n\n\ndarkest\n最も暗くする\n\n\nlight\n明るくする",
+    "text": "6.3 How to set the label of the table\nThere are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.3\n3 For other formats, please refer to quarto cross-reference.:明度・彩度の修飾子 {#tbl-brightness-saturation}\n \n|項目|効果|\n|----|------------|\n|dark|暗くする|\n|darker|より暗くする|\n|darkest|最も暗くする|\n|light| 明るくする|\n\n\nTable 6.1: 明度・彩度の修飾子\n\n\n\n項目\n効果\n\n\n\ndark\n暗くする\n\n\ndarker\nより暗くする\n\n\ndarkest\n最も暗くする\n\n\nlight\n明るくする",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -203,17 +182,6 @@
     ]
   },
   {
-    "objectID": "cross-reference-using-ziplink.html#footnotes",
-    "href": "cross-reference-using-ziplink.html#footnotes",
-    "title": "6  Cross-Reference using Ziplink",
-    "section": "",
-    "text": "The diagrams and tables are extracted in regular expressions.↩︎\nPlease refer to “Text link creation via the Ziplinking method” in A Tinderbox Reference File.(Anderson (2024))↩︎\nFor other formats, please refer to quarto cross-reference.↩︎",
-    "crumbs": [
-      "Book format",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
-    ]
-  },
-  {
     "objectID": "export.html",
     "href": "export.html",
     "title": "7  Export and Render",
@@ -222,17 +190,6 @@
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Export and Render</span>"
-    ]
-  },
-  {
-    "objectID": "example.html",
-    "href": "example.html",
-    "title": "8  Example",
-    "section": "",
-    "text": "Example PDF",
-    "crumbs": [
-      "Book format",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Example</span>"
     ]
   },
   {
@@ -255,6 +212,50 @@
     "crumbs": [
       "Manuscript format",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Make sub-project folder</span>"
+    ]
+  },
+  {
+    "objectID": "export-and-render.html",
+    "href": "export-and-render.html",
+    "title": "\n10  Export and Render\n",
+    "section": "",
+    "text": "Export You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in the sub-project folder.\nActivate a virtual environment if you use a virtual environment, activate it.\n\ne.g.\npoetry shell\n\nRender sub-project\n\n# quarto render \"your project name\"\nquarto render myproject\n\n# For preview\nquarto preview myproject --to html --no-watch-inputs --no-browse",
+    "crumbs": [
+      "Manuscript format",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Export and Render</span>"
+    ]
+  },
+  {
+    "objectID": "make-revealjs-subproject.html",
+    "href": "make-revealjs-subproject.html",
+    "title": "11  Make sub-project folder",
+    "section": "",
+    "text": "11.1 Front Matter and Subnote\nMake a note for the sub-project with pSubfolderRevealjs .\n$IsRevealjs = true\n$IsRevealjs = true",
+    "crumbs": [
+      "revealjs format",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Make sub-project folder</span>"
+    ]
+  },
+  {
+    "objectID": "make-revealjs-subproject.html#front-matter-and-subnote",
+    "href": "make-revealjs-subproject.html#front-matter-and-subnote",
+    "title": "11  Make sub-project folder",
+    "section": "",
+    "text": "pFrontmatterRevealjs\nThis is a qmd file that contains a Front Matter. When you export, it has descendants’ contents.\n\n\n\n\n\npSubnoteRevealjs\nThis is a dummy file for pFrontmatterRevealjs. The markdown level depends on the indent level and $OutlineBaseControl of the subproject folder.\n\n\n$OutlineDepthBase * \"#\" + $OutlineBaseControl(collect(ancestors,$Path)[-1]))\n\n\n\nQuote chunk code blocks\nYou can chunk code blocks with a quote tag like the one below from a child note (pRChunk or pPChunk).",
+    "crumbs": [
+      "revealjs format",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Make sub-project folder</span>"
+    ]
+  },
+  {
+    "objectID": "make-revealjs-subproject.html#quarto-live-extention-β-version",
+    "href": "make-revealjs-subproject.html#quarto-live-extention-β-version",
+    "title": "11  Make sub-project folder",
+    "section": "\n11.2 quarto-live extention (β version)",
+    "text": "11.2 quarto-live extention (β version)\nThis file supports quarto-live. You add the quarto-live extension to your subproject path. (If you add it to the project root folder and call it with a relative path, an error will occur.)",
+    "crumbs": [
+      "revealjs format",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Make sub-project folder</span>"
     ]
   },
   {
@@ -313,16 +314,6 @@
     "title": "12  Mermaid flowchart (optional)",
     "section": "\n12.5 Example",
     "text": "12.5 Example\n\n\n\n\n\nflowchart TB\n    A[\"Christmas\"] --&gt;|\"Get money\"| B[\"Go shopping\"]\n    B[\"Go shopping\"] --&gt;  Sub1[\"Let me think\"]\n    C[\"Laptop\"]\n    D[\"iPhone\"]\n    E[\"Car\"]\n\n subgraph Sub1[\"Let me think\"]\n    C\n    D\n    E\nend \n\n subgraph Sub2[\"Subgraph\"]\n    A\n    B\n    Sub1\nend \n\n    Sub1[\"Let me think\"] --&gt;|\"One\"| C[\"Laptop\"]\n    Sub1[\"Let me think\"] --&gt;|\"Two\"| D[\"iPhone\"]\n    Sub1[\"Let me think\"] --&gt;|\"Three\"| E[\"Car\"]\n\n%% Styles & Links\n    style Sub2 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px\n\n\n\n\n\nFigure 12.1",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#footnotes",
-    "href": "mermaid-flowchart.html#footnotes",
-    "title": "12  Mermaid flowchart (optional)",
-    "section": "",
-    "text": "Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.(Transition to Chrome new headless mode · Issue #10532 · quarto-dev/quarto-cli)↩︎",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]

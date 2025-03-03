@@ -3,8 +3,14 @@
 out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 source("_common.R")
 ```
-# Example {#sec-example }
+# Example
 
-[Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/main/_bookpdf/Tinderbox-file-for-Quarto.pdf)
+<div>
+
+```{=html}
+<iframe src="myrevealjs/"></iframe>
+```
+
+</div>
 
 

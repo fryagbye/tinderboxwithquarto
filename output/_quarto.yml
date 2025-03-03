@@ -36,10 +36,10 @@ book:
     - part: "Manuscript format"
       chapters:
         - make-manuscript-subproject.qmd
-        - export.qmd
+        - export-and-render.qmd
     - part: "revealjs format"
       chapters:
-        - make-manuscript-subproject.qmd
+        - make-revealjs-subproject.qmd
     - mermaid-flowchart.qmd
     - graphviz-optional.qmd
     - references.qmd

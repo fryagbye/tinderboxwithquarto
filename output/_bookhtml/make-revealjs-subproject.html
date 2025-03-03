@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.7.13">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="fryagbye">
-<title>4&nbsp; Rename HTMLExportFileName of a note with translation – Tinderbox file for Quarto</title>
+<title>11&nbsp; Make sub-project folder – Tinderbox file for Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,40 +18,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -60,8 +26,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./part-in-book-format.html" rel="next">
-<link href="./make-notes.html" rel="prev">
+<link href="./mermaid-flowchart.html" rel="next">
+<link href="./export-and-render.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -101,14 +67,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 </head>
-<body class="nav-sidebar docked slimcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-notes.html">Book format</a></li><li class="breadcrumb-item"><a href="./rename-htmlexportfilename-of-a-note-with-translation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-revealjs-subproject.html">revealjs format</a></li><li class="breadcrumb-item"><a href="./make-revealjs-subproject.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -172,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rename-htmlexportfilename-of-a-note-with-translation.html" class="sidebar-item-text sidebar-link active">
+  <a href="./rename-htmlexportfilename-of-a-note-with-translation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></span></a>
   </div>
 </li>
@@ -236,7 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./make-revealjs-subproject.html" class="sidebar-item-text sidebar-link">
+  <a href="./make-revealjs-subproject.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span></a>
   </div>
 </li>
@@ -281,12 +247,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#front-matter-and-subnote" id="toc-front-matter-and-subnote" class="nav-link active" data-scroll-target="#front-matter-and-subnote"><span class="header-section-number">11.1</span> Front Matter and Subnote</a></li>
+  <li><a href="#quarto-live-extention-%CE%B2-version" id="toc-quarto-live-extention-β-version" class="nav-link" data-scroll-target="#quarto-live-extention-%CE%B2-version"><span class="header-section-number">11.2</span> quarto-live extention (β version)</a></li>
+  </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/make-revealjs-subproject.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-notes.html">Book format</a></li><li class="breadcrumb-item"><a href="./rename-htmlexportfilename-of-a-note-with-translation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-translate-and-rename" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-revealjs-subproject.html">revealjs format</a></li><li class="breadcrumb-item"><a href="./make-revealjs-subproject.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-make-revealjs-subproject" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span></h1>
 </div>
 
 
@@ -300,14 +271,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>There is a stamp <strong>“Notes: Tranlate Section Labels”</strong> that translates the Japanese title (<code>$Name</code>) into English and automatically sets <code>$HTMLExportFileName</code> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. and you can set <code>$SectionLabel</code> with stamp “Set: Section Label”. The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with <code>$Rename_in</code> in the TBX configuration note (<strong>TBXConfig</strong>). ( By default, from Japanese to English).</p>
+</header><p>Make a note for the sub-project with <strong>pSubfolderRevealjs</strong> .</p>
+<section id="front-matter-and-subnote" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="front-matter-and-subnote">
+<span class="header-section-number">11.1</span> Front Matter and Subnote</h2>
+<ol type="1">
+<li>
+<p>pFrontmatterRevealjs</p>
+<p>This is a qmd file that contains a Front Matter. When you export, it has descendants’ contents.</p>
+</li>
+</ol>
+<p><code>$IsRevealjs = true</code></p>
+<ol start="2" type="1">
+<li>
+<p>pSubnoteRevealjs</p>
+<p>This is a dummy file for pFrontmatterRevealjs. The markdown level depends on the indent level and <code>$OutlineBaseControl</code> of the subproject folder.</p>
+</li>
+</ol>
+<pre><code>$OutlineDepthBase * "#" + $OutlineBaseControl(collect(ancestors,$Path)[-1]))</code></pre>
+<p><code>$IsRevealjs = true</code></p>
+<ol start="3" type="1">
+<li>
+<p>Quote chunk code blocks</p>
+<p>You can chunk code blocks with a quote tag like the one below from a child note (pRChunk or pPChunk). <chunknotename></chunknotename></p>
+</li>
+</ol></section><section id="quarto-live-extention-β-version" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="quarto-live-extention-β-version">
+<span class="header-section-number">11.2</span> quarto-live extention (β version)</h2>
+<p>This file supports <a href="https://r-wasm.github.io/quarto-live/">quarto-live</a>. You add the quarto-live extension to your subproject path. (If you add it to the project root folder and call it with a relative path, an error will occur.)</p>
 
 
-<div class="no-row-height column-margin column-container"><div id="fn1">
-<p><a href="https://github.com/soimort/translate-shell">Translate-shell</a> installation required.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>brew <span class="fu">install</span> translate-shell</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -729,13 +721,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./make-notes.html" class="pagination-link" aria-label="Make notes">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></span>
+      <a href="./export-and-render.html" class="pagination-link" aria-label="Export and Render">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./part-in-book-format.html" class="pagination-link" aria-label="Part in Book format">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Part in Book format</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./mermaid-flowchart.html" class="pagination-link" aria-label="Mermaid flowchart (optional)">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Mermaid flowchart (optional)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -746,7 +738,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/rename-htmlexportfilename-of-a-note-with-translation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/make-revealjs-subproject.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>footer right</p>
 </div>
