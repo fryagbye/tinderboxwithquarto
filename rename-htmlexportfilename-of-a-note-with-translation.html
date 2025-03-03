@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 </head>
-<body class="nav-sidebar docked">
+<body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
@@ -219,8 +219,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./export-and-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
+  <a href="./export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
       </ul>
@@ -236,8 +236,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./make-sub-project-folder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span></a>
+  <a href="./make-manuscript-subproject.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span></a>
   </div>
 </li>
       </ul>
@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-notes.html">Book format</a></li><li class="breadcrumb-item"><a href="./rename-htmlexportfilename-of-a-note-with-translation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></a></li></ol></nav><div class="quarto-title">
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-notes.html">Book format</a></li><li class="breadcrumb-item"><a href="./rename-htmlexportfilename-of-a-note-with-translation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-translate-and-rename" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></span></h1>
 </div>
 
@@ -303,14 +303,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header><p>There is a stamp <strong>“Notes: Tranlate Section Labels”</strong> that translates the Japanese title (<code>$Name</code>) into English and automatically sets <code>$HTMLExportFileName</code> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. and you can set <code>$SectionLabel</code> with stamp “Set: Section Label”. The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with <code>$Rename_in</code> in the TBX configuration note (<strong>TBXConfig</strong>). ( By default, from Japanese to English).</p>
 
 
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
-<ol>
-<li id="fn1">
+<div class="no-row-height column-margin column-container"><div id="fn1">
 <p><a href="https://github.com/soimort/translate-shell">Translate-shell</a> installation required.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>brew <span class="fu">install</span> translate-shell</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a>
-</li>
-</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+
+</div></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

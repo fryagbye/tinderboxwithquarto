@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 </head>
-<body class="nav-sidebar docked">
+<body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
@@ -219,8 +219,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./export-and-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
+  <a href="./export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
       </ul>
@@ -236,8 +236,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./make-sub-project-folder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span></a>
+  <a href="./make-manuscript-subproject.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span></a>
   </div>
 </li>
       </ul>
@@ -285,12 +285,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul class="collapse">
-<li><a href="#sec-session-information" id="toc-sec-session-information" class="nav-link active" data-scroll-target="#sec-session-information"><span class="header-section-number">1.1</span> RStudio Session information</a></li>
-  <li><a href="#sec-installed-packages" id="toc-sec-installed-packages" class="nav-link" data-scroll-target="#sec-installed-packages"><span class="header-section-number">1.2</span> Installed packages</a></li>
+<li><a href="#sec-installed-packages" id="toc-sec-installed-packages" class="nav-link active" data-scroll-target="#sec-installed-packages"><span class="header-section-number">1.1</span> Installed packages</a></li>
+  <li><a href="#sec-session-information" id="toc-sec-session-information" class="nav-link" data-scroll-target="#sec-session-information"><span class="header-section-number">1.2</span> RStudio Session information</a></li>
   </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/usage-environment.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="sec-usage-environment" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Usage environment</span></span></h1>
 </div>
 
@@ -313,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>It may be better to uninstall TinyTex.</li>
 <li>I have set it to use the <code>lightbox</code> extension ( included in Quarto v1.4+.). *I have set it to use the <code>quarto-live</code> extension for revealjs.</li>
 </ul>
-<p><code>quarto check</code> output</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.</p></div></div><p><code>quarto check</code> output</p>
 <details><div class="sourceCode" id="cb1"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quarto check output</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Quarto</span> 1.7.13</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking environment information...</span>
@@ -363,19 +363,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>      rmarkdown: 2.29</span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>[✓] Checking Knitr engine render......OK</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><section id="sec-session-information" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="sec-session-information">
-<span class="header-section-number">1.1</span> RStudio Session information</h2>
+</details><section id="sec-installed-packages" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="sec-installed-packages">
+<span class="header-section-number">1.1</span> Installed packages</h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| echo: false</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Platform: aarch64-apple-darwin20 Running under: macOS 15.1.1</p>
-<p>Matrix products: default BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib; LAPACK version 3.12.0</p>
-<p>locale: [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</p>
-<p>time zone: Asia/Tokyo tzcode source: internal</p>
-<p>attached base packages: [1] stats graphics grDevices utils datasets methods base</p>
-<p>loaded via a namespace (and not attached): [1] compiler_4.4.0 tools_4.4.0</p>
-</section><section id="sec-installed-packages" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="sec-installed-packages">
-<span class="header-section-number">1.2</span> Installed packages</h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| echo: false</span></span>
 <span><span class="co">#| message: false</span></span>
 <span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="va">gt</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1246,12 +1236,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>4.4.0</td>
 </tr>
 </tbody>
-</table></details>
+</table></details></section><section id="sec-session-information" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="sec-session-information">
+<span class="header-section-number">1.2</span> RStudio Session information</h2>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| echo: false</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Platform: aarch64-apple-darwin20 Running under: macOS 15.1.1</p>
+<p>Matrix products: default BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib; LAPACK version 3.12.0</p>
+<p>locale: [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</p>
+<p>time zone: Asia/Tokyo tzcode source: internal</p>
+<p>attached base packages: [1] stats graphics grDevices utils datasets methods base</p>
+<p>loaded via a namespace (and not attached): [1] compiler_4.4.0 tools_4.4.0</p>
 
-</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
-<ol>
-<li id="fn1"><p>Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
