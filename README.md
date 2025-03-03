@@ -20,7 +20,7 @@ My Workflow is @fig-workflow-mermaid and @fig-workflow-graphviz.
 
 :::: {layout-ncol=2}
 
-```{mermaid} 
+```mermaid 
 %%| label: fig-workflow-mermaid
 %%| fig-cap: Tinderbox Work Flow with Quarto ( Mermaid version ).
 %%| fig-width: 5
@@ -106,7 +106,7 @@ end
 ```
 
 
-```{dot} 
+```dot
 //| label: fig-workflow-graphviz
 //| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
 //| fig-width: 5
@@ -725,7 +725,7 @@ Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain
 $$
 ma^{2} \mathrm S^{2}
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$ {#eq-black-scholes}
+$$
 
 ```latex
 $$
@@ -971,7 +971,7 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 ## Example
 
 
-```{mermaid} 
+```mermaid 
 %%| label: fig-flowchart
 %%| fig-width: 5
 flowchart TB
