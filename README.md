@@ -13,14 +13,14 @@ Here is an example of books created with Quarto.
 <br>
 
 
-[![Tinderbox with Quarto part1](output/screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
+[![Tinderbox with Quarto part1](screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
 
 
 My Workflow is @fig-workflow-mermaid and @fig-workflow-graphviz.
 
 :::: {layout-ncol=2}
 
-```mermaid 
+```{mermaid} 
 %%| label: fig-workflow-mermaid
 %%| fig-cap: Tinderbox Work Flow with Quarto ( Mermaid version ).
 %%| fig-width: 5
@@ -105,8 +105,7 @@ end
     style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
 ```
 
-
-```dot
+```{dot} 
 //| label: fig-workflow-graphviz
 //| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
 //| fig-width: 5
@@ -217,7 +216,6 @@ H -> I [label = "Export" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolo
 H -> J [label = "Export" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ]
 }
 ```
-
 
 ::::
 
@@ -643,7 +641,7 @@ chapters:
 
 The figure below shows the export example when Part is supported and the output result of _quarto.yml.
 
-![Folder configuration at the time of output and _quarto.yml](output/screenshots/PartandChapter.png)
+![Folder configuration at the time of output and _quarto.yml](screenshots/PartandChapter.png)
 
 
 
@@ -665,9 +663,9 @@ Convert it to a quotable title (citation name starting with @) and create a note
 
 Recognize and collect labels in a format that extends the markdown.
 
-\!\[Test image](output/screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+\!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
-![label:@fig-test](output/screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
 
 ## R chunk
@@ -686,7 +684,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-![label: \@fig-airquality](output/screenshots/fig-airquality-1.png)
+![label: \@fig-airquality](screenshots/fig-airquality-1.png)
 
 
 ## How to set the label of the table
@@ -725,7 +723,7 @@ Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain
 $$
 ma^{2} \mathrm S^{2}
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$
+$$ {#eq-black-scholes}
 
 ```latex
 $$
@@ -782,9 +780,9 @@ If you select the pNote notes below "For Export" and output it ( @fig-before ), 
 
 ::: {#fig-move-qmd layout-ncol=2}
 
-![Before](output/screenshots/folder01.png){#fig-before}
+![Before](screenshots/folder01.png){#fig-before}
 
-![After](output/screenshots/folder02.png){#fig-after}
+![After](screenshots/folder02.png){#fig-after}
 
 qmd files are moved to the project path by stamp
 :::
@@ -911,6 +909,12 @@ This file supports [quarto-live](https://r-wasm.github.io/quarto-live/).
 You add the quarto-live extension to your subproject path.
 (If you add it to the project root folder and call it with a relative path, an error will occur.)
 
+## Example
+
+[Example live-revealjs](https://fryagbye.quarto.pub/quarto-presentations/#/title-slide)
+
+
+
 # Mermaid flowchart (optional)
 
 This file can generate Mermaid flowchart from notes, links.
@@ -939,7 +943,7 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 
 <br>
 
-[![Tinderbox with Quarto part2 (English & Japanese sub)](output/screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
+[![Tinderbox with Quarto part2 (English & Japanese sub)](screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
 
 
 ## Supported shapes
@@ -951,7 +955,7 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 * diamond
 * hex
 
-![Convert shapes](output/screenshots/convertshapes.png)
+![Convert shapes](screenshots/convertshapes.png)
 
 
 
@@ -971,7 +975,7 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 ## Example
 
 
-```mermaid 
+```{mermaid} 
 %%| label: fig-flowchart
 %%| fig-width: 5
 flowchart TB
@@ -1022,13 +1026,13 @@ end
 5. Prototypes of container notes **have** a child note change from pGNode to pGContainer automatically by the stamp.
 6. The note (pGContainer) has the code for Graphviz.
 
-[![Tinderbox with Quarto part3](output/screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
+[![Tinderbox with Quarto part3](screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
 
 ## Example
 
 @fig-workflow-graphviz  and @fig-graphviz-test .
 
-![Workflow](output/screenshots/workflow.png)
+![Workflow](screenshots/workflow.png)
 
 ```{dot} 
 //| label: fig-graphviz-test
