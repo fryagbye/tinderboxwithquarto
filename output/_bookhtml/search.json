@@ -259,6 +259,17 @@
     ]
   },
   {
+    "objectID": "make-revealjs-subproject.html#example",
+    "href": "make-revealjs-subproject.html#example",
+    "title": "11  Make sub-project folder",
+    "section": "\n11.3 Example",
+    "text": "11.3 Example\nExample live-revealjs",
+    "crumbs": [
+      "revealjs format",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Make sub-project folder</span>"
+    ]
+  },
+  {
     "objectID": "mermaid-flowchart.html",
     "href": "mermaid-flowchart.html",
     "title": "12  Mermaid flowchart (optional)",

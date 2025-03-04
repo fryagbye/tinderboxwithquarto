@@ -1,0 +1,16 @@
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+## NumPy
+
+```{python}
+import numpy as np
+a = np.arange(15).reshape(3, 5)
+a
+```
+
+Reference test @Wickham2016Data
+
+
