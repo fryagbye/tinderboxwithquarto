@@ -13,7 +13,7 @@ Here is an example of books created with Quarto.
 <br>
 
 
-[![Tinderbox with Quarto part1](screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
+[![Tinderbox with Quarto part1](output/screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
 
 
 My Workflow is @fig-workflow-mermaid and @fig-workflow-graphviz.
@@ -641,7 +641,7 @@ chapters:
 
 The figure below shows the export example when Part is supported and the output result of _quarto.yml.
 
-![Folder configuration at the time of output and _quarto.yml](screenshots/PartandChapter.png)
+![Folder configuration at the time of output and _quarto.yml](output/screenshots/PartandChapter.png)
 
 
 
@@ -663,9 +663,9 @@ Convert it to a quotable title (citation name starting with @) and create a note
 
 Recognize and collect labels in a format that extends the markdown.
 
-\!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+\!\[Test image](output/screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
-![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+![label:@fig-test](output/screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
 
 ## R chunk
@@ -684,7 +684,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-![label: \@fig-airquality](screenshots/fig-airquality-1.png)
+![label: \@fig-airquality](output/output/screenshots/fig-airquality-1.png)
 
 
 ## How to set the label of the table
@@ -780,9 +780,9 @@ If you select the pNote notes below "For Export" and output it ( @fig-before ), 
 
 ::: {#fig-move-qmd layout-ncol=2}
 
-![Before](screenshots/folder01.png){#fig-before}
+![Before](output/screenshots/folder01.png){#fig-before}
 
-![After](screenshots/folder02.png){#fig-after}
+![After](output/screenshots/folder02.png){#fig-after}
 
 qmd files are moved to the project path by stamp
 :::
@@ -955,7 +955,7 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 * diamond
 * hex
 
-![Convert shapes](screenshots/convertshapes.png)
+![Convert shapes](output/screenshots/convertshapes.png)
 
 
 
@@ -1026,13 +1026,13 @@ end
 5. Prototypes of container notes **have** a child note change from pGNode to pGContainer automatically by the stamp.
 6. The note (pGContainer) has the code for Graphviz.
 
-[![Tinderbox with Quarto part3](screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
+[![Tinderbox with Quarto part3](output/screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
 
 ## Example
 
 @fig-workflow-graphviz  and @fig-graphviz-test .
 
-![Workflow](screenshots/workflow.png)
+![Workflow](output/screenshots/workflow.png)
 
 ```{dot} 
 //| label: fig-graphviz-test
