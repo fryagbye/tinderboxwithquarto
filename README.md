@@ -943,7 +943,7 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 
 <br>
 
-[![Tinderbox with Quarto part2 (English & Japanese sub)](screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
+[![Tinderbox with Quarto part2 (English & Japanese sub)](output/screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
 
 
 ## Supported shapes
