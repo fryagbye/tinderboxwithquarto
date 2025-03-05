@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+ <link rel="stylesheet" href="./resources/github.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"></script>
+</head>
+<body>
+
+
+<h1>Introduction</h1>
+
+<p>This tinderbox file supports creating a book and manuscript (beta)
+with <a href="https://quarto.org/">Quarto</a>.</p>
+<p><a
+href="https://fryagbye.quarto.pub/tinderbox-file-for-quarto/">Tinderbox
+file for Quarto (Web version)</a></p>
+<p>You can easily make qmd files and _quarto.yml with it. Here is an
+example of books created with Quarto.</p>
+<ul>
+<li><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a>(<span
+class="citation" data-cites="Wickham2016Data">Wickham and Grolemund
+(2016)</span>)</li>
+</ul>
+<p><br></p>
+<p><a href="https://youtu.be/4BEroHg-F8Y"><img
+src="screenshots/youtube_opening.png"
+alt="Tinderbox with Quarto part1" /></a></p>
+<p>My Workflow is <span class="citation"
+data-cites="fig-workflow-mermaid">(<strong>fig-workflow-mermaid?</strong>)</span>
+and <span class="citation"
+data-cites="fig-workflow-graphviz">(<strong>fig-workflow-graphviz?</strong>)</span>.</p>
+<div data-layout-ncol="2">
+<p>```{mermaid} %%| label: fig-workflow-mermaid %%| fig-cap: Tinderbox
+Work Flow with Quarto ( Mermaid version ). %%| fig-width: 5</p>
+<p>flowchart TB A[“Snippety”] -.-&gt; Sub1[“Tinderbox”] B[“Mermaid”]
+C[“Bookends”] –&gt;|“opt + drag”| Sub1[“Tinderbox”] D[“R Studio”]
+–&gt;|“Call”| F[“quarto CLI”] E[“RMarkdown ( .qmd )”] –&gt;|“Read qmd
+files”| D[“R Studio”] E[“RMarkdown ( .qmd )”] –&gt;|“Call”| F[“quarto
+CLI”] F[“quarto CLI”] ==&gt;|“Export”| G[“HTML (Book)”] F[“quarto CLI”]
+–&gt;|“Export”| H[“PDF (Book)”] G[“HTML (Book)”] H[“PDF (Book)”]
+I[“Marked 2 (Streaming Preview)”]</p>
+<p>subgraph Sub1[“Tinderbox”] Sub5 end</p>
+<p>subgraph Sub2[“Applications”] direction LR A Sub1 C end</p>
+<p>subgraph Sub3[“Quarto”] direction LR D E F end</p>
+<p>subgraph Sub4[“Output”] direction LR G H I end</p>
+<p>subgraph Sub5[“Demo_TBX_for_Quarto.tbx”] B end</p>
+<p>subgraph Sub6[“Work Flow”] direction TB Sub2 Sub3 Sub4 end</p>
+<p>Sub5[“Demo_TBX_for_Quarto.tbx”] –&gt; E[“RMarkdown ( .qmd )”]
+Sub5[“Demo_TBX_for_Quarto.tbx”] -.-&gt;|“Streaming Preview”| I[“Marked 2
+(Streaming Preview)”]</p>
+<p>%% Styles &amp; Links style A
+fill:#a3bed9,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5
+5 click A href “https://snippety.app/” _blank style B
+fill:#009900,color:#000000,stroke:#dc490b,stroke-width:2px style C
+fill:#ff8800,color:#000000,stroke:#dc490b,stroke-width:2px style D
+fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8
+2 click D href “https://posit.co/products/open-source/rstudio/” _blank
+style E fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px style
+F fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px click F
+href “https://quarto.org/” _blank style G
+fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px style H
+fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px style I
+fill:#aaaaff,color:#000000,stroke:#dc490b,stroke-width:2px click I href
+“https://marked2app.com/” _blank style Sub1
+fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px style Sub2
+fill:#e7f3e7,color:#000000,stroke:#dc490b,stroke-width:2px style Sub3
+fill:#fff4e6,color:#000000,stroke:#dc490b,stroke-width:2px style Sub4
+fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px style Sub5
+fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px style Sub6
+fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+<pre><code>
+```{dot} 
+//| label: fig-workflow-graphviz
+//| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
+//| fig-width: 5
+digraph {
+compound=true
+layout=dot
+  graph [    charset = &quot;UTF-8&quot;;
+    splines = &quot;spline&quot;,
+  ];
+subgraph cluster_A{
+        label=&quot;Applications&quot;
+        spline=&quot;curved&quot;
+        color=&quot;#dc490b&quot;
+        penwidth=&quot;1&quot;
+        style=&quot;filled&quot;
+        fillcolor=&quot;#e7f3e7&quot;
+        fontname=&quot;HiraginoSans-W4&quot;
+        fontcolor=&quot;#000000&quot;
+        fontsize=&quot;14&quot;
+        A B 
+
+        subgraph cluster_B{
+            label=&quot;Tinderbox&quot;
+            spline=&quot;line&quot;
+            color=&quot;#dc490b&quot;
+            penwidth=&quot;1&quot;
+            style=&quot;filled&quot;
+            fillcolor=&quot;#f6e04d&quot;
+            fontname=&quot;HiraginoSans-W4&quot;
+            fontcolor=&quot;#000000&quot;
+            fontsize=&quot;14&quot;
+            URL=&quot;https://www.eastgate.com/Tinderbox/&quot;
+                C 
+
+        subgraph cluster_C{
+                label=&quot;Demo_TBX_for_Quarto.tbx&quot;
+                spline=&quot;line&quot;
+                color=&quot;#dc490b&quot;
+                penwidth=&quot;1&quot;
+                style=&quot;filled&quot;
+                fillcolor=&quot;#eeebe9&quot;
+                fontname=&quot;HiraginoSans-W4&quot;
+                fontcolor=&quot;#000000&quot;
+                fontsize=&quot;10&quot;
+                URL=&quot;https://github.com/fryagbye/tinderboxwithquarto&quot;
+                D E 
+        }
+        }
+}
+
+subgraph cluster_D{
+        label=&quot;Quarto&quot;
+        spline=&quot;line&quot;
+        color=&quot;#dc490b&quot;
+        penwidth=&quot;1&quot;
+        style=&quot;filled&quot;
+        fillcolor=&quot;#fff4e6&quot;
+        fontname=&quot;HiraginoSans-W4&quot;
+        fontcolor=&quot;#000000&quot;
+        fontsize=&quot;14&quot;
+        F G H 
+}
+
+subgraph cluster_E{
+        label=&quot;Output&quot;
+        spline=&quot;line&quot;
+        color=&quot;#dc490b&quot;
+        penwidth=&quot;1&quot;
+        style=&quot;filled&quot;
+        fillcolor=&quot;#ffffff&quot;
+        fontname=&quot;HiraginoSans-W4&quot;
+        fontcolor=&quot;#000000&quot;
+        fontsize=&quot;14&quot;
+        I J K 
+}
+
+
+A [ style=&quot;filled&quot;label=&quot;Bookends&quot;, colorscheme=&quot;Blues8&quot;, color=&quot;#dc490b&quot;, penwidth=&quot;1&quot;, fillcolor=&quot;#ff8800&quot;, fontname=&quot;HiraginoSans-W4&quot;, fontcolor=&quot;#000000&quot;, fontsize=&quot;12&quot;, URL=&quot;https://www.sonnysoftware.com/bookends-for-mac&quot;]
+
+B [ style=&quot;filled&quot;label=&quot;Snippety&quot;, colorscheme=&quot;Blues8&quot;, color=&quot;#990000&quot;, penwidth=&quot;1&quot;, fillcolor=&quot;#a3bed9&quot;, fontname=&quot;HiraginoSans-W4&quot;, fontcolor=&quot;#000000&quot;, fontsize=&quot;12&quot;, URL=&quot;https://snippety.app/&quot;]
+
+C [ style=&quot;invis&quot;label=&quot;dummy&quot;, colorscheme=&quot;Blues8&quot;, color=&quot;#dc490b&quot;, penwidth=&quot;1&quot;, fillcolor=&quot;#ffffff&quot;, fontname=&quot;HiraginoSans-W4&quot;, fontcolor=&quot;#000000&quot;, fontsize=&quot;12&quot;]
+
+D [ style=&quot;filled&quot;label=&quot;Mermaid&quot;, colorscheme=&quot;Blues8&quot;, color=&quot;#dc490b&quot;, penwidth=&quot;1&quot;, fillcolor=&quot;#ffffff&quot;, fontname=&quot;HiraginoSans-W4&quot;, fontcolor=&quot;#000000&quot;, fontsize=&quot;12&quot;, URL=&quot;https://mermaid.js.org/&quot;]
+
+E [ style=&quot;filled&quot;label=&quot;Graphviz&quot;, colorscheme=&quot;Blues8&quot;, color=&quot;#dc490b&quot;, penwidth=&quot;1&quot;, fillcolor=&quot;#bcffff&quot;, fontname=&quot;HiraginoSans-W4&quot;, fontcolor=&quot;#000000&quot;, fontsize=&quot;12&quot;]
+
+F [ style=&quot;filled&quot;label=&quot;R Studio&quot;, colorscheme=&quot;Blues8&quot;, color=&quot;#dc490b&quot;, penwidth=&quot;1&quot;, fillcolor=&quot;#88aacc&quot;, fontname=&quot;HiraginoSans-W4&quot;, fontcolor=&quot;#000000&quot;, fontsize=&quot;12&quot;, URL=&quot;https://posit.co/products/open-source/rstudio/&quot;]
+
+G [ style=&quot;filled&quot;label=&quot;RMarkdown ( .qmd )&quot;, colorscheme=&quot;Blues8&quot;, color=&quot;#dc490b&quot;, penwidth=&quot;1&quot;, fillcolor=&quot;#88aacc&quot;, fontname=&quot;HiraginoSans-W4&quot;, fontcolor=&quot;#000000&quot;, fontsize=&quot;12&quot;]
+
+H [ style=&quot;filled&quot;label=&quot;quarto CLI&quot;, colorscheme=&quot;Blues8&quot;, color=&quot;#dc490b&quot;, penwidth=&quot;1&quot;, fillcolor=&quot;#88aacc&quot;, fontname=&quot;HiraginoSans-W4&quot;, fontcolor=&quot;#000000&quot;, fontsize=&quot;12&quot;, URL=&quot;https://quarto.org/&quot;]
+
+I [ style=&quot;filled&quot;label=&quot;PDF&quot;, colorscheme=&quot;Blues8&quot;, color=&quot;#dc490b&quot;, penwidth=&quot;1&quot;, fillcolor=&quot;#93dd93&quot;, fontname=&quot;HiraginoSans-W4&quot;, fontcolor=&quot;#000000&quot;, fontsize=&quot;12&quot;]
+
+J [ style=&quot;filled&quot;label=&quot;HTML&quot;, colorscheme=&quot;Blues8&quot;, color=&quot;#dc490b&quot;, penwidth=&quot;1&quot;, fillcolor=&quot;#93dd93&quot;, fontname=&quot;HiraginoSans-W4&quot;, fontcolor=&quot;#000000&quot;, fontsize=&quot;12&quot;]
+
+K [ style=&quot;filled&quot;label=&quot;Marked 2&quot;, colorscheme=&quot;Blues8&quot;, color=&quot;#dc490b&quot;, penwidth=&quot;1&quot;, fillcolor=&quot;#aaaaff&quot;, fontname=&quot;HiraginoSans-W4&quot;, fontcolor=&quot;#000000&quot;, fontsize=&quot;12&quot;, URL=&quot;https://marked2app.com/&quot;]
+
+A -&gt; D [fillcolor=&quot;#cbd9d7&quot; fontname=&quot;HiraginoSans-W4&quot; fontcolor=&quot;#000000&quot; fontsize=&quot;10&quot; labelfloat=&quot;false&quot; lhead = &quot;cluster_C&quot; ltail = &quot;cluster_A&quot; ]
+B -&gt; C [fillcolor=&quot;#cbd9d7&quot; fontname=&quot;HiraginoSans-W4&quot; fontcolor=&quot;#000000&quot; fontsize=&quot;10&quot; labelfloat=&quot;false&quot; lhead = &quot;cluster_B&quot; ]
+C -&gt; K [fillcolor=&quot;#cbd9d7&quot; fontname=&quot;HiraginoSans-W4&quot; fontcolor=&quot;#000000&quot; fontsize=&quot;10&quot; labelfloat=&quot;false&quot; ltail = &quot;cluster_B&quot; ]
+D -&gt; G [fillcolor=&quot;#cbd9d7&quot; fontname=&quot;HiraginoSans-W4&quot; fontcolor=&quot;#000000&quot; fontsize=&quot;10&quot; labelfloat=&quot;false&quot; lhead = &quot;cluster_D&quot; ltail = &quot;cluster_C&quot; ]
+F -&gt; H [label = &quot;Call&quot; fillcolor=&quot;#cbd9d7&quot; fontname=&quot;HiraginoSans-W4&quot; fontcolor=&quot;#000000&quot; fontsize=&quot;10&quot; labelfloat=&quot;false&quot; ]
+G -&gt; F [label = &quot;Read qmd files&quot; fillcolor=&quot;#cbd9d7&quot; fontname=&quot;HiraginoSans-W4&quot; fontcolor=&quot;#000000&quot; fontsize=&quot;10&quot; labelfloat=&quot;false&quot; ]
+G -&gt; H [label = &quot;Call&quot; fillcolor=&quot;#cbd9d7&quot; fontname=&quot;HiraginoSans-W4&quot; fontcolor=&quot;#000000&quot; fontsize=&quot;10&quot; labelfloat=&quot;false&quot; ]
+H -&gt; I [label = &quot;Export&quot; fillcolor=&quot;#cbd9d7&quot; fontname=&quot;HiraginoSans-W4&quot; fontcolor=&quot;#000000&quot; fontsize=&quot;10&quot; labelfloat=&quot;false&quot; ]
+H -&gt; J [label = &quot;Export&quot; fillcolor=&quot;#cbd9d7&quot; fontname=&quot;HiraginoSans-W4&quot; fontcolor=&quot;#000000&quot; fontsize=&quot;10&quot; labelfloat=&quot;false&quot; ]
+}</code></pre>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent"
+data-entry-spacing="0" role="list">
+<div id="ref-Wickham2016Data" class="csl-entry" role="listitem">
+Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science:
+Import, Tidy, Transform, Visualize, and Model Data</em>. <span>“O’Reilly
+Media, Inc.”</span>
+</div>
+</div>
+
+
+
+
+</body>
+</html>
