@@ -1,27 +1,4 @@
 ---
-title: Quarto Presentations
-subtitle: "Create beautiful interactive slide decks with Reveal.js"
-
-
-
-format:
-   live-revealjs:
-    number-sections: true
-    number-depth: 0
-    scrollable: true
-    
-    
-    css: styles.css
-    slide-number: h.v
-    transition: convex
-    
-
----
-
-{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
-
-
----
 
 
 ## Interactive Editor
@@ -99,7 +76,6 @@ x = np.random.normal(170, 10, 250)
 plt.hist(x)
 plt.show()
 ```
-
 
 
 

@@ -1,0 +1,14 @@
+---
+
+
+### R chunk example 1
+
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+
+
+
+
+
