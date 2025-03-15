@@ -1,9 +1,27 @@
 project:
   type: manuscript
 
-revealjs:
-  article: 
+manuscript:
+  article: "index.qmd"
 
+format:
+  html:
+    number-sections: true
+    number-depth: 1
+    comments:
+      hypothesis: true
+  docx:
+    number-sections: true
+    number-depth: 1
+  jats:
+    number-sections: true
+    number-depth: 1
+  
+
+  pdf:
+    number-sections: true
+    number-depth: 1
+    pdf-engine: lualatex
 
 bibliography: ../citation/references.bib
 execute:

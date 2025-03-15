@@ -1,35 +1,165 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>main</title>
-        <style>
-            
-body{
-    font-family: "Helvetica Ssm 
-　　 Book",HelveticaNeue,Helvetica,Arial,sans-serif;
-    margin-left: 7.5%;
-    margin-right: 7.5%;
-    line-height: 1.4;
-    }
-    
-table {
-    margin: 2em 0;
-    font-size: 0.9em;
-    border: 1px solid #888888;
-}
+---
+title: "Quarto Computations"
+date: 2024-06-29
+author:
 
-td{
-    padding: 0.5em;
-    }
+  - name: Yamada Ichiro SAMPLE
+    degrees: 
+      - B.S.
+      - PhD
+    orcid: xxxx-0001-1234-5678
+    email: yamada.i@example.com
+    phone: +81-xx-555-1234
+    affiliation:
+    - name: Example Company
+      department: Plannng
+      city: Chuo ku
+      state: Tokyo
+      country: Japan
+      url: "https://www.google.com"
+      ringgold: 1
+      isni: 2
+    - name: TEST University
+      department: 
+      city: 
+      state: 
+      country: 
+      url: ""
+      ringgold: 0
+      isni: 
 
-img{
-    width: 100%;
-}
-    
 
-        </style>
-    </head>
-    <body>
-        
-    </body>
-</html>
+  - name: Sato Tadashi SAMPLE
+    degrees: 
+      - PhD
+    orcid: xxxx-0002-1234-5678
+    email: Sato.t@example.com
+    phone: +81-xx-555-1234
+    affiliation:
+    - name: Example Company
+      department: Plannng
+      city: Chuo ku
+      state: Tokyo
+      country: Japan
+      url: "https://www.google.com"
+      ringgold: 1
+      isni: 2
+
+
+
+abstract: >
+  This is a demo of quarto manuscript
+keywords: Plotly,Python,Quarto
+
+
+license: "CC BY"
+copyright:
+  holder: quarto-dev
+  year: [2023,2024]
+citation:
+  container-title: Test
+  volume: 1
+  issue: 1
+  doi: 10.xxxx/12345678
+funding: "The author received no specific funding for this work."
+---
+
+
+
+
+
+
+## NumPy
+
+```{python}
+#| label: numpy
+import numpy as np
+a = np.arange(15).reshape(3, 5)
+a
+```
+
+Reference test @Wickham2016Data
+
+
+
+
+
+
+
+## Matplotlib { #sec-data-methods }
+
+```{python}
+#| label: matplotlib
+import matplotlib.pyplot as plt
+fig = plt.figure()
+x = np.arange(10)
+y = 2.5 * np.sin(x / 20 * np.pi)
+yerr = np.linspace(0.05, 0.2, 10)
+
+plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
+plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
+plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
+             label='uplims=True, lolims=True')
+
+upperlimits = [True, False] * 5
+lowerlimits = [False, True] * 5
+plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
+             label='subsets of uplims and lolims')
+
+plt.legend(loc='lower right')
+plt.show(fig)
+```
+
+
+
+
+
+
+
+
+## Plotly
+
+```{python}
+#| label: plotly
+import plotly.express as px
+from IPython.display import Image
+import plotly.io as pio
+gapminder = px.data.gapminder()
+gapminder2007 = gapminder.query("year == 2007")
+fig = px.scatter(gapminder2007, 
+                 x="gdpPercap", y="lifeExp", color="continent", 
+                 size="pop", size_max=60,
+                 hover_name="country")
+fig.show()
+```
+
+
+
+
+
+
+
+
+## R
+
+```{r}
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+
+
+
+
+
+
+
+## References { .unnumbered }
+:::{#refs}
+:::
+
+
+
+

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving
+and Interchange DTD v1.2 20190208//EN" "JATS-archivearticle1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+  <front>
+    <journal-meta>
+      <journal-id/>
+      <journal-title-group>
+        <journal-title>Test</journal-title>
+      </journal-title-group>
+      <issn/>
+      <publisher>
+        <publisher-name/>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="doi">10.xxxx/12345678</article-id>
+      <title-group>
+        <article-title>Quarto Computations</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid">xxxx-0001-1234-5678</contrib-id>
+          <name>
+            <surname>SAMPLE</surname>
+            <given-names>Yamada Ichiro</given-names>
+          </name>
+          <string-name>Yamada Ichiro SAMPLE</string-name>
+          <degrees>B.S., PhD</degrees>
+          <email>yamada.i@example.com</email>
+          <xref ref-type="aff" rid="aff-1">a</xref>
+          <xref ref-type="aff" rid="aff-2">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid">xxxx-0002-1234-5678</contrib-id>
+          <name>
+            <surname>SAMPLE</surname>
+            <given-names>Sato Tadashi</given-names>
+          </name>
+          <string-name>Sato Tadashi SAMPLE</string-name>
+          <degrees>PhD</degrees>
+          <email>Sato.t@example.com</email>
+          <xref ref-type="aff" rid="aff-1">a</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff-1">
+        <institution content-type="dept">Plannng</institution>
+        <institution-wrap>
+          <institution>Example Company</institution>
+          <institution-id institution-id-type="ISNI">2</institution-id>
+          <institution-id institution-id-type="Ringgold">1</institution-id>
+        </institution-wrap>
+        <city>Chuo ku</city>
+        <state>Tokyo</state>
+        <country>Japan</country>
+        <ext-link ext-link-type="uri" xlink:href="https://www.google.com">https://www.google.com</ext-link>
+      </aff>
+      <aff id="aff-2">
+        <institution-wrap>
+          <institution>TEST University</institution>
+          <institution-id institution-id-type="Ringgold">0</institution-id>
+        </institution-wrap>
+      </aff>
+      <pub-date date-type="pub" publication-format="electronic" iso-8601-date="2024-06-29">
+        <year>2024</year>
+        <month>6</month>
+        <day>29</day>
+      </pub-date>
+      <volume>1</volume>
+      <issue>1</issue>
+      <history/>
+      <permissions>
+        <copyright-year>2023</copyright-year>
+        <copyright-year>2024</copyright-year>
+        <copyright-holder>quarto-dev</copyright-holder>
+        <license license-type="creative-commons">
+          <ali:license_ref xmlns:ali="http://www.niso.org/schemas/ali/1.0/">https://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+        </license>
+      </permissions>
+      <abstract>
+        <p>This is a demo of quarto manuscript</p>
+      </abstract>
+      <kwd-group kwd-group-type="author">
+        <kwd>Plotly,Python,Quarto</kwd>
+      </kwd-group>
+      <funding-group>
+        <funding-statement>The author received no specific funding for this
+work.</funding-statement>
+      </funding-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="numpy">
+      <title>NumPy</title>
+      <preformat>array([[ 0,  1,  2,  3,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14]])</preformat>
+      <p>Reference test Wickham and Grolemund
+  (<xref alt="2016" rid="ref-Wickham2016Data" ref-type="bibr">2016</xref>)</p>
+    </sec>
+    <sec id="sec-data-methods">
+      <title>Matplotlib</title>
+      <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/matplotlib-1.png"/>
+    </sec>
+    <sec id="plotly">
+      <title>Plotly</title>
+      <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/plotly-3.png"/>
+    </sec>
+    <sec id="r">
+      <title>R</title>
+      <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/unnamed-chunk-4-5.png"/>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="ref-Wickham2016Data">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wickham</surname>
+              <given-names>Hadley</given-names>
+            </name>
+            <name>
+              <surname>Grolemund</surname>
+              <given-names>Garrett</given-names>
+            </name>
+          </person-group>
+          <source>R for data science: Import, tidy, transform, visualize, and model data</source>
+          <publisher-name>“O’Reilly Media, Inc.”</publisher-name>
+          <year iso-8601-date="2016">2016</year>
+          <fpage>432</fpage>
+          <lpage/>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <sub-article article-type="notebook" id="nb-6-nb-article">
+    <front-stub>
+      <title-group>
+        <article-title>Quarto Computations</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid">xxxx-0001-1234-5678</contrib-id>
+          <name>
+            <surname>SAMPLE</surname>
+            <given-names>Yamada Ichiro</given-names>
+          </name>
+          <string-name>Yamada Ichiro SAMPLE</string-name>
+          <degrees>B.S., PhD</degrees>
+          <email>yamada.i@example.com</email>
+          <xref ref-type="aff" rid="aff-1-nb-article">a</xref>
+          <xref ref-type="aff" rid="aff-2-nb-article">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <contrib-id contrib-id-type="orcid">xxxx-0002-1234-5678</contrib-id>
+          <name>
+            <surname>SAMPLE</surname>
+            <given-names>Sato Tadashi</given-names>
+          </name>
+          <string-name>Sato Tadashi SAMPLE</string-name>
+          <degrees>PhD</degrees>
+          <email>Sato.t@example.com</email>
+          <xref ref-type="aff" rid="aff-1-nb-article">a</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff-1-nb-article">
+        <institution content-type="dept">Plannng</institution>
+        <institution-wrap>
+          <institution>Example Company</institution>
+          <institution-id institution-id-type="ISNI">2</institution-id>
+          <institution-id institution-id-type="Ringgold">1</institution-id>
+        </institution-wrap>
+        <city>Chuo ku</city>
+        <state>Tokyo</state>
+        <country>Japan</country>
+        <ext-link ext-link-type="uri" xlink:href="https://www.google.com">https://www.google.com</ext-link>
+      </aff>
+      <aff id="aff-2-nb-article">
+        <institution-wrap>
+          <institution>TEST University</institution>
+          <institution-id institution-id-type="Ringgold">0</institution-id>
+        </institution-wrap>
+      </aff>
+      <abstract>
+        <p>This is a demo of quarto manuscript</p>
+      </abstract>
+    </front-stub>
+    <body>
+      <sec id="numpy-nb-article">
+        <title>NumPy</title>
+        <sec specific-use="notebook-content">
+          <code language="python">import numpy as np
+a = np.arange(15).reshape(3, 5)
+a</code>
+          <boxed-text>
+            <preformat>array([[ 0,  1,  2,  3,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14]])</preformat>
+          </boxed-text>
+        </sec>
+        <p>Reference test Wickham and Grolemund
+  (<xref alt="2016" rid="ref-Wickham2016Data-nb-article" ref-type="bibr">2016</xref>)</p>
+      </sec>
+      <sec id="sec-data-methods-nb-article">
+        <title>Matplotlib</title>
+        <sec specific-use="notebook-content">
+          <code language="python">import matplotlib.pyplot as plt
+fig = plt.figure()
+x = np.arange(10)
+y = 2.5 * np.sin(x / 20 * np.pi)
+yerr = np.linspace(0.05, 0.2, 10)
+
+plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
+plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
+plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
+             label='uplims=True, lolims=True')
+
+upperlimits = [True, False] * 5
+lowerlimits = [False, True] * 5
+plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
+             label='subsets of uplims and lolims')
+
+plt.legend(loc='lower right')
+plt.show(fig)</code>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/matplotlib-1.png"/>
+        </sec>
+      </sec>
+      <sec id="plotly-nb-article">
+        <title>Plotly</title>
+        <sec specific-use="notebook-content">
+          <code language="python">import plotly.express as px
+from IPython.display import Image
+import plotly.io as pio
+gapminder = px.data.gapminder()
+gapminder2007 = gapminder.query("year == 2007")
+fig = px.scatter(gapminder2007, 
+                 x="gdpPercap", y="lifeExp", color="continent", 
+                 size="pop", size_max=60,
+                 hover_name="country")
+fig.show()</code>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/plotly-3.png"/>
+        </sec>
+      </sec>
+      <sec id="r-nb-article">
+        <title>R</title>
+        <sec specific-use="notebook-content">
+          <code language="r script">library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")</code>
+          <boxed-text>
+            <preformat>`geom_smooth()` using formula = 'y ~ x'</preformat>
+          </boxed-text>
+          <boxed-text>
+            <preformat>Warning: Removed 37 rows containing non-finite outside the scale range
+(`stat_smooth()`).</preformat>
+          </boxed-text>
+          <boxed-text>
+            <preformat>Warning: Removed 37 rows containing missing values or values outside the scale range
+(`geom_point()`).</preformat>
+          </boxed-text>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/unnamed-chunk-4-5.png"/>
+        </sec>
+      </sec>
+    </body>
+    <back>
+      <ref-list>
+        <title>References</title>
+        <ref id="ref-Wickham2016Data-nb-article">
+          <element-citation publication-type="book">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Wickham</surname>
+                <given-names>Hadley</given-names>
+              </name>
+              <name>
+                <surname>Grolemund</surname>
+                <given-names>Garrett</given-names>
+              </name>
+            </person-group>
+            <source>R for data science: Import, tidy, transform, visualize, and model data</source>
+            <publisher-name>“O’Reilly Media, Inc.”</publisher-name>
+            <year iso-8601-date="2016">2016</year>
+            <fpage>432</fpage>
+            <lpage/>
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </sub-article>
+  <sub-article article-type="notebook" id="nb-3-nb-1">
+    <front-stub>
+</front-stub>
+    <body>
+      <sec id="ef54bccd-nb-1" specific-use="notebook-content">
+        <p>numpy</p>
+        <p>:::</p>
+        <sec id="cell-fig-numpy-nb-1" specific-use="notebook-content">
+          <p>import numpy as np a = np.arange(15).reshape(3, 5) a ```</p>
+          <preformat>&lt;/body&gt;</preformat>
+        </sec>
+      </sec>
+    </body>
+    <back>
+</back>
+  </sub-article>
+</article>

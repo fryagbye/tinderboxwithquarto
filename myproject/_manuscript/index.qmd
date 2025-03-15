@@ -1,5 +1,5 @@
 ---
-title: "DEMO: Quarto Computations"
+title: "Quarto Computations"
 date: 2024-06-29
 author:
 
@@ -66,8 +66,13 @@ funding: "The author received no specific funding for this work."
 
 
 
+
+
+
 ## NumPy
+
 ```{python}
+#| label: numpy
 import numpy as np
 a = np.arange(15).reshape(3, 5)
 a
@@ -77,8 +82,14 @@ Reference test @Wickham2016Data
 
 
 
+
+
+
+
 ## Matplotlib { #sec-data-methods }
+
 ```{python}
+#| label: matplotlib
 import matplotlib.pyplot as plt
 fig = plt.figure()
 x = np.arange(10)
@@ -101,9 +112,15 @@ plt.show(fig)
 
 
 
+
+
+
+
+
 ## Plotly
 
 ```{python}
+#| label: plotly
 import plotly.express as px
 from IPython.display import Image
 import plotly.io as pio
@@ -113,25 +130,36 @@ fig = px.scatter(gapminder2007,
                  x="gdpPercap", y="lifeExp", color="continent", 
                  size="pop", size_max=60,
                  hover_name="country")
-#fig.show()
+fig.show()
 ```
 
-```{python}
-import kaleido
-img_bytes = fig.to_image(format="png")
 
-Image(img_bytes)
+
+
+
+
+
+
+## R
+
+```{r}
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
 ```
+
+
+
 
 
 
 
 
 ## References { .unnumbered }
-
 :::{#refs}
-
 :::
+
 
 
 
