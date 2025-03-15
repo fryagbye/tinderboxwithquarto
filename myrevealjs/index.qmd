@@ -1,5 +1,5 @@
 ---
-title: Quarto Presentations
+title: "Quarto Presentations"
 subtitle: "Create beautiful interactive slide decks with Reveal.js"
 
 
@@ -36,10 +36,16 @@ The language of chunk code is `webr` for R or `pyodide` for python
 
 ### R chunk example 1
 
+
+```{r}
+#| label: Graph
+#| fig-width: 6
+#| fig-height: 3
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
   geom_smooth(method = "loess")
+```
 
 
 
@@ -60,7 +66,6 @@ library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
   geom_smooth(method = "loess")
-
 ```
 
 
@@ -73,7 +78,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
 ### R chunk example 2
 
 
-```{webr}
+```{r}
 mod <- lm(waiting ~ eruptions, data = faithful)
 plot(faithful, main = "Old Faithful Geyser Data")
 abline(mod, col = 'blue')
@@ -90,7 +95,7 @@ summary(mod)
 ### Python chunk example
 
 
-```{pyodide}
+```{python}
 #| echo: true
 import matplotlib.pyplot as plt
 import numpy as np
