@@ -1,0 +1,20 @@
+---
+
+
+### R chunk example 1
+
+
+```{r}
+#| label: Graph
+#| fig-width: 6
+#| fig-height: 3
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+
+
+
+

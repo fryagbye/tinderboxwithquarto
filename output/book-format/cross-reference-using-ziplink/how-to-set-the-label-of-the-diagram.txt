@@ -1,0 +1,15 @@
+
+## How to set the label of the diagram { #sec-how-to-set-the-label }
+
+
+
+### Image link in markdown format { #sec-image-link-in-markdown-format }
+Recognize and collect labels in a format that extends the markdown.
+
+\!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+
+![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+
+
+
+

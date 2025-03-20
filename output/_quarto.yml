@@ -90,7 +90,7 @@ classoption: fleqn
 
 
 execute:
-  cache: true
+  cache: false
   
   freeze: auto
   crossrefs-hover: false	

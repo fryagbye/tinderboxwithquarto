@@ -1,0 +1,24 @@
+---
+
+
+### R chunk example 1 ( Warning off option )
+
+If you want to suppress warning messages, you set `$Q_ChunkSuppressWarning` false.
+
+
+```{webr}
+#| warning: false
+#| fig-width: 6
+#| fig-height: 3
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+
+
+
+
+
+

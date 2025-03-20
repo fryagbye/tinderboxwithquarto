@@ -5,13 +5,16 @@
 ## R
 
 ```{r}
+#| warning: false
+#| label: airquality
+#| fig-cap: Temperature and ozone level.
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
   geom_smooth(method = "loess")
 ```
 
-@fig-numpy
+<dot:cluster>
 
 
 

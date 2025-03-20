@@ -1,11 +1,15 @@
-```{r, echo=FALSE}
-#| include: false
-out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
-source("_common.R")
-```
+
+
 # References {#sec-references }
 
+
 ::: {#refs}
+
+
 :::
+
+
+
+
 
 
