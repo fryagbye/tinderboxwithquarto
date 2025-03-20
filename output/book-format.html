@@ -74,6 +74,30 @@ Bibliography Generation</a>)</p>
 
 
 
+<h1>Chunks and Graphs</h1>
+
+
+<ol type="1">
+<li>R chunk and Python chunk notes</li>
+</ol>
+<p>You can create a pRChunk for an R chunk and a pPChunk for a Python
+chunk. The “Chunk &amp; Graph: Make Chunk List” stamp generates a tag
+like ＜chunk:tagname＞. These tags can be used to reference R chunks,
+Python chunks, Mermaid diagrams, or Graphviz code.</p>
+<p>Please do not insert tags in the middle of a sentence.</p>
+<p>＜chunk:tagname＞</p>
+<ol start="2" type="1">
+<li>Rendered Preview in Text Pane(R chunks, Mermaid diagrams, and
+Graphviz only) You can check the results of the code executed within an
+R chunk in the Preview screen. Similarly, the results of Mermaid and
+Graphviz code can also be displayed. However, this is not possible for
+Python.</li>
+</ol>
+
+
+
+
+
 <h1>Rename HTMLExportFileName of a note with translation</h1>
 
 
@@ -210,12 +234,6 @@ data-cites="fig-test">(<strong>fig-test?</strong>)</span></figcaption>
 <h2>R chunk</h2>
 
 
-<p>Automatically recognize and collect R chunk labels in the following
-format (#| label: fig-xxx-ooo, etc.). The method of specifying a label
-in the curly bracket ({r fig-xxx-ooo}) is not supported. In the
-following example, you can quote <span class="citation"
-data-cites="fig-airquality">(<strong>fig-airquality?</strong>)</span>.</p>
-<p><chunk:airquality></p>
 
 
 
@@ -642,10 +660,10 @@ $(document).ready(function () {
 
 
 
-<h3>Python chunk</h3>
+<h2>Python chunk</h2>
 
 
-<p><chunk:Python chunk></p>
+<p><python:Python chunk></p>
 
 
 
@@ -704,20 +722,6 @@ class="sourceCode txt"><code class="sourceCode default"><span id="cb1-1"><a href
 <h2>Equations</h2>
 
 
-<p>Equation Example</p>
-<p>Black-Scholes (<span class="citation"
-data-cites="eq-black-scholes">(<strong>eq-black-scholes?</strong>)</span>
-) is a mathematical model that seeks to explain</p>
-<p><span class="math display">$$
-ma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm
-S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C
-$$</span> {#eq-black-scholes}</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode latex"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">\frac</span><span class="ss">{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> C}{ </span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> t } + </span><span class="sc">\frac</span><span class="ss">{1}{2}</span><span class="sc">\sigma</span><span class="ss">^{2} </span><span class="sc">\mathrm</span><span class="ss"> S^{2}</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">\frac</span><span class="ss">{</span><span class="sc">\partial</span><span class="ss">^{2} </span><span class="sc">\mathrm</span><span class="ss"> C}{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> S^2}  + </span><span class="sc">\mathrm</span><span class="ss"> r </span><span class="sc">\mathrm</span><span class="ss"> S </span><span class="sc">\frac</span><span class="ss">{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> C}{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> S}</span><span class="sc">\ </span><span class="ss">=  </span><span class="sc">\mathrm</span><span class="ss"> r </span><span class="sc">\mathrm</span><span class="ss"> C </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span></span></code></pre></div>
 
 
 
@@ -726,70 +730,6 @@ class="sourceCode latex"><code class="sourceCode latex"><span id="cb1-1"><a href
 <h2>How to quote</h2>
 
 
-<p>If you enter two square brackets “[[”, the list will be displayed, so
-please enter a part of the label name. As the candidates are narrowed
-down, select the citation label you want to enter.</p>
-<table>
-<caption>How to quote</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr>
-<th>Types of quotations</th>
-<th>Lable</th>
-<th>Quote</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Chapters, Sections etc.</td>
-<td>#sec-</td>
-<td>@sec-</td>
-</tr>
-<tr>
-<td>Figures</td>
-<td>#fig- <br>#| label:fig-<br>%%| label:fig-<br> //|
-label:fig-<br></td>
-<td>@fig-</td>
-</tr>
-<tr>
-<td>Charts　</td>
-<td>#tbl-</td>
-<td>@tbl-</td>
-</tr>
-<tr>
-<td>Equations</td>
-<td>#eq-</td>
-<td>@eq-</td>
-</tr>
-</tbody>
-</table>
-
-
-
-
-
-<h3>Restrictions on quoted labels</h3>
-
-
-<ul>
-<li>The label before change or deletion remains because it cannot be
-detected even if the quoted label name is changed or deleted.</li>
-<li>Cross-ref detection is carried out by regular expression. If it is
-executed in the middle of input, it will be duplicated with a short
-label.</li>
-</ul>
-<p>In this case, if necessary, delete the quoted label name in Stamp and
-perform the detection manually by following the steps below.</p>
-<ol type="1">
-<li>Labels: Clear Cross-Reference List（Delete all citation labels under
-the Reference List.）</li>
-<li>Labels: Make Cross-Reference List（Re-detect the quoted
-label.）</li>
-</ol>
 
 
 
@@ -806,6 +746,29 @@ lists, is cited.</p>
 stamp</li>
 <li>select cross-ref label notes ( start with “@” ) and execute the
 “Labels: Dummy Link between Reference and Selected notes” stamp.</li>
+</ol>
+
+
+
+
+
+<h2>Restrictions on quoted labels</h2>
+
+
+<ul>
+<li>The label before change or deletion remains because it cannot be
+detected even if the quoted label name is changed or deleted.</li>
+<li>Cross-ref detection is carried out by regular expression. If it is
+executed in the middle of input, it will be duplicated with a short
+label.</li>
+</ul>
+<p>In this case, if necessary, delete the quoted label name in Stamp and
+perform the detection manually by following the steps below.</p>
+<ol type="1">
+<li>Labels: Clear Cross-Reference List（Delete all citation labels under
+the Reference List.）</li>
+<li>Labels: Make Cross-Reference List（Re-detect the quoted
+label.）</li>
 </ol>
 
 
