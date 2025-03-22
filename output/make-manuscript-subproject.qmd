@@ -35,9 +35,7 @@ You can set data for author(s) with the path of note with pAuther notes. ( like 
     This is a dummy file for pFrontmatterManuscript. The markdown level depends on the indent level and `$OutlineBaseControl` of of the subproject folder.
 
 ```
-
 $OutlineDepthBase * "#"  + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
-
 ```
 
  

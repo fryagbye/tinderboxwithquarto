@@ -28,6 +28,7 @@ book:
     - part: "Book format"
       chapters:
         - make-notes.qmd
+        - chunks-and-graphs.qmd
         - rename-htmlexportfilename-of-a-note-with-translation.qmd
         - part-in-book-format.qmd
         - cross-reference-using-ziplink.qmd

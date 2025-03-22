@@ -13,8 +13,13 @@
 
 
 
-* `$ExList` → List of notes excluded from cross-reference search ( default value = "List and Agent etc" )
+* ~~`$ExList` → List of notes excluded from cross-reference search ( default value = "List and Agent etc" )~~
 
+
+
+* `$ProjectContainer`  → 
+
+		→ CrossRef Search is searched within 
 
 
 * `$ExportFolder` → Path of exported files. ( for Stamp "Move qmd files" )

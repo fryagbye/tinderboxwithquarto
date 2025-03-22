@@ -6,9 +6,9 @@ There is a stamp **"Notes: Tranlate Section Labels"** that translates the Japane
 
 [^translate-shell]: [Translate-shell](https://github.com/soimort/translate-shell) installation required. 
 
+
 ```zsh
 >brew install translate-shell
-
 ```
 
 

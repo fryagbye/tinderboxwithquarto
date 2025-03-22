@@ -27,9 +27,8 @@ Please refer to the output results of `quato check`.
 
 [^noteinstallversion]:Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.
 
-`quarto check` output
+`quarto check` 
 <details>
-
 
 ```{.zsh}
 # Quarto check output
@@ -88,15 +87,11 @@ Quarto 1.7.13
       Version: 4.4.2
       Path: /Library/Frameworks/R.framework/Resources
       LibPaths:
-
-
         - /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library
-
       knitr: 1.49
       rmarkdown: 2.29
 
 [✓] Checking Knitr engine render......OK
-
 
 ```
 
@@ -110,7 +105,6 @@ Quarto 1.7.13
 ## Installed packages {#sec-installed-packages }
 
 
-
 ```{.r}
 #| echo: false
 #| message: false
@@ -119,7 +113,6 @@ installed.packages() |>
   as_tibble() |> 
   select(Package, Version, Built) |> 
   gt::gt()
-
 ```
 
 <details>
@@ -310,11 +303,9 @@ installed.packages() |>
 ## RStudio Session information {#sec-session-information }
 
 
-
 ```{.r}
 #| echo: false
 sessionInfo()
-
 ```
 
 Platform: aarch64-apple-darwin20
