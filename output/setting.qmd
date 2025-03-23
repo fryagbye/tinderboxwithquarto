@@ -17,12 +17,17 @@
 
 
 
-* `$ProjectContainer`  → 
-
-		→ CrossRef Search is searched within 
+* `$ProjectContainer`  →  Book Project Path for CrossRef Search and Label Lists 
 
 
-* `$ExportFolder` → Path of exported files. ( for Stamp "Move qmd files" )
+![Project Contaier Example](screenshots/BookProjectContainerExample.png){#fig-projectcontaierexample fig-alt="Project Contaier Example" fig-align="left" width=80%}  
+
+
+
+* `$ExportFolder` → Path of exported files.
+
+
+![Export Folder Setting](screenshots/exportfoldersetting.png){#fig-exportfoldersetting fig-alt="Export Folder Setting" fig-align="left" width=50%}
 
 
 
@@ -34,7 +39,7 @@
 
 
 
-* `$Rename_in` → Setting for translating a label. ( default value = ja:en )
+* `$Rename_in` → [`translate-shell`](https://github.com/soimort/translate-shell) option setting `[SOURCES]:[TAGETS]. ( default value = ja:en )
 
 
 
@@ -44,6 +49,7 @@
 
 * ~~`$OutlineBaseControl` → Adjustment of section levels in Markdown. ( default = 1 )~~
 
+    `$OutlineBaseControl` is enabled in Manuscript and revealjs project. This attribute is used in pSubfolderManuscript and pSubfolderRevealjs note.
      e.g. 
 
 
@@ -58,7 +64,7 @@
 
 * `$RScriptLibraryPath` → R Library Resource Path ( default Value )
 
-    
+    ![Rscript Library Path](screenshots/RscriptLibPath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
 
 
 2. Making a `_quarto.yml`

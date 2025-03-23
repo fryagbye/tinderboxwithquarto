@@ -41,6 +41,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-324f2794ca3c62d1651739705d61c15c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -301,20 +304,53 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><p><code>$Indent_Charactor</code> → Set the symbol representing the depth of indentation. ( default value = ★ )</p></li>
 <li><p><del><code>$ExList</code> → List of notes excluded from cross-reference search ( default value = “List and Agent etc” )</del></p></li>
-<li><p><code>$ProjectContainer</code> →</p>
-<pre><code>  → CrossRef Search is searched within </code></pre></li>
-<li><p><code>$ExportFolder</code> → Path of exported files. ( for Stamp “Move qmd files” )</p></li>
+<li><p><code>$ProjectContainer</code> → Book Project Path for CrossRef Search and Label Lists</p></li>
+</ul>
+<div id="fig-projectcontaierexample" class="quarto-float quarto-figure quarto-figure-left anchored" alt="Project Contaier Example" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-projectcontaierexample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="screenshots/BookProjectContainerExample.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;2.1: Project Contaier Example"><img src="screenshots/BookProjectContainerExample.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:80.0%" alt="Project Contaier Example"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-projectcontaierexample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Project Contaier Example
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><code>$ExportFolder</code> → Path of exported files.</li>
+</ul>
+<div id="fig-exportfoldersetting" class="quarto-float quarto-figure quarto-figure-left anchored" alt="Export Folder Setting" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exportfoldersetting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="screenshots/exportfoldersetting.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2.2: Export Folder Setting"><img src="screenshots/exportfoldersetting.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:50.0%" alt="Export Folder Setting"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exportfoldersetting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Export Folder Setting
+</figcaption>
+</figure>
+</div>
+<ul>
 <li><p><code>$ToggleTOC</code> → Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml.</p></li>
 <li><p><code>$Q_TableOfContainsNote</code> → <strong>$Name</strong> of TOC note. ( default value = Table of Contents )</p></li>
-<li><p><code>$Rename_in</code> → Setting for translating a label. ( default value = ja:en )</p></li>
+<li><p><code>$Rename_in</code> → <a href="https://github.com/soimort/translate-shell"><code>translate-shell</code></a> option setting `[SOURCES]:[TAGETS]. ( default value = ja:en )</p></li>
 <li><p><code>$Q_PDFEngine</code> → Setting for <a href="https://quarto.org/docs/output-formats/pdf-engine.html">pdf engine</a> This file is tested only with lualatex. ( default value = lualatex )</p></li>
 <li><p><del><code>$OutlineBaseControl</code> → Adjustment of section levels in Markdown. ( default = 1 )</del></p>
-<p>e.g.&nbsp;</p>
+<p><code>$OutlineBaseControl</code> is enabled in Manuscript and revealjs project. This attribute is used in pSubfolderManuscript and pSubfolderRevealjs note. e.g.&nbsp;</p>
 <ul>
 <li><p>$OutlineBaseControl = 1 → ## Title</p></li>
 <li><p>$OutlineBaseControl = 1 → # Title</p></li>
 </ul></li>
-<li><p><code>$RScriptLibraryPath</code> → R Library Resource Path ( default Value )</p></li>
+<li><p><code>$RScriptLibraryPath</code> → R Library Resource Path ( default Value )</p>
+<div id="fig-rscript-libpath" class="quarto-float quarto-figure quarto-figure-left anchored" alt="Rscript Library Path" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rscript-libpath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="screenshots/RscriptLibPath.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2.3: Rscript Library Path"><img src="screenshots/RscriptLibPath.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:80.0%" alt="Rscript Library Path"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rscript-libpath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Rscript Library Path
+</figcaption>
+</figure>
+</div></li>
 </ul>
 <ol start="2" type="1">
 <li><p>Making a <code>_quarto.yml</code></p>
@@ -774,6 +810,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":true,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
