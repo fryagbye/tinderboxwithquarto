@@ -8,7 +8,7 @@
 
 <meta name="author" content="fryagbye">
 
-<title>2&nbsp; Setting – Tinderbox file for Quarto</title>
+<title>11&nbsp; Export and Render – Tinderbox file for Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./make-notes.html" rel="next">
-<link href="./usage-environment.html" rel="prev">
+<link href="./make-revealjs-subproject.html" rel="next">
+<link href="./make-manuscript-subproject.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -41,9 +75,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-324f2794ca3c62d1651739705d61c15c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -88,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./setting.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-manuscript-subproject.html">Manuscript format</a></li><li class="breadcrumb-item"><a href="./export-and-render.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Export and Render</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -135,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./setting.html" class="sidebar-item-text sidebar-link active">
+  <a href="./setting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting</span></span></a>
   </div>
 </li>
@@ -209,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./export-and-render.html" class="sidebar-item-text sidebar-link">
+  <a href="./export-and-render.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
@@ -278,9 +309,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-manuscript-subproject.html">Manuscript format</a></li><li class="breadcrumb-item"><a href="./export-and-render.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Export and Render</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-setting" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting</span></span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Export and Render</span></h1>
 </div>
 
 
@@ -298,66 +329,19 @@ ul.task-list li input[type="checkbox"] {
 
 
 <ol type="1">
-<li><p>Setting up with “TBXConfig” note</p>
-<p>You need to change the values of the following “TBXConfig” attributes for configuration.</p></li>
+<li><p>Export</p>
+<p>You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in the sub-project folder.</p></li>
+<li><p>Activate a virtual environment</p></li>
 </ol>
-<ul>
-<li><p><code>$Indent_Charactor</code> → Set the symbol representing the depth of indentation. ( default value = ★ )</p></li>
-<li><p><del><code>$ExList</code> → List of notes excluded from cross-reference search ( default value = “List and Agent etc” )</del></p></li>
-<li><p><code>$ProjectContainer</code> → Book Project Path for CrossRef Search and Label Lists</p></li>
-</ul>
-<div id="fig-projectcontaierexample" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="Project Contaier Example">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-projectcontaierexample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="screenshots/BookProjectContainerExample.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;2.1: Project Contaier Example"><img src="screenshots/BookProjectContainerExample.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:80.0%" alt="Project Contaier Example"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-projectcontaierexample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: Project Contaier Example
-</figcaption>
-</figure>
-</div>
-<ul>
-<li><code>$ExportFolder</code> → Path of exported files.</li>
-</ul>
-<div id="fig-exportfoldersetting" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="Export Folder Setting">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-exportfoldersetting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="screenshots/exportfoldersetting.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2.2: Export Folder Setting"><img src="screenshots/exportfoldersetting.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:50.0%" alt="Export Folder Setting"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exportfoldersetting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: Export Folder Setting
-</figcaption>
-</figure>
-</div>
-<ul>
-<li><p><code>$ToggleTOC</code> → Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml.</p></li>
-<li><p><code>$Q_TableOfContainsNote</code> → <strong>$Name</strong> of TOC note. ( default value = Table of Contents )</p></li>
-<li><p><code>$Rename_in</code> → <a href="https://github.com/soimort/translate-shell"><code>translate-shell</code></a> option setting `[SOURCES]:[TAGETS]. ( default value = ja:en )</p></li>
-<li><p><code>$Q_PDFEngine</code> → Setting for <a href="https://quarto.org/docs/output-formats/pdf-engine.html">pdf engine</a> This file is tested only with lualatex. ( default value = lualatex )</p></li>
-<li><p><del><code>$OutlineBaseControl</code> → Adjustment of section levels in Markdown. ( default = 1 )</del></p>
-<p><code>$OutlineBaseControl</code> is enabled in Manuscript and revealjs project. This attribute is used in pSubfolderManuscript and pSubfolderRevealjs note. e.g.&nbsp;</p>
-<ul>
-<li><p>$OutlineBaseControl = 1 → ## Title</p></li>
-<li><p>$OutlineBaseControl = 1 → # Title</p></li>
-</ul></li>
-<li><p><code>$RScriptLibraryPath</code> → R Library Resource Path ( default Value )</p>
-<div id="fig-rscript-libpath" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="Rscript Library Path">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-rscript-libpath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="screenshots/RscriptLibPath.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2.3: Rscript Library Path"><img src="screenshots/RscriptLibPath.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:80.0%" alt="Rscript Library Path"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rscript-libpath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.3: Rscript Library Path
-</figcaption>
-</figure>
-</div></li>
-</ul>
-<ol start="2" type="1">
-<li><p>Making a <code>_quarto.yml</code></p>
-<p>You can change the values of attributes of the “_quarto” note to change quarto options. The quarto options are attributes that start with “Q” in this file. The initial setting specified in <code>_quarto.yml</code> is for Japanese output. Please refer to <a href="https://quarto.org/docs/books/book-structure.html">Quarto Book Structure</a> and <a href="https://quarto.org/docs/output-formats/pdf-basics.html">PDF Basics</a> in detail. If you use <a href="https://quarto.org/docs/authoring/language.html#custom-translations">Custom Translations</a>, you need to make <code>$Q_Has_Language_YML</code> <code>true</code> and set <code>$Q_Language_YML</code> for the filename. The “_language” note in this file is for translating to Japanese.</p></li>
-<li><p>Changing the <code>_common.R</code> file. ( optional )</p>
-<p>You can set up <code>knitr</code> package options for R chunk.</p></li>
+<p>if you use a virtual environment, activate it. e.g.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> shell</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Render sub-project</li>
 </ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># quarto render "your project name"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render myproject</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For preview</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview myproject <span class="at">--to</span> html <span class="at">--no-watch-inputs</span> <span class="at">--no-browse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
@@ -786,13 +770,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./usage-environment.html" class="pagination-link" aria-label="Usage environment">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Usage environment</span></span>
+      <a href="./make-manuscript-subproject.html" class="pagination-link" aria-label="Make sub-project folder">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./make-notes.html" class="pagination-link" aria-label="Make notes">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./make-revealjs-subproject.html" class="pagination-link" aria-label="Make sub-project folder">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -804,44 +788,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/setting.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/export-and-render.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>footer right</p>
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":true,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

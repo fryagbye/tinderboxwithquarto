@@ -8,7 +8,7 @@
 
 <meta name="author" content="fryagbye">
 
-<title>2&nbsp; Setting – Tinderbox file for Quarto</title>
+<title>4&nbsp; Chunks and Graphs – Tinderbox file for Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./make-notes.html" rel="next">
-<link href="./usage-environment.html" rel="prev">
+<link href="./rename-htmlexportfilename-of-a-note-with-translation.html" rel="next">
+<link href="./make-notes.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -41,9 +41,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-324f2794ca3c62d1651739705d61c15c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -88,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./setting.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-notes.html">Book format</a></li><li class="breadcrumb-item"><a href="./chunks-and-graphs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chunks and Graphs</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -135,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./setting.html" class="sidebar-item-text sidebar-link active">
+  <a href="./setting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting</span></span></a>
   </div>
 </li>
@@ -156,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chunks-and-graphs.html" class="sidebar-item-text sidebar-link">
+  <a href="./chunks-and-graphs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chunks and Graphs</span></span></a>
   </div>
 </li>
@@ -278,9 +275,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./make-notes.html">Book format</a></li><li class="breadcrumb-item"><a href="./chunks-and-graphs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chunks and Graphs</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-setting" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting</span></span></h1>
+<h1 class="title"><span id="sec-chunks-and-graphs" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chunks and Graphs</span></span></h1>
 </div>
 
 
@@ -298,66 +295,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <ol type="1">
-<li><p>Setting up with “TBXConfig” note</p>
-<p>You need to change the values of the following “TBXConfig” attributes for configuration.</p></li>
+<li>R chunk and Python chunk notes</li>
 </ol>
-<ul>
-<li><p><code>$Indent_Charactor</code> → Set the symbol representing the depth of indentation. ( default value = ★ )</p></li>
-<li><p><del><code>$ExList</code> → List of notes excluded from cross-reference search ( default value = “List and Agent etc” )</del></p></li>
-<li><p><code>$ProjectContainer</code> → Book Project Path for CrossRef Search and Label Lists</p></li>
-</ul>
-<div id="fig-projectcontaierexample" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="Project Contaier Example">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-projectcontaierexample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="screenshots/BookProjectContainerExample.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;2.1: Project Contaier Example"><img src="screenshots/BookProjectContainerExample.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:80.0%" alt="Project Contaier Example"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-projectcontaierexample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: Project Contaier Example
-</figcaption>
-</figure>
-</div>
-<ul>
-<li><code>$ExportFolder</code> → Path of exported files.</li>
-</ul>
-<div id="fig-exportfoldersetting" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="Export Folder Setting">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-exportfoldersetting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="screenshots/exportfoldersetting.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2.2: Export Folder Setting"><img src="screenshots/exportfoldersetting.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:50.0%" alt="Export Folder Setting"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exportfoldersetting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: Export Folder Setting
-</figcaption>
-</figure>
-</div>
-<ul>
-<li><p><code>$ToggleTOC</code> → Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml.</p></li>
-<li><p><code>$Q_TableOfContainsNote</code> → <strong>$Name</strong> of TOC note. ( default value = Table of Contents )</p></li>
-<li><p><code>$Rename_in</code> → <a href="https://github.com/soimort/translate-shell"><code>translate-shell</code></a> option setting `[SOURCES]:[TAGETS]. ( default value = ja:en )</p></li>
-<li><p><code>$Q_PDFEngine</code> → Setting for <a href="https://quarto.org/docs/output-formats/pdf-engine.html">pdf engine</a> This file is tested only with lualatex. ( default value = lualatex )</p></li>
-<li><p><del><code>$OutlineBaseControl</code> → Adjustment of section levels in Markdown. ( default = 1 )</del></p>
-<p><code>$OutlineBaseControl</code> is enabled in Manuscript and revealjs project. This attribute is used in pSubfolderManuscript and pSubfolderRevealjs note. e.g.&nbsp;</p>
-<ul>
-<li><p>$OutlineBaseControl = 1 → ## Title</p></li>
-<li><p>$OutlineBaseControl = 1 → # Title</p></li>
-</ul></li>
-<li><p><code>$RScriptLibraryPath</code> → R Library Resource Path ( default Value )</p>
-<div id="fig-rscript-libpath" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="Rscript Library Path">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-rscript-libpath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="screenshots/RscriptLibPath.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2.3: Rscript Library Path"><img src="screenshots/RscriptLibPath.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:80.0%" alt="Rscript Library Path"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rscript-libpath-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.3: Rscript Library Path
-</figcaption>
-</figure>
-</div></li>
-</ul>
+<p>You can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The “Chunk &amp; Graph: Make Chunk List” stamp generates a tag like ＜chunk:tagname＞. These tags can be used to reference R chunks, Python chunks, Mermaid diagrams, or Graphviz code. Please do not insert tags in the middle of a sentence. ＜chunk:tagname＞</p>
 <ol start="2" type="1">
-<li><p>Making a <code>_quarto.yml</code></p>
-<p>You can change the values of attributes of the “_quarto” note to change quarto options. The quarto options are attributes that start with “Q” in this file. The initial setting specified in <code>_quarto.yml</code> is for Japanese output. Please refer to <a href="https://quarto.org/docs/books/book-structure.html">Quarto Book Structure</a> and <a href="https://quarto.org/docs/output-formats/pdf-basics.html">PDF Basics</a> in detail. If you use <a href="https://quarto.org/docs/authoring/language.html#custom-translations">Custom Translations</a>, you need to make <code>$Q_Has_Language_YML</code> <code>true</code> and set <code>$Q_Language_YML</code> for the filename. The “_language” note in this file is for translating to Japanese.</p></li>
-<li><p>Changing the <code>_common.R</code> file. ( optional )</p>
-<p>You can set up <code>knitr</code> package options for R chunk.</p></li>
+<li>Rendered Preview in Text Pane(R chunks, Mermaid diagrams, and Graphviz only)</li>
 </ol>
+<p>You can check the results of the code executed within an R chunk in the Preview screen. Similarly, the results of Mermaid and Graphviz code can also be displayed. However, this is not possible for Python.</p>
 
 
 
@@ -786,13 +730,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./usage-environment.html" class="pagination-link" aria-label="Usage environment">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Usage environment</span></span>
+      <a href="./make-notes.html" class="pagination-link" aria-label="Make notes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./make-notes.html" class="pagination-link" aria-label="Make notes">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make notes</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./rename-htmlexportfilename-of-a-note-with-translation.html" class="pagination-link" aria-label="Rename HTMLExportFileName of a note with translation">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -804,44 +748,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/setting.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/chunks-and-graphs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>footer right</p>
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":true,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
