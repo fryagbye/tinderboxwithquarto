@@ -24,3 +24,5 @@ output/*_cache/*
 .RData
 .Rhistory
 _RchunkPreviewOutput.*
+AppleScript/
+
