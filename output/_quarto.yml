@@ -22,30 +22,30 @@ book:
     style: docked
     pinned: true
   chapters:
-    - index.qmd
-    - usage-environment.qmd
-    - setting.qmd
+    - index.html
+    - usage-environment.html
+    - setting.html
     - part: "Book format"
       chapters:
-        - make-notes.qmd
-        - chunks-and-graphs.qmd
-        - rename-htmlexportfilename-of-a-note-with-translation.qmd
-        - part-in-book-format.qmd
-        - cross-reference-using-ziplink.qmd
-        - export.qmd
-        - example.qmd
+        - make-notes.html
+        - chunks-and-graphs.html
+        - rename-htmlexportfilename-of-a-note-with-translation.html
+        - part-in-book-format.html
+        - cross-reference-using-ziplink.html
+        - export.html
+        - example.html
     - part: "Manuscript format"
       chapters:
-        - make-manuscript-subproject.qmd
-        - export-and-render.qmd
+        - make-manuscript-subproject.html
+        - export-and-render.html
     - part: "revealjs format"
       chapters:
-        - make-revealjs-subproject.qmd
-    - mermaid-flowchart.qmd
-    - graphviz-optional.qmd
-    - references.qmd
+        - make-revealjs-subproject.html
+    - mermaid-flowchart.html
+    - graphviz-optional.html
+    - references.html
   appendices:
-    - restrictions.qmd
+    - restrictions.html
 
 
 format:
@@ -86,7 +86,7 @@ bibliography: /Users/tk4o2ka/github/tinderboxwithquarto/citation/references.bib
 
 reference-location: margin
 
-language: _language.yml
+
 classoption: fleqn
 
 

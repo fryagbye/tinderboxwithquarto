@@ -308,12 +308,11 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="10.1.1" class="anchored" data-anchor-id="front-matter-and-subnote"><span class="header-section-number">10.1.1</span> Front Matter and Subnote</h3>
 <ol type="1">
 <li><p>pFrontmatterManuscript</p>
-<p>This is a qmd file that contains a Front Matter. When you export, it has contents of descendants. You can set data for author(s) with the path of note with pAuther notes. ( like Authors ) <code>$IsManuscript = true</code></p></li>
+<p>This is a qmd file that contains a Front Matter. When you export, it has contents of descendants. You can set data for author(s) with the path of note with pAuther notes. ( like Authors )</p></li>
 <li><p>pSubnoteManuscript</p>
 <p>This is a dummy file for pFrontmatterManuscript. The markdown level depends on the indent level and <code>$OutlineBaseControl</code> of of the subproject folder.</p></li>
 </ol>
 <pre><code>$OutlineDepthBase * "#"  + $OutlineBaseControl(collect(ancestors,$Path)[-1]))</code></pre>
-<p><code>$IsManuscript = true</code></p>
 
 
 </section>

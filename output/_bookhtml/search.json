@@ -241,7 +241,7 @@
     "href": "make-manuscript-subproject.html#make-notes",
     "title": "10  Make sub-project folder",
     "section": "",
-    "text": "10.1.1 Front Matter and Subnote\n\npFrontmatterManuscript\nThis is a qmd file that contains a Front Matter. When you export, it has contents of descendants. You can set data for author(s) with the path of note with pAuther notes. ( like Authors ) $IsManuscript = true\npSubnoteManuscript\nThis is a dummy file for pFrontmatterManuscript. The markdown level depends on the indent level and $OutlineBaseControl of of the subproject folder.\n\n$OutlineDepthBase * \"#\"  + $OutlineBaseControl(collect(ancestors,$Path)[-1]))\n$IsManuscript = true",
+    "text": "10.1.1 Front Matter and Subnote\n\npFrontmatterManuscript\nThis is a qmd file that contains a Front Matter. When you export, it has contents of descendants. You can set data for author(s) with the path of note with pAuther notes. ( like Authors )\npSubnoteManuscript\nThis is a dummy file for pFrontmatterManuscript. The markdown level depends on the indent level and $OutlineBaseControl of of the subproject folder.\n\n$OutlineDepthBase * \"#\"  + $OutlineBaseControl(collect(ancestors,$Path)[-1]))",
     "crumbs": [
       "Manuscript format",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Make sub-project folder</span>"
@@ -263,7 +263,7 @@
     "href": "make-revealjs-subproject.html",
     "title": "12  Make sub-project folder",
     "section": "",
-    "text": "12.1 Front Matter and Subnote\nMake a note for the sub-project with pSubfolderRevealjs .\n$IsRevealjs = true",
+    "text": "12.1 Front Matter and Subnote\nMake a note for the sub-project with pSubfolderRevealjs .",
     "crumbs": [
       "revealjs format",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Make sub-project folder</span>"
@@ -274,7 +274,7 @@
     "href": "make-revealjs-subproject.html#front-matter-and-subnote",
     "title": "12  Make sub-project folder",
     "section": "",
-    "text": "pFrontmatterRevealjs\nThis is a qmd file that contains a Front Matter. When you export, it has descendants’ contents.\npSubnoteRevealjs\nThis is a dummy file for pFrontmatterRevealjs. The markdown level depends on the indent level and $OutlineBaseControl of the subproject folder.\n\n$OutlineDepthBase * \"#\" + $OutlineBaseControl(collect(ancestors,$Path)[-1]))\n\n\nQuote chunk code blocks\nYou can chunk code blocks with a quote tag like the one below from a child note (pRChunk or pPChunk).",
+    "text": "pFrontmatterRevealjs\nThis is a qmd file that contains a Front Matter. When you export, it has descendants’ contents.\npSubnoteRevealjs\nThis is a dummy file for pFrontmatterRevealjs. The markdown level depends on the indent level and $OutlineBaseControl of the subproject folder.\n\n$OutlineDepthBase * \"#\" + $OutlineBaseControl(collect(ancestors,$Path)[-1]))\n\nQuote chunk code blocks\nYou can chunk code blocks with a quote tag like the one below from a child note (pRChunk or pPChunk).",
     "crumbs": [
       "revealjs format",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Make sub-project folder</span>"

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+ <link rel="stylesheet" href="./resources/github.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"></script>
+</head>
+<body>
+
+
+<h1>Make sub-project folder</h1>
+
+<p>Make a note for the sub-project with
+<strong>pSubfolderRevealjs</strong> .</p>
+
+
+
+<h2>Front Matter and Subnote</h2>
+
+
+<ol type="1">
+<li><p>pFrontmatterRevealjs</p>
+<p>This is a qmd file that contains a Front Matter. When you export, it
+has descendants’ contents.</p></li>
+<li><p>pSubnoteRevealjs</p>
+<p>This is a dummy file for pFrontmatterRevealjs. The markdown level
+depends on the indent level and <code>$OutlineBaseControl</code> of the
+subproject folder.</p></li>
+</ol>
+<pre><code>$OutlineDepthBase * &quot;#&quot; + $OutlineBaseControl(collect(ancestors,$Path)[-1]))</code></pre>
+<ol start="3" type="1">
+<li><p>Quote chunk code blocks</p>
+<p>You can chunk code blocks with a quote tag like the one below from a
+child note (pRChunk or pPChunk). <Lang:chunknotename></p></li>
+</ol>
+
+
+
+
+
+<h2>quarto-live extention (β version)</h2>
+
+
+<p>This file supports <a
+href="%5Bhttps://r-wasm.github.io/quarto-live/%5D(https://r-wasm.github.io/quarto-live/)">quarto-live</a>.
+You add the quarto-live extension to your subproject path. (If you add
+it to the project root folder and call it with a relative path, an error
+will occur.)</p>
+
+
+
+
+
+<h2>Example</h2>
+
+
+<p><a
+href="https://fryagbye.quarto.pub/quarto-presentations/#/title-slide">Example
+live-revealjs</a></p>
+
+
+
+
+
+
+</body>
+</html>
+

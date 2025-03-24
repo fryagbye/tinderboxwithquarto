@@ -27,7 +27,6 @@ The manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_
     
     This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.
 You can set data for author(s) with the path of note with pAuther notes. ( like Authors )
-`$IsManuscript = true`
 
 
 2. pSubnoteManuscript
@@ -38,8 +37,6 @@ You can set data for author(s) with the path of note with pAuther notes. ( like 
 $OutlineDepthBase * "#"  + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
 ```
 
- 
-`$IsManuscript = true`
 
 
 

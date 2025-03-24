@@ -27,8 +27,6 @@ Make a note for the sub-project with **pSubfolderRevealjs** .
 $OutlineDepthBase * "#" + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
 ```
 
- 
-`$IsRevealjs = true`
 
 
 3. Quote chunk code blocks
