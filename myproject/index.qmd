@@ -1,6 +1,6 @@
 ---
-title: "Quarto Computations"
-date: 2024-06-29
+title: ""
+date: never
 author:
 
   - name: Yamada Ichiro SAMPLE
@@ -48,195 +48,21 @@ author:
 
 
 abstract: >
-  This is a demo of quarto manuscript
-keywords: Plotly,Python,Quarto
+  
+keywords: 
 
 
-license: "CC BY"
+license: ""
 copyright:
-  holder: quarto-dev
-  year: [2023,2024]
+  holder: 
+  year: []
 citation:
-  container-title: Test
+  container-title: 
   volume: 1
   issue: 1
-  doi: 10.xxxx/12345678
-funding: "The author received no specific funding for this work."
+  doi: 
+funding: ""
 ---
-
-
-
-
-
-
-## NumPy
-
-
-```{python}
-#| label: fig-numpy
-import numpy as np
-a = np.arange(15).reshape(3, 5)
-a
-```
-
-
-Reference test @Wickham2016Data
-
-
-
-
-
-
-
-
-## Matplotlib { #sec-data-methods }
-
-
-```{python}
-#| label: fig-matplotlib
-import matplotlib.pyplot as plt
-fig = plt.figure()
-x = np.arange(10)
-y = 2.5 * np.sin(x / 20 * np.pi)
-yerr = np.linspace(0.05, 0.2, 10)
-
-plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
-plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
-plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
-             label='uplims=True, lolims=True')
-
-upperlimits = [True, False] * 5
-lowerlimits = [False, True] * 5
-plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
-             label='subsets of uplims and lolims')
-
-plt.legend(loc='lower right')
-plt.show(fig)
-```
-
-
-
-
-
-
-
-
-
-
-## Plotly
-
-
-```{python}
-#| label: fig-plotly
-import plotly.express as px
-from IPython.display import Image
-import plotly.io as pio
-gapminder = px.data.gapminder()
-gapminder2007 = gapminder.query("year == 2007")
-fig = px.scatter(gapminder2007, 
-                 x="gdpPercap", y="lifeExp", color="continent", 
-                 size="pop", size_max=60,
-                 hover_name="country")
-fig.show()
-```
-
-
-
-
-
-
-
-
-
-
-## R
-
-
-```{r}
-#| warning: false
-#| label: fig-airquality
-#| fig-cap: Temperature and ozone level.
-library(ggplot2)
-ggplot(airquality, aes(Temp, Ozone)) + 
-  geom_point() + 
-  geom_smooth(method = "loess")
-```
-
-
-
-
-```{dot}
-//| fig-width: 5
-digraph {
-    layout=dot
-    compound=true
-    graph [charset = "UTF-8" ];
-subgraph cluster_A{
-                label="process #1"
-                color="#a19f9e"
-                penwidth="1"
-                style="filled"
-                fillcolor="#a19f9e"
-                fontcolor="#000000"
-        B C D E 
-}
-
-subgraph cluster_B{
-                label="process #2"
-                color="#003366"
-                penwidth="1"
-                style="filled"
-                fillcolor="#ffffff"
-                fontcolor="#000000"
-        F G H I 
-}
-
-
-A [ style="filled"  label="start" shape="Mdiamond", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
-B [ style="filled"  label="a0" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
-C [ style="filled"  label="a1" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
-D [ style="filled"  label="a2" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
-E [ style="filled"  label="a3" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
-F [ style="filled"  label="b0" ]
-G [ style="filled"  label="b1" ]
-H [ style="filled"  label="b2" ]
-I [ style="filled"  label="b3" ]
-J [ style="filled"  label="end" shape="Msquare", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
-
-A -> B [fillcolor="#ffffff" fontcolor="#000000" ]
-A -> F [fillcolor="#ffffff" fontcolor="#000000" ]
-B -> C [fillcolor="#ffffff" fontcolor="#000000" ]
-C -> D [fillcolor="#ffffff" fontcolor="#000000" ]
-C -> I [fillcolor="#ffffff" fontcolor="#000000" ]
-D -> E [fillcolor="#ffffff" fontcolor="#000000" ]
-E -> B [fillcolor="#ffffff" fontcolor="#000000" ]
-E -> J [fillcolor="#ffffff" fontcolor="#000000" ]
-F -> G [fillcolor="#ffffff" fontcolor="#000000" ]
-G -> H [fillcolor="#ffffff" fontcolor="#000000" ]
-H -> E [fillcolor="#ffffff" fontcolor="#000000" ]
-H -> I [fillcolor="#ffffff" fontcolor="#000000" ]
-I -> J [fillcolor="#ffffff" fontcolor="#000000" ]
-}
-```
-
-
-
-
-
-
-
-
-
-
-## References { .unnumbered }
-
-:::{#refs}
-
-
-:::
-
-
-
 
 
 
