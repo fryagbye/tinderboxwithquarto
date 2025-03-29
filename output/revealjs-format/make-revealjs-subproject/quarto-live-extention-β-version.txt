@@ -1,0 +1,12 @@
+
+
+## quarto-live extention (β version)
+
+This file supports [quarto-live](https://r-wasm.github.io/quarto-live/).
+You add the quarto-live extension to your subproject path.
+(If you add it to the project root folder and call it with a relative path, an error will occur.)
+
+
+
+
+

@@ -15,7 +15,7 @@ if you use a virtual environment, activate it.
 e.g.
 
 ```zsh
-poetry shell
+> poetry shell
 ```
 
 
@@ -25,9 +25,9 @@ poetry shell
 
 ```zsh
 # quarto render "your project name"
-quarto render myproject
+> quarto render myproject
 # For preview
-quarto preview myproject --to html --no-watch-inputs --no-browse
+> quarto preview myproject --to html 
 ```
 
 

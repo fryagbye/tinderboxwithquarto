@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.13">
+<meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="fryagbye">
 <title>7&nbsp; Cross-Reference using Ziplink – Tinderbox file for Quarto</title>
@@ -82,8 +82,7 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./export.html" rel="next">
 <link href="./part-in-book-format.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
@@ -366,15 +365,20 @@ window.Quarto = {
   
 
 
-</header><p>In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the <strong>Tinderbox</strong> file at the bottom of the <strong>Reference List</strong> note. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. <strong>Tinderbox</strong>’s <strong>Ziplink</strong> function <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The diagrams and tables are extracted in regular expressions.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;Please refer to “Text link creation via the Ziplinking method” in <a href="https://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html">A Tinderbox Reference File</a>.(<span class="citation" data-cites="Anderson2024Tinde">Anderson (<a href="references.html#ref-Anderson2024Tinde" role="doc-biblioref">2024</a>)</span>)</p></div></div><section id="sec-how-to-set-the-label" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="sec-how-to-set-the-label">
+</header><p>In Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The diagrams and tables are extracted in regular expressions.</p></div></div><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="screenshots/WorkingIndicator.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not."><img src="screenshots/WorkingIndicator.png" class="img-fluid figure-img" alt="Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not."></a></p>
+<figcaption>Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.</figcaption></figure>
+</div>
+<p>Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. <strong>Tinderbox</strong>’s <strong>Ziplink</strong> function <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Please refer to “Text link creation via the Ziplinking method” in <a href="https://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html">A Tinderbox Reference File</a>.(<span class="citation" data-cites="Anderson2024Tinde">Anderson (<a href="references.html#ref-Anderson2024Tinde" role="doc-biblioref">2024</a>)</span>)</p></div></div><section id="sec-how-to-set-the-label" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="sec-how-to-set-the-label">
 <span class="header-section-number">7.1</span> How to set the label of the diagram</h2>
 <section id="sec-image-link-in-markdown-format" class="level3" data-number="7.1.1"><h3 data-number="7.1.1" class="anchored" data-anchor-id="sec-image-link-in-markdown-format">
 <span class="header-section-number">7.1.1</span> Image link in markdown format</h3>
 <p>Recognize and collect labels in a format that extends the markdown. ![Test image](screenshots/toolbar.png){#fig-test fig-alt=“test” fig-align=“left” width=100%}</p>
 <div id="fig-test" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="test">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="screenshots/toolbar.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;7.1: label:Figure&nbsp;fig-test"><img src="screenshots/toolbar.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%" alt="test"></a>
+<a href="screenshots/toolbar.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;7.1: label:Figure&nbsp;fig-test"><img src="screenshots/toolbar.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%" alt="test"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.1: label:<a href="#fig-test" class="quarto-xref">Figure&nbsp;<span>7.1</span></a>
@@ -391,7 +395,7 @@ Figure&nbsp;7.1: label:<a href="#fig-test" class="quarto-xref">Figure&nbsp;<span
 <div class="cell-output-display">
 <div id="fig-airquality" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;7.2: Temperature and ozone level."><img src="cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png" class="img-fluid figure-img" width="480"></a>
+<a href="cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;7.2: Temperature and ozone level."><img src="cross-reference-using-ziplink_files/figure-html/fig-airquality-1.png" class="img-fluid figure-img" width="480"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.2: Temperature and ozone level.
@@ -402,18 +406,40 @@ Figure&nbsp;7.2: Temperature and ozone level.
 </section><section id="python-chunk" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="python-chunk">
 <span class="header-section-number">7.3</span> Python chunk</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.normal(<span class="dv">170</span>, <span class="dv">10</span>, <span class="dv">250</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>plt.hist(x)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div id="fig-python" class="quarto-float quarto-figure quarto-figure-center anchored" width="480">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-python-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="cross-reference-using-ziplink_files/figure-html/fig-python-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;7.3: "><img src="cross-reference-using-ziplink_files/figure-html/fig-python-1.png" id="fig-python" class="img-fluid figure-img" width="480"></a>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.arange(<span class="dv">15</span>).reshape(<span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[ 0,  1,  2,  3,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14]])</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-python-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">2.5</span> <span class="op">*</span> np.sin(x <span class="op">/</span> <span class="dv">20</span> <span class="op">*</span> np.pi)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>yerr <span class="op">=</span> np.linspace(<span class="fl">0.05</span>, <span class="fl">0.2</span>, <span class="dv">10</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.errorbar(x, y <span class="op">+</span> <span class="dv">3</span>, yerr<span class="op">=</span>yerr, label<span class="op">=</span><span class="st">'both limits (default)'</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.errorbar(x, y <span class="op">+</span> <span class="dv">2</span>, yerr<span class="op">=</span>yerr, uplims<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">'uplims=True'</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.errorbar(x, y <span class="op">+</span> <span class="dv">1</span>, yerr<span class="op">=</span>yerr, uplims<span class="op">=</span><span class="va">True</span>, lolims<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>             label<span class="op">=</span><span class="st">'uplims=True, lolims=True'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>upperlimits <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>] <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>lowerlimits <span class="op">=</span> [<span class="va">False</span>, <span class="va">True</span>] <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.errorbar(x, y, yerr<span class="op">=</span>yerr, uplims<span class="op">=</span>upperlimits, lolims<span class="op">=</span>lowerlimits,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>             label<span class="op">=</span><span class="st">'subsets of uplims and lolims'</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.show(fig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-matplotlib" class="quarto-float quarto-figure quarto-figure-center anchored" width="480">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-matplotlib-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="cross-reference-using-ziplink_files/figure-html/fig-matplotlib-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;7.3: "><img src="cross-reference-using-ziplink_files/figure-html/fig-matplotlib-1.png" id="fig-matplotlib" class="img-fluid figure-img" width="480"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-matplotlib-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.3
 </figcaption></figure>
 </div>
@@ -422,17 +448,17 @@ Figure&nbsp;7.3
 </section><section id="sec-how-to-set-the-label-of-the-table" class="level2 page-columns page-full" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="sec-how-to-set-the-label-of-the-table">
 <span class="header-section-number">7.4</span> How to set the label of the table</h2>
 <p>There are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;For other formats, please refer to <a href="https://quarto.org/docs/authoring/cross-references.html#tables">quarto cross-reference</a>.</p></div></div><div class="sourceCode" id="cb3"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>:明度・彩度の修飾子 {#tbl-brightness-saturation}</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>|項目|効果|</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>|----|------------|</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>|dark|暗くする|</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>|darker|より暗くする|</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>|darkest|最も暗くする|</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>|light| 明るくする|</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;For other formats, please refer to <a href="https://quarto.org/docs/authoring/cross-references.html#tables">quarto cross-reference</a>.</p></div></div><div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>:明度・彩度の修飾子 {#tbl-brightness-saturation}</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>|項目|効果|</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>|----|------------|</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>|dark|暗くする|</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>|darker|より暗くする|</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>|darkest|最も暗くする|</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>|light| 明るくする|</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="tbl-brightness-saturation" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-brightness-saturation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;7.1: 明度・彩度の修飾子
@@ -471,11 +497,11 @@ Table&nbsp;7.1: 明度・彩度の修飾子
 ma^{2} \mathrm S^{2}
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C
 \tag{7.1}\]</span></span></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ss">ma^{2} </span><span class="sc">\mathrm</span><span class="ss"> S^{2}</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="sc">\frac</span><span class="ss">{</span><span class="sc">\partial</span><span class="ss">^{2} </span><span class="sc">\mathrm</span><span class="ss"> C}{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> S^2}  + </span><span class="sc">\mathrm</span><span class="ss"> r </span><span class="sc">\mathrm</span><span class="ss"> S </span><span class="sc">\frac</span><span class="ss">{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> C}{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> S}</span><span class="sc">\ </span><span class="ss">=  </span><span class="sc">\mathrm</span><span class="ss"> r </span><span class="sc">\mathrm</span><span class="ss"> C </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ss">ma^{2} </span><span class="sc">\mathrm</span><span class="ss"> S^{2}</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="sc">\frac</span><span class="ss">{</span><span class="sc">\partial</span><span class="ss">^{2} </span><span class="sc">\mathrm</span><span class="ss"> C}{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> S^2}  + </span><span class="sc">\mathrm</span><span class="ss"> r </span><span class="sc">\mathrm</span><span class="ss"> S </span><span class="sc">\frac</span><span class="ss">{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> C}{</span><span class="sc">\partial</span><span class="ss"> </span><span class="sc">\mathrm</span><span class="ss"> S}</span><span class="sc">\ </span><span class="ss">=  </span><span class="sc">\mathrm</span><span class="ss"> r </span><span class="sc">\mathrm</span><span class="ss"> C </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="sec-how-to-quote" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="sec-how-to-quote">
 <span class="header-section-number">7.6</span> How to quote</h2>
 <p>If you enter two square brackets “[[”, the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.</p>

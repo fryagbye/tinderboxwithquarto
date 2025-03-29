@@ -2,7 +2,10 @@
 
 # Cross-Reference using Ziplink {#sec-cross-reference-using-ziplink }
 
-In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the **Tinderbox** file at the bottom of the **Reference List** note. [^regrex]
+In Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). [^regrex]
+
+![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](screenshots/WorkingIndicator.png)
+
 Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
 
 [^regrex]: The diagrams and tables are extracted in regular expressions.
@@ -68,15 +71,37 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 
 ```{python}
-#| echo: true
-#| label: fig-python
+#| label: fig-numpy
+#| fig-width: 5
+import numpy as np
+a = np.arange(15).reshape(3, 5)
+a
+```
+
+
+
+
+```{python}
+#| label: fig-matplotlib
 #| fig-width: 5
 import matplotlib.pyplot as plt
-import numpy as np
+fig = plt.figure()
+x = np.arange(10)
+y = 2.5 * np.sin(x / 20 * np.pi)
+yerr = np.linspace(0.05, 0.2, 10)
 
-x = np.random.normal(170, 10, 250)
-plt.hist(x)
-plt.show()
+plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
+plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
+plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
+             label='uplims=True, lolims=True')
+
+upperlimits = [True, False] * 5
+lowerlimits = [False, True] * 5
+plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
+             label='subsets of uplims and lolims')
+
+plt.legend(loc='lower right')
+plt.show(fig)
 ```
 
 

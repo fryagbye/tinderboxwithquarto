@@ -14,7 +14,7 @@
     "href": "usage-environment.html",
     "title": "1  Usage environment",
     "section": "",
-    "text": "1.1 Installed packages\nPlease refer to the output results of quato check.\n*I have set it to use the quarto-live extension for revealjs.",
+    "text": "1.1 Installed packages\nPlease refer to the output results of quato check.\n*I have set it to use the quarto-live extension for revealjs. (quarto live)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Usage environment</span>"
     ]
@@ -76,7 +76,7 @@
     "href": "chunks-and-graphs.html",
     "title": "4  Chunks and Graphs",
     "section": "",
-    "text": "R chunk and Python chunk notes\n\nYou can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The “Chunk & Graph: Make Chunk List” stamp generates a tag like ＜chunk:tagname＞. These tags can be used to reference R chunks, Python chunks, Mermaid diagrams, or Graphviz code. Please do not insert tags in the middle of a sentence. ＜chunk:tagname＞\n\nRendered Preview in Text Pane(R chunks, Mermaid diagrams, and Graphviz only)\n\nYou can check the results of the code executed within an R chunk in the Preview screen. Similarly, the results of Mermaid and Graphviz code can also be displayed. However, this is not possible for Python.",
+    "text": "R chunk and Python chunk notes\n\nYou can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The “Chunk & Graph: Make Chunk List” stamp generates a tag like ＜Lang:Tag Label➡️Figure Label＞. These tags can be used to reference R chunks, Python chunks, Mermaid diagrams, or Graphviz code. Please do not insert tags in the middle of a sentence.\n\n\n\nChunk Tag Example\n\n\nIf tags called in your notes are changed or deleted, the warning is shown. you can suppress the warning with $SuppresTagDetectWaring in the project container note.\n\nRendered Preview in Text Pane(R chunks, Mermaid diagrams, and Graphviz only)\n\nYou can check the results of the code executed within an R chunk in the Preview screen. Similarly, the results of Mermaid and Graphviz code can also be displayed. However, this is not possible for Python.",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Chunks and Graphs</span>"
@@ -87,7 +87,7 @@
     "href": "rename-htmlexportfilename-of-a-note-with-translation.html",
     "title": "5  Rename HTMLExportFileName of a note with translation",
     "section": "",
-    "text": "There is a stamp “Notes: Tranlate Section Labels” that translates the Japanese title ($Name) into English and automatically sets $HTMLExportFileName 1. and you can set $SectionLabel with stamp “Set: Section Label”. The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with $Rename_in in the TBX configuration note (TBXConfig). ( By default, from Japanese to English).\n1 Translate-shell installation required.&gt;brew install translate-shell",
+    "text": "There is a stamp “Notes: Tranlate Section Labels” that translates the Japanese title ($Name) into English and automatically sets $HTMLExportFileName 1. and you can set $SectionLabel with stamp “Set: Section Label”. The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with $Rename_in in the TBX configuration note (TBXConfig). ( By default, from Japanese to English).\n1 Translate-shell installation required.&gt; brew install translate-shell",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Rename HTMLExportFileName of a note with translation</span>"
@@ -109,7 +109,7 @@
     "href": "cross-reference-using-ziplink.html",
     "title": "7  Cross-Reference using Ziplink",
     "section": "",
-    "text": "7.1 How to set the label of the diagram\nIn Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the Tinderbox file at the bottom of the Reference List note. 1 Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. Tinderbox’s Ziplink function 2 is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.",
+    "text": "7.1 How to set the label of the diagram\nIn Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). 1\nConvert it to a quotable title (citation name starting with @) and create a note for the corresponding part. Tinderbox’s Ziplink function 2 is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -142,7 +142,7 @@
     "href": "cross-reference-using-ziplink.html#python-chunk",
     "title": "7  Cross-Reference using Ziplink",
     "section": "\n7.3 Python chunk",
-    "text": "7.3 Python chunk\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nx = np.random.normal(170, 10, 250)\nplt.hist(x)\nplt.show()\n\n\n\n\n\n\nFigure 7.3",
+    "text": "7.3 Python chunk\n\nimport numpy as np\na = np.arange(15).reshape(3, 5)\na\n\narray([[ 0,  1,  2,  3,  4],\n       [ 5,  6,  7,  8,  9],\n       [10, 11, 12, 13, 14]])\n\n\n\nimport matplotlib.pyplot as plt\nfig = plt.figure()\nx = np.arange(10)\ny = 2.5 * np.sin(x / 20 * np.pi)\nyerr = np.linspace(0.05, 0.2, 10)\n\nplt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')\nplt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')\nplt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,\n             label='uplims=True, lolims=True')\n\nupperlimits = [True, False] * 5\nlowerlimits = [False, True] * 5\nplt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,\n             label='subsets of uplims and lolims')\n\nplt.legend(loc='lower right')\nplt.show(fig)\n\n\n\n\n\n\nFigure 7.3",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -208,7 +208,7 @@
     "href": "export.html",
     "title": "8  Export and Render",
     "section": "",
-    "text": "Export _quarto.yml\n\nYou can change the output format to “pdf” or “html” with the stamp “Change quarto.yml template”. If you use a _language.yml, you export “_language” note (optional. See Chapter 2 Setting)\n\nExport .qmd files ( pNote notes only)\n\nThe pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt). If you select the pNote notes below “For Export” and output it ( Figure 8.1 (a) ), then execute the “Move qmd files” stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( Figure 8.1 (b) ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.\n\n\n\n\n\n\n\n\n\n\n\n(a) Before\n\n\n\n\n\n\n\n\n\n\n\n(b) After\n\n\n\n\n\n\n\nFigure 8.1: qmd files are moved to the project path by stamp\n\n\n\n\nPreview HTML output. ( optional )\n\n# preview for only html output\n&gt; quarto preview index.qmd --to html --no-watch-inputs --no-browse\n\nRender pdf or html.\n\n&gt; quarto render\nYou can use RStudio for preview and render.",
+    "text": "Export _quarto.yml\n\nYou can change the output format to “pdf” or “html” with the stamp “Change quarto.yml template”. If you use a _language.yml, you export “_language” note (optional. See Chapter 2 Setting)\n\nExport .qmd files ( pNote notes only)\n\nThe pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt). If you select the pNote notes below “For Export” and output it ( Figure 8.1 (a) ), then execute the “Move qmd files” stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( Figure 8.1 (b) ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.\n\n\n\n\n\n\n\n\n\n\n\n(a) Before\n\n\n\n\n\n\n\n\n\n\n\n(b) After\n\n\n\n\n\n\n\nFigure 8.1: qmd files are moved to the project path by stamp\n\n\n\n\nPreview HTML output.\n\n# preview for only html output\n&gt; quarto preview projectname\n\nRender pdf or html.\n\n&gt; quarto render\nYou can use RStudio for preview and render.",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Export and Render</span>"
@@ -252,7 +252,7 @@
     "href": "export-and-render.html",
     "title": "11  Export and Render",
     "section": "",
-    "text": "Export\nYou have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in the sub-project folder.\nActivate a virtual environment\n\nif you use a virtual environment, activate it. e.g.\npoetry shell\n\nRender sub-project\n\n# quarto render \"your project name\"\nquarto render myproject\n# For preview\nquarto preview myproject --to html --no-watch-inputs --no-browse",
+    "text": "Export\nYou have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in the sub-project folder.\nActivate a virtual environment\n\nif you use a virtual environment, activate it. e.g.\n&gt; poetry shell\n\nRender sub-project\n\n# quarto render \"your project name\"\n&gt; quarto render myproject\n# For preview\n&gt; quarto preview myproject --to html",
     "crumbs": [
       "Manuscript format",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Export and Render</span>"

@@ -1,0 +1,24 @@
+
+
+## R chunk {#sec-r-chunk }
+
+Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.
+
+
+```{r}
+#| warning: false
+#| label: fig-airquality
+#| fig-cap: Temperature and ozone level.
+#| fig-width: 5
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+
+
+
+
+
+

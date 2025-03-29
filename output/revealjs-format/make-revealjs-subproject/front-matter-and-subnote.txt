@@ -1,0 +1,32 @@
+
+
+## Front Matter and Subnote
+
+
+
+1. pFrontmatterRevealjs
+
+    
+    This is a qmd file that contains a Front Matter. When you export, it has descendants' contents.
+
+
+2. pSubnoteRevealjs
+
+    This is a dummy file for pFrontmatterRevealjs. The markdown level depends on the indent level and `$OutlineBaseControl` of the subproject folder.
+
+```
+$OutlineDepthBase * "#" + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
+```
+
+
+
+3. Quote chunk code blocks
+
+    You can chunk code blocks with a quote tag like the one below from a child note (pRChunk or pPChunk).
+    <Lang:chunknotename>
+ 
+
+
+
+
+

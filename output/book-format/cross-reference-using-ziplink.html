@@ -18,6 +18,10 @@ Automatically (or manually) collect some labels in the
 <strong>Tinderbox</strong> file at the bottom of the <strong>Reference
 List</strong> note. <a
 href="The%20diagrams%20and%20tables%20are%20extracted%20in%20regular%20expressions.">regrex</a></p>
+<figure>
+<img src="screenshots/WorkingIndicator.png" alt="Working Indicator" />
+<figcaption aria-hidden="true">Working Indicator</figcaption>
+</figure>
 <p>Convert it to a quotable title (citation name starting with @) and
 create a note for the corresponding part. <strong>Tinderbox</strong>’s
 <strong>Ziplink</strong> function [ziplink] is a function for easily
@@ -82,7 +86,8 @@ data-cites="fig-airquality">(<strong>fig-airquality?</strong>)</span>.</p>
 <h2>Python chunk</h2>
 
 
-<p>&lt;python:Python chunk➡️fig-python&gt;</p>
+<p>&lt;python:numpy➡️fig-numpy&gt;</p>
+<p>&lt;python:matplotlib➡️fig-matplotlib&gt;</p>
 
 
 
@@ -163,47 +168,6 @@ class="sourceCode latex"><code class="sourceCode latex"><span id="cb1-1"><a href
 <h2>How to quote</h2>
 
 
-<p>If you enter two square brackets “[[”, the list will be displayed, so
-please enter a part of the label name. As the candidates are narrowed
-down, select the citation label you want to enter.</p>
-<table>
-<caption>How to quote</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr>
-<th>Types of quotations</th>
-<th>Lable</th>
-<th>Quote</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Chapters, Sections etc.</td>
-<td>#sec-</td>
-<td>@sec-</td>
-</tr>
-<tr>
-<td>Figures</td>
-<td>#fig- <br>#| label:fig-<br>%%| label:fig-<br> //|
-label:fig-<br></td>
-<td>@fig-</td>
-</tr>
-<tr>
-<td>Charts　</td>
-<td>#tbl-</td>
-<td>@tbl-</td>
-</tr>
-<tr>
-<td>Equations</td>
-<td>#eq-</td>
-<td>@eq-</td>
-</tr>
-</tbody>
-</table>
 
 
 
@@ -220,21 +184,6 @@ label:fig-<br></td>
 <h2>Restrictions on quoted labels</h2>
 
 
-<ul>
-<li>The label before change or deletion remains because it cannot be
-detected even if the quoted label name is changed or deleted.</li>
-<li>Cross-ref detection is carried out by regular expression. If it is
-executed in the middle of input, it will be duplicated with a short
-label.</li>
-</ul>
-<p>In this case, if necessary, delete the quoted label name in Stamp and
-perform the detection manually by following the steps below.</p>
-<ol type="1">
-<li>Labels: Clear Cross-Reference List（Delete all citation labels under
-the Reference List.）</li>
-<li>Labels: Make Cross-Reference List（Re-detect the quoted
-label.）</li>
-</ol>
 
 
 
