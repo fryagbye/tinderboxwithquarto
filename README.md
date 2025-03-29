@@ -1,284 +1,209 @@
-# Introduction
 
-This tinderbox file supports creating a book and manuscript (beta) with [Quarto](https://quarto.org/).
+
+
+
+
+
+# Introduction { .unnumbered }
+
+This Tinderbox file supports creating a book, manuscript (beta), revealjs with [Quarto](https://quarto.org/).
 
 [Tinderbox file for Quarto (Web version)](https://fryagbye.quarto.pub/tinderbox-file-for-quarto/)
 
 You can easily make qmd files and _quarto.yml with it. 
 Here is an example of books created with Quarto.
 
+
 * [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
 
+You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz)  in Tinderbox.
 
+[![Tinderbox with Quarto part1](screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
+
+My Workflow is @fig-workflow-graphviz.
 <br>
 
 
-[![Tinderbox with Quarto part1](output/screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
-
-
-My Workflow is @fig-workflow-mermaid and @fig-workflow-graphviz.
-
-:::: {layout-ncol=2}
-
-```{mermaid} 
-%%| label: fig-workflow-mermaid
-%%| fig-cap: Tinderbox Work Flow with Quarto ( Mermaid version ).
-%%| fig-width: 5
-
-flowchart TB
-    A["Snippety"] -.->  Sub1["Tinderbox"]
-    B["Mermaid"]
-    C["Bookends"] -->|"opt + drag"| Sub1["Tinderbox"]
-    D["R Studio"] -->|"Call"| F["quarto CLI"]
-    E["RMarkdown ( .qmd )"] -->|"Read qmd files"| D["R Studio"]
-    E["RMarkdown ( .qmd )"] -->|"Call"| F["quarto CLI"]
-    F["quarto CLI"] ==>|"Export"| G["HTML
-(Book)"]
-    F["quarto CLI"] -->|"Export"| H["PDF
-(Book)"]
-    G["HTML
-(Book)"]
-    H["PDF
-(Book)"]
-    I["Marked 2
-(Streaming Preview)"]
-
- subgraph Sub1["Tinderbox"]
-    Sub5
-end 
-
- subgraph Sub2["Applications"]
-    direction LR
-    A
-    Sub1
-    C
-end 
-
- subgraph Sub3["Quarto"]
-    direction LR
-    D
-    E
-    F
-end 
-
- subgraph Sub4["Output"]
-    direction LR
-    G
-    H
-    I
-end 
-
- subgraph Sub5["Demo_TBX_for_Quarto.tbx"]
-    B
-end 
-
- subgraph Sub6["Work Flow"]
-    direction TB
-    Sub2
-    Sub3
-    Sub4
-end 
-
- Sub5["Demo_TBX_for_Quarto.tbx"] -->  E["RMarkdown ( .qmd )"]
- Sub5["Demo_TBX_for_Quarto.tbx"] -.->|"Streaming Preview"| I["Marked 2
-(Streaming Preview)"]
-
-%% Styles & Links
-    style A fill:#a3bed9,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 
-    click A href "https://snippety.app/" _blank
-    style B fill:#009900,color:#000000,stroke:#dc490b,stroke-width:2px
-    style C fill:#ff8800,color:#000000,stroke:#dc490b,stroke-width:2px
-    style D fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 
-    click D href "https://posit.co/products/open-source/rstudio/" _blank
-    style E fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px
-    style F fill:#88aacc,color:#000000,stroke:#dc490b,stroke-width:2px
-    click F href "https://quarto.org/" _blank
-    style G fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px
-    style H fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px
-    style I fill:#aaaaff,color:#000000,stroke:#dc490b,stroke-width:2px
-    click I href "https://marked2app.com/" _blank
-    style Sub1 fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub2 fill:#e7f3e7,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub3 fill:#fff4e6,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub4 fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub5 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
-```
-
-```{dot} 
+```{dot}
 //| label: fig-workflow-graphviz
 //| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
 //| fig-width: 5
 digraph {
-compound=true
-layout=dot
-  graph [    charset = "UTF-8";
-    splines = "spline",
-  ];
+    layout=dot
+    compound=true
+    graph [charset = "UTF-8" splines = "spline" ];
 subgraph cluster_A{
-        label="Applications"
-        spline="curved"
-        color="#dc490b"
-        penwidth="1"
-        style="filled"
-        fillcolor="#e7f3e7"
-        fontname="HiraginoSans-W4"
-        fontcolor="#000000"
-        fontsize="14"
+                label="Applications"
+                spline="curved"
+                color="#000000"
+                penwidth="1"
+                style="filled"
+                fillcolor="#e7f3e7"
+                fontcolor="#000000"
         A B 
 
         subgraph cluster_B{
-            label="Tinderbox"
-            spline="line"
-            color="#dc490b"
-            penwidth="1"
-            style="filled"
-            fillcolor="#f6e04d"
-            fontname="HiraginoSans-W4"
-            fontcolor="#000000"
-            fontsize="14"
-            URL="https://www.eastgate.com/Tinderbox/"
-                C 
+                    label="Tinderbox"
+                    color="#000000"
+                    penwidth="1"
+                    style="filled"
+                    fillcolor="#f6e04d"
+                    fontcolor="#000000"
+                    URL="https://www.eastgate.com/Tinderbox/"
+
 
         subgraph cluster_C{
-                label="Demo_TBX_for_Quarto.tbx"
-                spline="line"
-                color="#dc490b"
-                penwidth="1"
-                style="filled"
-                fillcolor="#eeebe9"
-                fontname="HiraginoSans-W4"
-                fontcolor="#000000"
-                fontsize="10"
-                URL="https://github.com/fryagbye/tinderboxwithquarto"
-                D E 
-        }
-        }
+                        label="Demo_TBX_for_Quarto.tbx"
+                        color="#000000"
+                        penwidth="1"
+                        style="filled"
+                        fillcolor="#ffffff"
+                        fontcolor="#000000"
+                        URL="https://github.com/fryagbye/tinderboxwithquarto"
+        C D E 
+}
+
+}
+
 }
 
 subgraph cluster_D{
-        label="Quarto"
-        spline="line"
-        color="#dc490b"
-        penwidth="1"
-        style="filled"
-        fillcolor="#fff4e6"
-        fontname="HiraginoSans-W4"
-        fontcolor="#000000"
-        fontsize="14"
+                label="Quarto"
+                color="#000000"
+                penwidth="1"
+                style="filled"
+                fillcolor="#fff4e6"
+                fontcolor="#000000"
         F G H 
 }
 
 subgraph cluster_E{
-        label="Output"
-        spline="line"
-        color="#dc490b"
-        penwidth="1"
-        style="filled"
-        fillcolor="#ffffff"
-        fontname="HiraginoSans-W4"
-        fontcolor="#000000"
-        fontsize="14"
+                label="Output"
+                color="#000000"
+                penwidth="1"
+                style="filled"
+                fillcolor="#ffffff"
+                fontcolor="#000000"
         I J K 
 }
 
 
-A [ style="filled"label="Bookends", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ff8800", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12", URL="https://www.sonnysoftware.com/bookends-for-mac"]
+A [ style="filled"  label="Bookends" color="#000000", penwidth="1", fillcolor="#fcbd63", fontcolor="#000000", URL="https://www.sonnysoftware.com/bookends-for-mac"]
+B [ style="filled"  label="Snippety" color="#990000", penwidth="1", fillcolor="#5c9dfe", fontcolor="#000000", URL="https://snippety.app/"]
+C [ style="filled"  label="Mermaid" color="#000000", penwidth="1", fillcolor="#c735e9", fontcolor="#ffffff", URL="https://mermaid.js.org/"]
+D [ style="filled"  label="Graphviz" color="#000000", penwidth="1", fillcolor="#30638d", fontcolor="#ffffff", URL="https://graphviz.org/"]
+E [ style="filled"  label="Preview \nwith Rscript" ]
+F [ style="filled"  label="R Studio" color="#000000", penwidth="1", fillcolor="#80a9d7", fontcolor="#000000", URL="https://posit.co/products/open-source/rstudio/"]
+G [ style="filled"  label="RMarkdown ( .qmd )" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000"]
+H [ style="filled"  label="quarto CLI" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000", URL="https://quarto.org/"]
+I [ style="filled"  label="Book" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]
+J [ style="filled"  label="Manuscript" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]
+K [ style="filled"  label="revealjs" color="#d53f8c", penwidth="1", fillcolor="#f2e142", fontcolor="#000000"]
 
-B [ style="filled"label="Snippety", colorscheme="Blues8", color="#990000", penwidth="1", fillcolor="#a3bed9", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12", URL="https://snippety.app/"]
-
-C [ style="invis"label="dummy", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-D [ style="filled"label="Mermaid", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12", URL="https://mermaid.js.org/"]
-
-E [ style="filled"label="Graphviz", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#bcffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-F [ style="filled"label="R Studio", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#88aacc", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12", URL="https://posit.co/products/open-source/rstudio/"]
-
-G [ style="filled"label="RMarkdown ( .qmd )", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#88aacc", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-H [ style="filled"label="quarto CLI", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#88aacc", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12", URL="https://quarto.org/"]
-
-I [ style="filled"label="PDF", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#93dd93", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-J [ style="filled"label="HTML", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#93dd93", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-K [ style="filled"label="Marked 2", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#aaaaff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12", URL="https://marked2app.com/"]
-
-A -> D [fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" lhead = "cluster_C" ltail = "cluster_A" ]
-B -> C [fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" lhead = "cluster_B" ]
-C -> K [fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ltail = "cluster_B" ]
-D -> G [fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" lhead = "cluster_D" ltail = "cluster_C" ]
-F -> H [label = "Call" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ]
-G -> F [label = "Read qmd files" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ]
-G -> H [label = "Call" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ]
-H -> I [label = "Export" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ]
-H -> J [label = "Export" fillcolor="#cbd9d7" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ]
+A -> C [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ltail = "cluster_A" ]
+B -> E [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ]
+D -> G [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_D" ltail = "cluster_C" ]
+F -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]
+G -> F [label = "Read qmd files" fillcolor="#cbd9d7" fontcolor="#000000" ]
+G -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]
+H -> I [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]
+H -> J [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]
+H -> K [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]
 }
 ```
 
-::::
 
 
-# Usage environment
+
+
+
+
+
+
+# Usage environment {#sec-usage-environment }
 
 Please refer to the output results of `quato check`.
 
+
 * Quarto is using the released version 1.7.13 (pre-release)[^noteinstallversion].
+
+
+
 * R is version 4.4.2.
+
+
+
 * I use luaLatex for output in Japanese. I have installed MacTex because TinyTex doesn't include it.
+
+
+
 * It may be better to uninstall TinyTex.
+
+
+
 * I have set it to use the `lightbox` extension ( included in Quarto v1.4+.).
-*I have set it to use the `quarto-live` extension for revealjs.
 
-[^noteinstallversion]:Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.
+*I have set it to use the `quarto-live` extension for revealjs. ([quarto live](https://github.com/r-wasm/quarto-live))
 
-`quarto check` output
+[^noteinstallversion]:~~Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.~~
 
+`quarto check` 
 <details>
 
 ```{.zsh}
 # Quarto check output
 Quarto 1.7.13
+
 [✓] Checking environment information...
+
       Quarto cache location: /Users/tk4o2ka/Library/Caches/quarto
+
 [✓] Checking versions of quarto binary dependencies...
+
       Pandoc version 3.4.0: OK
       Dart Sass version 1.70.0: OK
       Deno version 1.46.3: OK
       Typst version 0.11.0: OK
+
 [✓] Checking versions of quarto dependencies......OK
+
+
 [✓] Checking Quarto installation......OK
+
       Version: 1.7.13
       Path: /Applications/quarto/bin
 
 [✓] Checking tools....................OK
+
       Chromium: 869685
       TinyTeX: (not installed)
 
 [✓] Checking LaTeX....................OK
+
       Using: Installation From Path
       Path: /usr/local/texlive/2024/bin/universal-darwin
       Version: 2024
 
 [✓] Checking Chrome Headless....................OK
+
       Using: Chrome found on system
       Path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
       Source: MacOS known location
 
 [✓] Checking basic markdown render....OK
 
+
 [✓] Checking Python 3 installation....OK
+
       Version: 3.13.2
       Path: /opt/homebrew/opt/python@3.13/bin/python3.13
       Jupyter: (None)
-
       Jupyter is not available in this Python installation.
       Install with python3 -m pip install jupyter
-
       There is an unactivated Python environment in .venv. Did you forget to activate it?
 
 [✓] Checking R installation...........OK
+
       Version: 4.4.2
       Path: /Library/Frameworks/R.framework/Resources
       LibPaths:
@@ -287,12 +212,18 @@ Quarto 1.7.13
       rmarkdown: 2.29
 
 [✓] Checking Knitr engine render......OK
+
 ```
 
 </details>
 
 
-## Installed packages
+
+
+
+
+## Installed packages {#sec-installed-packages }
+
 
 ```{.r}
 #| echo: false
@@ -481,13 +412,16 @@ installed.packages() |>
 |xml2|1.3.6|4.4.0|
 |xmlparsedata|1.0.5|4.4.0|
 |yaml|2.3.8|4.4.0|
-
 </details>
 
 
 
 
-## RStudio Session information
+
+
+
+## RStudio Session information {#sec-session-information }
+
 
 ```{.r}
 #| echo: false
@@ -496,78 +430,149 @@ sessionInfo()
 
 Platform: aarch64-apple-darwin20
 Running under: macOS 15.1.1
-
 Matrix products: default
 BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
 LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
-
 locale:
+
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 time zone: Asia/Tokyo
 tzcode source: internal
-
 attached base packages:
+
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 loaded via a namespace (and not attached):
+
 [1] compiler_4.4.0 tools_4.4.0   
 
-# Setting
+
+
+
+
+
+
+
+
+# Setting {#sec-setting }
+
+
 
 1. Setting up with "TBXConfig" note
 
     You need to change the values of the following "TBXConfig" attributes for configuration.
 
-* `$Indent_Charactor` -> Set the symbol representing the depth of indentation. ( default value = ★ )
-* `$ExList` -> List of notes excluded from cross-reference search ( default value = "List and Agent etc" )
-* `$ExportFolder` -> Path of exported files. ( for Stamp "Move qmd files" )
-* `$ToggleTOC` -> Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml. 
-* `$Q_TableOfContainsNote` -> **$Name** of TOC note. ( default value = Table of Contents )
-* `$Rename_in` -> Setting for translating a label. ( default value = ja:en )
-* `$Q_PDFEngine` -> Setting for [pdf engine](https://quarto.org/docs/output-formats/pdf-engine.html) This file is tested only with lualatex. ( default value = lualatex )
-* ~~`$OutlineBaseControl` -> Adjustment of section levels in Markdown. ( default = 1 )~~
 
+* `$Indent_Charactor` → Set the symbol representing the depth of indentation. ( default value = ★ )
+
+
+
+* ~~`$ExList` → List of notes excluded from cross-reference search ( default value = "List and Agent etc" )~~
+
+
+
+* `$ProjectContainer`  →  Book Project Path for CrossRef Search and Label Lists 
+
+
+![Project Contaier Example](screenshots/BookProjectContainerExample.png){#fig-projectcontaierexample fig-alt="Project Contaier Example" fig-align="left" width=80%}  
+
+
+
+* `$ExportFolder` → Path of exported files.
+
+
+![Export Folder Setting](screenshots/exportfoldersetting.png){#fig-exportfoldersetting fig-alt="Export Folder Setting" fig-align="left" width=50%}
+
+
+
+* `$ToggleTOC` → Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml. 
+
+
+
+* `$Q_TableOfContainsNote` → **$Name** of TOC note. ( default value = Table of Contents )
+
+
+
+* `$Rename_in` → [`translate-shell`](https://github.com/soimort/translate-shell) option setting `[SOURCES]:[TAGETS]. ( default value = ja:en )
+
+
+
+* `$Q_PDFEngine` → Setting for [pdf engine](https://quarto.org/docs/output-formats/pdf-engine.html) This file is tested only with lualatex. ( default value = lualatex )
+
+
+
+* ~~`$OutlineBaseControl` → Adjustment of section levels in Markdown. ( default = 1 )~~
+
+    `$OutlineBaseControl` is enabled in Manuscript and revealjs project. This attribute is used in pSubfolderManuscript and pSubfolderRevealjs note.
      e.g. 
-    * $OutlineBaseControl = 1 -> \#\# Title
-    
-    * $OutlineBaseControl = 1 -> \# Title 
 
-*`$RScriptLibraryPath` -> R Library Resource Path ( default Value 
+
+    * $OutlineBaseControl = 1 → \#\# Title
+
     
+
+
+    * $OutlineBaseControl = 1 → \# Title 
+
+
+
+* `$RScriptLibraryPath` → R Library Resource Path ( default Value )
+
+    ![Rscript Library Path](screenshots/RscriptLibPath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
+
 
 2. Making a `_quarto.yml`
 
     You can change the values of attributes of the "_quarto" note to change quarto options. The quarto options are attributes that start with "Q" in this file. The initial setting specified in `_quarto.yml` is for Japanese output. Please refer to [Quarto Book Structure](https://quarto.org/docs/books/book-structure.html) and [PDF Basics](https://quarto.org/docs/output-formats/pdf-basics.html) in detail.
-
     If you use [Custom Translations](https://quarto.org/docs/authoring/language.html#custom-translations), you need to make `$Q_Has_Language_YML` `true` and set `$Q_Language_YML` for the filename.
 The "_language" note in this file is for translating to Japanese.
+
 
 3. Changing the `_common.R` file. ( optional )
 
     You can set up `knitr` package options for R chunk.  
     
 
-# Book format
 
 
 
-# Make notes
+
+
+
+# Book format {#sec-book-format }
+
+
+
+
+
+
+
+
+# Make notes {#sec-make-notes }
+
+
 
 1. Make notes with Prototype pNote and pSubnote
 
     pNote is for Sections and pSubnote is for Subsections.
 Please set the Prototype of pNote to level 1 and pSubnote below level.
+
+
  * When creating a note, please enter "#pNote" or "#pSubnote" following the title. (or apply the pNote Prototype or pSubnote to notes you make )
 
     e.g. Note title -> わが輩は猫である#pSubnote
 
+
      * The note title (`$Name`) is the header for pNote or pSubnote.
+
+
+
  * Depending on the hierarchy level, the level of the header also changes.
 
      e.g. If the title of pSubnote in level 2 depth is "わが輩は猫である", it will be output as follows when exporting.
-
      > \#\# わが輩は猫である
+
 
 2. Index.qmd
 
@@ -576,43 +581,83 @@ You can make the note for index.qmd with the pIndexQmd Prototype.
 
 
 
+
+
+
 ## Special Notes Prototype
 
+
+
 1. pReferenceQmd
+
  
     This prototype is inherited from pNote and $Text has a div with id `refs` to call a works cited list (below). ([Quarto Bibliography Generation](https://quarto.org/docs/authoring/citations.html#bibliography-generation))
-
     `::: {#refs}`
-
     `:::`
+
 
 2. pAppendixQmd
 
      This prototype is inherited from pNote and $IsAppendix is `true`.
 
-# Rename HTMLExportFileName of a note with translation
 
 
+
+
+
+
+
+# Chunks and Graphs {#sec-chunks-and-graphs }
+
+
+
+1. R chunk and Python chunk notes
+
+You can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The “Chunk & Graph: Make Chunk List” stamp generates a tag like ＜Lang:Tag Label➡️Figure Label＞.
+These tags can be used to reference R chunks, Python chunks, Mermaid diagrams, or Graphviz code.
+Please do not insert tags in the middle of a sentence.
+
+![Chunk Tag Example](screenshots/ChunkLabel.png)
+
+If tags called in your notes are changed or deleted, the warning is shown.
+you can suppress the warning with  `$SuppresTagDetectWaring` in the project container note.
+
+
+2. Rendered Preview in Text Pane(R chunks, Mermaid diagrams, and Graphviz only)
+
+You can check the results of the code executed within an R chunk in the Preview screen. Similarly, the results of Mermaid and Graphviz code can also be displayed. However, this is not possible for Python.
+
+
+
+
+
+
+
+# Rename HTMLExportFileName of a note with translation {#sec-translate-and-rename }
 
 There is a stamp **"Notes: Tranlate Section Labels"** that translates the Japanese title (`$Name`) into English and automatically sets `$HTMLExportFileName` [^translate-shell]. and you can set `$SectionLabel` with stamp "Set: Section Label". The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with `$Rename_in` in the TBX configuration note (**TBXConfig**). ( By default, from Japanese to English).
 
 [^translate-shell]: [Translate-shell](https://github.com/soimort/translate-shell) installation required. 
+
+
 ```zsh
->brew install translate-shell
+> brew install translate-shell
 ```
 
-# Part in Book format
+
+
+
+
+
+
+
+# Part in Book format {#sec-part-in-book-format }
 
 For Part, please refer to [Quarto's "Book Structure" reference](https://quarto.org/docs/books/book-structure.html).
-
 pNote is compatible with quarto's **Part** or **Chapter**.
-
 If pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1. 
-
 In this case, the hierarchy level and header level are different, so the header level is set based on the user attribute `$OutlineDepthBase`.
-
 pNote, which is treated as a Part, is turned on (`true`) for `$Is_Part_qmd`. The lower pNote contains the export file name (e.g. filename.qmd) of the pNote, which is Part, in `$Part_file`.
-
 If a Part note is empty, only the title (`$Name`) of the note is reflected in _quarto.yml, as shown in the **"Dice"** in the example below. 
 If the dice.qmd is not empty, the part title (as a level one header) as well as some introductory content for the part. 
 
@@ -641,60 +686,139 @@ chapters:
 
 The figure below shows the export example when Part is supported and the output result of _quarto.yml.
 
-![Folder configuration at the time of output and _quarto.yml](output/screenshots/PartandChapter.png)
+![Folder configuration at the time of output and _quarto.yml](screenshots/PartandChapter.png)
 
 
 
-# Cross-Reference using Ziplink
 
-In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the **Tinderbox** file at the bottom of the **Reference List** note. [^regrex]
+
+
+
+
+# Cross-Reference using Ziplink {#sec-cross-reference-using-ziplink }
+
+In Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). [^regrex]
+
+![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](screenshots/WorkingIndicator.png)
 
 Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
 
 [^regrex]: The diagrams and tables are extracted in regular expressions.
 
+
 [^ziplink]: Please refer to "Text link creation via the Ziplinking method" in [A Tinderbox Reference File](https://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html).(@Anderson2024Tinde)
 
-## How to set the label of the diagram
 
 
 
-### Image link in markdown format
+
+
+
+## How to set the label of the diagram {#sec-how-to-set-the-label }
+
+
+
+
+
+
+
+### Image link in markdown format {#sec-image-link-in-markdown-format }
 
 Recognize and collect labels in a format that extends the markdown.
+\!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
-\!\[Test image](output/screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
-
-![label:@fig-test](output/screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
 
-## R chunk
 
-Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote **\@fig-airquality**.
 
-```r
-#| label: fig-airquality 
-#| fig-cap: "Temperature and ozone level."
+
+
+
+
+
+## R chunk {#sec-r-chunk }
+
+Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.
+
+
+```{r}
 #| warning: false
-
+#| label: fig-airquality
+#| fig-cap: Temperature and ozone level.
+#| fig-width: 5
 library(ggplot2)
-
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
   geom_smooth(method = "loess")
 ```
 
-![label: \@fig-airquality](output/output/screenshots/fig-airquality-1.png)
 
 
-## How to set the label of the table
+
+
+
+
+
+
+## Python chunk
+
+
+
+```{python}
+#| label: fig-numpy
+#| fig-width: 5
+import numpy as np
+a = np.arange(15).reshape(3, 5)
+a
+```
+
+
+
+
+```{python}
+#| label: fig-matplotlib
+#| fig-width: 5
+import matplotlib.pyplot as plt
+fig = plt.figure()
+x = np.arange(10)
+y = 2.5 * np.sin(x / 20 * np.pi)
+yerr = np.linspace(0.05, 0.2, 10)
+
+plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
+plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
+plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
+             label='uplims=True, lolims=True')
+
+upperlimits = [True, False] * 5
+lowerlimits = [False, True] * 5
+plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
+             label='subsets of uplims and lolims')
+
+plt.legend(loc='lower right')
+plt.show(fig)
+```
+
+
+
+
+
+
+
+
+
+## How to set the label of the table {#sec-how-to-set-the-label-of-the-table }
 
 There are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.[^table-cross-ref]
 
 [^table-cross-ref]: For other formats, please refer to [quarto cross-reference](https://quarto.org/docs/authoring/cross-references.html#tables).
 
+
 ```{.txt}
+
+
 :明度・彩度の修飾子 {#tbl-brightness-saturation}
+
  
 |項目|効果|
 |----|------------|
@@ -704,7 +828,10 @@ There are multiple ways to specify labels, but they are only supported if it is 
 |light| 明るくする|
 ```
 
+
+
 :明度・彩度の修飾子 {#tbl-brightness-saturation}
+
  
 |項目|効果|
 |----|------------|
@@ -714,28 +841,44 @@ There are multiple ways to specify labels, but they are only supported if it is 
 |light| 明るくする|
 
 
-## Equations
+
+
+
+
+
+## Equations {#sec-equations }
 
 Equation Example
-
-Black-Scholes (@eq-black-scholes ) is a mathematical model that seeks to explain
+Black-Scholes (@eq-black-scholes) is a mathematical model that seeks to explain
 
 $$
 ma^{2} \mathrm S^{2}
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$ {#eq-black-scholes}
+$$
+
 
 ```latex
+
 $$
-\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+ma^{2} \mathrm S^{2}
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$ {#eq-black-scholes}
+$$
+
 ```
 
-## How to quote
+
+
+
+
+
+
+
+## How to quote {#sec-how-to-quote }
 
 If you enter two square brackets "[[", the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.
 
+
+:How to quote
 
 |Types of quotations  |Lable  |Quote|
 |---|---|---|
@@ -744,27 +887,60 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 |Charts　|#tbl-|\@tbl-|
 |Equations | #eq-| \@eq-|
 
-## Restrictions on quoted labels
+
+
+
+
+
+
+## Dummy links for cross-reference {#sec-add-dummy-links-to-cross-ref }
+
+You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
+
+
+1. execute the "Labels: Make Dummy Link Data For Cross-Reference" stamp
+
+
+
+2. select cross-ref label notes ( start with "@" ) and execute the "Labels: Dummy Link between Reference and Selected notes" stamp.
+
+
+
+
+
+
+
+
+## Restrictions on quoted labels {#sec-restrictions-on-quoted-labels }
+
+
 
 * The label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.
+
+
+
 * Cross-ref detection is carried out by regular expression. If it is executed in the middle of input, it will be duplicated with a short label.
 
 In this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.
 
+
 1. Labels: Clear Cross-Reference List（Delete all citation labels under the Reference List.）
+
+
+
 2. Labels: Make Cross-Reference List（Re-detect the quoted label.）
 
 
 
 
-## Dummy links for cross-reference
 
-You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
 
-1. execute the "Labels: Make Dummy Link Data For Cross-Reference" stamp
-2. select cross-ref label notes ( start with "@" ) and execute the "Labels: Dummy Link between Reference and Selected notes" stamp.
 
-# Export and Render
+
+
+# Export and Render {#sec-export }
+
+
 
 1. Export `_quarto.yml`
 
@@ -775,26 +951,34 @@ If you use a _language.yml, you export "_language" note (optional. See  @sec-set
 2. Export  `.qmd` files ( pNote notes only)
 
 The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
+If you select the pNote notes below "Export Agent" and output it, ~~then execute the "Move qmd files" stamp~~, you can overwrite the qmd file directly to `./output` (=`$HTMLExportFileName` of the your project folder) ( @fig-after ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.
 
-If you select the pNote notes below "For Export" and output it ( @fig-before ), then execute the "Move qmd files" stamp, you can move (or overwrite) the qmd file directly to the export(project) folder ( @fig-after ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.
 
-::: {#fig-move-qmd layout-ncol=2}
 
-![Before](output/screenshots/folder01.png){#fig-before}
 
-![After](output/screenshots/folder02.png){#fig-after}
+![~~Before~~](screenshots/folder01.png){#fig-before}
+
+
+![After](screenshots/folder02.png){#fig-after}
 
 qmd files are moved to the project path by stamp
-:::
 
-3. Preview HTML output. ( optional )
+
+
+
+
+3. Preview HTML output. 
+
 
 ```zsh
 # preview for only html output
-> quarto preview index.qmd --to html --no-watch-inputs --no-browse
+> quarto preview projectname
 ```
 
+
+
 4. Render pdf or html.
+
 
 ```zsh
 > quarto render
@@ -802,32 +986,60 @@ qmd files are moved to the project path by stamp
 
     You can use RStudio for preview and render.
 
-# Example
+
+
+
+
+
+
+# Example {#sec-example }
+
 
 [Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/main/_bookpdf/Tinderbox-file-for-Quarto.pdf)
 
-# Manuscript format
 
 
 
-# Make sub-project folder
+
+
+
+
+# Manuscript format {#sec-manuscript-format }
+
+
+
+
+
+
+
+
+# Make sub-project folder {#sec-make-manuscript-subproject }
 
 Make a note for the sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
+
+
+
+
 
 
 ## Make notes
 
 The manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
 
+
+
+
+
+
 ### Front Matter and Subnote
 
 
+
 1. pFrontmatterManuscript
+
     
     This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.
 You can set data for author(s) with the path of note with pAuther notes. ( like Authors )
-
-`$IsManuscript = true`
 
 
 2. pSubnoteManuscript
@@ -837,142 +1049,260 @@ You can set data for author(s) with the path of note with pAuther notes. ( like 
 ```
 $OutlineDepthBase * "#"  + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
 ```
- 
-`$IsManuscript = true`
 
-# Export and Render
 
-1. Export
-    You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in the sub-project folder.
 
-2. Activate a virtual environment
-if you use a virtual environment, activate it.
 
-e.g.
+
+
+
+
+
+
+# Export and Render {#sec-export }
+
+
+
+1. Export `_quarto.yml`
+
+You can change the output format to "pdf" or "html"  with the stamp "Change quarto.yml template".
+If you use a _language.yml, you export "_language" note (optional. See  @sec-setting Setting)
+
+
+2. Export  `.qmd` files ( pNote notes only)
+
+The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
+If you select the pNote notes below "Export Agent" and output it, ~~then execute the "Move qmd files" stamp~~, you can overwrite the qmd file directly to `./output` (=`$HTMLExportFileName` of the your project folder) ( @fig-after ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.
+
+
+
+
+![~~Before~~](screenshots/folder01.png){#fig-before}
+
+
+![After](screenshots/folder02.png){#fig-after}
+
+qmd files are moved to the project path by stamp
+
+
+
+
+
+3. Preview HTML output. 
+
 
 ```zsh
-poetry shell
+# preview for only html output
+> quarto preview projectname
 ```
 
-3. Render sub-project
+
+
+4. Render pdf or html.
+
 
 ```zsh
-# quarto render "your project name"
-quarto render myproject
-
-# For preview
-quarto preview myproject --to html --no-watch-inputs --no-browse
-
+> quarto render
 ```
 
+    You can use RStudio for preview and render.
 
 
-# revealjs format
 
 
 
-# Make sub-project folder
-
-Make a note for the sub-project with **pSubfolderRevealjs** .
 
 
-## Front Matter and Subnote
+# revealjs format {#sec-revealjs-format }
 
 
-1. pFrontmatterRevealjs
+
+
+
+
+
+
+# Make sub-project folder {#sec-make-manuscript-subproject }
+
+Make a note for the sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
+
+
+
+
+
+
+## Make notes
+
+The manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
+
+
+
+
+
+
+### Front Matter and Subnote
+
+
+
+1. pFrontmatterManuscript
+
     
-    This is a qmd file that contains a Front Matter. When you export, it has descendants' contents.
+    This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.
+You can set data for author(s) with the path of note with pAuther notes. ( like Authors )
 
 
-`$IsRevealjs = true`
+2. pSubnoteManuscript
 
-
-2. pSubnoteRevealjs
-
-    This is a dummy file for pFrontmatterRevealjs. The markdown level depends on the indent level and `$OutlineBaseControl` of the subproject folder.
+    This is a dummy file for pFrontmatterManuscript. The markdown level depends on the indent level and `$OutlineBaseControl` of of the subproject folder.
 
 ```
-$OutlineDepthBase * "#" + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
+$OutlineDepthBase * "#"  + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
 ```
- 
-`$IsRevealjs = true`
-
-3. Quote chunk code blocks
-
-    You can chunk code blocks with a quote tag like the one below from a child note (pRChunk or pPChunk).
-    <chunk:chunknotename>
- 
-
-## quarto-live extention (β version)
-
-This file supports [quarto-live](https://r-wasm.github.io/quarto-live/).
-You add the quarto-live extension to your subproject path.
-(If you add it to the project root folder and call it with a relative path, an error will occur.)
-
-## Example
-
-[Example live-revealjs](https://fryagbye.quarto.pub/quarto-presentations/#/title-slide)
 
 
 
-# Mermaid flowchart (optional)
+
+
+
+
+
+
+
+# Mermaid flowchart (optional) {#sec-mermaid-flowchart }
 
 This file can generate Mermaid flowchart from notes, links.
 
+
 * Container notes -> Subgraphs ( pMFSubgraph )
+
+
+
 * Non Container notes -> Nodes ( pMFNode)
 
 Work Flow is a sample of Mermaid flowchart.  
 Please check it in Map view.
-
 You need to use pre-release version [^chromeheadlessmodeissue]
 
 [^chromeheadlessmodeissue]:Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.([Transition to Chrome new headless mode · Issue #10532 · quarto-dev/quarto-cli](https://github.com/quarto-dev/quarto-cli/issues/10532))
 
 
 
-## How to use
+
+
+
+
+## How to use {#sec-how-to-use-mermaid }
+
 
 
 1. You make a container noto for Flowchart and set pMFContainer.
+
+
+
 2. You make notes ( pMFNode) and links. 
+
+
+
 3. You choose a direction for drawing like TD or LR.($M_Direction)
+
+
+
 4. Run the stamp ( `Mermaid: Make a Flowchart` ).
+
+
+
 5. Prototypes of container notes **has** a child note change from pMFNode to pMFContainer automatically by the stamp.
+
+
+
 6. The note (pMFContainer) has the code for mermaid flowchart.
 
 <br>
 
-[![Tinderbox with Quarto part2 (English & Japanese sub)](output/screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
+[![Tinderbox with Quarto part2 (English & Japanese sub)](screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
 
 
-## Supported shapes
+
+
+
+
+
+
+## Supported shapes {#sec-supported-shapes }
+
+
 
 * rectangle (<- normal and other shapes)
+
+
+
 * rounded
+
+
+
 * oval
+
+
+
 * lozenge
+
+
+
 * diamond
+
+
+
 * hex
 
-![Convert shapes](output/screenshots/convertshapes.png)
+
+![Convert shapes](screenshots/convertshapes.png)
 
 
 
-## Supported line types (Priority)
+
+
+
+
+
+## Supported line types (Priority) {#sec-supported-line-types-priority }
+
+
 
 * normal 	 -->			(4th)
+
+
+
 * bold     	 ==>			(3rd)
+
+
+
 * dotted  	 -.->		    (2nd)
+
+
+
 * invisible	 ~~~		   	(1st)
 
 
-## Supported arrow types
+
+
+
+
+
+
+## Supported arrow types {#sec-supported-arrow-types }
+
+
 
 * arrow only 
 
 
-## Example
+
+
+
+
+
+
+## Example {#sec-mermaid-example }
 
 
 ```{mermaid} 
@@ -984,134 +1314,172 @@ flowchart TB
     C["Laptop"]
     D["iPhone"]
     E["Car"]
-
  subgraph Sub1["Let me think"]
     C
     D
     E
 end 
-
  subgraph Sub2["Subgraph"]
     A
     B
     Sub1
 end 
-
     Sub1["Let me think"] -->|"One"| C["Laptop"]
     Sub1["Let me think"] -->|"Two"| D["iPhone"]
     Sub1["Let me think"] -->|"Three"| E["Car"]
-
 %% Styles & Links
     style Sub2 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
-
 ```
 
 
 
-# Graphviz β version (optional)
 
 
 
-## How to use
+
+
+
+# Graphviz β version (optional) {#sec-graphviz-optional }
+
+
+
+
+
+
+
+## How to use {#sec-how-to-use-graphviz }
+
+
 
 1. You make a container noto for the graph and set pGContainer.
+
+
+
 2. You make notes ( pGNode) and links. **You can't make links to cluster (subgraph)**.
+
+
+
 3. You choose a direction for drawing like TB or LR.($GG_Rankdir)
+
+
+
 4. You can choose a Layout Engin like `dot`,  `neato`, `fdp` and so on.
+
+
+
 4. Change attributes for Graphviz.
+
+
+
     * Attributes starting with `GG_` are for the Subgraph ( cluster ) options
+
+
+
     * Attributes starting with `GN_` are for the Note options
+
+
+
     * Attributes starting with `GE_` are for the Edge options
+
+
+
 4. Run the stamp ( `Graphviz: Make a Dot graph` ).
+
+
+
 5. Prototypes of container notes **have** a child note change from pGNode to pGContainer automatically by the stamp.
+
+
+
 6. The note (pGContainer) has the code for Graphviz.
 
-[![Tinderbox with Quarto part3](output/screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
 
-## Example
+[![Tinderbox with Quarto part3](screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
 
-@fig-workflow-graphviz  and @fig-graphviz-test .
 
-![Workflow](output/screenshots/workflow.png)
 
-```{dot} 
-//| label: fig-graphviz-test
+
+
+
+
+
+## Example {#sec-graphviz-example }
+
+ @fig-workflow-graphviz and @fig-Test.
+
+
+```{dot}
+//| label: fig-Test
 //| fig-cap: Graphviz Test
 //| fig-width: 5
 digraph {
-compound=true
-layout=dot
-  graph [    charset = "UTF-8";
-    splines = "ortho",
-  ];
+    layout=dot
+    compound=true
+    graph [charset = "UTF-8" ];
 subgraph cluster_A{
-        label="Cluster B"
-        spline="line"
-        color="#dc490b"
-        penwidth="1"
-        style="filled"
-        fillcolor="#eeebe9"
-        fontname="HiraginoSans-W4"
-        fontcolor="#000000"
-        fontsize="14"
-        A B C D 
+                label="Cluster B"
+                color="#000000"
+                penwidth="1"
+                style="filled"
+                fillcolor="#ffffff"
+                fontcolor="#000000"
+        "node2" "node4" "node6" "node8" 
 }
 
 subgraph cluster_B{
-        label="Cluster A"
-        spline="line"
-        color="#dc490b"
-        penwidth="1"
-        style="filled"
-        fillcolor="#eeebe9"
-        fontname="HiraginoSans-W4"
-        fontcolor="#000000"
-        fontsize="14"
-        E F G H 
+                label="Cluster A"
+                color="#000000"
+                penwidth="1"
+                style="filled"
+                fillcolor="#ffffff"
+                fontcolor="#000000"
+        "node1" "node3" "node5" "node7" 
 }
 
 
-A [ style="filled"label="node2", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
+"node2" [ style="filled" ]
+"node4" [ style="filled" ]
+"node6" [ style="filled" ]
+"node8" [ style="filled" ]
+"node1" [ style="filled" ]
+"node3" [ style="filled" ]
+"node5" [ style="filled" ]
+"node7" [ style="filled" ]
 
-B [ style="filled"label="node4", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-C [ style="filled"label="node6", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-D [ style="filled"label="node8", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-E [ style="filled"label="node1", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-F [ style="filled"label="node3", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-G [ style="filled"label="node5", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-H [ style="filled"label="node7", colorscheme="Blues8", color="#dc490b", penwidth="1", fillcolor="#ffffff", fontname="HiraginoSans-W4", fontcolor="#000000", fontsize="12"]
-
-E -> A [label = "1" fillcolor="#605850" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ]
-F -> B [label = "2" fillcolor="#605850" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" ltail = "cluster_B" ]
-G -> C [label = "3" fillcolor="#605850" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" lhead = "cluster_A" ]
-H -> D [label = "4" fillcolor="#605850" fontname="HiraginoSans-W4" fontcolor="#000000" fontsize="10" labelfloat="false" lhead = "cluster_A" ltail = "cluster_B" ]
+"node1" -> "node2" [label = "1" fillcolor="#ffffff" fontcolor="#000000" ]
+"node3" -> "node4" [label = "2" fillcolor="#ffffff" fontcolor="#000000" ltail = "cluster_B" ]
+"node5" -> "node6" [label = "3" fillcolor="#ffffff" fontcolor="#000000" lhead = "cluster_A" ]
+"node7" -> "node8" [label = "4" fillcolor="#ffffff" fontcolor="#000000" lhead = "cluster_A" ltail = "cluster_B" ]
 }
 ```
 
 
 
-# References
+
+
+
+
+
+
+
+# References {#sec-references }
 
 Anderson, Mark. 2024. “A Tinderbox Reference File.” 2024.
 Wickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize,
 and Model Data. “O’Reilly Media, Inc.”	
 
-# Restrictions
+
+
+
+
+# Restrictions { .appendix }
 
 It seems that the section label customization function cannot be used in the latest release [ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML)](https://github.com/quarto-dev/quarto-cli/issues/5946). 
-
 If you turn on `$IsUnnumbered` and `$HasSectionLabel`, the display of the quote will be fixed to the number + title, so please turn off `$IsUnnumbered`.
-
 Please do not use parentheses in note titles. The section label list is not being generated correctly.
 
 
-# main
+
 
 
 
