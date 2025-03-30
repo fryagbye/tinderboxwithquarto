@@ -29,34 +29,34 @@ digraph {
     compound=true
     graph [charset = "UTF-8" splines = "spline" ];
 subgraph cluster_A{
-                label="Applications"
-                spline="curved"
-                color="#000000"
-                penwidth="1"
-                style="filled"
-                fillcolor="#e7f3e7"
-                fontcolor="#000000"
-        A B 
+                                label="Applications"
+                                spline="curved"
+                                color="#000000"
+                                penwidth="1"
+                                style="filled"
+                                fillcolor="#e7f3e7"
+                                fontcolor="#000000"
+                A B 
 
-        subgraph cluster_B{
-                    label="Tinderbox"
-                    color="#000000"
-                    penwidth="1"
-                    style="filled"
-                    fillcolor="#f6e04d"
-                    fontcolor="#000000"
-                    URL="https://www.eastgate.com/Tinderbox/"
+                subgraph cluster_B{
+                                    label="Tinderbox"
+                                    color="#000000"
+                                    penwidth="1"
+                                    style="filled"
+                                    fillcolor="#f6e04d"
+                                    fontcolor="#000000"
+                                    URL="https://www.eastgate.com/Tinderbox/"
 
 
-        subgraph cluster_C{
-                        label="Demo_TBX_for_Quarto.tbx"
-                        color="#000000"
-                        penwidth="1"
-                        style="filled"
-                        fillcolor="#ffffff"
-                        fontcolor="#000000"
-                        URL="https://github.com/fryagbye/tinderboxwithquarto"
-        C D E 
+                subgraph cluster_C{
+                                        label="Demo_TBX_for_Quarto.tbx"
+                                        color="#000000"
+                                        penwidth="1"
+                                        style="filled"
+                                        fillcolor="#ffffff"
+                                        fontcolor="#000000"
+                                        URL="https://github.com/fryagbye/tinderboxwithquarto"
+                C D E 
 }
 
 }
@@ -64,23 +64,23 @@ subgraph cluster_A{
 }
 
 subgraph cluster_D{
-                label="Quarto"
-                color="#000000"
-                penwidth="1"
-                style="filled"
-                fillcolor="#fff4e6"
-                fontcolor="#000000"
-        F G H 
+                                label="Quarto"
+                                color="#000000"
+                                penwidth="1"
+                                style="filled"
+                                fillcolor="#fff4e6"
+                                fontcolor="#000000"
+                F G H 
 }
 
 subgraph cluster_E{
-                label="Output"
-                color="#000000"
-                penwidth="1"
-                style="filled"
-                fillcolor="#ffffff"
-                fontcolor="#000000"
-        I J K 
+                                label="Output"
+                                color="#000000"
+                                penwidth="1"
+                                style="filled"
+                                fillcolor="#ffffff"
+                                fontcolor="#000000"
+                I J K 
 }
 
 
