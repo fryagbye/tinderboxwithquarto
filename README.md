@@ -13,7 +13,7 @@ Here is an example of books created with Quarto.
 
 You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz)  in Tinderbox.
 
-[![Tinderbox with Quarto part1](screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
+[![Tinderbox with Quarto part1](output/screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
 
 My Workflow is @fig-workflow-graphviz.
 <br>
@@ -237,7 +237,7 @@ Quarto 1.7.13
 1. Setting up with "TBXConfig" note
 
 
-![User Attributes in TBXConfig](screenshots/TBXConfig01.png)
+![User Attributes in TBXConfig](output/screenshots/TBXConfig01.png)
 
     You need to change the values of the following "TBXConfig" attributes for configuration.
 
@@ -253,14 +253,14 @@ Quarto 1.7.13
 * `$ProjectContainer`  →  Book Project Path for CrossRef Search and Label Lists 
 
 
-![Project Contaier Example](screenshots/BookProjectContainerExample.png){#fig-projectcontaierexample fig-alt="Project Contaier Example" fig-align="left" width=80%}  
+![Project Contaier Example](output/screenshots/BookProjectContainerExample.png){#fig-projectcontaierexample fig-alt="Project Contaier Example" fig-align="left" width=80%}  
 
 
 
 * `$ExportFolder` → Path of exported files.
 
 
-![Export Folder Setting](screenshots/exportfoldersetting.png){#fig-exportfoldersetting fig-alt="Export Folder Setting" fig-align="left" width=50%}
+![Export Folder Setting](output/screenshots/exportfoldersetting.png){#fig-exportfoldersetting fig-alt="Export Folder Setting" fig-align="left" width=50%}
 
 
 
@@ -297,7 +297,7 @@ Quarto 1.7.13
 
 * `$RScriptLibraryPath` → R Library Resource Path ( default Value )
 
-    ![Rscript Library Path](screenshots/RscriptLibPath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
+    ![Rscript Library Path](output/screenshots/RscriptLibPath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
 	
 
 
@@ -307,13 +307,13 @@ Quarto 1.7.13
     If you use [Custom Translations](https://quarto.org/docs/authoring/language.html#custom-translations), you need to make `$Q_Has_Language_YML` `true` and set `$Q_Language_YML` for the filename.
 The "_language" note in this file is for translating to Japanese.
 
-![_quarto.yml 01](screenshots/quartoyml01.png)
+![_quarto.yml 01](output/screenshots/quartoyml01.png)
 
 
-![_quarto.yml 02](screenshots/quartoyml02.png)
+![_quarto.yml 02](output/screenshots/quartoyml02.png)
 
 
-![_quarto.yml 03](screenshots/quartoyml03.png)
+![_quarto.yml 03](output/screenshots/quartoyml03.png)
 
 
 
@@ -381,7 +381,7 @@ You can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The �
 These tags can be used to reference R chunks, Python chunks, Mermaid diagrams, or Graphviz code.
 Please do not insert tags in the middle of a sentence.
 
-![Chunk Tag Example](screenshots/ChunkLabel.png)
+![Chunk Tag Example](output/screenshots/ChunkLabel.png)
 
 If tags called in your notes are changed or deleted, the warning is shown.
 you can suppress the warning with  `$SuppresTagDetectWaring` in the project container note.
@@ -448,7 +448,7 @@ chapters:
 
 The figure below shows the export example when Part is supported and the output result of _quarto.yml.
 
-![Folder configuration at the time of output and _quarto.yml](screenshots/PartandChapter.png)
+![Folder configuration at the time of output and _quarto.yml](output/screenshots/PartandChapter.png)
 
 
 
@@ -456,7 +456,7 @@ The figure below shows the export example when Part is supported and the output 
 
 In Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). [^regrex]
 
-![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](screenshots/WorkingIndicator.png)
+![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](output/screenshots/WorkingIndicator.png)
 
 Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
 
@@ -487,10 +487,10 @@ If you select the pNote notes below "Export Agent" and output it, ~~then execute
 ::: {#fig-move-qmd layout-ncol=2}
 
 
-![~~Before~~](screenshots/folder01.png){#fig-before}
+![~~Before~~](output/screenshots/folder01.png){#fig-before}
 
 
-![After](screenshots/folder02.png){#fig-after}
+![After](output/screenshots/folder02.png){#fig-after}
 
 qmd files are moved to the project path by stamp
 
