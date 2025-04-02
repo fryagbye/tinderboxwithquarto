@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
- <link rel="stylesheet" href="./resources/github.css">
+ <link rel="stylesheet" href="../resources/github.css">
 <script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
@@ -11,26 +11,34 @@
 <body>
 
 
-<h1>Setting</h1>
+<h1>@sec-setting</h1>
 
+<h1 id="sec-setting">Setting</h1>
 <ol type="1">
-<li><p>Setting up with “TBXConfig” note</p>
-<p>You need to change the values of the following “TBXConfig” attributes
-for configuration.</p></li>
+<li>Setting up with “TBXConfig” note</li>
 </ol>
+<figure>
+<img src="screenshots/TBXConfig01.png"
+alt="User Attributes in TBXConfig" />
+<figcaption aria-hidden="true">User Attributes in TBXConfig</figcaption>
+</figure>
+<pre><code>You need to change the values of the following &quot;TBXConfig&quot; attributes for configuration.</code></pre>
 <ul>
-<li><code>$Indent_Charactor</code> → Set the symbol representing the
-depth of indentation. ( default value = ★ )</li>
-<li><del><code>$ExList</code> → List of notes excluded from
+<li><p><code>$Indent_Charactor</code> → Set the symbol representing the
+depth of indentation. ( default value = ★ )</p></li>
+<li><p><del><code>$ExList</code> → List of notes excluded from
 cross-reference search ( default value = “List and Agent etc”
-)</del></li>
-<li><code>$ProjectContainer</code> → Book Project Path for CrossRef
-Search and Label Lists <img
-src="screenshots/BookProjectContainerExample.png"
-id="fig-projectcontaierexample" style="width:80.0%"
-data-fig-alt="Project Contaier Example" data-fig-align="left"
-alt="Project Contaier Example" /><br />
-</li>
+)</del></p></li>
+<li><p><code>$ProjectContainer</code> → Book Project Path for CrossRef
+Search and Label Lists</p></li>
+</ul>
+<figure id="fig-projectcontaierexample">
+<img src="screenshots/BookProjectContainerExample.png"
+style="width:80.0%" data-fig-alt="Project Contaier Example"
+data-fig-align="left" alt="Project Contaier Example" />
+<figcaption aria-hidden="true">Project Contaier Example</figcaption>
+</figure>
+<ul>
 <li><code>$ExportFolder</code> → Path of exported files.</li>
 </ul>
 <figure id="fig-exportfoldersetting">
@@ -49,24 +57,26 @@ TOC note. ( default value = Table of Contents )</p></li>
 href="https://github.com/soimort/translate-shell"><code>translate-shell</code></a>
 option setting `[SOURCES]:[TAGETS]. ( default value = ja:en )</p></li>
 <li><p><code>$Q_PDFEngine</code> → Setting for <a
-href="%5Bhttps://quarto.org/docs/output-formats/pdf-engine.html%5D(https://quarto.org/docs/output-formats/pdf-engine.html)">pdf
+href="https://quarto.org/docs/output-formats/pdf-engine.html">pdf
 engine</a> This file is tested only with lualatex. ( default value =
 lualatex )</p></li>
 <li><p><del><code>$OutlineBaseControl</code> → Adjustment of section
-levels in Markdown. ( default = 1 )</del>
-<code>$OutlineBaseControl</code> is enabled in Manuscript and revealjs
-project. This attribute is used in pSubfolderManuscript and
-pSubfolderRevealjs note.</p>
-<p>e.g. </p>
+levels in Markdown. ( default = 1 )</del></p>
+<p><code>$OutlineBaseControl</code> is enabled in Manuscript and
+revealjs project. This attribute is used in pSubfolderManuscript and
+pSubfolderRevealjs note. e.g. </p>
 <ul>
 <li><p>$OutlineBaseControl = 1 → ## Title</p></li>
 <li><p>$OutlineBaseControl = 1 → # Title</p></li>
 </ul></li>
 <li><p><code>$RScriptLibraryPath</code> → R Library Resource Path (
-default Value ) <img src="screenshots/RscriptLibPath.png"
-id="fig-rscript-libpath" style="width:80.0%"
+default Value )</p>
+<figure id="fig-rscript-libpath">
+<img src="screenshots/RscriptLibPath.png" style="width:80.0%"
 data-fig-alt="Rscript Library Path" data-fig-align="left"
-alt="Rscript Library Path" /></p></li>
+alt="Rscript Library Path" />
+<figcaption aria-hidden="true">Rscript Library Path</figcaption>
+</figure></li>
 </ul>
 <ol start="2" type="1">
 <li><p>Making a <code>_quarto.yml</code></p>
@@ -77,17 +87,25 @@ change quarto options. The quarto options are attributes that start with
 href="https://quarto.org/docs/books/book-structure.html">Quarto Book
 Structure</a> and <a
 href="https://quarto.org/docs/output-formats/pdf-basics.html">PDF
-Basics</a> in detail.</p>
-<p>If you use <a
+Basics</a> in detail. If you use <a
 href="https://quarto.org/docs/authoring/language.html#custom-translations">Custom
 Translations</a>, you need to make <code>$Q_Has_Language_YML</code>
 <code>true</code> and set <code>$Q_Language_YML</code> for the filename.
 The “_language” note in this file is for translating to
 Japanese.</p></li>
 </ol>
-<p><img src="screenshots/quartoyml01.png" alt="_quarto.yml 01" /> <img
-src="screenshots/quartoyml02.png" alt="_quarto.yml 02" /> <img
-src="screenshots/quartoyml03.png" alt="_quarto.yml 03" /></p>
+<figure>
+<img src="screenshots/quartoyml01.png" alt="_quarto.yml 01" />
+<figcaption aria-hidden="true">_quarto.yml 01</figcaption>
+</figure>
+<figure>
+<img src="screenshots/quartoyml02.png" alt="_quarto.yml 02" />
+<figcaption aria-hidden="true">_quarto.yml 02</figcaption>
+</figure>
+<figure>
+<img src="screenshots/quartoyml03.png" alt="_quarto.yml 03" />
+<figcaption aria-hidden="true">_quarto.yml 03</figcaption>
+</figure>
 <ol start="3" type="1">
 <li><p>Changing the <code>_common.R</code> file. ( optional )</p>
 <p>You can set up <code>knitr</code> package options for R

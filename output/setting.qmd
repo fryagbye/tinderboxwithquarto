@@ -73,6 +73,15 @@
     If you use [Custom Translations](https://quarto.org/docs/authoring/language.html#custom-translations), you need to make `$Q_Has_Language_YML` `true` and set `$Q_Language_YML` for the filename.
 The "_language" note in this file is for translating to Japanese.
 
+![_quarto.yml 01](screenshots/quartoyml01.png)
+
+
+![_quarto.yml 02](screenshots/quartoyml02.png)
+
+
+![_quarto.yml 03](screenshots/quartoyml03.png)
+
+
 
 3. Changing the `_common.R` file. ( optional )
 
