@@ -6,6 +6,9 @@
 
 1. Setting up with "TBXConfig" note
 
+
+![User Attributes in TBXConfig](screenshots/TBXConfig01.png)
+
     You need to change the values of the following "TBXConfig" attributes for configuration.
 
 
@@ -65,6 +68,7 @@
 * `$RScriptLibraryPath` → R Library Resource Path ( default Value )
 
     ![Rscript Library Path](screenshots/RscriptLibPath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
+	
 
 
 2. Making a `_quarto.yml`

@@ -1,0 +1,16 @@
+./
+├── _extensions/
+├── citation/
+├── myproject/
+├── myrevealjs/
+├── output/
+├── Rscript/
+├── _RchunkPreviewOutput.html
+├── _RchunkPreviewOutput.qmd
+├── Demo_TBX_for_Quarto.tbx
+├── poetry.lock
+├── pyproject.toml
+├── README.md
+└── tinderboxwithquarto.Rproj
+
+7 directories, 7 files
