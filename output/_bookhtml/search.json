@@ -44,7 +44,7 @@
     "href": "setting.html",
     "title": "2  Setting",
     "section": "",
-    "text": "Setting up with “TBXConfig” note\nYou need to change the values of the following “TBXConfig” attributes for configuration.\n\n\n$Indent_Charactor → Set the symbol representing the depth of indentation. ( default value = ★ )\n$ExList → List of notes excluded from cross-reference search ( default value = “List and Agent etc” )\n$ProjectContainer → Book Project Path for CrossRef Search and Label Lists\n\n\n\n\n\n\n\nFigure 2.1: Project Contaier Example\n\n\n\n\n$ExportFolder → Path of exported files.\n\n\n\n\n\n\n\nFigure 2.2: Export Folder Setting\n\n\n\n\n$ToggleTOC → Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml.\n$Q_TableOfContainsNote → $Name of TOC note. ( default value = Table of Contents )\n$Rename_in → translate-shell option setting `[SOURCES]:[TAGETS]. ( default value = ja:en )\n$Q_PDFEngine → Setting for pdf engine This file is tested only with lualatex. ( default value = lualatex )\n$OutlineBaseControl → Adjustment of section levels in Markdown. ( default = 1 )\n$OutlineBaseControl is enabled in Manuscript and revealjs project. This attribute is used in pSubfolderManuscript and pSubfolderRevealjs note. e.g. \n\n$OutlineBaseControl = 1 → ## Title\n$OutlineBaseControl = 1 → # Title\n\n$RScriptLibraryPath → R Library Resource Path ( default Value )\n\n\n\n\n\n\nFigure 2.3: Rscript Library Path\n\n\n\n\n\nMaking a _quarto.yml\nYou can change the values of attributes of the “_quarto” note to change quarto options. The quarto options are attributes that start with “Q” in this file. The initial setting specified in _quarto.yml is for Japanese output. Please refer to Quarto Book Structure and PDF Basics in detail. If you use Custom Translations, you need to make $Q_Has_Language_YML true and set $Q_Language_YML for the filename. The “_language” note in this file is for translating to Japanese.\n\n\n\n\n_quarto.yml 01\n\n\n\n\n\n_quarto.yml 02\n\n\n\n\n\n_quarto.yml 03\n\n\n\nChanging the _common.R file. ( optional )\nYou can set up knitr package options for R chunk.",
+    "text": "Setting up with “TBXConfig” note\nYou need to change the values of the following “TBXConfig” attributes for configuration.\n\n\n$Indent_Charactor → Set the symbol representing the depth of indentation. ( default value = ★ )\n$ExList → List of notes excluded from cross-reference search ( default value = “List and Agent etc” )\n$ProjectContainer → Book Project Path for CrossRef Search and Label Lists\n\n\n\n\n\n\n\n図 2.1: Project Contaier Example\n\n\n\n\n$ExportFolder → Path of exported files.\n\n\n\n\n\n\n\n図 2.2: Export Folder Setting\n\n\n\n\n$ToggleTOC → Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml.\n$Q_TableOfContainsNote → $Name of TOC note. ( default value = Table of Contents )\n$Rename_in → translate-shell option setting `[SOURCES]:[TAGETS]. ( default value = ja:en )\n$Q_PDFEngine → Setting for pdf engine This file is tested only with lualatex. ( default value = lualatex )\n$OutlineBaseControl → Adjustment of section levels in Markdown. ( default = 1 )\n$OutlineBaseControl is enabled in Manuscript and revealjs project. This attribute is used in pSubfolderManuscript and pSubfolderRevealjs note. e.g. \n\n$OutlineBaseControl = 1 → ## Title\n$OutlineBaseControl = 1 → # Title\n\n$RScriptLibraryPath → R Library Resource Path ( default Value )\n\n\n\n\n\n\n図 2.3: Rscript Library Path\n\n\n\n\n\nMaking a _quarto.yml\nYou can change the values of attributes of the “_quarto” note to change quarto options. The quarto options are attributes that start with “Q” in this file. The initial setting specified in _quarto.yml is for Japanese output. Please refer to Quarto Book Structure and PDF Basics in detail. If you use Custom Translations, you need to make $Q_Has_Language_YML true and set $Q_Language_YML for the filename. The “_language” note in this file is for translating to Japanese.\n\n\n\n\n_quarto.yml 01\n\n\n\n\n\n_quarto.yml 02\n\n\n\n\n\n_quarto.yml 03\n\n\n\nChanging the _common.R file. ( optional )\nYou can set up knitr package options for R chunk.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting</span>"
     ]
@@ -120,7 +120,7 @@
     "href": "cross-reference-using-ziplink.html#sec-how-to-set-the-label",
     "title": "7  Cross-Reference using Ziplink",
     "section": "",
-    "text": "7.1.1 Image link in markdown format\nRecognize and collect labels in a format that extends the markdown. ![Test image](screenshots/toolbar.png){#fig-test fig-alt=“test” fig-align=“left” width=100%}\n\n\n\n\n\nFigure 7.1: label:Figure 7.1",
+    "text": "7.1.1 Image link in markdown format\nRecognize and collect labels in a format that extends the markdown. ![Test image](screenshots/toolbar.png){#fig-test fig-alt=“test” fig-align=“left” width=100%}\n\n\n\n\n\n図 7.1: label:図 7.1",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -131,7 +131,7 @@
     "href": "cross-reference-using-ziplink.html#sec-r-chunk",
     "title": "7  Cross-Reference using Ziplink",
     "section": "\n7.2 R chunk",
-    "text": "7.2 R chunk\nAutomatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote Figure 7.2.\n\nlibrary(ggplot2)\nggplot(airquality, aes(Temp, Ozone)) + \n  geom_point() + \n  geom_smooth(method = \"loess\")\n\n\n\n\n\n\nFigure 7.2: Temperature and ozone level.",
+    "text": "7.2 R chunk\nAutomatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote 図 7.2.\n\nlibrary(ggplot2)\nggplot(airquality, aes(Temp, Ozone)) + \n  geom_point() + \n  geom_smooth(method = \"loess\")\n\n\n\n\n\n\n図 7.2: Temperature and ozone level.",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -142,7 +142,7 @@
     "href": "cross-reference-using-ziplink.html#python-chunk",
     "title": "7  Cross-Reference using Ziplink",
     "section": "\n7.3 Python chunk",
-    "text": "7.3 Python chunk\n\nimport numpy as np\na = np.arange(15).reshape(3, 5)\na\n\narray([[ 0,  1,  2,  3,  4],\n       [ 5,  6,  7,  8,  9],\n       [10, 11, 12, 13, 14]])\n\n\n\nimport matplotlib.pyplot as plt\nfig = plt.figure()\nx = np.arange(10)\ny = 2.5 * np.sin(x / 20 * np.pi)\nyerr = np.linspace(0.05, 0.2, 10)\n\nplt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')\nplt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')\nplt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,\n             label='uplims=True, lolims=True')\n\nupperlimits = [True, False] * 5\nlowerlimits = [False, True] * 5\nplt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,\n             label='subsets of uplims and lolims')\n\nplt.legend(loc='lower right')\nplt.show(fig)\n\n\n\n\n\n\nFigure 7.3",
+    "text": "7.3 Python chunk\n\nimport numpy as np\na = np.arange(15).reshape(3, 5)\na\n\narray([[ 0,  1,  2,  3,  4],\n       [ 5,  6,  7,  8,  9],\n       [10, 11, 12, 13, 14]])\n\n\n\nimport matplotlib.pyplot as plt\nfig = plt.figure()\nx = np.arange(10)\ny = 2.5 * np.sin(x / 20 * np.pi)\nyerr = np.linspace(0.05, 0.2, 10)\n\nplt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')\nplt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')\nplt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,\n             label='uplims=True, lolims=True')\n\nupperlimits = [True, False] * 5\nlowerlimits = [False, True] * 5\nplt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,\n             label='subsets of uplims and lolims')\n\nplt.legend(loc='lower right')\nplt.show(fig)\n\n\n\n\n\n\n図 7.3",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -153,7 +153,7 @@
     "href": "cross-reference-using-ziplink.html#sec-how-to-set-the-label-of-the-table",
     "title": "7  Cross-Reference using Ziplink",
     "section": "\n7.4 How to set the label of the table",
-    "text": "7.4 How to set the label of the table\nThere are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.3\n3 For other formats, please refer to quarto cross-reference.\n\n:明度・彩度の修飾子 {#tbl-brightness-saturation}\n\n \n|項目|効果|\n|----|------------|\n|dark|暗くする|\n|darker|より暗くする|\n|darkest|最も暗くする|\n|light| 明るくする|\n\n\nTable 7.1: 明度・彩度の修飾子\n\n\n\n項目\n効果\n\n\n\ndark\n暗くする\n\n\ndarker\nより暗くする\n\n\ndarkest\n最も暗くする\n\n\nlight\n明るくする",
+    "text": "7.4 How to set the label of the table\nThere are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.3\n3 For other formats, please refer to quarto cross-reference.\n\n:明度・彩度の修飾子 {#tbl-brightness-saturation}\n\n \n|項目|効果|\n|----|------------|\n|dark|暗くする|\n|darker|より暗くする|\n|darkest|最も暗くする|\n|light| 明るくする|\n\n\n表 7.1: 明度・彩度の修飾子\n\n\n\n項目\n効果\n\n\n\ndark\n暗くする\n\n\ndarker\nより暗くする\n\n\ndarkest\n最も暗くする\n\n\nlight\n明るくする",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -164,7 +164,7 @@
     "href": "cross-reference-using-ziplink.html#sec-equations",
     "title": "7  Cross-Reference using Ziplink",
     "section": "\n7.5 Equations",
-    "text": "7.5 Equations\nEquation Example Black-Scholes (Equation 7.1) is a mathematical model that seeks to explain\n\\[\nma^{2} \\mathrm S^{2}\n\\frac{\\partial^{2} \\mathrm C}{\\partial \\mathrm S^2}  + \\mathrm r \\mathrm S \\frac{\\partial \\mathrm C}{\\partial \\mathrm S}\\ =  \\mathrm r \\mathrm C\n\\tag{7.1}\\]\n\n$$\nma^{2} \\mathrm S^{2}\n\\frac{\\partial^{2} \\mathrm C}{\\partial \\mathrm S^2}  + \\mathrm r \\mathrm S \\frac{\\partial \\mathrm C}{\\partial \\mathrm S}\\ =  \\mathrm r \\mathrm C \n$$",
+    "text": "7.5 Equations\nEquation Example Black-Scholes (式 7.1) is a mathematical model that seeks to explain\n\\[\nma^{2} \\mathrm S^{2}\n\\frac{\\partial^{2} \\mathrm C}{\\partial \\mathrm S^2}  + \\mathrm r \\mathrm S \\frac{\\partial \\mathrm C}{\\partial \\mathrm S}\\ =  \\mathrm r \\mathrm C\n\\tag{7.1}\\]\n\n$$\nma^{2} \\mathrm S^{2}\n\\frac{\\partial^{2} \\mathrm C}{\\partial \\mathrm S^2}  + \\mathrm r \\mathrm S \\frac{\\partial \\mathrm C}{\\partial \\mathrm S}\\ =  \\mathrm r \\mathrm C \n$$",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cross-Reference using Ziplink</span>"
@@ -208,7 +208,7 @@
     "href": "export.html",
     "title": "8  Export and Render",
     "section": "",
-    "text": "Export _quarto.yml\n\nYou can change the output format to “pdf” or “html” with the stamp “Change quarto.yml template”. If you use a _language.yml, you export “_language” note (optional. See Chapter 2 Setting)\n\nExport .qmd files ( pNote notes only)\n\nThe pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt). If you select the pNote notes below “Export Agent” and output it, then execute the “Move qmd files” stamp, you can overwrite the qmd file directly to ./output (=$HTMLExportFileName of the sub-project folder) ( Figure 8.1 (b) ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.\n\n\n\n\n\n\n\n\n\n\n\n(a) Before\n\n\n\n\n\n\n\n\n\n\n\n(b) After\n\n\n\n\n\n\n\nFigure 8.1: qmd files are moved to the project path by stamp\n\n\n\n\nPreview HTML output.\n\n# preview for only html output\n&gt; quarto preview projectname\n\nRender pdf or html.\n\n&gt; quarto render\nYou can use RStudio for preview and render.",
+    "text": "Export _quarto.yml\n\nYou can change the output format to “pdf” or “html” with the stamp “Change quarto.yml template”. If you use a _language.yml, you export “_language” note (optional. See チャプター 2 Setting)\n\nExport .qmd files ( pNote notes only)\n\nThe pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt). If you select the pNote notes below “Export Agent” and output it, then execute the “Move qmd files” stamp, you can overwrite the qmd file directly to ./output (=$HTMLExportFileName of the sub-project folder) ( 図 8.1 (b) ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.\n\n\n\n\n\n\n\n\n\n\n\n(a) Before\n\n\n\n\n\n\n\n\n\n\n\n(b) After\n\n\n\n\n\n\n\n図 8.1: qmd files are moved to the project path by stamp\n\n\n\n\nPreview HTML output.\n\n# preview for only html output\n&gt; quarto preview projectname\n\nRender pdf or html.\n\n&gt; quarto render\nYou can use RStudio for preview and render.",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Export and Render</span>"
@@ -357,7 +357,7 @@
     "href": "mermaid-flowchart.html#sec-mermaid-example",
     "title": "13  Mermaid flowchart (optional)",
     "section": "13.5 Example",
-    "text": "13.5 Example\n\n\n\n\n\n\nflowchart TB\n    A[\"Christmas\"] --&gt;|\"Get money\"| B[\"Go shopping\"]\n    B[\"Go shopping\"] --&gt;  Sub1[\"Let me think\"]\n    C[\"Laptop\"]\n    D[\"iPhone\"]\n    E[\"Car\"]\n subgraph Sub1[\"Let me think\"]\n    C\n    D\n    E\nend \n subgraph Sub2[\"Subgraph\"]\n    A\n    B\n    Sub1\nend \n    Sub1[\"Let me think\"] --&gt;|\"One\"| C[\"Laptop\"]\n    Sub1[\"Let me think\"] --&gt;|\"Two\"| D[\"iPhone\"]\n    Sub1[\"Let me think\"] --&gt;|\"Three\"| E[\"Car\"]\n%% Styles & Links\n    style Sub2 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px\n\n\n\n\nFigure 13.1",
+    "text": "13.5 Example\n\n\n\n\n\n\nflowchart TB\n    A[\"Christmas\"] --&gt;|\"Get money\"| B[\"Go shopping\"]\n    B[\"Go shopping\"] --&gt;  Sub1[\"Let me think\"]\n    C[\"Laptop\"]\n    D[\"iPhone\"]\n    E[\"Car\"]\n subgraph Sub1[\"Let me think\"]\n    C\n    D\n    E\nend \n subgraph Sub2[\"Subgraph\"]\n    A\n    B\n    Sub1\nend \n    Sub1[\"Let me think\"] --&gt;|\"One\"| C[\"Laptop\"]\n    Sub1[\"Let me think\"] --&gt;|\"Two\"| D[\"iPhone\"]\n    Sub1[\"Let me think\"] --&gt;|\"Three\"| E[\"Car\"]\n%% Styles & Links\n    style Sub2 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px\n\n\n\n\n図 13.1",
     "crumbs": [
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
     ]
@@ -387,7 +387,7 @@
     "href": "graphviz-optional.html#sec-graphviz-example",
     "title": "14  Graphviz β version (optional)",
     "section": "14.2 Example",
-    "text": "14.2 Example\nFigure 1 and Figure 14.1.\n\n\n\n\n\n\n\n\n\n\ncluster_A\n\nCluster B\n\n\ncluster_B\n\nCluster A\n\n\n\nnode2\n\nnode2\n\n\n\nnode4\n\nnode4\n\n\n\nnode6\n\nnode6\n\n\n\nnode8\n\nnode8\n\n\n\nnode1\n\nnode1\n\n\n\nnode1-&gt;node2\n\n\n1\n\n\n\nnode3\n\nnode3\n\n\n\nnode3-&gt;node4\n\n\n2\n\n\n\nnode5\n\nnode5\n\n\n\nnode5-&gt;node6\n\n\n3\n\n\n\nnode7\n\nnode7\n\n\n\nnode7-&gt;node8\n\n\n4\n\n\n\n\n\n\nFigure 14.1: Graphviz Test",
+    "text": "14.2 Example\n図 1 and 図 14.1.\n\n\n\n\n\n\n\n\n\n\ncluster_A\n\nCluster B\n\n\ncluster_B\n\nCluster A\n\n\n\nnode2\n\nnode2\n\n\n\nnode4\n\nnode4\n\n\n\nnode6\n\nnode6\n\n\n\nnode8\n\nnode8\n\n\n\nnode1\n\nnode1\n\n\n\nnode1-&gt;node2\n\n\n1\n\n\n\nnode3\n\nnode3\n\n\n\nnode3-&gt;node4\n\n\n2\n\n\n\nnode5\n\nnode5\n\n\n\nnode5-&gt;node6\n\n\n3\n\n\n\nnode7\n\nnode7\n\n\n\nnode7-&gt;node8\n\n\n4\n\n\n\n\n\n\n図 14.1: Graphviz Test",
     "crumbs": [
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Graphviz β version (optional)</span>"
     ]
@@ -405,11 +405,11 @@
   {
     "objectID": "restrictions.html",
     "href": "restrictions.html",
-    "title": "Appendix A — Restrictions",
+    "title": "付録 A — Restrictions",
     "section": "",
     "text": "It seems that the section label customization function cannot be used in the latest release ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML). If you turn on $IsUnnumbered and $HasSectionLabel, the display of the quote will be fixed to the number + title, so please turn off $IsUnnumbered. Please do not use parentheses in note titles. The section label list is not being generated correctly.",
     "crumbs": [
-      "Appendices",
+      "付録",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Restrictions</span>"
     ]
   }
