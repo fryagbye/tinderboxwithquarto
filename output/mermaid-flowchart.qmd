@@ -23,7 +23,7 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 
 
 
-## How to use {#sec-how-to-use-mermaid }
+## How to use {#sec-how-to-use }
 
 
 
@@ -134,7 +134,7 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 
 
 
-## Example {#sec-mermaid-example }
+## Example {#sec-example }
 
 
 ```{mermaid} 

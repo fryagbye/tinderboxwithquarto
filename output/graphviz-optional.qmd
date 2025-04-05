@@ -8,7 +8,7 @@
 
 
 
-## How to use {#sec-how-to-use-graphviz }
+## How to use {#sec-how-to-use }
 
 
 
@@ -64,7 +64,7 @@
 
 
 
-## Example {#sec-graphviz-example }
+## Example {#sec-example }
 
  @fig-workflow-graphviz and @fig-Test.
 
