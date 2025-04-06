@@ -19,93 +19,97 @@ My Workflow is @fig-workflow-graphviz.
 <br>
 
 
-```{dot}
-//| label: fig-workflow-graphviz
-//| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
-//| fig-width: 5
-digraph {
-    layout=dot
-    compound=true
-    graph [charset = "UTF-8" splines = "spline" ];
-subgraph cluster_A{
-                        label="Applications"
-                        spline="curved"
-                        color="#000000"
-                        penwidth="1"
-                        style="filled"
-                        fillcolor="#e7f3e7"
-                        fontcolor="#000000"
-            A B 
+```mermaid 
 
-            subgraph cluster_B{
-                            label="Tinderbox"
-                            color="#000000"
-                            penwidth="1"
-                            style="filled"
-                            fillcolor="#f6e04d"
-                            fontcolor="#000000"
-                            URL="https://www.eastgate.com/Tinderbox/"
+%%| label: fig-workflow-mermaid
+%%| fig-cap: Tinderbox Work Flow with Quarto.
+%%| fig-width: 5
+%%{init: {'theme':'neutral'}}%%
+flowchart TB
+    A["Bookends"] -->|"opt + drag"| Sub1["Tinderbox"]
+    B["Snippety"] -.->  Sub1["Tinderbox"]
+    C["Mermaid"]
+    D["Graphviz"]
+    E["Preview with Rscript"]
+    F["R Studio"] -->|"Call"| H["quarto CLI"]
+    G["RMarkdown ( .qmd )"] -->|"Read qmd files"| F["R Studio"]
+    G["RMarkdown ( .qmd )"] -->|"Call"| H["quarto CLI"]
+    H["quarto CLI"] -->|"Export"| I["Book"]
+    H["quarto CLI"] -->|"Export"| J["Manuscript"]
+    H["quarto CLI"] -->|"Export"| K["revealjs"]
+    I["Book"]
+    J["Manuscript"]
+    K["revealjs"]
 
+ subgraph Sub1["Tinderbox"]
+    Sub5
+end 
 
-            subgraph cluster_C{
-                                label="Demo_TBX_for_Quarto.tbx"
-                                color="#000000"
-                                penwidth="1"
-                                style="filled"
-                                fillcolor="#ffffff"
-                                fontcolor="#000000"
-                                URL="https://github.com/fryagbye/tinderboxwithquarto"
-            C D E 
-}
+ subgraph Sub2["Applications"]
+    direction LR
+    A
+    B
+    Sub1
+end 
 
-}
+ subgraph Sub3["Quarto"]
+    direction LR
+    F
+    G
+    H
+end 
 
-}
+ subgraph Sub4["Output"]
+    direction LR
+    I
+    J
+    K
+end 
 
-subgraph cluster_D{
-                        label="Quarto"
-                        color="#000000"
-                        penwidth="1"
-                        style="filled"
-                        fillcolor="#fff4e6"
-                        fontcolor="#000000"
-            F G H 
-}
+ subgraph Sub5["Demo_TBX_for_Quarto.tbx"]
+    C
+    D
+    E
+end 
 
-subgraph cluster_E{
-                        label="Output"
-                        color="#000000"
-                        penwidth="1"
-                        style="filled"
-                        fillcolor="#ffffff"
-                        fontcolor="#000000"
-            I J K 
-}
+ subgraph Sub6["Work Flow"]
+    direction TB
+    Sub2
+    Sub3
+    Sub4
+end 
 
+    Sub5["Demo_TBX_for_Quarto.tbx"] -->  G["RMarkdown ( .qmd )"]
 
-A [ style="filled"  label="Bookends" color="#000000", penwidth="1", fillcolor="#fcbd63", fontcolor="#000000", URL="https://www.sonnysoftware.com/bookends-for-mac"]
-B [ style="filled"  label="Snippety" color="#990000", penwidth="1", fillcolor="#5c9dfe", fontcolor="#000000", URL="https://snippety.app/"]
-C [ style="filled"  label="Mermaid" color="#000000", penwidth="1", fillcolor="#c735e9", fontcolor="#ffffff", URL="https://mermaid.js.org/"]
-D [ style="filled"  label="Graphviz" color="#000000", penwidth="1", fillcolor="#30638d", fontcolor="#ffffff", URL="https://graphviz.org/"]
-E [ style="filled"  label="Preview \nwith Rscript" ]
-F [ style="filled"  label="R Studio" color="#000000", penwidth="1", fillcolor="#80a9d7", fontcolor="#000000", URL="https://posit.co/products/open-source/rstudio/"]
-G [ style="filled"  label="RMarkdown ( .qmd )" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000"]
-H [ style="filled"  label="quarto CLI" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000", URL="https://quarto.org/"]
-I [ style="filled"  label="Book" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]
-J [ style="filled"  label="Manuscript" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]
-K [ style="filled"  label="revealjs" color="#d53f8c", penwidth="1", fillcolor="#f2e142", fontcolor="#000000"]
+%% Styles & Links
+    style A fill:#fcbd63,color:#000000,stroke:#dc490b,stroke-width:2px
+    click A href "https://www.sonnysoftware.com/bookends-for-mac" _blank
+    style B fill:#5c9dfe,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 
+    click B href "https://snippety.app/" _blank
+    style C fill:#c735e9,color:#000000,stroke:#dc490b,stroke-width:2px
+    click C href "https://mermaid.js.org/" _blank
+    style D fill:#30638d,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    click D href "https://graphviz.org/" _blank
+    style E fill:#009900,color:#000000,stroke:#dc490b,stroke-width:2px
+    style F fill:#80a9d7,color:#000000,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 
+    click F href "https://posit.co/products/open-source/rstudio/" _blank
+    style G fill:#74bbff,color:#000000,stroke:#dc490b,stroke-width:2px
+    style H fill:#74bbff,color:#000000,stroke:#dc490b,stroke-width:2px
+    click H href "https://quarto.org/" _blank
+    style I fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px
+    style J fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px
+    style K fill:#f2e142,color:#000000,stroke:#d53f8c,stroke-width:2px
+    style Sub1 fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px
+    style Sub2 fill:#e7f3e7,color:#000000,stroke:#dc490b,stroke-width:2px
+    style Sub3 fill:#fff4e6,color:#000000,stroke:#dc490b,stroke-width:2px
+    style Sub4 fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px
+    style Sub5 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
+    style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
 
-A -> C [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ltail = "cluster_A" ]
-B -> E [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ]
-D -> G [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_D" ltail = "cluster_C" ]
-F -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]
-G -> F [label = "Read qmd files" fillcolor="#cbd9d7" fontcolor="#000000" ]
-G -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]
-H -> I [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]
-H -> J [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]
-H -> K [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]
-}
 ```
+
+
+
 
 
 
