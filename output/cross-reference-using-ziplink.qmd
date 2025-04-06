@@ -156,10 +156,8 @@ There are multiple ways to specify labels, but they are only supported if it is 
 Equation Example
 Black-Scholes (@eq-black-scholes) is a mathematical model that seeks to explain
 
-$$
-ma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$ {#eq-black-scholes}
+
+* Input
 
 
 ```latex
@@ -170,6 +168,16 @@ ma^{2} \mathrm S^{2}
 $$
 
 ```
+
+
+
+* Output
+
+
+$$
+ma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
+$$ {#eq-black-scholes}
 
 
 

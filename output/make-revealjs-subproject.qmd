@@ -24,7 +24,7 @@ Make a note for the sub-project with **pSubfolderRevealjs** .
     This is a dummy file for pFrontmatterRevealjs. The markdown level depends on the indent level and `$OutlineBaseControl` of the subproject folder.
 
 ```
-$OutlineDepthBase * "#" + $OutlineBaseControl(collect(ancestors,$Path)[-1]))
+($OutlineDepthBase + $OutlineBaseControl(collect(ancestors,$Path)[-1])) * "#" 
 ```
 
 

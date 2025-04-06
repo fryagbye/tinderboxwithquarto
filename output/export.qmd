@@ -12,39 +12,53 @@ If you use a _language.yml, you export "_language" note (optional. See  @sec-set
 
 2. Export  `.qmd` files ( pNote notes only)
 
-The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to output. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
-If you select the pNote notes below "Export Agent" and output it, ~~then execute the "Move qmd files" stamp~~, you can overwrite the qmd file directly to `./output` (=`$HTMLExportFileName` of the sub-project folder) ( @fig-after ). This is a method to avoid having to consider the folder structure when referencing image files with a relative path.
+The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to the "output" folder. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
+If you select the pNote notes below "Export Agent" and output it, ~~then execute the "Move qmd files" stamp~~, you can overwrite the qmd file directly to `./output` (=`$HTMLExportFileName` of your project folder) ( @fig-output-tree). This method avoids considering the folder structure when referencing image files with a relative path.
 
-::: {#fig-move-qmd layout-ncol=2}
-
-
-![Before](screenshots/folder01.png){#fig-before}
-
-
-![After](screenshots/folder02.png){#fig-after}
-
-qmd files are moved to the project path by stamp
-
-:::
+![Folders](screenshots/outputfoldertree01.png){#fig-output-tree}
 
 
 
 3. Preview HTML output. 
 
 
+
+    * Terminal application 
+
+
 ```zsh
-# preview for only html output
-> quarto preview projectname
+# preview
+# quarto preview projectname (quarto command options)
+e.g. 
+> quarto preview output
 ```
+
+
+
+    * The stamp "Quarto: Book Preview ( Select Export Agent )" 
+
+
+![Example: Quarto Preview](screenshots/quartorenderexample02.png){#fig-quarto-preview}
 
 
 
 4. Render pdf or html.
 
 
+
+    * Terminal application 
+
+
 ```zsh
-> quarto render
+> quarto render output
 ```
+
+
+![Example: Quarto Render](screenshots/quartorenderexample01.png){#fig-quarto-render}
+
+
+
+    * The stamp "Quarto: Book Render ( Select For Export )
 
     You can use RStudio for preview and render.
 

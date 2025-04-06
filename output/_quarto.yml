@@ -1,23 +1,33 @@
 project:
   type: book
-  output-dir: _bookpdf
+  output-dir: _bookhtml
 
 book:
   title: Tinderbox file for Quarto
-  subtitle: How to use this file
   author: fryagbye
+  reader-mode: true
 
   page-footer:
     left: |
       footer left
     right: |
       footer right
+  cover-image: images/cover.png
+  
+  
+  repo-url: https://github.com/fryagbye/tinderboxwithquarto
+  repo-branch: main
+  repo-actions: [edit, issue]
+  sidebar:
+    style: docked
+    pinned: true
   chapters:
     - index.qmd
     - usage-environment.qmd
     - setting.qmd
-    - part: \"Book format\"
+    - part: "Book format"
       chapters:
+        - make-a-new-book-project.qmd
         - make-notes.qmd
         - chunks-and-graphs.qmd
         - rename-htmlexportfilename-of-a-note-with-translation.qmd
@@ -25,12 +35,14 @@ book:
         - cross-reference-using-ziplink.qmd
         - export.qmd
         - example.qmd
-    - part: \"Manuscript format\"
+    - part: "Manuscript format"
       chapters:
+        - make-a-new-book-project.qmd
         - make-manuscript-subproject.qmd
         - export-and-render.qmd
-    - part: \"revealjs format\"
+    - part: "revealjs format"
       chapters:
+        - make-a-new-book-project.qmd
         - make-revealjs-subproject.qmd
     - mermaid-flowchart.qmd
     - graphviz-optional.qmd
@@ -38,49 +50,54 @@ book:
   appendices:
     - restrictions.qmd
 
+
 format:
-  pdf:
+  html:
+    theme:
+      - cosmo
+      
+    code-link: true
     toc: true
     toc-depth: 2
     number-sections: true
     number-depth: 3
+    highlight-style: base16-atelier-dune
+    link-external-newwindow: true
     pdf-engine: lualatex
-    cite-method: citeproc
-    code-link: true
-
     author-meta: "fryagbye"
     indent: true
     include-in-header:
      - text: |
-         \usepackage{float}
-         \renewcommand{\topfraction}{.85}
-         \renewcommand{\bottomfraction}{.7}
-         \renewcommand{\textfraction}{.15}
-         \renewcommand{\floatpagefraction}{.66}
-         \setcounter{topnumber}{3}
-         \setcounter{bottomnumber}{3}
-         \setcounter{totalnumber}{4}
-         \usepackage{calc}
-         \usepackage {bxjalipsum}
-         \usepackage{pxrubrica}
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
+         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+    mainfont: "Noto Sans JP"
+    monofont: "Noto Sans Mono"
     callout-appearance: default
-    
+
+lightbox:
+  match: auto
+  effect: zoom
+  desc-position: bottom
+  loop: true
+
 
 lang: en
-
 bibliography: /Users/tk4o2ka/github/tinderboxwithquarto/citation/references.bib
 
+reference-location: margin
 
 
-documentclass: bxjsbook
-classoption: A4paper,10pt,lualatex,ja=standard,textwidth=50zw,english
-papersize: a4
+classoption: fleqn
+
 
 execute:
   cache: false
   
   freeze: auto
+  crossrefs-hover: false	
 
 editor: source
 

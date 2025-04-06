@@ -1,0 +1,12 @@
+{
+  "hash": "c629e3f7ea412741be1f32c8ffed2b5c",
+  "result": {
+    "engine": "jupyter",
+    "markdown": ":::{#86b382fe .cell .markdown}\n<html>\n    <head>\n        <meta charset=\"utf-8\">\n        <title>matplotlib</title>\n        <style>\n            \nbody{\n    font-family: \"Helvetica Ssm \n　　 Book\",HelveticaNeue,Helvetica,Arial,sans-serif;\n    margin-left: 7.5%;\n    margin-right: 7.5%;\n    line-height: 1.4;\n    }\n    \ntable {\n    margin: 2em 0;\n    font-size: 0.9em;\n    border: 1px solid #888888;\n}\n\ntd{\n    padding: 0.5em;\n    }\n\nimg{\n    width: 100%;\n}\n    \n\n        </style>\n    </head>\n    <body>\n:::\n\n:::{#cell-fig-matplotlib .cell .markdown}\nimport matplotlib.pyplot as plt\nfig = plt.figure()\nx = np.arange(10)\ny = 2.5 * np.sin(x / 20 * np.pi)\nyerr = np.linspace(0.05, 0.2, 10)\n\nplt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')\nplt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')\nplt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,\n             label='uplims=True, lolims=True')\n\nupperlimits = [True, False] * 5\nlowerlimits = [False, True] * 5\nplt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,\n             label='subsets of uplims and lolims')\n\nplt.legend(loc='lower right')\nplt.show(fig)\n```\n\n    </body>\n</html>\n:::\n\n",
+    "supporting": [
+      "untitled_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

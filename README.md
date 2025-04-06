@@ -1,4 +1,23 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Introduction
 
 This Tinderbox file supports creating a book, manuscript (beta), revealjs with [Quarto](https://quarto.org/).
@@ -6,20 +25,20 @@ This Tinderbox file supports creating a book, manuscript (beta), revealjs with [
 [Tinderbox file for Quarto (Web version)](https://fryagbye.quarto.pub/tinderbox-file-for-quarto/)
 
 You can easily make qmd files and _quarto.yml with it. 
-Here is an example of books created with Quarto.
+Here is an example of books created with Quarto. 
 
 
 * [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
 
 You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz)  in Tinderbox.
 
-[![Tinderbox with Quarto part1](output/screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
+[![Tinderbox with Quarto part1](screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
 
 My Workflow is @fig-workflow-graphviz.
 <br>
 
 
-```dot
+```{dot}
 //| label: fig-workflow-graphviz
 //| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
 //| fig-width: 5
@@ -28,34 +47,34 @@ digraph {
     compound=true
     graph [charset = "UTF-8" splines = "spline" ];
 subgraph cluster_A{
-                                label="Applications"
-                                spline="curved"
+                        label="Applications"
+                        spline="curved"
+                        color="#000000"
+                        penwidth="1"
+                        style="filled"
+                        fillcolor="#e7f3e7"
+                        fontcolor="#000000"
+            A B 
+
+            subgraph cluster_B{
+                            label="Tinderbox"
+                            color="#000000"
+                            penwidth="1"
+                            style="filled"
+                            fillcolor="#f6e04d"
+                            fontcolor="#000000"
+                            URL="https://www.eastgate.com/Tinderbox/"
+
+
+            subgraph cluster_C{
+                                label="Demo_TBX_for_Quarto.tbx"
                                 color="#000000"
                                 penwidth="1"
                                 style="filled"
-                                fillcolor="#e7f3e7"
+                                fillcolor="#ffffff"
                                 fontcolor="#000000"
-                A B 
-
-                subgraph cluster_B{
-                                    label="Tinderbox"
-                                    color="#000000"
-                                    penwidth="1"
-                                    style="filled"
-                                    fillcolor="#f6e04d"
-                                    fontcolor="#000000"
-                                    URL="https://www.eastgate.com/Tinderbox/"
-
-
-                subgraph cluster_C{
-                                        label="Demo_TBX_for_Quarto.tbx"
-                                        color="#000000"
-                                        penwidth="1"
-                                        style="filled"
-                                        fillcolor="#ffffff"
-                                        fontcolor="#000000"
-                                        URL="https://github.com/fryagbye/tinderboxwithquarto"
-                C D E 
+                                URL="https://github.com/fryagbye/tinderboxwithquarto"
+            C D E 
 }
 
 }
@@ -63,23 +82,23 @@ subgraph cluster_A{
 }
 
 subgraph cluster_D{
-                                label="Quarto"
-                                color="#000000"
-                                penwidth="1"
-                                style="filled"
-                                fillcolor="#fff4e6"
-                                fontcolor="#000000"
-                F G H 
+                        label="Quarto"
+                        color="#000000"
+                        penwidth="1"
+                        style="filled"
+                        fillcolor="#fff4e6"
+                        fontcolor="#000000"
+            F G H 
 }
 
 subgraph cluster_E{
-                                label="Output"
-                                color="#000000"
-                                penwidth="1"
-                                style="filled"
-                                fillcolor="#ffffff"
-                                fontcolor="#000000"
-                I J K 
+                        label="Output"
+                        color="#000000"
+                        penwidth="1"
+                        style="filled"
+                        fillcolor="#ffffff"
+                        fontcolor="#000000"
+            I J K 
 }
 
 
@@ -237,7 +256,7 @@ Quarto 1.7.13
 1. Setting up with "TBXConfig" note
 
 
-![User Attributes in TBXConfig](output/screenshots/TBXConfig01.png)
+![User Attributes in TBXConfig](screenshots/TBXConfig01.png)
 
     You need to change the values of the following "TBXConfig" attributes for configuration.
 
@@ -253,14 +272,14 @@ Quarto 1.7.13
 * `$ProjectContainer`  →  Book Project Path for CrossRef Search and Label Lists 
 
 
-![Project Contaier Example](output/screenshots/BookProjectContainerExample.png){#fig-projectcontaierexample fig-alt="Project Contaier Example" fig-align="left" width=80%}  
+![Project Contaier Example](screenshots/BookProjectContainerExample.png){#fig-projectcontaierexample fig-alt="Project Contaier Example" fig-align="left" width=80%}  
 
 
 
 * `$ExportFolder` → Path of exported files.
 
 
-![Export Folder Setting](output/screenshots/exportfoldersetting.png){#fig-exportfoldersetting fig-alt="Export Folder Setting" fig-align="left" width=50%}
+![Export Folder Setting](screenshots/exportfoldersetting.png){#fig-exportfoldersetting fig-alt="Export Folder Setting" fig-align="left" width=50%}
 
 
 
@@ -297,7 +316,7 @@ Quarto 1.7.13
 
 * `$RScriptLibraryPath` → R Library Resource Path ( default Value )
 
-    ![Rscript Library Path](output/screenshots/RscriptLibPath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
+    ![Rscript Library Path](screenshots/RscriptLibPath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
 	
 
 
@@ -307,13 +326,13 @@ Quarto 1.7.13
     If you use [Custom Translations](https://quarto.org/docs/authoring/language.html#custom-translations), you need to make `$Q_Has_Language_YML` `true` and set `$Q_Language_YML` for the filename.
 The "_language" note in this file is for translating to Japanese.
 
-![_quarto.yml 01](output/screenshots/quartoyml01.png)
+![_quarto.yml 01](screenshots/quartoyml01.png)
 
 
-![_quarto.yml 02](output/screenshots/quartoyml02.png)
+![_quarto.yml 02](screenshots/quartoyml02.png)
 
 
-![_quarto.yml 03](output/screenshots/quartoyml03.png)
+![_quarto.yml 03](screenshots/quartoyml03.png)
 
 
 
@@ -334,7 +353,27 @@ The "_language" note in this file is for translating to Japanese.
 
 
 
-# Make notes
+
+
+
+# Make a New Book Project
+
+You can start with the stamp that makes a new book project.
+Only one book project is allowed per file.
+The project container is created at the bottom and it has Label lists, _quarto.yml and an index note.
+
+![New Project](screenshots/newproject01.png)
+
+If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
+Before calling quarto commands, the stamps activate the virtual environment.
+
+
+
+
+
+
+
+# Make new notes
 
 
 
@@ -358,11 +397,31 @@ Please set the Prototype of pNote to level 1 and pSubnote below level.
      e.g. If the title of pSubnote in level 2 depth is "わが輩は猫である", it will be output as follows when exporting.
      > \#\# わが輩は猫である
 
+::: {#fig-make-newnote01 layout-ncol=2}
+
+
+![Make new pNote](screenshots/makenewnote01.png)
+
+
+![Make new pSubnote](screenshots/makenewnote02.png)
+
+
+:::
+
+
 
 2. Index.qmd
 
     In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of the index.qmd is set to `true`.
-You can make the note for index.qmd with the pIndexQmd Prototype.
+You can make the note for index.qmd with the pIndexQmd Prototype or make `$IsIndexqmd` of pNote  `true`.
+
+![Make the Index.qmd](screenshots/makeindexqmd.png)
+
+
+
+
+
+
 
 
 
@@ -381,7 +440,7 @@ You can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The �
 These tags can be used to reference R chunks, Python chunks, Mermaid diagrams, or Graphviz code.
 Please do not insert tags in the middle of a sentence.
 
-![Chunk Tag Example](output/screenshots/ChunkLabel.png)
+![Chunk Tag Example](screenshots/ChunkLabel.png)
 
 If tags called in your notes are changed or deleted, the warning is shown.
 you can suppress the warning with  `$SuppresTagDetectWaring` in the project container note.
@@ -407,6 +466,8 @@ There is a stamp **"Notes: Tranlate Section Labels"** that translates the Japane
 ```zsh
 > brew install translate-shell
 ```
+
+
 
 
 
@@ -448,7 +509,12 @@ chapters:
 
 The figure below shows the export example when Part is supported and the output result of _quarto.yml.
 
-![Folder configuration at the time of output and _quarto.yml](output/screenshots/PartandChapter.png)
+![Folder configuration at the time of output and _quarto.yml](screenshots/PartandChapter.png)
+
+
+
+
+
 
 
 
@@ -456,7 +522,7 @@ The figure below shows the export example when Part is supported and the output 
 
 In Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). [^regrex]
 
-![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](output/screenshots/WorkingIndicator.png)
+![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](screenshots/WorkingIndicator.png)
 
 Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
 
@@ -464,6 +530,63 @@ Convert it to a quotable title (citation name starting with @) and create a note
 
 
 [^ziplink]: Please refer to "Text link creation via the Ziplinking method" in [A Tinderbox Reference File](https://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html).(@Anderson2024Tinde)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -482,38 +605,52 @@ If you use a _language.yml, you export "_language" note (optional. See  @sec-set
 2. Export  `.qmd` files ( pNote notes only)
 
 The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to the "output" folder. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
-If you select the pNote notes below "Export Agent" and output it, ~~then execute the "Move qmd files" stamp~~, you can overwrite the qmd file directly to `./output` (=`$HTMLExportFileName` of your project folder) ( @fig-after ). This method avoids considering the folder structure when referencing image files with a relative path.
+If you select the pNote notes below "Export Agent" and output it, ~~then execute the "Move qmd files" stamp~~, you can overwrite the qmd file directly to `./output` (=`$HTMLExportFileName` of your project folder) ( @fig-output-tree). This method avoids considering the folder structure when referencing image files with a relative path.
 
-::: {#fig-move-qmd layout-ncol=2}
-
-
-![~~Before~~](output/screenshots/folder01.png){#fig-before}
-
-
-![After](output/screenshots/folder02.png){#fig-after}
-
-qmd files are moved to the project path by stamp
-
-:::
+![Folders](screenshots/outputfoldertree01.png){#fig-output-tree}
 
 
 
 3. Preview HTML output. 
 
 
+
+    * Terminal application 
+
+
 ```zsh
-# preview for only html output
-> quarto preview projectname
+# preview
+# quarto preview projectname (quarto command options)
+e.g. 
+> quarto preview output
 ```
+
+
+
+    * The stamp "Quarto: Book Preview ( Select Export Agent )" 
+
+
+![Example: Quarto Preview](screenshots/quartorenderexample02.png){#fig-quarto-preview}
 
 
 
 4. Render pdf or html.
 
 
+
+    * Terminal application 
+
+
 ```zsh
-> quarto render
+> quarto render output
 ```
+
+
+![Example: Quarto Render](screenshots/quartorenderexample01.png){#fig-quarto-render}
+
+
+
+    * The stamp "Quarto: Book Render ( Select For Export )
 
     You can use RStudio for preview and render.
 
@@ -526,7 +663,10 @@ qmd files are moved to the project path by stamp
 # Example
 
 
-[Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/main/_bookpdf/Tinderbox-file-for-Quarto.pdf)
+[Example HTML](https://fryagbye.quarto.pub/tinderbox-file-for-quarto/)
+
+
+[Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/61f3d4e8e09e16c57ac3382f63d8f12af2dc7f3a/output/_bookpdf/Tinderbox-file-for-Quarto.pdf) 
 
 
 
@@ -544,9 +684,39 @@ qmd files are moved to the project path by stamp
 
 
 
+# Make a New Manuscript Project
+
+you can start with the stamp that makes a new manuscript project.
+A Manuscript project can have multiple projects in one file.
+
+![New Project](screenshots/newproject02.png)
+
+If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
+Before calling quarto commands, the stamps activate the virtual environment.
+
+
+
+
+
+
+
 # Make sub-project folder
 
 Make a note for the sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -585,7 +755,30 @@ e.g.
 
 
 
+
+
+
+
 # revealjs format
+
+
+
+
+
+
+
+
+# Make a New revealjs Project
+
+you can start with the stamp that makes a new revealjs project.
+A revealjs project can have multiple projects in one file.
+
+![New Project](screenshots/newproject03.png)
+
+If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
+Before calling quarto commands, the stamps activate the virtual environment.
+
+
 
 
 
@@ -594,6 +787,25 @@ e.g.
 # Make sub-project folder
 
 Make a note for the sub-project with **pSubfolderRevealjs** .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -628,7 +840,45 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Graphviz β version (optional)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -640,9 +890,11 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 # References
 
 
-Anderson, Mark. 2024. “A Tinderbox Reference File.” 2024.
-Wickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize,
-and Model Data. “O’Reilly Media, Inc.”	
+::: {#refs}
+
+
+:::
+
 
 
 

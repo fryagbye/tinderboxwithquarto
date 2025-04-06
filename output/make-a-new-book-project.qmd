@@ -1,0 +1,16 @@
+
+
+# Make a New revealjs Project
+
+you can start with the stamp that makes a new revealjs project.
+A revealjs project can have multiple projects in one file.
+
+![New Project](screenshots/newproject03.png)
+
+If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
+Before calling quarto commands, the stamps activate the virtual environment.
+
+
+
+
+

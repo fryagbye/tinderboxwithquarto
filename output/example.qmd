@@ -3,7 +3,10 @@
 # Example {#sec-example }
 
 
-[Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/61f3d4e8e09e16c57ac3382f63d8f12af2dc7f3a/output/_bookpdf/Tinderbox-file-for-Quarto.pdf)  
+[Example HTML](https://fryagbye.quarto.pub/tinderbox-file-for-quarto/)
+
+
+[Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/61f3d4e8e09e16c57ac3382f63d8f12af2dc7f3a/output/_bookpdf/Tinderbox-file-for-Quarto.pdf) 
 
 
 
