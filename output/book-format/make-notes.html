@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+ <link rel="stylesheet" href="../resources/github.css">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js"></script>
+</head>
+<body>
+
+
+<h1>Make new notes</h1>
+
+<ol type="1">
+<li><p>Make notes with Prototype pNote and pSubnote</p>
+<p>pNote is for Sections and pSubnote is for Subsections. Please set the
+Prototype of pNote to level 1 and pSubnote below level.</p></li>
+</ol>
+<ul>
+<li><p>When creating a note, please enter “#pNote” or “#pSubnote”
+following the title. (or apply the pNote Prototype or pSubnote to notes
+you make )</p>
+<p>e.g. Note title -&gt; わが輩は猫である#pSubnote</p>
+<ul>
+<li>The note title (<code>$Name</code>) is the header for pNote or
+pSubnote.</li>
+</ul></li>
+<li><p>Depending on the hierarchy level, the level of the header also
+changes.</p>
+<p>e.g. If the title of pSubnote in level 2 depth is “わが輩は猫である”,
+it will be output as follows when exporting.</p>
+<blockquote>
+<p>## わが輩は猫である</p>
+</blockquote></li>
+</ul>
+<div id="fig-make-newnote01" data-layout-ncol="2">
+<figure>
+<img src="screenshots/makenewnote01.png" alt="Make new pNote" />
+<figcaption aria-hidden="true">Make new pNote</figcaption>
+</figure>
+<figure>
+<img src="screenshots/makenewnote02.png" alt="Make new pSubnote" />
+<figcaption aria-hidden="true">Make new pSubnote</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li><p>Index.qmd</p>
+<p>In the quarto book format, <strong>only one index.qmd is
+required</strong>, <code>$IsIndexqmd</code> of the index.qmd is set to
+<code>true</code>. You can make the note for index.qmd with the
+pIndexQmd Prototype or make <code>$IsIndexqmd</code> of pNote
+<code>true</code>.</p></li>
+</ol>
+<p><img src="screenshots/makenewnote02.png" /></p>
+
+
+
+<h2>Special Notes Prototype</h2>
+
+
+<ol type="1">
+<li><p>pReferenceQmd</p>
+<p>This prototype is inherited from pNote and $Text has a div with id
+<code>refs</code> to call a works cited list (below). (<a
+href="%5Bhttps://quarto.org/docs/authoring/citations.html#bibliography-generation%5D(https://quarto.org/docs/authoring/citations.html#bibliography-generation)">Quarto
+Bibliography Generation</a>)</p>
+<p><code>::: {#refs}</code></p>
+<p><code>:::</code></p></li>
+<li><p>pAppendixQmd</p>
+<p>This prototype is inherited from pNote and $IsAppendix is
+<code>true</code>.</p></li>
+</ol>
+
+
+
+
+
+
+</body>
+</html>
+
