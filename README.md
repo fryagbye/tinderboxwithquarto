@@ -521,7 +521,7 @@ loaded via a namespace (and not attached):
 
 * `$RScriptLibraryPath` → R Library Resource Path ( default Value )
 
-    ![Rscript Library Path](output/screenshots/RscriptLibPath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
+    ![Rscript Library Path](output/screenshots/RscriptLibpath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
 	
 
 
