@@ -1,0 +1,27 @@
+
+
+
+---
+
+
+
+## R chunk example 1
+
+
+
+```{.r code-line-numbers=6,8}
+#| label: fig-Graph
+#| fig-width: 6
+#| fig-height: 3
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+
+
+
+
+
+

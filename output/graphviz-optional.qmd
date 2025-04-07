@@ -1,6 +1,6 @@
 
 
-# Graphviz β version (optional) {#sec-graphviz-optional }
+# Graphviz β version {#sec-graphviz-optional }
 
 
 

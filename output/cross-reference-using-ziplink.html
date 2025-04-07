@@ -96,6 +96,48 @@ data-cites="fig-airquality">(<strong>fig-airquality?</strong>)</span>.</p>
 <h2>How to set the label of the table</h2>
 
 
+<p>There are multiple ways to specify labels, but they are only
+supported if it is a table in markdown format and the label name is
+above, as shown in the example below.[table-cross-ref]</p>
+<p>[table-cross-ref]: For other formats, please refer to <a
+href="https://quarto.org/docs/authoring/cross-references.html#tables">quarto
+cross-reference</a>.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode txt"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>:明度・彩度の修飾子 {#tbl-brightness-saturation}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>|項目|効果|</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>|----|------------|</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>|dark|暗くする|</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>|darker|より暗くする|</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>|darkest|最も暗くする|</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>|light| 明るくする|</span></code></pre></div>
+<table>
+<caption>明度・彩度の修飾子 {#tbl-brightness-saturation}</caption>
+<thead>
+<tr>
+<th>項目</th>
+<th>効果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dark</td>
+<td>暗くする</td>
+</tr>
+<tr>
+<td>darker</td>
+<td>より暗くする</td>
+</tr>
+<tr>
+<td>darkest</td>
+<td>最も暗くする</td>
+</tr>
+<tr>
+<td>light</td>
+<td>明るくする</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -180,15 +222,6 @@ label:fig-<br></td>
 <h2>Dummy links for cross-reference</h2>
 
 
-<p>You can create dummy links showing where each cross-reference,
-starting with the @ symbol in the section, figure, and table label
-lists, is cited.</p>
-<ol type="1">
-<li>execute the “Labels: Make Dummy Link Data For Cross-Reference”
-stamp</li>
-<li>select cross-ref label notes ( start with “@” ) and execute the
-“Labels: Dummy Link between Reference and Selected notes” stamp.</li>
-</ol>
 
 
 
@@ -197,6 +230,21 @@ stamp</li>
 <h2>Restrictions on quoted labels</h2>
 
 
+<ul>
+<li>The label before change or deletion remains because it cannot be
+detected even if the quoted label name is changed or deleted.</li>
+<li>Cross-ref detection is carried out by regular expression. If it is
+executed in the middle of input, it will be duplicated with a short
+label.</li>
+</ul>
+<p>In this case, if necessary, delete the quoted label name in Stamp and
+perform the detection manually by following the steps below.</p>
+<ol type="1">
+<li>Labels: Clear Cross-Reference List（Delete all citation labels under
+the Reference List.）</li>
+<li>Labels: Make Cross-Reference List（Re-detect the quoted
+label.）</li>
+</ol>
 
 
 

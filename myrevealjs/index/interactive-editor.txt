@@ -1,87 +1,14 @@
+
+
+
 ---
+
 
 
 ## Interactive Editor
 
 You can quote a chunk code block with a tag that has the pChunk child note.  
 The language of chunk code is `webr` for R or `pyodide` for python
-
-
-
----
-
-
-### R chunk example 1
-
-
-```{r}
-#| label: Graph
-#| fig-width: 6
-#| fig-height: 3
-library(ggplot2)
-ggplot(airquality, aes(Temp, Ozone)) + 
-  geom_point() + 
-  geom_smooth(method = "loess")
-```
-
-
-
-
-
----
-
-
-### R chunk example 1 ( Warning off option )
-
-If you want to suppress warning messages, you set `$Q_ChunkSuppressWarning` false.
-
-```{webr}
-#| warning: false
-#| fig-width: 6
-#| fig-height: 3
-library(ggplot2)
-ggplot(airquality, aes(Temp, Ozone)) + 
-  geom_point() + 
-  geom_smooth(method = "loess")
-```
-
-
-
-
-
----
-
-
-### R chunk example 2
-
-
-```{r}
-mod <- lm(waiting ~ eruptions, data = faithful)
-plot(faithful, main = "Old Faithful Geyser Data")
-abline(mod, col = 'blue')
-summary(mod)
-```
-
-
-
-
-
----
-
-
-### Python chunk example
-
-
-```{python}
-#| echo: true
-import matplotlib.pyplot as plt
-import numpy as np
-
-x = np.random.normal(170, 10, 250)
-plt.hist(x)
-plt.show()
-```
-
 
 
 

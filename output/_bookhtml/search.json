@@ -87,7 +87,7 @@
     "href": "chunks-and-graphs.html",
     "title": "5  Chunks and Graphs",
     "section": "",
-    "text": "R chunk and Python chunk notes\n\nYou can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The “Chunk & Graph: Make Chunk List” stamp generates a tag like ＜Lang:Tag Label➡️Figure Label＞. These tags can be used to reference R chunks, Python chunks, Mermaid diagrams, or Graphviz code. Please do not insert tags in the middle of a sentence.\n\n\n\nChunk Tag Example\n\n\nIf tags called in your notes are changed or deleted, the warning is shown. you can suppress the warning with $SuppresTagDetectWaring in the project container note.\n\nRendered Preview in Text Pane(R chunks, Mermaid diagrams, and Graphviz only)\n\nYou can check the results of the code executed within an R chunk in the Preview screen. Similarly, the results of Mermaid and Graphviz code can also be displayed. However, this is not possible for Python.",
+    "text": "R chunk and Python chunk notes\nYou can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The “Chunk & Graph: Make Chunk List” stamp generates a tag like ＜Lang:Tag Label➡️Figure Label＞. These tags can be used to reference R chunks, Python chunks, Mermaid diagrams, or Graphviz code. Please do not insert tags in the middle of a sentence.\n\n\n\n\nChunk Tag Example\n\n\nIf tags called in your notes are changed or deleted, the warning is shown. You can suppress the warning with $SuppresTagDetectWaring in the project container note.\n\nRendered Preview in Text Pane(R chunks, Mermaid diagrams, and Graphviz only)\n\nYou can check the results of the code executed within an R chunk in the Preview screen. Similarly, the results of Mermaid and Graphviz code can also be displayed. However, this is not possible for Python.",
     "crumbs": [
       "Book format",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Chunks and Graphs</span>"
@@ -316,91 +316,41 @@
   {
     "objectID": "mermaid-flowchart.html",
     "href": "mermaid-flowchart.html",
-    "title": "16  Mermaid flowchart (optional)",
+    "title": "16  Mermaid flowchart",
     "section": "",
-    "text": "16.1 How to use\nThis file can generate Mermaid flowchart from notes, links.\nWork Flow is a sample of Mermaid flowchart.\nPlease check it in Map view. You need to use pre-release version 1",
+    "text": "This file can generate Mermaid flowchart from notes, links.\n\nContainer notes -&gt; Subgraphs ( pMFSubgraph )\nNon Container notes -&gt; Nodes ( pMFNode)\n\nWork Flow is a sample of Mermaid flowchart.\nPlease check it in Map view. You need to use pre-release version 1\n\n\n1 Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.(Transition to Chrome new headless mode · Issue #10532 · quarto-dev/quarto-cli)",
     "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#sec-how-to-use",
-    "href": "mermaid-flowchart.html#sec-how-to-use",
-    "title": "16  Mermaid flowchart (optional)",
-    "section": "",
-    "text": "You make a container noto for Flowchart and set pMFContainer.\nYou make notes ( pMFNode) and links.\nYou choose a direction for drawing like TD or LR.($M_Direction)\nRun the stamp ( Mermaid: Make a Flowchart ).\nPrototypes of container notes has a child note change from pMFNode to pMFContainer automatically by the stamp.\nThe note (pMFContainer) has the code for mermaid flowchart.\n\n\n\n\n\nTinderbox with Quarto part2 (English & Japanese sub)",
-    "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#sec-supported-shapes",
-    "href": "mermaid-flowchart.html#sec-supported-shapes",
-    "title": "16  Mermaid flowchart (optional)",
-    "section": "16.2 Supported shapes",
-    "text": "16.2 Supported shapes\n\nrectangle (&lt;- normal and other shapes)\nrounded\noval\nlozenge\ndiamond\nhex\n\n\n\n\nConvert shapes",
-    "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#sec-supported-line-types-priority",
-    "href": "mermaid-flowchart.html#sec-supported-line-types-priority",
-    "title": "16  Mermaid flowchart (optional)",
-    "section": "16.3 Supported line types (Priority)",
-    "text": "16.3 Supported line types (Priority)\n\nnormal –&gt; (4th)\nbold ==&gt; (3rd)\ndotted -.-&gt; (2nd)\ninvisible ~~~ (1st)",
-    "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#sec-supported-arrow-types",
-    "href": "mermaid-flowchart.html#sec-supported-arrow-types",
-    "title": "16  Mermaid flowchart (optional)",
-    "section": "16.4 Supported arrow types",
-    "text": "16.4 Supported arrow types\n\narrow only",
-    "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#sec-example",
-    "href": "mermaid-flowchart.html#sec-example",
-    "title": "16  Mermaid flowchart (optional)",
-    "section": "16.5 Example",
-    "text": "16.5 Example\n\n\n\n\n\n\nflowchart TB\n    A[\"Christmas\"] --&gt;|\"Get money\"| B[\"Go shopping\"]\n    B[\"Go shopping\"] --&gt;  Sub1[\"Let me think\"]\n    C[\"Laptop\"]\n    D[\"iPhone\"]\n    E[\"Car\"]\n subgraph Sub1[\"Let me think\"]\n    C\n    D\n    E\nend \n subgraph Sub2[\"Subgraph\"]\n    A\n    B\n    Sub1\nend \n    Sub1[\"Let me think\"] --&gt;|\"One\"| C[\"Laptop\"]\n    Sub1[\"Let me think\"] --&gt;|\"Two\"| D[\"iPhone\"]\n    Sub1[\"Let me think\"] --&gt;|\"Three\"| E[\"Car\"]\n%% Styles & Links\n    style Sub2 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px\n\n\n\n\n図 16.1",
-    "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart (optional)</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart</span>"
     ]
   },
   {
     "objectID": "graphviz-optional.html",
     "href": "graphviz-optional.html",
-    "title": "17  Graphviz β version (optional)",
+    "title": "17  Graphviz β version",
     "section": "",
     "text": "17.1 How to use",
     "crumbs": [
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Graphviz β version (optional)</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Graphviz β version</span>"
     ]
   },
   {
     "objectID": "graphviz-optional.html#sec-how-to-use",
     "href": "graphviz-optional.html#sec-how-to-use",
-    "title": "17  Graphviz β version (optional)",
+    "title": "17  Graphviz β version",
     "section": "",
     "text": "You make a container noto for the graph and set pGContainer.\nYou make notes ( pGNode) and links. You can’t make links to cluster (subgraph).\nYou choose a direction for drawing like TB or LR.($GG_Rankdir)\nYou can choose a Layout Engin like dot, neato, fdp and so on.\nChange attributes for Graphviz.\n\nAttributes starting with GG_ are for the Subgraph ( cluster ) options\nAttributes starting with GN_ are for the Note options\nAttributes starting with GE_ are for the Edge options\n\nRun the stamp ( Graphviz: Make a Dot graph ).\nPrototypes of container notes have a child note change from pGNode to pGContainer automatically by the stamp.\nThe note (pGContainer) has the code for Graphviz.\n\n\n\n\nTinderbox with Quarto part3",
     "crumbs": [
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Graphviz β version (optional)</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Graphviz β version</span>"
     ]
   },
   {
     "objectID": "graphviz-optional.html#sec-example",
     "href": "graphviz-optional.html#sec-example",
-    "title": "17  Graphviz β version (optional)",
+    "title": "17  Graphviz β version",
     "section": "17.2 Example",
     "text": "17.2 Example\n図 1 and 図 17.1.\n\n\n\n\n\n\n\n\n\n\ncluster_A\n\nCluster B\n\n\ncluster_B\n\nCluster A\n\n\n\nnode2\n\nnode2\n\n\n\nnode4\n\nnode4\n\n\n\nnode6\n\nnode6\n\n\n\nnode8\n\nnode8\n\n\n\nnode1\n\nnode1\n\n\n\nnode1-&gt;node2\n\n\n1\n\n\n\nnode3\n\nnode3\n\n\n\nnode3-&gt;node4\n\n\n2\n\n\n\nnode5\n\nnode5\n\n\n\nnode5-&gt;node6\n\n\n3\n\n\n\nnode7\n\nnode7\n\n\n\nnode7-&gt;node8\n\n\n4\n\n\n\n\n\n\n図 17.1: Graphviz Test",
     "crumbs": [
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Graphviz β version (optional)</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Graphviz β version</span>"
     ]
   },
   {

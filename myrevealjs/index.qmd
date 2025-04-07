@@ -8,20 +8,28 @@ format:
    live-revealjs:
     number-sections: true
     number-depth: 0
-    scrollable: true
-    
     
     css: styles.css
     slide-number: h.v
+    
+    footer: https://quarto.org/docs/presentations/revealjs/
+    scrollable: true
+    
+    
     transition: convex
+    
     
 
 ---
-
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
 
 
+
+
+
+
 ---
+
 
 
 ## Interactive Editor
@@ -31,21 +39,35 @@ The language of chunk code is `webr` for R or `pyodide` for python
 
 
 
+
+
+
+
+
 ---
 
 
-### R chunk example 1
+
+## R chunk example 1
+
 
 
 ```{r}
-#| label: Graph
+#| label: fig-Graph
 #| fig-width: 6
 #| fig-height: 3
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
   geom_smooth(method = "loess")
+
+
 ```
+
+
+
+
+
 
 
 
@@ -54,19 +76,28 @@ ggplot(airquality, aes(Temp, Ozone)) +
 ---
 
 
-### R chunk example 1 ( Warning off option )
+
+## R chunk example 1 ( Warning off option )
 
 If you want to suppress warning messages, you set `$Q_ChunkSuppressWarning` false.
+
 
 ```{webr}
 #| warning: false
 #| fig-width: 6
 #| fig-height: 3
+
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
   geom_smooth(method = "loess")
+
 ```
+
+
+
+
+
 
 
 
@@ -75,15 +106,24 @@ ggplot(airquality, aes(Temp, Ozone)) +
 ---
 
 
-### R chunk example 2
+
+## R chunk example 2
+
 
 
 ```{r}
+#| fig-width: 5
 mod <- lm(waiting ~ eruptions, data = faithful)
 plot(faithful, main = "Old Faithful Geyser Data")
 abline(mod, col = 'blue')
 summary(mod)
+
 ```
+
+
+
+
+
 
 
 
@@ -92,11 +132,15 @@ summary(mod)
 ---
 
 
-### Python chunk example
+
+## Python chunk example
+
 
 
 ```{python}
 #| echo: true
+#| label: fig-python
+#| fig-width: 5
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -104,6 +148,7 @@ x = np.random.normal(170, 10, 250)
 plt.hist(x)
 plt.show()
 ```
+
 
 
 
