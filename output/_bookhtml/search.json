@@ -52,12 +52,12 @@
   {
     "objectID": "make-a-new-book-project.html",
     "href": "make-a-new-book-project.html",
-    "title": "3  Make a New revealjs Project",
+    "title": "3  Make a New Book Project",
     "section": "",
-    "text": "you can start with the stamp that makes a new revealjs project. A revealjs project can have multiple projects in one file.\n\n\n\nNew Project\n\n\nIf you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath. Before calling quarto commands, the stamps activate the virtual environment.",
+    "text": "You can start with the stamp that makes a new book project. Only one book project is allowed per file. The project container is created at the bottom and it has Label lists, _quarto.yml and an index note.\n\n\n\nNew Project\n\n\nIf you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath. Before calling quarto commands, the stamps activate the virtual environment.",
     "crumbs": [
       "Book format",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Make a New revealjs Project</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Make a New Book Project</span>"
     ]
   },
   {
