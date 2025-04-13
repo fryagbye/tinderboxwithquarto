@@ -26,3 +26,4 @@ output/*_cache/*
 _RchunkPreviewOutput.*
 AppleScript/
 
+Rscript/templatebody.html
