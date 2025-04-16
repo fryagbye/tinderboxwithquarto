@@ -48,10 +48,13 @@ Automatically recognize and collect R chunk labels in the following format (#| l
 
 
 ```{r}
+#| echo: false
 #| warning: false
 #| label: fig-airquality
 #| fig-cap: Temperature and ozone level.
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
@@ -71,8 +74,11 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 
 ```{python}
+#| echo: false
 #| label: fig-numpy
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 import numpy as np
 a = np.arange(15).reshape(3, 5)
 a
@@ -82,8 +88,11 @@ a
 
 
 ```{python}
+#| echo: false
 #| label: fig-matplotlib
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 import matplotlib.pyplot as plt
 fig = plt.figure()
 x = np.arange(10)
