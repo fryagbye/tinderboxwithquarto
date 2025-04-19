@@ -1,0 +1,28 @@
+
+
+
+---
+
+
+
+## R chunk example 2
+
+
+
+```{webr}
+#| echo: false
+#| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
+mod <- lm(waiting ~ eruptions, data = faithful)
+plot(faithful, main = "Old Faithful Geyser Data")
+abline(mod, col = 'blue')
+summary(mod)
+```
+
+
+
+
+
+
+

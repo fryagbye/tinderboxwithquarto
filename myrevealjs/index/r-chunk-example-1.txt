@@ -5,14 +5,19 @@
 
 
 
-## R chunk example 1
+## R chunk example 1 ( Warning off option )
+
+If you want to suppress warning messages, you set `$Q_ChunkSuppressWarning` false.
 
 
-
-```{.r code-line-numbers=6,8}
-#| label: fig-Graph
+```{webr}
+#| echo: false
+#| warning: false
 #| fig-width: 6
 #| fig-height: 3
+#| fig-pos: H
+#| fig-show: asis
+
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 

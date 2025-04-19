@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>finite-automaton</title>
+</head>
+<body>
+    <h1>finite-automaton</h1>
+    <div id="placeholder" style="margin:auto" ></div>
+
+    <script type="module">
+        import { Graphviz } from "https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist/graphviz.js";
+
+        (async () => {
+            const graphviz = await Graphviz.load();
+            const dot = `//| fig-cap: Finite Automaton
+//| fig-width: 5
+digraph {
+    layout=dot
+    compound=true
+    graph [charset = "UTF-8" labeljust = "left" nodesep = "0.1" bgcolor = "#ffffff" fontcolor = "#000000" fontsize = "14" rankdir = "LR" ];
+    node [fontname = "" ];
+  edge [fontsize = "14" ];
+
+A [ style="filled"  label="0" shape="doublecircle", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+B [ style="filled"  label="1" shape="circle", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+C [ style="filled"  label="2" shape="circle", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+D [ style="filled"  label="3" shape="doublecircle", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+E [ style="filled"  label="4" shape="doublecircle", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+F [ style="filled"  label="5" shape="circle", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+G [ style="filled"  label="6" shape="circle", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+H [ style="filled"  label="7" shape="circle", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+I [ style="filled"  label="8" shape="doublecircle", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+
+A -> B [label = "SS(S)" fillcolor="#ffffff" fontcolor="#000000" ]
+A -> C [label = "SS(B)" fillcolor="#ffffff" fontcolor="#000000" ]
+B -> D [label = "S($end)" fillcolor="#ffffff" fontcolor="#000000" ]
+C -> E [label = "S(A)" fillcolor="#ffffff" fontcolor="#000000" ]
+C -> F [label = "SS(a)" fillcolor="#ffffff" fontcolor="#000000" ]
+C -> G [label = "SS(b)" fillcolor="#ffffff" fontcolor="#000000" ]
+F -> F [label = "S(a)" fillcolor="#ffffff" fontcolor="#000000" ]
+F -> H [label = "S(b)" fillcolor="#ffffff" fontcolor="#000000" ]
+G -> F [label = "S(a)" fillcolor="#ffffff" fontcolor="#000000" ]
+G -> G [label = "S(b)" fillcolor="#ffffff" fontcolor="#000000" ]
+H -> F [label = "S(a)" fillcolor="#ffffff" fontcolor="#000000" ]
+H -> I [label = "S(b)" fillcolor="#ffffff" fontcolor="#000000" ]
+I -> F [label = "S(a)" fillcolor="#ffffff" fontcolor="#000000" ]
+I -> G [label = "S(b)" fillcolor="#ffffff" fontcolor="#000000" ]
+}
+`;
+            const div = document.getElementById("placeholder");
+            div.innerHTML = graphviz.layout(dot, "svg", "dot");
+        })();
+    </script>
+</body>
+</html>

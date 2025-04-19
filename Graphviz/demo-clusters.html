@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-clusters</title>
+</head>
+<body>
+    <h1>demo-clusters</h1>
+    <div id="placeholder" style="margin:auto" ></div>
+
+    <script type="module">
+        import { Graphviz } from "https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist/graphviz.js";
+
+        (async () => {
+            const graphviz = await Graphviz.load();
+            const dot = `//| fig-cap: Cluster
+//| fig-width: 5
+digraph {
+    layout=dot
+    compound=true
+    graph [charset = "UTF-8" ];
+subgraph cluster_A{
+                label="process #1"
+                color="#a19f9e"
+                penwidth="1"
+                style="filled"
+                fillcolor="#a19f9e"
+                fontcolor="#000000"
+        B C D E 
+}
+
+subgraph cluster_B{
+                label="process #2"
+                color="#003366"
+                penwidth="1"
+                style="filled"
+                fillcolor="#ffffff"
+                fontcolor="#000000"
+        F G H I 
+}
+
+
+A [ style="filled"  label="start" shape="Mdiamond", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+B [ style="filled"  label="a0" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+C [ style="filled"  label="a1" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+D [ style="filled"  label="a2" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+E [ style="filled"  label="a3" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+F [ style="filled"  label="b0" ]
+G [ style="filled"  label="b1" ]
+H [ style="filled"  label="b2" ]
+I [ style="filled"  label="b3" ]
+J [ style="filled"  label="end" shape="Msquare", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+
+A -> B [fillcolor="#ffffff" fontcolor="#000000" ]
+A -> F [fillcolor="#ffffff" fontcolor="#000000" ]
+B -> C [fillcolor="#ffffff" fontcolor="#000000" ]
+C -> D [fillcolor="#ffffff" fontcolor="#000000" ]
+C -> I [fillcolor="#ffffff" fontcolor="#000000" ]
+D -> E [fillcolor="#ffffff" fontcolor="#000000" ]
+E -> B [fillcolor="#ffffff" fontcolor="#000000" ]
+E -> J [fillcolor="#ffffff" fontcolor="#000000" ]
+F -> G [fillcolor="#ffffff" fontcolor="#000000" ]
+G -> H [fillcolor="#ffffff" fontcolor="#000000" ]
+H -> E [fillcolor="#ffffff" fontcolor="#000000" ]
+H -> I [fillcolor="#ffffff" fontcolor="#000000" ]
+I -> J [fillcolor="#ffffff" fontcolor="#000000" ]
+}
+`;
+            const div = document.getElementById("placeholder");
+            div.innerHTML = graphviz.layout(dot, "svg", "dot");
+        })();
+    </script>
+</body>
+</html>

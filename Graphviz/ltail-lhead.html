@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ltail-lhead</title>
+</head>
+<body>
+    <h1>ltail-lhead</h1>
+    <div id="placeholder" style="margin:auto" ></div>
+
+    <script type="module">
+        import { Graphviz } from "https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist/graphviz.js";
+
+        (async () => {
+            const graphviz = await Graphviz.load();
+            const dot = `//| fig-cap: Graphviz Test
+//| fig-width: 5
+digraph {
+    layout=dot
+    compound=true
+    graph [charset = "UTF-8" ];
+subgraph cluster_A{
+                label="Cluster B"
+                color="#000000"
+                penwidth="1"
+                style="filled"
+                fillcolor="#ffffff"
+                fontcolor="#000000"
+        "node2" "node4" "node6" "node8" 
+}
+
+subgraph cluster_B{
+                label="Cluster A"
+                color="#000000"
+                penwidth="1"
+                style="filled"
+                fillcolor="#ffffff"
+                fontcolor="#000000"
+        "node1" "node3" "node5" "node7" 
+}
+
+
+"node2" [ style="filled" ]
+"node4" [ style="filled" ]
+"node6" [ style="filled" ]
+"node8" [ style="filled" ]
+"node1" [ style="filled" ]
+"node3" [ style="filled" ]
+"node5" [ style="filled" ]
+"node7" [ style="filled" ]
+
+"node1" -> "node2" [label = "1" fillcolor="#ffffff" fontcolor="#000000" ]
+"node3" -> "node4" [label = "2" fillcolor="#ffffff" fontcolor="#000000" ltail = "cluster_B" ]
+"node5" -> "node6" [label = "3" fillcolor="#ffffff" fontcolor="#000000" lhead = "cluster_A" ]
+"node7" -> "node8" [label = "4" fillcolor="#ffffff" fontcolor="#000000" lhead = "cluster_A" ltail = "cluster_B" ]
+}
+`;
+            const div = document.getElementById("placeholder");
+            div.innerHTML = graphviz.layout(dot, "svg", "dot");
+        })();
+    </script>
+</body>
+</html>

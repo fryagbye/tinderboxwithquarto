@@ -53,15 +53,16 @@ The language of chunk code is `webr` for R or `pyodide` for python
 
 
 ```{r}
+#| echo: false
 #| label: fig-Graph
 #| fig-width: 6
 #| fig-height: 3
+#| fig-pos: H
+#| fig-show: asis
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
   geom_smooth(method = "loess")
-
-
 ```
 
 
@@ -83,15 +84,17 @@ If you want to suppress warning messages, you set `$Q_ChunkSuppressWarning` fals
 
 
 ```{webr}
+#| echo: false
 #| warning: false
 #| fig-width: 6
 #| fig-height: 3
+#| fig-pos: H
+#| fig-show: asis
 
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
   geom_smooth(method = "loess")
-
 ```
 
 
@@ -111,13 +114,15 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 
 
-```{r}
+```{webr}
+#| echo: false
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 mod <- lm(waiting ~ eruptions, data = faithful)
 plot(faithful, main = "Old Faithful Geyser Data")
 abline(mod, col = 'blue')
 summary(mod)
-
 ```
 
 
@@ -141,6 +146,8 @@ summary(mod)
 #| echo: true
 #| label: fig-python
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 import matplotlib.pyplot as plt
 import numpy as np
 
