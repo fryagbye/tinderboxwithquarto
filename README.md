@@ -922,7 +922,7 @@ $$
 $$
 ma^{2} \mathrm S^{2}
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$ {#eq-black-scholes}
+$$ 
 
 
 
