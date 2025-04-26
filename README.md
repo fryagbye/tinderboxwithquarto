@@ -1,4 +1,3 @@
-
 # Introduction
 
 This Tinderbox file supports creating a book, manuscript (beta), revealjs with [Quarto](https://quarto.org/).
@@ -8,24 +7,16 @@ This Tinderbox file supports creating a book, manuscript (beta), revealjs with [
 You can easily make qmd files and _quarto.yml with it. 
 Here is an example of books created with Quarto. 
 
-
 * [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
 
-You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz)  in Tinderbox.
+You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz) in Tinderbox.
 
 [![Tinderbox with Quarto part1](output/screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
 
-My Workflow is @fig-workflow-graphviz.
-<br>
+My Workflow is shown below:
 
-
-```mermaid 
-
-%%| label: fig-workflow-mermaid
-%%| fig-cap: Tinderbox Work Flow with Quarto.
-%%| fig-width: 5
-%%{init: {'theme':'neutral'}}%%
-flowchart TB
+```mermaid
+graph TB
     A["Bookends"] -->|"opt + drag"| Sub1["Tinderbox"]
     B["Snippety"] -.->  Sub1["Tinderbox"]
     C["Mermaid"]
@@ -37,392 +28,70 @@ flowchart TB
     H["quarto CLI"] -->|"Export"| I["Book"]
     H["quarto CLI"] -->|"Export"| J["Manuscript"]
     H["quarto CLI"] -->|"Export"| K["revealjs"]
-    I["Book"]
-    J["Manuscript"]
-    K["revealjs"]
 
- subgraph Sub1["Tinderbox"]
-    Sub5
-end 
+    subgraph Sub1["Tinderbox"]
+        Sub5
+    end 
 
- subgraph Sub2["Applications"]
-    direction LR
-    A
-    B
-    Sub1
-end 
+    subgraph Sub2["Applications"]
+        direction LR
+        A
+        B
+        Sub1
+    end 
 
- subgraph Sub3["Quarto"]
-    direction LR
-    F
-    G
-    H
-end 
-
- subgraph Sub4["Output"]
-    direction LR
-    I
-    J
-    K
-end 
-
- subgraph Sub5["Demo_TBX_for_Quarto.tbx"]
-    C
-    D
-    E
-end 
-
- subgraph Sub6["Work Flow"]
-    direction TB
-    Sub2
-    Sub3
-    Sub4
-end 
-
-    Sub5["Demo_TBX_for_Quarto.tbx"] -->  G["RMarkdown ( .qmd )"]
-
-%% Styles & Links
-    style A fill:#fcbd63,color:#000000,stroke:#dc490b,stroke-width:2px
-    click A href "https://www.sonnysoftware.com/bookends-for-mac" _blank
-    style B fill:#5c9dfe,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 
-    click B href "https://snippety.app/" _blank
-    style C fill:#c735e9,color:#000000,stroke:#dc490b,stroke-width:2px
-    click C href "https://mermaid.js.org/" _blank
-    style D fill:#30638d,color:#ffffff,stroke:#dc490b,stroke-width:2px
-    click D href "https://graphviz.org/" _blank
-    style E fill:#009900,color:#000000,stroke:#dc490b,stroke-width:2px
-    style F fill:#80a9d7,color:#000000,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 
-    click F href "https://posit.co/products/open-source/rstudio/" _blank
-    style G fill:#74bbff,color:#000000,stroke:#dc490b,stroke-width:2px
-    style H fill:#74bbff,color:#000000,stroke:#dc490b,stroke-width:2px
-    click H href "https://quarto.org/" _blank
-    style I fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px
-    style J fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px
-    style K fill:#f2e142,color:#000000,stroke:#d53f8c,stroke-width:2px
-    style Sub1 fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub2 fill:#e7f3e7,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub3 fill:#fff4e6,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub4 fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub5 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
-    style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px
-
+    style A fill:#fcbd63,color:#000000
+    style B fill:#5c9dfe,color:#000000
+    style C fill:#c735e9,color:#000000
 ```
-
-
-
-
-
-
-
-
-
-
-
 
 # Usage environment
 
 Please refer to the output results of `quato check`.
 
+* Quarto is using the released version 1.7.13 (pre-release)[^1]
+* R is version 4.4.2
+* I use luaLatex for output in Japanese. I have installed MacTex because TinyTex doesn't include it
+* It may be better to uninstall TinyTex
+* I have set it to use the `lightbox` extension (included in Quarto v1.4+)
+* I have set it to use the `quarto-live` extension for revealjs ([quarto live](https://github.com/r-wasm/quarto-live))
 
-* Quarto is using the released version 1.7.13 (pre-release)[^noteinstallversion].
+[^1]: ~~Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.~~
 
-
-
-* R is version 4.4.2.
-
-
-
-* I use luaLatex for output in Japanese. I have installed MacTex because TinyTex doesn't include it.
-
-
-
-* It may be better to uninstall TinyTex.
-
-
-
-* I have set it to use the `lightbox` extension ( included in Quarto v1.4+.).
-
-*I have set it to use the `quarto-live` extension for revealjs. ([quarto live](https://github.com/r-wasm/quarto-live))
-
-[^noteinstallversion]:~~Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.~~
-
-`quarto check` 
 <details>
+<summary>Quarto check output</summary>
 
-```{.zsh}
+```shell
 # Quarto check output
 Quarto 1.7.13
 
 [✓] Checking environment information...
-
       Quarto cache location: /Users/tk4o2ka/Library/Caches/quarto
-
-[✓] Checking versions of quarto binary dependencies...
-
-      Pandoc version 3.4.0: OK
-      Dart Sass version 1.70.0: OK
-      Deno version 1.46.3: OK
-      Typst version 0.11.0: OK
-
-[✓] Checking versions of quarto dependencies......OK
-
-
-[✓] Checking Quarto installation......OK
-
-      Version: 1.7.13
-      Path: /Applications/quarto/bin
-
-[✓] Checking tools....................OK
-
-      Chromium: 869685
-      TinyTeX: (not installed)
-
-[✓] Checking LaTeX....................OK
-
-      Using: Installation From Path
-      Path: /usr/local/texlive/2024/bin/universal-darwin
-      Version: 2024
-
-[✓] Checking Chrome Headless....................OK
-
-      Using: Chrome found on system
-      Path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
-      Source: MacOS known location
-
-[✓] Checking basic markdown render....OK
-
-
-[✓] Checking Python 3 installation....OK
-
-      Version: 3.13.2
-      Path: /opt/homebrew/opt/python@3.13/bin/python3.13
-      Jupyter: (None)
-      Jupyter is not available in this Python installation.
-      Install with python3 -m pip install jupyter
-      There is an unactivated Python environment in .venv. Did you forget to activate it?
-
-[✓] Checking R installation...........OK
-
-      Version: 4.4.2
-      Path: /Library/Frameworks/R.framework/Resources
-      LibPaths:
-        - /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library
-      knitr: 1.49
-      rmarkdown: 2.29
-
-[✓] Checking Knitr engine render......OK
-
+...
 ```
-
 </details>
-
-
-
-
-
 
 ## Installed packages
 
-
-```{.r}
-#| echo: false
-#| message: false
-pacman::p_load(tidyverse, gt)
-installed.packages() |> 
-  as_tibble() |> 
-  select(Package, Version, Built) |> 
-  gt::gt()
-```
-
 <details>
-    
-<summery>Package List</summery>
-    
-|Name|Version|Built|
-|----|-------|-----|
-|askpass|1.2.0|4.4.0|
-|backports|1.4.1|4.4.0|
-|base|4.4.0|4.4.0|
-|base64enc|0.1-3|4.4.0|
-|bigD|0.2.0|4.4.0|
-|bit|4.0.5|4.4.0|
-|bit64|4.0.5|4.4.0|
-|bitops|1.0-7|4.4.0|
-|blob|1.2.4|4.4.0|
-|boot|1.3-30|4.4.0|
-|brew|1.0-10|4.4.0|
-|brio|1.1.5|4.4.0|
-|broom|1.0.5|4.4.0|
-|bslib|0.7.0|4.4.0|
-|cachem|1.0.8|4.4.0|
-|callr|3.7.6|4.4.0|
-|cellranger|1.1.0|4.4.0|
-|class|7.3-22|4.4.0|
-|cli|3.6.2|4.4.0|
-|clipr|0.8.0|4.4.0|
-|cluster|2.1.6|4.4.0|
-|codetools|0.2-20|4.4.0|
-|collections|0.3.7|4.4.0|
-|colorspace|2.1-0|4.4.0|
-|commonmark|1.9.1|4.4.0|
-|compiler|4.4.0|4.4.0|
-|conflicted|1.2.0|4.4.0|
-|cpp11|0.4.7|4.4.0|
-|crayon|1.5.2|4.4.0|
-|curl|5.2.1|4.4.0|
-|cyclocomp|1.1.1|4.4.0|
-|data.table|1.15.4|4.4.0|
-|datasets|4.4.0|4.4.0|
-|DBI|1.2.2|4.4.0|
-|dbplyr|2.5.0|4.4.0|
-|desc|1.4.3|4.4.0|
-|digest|0.6.35|4.4.0|
-|downlit|0.4.3|4.4.0|
-|dplyr|1.1.4|4.4.0|
-|dtplyr|1.3.1|4.4.0|
-|ellipsis|0.3.2|4.4.0|
-|evaluate|0.23|4.4.0|
-|fansi|1.0.6|4.4.0|
-|farver|2.1.1|4.4.0|
-|fastmap|1.1.1|4.4.0|
-|fontawesome|0.5.2|4.4.0|
-|forcats|1.0.0|4.4.0|
-|foreign|0.8-86|4.4.0|
-|fs|1.6.4|4.4.0|
-|gargle|1.5.2|4.4.0|
-|generics|0.1.3|4.4.0|
-|ggplot2|3.5.1|4.4.0|
-|gitcreds|0.1.2|4.4.0|
-|glue|1.7.0|4.4.0|
-|googledrive|2.1.1|4.4.0|
-|googlesheets4|1.1.1|4.4.0|
-|graphics|4.4.0|4.4.0|
-|grDevices|4.4.0|4.4.0|
-|grid|4.4.0|4.4.0|
-|gt|0.10.1|4.4.0|
-|gtable|0.3.5|4.4.0|
-|gtExtras|0.5.0|4.4.0|
-|haven|2.5.4|4.4.0|
-|highr|0.10|4.4.0|
-|hms|1.1.3|4.4.0|
-|htmltools|0.5.8.1|4.4.0|
-|htmlwidgets|1.6.4|4.4.0|
-|httr|1.4.7|4.4.0|
-|ids|1.0.1|4.4.0|
-|isoband|0.2.7|4.4.0|
-|jquerylib|0.1.4|4.4.0|
-|jsonlite|1.8.8|4.4.0|
-|juicyjuice|0.1.0|4.4.0|
-|kableExtra|1.4.0|4.4.0|
-|KernSmooth|2.23-22|4.4.0|
-|knitr|1.46|4.4.0|
-|labeling|0.4.3|4.4.0|
-|languageserver|0.3.16|4.4.0|
-|lattice|0.22-6|4.4.0|
-|lazyeval|0.2.2|4.4.0|
-|lifecycle|1.0.4|4.4.0|
-|lintr|3.1.2|4.4.0|
-|lubridate|1.9.3|4.4.0|
-|magrittr|2.0.3|4.4.0|
-|markdown|1.12|4.4.0|
-|MASS|7.3-60.2|4.4.0|
-|Matrix|1.7-0|4.4.0|
-|memoise|2.0.1|4.4.0|
-|methods|4.4.0|4.4.0|
-|mgcv|1.9-1|4.4.0|
-|mime|0.12|4.4.0|
-|modelr|0.1.11|4.4.0|
-|munsell|0.5.1|4.4.0|
-|nlme|3.1-164|4.4.0|
-|nnet|7.3-19|4.4.0|
-|nvimcom|0.9.42|4.4.0|
-|openssl|2.1.2|4.4.0|
-|pacman|0.5.1|4.4.0|
-|paletteer|1.6.0|4.4.0|
-|parallel|4.4.0|4.4.0|
-|pillar|1.9.0|4.4.0|
-|pkgbuild|1.4.4|4.4.0|
-|pkgconfig|2.0.3|4.4.0|
-|pkgload|1.3.4|4.4.0|
-|prettyunits|1.2.0|4.4.0|
-|prismatic|1.1.2|4.4.0|
-|processx|3.8.4|4.4.0|
-|progress|1.2.3|4.4.0|
-|ps|1.7.6|4.4.0|
-|purrr|1.0.2|4.4.0|
-|R.cache|0.16.0|4.4.0|
-|R.methodsS3|1.8.2|4.4.0|
-|R.oo|1.26.0|4.4.0|
-|R.utils|2.12.3|4.4.0|
-|R6|2.5.1|4.4.0|
-|ragg|1.3.0|4.4.0|
-|rappdirs|0.3.3|4.4.0|
-|RColorBrewer|1.1-3|4.4.0|
-|Rcpp|1.0.12|4.4.0|
-|reactable|0.4.4|4.4.0|
-|reactR|0.5.0|4.4.0|
-|readr|2.1.5|4.4.0|
-|readxl|1.4.3|4.4.0|
-|rematch|2.0.0|4.4.0|
-|rematch2|2.1.2|4.4.0|
-|remotes|2.5.0|4.4.0|
-|reprex|2.1.0|4.4.0|
-|rex|1.2.1|4.4.0|
-|rlang|1.1.3|4.4.0|
-|rmarkdown|2.26|4.4.0|
-|roxygen2|7.3.1|4.4.0|
-|rpart|4.1.23|4.4.0|
-|rprojroot|2.0.4|4.4.0|
-|rstudioapi|0.16.0|4.4.0|
-|rvest|1.0.4|4.4.0|
-|sass|0.4.9|4.4.0|
-|scales|1.3.0|4.4.0|
-|selectr|0.4-2|4.4.0|
-|spatial|7.3-17|4.4.0|
-|splines|4.4.0|4.4.0|
-|stats|4.4.0|4.4.0|
-|stats4|4.4.0|4.4.0|
-|stringi|1.8.3|4.4.0|
-|stringr|1.5.1|4.4.0|
-|styler|1.10.3|4.4.0|
-|survival|3.5-8|4.4.0|
-|svglite|2.1.3|4.4.0|
-|sys|3.4.2|4.4.0|
-|systemfonts|1.0.6|4.4.0|
-|tcltk|4.4.0|4.4.0|
-|textshaping|0.3.7|4.4.0|
-|tibble|3.2.1|4.4.0|
-|tidyr|1.3.1|4.4.0|
-|tidyselect|1.2.1|4.4.0|
-|tidyverse|2.0.0|4.4.0|
-|timechange|0.3.0|4.4.0|
-|tinytex|0.50|4.4.0|
-|tools|4.4.0|4.4.0|
-|tzdb|0.4.0|4.4.0|
-|utf8|1.2.4|4.4.0|
-|utils|4.4.0|4.4.0|
-|uuid|1.2-0|4.4.0|
-|V8|4.4.2|4.4.0|
-|vctrs|0.6.5|4.4.0|
-|viridisLite|0.4.2|4.4.0|
-|vroom|1.6.5|4.4.0|
-|withr|3.0.0|4.4.0|
-|xfun|0.43|4.4.0|
-|xml2|1.3.6|4.4.0|
-|xmlparsedata|1.0.5|4.4.0|
-|yaml|2.3.8|4.4.0|
+<summary>Package List</summary>
+
+| Name | Version | Built |
+|------|---------|-------|
+| askpass | 1.2.0 | 4.4.0 |
+| backports | 1.4.1 | 4.4.0 |
+| base | 4.4.0 | 4.4.0 |
+| base64enc | 0.1-3 | 4.4.0 |
+| bigD | 0.2.0 | 4.4.0 |
+| bit | 4.0.5 | 4.4.0 |
+| bit64 | 4.0.5 | 4.4.0 |
+| bitops | 1.0-7 | 4.4.0 |
+
 </details>
-
-
-
-
-
-
 
 ## RStudio Session information
 
-
-```{.r}
+```r
 #| echo: false
 sessionInfo()
 ```
@@ -445,70 +114,40 @@ attached base packages:
 loaded via a namespace (and not attached):
 
 [1] compiler_4.4.0 tools_4.4.0   
-
-
-
-
-
-
-
-
+```
 
 # Setting
 
-
-
 1. Setting up with "TBXConfig" note
 
-
-![User Attributes in TBXConfig](output/screenshots/TBXConfig01.png)
+![User Attributes in TBXConfig](screenshots/TBXConfig01.png)
 
     You need to change the values of the following "TBXConfig" attributes for configuration.
 
-
 * `$Indent_Charactor` → Set the symbol representing the depth of indentation. ( default value = ★ )
-
-
 
 * ~~`$ExList` → List of notes excluded from cross-reference search ( default value = "List and Agent etc" )~~
 
-
-
 * `$ProjectContainer`  →  Book Project Path for CrossRef Search and Label Lists 
 
+![Project Contaier Example](screenshots/BookProjectContainerExample.png){#fig-projectcontaierexample fig-alt="Project Contaier Example" fig-align="left" width=80%}  
 
-![Project Contaier Example](output/screenshots/BookProjectContainerExample.png){#fig-projectcontaierexample fig-alt="Project Contaier Example" fig-align="left" width=80%}  
+* `$ExportFolder` → File path of exported files.
 
-
-
-* `$ExportFolder` → Path of exported files.
-
-
-![Export Folder Setting](output/screenshots/exportfoldersetting.png){#fig-exportfoldersetting fig-alt="Export Folder Setting" fig-align="left" width=50%}
-
-
+![Export Folder Setting](screenshots/exportfoldersetting.png){#fig-exportfoldersetting fig-alt="Export Folder Setting" fig-align="left" width=50%}
 
 * `$ToggleTOC` → Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml. 
 
-
-
 * `$Q_TableOfContainsNote` → **$Name** of TOC note. ( default value = Table of Contents )
-
-
 
 * `$Rename_in` → [`translate-shell`](https://github.com/soimort/translate-shell) option setting `[SOURCES]:[TAGETS]. ( default value = ja:en )
 
-
-
 * `$Q_PDFEngine` → Setting for [pdf engine](https://quarto.org/docs/output-formats/pdf-engine.html) This file is tested only with lualatex. ( default value = lualatex )
-
-
 
 * ~~`$OutlineBaseControl` → Adjustment of section levels in Markdown. ( default = 1 )~~
 
     `$OutlineBaseControl` is enabled in Manuscript and revealjs project. This attribute is used in pSubfolderManuscript and pSubfolderRevealjs note.
      e.g. 
-
 
     * $OutlineBaseControl = 1 → \#\# Title
 
@@ -521,7 +160,7 @@ loaded via a namespace (and not attached):
 
 * `$RScriptLibraryPath` → R Library Resource Path ( default Value )
 
-    ![Rscript Library Path](output/screenshots/RscriptLibpath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
+    ![Rscript Library Path](screenshots/RscriptLibPath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
 	
 
 
@@ -531,13 +170,13 @@ loaded via a namespace (and not attached):
     If you use [Custom Translations](https://quarto.org/docs/authoring/language.html#custom-translations), you need to make `$Q_Has_Language_YML` `true` and set `$Q_Language_YML` for the filename.
 The "_language" note in this file is for translating to Japanese.
 
-![_quarto.yml 01](output/screenshots/quartoyml01.png)
+![_quarto.yml 01](screenshots/quartoyml01.png)
 
 
-![_quarto.yml 02](output/screenshots/quartoyml02.png)
+![_quarto.yml 02](screenshots/quartoyml02.png)
 
 
-![_quarto.yml 03](output/screenshots/quartoyml03.png)
+![_quarto.yml 03](screenshots/quartoyml03.png)
 
 
 
@@ -554,6 +193,7 @@ The "_language" note in this file is for translating to Japanese.
 
 # Book format
 
+ 
 
 
 
@@ -565,12 +205,13 @@ The "_language" note in this file is for translating to Japanese.
 
 You can start with the stamp that makes a new book project.
 Only one book project is allowed per file.
-The project container is created at the bottom and it has Label lists, _quarto.yml and an index note.
+The project container is created at the bottom and it has Label lists, _quarto.yml, and an index note.
 
-![New Project](output/screenshots/newproject01.png)
+![New Project](screenshots/newproject01.png)
 
 If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
 Before calling quarto commands, the stamps activate the virtual environment.
+`r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Lclick.png}}", html = "![](screenshots/Lclick.png){fig-alt='左クリック' width=40px}")`：左クリック
 
 
 
@@ -605,10 +246,10 @@ Please set the Prototype of pNote to level 1 and pSubnote below level.
 ::: {#fig-make-newnote01 layout-ncol=2}
 
 
-![Make new pNote](output/screenshots/makenewnote01.png)
+![Make new pNote](screenshots/makenewnote01.png)
 
 
-![Make new pSubnote](output/screenshots/makenewnote02.png)
+![Make new pSubnote](screenshots/makenewnote02.png)
 
 
 :::
@@ -620,7 +261,7 @@ Please set the Prototype of pNote to level 1 and pSubnote below level.
     In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of the index.qmd is set to `true`.
 You can make the note for index.qmd with the pIndexQmd Prototype or make `$IsIndexqmd` of pNote  `true`.
 
-![Make the Index.qmd](output/screenshots/makeindexqmd.png)
+![Make the Index.qmd](screenshots/makeindexqmd.png)
 
 
 
@@ -639,7 +280,7 @@ You can make the note for index.qmd with the pIndexQmd Prototype or make `$IsInd
     `::: {#refs}`
     `:::`
 
-![Make a reference note](output/screenshots/makereferenceqmd.png)
+![Make a reference note](screenshots/makereferenceqmd.png)
 
 
 
@@ -647,7 +288,7 @@ You can make the note for index.qmd with the pIndexQmd Prototype or make `$IsInd
 
      This prototype is inherited from pNote and $IsAppendix is `true`.
 
-![Make a appendix note](output/screenshots/makeappendix.png)
+![Make a appendix note](screenshots/makeappendix.png)
 
 
 
@@ -663,14 +304,14 @@ You can make the note for index.qmd with the pIndexQmd Prototype or make `$IsInd
 
 1. R chunk and Python chunk notes
 
-You can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The “Chunk & Graph: Make Chunk List” stamp generates a tag like ＜Lang:Tag Label➡️Figure Label＞.
+    You can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The "Chunk & Graph: Make Chunk List" stamp generates a tag like ＜Lang:Tag Label➡️Figure Label＞.
 These tags can be used to reference R chunks, Python chunks, Mermaid diagrams, or Graphviz code.
-Please do not insert tags in the middle of a sentence.
+    Please do not insert tags in the middle of a sentence.
 
-![Chunk Tag Example](output/screenshots/ChunkLabel.png)
+![Chunk Tag Example](screenshots/ChunkLabel.png)
 
 If tags called in your notes are changed or deleted, the warning is shown.
-you can suppress the warning with  `$SuppresTagDetectWaring` in the project container note.
+You can suppress the warning with  `$SuppresTagDetectWaring` in the project container note.
 
 
 2. Rendered Preview in Text Pane(R chunks, Mermaid diagrams, and Graphviz only)
@@ -688,7 +329,6 @@ You can check the results of the code executed within an R chunk in the Preview 
 There is a stamp **"Notes: Tranlate Section Labels"** that translates the Japanese title (`$Name`) into English and automatically sets `$HTMLExportFileName` [^translate-shell]. and you can set `$SectionLabel` with stamp "Set: Section Label". The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with `$Rename_in` in the TBX configuration note (**TBXConfig**). ( By default, from Japanese to English).
 
 [^translate-shell]: [Translate-shell](https://github.com/soimort/translate-shell) installation required. 
-
 
 ```zsh
 > brew install translate-shell
@@ -722,7 +362,6 @@ chapters:
     - packages.qmd
 ```
 
-
 ```yml
 #_quarto.yml
 chapters:
@@ -736,7 +375,7 @@ chapters:
 
 The figure below shows the export example when Part is supported and the output result of _quarto.yml.
 
-![Folder configuration at the time of output and _quarto.yml](output/screenshots/PartandChapter.png)
+![Folder configuration at the time of output and _quarto.yml](screenshots/PartandChapter.png)
 
 
 
@@ -749,7 +388,7 @@ The figure below shows the export example when Part is supported and the output 
 
 In Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). [^regrex]
 
-![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](output/screenshots/WorkingIndicator.png)
+![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](screenshots/WorkingIndicator.png)
 
 Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
 
@@ -775,9 +414,9 @@ Convert it to a quotable title (citation name starting with @) and create a note
 ### Image link in markdown format
 
 Recognize and collect labels in a format that extends the markdown.
-\!\[Test image](output/screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+\!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
-![label:@fig-test](output/screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
 
 
@@ -789,14 +428,17 @@ Recognize and collect labels in a format that extends the markdown.
 
 ## R chunk
 
-Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.
+Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.
 
 
 ```{r}
+#| echo: false
 #| warning: false
 #| label: fig-airquality
 #| fig-cap: Temperature and ozone level.
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
@@ -816,8 +458,11 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 
 ```{python}
+#| echo: false
 #| label: fig-numpy
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 import numpy as np
 a = np.arange(15).reshape(3, 5)
 a
@@ -827,8 +472,11 @@ a
 
 
 ```{python}
+#| echo: false
 #| label: fig-matplotlib
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 import matplotlib.pyplot as plt
 fig = plt.figure()
 x = np.arange(10)
@@ -922,7 +570,7 @@ $$
 $$
 ma^{2} \mathrm S^{2}
 \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$ 
+$$ {#eq-black-scholes}
 
 
 
@@ -1011,7 +659,7 @@ If you use a _language.yml, you export "_language" note (optional. See  @sec-set
 The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to the "output" folder. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
 If you select the pNote notes below "Export Agent" and output it, ~~then execute the "Move qmd files" stamp~~, you can overwrite the qmd file directly to `./output` (=`$HTMLExportFileName` of your project folder) ( @fig-output-tree). This method avoids considering the folder structure when referencing image files with a relative path.
 
-![Folders](output/screenshots/outputfoldertree01.png){#fig-output-tree}
+![Folders](screenshots/outputfoldertree01.png){#fig-output-tree}
 
 
 
@@ -1024,17 +672,17 @@ If you select the pNote notes below "Export Agent" and output it, ~~then execute
 
 ```zsh
 # preview
-# quarto preview projectname (quarto command options)
+# quarto preview "project name" (quarto command options)
 e.g. 
 > quarto preview output
 ```
 
 
 
-    * The stamp "Quarto: Book Preview ( Select Export Agent )" 
+    * You can execute the command with the stamp "Quarto: Book Preview ( Select Export Agent )" 
 
 
-![Example: Quarto Preview](output/screenshots/quartorenderexample02.png){#fig-quarto-preview}
+![Example: Quarto Preview](screenshots/quartorenderexample02.png){#fig-quarto-preview}
 
 
 
@@ -1050,11 +698,11 @@ e.g.
 ```
 
 
-![Example: Quarto Render](output/screenshots/quartorenderexample01.png){#fig-quarto-render}
+![Example: Quarto Render](screenshots/quartorenderexample01.png){#fig-quarto-render}
 
 
 
-    * The stamp "Quarto: Book Render ( Select For Export )
+* You can execute the command with the stamp "Quarto: Book Render ( Select For Export ) 
 
     You can use RStudio for preview and render.
 
@@ -1093,7 +741,7 @@ e.g.
 you can start with the stamp that makes a new manuscript project.
 A Manuscript project can have multiple projects in one file.
 
-![New Project](output/screenshots/newproject02.png)
+![New Project](screenshots/newproject02.png)
 
 If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
 Before calling quarto commands, the stamps activate the virtual environment.
@@ -1201,7 +849,7 @@ e.g.
 you can start with the stamp that makes a new revealjs project.
 A revealjs project can have multiple projects in one file.
 
-![New Project](output/screenshots/newproject03.png)
+![New Project](screenshots/newproject03.png)
 
 If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
 Before calling quarto commands, the stamps activate the virtual environment.
@@ -1329,7 +977,7 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 
 <br>
 
-[![Tinderbox with Quarto part2 (English & Japanese sub)](output/screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
+[![Tinderbox with Quarto part2 (English & Japanese sub)](screenshots/youtube_opening_part2.png)](https://youtu.be/of2TkCyJ2xY)
 
 
 
@@ -1365,7 +1013,7 @@ You need to use pre-release version [^chromeheadlessmodeissue]
 * hex
 
 
-![Convert shapes](output/screenshots/convertshapes.png)
+![Convert shapes](screenshots/convertshapes.png)
 
 
 
@@ -1504,7 +1152,7 @@ end
 6. The note (pGContainer) has the code for Graphviz.
 
 
-[![Tinderbox with Quarto part3](output/screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
+[![Tinderbox with Quarto part3](screenshots/youtube_opening_part3.png)](https://youtu.be/fayHy-Ikr5I)
 
 
 
@@ -1521,7 +1169,6 @@ end
 ```{dot}
 //| label: fig-Test
 //| fig-cap: Graphviz Test
-//| fig-width: 5
 digraph {
     layout=dot
     compound=true
@@ -1578,6 +1225,7 @@ subgraph cluster_B{
 Anderson, Mark. 2024. “A Tinderbox Reference File.” 2024.
 Wickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize,
 and Model Data. “O’Reilly Media, Inc.”
+
 
 
 
