@@ -45,6 +45,7 @@ Recognize and collect labels in a format that extends the markdown.
 ## R chunk {#sec-r-chunk }
 
 Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.
+＜r:airquality➡️fig-airquality＞
 
 
 ```{r}
@@ -71,6 +72,10 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 ## Python chunk
 
+Automatically recognize and collect Python chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. 
+In the following example, you can quote labels like @fig-numpy and @fig-matplotlib.
+＜python:numpy➡️fig-numpy＞
+＜python:matplotlib➡️fig-matplotlib＞
 
 
 ```{python}
