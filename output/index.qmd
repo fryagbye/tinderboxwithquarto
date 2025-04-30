@@ -23,7 +23,6 @@ My Workflow is @fig-workflow-graphviz.
 ```{dot}
 //| label: fig-workflow-graphviz
 //| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
-//| fig-width: 5
 digraph {
     layout=dot
     compound=true
@@ -96,9 +95,9 @@ I [ style="filled"  label="Book" color="#000000", penwidth="1", fillcolor="#93dd
 J [ style="filled"  label="Manuscript" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]
 K [ style="filled"  label="revealjs" color="#d53f8c", penwidth="1", fillcolor="#f2e142", fontcolor="#000000"]
 
-A -> C [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ltail = "cluster_A" ]
-B -> E [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ]
-D -> G [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_D" ltail = "cluster_C" ]
+A -> C [label = "*untitled" fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ltail = "cluster_A" ]
+B -> E [label = "*untitled" fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ]
+D -> G [label = "*untitled" fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_D" ltail = "cluster_C" ]
 F -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]
 G -> F [label = "Read qmd files" fillcolor="#cbd9d7" fontcolor="#000000" ]
 G -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]

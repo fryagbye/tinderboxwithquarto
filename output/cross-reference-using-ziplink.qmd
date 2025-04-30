@@ -30,6 +30,7 @@ Convert it to a quotable title (citation name starting with @) and create a note
 ### Image link in markdown format {#sec-image-link-in-markdown-format }
 
 Recognize and collect labels in a format that extends the markdown.
+  
 \!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
 ![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
@@ -45,6 +46,7 @@ Recognize and collect labels in a format that extends the markdown.
 ## R chunk {#sec-r-chunk }
 
 Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.
+  
 ＜r:airquality➡️fig-airquality＞
 
 
@@ -73,14 +75,14 @@ ggplot(airquality, aes(Temp, Ozone)) +
 ## Python chunk
 
 Automatically recognize and collect Python chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. 
-In the following example, you can quote labels like @fig-numpy and @fig-matplotlib.
-＜python:numpy➡️fig-numpy＞
-＜python:matplotlib➡️fig-matplotlib＞
+In the following example, you can quote labels like @fig-matplotlib.
+  
+＜python:numpy＞
+  
 
 
 ```{python}
 #| echo: false
-#| label: fig-numpy
 #| fig-width: 5
 #| fig-pos: H
 #| fig-show: asis
@@ -90,6 +92,9 @@ a
 ```
 
 
+  
+＜python:matplotlib➡️fig-matplotlib＞
+  
 
 
 ```{python}

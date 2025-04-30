@@ -2,7 +2,10 @@
 
 # Cross-Reference using Ziplink {#sec-cross-reference-using-ziplink }
 
-In Quarto, labeled diagrams, tables, etc. can be mutually quoted. Automatically (or manually) collect some labels in the **Tinderbox** file at the bottom of the **Reference List** note. [^regrex]
+In Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). [^regrex]
+
+![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](screenshots/WorkingIndicator.png)
+
 Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
 
 [^regrex]: The diagrams and tables are extracted in regular expressions.
@@ -27,6 +30,7 @@ Convert it to a quotable title (citation name starting with @) and create a note
 ### Image link in markdown format {#sec-image-link-in-markdown-format }
 
 Recognize and collect labels in a format that extends the markdown.
+  
 \!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
 ![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
@@ -42,13 +46,18 @@ Recognize and collect labels in a format that extends the markdown.
 ## R chunk {#sec-r-chunk }
 
 Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.
+  
+＜r:airquality➡️fig-airquality＞
 
 
 ```{r}
+#| echo: false
 #| warning: false
 #| label: fig-airquality
 #| fig-cap: Temperature and ozone level.
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
@@ -65,11 +74,21 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 ## Python chunk
 
+Automatically recognize and collect Python chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. 
+In the following example, you can quote labels like @fig-numpy and @fig-matplotlib.
+  
+＜python:numpy➡️fig-numpy＞
+  
+＜python:matplotlib➡️fig-matplotlib＞
+  
 
 
 ```{python}
+#| echo: false
 #| label: fig-numpy
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 import numpy as np
 a = np.arange(15).reshape(3, 5)
 a
@@ -79,8 +98,11 @@ a
 
 
 ```{python}
+#| echo: false
 #| label: fig-matplotlib
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 import matplotlib.pyplot as plt
 fig = plt.figure()
 x = np.arange(10)
@@ -153,10 +175,8 @@ There are multiple ways to specify labels, but they are only supported if it is 
 Equation Example
 Black-Scholes (@eq-black-scholes) is a mathematical model that seeks to explain
 
-$$
-ma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$ {#eq-black-scholes}
+
+* Input
 
 
 ```latex
@@ -167,6 +187,16 @@ ma^{2} \mathrm S^{2}
 $$
 
 ```
+
+
+
+* Output
+
+
+$$
+ma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
+$$ {#eq-black-scholes}
 
 
 

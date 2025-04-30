@@ -28,14 +28,14 @@ If you select the pNote notes below "Export Agent" and output it, ~~then execute
 
 ```zsh
 # preview
-# quarto preview projectname (quarto command options)
+# quarto preview "project name" (quarto command options)
 e.g. 
 > quarto preview output
 ```
 
 
 
-    * The stamp "Quarto: Book Preview ( Select Export Agent )" 
+    * You can execute the command with the stamp "Quarto: Book Preview ( Select Export Agent )" 
 
 
 ![Example: Quarto Preview](screenshots/quartorenderexample02.png){#fig-quarto-preview}
@@ -58,7 +58,7 @@ e.g.
 
 
 
-    * The stamp "Quarto: Book Render ( Select For Export )
+* You can execute the command with the stamp "Quarto: Book Render ( Select For Export ) 
 
     You can use RStudio for preview and render.
 

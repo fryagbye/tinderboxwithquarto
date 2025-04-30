@@ -28,7 +28,7 @@
 
 
 
-4. Change attributes for Graphviz.
+5. Change attributes for Graphviz.
 
 
 
@@ -72,7 +72,6 @@
 ```{dot}
 //| label: fig-Test
 //| fig-cap: Graphviz Test
-//| fig-width: 5
 digraph {
     layout=dot
     compound=true

@@ -1,0 +1,59 @@
+
+
+## Python chunk
+
+Automatically recognize and collect Python chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. 
+In the following example, you can quote labels like @fig-numpy and @fig-matplotlib.
+  
+＜python:numpy➡️fig-numpy＞
+  
+＜python:matplotlib➡️fig-matplotlib＞
+  
+
+
+```{python}
+#| echo: false
+#| label: fig-numpy
+#| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
+import numpy as np
+a = np.arange(15).reshape(3, 5)
+a
+```
+
+
+
+
+```{python}
+#| echo: false
+#| label: fig-matplotlib
+#| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
+import matplotlib.pyplot as plt
+fig = plt.figure()
+x = np.arange(10)
+y = 2.5 * np.sin(x / 20 * np.pi)
+yerr = np.linspace(0.05, 0.2, 10)
+
+plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
+plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
+plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
+             label='uplims=True, lolims=True')
+
+upperlimits = [True, False] * 5
+lowerlimits = [False, True] * 5
+plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
+             label='subsets of uplims and lolims')
+
+plt.legend(loc='lower right')
+plt.show(fig)
+```
+
+
+
+
+
+
+

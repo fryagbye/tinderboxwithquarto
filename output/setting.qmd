@@ -27,7 +27,7 @@
 
 
 
-* `$ExportFolder` → Path of exported files.
+* `$ExportFolder` → File path of exported files.
 
 
 ![Export Folder Setting](screenshots/exportfoldersetting.png){#fig-exportfoldersetting fig-alt="Export Folder Setting" fig-align="left" width=50%}
