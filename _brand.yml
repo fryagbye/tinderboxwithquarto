@@ -7,8 +7,10 @@ color:
   primary: black
 
 logo:
-  medium: logo.png
-
+  images:
+    header:
+      path: https://fryagbye.quarto.pub/tinderbox-file-for-quarto-in-japanese/logo.png
+  medium: header
 typography:
   fonts:
     - family: Jura
