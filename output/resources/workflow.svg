@@ -1,0 +1,181 @@
+<svg width="1058" height="1263" viewBox="0 0 1149.17 331.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="translate(4,327) scale(1)">
+<polygon fill="white" stroke="none" points="-4,4 -4,-327 1145.17,-327 1145.17,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster_A</title>
+<polygon fill="#e7f3e7" stroke="#000000" points="8,-26 8,-315 350.13,-315 350.13,-26 8,-26"/>
+<text text-anchor="middle" x="179.07" y="-298.4" font-family="Times,serif" font-size="14.00" fill="#000000">Applications</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_B</title>
+<g id="a_clust2"><a xlink:href="https://www.eastgate.com/Tinderbox/" xlink:title="Tinderbox">
+<polygon fill="#f6e04d" stroke="#000000" points="150.33,-34 150.33,-282 342.13,-282 342.13,-34 150.33,-34"/>
+<text text-anchor="middle" x="246.23" y="-265.4" font-family="Times,serif" font-size="14.00" fill="#000000">Tinderbox</text>
+</a>
+</g>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_C</title>
+<g id="a_clust3"><a xlink:href="https://github.com/fryagbye/tinderboxwithquarto" xlink:title="Demo_TBX_for_Quarto.tbx">
+<polygon fill="#ffffff" stroke="#000000" points="158.33,-42 158.33,-249 334.13,-249 334.13,-42 158.33,-42"/>
+<text text-anchor="middle" x="246.23" y="-232.4" font-family="Times,serif" font-size="14.00" fill="#000000">Demo_TBX_for_Quarto.tbx</text>
+</a>
+</g>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_D</title>
+<polygon fill="#fff4e6" stroke="#000000" points="369.13,-58 369.13,-188 949.03,-188 949.03,-58 369.13,-58"/>
+<text text-anchor="middle" x="659.08" y="-171.4" font-family="Times,serif" font-size="14.00" fill="#000000">Quarto</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_E</title>
+<polygon fill="#ffffff" stroke="#000000" points="1007.13,-8 1007.13,-193 1133.17,-193 1133.17,-8 1007.13,-8"/>
+<text text-anchor="middle" x="1070.15" y="-176.4" font-family="Times,serif" font-size="14.00" fill="#000000">Output</text>
+</g>
+<!-- a -->
+<g id="node1" class="node">
+<title>A</title>
+<g id="a_node1"><a xlink:href="https://www.sonnysoftware.com/bookends-for-mac" xlink:title="Bookends">
+<ellipse fill="#fcbd63" stroke="#000000" cx="65.66" cy="-68" rx="49.66" ry="18"/>
+<text text-anchor="middle" x="65.66" y="-63.8" font-family="Times,serif" font-size="14.00" fill="#000000">Bookends</text>
+</a>
+</g>
+</g>
+<!-- b -->
+<g id="node3" class="node">
+<title>C</title>
+<g id="a_node3"><a xlink:href="https://mermaid.js.org/" xlink:title="Mermaid">
+<ellipse fill="#c735e9" stroke="#000000" cx="245.73" cy="-68" rx="46.43" ry="18"/>
+<text text-anchor="middle" x="245.73" y="-63.8" font-family="Times,serif" font-size="14.00" fill="#ffffff">Mermaid</text>
+</a>
+</g>
+</g>
+<!-- a&#45;&gt;b -->
+<g id="edge1" class="edge">
+<title>A-&gt;C</title>
+<path fill="none" stroke="black" d="M115.79,-68C125.61,-68 136.24,-68 147.04,-68"/>
+<polygon fill="#cbd9d7" stroke="black" points="146.82,-71.5 156.82,-68 146.82,-64.5 146.82,-71.5"/>
+</g>
+<!-- B -->
+<g id="node2" class="node">
+<title>B</title>
+<g id="a_node2"><a xlink:href="https://snippety.app/" xlink:title="Snippety">
+<ellipse fill="#5c9dfe" stroke="#990000" cx="65.66" cy="-187" rx="45.37" ry="18"/>
+<text text-anchor="middle" x="65.66" y="-182.8" font-family="Times,serif" font-size="14.00" fill="#000000">Snippety</text>
+</a>
+</g>
+</g>
+<!-- E -->
+<g id="node5" class="node">
+<title>E</title>
+<ellipse fill="lightgrey" stroke="black" cx="245.73" cy="-187" rx="59.98" ry="29.42"/>
+<text text-anchor="middle" x="245.73" y="-191.2" font-family="Times,serif" font-size="14.00">Preview </text>
+<text text-anchor="middle" x="245.73" y="-174.4" font-family="Times,serif" font-size="14.00">with Rscript</text>
+</g>
+<!-- B&#45;&gt;E -->
+<g id="edge2" class="edge">
+<title>B-&gt;E</title>
+<path fill="none" stroke="black" d="M111.14,-187C122.15,-187 134.38,-187 146.84,-187"/>
+<polygon fill="#cbd9d7" stroke="black" points="146.82,-190.5 156.82,-187 146.82,-183.5 146.82,-190.5"/>
+</g>
+<!-- D -->
+<g id="node4" class="node">
+<title>D</title>
+<g id="a_node4"><a xlink:href="https://graphviz.org/" xlink:title="Graphviz">
+<ellipse fill="#30638d" stroke="#000000" cx="245.73" cy="-122" rx="46.97" ry="18"/>
+<text text-anchor="middle" x="245.73" y="-117.8" font-family="Times,serif" font-size="14.00" fill="#ffffff">Graphviz</text>
+</a>
+</g>
+</g>
+<!-- G -->
+<g id="node7" class="node">
+<title>G</title>
+<ellipse fill="#74bbff" stroke="#000000" cx="470.24" cy="-122" rx="93.11" ry="18"/>
+<text text-anchor="middle" x="470.24" y="-117.8" font-family="Times,serif" font-size="14.00" fill="#000000">RMarkdown ( .qmd )</text>
+</g>
+<!-- D&#45;&gt;G -->
+<g id="edge3" class="edge">
+<title>D-&gt;G</title>
+<path fill="none" stroke="black" d="M334.13,-122C344.52,-122 355.2,-122 365.79,-122"/>
+<polygon fill="#cbd9d7" stroke="black" points="357.62,-125.5 367.62,-122 357.62,-118.5 357.62,-125.5"/>
+</g>
+<!-- F -->
+<g id="node6" class="node">
+<title>F</title>
+<g id="a_node6"><a xlink:href="https://posit.co/products/open-source/rstudio/" xlink:title="R Studio">
+<ellipse fill="#80a9d7" stroke="#000000" cx="729.23" cy="-84" rx="45.11" ry="18"/>
+<text text-anchor="middle" x="729.23" y="-79.8" font-family="Times,serif" font-size="14.00" fill="#000000">R Studio</text>
+</a>
+</g>
+</g>
+<!-- H -->
+<g id="node8" class="node">
+<title>H</title>
+<g id="a_node8"><a xlink:href="https://quarto.org/" xlink:title="quarto CLI">
+<ellipse fill="#74bbff" stroke="#000000" cx="887.35" cy="-88" rx="53.68" ry="18"/>
+<text text-anchor="middle" x="887.35" y="-83.8" font-family="Times,serif" font-size="14.00" fill="#000000">quarto CLI</text>
+</a>
+</g>
+</g>
+<!-- F&#45;&gt;H -->
+<g id="edge4" class="edge">
+<title>F-&gt;H</title>
+<path fill="none" stroke="black" d="M774.55,-85.14C789.27,-85.51 805.98,-85.94 821.91,-86.35"/>
+<polygon fill="#cbd9d7" stroke="black" points="821.73,-89.85 831.82,-86.6 821.91,-82.85 821.73,-89.85"/>
+<text text-anchor="middle" x="804.01" y="-90.32" font-family="Times,serif" font-size="14.00" fill="#000000">Call</text>
+</g>
+<!-- G&#45;&gt;F -->
+<g id="edge5" class="edge">
+<title>G-&gt;F</title>
+<path fill="none" stroke="black" d="M545.23,-111.06C586.75,-104.92 637.6,-97.4 675.14,-91.85"/>
+<polygon fill="#cbd9d7" stroke="black" points="675.47,-95.34 684.85,-90.41 674.44,-88.42 675.47,-95.34"/>
+<text text-anchor="middle" x="623.73" y="-109.48" font-family="Times,serif" font-size="14.00" fill="#000000">Read qmd files</text>
+</g>
+<!-- G&#45;&gt;H -->
+<g id="edge6" class="edge">
+<title>G-&gt;H</title>
+<path fill="none" stroke="black" d="M561.97,-125.56C568.53,-125.73 575.04,-125.89 581.35,-126 685.82,-127.9 713.16,-127.19 815.67,-107 822.06,-105.74 828.72,-104.23 835.3,-102.61"/>
+<polygon fill="#cbd9d7" stroke="black" points="835.92,-106.06 844.74,-100.18 834.18,-99.28 835.92,-106.06"/>
+<text text-anchor="middle" x="729.23" y="-129.83" font-family="Times,serif" font-size="14.00" fill="#000000">Call</text>
+</g>
+<!-- I -->
+<g id="node9" class="node">
+<title>I</title>
+<ellipse fill="#93dd93" stroke="#000000" cx="1070.15" cy="-142" rx="31.96" ry="18"/>
+<text text-anchor="middle" x="1070.15" y="-137.8" font-family="Times,serif" font-size="14.00" fill="#000000">Book</text>
+</g>
+<!-- H&#45;&gt;I -->
+<g id="edge7" class="edge">
+<title>H-&gt;I</title>
+<path fill="none" stroke="black" d="M928.48,-99.98C958.83,-109.05 1000.26,-121.42 1030.3,-130.39"/>
+<polygon fill="#cbd9d7" stroke="black" points="1029.17,-133.71 1039.75,-133.22 1031.17,-127 1029.17,-133.71"/>
+<text text-anchor="middle" x="978.08" y="-124.04" font-family="Times,serif" font-size="14.00" fill="#000000">Export</text>
+</g>
+<!-- J -->
+<g id="node10" class="node">
+<title>J</title>
+<ellipse fill="#93dd93" stroke="#000000" cx="1070.15" cy="-88" rx="55.02" ry="18"/>
+<text text-anchor="middle" x="1070.15" y="-83.8" font-family="Times,serif" font-size="14.00" fill="#000000">Manuscript</text>
+</g>
+<!-- H&#45;&gt;J -->
+<g id="edge8" class="edge">
+<title>H-&gt;J</title>
+<path fill="none" stroke="black" d="M941.13,-88C960.56,-88 982.82,-88 1003.27,-88"/>
+<polygon fill="#cbd9d7" stroke="black" points="1003.22,-91.5 1013.22,-88 1003.22,-84.5 1003.22,-91.5"/>
+<text text-anchor="middle" x="978.08" y="-92.2" font-family="Times,serif" font-size="14.00" fill="#000000">Export</text>
+</g>
+<!-- K -->
+<g id="node11" class="node">
+<title>K</title>
+<ellipse fill="#f2e142" stroke="#d53f8c" cx="1070.15" cy="-34" rx="41.06" ry="18"/>
+<text text-anchor="middle" x="1070.15" y="-29.8" font-family="Times,serif" font-size="14.00" fill="#000000">revealjs</text>
+</g>
+<!-- H&#45;&gt;K -->
+<g id="edge9" class="edge">
+<title>H-&gt;K</title>
+<path fill="none" stroke="black" d="M928.48,-76.02C956.98,-67.5 995.26,-56.07 1024.7,-47.28"/>
+<polygon fill="#cbd9d7" stroke="black" points="1025.47,-50.7 1034.05,-44.48 1023.47,-43.99 1025.47,-50.7"/>
+<text text-anchor="middle" x="978.08" y="-70.04" font-family="Times,serif" font-size="14.00" fill="#000000">Export</text>
+</g>
+</g>
+</svg>
