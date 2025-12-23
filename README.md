@@ -107,7 +107,7 @@ To run Python scripts or use this environment within Jupyter/Quarto, either acti
 
 ```bash
  # To activate the virtual environment
- poetry env activate
+ eval $(poetry env activate)
  ```
        
 ## R Environment Restoration (renv)
