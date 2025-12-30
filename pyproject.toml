@@ -5,7 +5,7 @@ description = ""
 authors = ["fryagbye <fryagbye@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-package-mode = false
+package-mode = true
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -17,6 +17,7 @@ kaleido = "0.2.1"
 ipykernel = "^6.29.5"
 panflute = "^2.3.1"
 tornado = "^6.5"
+jupyter = "^1.1.1"
 
 [build-system]
 requires = ["poetry-core"]
