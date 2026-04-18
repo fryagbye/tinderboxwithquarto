@@ -1,0 +1,434 @@
+// /Hints/Library/Graphviz
+
+function fGenerateGraphviz(vPath:string, vCopy:boolean){
+
+	fGChangePrototype();
+
+	fGLabeling();
+	
+	$Text(vPath)  = fSetHeader(vPath);
+	$Text(vPath) += fGGraphSetting(vPath);
+	$Text(vPath) += fGNodeCommon();
+	$Text(vPath) += fGEdgeCommon();
+
+
+	$GS_Subgraphs(vPath).each(aSub){
+		if(fGenerateSubgraphBlock(aSub, vPath)){
+			$Text(vPath) += fGenerateSubgraphBlock(aSub, vPath)+ "\n";
+		};
+	};
+	$Text(vPath) += "\n";
+
+	$GN_NoteList.each(aNote){
+		var:string vName;
+		if($G_SymbolLabelingOFF(vPath)){
+			vName='"' + $Name(aNote) + '"';
+		}else{
+			vName=$G_IDtoName[aNote];
+		};
+		$Text(vPath) += vName + fGetNodeAttributes(aNote);
+	};
+
+	$Text(vPath) += "\n";	
+
+	$Text(vPath) += fGenerateLinksFromList($GN_NoteList(vPath), vPath);
+	$Text(vPath) += fGenerateLinksFromList($GS_Subgraphs(vPath), vPath);
+	
+	$Text(vPath) += "}"; //"{"
+
+	if($Q_HasChunkBlock){
+		$Text(vPath) += "\n```\n\n";
+	};
+	if(vCopy){
+		runCommand("export LANG='en_US.UTF-8' && pbcopy", $Text(vPath));
+	};
+	
+};
+
+function fSetHeader(vPath:string){
+	var:string vHeader;
+	var:string vSpace= 4 * " ";
+    	if($Q_HasChunkBlock){
+		vHeader = "```{dot} \n";
+		if($Q_ChunkFigLabel){
+			vHeader += "//| label: fig-" +$Q_ChunkFigLabel + "\n";
+		};
+		if($Q_ChunkFigCaption){
+			vHeader += "//| fig-cap: " + $Q_ChunkFigCaption + "\n";
+		};
+		if($Q_ChunkFigWidth){
+			vHeader += "//| fig-width: " + $Q_ChunkFigWidth + "\n";
+		};
+	};
+
+   if($G_KindOfGraph(vPath)=="digraph"){
+   	vHeader += "digraph {\n"; //"}
+		if($GG_Layout){vHeader+= vSpace + "layout=" + $GG_Layout+"\n";};
+	}else{
+   	vHeader += "graph {\n"; //"}
+		if($GG_Layout){vHeader+= vSpace + "layout=" + $GG_Layout+"\n";};	};
+	
+	if($G_HasCompound&$G_KindOfGraph=="digraph"){vHeader += vSpace + "compound=true\n";};
+	return vHeader;
+	
+};
+
+function fGGraphSetting(){
+   var:string vReturn;
+	var:string vSpace= 4 * " ";
+	vReturn = vSpace + "graph [";
+	vReturn+= 'charset="UTF-8" ';
+	if($GG_Splines){vReturn+= 'splines="'+ $GG_Splines+'" ';};
+   if($G_HasCustomAttributes){
+		if($GG_HasLabel){vReturn+= 'label="'+ $Name +'" ';};
+		if($NameAlignment){vReturn+= 'labeljust="'+ $NameAlignment +'" ';};
+		if($NameVerticalAlignment){vReturn+= 'labelloc="'+ $NameVerticalAlignment +'" ';};
+		if($GG_Nodesep){vReturn+= 'nodesep="'+ $GG_Nodesep +'" ';};
+		vReturn+= 'bgcolor="'+ $Color.format() +'" '; 
+		vReturn+= 'fontcolor="'+ $NameColor.format() +'" '; 
+		vReturn+= 'fontsize="'+ 14 * $OutlineNameSize / 100 +'" ';
+	};
+	vReturn+= 'rankdir="'+ $GG_Rankdir +'" '; 
+	vReturn+= '];\n';
+
+	return vReturn; 
+};
+
+function fGNodeCommon(){
+   var:string vReturn;
+	var:string vSpace= 4 * " ";
+	var:string vTemp;
+	if($G_HasCustomAttributes){
+		if($G_ColorScheme){vTemp+= 'colorscheme = "' + $GN_Colorscheme + '" ';};
+		if($GN_Style){vTemp+= 'style = "'+ $GN_Style +'" ';};
+		if($GN_Color){vTemp+= 'color = "'+ $GN_Color.format +'" ';};
+		if($GN_Fillcolor){vTemp+= 'fillcolor = "'+ $GN_Fillcolor.format +'" ';};
+		if($GN_Fontcolor){vTemp+= 'fontcolor = "'+ $GN_Fontcolor.format +'" ';};
+		if($GN_Fontsize){vTemp+= 'fontsize = "'+ 14 * $GN_Fontsize / 100 +'" ';}; 
+		if($GN_Fontname){vTemp+= 'fontname = "'+ $GN_FontName +'" ';};
+		if($GN_Fixedsize){vTemp+= 'style = "'+ $GN_Fixedsize +'" ';};
+	}; 
+
+	if(vTemp.size>0){
+		vReturn = vSpace +"node [";
+		vReturn+= vTemp;
+		vReturn+= '];\n';
+	};
+	return vReturn; 
+};
+
+function fGEdgeCommon(){
+   var:string vReturn;
+	var:string vSpace= 4 * " ";
+	if($G_HasCustomAttributes){
+		vReturn ="  edge [";
+		if($G_ColorScheme){vReturn+= 'colorscheme = "' + $GE_Colorscheme + '" ';};
+		if($GE_Style){vReturn+= 'style = "'+ $GN_Style +'" ';};
+		if($GE_Color){vReturn+= 'color = "'+ $GE_Color.format +'" ';};
+		if($GE_Fillcolor){vReturn+= 'fillcolor = "'+ $GE_Fillcolor.format +'" ';};
+		if($GE_Fontcolor){vReturn+= 'fontcolor = "'+ $GE_Fontcolor.format +'" ';};
+		if($GE_Fontsize){vReturn+= 'fontsize = "'+ 14 * $OutlineNameSize / 100 +'" ';};
+		if($GE_Fontname){vReturn+= 'fontname = "'+ $GE_Fontname +'" ';};
+		vReturn+= '];\n';
+	}; 
+
+	return vReturn; 
+};
+
+
+
+function fGChangePrototype(){
+	var:list vTempList;
+   //Find Subgraphs
+	//vTempList = collect_if(descendants, $Prototype=="pGNode" & $ChildCount > 0 & !$Prototype(grandparent)=="pGSubgraph", $ID);
+	vTempList = collect_if(descendants, $Prototype=="pGNode" & $ChildCount > 0 , $ID);
+	vTempList.each(aID){
+		$Prototype(aID)="pGSubgraph";
+	};
+	//Find Nodes
+	vTempList = collect_if(descendants, $Prototype=="pGSubgraph" & $ChildCount == 0, $ID);	vTempList.each(aID){
+		$Prototype(aID)="pGNode";
+	};
+};
+
+function fGLabeling(){
+   //initilize
+	$G_IDtoName="";
+	$GN_NoteList="";
+	$GS_Subgraphs="";
+	$G_SymboltoName="";
+	fGLabelingNodes();
+	fLabelingSubgraph($G_HasSubgraphOnSubgraph);
+};
+
+function fGLabelingNodes(){
+	var:number vCount=0;
+	var:set vABC="A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z";
+	var:string vTemp;
+
+	// Collect node and subgraph lists
+	$GN_NoteList = collect_if(descendants, $Prototype=="pGNode", $ID).nsort($OutlineOrder);
+
+	 // Convert node IDs to simplified names (A, B, ..., Z, A1, B1, etc.)
+	$GN_NoteList.each(aID){
+		if(vCount <=25){
+			$G_IDtoName = $G_IDtoName.extend("{" + aID + ":" + vABC.at(vCount) +"}");
+			$G_SymboltoName = $G_SymboltoName.extend("{" + $GN_Name(aID) + ":" + $Name(aID) +"}");
+			$GN_Name(aID) = vABC.at(vCount);
+		}else{
+		// count of Nodes > 26  
+			vTemp = (vCount/26).floor()+1;
+			$G_IDtoName = $G_IDtoName.extend("{" + aID + ":" + vABC.at(mod(vCount,26)) + vTemp +"}");
+			$G_SymboltoName = $G_SymboltoName.extend("{" + $GN_Name(aID) + ":" + $Name(aID) +"}");
+			$GN_Name(aID) = vABC.at(mod(vCount,26)) + vTemp;
+		};
+		vCount +=1;
+	};
+};
+
+function fPrefixSubgraph(vID:string){
+   if($GS_IsCluster){
+		return "cluster_";
+	}else{
+		return "sub_";
+	};
+};
+
+
+function fLabelingSubgraph(vHasSubgraph:boolean){
+	var:number vCount=0;
+	var:set vABC="A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z";
+	var:string vTemp;
+
+	$GS_Subgraphs = collect_if(descendants, $Prototype=="pGSubgraph",$ID);
+	$GS_Subgraphs.each(aSubID){
+		if(vHasSubgraph){
+			$GS_NodeOnSubgraph(aSubID) = collect_if(children(aSubID), $Prototype=="pGNode"|$Prototype=="pGSubgraph",$ID);
+		}else{
+			$GS_NodeOnSubgraph(aSubID) = collect_if(children(aSubID), $Prototype=="pGNode",$ID);
+		};
+		
+		if(vCount <=25){
+			$G_IDtoName = $G_IDtoName.extend("{" + aSubID + ":"+ fPrefixSubgraph(aSubID) + vABC.at(vCount) + "}");
+			$G_SymboltoName = $G_SymboltoName.extend("{" + fPrefixSubgraph(aSubID) + vABC.at(vCount)  + ":" + $Name(aSubID) +"}");
+			$GS_SubgraphName(aSubID) = fPrefixSubgraph(aSubID) + vABC.at(vCount);
+		}else{
+		// count of Nodes > 26  
+			vTemp = (vCount/26).floor()+1;
+			$G_IDtoName = $G_IDtoName.extend("{" + aSubID + ":"+ fPrefixSubgraph(aSubID) + vABC.at(vCount) + "}");			$G_SymboltoName = $G_SymboltoName.extend("{" + fPrefixSubgraph(aSubID) + vABC.at(mod(vCount,26)) + vTemp + ":" + $Name(aSubID) +"}");
+			$GS_SubgraphName(aSubID) = fPrefixSubgraph(aSubID) + vABC.at(mod(vCount,26)) + vTemp;
+		};
+		vCount += 1;
+	};
+};
+
+function fGetNodeAttributes(vID:string){
+	var:string vReturn;
+	vReturn  = " [";
+
+	if($GN_IsInvisible(vID)){
+		vReturn += ' style="invis" ';
+	}else{
+		if($GN_Style(vID)){vReturn += ' style="' + $GN_Style(vID) + '" ';};
+	};
+
+	if(!$G_SymbolLabelingOFF){
+		vReturn += ' label="' + $Name(vID) + '" ';
+	};
+	if($G_HasCustomAttributes(vID)){
+		$MyList(vID)=$GN_Attributes.keys.nsort;
+		$MyList(vID).each(x){
+			$GN_Attributes[x].keys.each(y){
+				if(eval($GN_Attributes[x][y]+'('+vID+')').size>0){
+					if($GN_Attributes[x][y](vID).contains("Color")){
+						vReturn += y + '="' + eval($GN_Attributes[x][y]+'('+vID+').format') + '", ';
+					}else{
+						vReturn += y + '=' + eval($GN_Attributes[x][y]+'('+vID+')') + ',';
+					};
+				};
+			};
+		};
+	vReturn = vReturn.substr(0, vReturn.size - 2);
+	};
+
+	vReturn += "]\n";
+	return vReturn;
+};
+
+function fGetSubgraphAttributes(vID:string, vSpacePlus:string){
+	var:string vReturn;
+	var:string vSpace= 4 * $OutlineDepth(vID) * " ";
+	$MyList(vID)=$GG_Attributes.keys.nsort;
+	$MyList(vID).each(x){
+		$GG_Attributes[x].keys.each(y){
+			if(eval($GG_Attributes[x][y]+'('+vID+')').size>0){
+				vReturn += if($GG_Attributes[x][y](vID).contains("Color")){ vSpace + vSpacePlus + y + '="' + eval($GG_Attributes[x][y]+'('+vID+').format') + '"\n';}
+								else{y + '=' + eval($GN_Attributes[x][y]+'('+vID+')') + ',';};
+			};
+		};
+	};
+
+	return vReturn;
+};
+
+function fGetEdgeAttributes(vLink:dictionary, vID:string){
+   var:string vReturn;
+	var:string vSourceParent;
+	var:string vDestParent;
+	vReturn  = " [";
+	
+	if(vLink["type"]!="*untitled"){
+		vReturn += 'label = "'+vLink["type"].replace('"','') + '" ';
+	};
+	$MyList(vID)=$GE_Attributes.keys.nsort;
+	$MyList(vID).each(x){
+		$GE_Attributes[x].keys.each(y){
+			if(eval($GE_Attributes[x][y]+'('+vID+')').size>0){
+			vReturn += if($GE_Attributes[x][y](vID).contains("Color")){y + '="' + eval($GE_Attributes[x][y]+'('+vID+').format') + '" ';}
+							else{y + '=' + eval($GE_Attributes[x][y]+'('+vID+')') + ',';};
+			};
+		};
+	};
+	
+	if($GG_Layout=="dot"){
+		vSourceParent= $ID($Container(vLink["sourceID"]));
+		vDestParent = $ID($Container(vLink["destID"]));
+		if(!vSourceParent==vDestParent){
+			if($GE_HasLHead(vLink["sourceID"])){
+				vReturn += 'lhead = "'+ eval('$G_IDtoName(vID)["'+ vDestParent + '"]') +'" ';
+			};
+			if($GE_HasLTail(vLink["sourceID"])){
+				vReturn += 'ltail = "'+ eval('$G_IDtoName(vID)["'+ vSourceParent + '"]') +'" ';
+			};
+		};
+	};
+	//vReturn = vReturn.substr(0, vReturn.size - 2);
+	vReturn += "]\n";
+	return vReturn;
+};
+
+
+function fGetNodesOnSubgraph(vID:string, vSpace:string, vPath:string){
+	var:string vReturn;
+	var:number vCount=1;
+	//vReturn +=  vSpace;
+   $GS_NodeOnSubgraph(vID).each(aNote){
+		var:string vName;
+		if($G_IDtoName[aNote].beginsWith("cluster")){
+			$G_UsedSubs+=$G_IDtoName[aNote];
+			vReturn += fGenerateSubgraphBlockFromSubgraph(aNote, vSpace);
+		}else{
+			if(vCount==1){
+				vReturn +=  vSpace;
+			};
+
+		if($G_SymbolLabelingOFF(vPath)){
+			vName='"' + $Name(aNote) + '"';
+		}else{
+			vName=$G_IDtoName[aNote];
+		};
+
+			vReturn +=  vName +" ";
+			vCount+=1;
+		};
+	};
+	vReturn += "\n";
+
+	return vReturn;
+};
+
+
+function fGenerateSubgraphBlock(vID:string, vPath:string){
+	var:string vReturn;
+	var:string vTemp;
+	var:string vSpace=4 * $OutlineDepth(vID) * " ";
+
+	if(!$G_UsedSubs(vPath).contains($G_IDtoName[vID])){
+		vReturn  = "subgraph " + $G_IDtoName[vID] + "{\n";
+		vReturn += fGetSubgraphAttributes(vID, vSpace);
+		vReturn += fGetNodesOnSubgraph(vID, vSpace, vPath);
+		vReturn += "}\n";
+	};
+	return vReturn;
+};
+
+function fGenerateSubgraphBlockFromSubgraph(vID:string, vSpace:string){
+	var:string vReturn;
+	var:string vTemp;
+	var:string vSpacePlus= 4 * $OutlineDepth($Container(vID)) * " ";
+	vReturn  = "\n\n" + vSpace +"subgraph " + $G_IDtoName[vID] + "{\n";
+
+	vReturn +=  fGetSubgraphAttributes(vID, vSpace);
+//	if(!$G_IDtoName(vID).beginsWith("cluster")){
+		vReturn +=  fGetNodesOnSubgraph(vID, vSpace, vPath);
+//	}else{
+//		vReturn += vSpace + fGetNodesOnSubgraph(vID, vSpace, vPath);
+//	};
+	vReturn +=  "}\n";
+	return vReturn;
+};
+
+
+function fGenerateLinksFromList(vG_List:list, vPath:string){
+	var:list vTempList;
+   var:dictionary vTempDict;
+	var:string vReturn;
+	var:string vDirection;
+	var:string vArrowType;
+
+	if($G_KindOfGraph(vPath)=="digraph"){
+		vArrowType = " -> ";
+	}else{
+		vArrowType = " -- ";
+	};
+
+
+	vG_List.each(aNote){
+		vTempList="";
+		vTempDict="";
+
+		if($OutboundLinkCount(aNote)>0){
+			var:number vCount=0;	
+			eachLink(alink,aNote){
+				var:string vSource =alink["sourceID"];
+				var:string vDest =alink["destID"];
+				var:string vLabelSource;
+				var:string vLabelDest;
+				if($G_SymbolLabelingOFF(vPath)){
+					vLabelSource='"' + $Name(aNote) + '"';
+					vLabelDest='"' + $Name(vDest) + '"';
+				}else{
+					vLabelSource=$G_IDtoName(vPath)[aNote];
+					vLabelDest=$G_IDtoName(vPath)[vDest];
+				};
+		
+				if(vDest==vSource&vCount==0){
+						vTempList = vTempList.extend($OutlineOrder(vDest));
+						vTempDict = vTempDict.extend("{"+$OutlineOrder(vDest)+":"+ vLabelSource + vArrowType + vLabelDest + fGetEdgeAttributes(alink,vPath) +"}");
+						vCount=1;
+				};
+				if(vDest!=vSource){
+					vDirection=fLinkDirection($ID(aNote), alink["sourceID"]);
+					// treat outboud link only. 
+					if(vDirection=="outbound"){
+						vTempList = vTempList.extend($OutlineOrder(vDest));
+						vTempDict = vTempDict.extend("{"+$OutlineOrder(vDest)+":"+vLabelSource + vArrowType + vLabelDest + fGetEdgeAttributes(alink,vPath) +"}");
+					};
+				};
+			};
+				vTempList=vTempList.nsort();
+				vTempList.each(aOrder){
+			vReturn += vTempDict[aOrder]+"\n";
+		};
+	};
+	};
+
+	return vReturn;
+};
+
+
+
+
+
+
+

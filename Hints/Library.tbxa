@@ -1,0 +1,3223 @@
+// /Hints/Library
+
+
+// /Hints/Library/Set Display Expression
+
+function fDisplayExpression(){
+	$DisplayExpression ='$OutlineDepthBase(original)  * $Indent_Charactor("TBXConfig") +" "+ if($Name.size <= 30){$Name +  (30 - $Name.size) * " " }else{$Name} + if(($HasSectionLabel)&($SectionLabel)){" {" + $SectionLabel + "}"};';
+};
+
+
+function fDisplayExpression2(){
+	$DisplayExpression ='$OutlineDepthBase(original)  * $Indent_Charactor("TBXConfig") +" "+ if($Name.size <= 30){$Name +  (30 - $Name.size) * " " }else{$Name} + if(($HasSectionLabel)|($IsUnnumbered)|($IsAppendix)){" {"} + if(($HasSectionLabel)&($SectionLabel)){ $SectionLabel } + if(($HasSectionLabel)|($IsUnnumbered)|($IsAppendix)){"}"};';
+};
+
+
+// /Hints/Library/Utility
+
+function fDeleteCharacters(vStr:string){
+	var:string vReturn;
+	vReturn = vStr.deleteCharacters("/\?%*:|<>.&+()!#,’`").lowercase().replace(" ","-").replace("'","");
+	return vReturn;
+};
+
+function fTranslateStrings(vLang, vStr:string){
+	//you nead install trans-shell
+	//var:string vCommand="export PATH=/opt/homebrew/bin:$PATH;/opt/homebrew/bin/trans -b ";
+	var:string vCommand;
+	var:string vFilePathOfTrans=$PathOfTransExe("TBXConfig");
+	var:string vPathOfTrans;
+	var:string vReturn;
+
+	vFilePathOfTrans.icontains("(.*)/");
+	vPathOfTrans="export PATH=" + $1 + ":$PATH;";
+	vStr="'" + vStr + "'";
+
+	vCommand = vPathOfTrans + vFilePathOfTrans + " -b ";
+	
+	vCommand = vCommand + "{" + vLang + "} ";
+	$MyString = vCommand;
+
+	vReturn = runCommand(vCommand, vStr).replace("\n","").replace('"',"");
+	return vReturn; 
+};
+
+function fRenameIn(vStr:string){
+	var:string vTempName;
+	var:string vLang=$Rename_in("TBXConfig");
+
+	$MyString("TBXConfig")=vLang;
+	vTempName = fTranslateStrings(vLang, vStr);
+	//$MyString = vTempName;
+	if(!($IsNamesLocked)){
+		if($IsIndexqmd){
+			$HTMLExportFileName="index";
+		}else{
+			$HTMLExportFileName=vTempName.deleteCharacters("/\?%*:|<>.&+()!#,’`").lowercase().replace(" ","-").replace("'","");
+			$SectionLabel=$HTMLExportFileName;
+		};
+		("Name Changed to:" + $HTMLExportFileName + $HTMLExportExtension).show();
+	}else{
+		("Name is Locked").show();
+	};
+};
+
+function fGetLanguageYML(vLang:string){
+	var:string vURL;
+	var:string vYML="/Prototypes/Quarto Book/pYML";
+	var:string vRoot=collect(ancestors,$Path)[-1];
+	var:string vYMLPath=collect_if(children(vRoot), $Prototype=="pYML", $Path).first;
+
+	if($Prototype=="pLanguageYML"&!$ReadOnly){
+		if(vLang=="en"|vLang==""){
+			vURL="https://raw.githubusercontent.com/quarto-dev/quarto-cli/main/src/resources/language/_language.yml";
+			$Name = "_language";
+			$HTMLExportFileName=$Name;
+			$HTMLExportExtension = ".yml";
+		}else{
+			vURL="https://raw.githubusercontent.com/quarto-dev/quarto-cli/main/src/resources/language/_language-" + vLang + ".yml";
+			$Name = "_language-" + vLang;
+			$HTMLExportFileName=$Name;
+			$HTMLExportExtension = ".yml";
+		};
+		$URL = vURL;
+
+		$AutoFetch = true;
+		$ReadOnly = true;
+		$Q_LanguageYml(vYMLPath)= $HTMLExportFileName + $HTMLExportExtension;
+
+		("Get from " + vURL + ". It may take a little time to autofetch").show();
+	}else{
+		if($Prototype!="pLanguageYML"){
+			("Select pLanguageYML note").show();
+		};
+		if($ReadOnly){
+			($Name +" is read only").show();
+		};
+	};
+};
+
+function fFixDisplayedAttributesWithTemplate(){
+    if($Prototype){
+        $DisplayedAttributes = $DisplayedAttributes($HTMLExportTemplate);
+    };
+};
+
+function fFixDisplayedAttributesWithPrototype(){
+    if($Prototype){
+        $DisplayedAttributes = $DisplayedAttributes($Prototype);
+    };
+};
+
+
+
+// /Hints/Library/Chunk
+
+function fSetPreviewCommandForRChunk(){
+	var:string vConfigPath="TBXConfig";
+	var:string vExportPath=$ExportFolder(vConfigPath);
+	var:string vProjectPath=$HTMLExportFileName(collect(ancestors,$Path)[-1]);
+	var:string vWarn=",warn.conflicts=F";
+	var:string vCommand;
+	var:string vLibList=$RLibraryListForPreview(vConfigPath);
+	vCommand ="export PATH=$HOME:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin/:$PATH;";
+	vCommand+="cd " + vExportPath +"/" + vProjectPath +";"+'/usr/local/bin/Rscript -e "';
+	vLibList.each(al){
+		vCommand += "library(" + al + vWarn + "); ";
+	};
+	vCommand += "lines <- readLines(file('stdin'), warn=FALSE);f <- file('_RchunkPreviewOutput.qmd', 'w');";
+	vCommand += "cat('---\u000A', 'title: \u0022" + $Name + "\u0022\u000A', '---\u000A', file=f, sep='');";
+   vCommand += "for (line in lines) {line <- gsub('\`\`\`{webr','\`\`\`{r',line, fixed=TRUE); cat(line, '\u000A', sep='', file=f); };  close(f);";
+	vCommand += "rendered_output <- rmarkdown::render('_RchunkPreviewOutput.qmd', output_format='html_document', quiet=TRUE);";
+	vCommand += "cat(readLines(rendered_output), sep='\u000A');";
+	vCommand += "tmp <- if(file.exists('_RchunkPreviewOutput.qmd')) {file.remove('_RchunkPreviewOutput.qmd')};";
+	vCommand += "tmp <- if(file.exists('_RchunkPreviewOutput.html')) {file.remove('_RchunkPreviewOutput.html')};";
+	vCommand += '"';
+
+//	$Text(/Log)=vCommand;
+	$HTMLPreviewCommand=vCommand;
+
+};
+
+function fSetForChunk(vID,vForPreview){
+	$Text(vID)=fWriteOptionsForChunk(vID, vForPreview);
+}
+
+function fWriteFrontmatterForRChunk(vID){
+	var:string vPre;
+	var:string vTitle;
+	if($Q_ChunkFigLabel(vID)){
+		vTitle=$Q_ChunkFigLabel(vID);
+	}else{
+		if($Prototype=="pRChunkList"){
+			$Name(vID).contains("<(?:webr|r|python|pyodide|osj):(.*?)>");
+			vTitle=$1;
+		}else{
+			vTitle=$Name(vID);
+		};
+	};
+	vPre ="---\n";
+	vPre+='title: "' + vTitle + '"\n';
+	vPre+="output:\n";
+	vPre+="  html_document:\n";
+	vPre+="    template: " + $RscriptHTMLTemplate("TBXConfig") + "\n";
+	vPre+="engine:\n";
+	vPre+="  cache: false\n";
+	vPre+="---\n\n";
+	return vPre;
+};
+
+
+function fWriteOptionsForGraph(vID:string){
+	var:string vPre;
+	var:string vStr;
+	var:string vTemp;
+//	var:string vReg="```\{(?:mermaid|dot)\s*.*?\}\s*(?:#\|.*\n)*([\s\S]*?)\s*```";
+	var:string vReg="```\{(?:mermaid|dot)\s*.*?\}\s*(?:(?:%%\||#\||//\|).*\n)*([\s\S]*?)\s*```";
+	var:string vReturn;
+		
+	if($Text(vID).contains(vReg)){
+		vTemp=$1;
+	}else{
+		vTemp=$Text(vID);
+	};
+
+	if($Prototype(vID)=="pMFContainer"){
+		vStr= "%%";
+		vPre="```{mermaid}\n";
+	}else{
+		vStr= "//";
+		vPre="```{dot}\n";
+	};
+	
+
+   if($Q_ChunkFigLabel(vID)){
+		vPre+= vStr + "| label: fig-" +$Q_ChunkFigLabel(vID)+"\n";
+	};
+   if($Q_ChunkEcho(vID)){
+		vPre+= vStr + "| echo: " +$Q_ChunkEcho(vID)+"\n";
+	};
+   if($Q_ChunkFigCaption(vID)){
+		vPre+= vStr + "| fig-cap: " + $Q_ChunkFigCaption(vID)+"\n";
+	};
+   if($Q_ChunkFigAlt(vID)){
+		vPre+= vStr + "| fig-alt: " + $Q_ChunkFigAlt(vID)+"\n";
+	};
+
+	vReturn += vPre;
+	vReturn += vTemp + "\n";
+	vReturn += "```\n";
+	return vReturn;
+};
+
+function fWriteOptionsForChunk(vID:string, vForPreview:boolean){
+	var:string vPre;
+	var:string vStr;
+	var:string vTemp;
+	var:string vReg="```\{[.=]?[webr|r|python|pyodide|ojs]\s*.*?\}\s*(?:#\|.*\n)*([\s\S]*?)\s*```";
+	var:string vReturn;
+		
+	if($Text(vID).contains(vReg)){
+		vTemp=$1;
+	}else{
+		vTemp=$Text(vID);
+	};
+	
+
+	if(vForPreview&($Prototype=="pRChunk"|$Prototype="pRChunkList")){
+		vReturn+= fWriteFrontmatterForRChunk(vID);
+	};
+	if($Q_ChunkLang(vChunkPath)=="ojs"){
+		vStr= "//";
+	}else{
+		vStr= "#";
+	};
+	if($Q_IsCodeBlock(vID)){
+		vPre="\n```{." + $Q_ChunkLang(vID);
+	}else{
+		vPre="\n```{" + $Q_ChunkLang(vID);
+	};
+	if($Q_CodeLineNumbers(vID).size>0){
+		vPre+= " code-line-numbers="+$Q_CodeLineNumbers(vID).format(",");
+	};
+	if($QR_OutputLocation(vID)){
+		vPre+= " output-location=" + $QR_OutputLocation(vID);
+	};
+	vPre+="}\n";
+	if($Q_ChunkEcho(vID)){
+		vPre+= vStr + "| echo: " + $Q_ChunkEcho(vID)+"\n";
+	}else{
+		vPre+= vStr + "| echo: false\n";
+	};
+   if($Q_ChunkSuppressWarning(vID)){
+		vPre+= vStr + "| warning: " + "false"+"\n";
+	};
+	if($Q_ChunkAutoRun(vID)){
+		vPre+= vStr + "| autorun: " + $Q_ChunkAutoRun(vID)+"\n";
+	};
+   if($Q_ChunkFigLabel(vID)){
+		vPre+= vStr + "| label: fig-" + $Q_ChunkFigLabel(vID)+"\n";
+	};
+   if($Q_ChunkFigCaption(vID)){
+		vPre+= vStr + "| fig-cap: " + $Q_ChunkFigCaption(vID)+"\n";
+	};
+   if($Q_ChunkFigWidth(vID)){
+		vPre+=vStr + "| fig-width: " + $Q_ChunkFigWidth(vID)+"\n";
+	};
+   if($Q_ChunkFigHeight(vID)){
+		vPre+= vStr + "| fig-height: " + $Q_ChunkFigHeight(vID)+"\n";
+	};
+
+   if($Q_ChunkFigPos(vID)){
+		vPre+= vStr + "| fig-pos: " + $Q_ChunkFigPos(vID)+"\n";
+	};
+   if($Q_ChunkFigShow(vID)){
+		vPre+= vStr + "| fig-show: " + $Q_ChunkFigShow(vID)+"\n";
+	};
+
+   if($Q_ChunkFIgOutWidth(vID)){
+		vPre+= vStr + "| out-width: " + $Q_ChunkFIgOutWidth(vID)+"\n";
+	};
+
+
+	vReturn += vPre;
+	vReturn += vTemp + "\n";
+	vReturn += "```\n";
+	return vReturn;
+};
+
+
+// /Hints/Library/Create New Project
+
+function fCreateBookProject(){
+    //var:string vProjectName=$ProjectContainer("TBXConfig");
+    var:string vTempPath;
+    var:string vTempName;
+    var:string vLabelList=[Section;Figure;Table;Equation];
+
+    if($Prototype($ID)=="pBookFolder" & $ChildCount($ID)==0){
+    
+    vLabelList.each(x){
+        vTempName = x+" Label List";
+        vTempPath = $Path($ID)+"/"+vTempName;
+
+        create($Path($ID), vTempName+"#pLabelListContainer");
+        $TypeOfList(vTempPath) = x;
+        $ProjectContainer(vTempPath) = $Path($ID);
+        //$Edict(vTempPath)="$ProjectContainer=collect(ancestors,$Path)[-1];\nfMake"+ x +"List($ProjectContainer,$Path);";
+    };
+
+        create($Path($ID), "_quarto#pYML");
+        create($Path($ID), "index#pIndexQmd");
+        $HTMLExportFileName($Path($ID))=fDeleteCharacters($Name($ID));
+    }else{
+        if($ChildCount($ID)>0){
+            ($Name($ID)+" already has child Notes").show();
+        }else{
+            "Please select a pBookFolder Note".show();
+        };
+    };
+};
+
+function fCreateManuscriptProject(){
+    var:string vTempPath;
+    var:string vTempName;
+    var:string vLabelList=[Section;Figure;Table;Equation];
+
+    if($Prototype($ID)=="pManuscriptFolder" & $ChildCount($ID)==0){
+    
+        vLabelList.each(x){
+            vTempName = x+" Label List";
+            vTempPath = $Path($ID)+"/"+vTempName;
+
+            create($Path($ID), vTempName+"#pLabelListContainer");
+            $TypeOfList(vTempPath) = x;
+            $ProjectContainer(vTempPath) = $Path($ID);
+            //$Edict(vTempPath)="fMake"+ x +"List($ProjectContainer,$Path);\n$ProjectContainer=collect(ancestors,$Path)[-1];";
+        };
+
+        create($Path($ID), "_quarto_manuscript#pYMLmanuscript");
+        create($Path($ID), "main#pFrontmatterManuscript");
+        create($Path($ID) + "/main", "SectionTitle#pSubnoteManuscript");
+        create($Path($ID), "Authors#pAuthorsContainer");
+        create($Path($ID)+"/Authors", "Author#pAuthor");
+        $Q_Title($Path($ID)+"/main")=$Name($ID);
+        $HTMLExportFileName($Path($ID))=fDeleteCharacters($Name($ID));
+
+    }else{
+        if($ChildCount($ID)>0){
+            ($Name($ID)+" already has child Notes").show();
+        }else{
+            "Please select a pManuscriptFolder Note".show();
+        };
+    };
+};
+
+function fCreateRevealjsProject(){
+    var:string vTempPath;
+    var:string vTempName;
+    var:string vLabelList=[Figure;Table;Equation];
+    
+    if($Prototype($ID)=="pRevealjsFolder" & $ChildCount($ID)==0){
+        
+        vLabelList.each(x){
+            vTempName = x+" Label List";
+            vTempPath = $Path($ID)+"/"+vTempName;
+
+            create($Path($ID), vTempName+"#pLabelListContainer");
+            $TypeOfList(vTempPath) = x;
+            $ProjectContainer(vTempPath) = $Path($ID);
+            //$Edict(vTempPath)="fMake"+ x +"List($ProjectContainer,$Path);\n$ProjectContainer=collect(ancestors,$Path)[-1];";
+        };
+
+        create($Path($ID), "_quarto_manuscript#pYMLQuartolive");
+        create($Path($ID), "main#pFrontmatterRevealjs");
+        create($Path($ID) + "/main", "Slide#pSubnoteRevealjs");
+        $Q_Title($Path($ID)+"/main")=$Name($ID);
+        $HTMLExportFileName($Path($ID))=fDeleteCharacters($Name($ID));
+    }else{
+        if($ChildCount($ID)>0){
+            ($Name($ID)+" already has child Notes").show();
+        }else{
+            "Please select a pRevealjsFolder Note".show();
+        };
+    };
+};
+
+
+
+
+
+// /Hints/Library/Quarto Commands
+
+
+function fBookPreview(){
+    var:string vSelected=$ID;
+    var:string vOutputFolder;
+    var:string vVenv;
+    var:string vCheck;
+    var:string vOption;
+    var:string vRoot=collect(ancestors,$Path)[-1];
+    var:string vConf="TBXConfig";
+    var:boolean debug=true;
+
+    if($HasVenvEnv){
+        vVenv=$VenvActivateCommand;
+    }else{
+        vVenv="";
+    };
+
+
+    if($Prototype!="pBookFolder"){
+        if($Prototype(vRoot)=="pBookFolder"){
+            if($HasVenvEnv){
+                vVenv=$VenvActivateCommand(vRoot);
+            }else{
+                vVenv="";
+            };
+            if($HTMLExportFileName(vRoot)){
+                vOutputFolder=$HTMLExportFileName(vRoot);
+            }else{
+                vOutputFolder=$Name(vRoot);
+            };
+            vCheck=true;
+
+        };
+    }else{
+        if($HTMLExportFileName){
+            vOutputFolder=$HTMLExportFileName;
+        }else{
+            vOutputFolder=$Name;
+        };
+    };
+    if(debug){LogRec("Quarto", "<<mark>>Preview: vCheck=" + vCheck + " vOutputFolder=" + vOutputFolder + " vOption=" + vOption + " vVenv=" + vVenv);};
+    if($Prototype=="pBookFolder"|vCheck){
+
+        fActivateAppName($TerminalApp(vConf));
+        if($TerminalApp(vConf)=="Wezterm"){
+            fQuartoCommnadInWezterm("preview", vOutputFolder, vOption, vVenv);
+        };
+        if($TerminalApp(vConf)=="Terminal"){
+            fQuartoCommnadInTerminal("preview", vOutputFolder, vOption, vVenv);
+        };
+        select($Path(vSelected));
+    }else{
+        if(debug){LogRec("Quarto", "<<mark>>Preview: vCheck=" + vCheck + " vOutputFolder=" + vOutputFolder + " vOption=" + vOption + " vVenv=" + vVenv);};
+        ("Please select the pBookFolder note or any of its descendant notes.").show;
+    };
+};
+
+function fBookRender(){
+    var:string vSelected=$ID;
+    var:string vVenv;
+    var:string vCheck;
+    var:string vOption;
+    var:string vOutputFolder;
+    var:string vConf="TBXConfig";
+    var:string vRoot=collect(ancestors,$Path)[-1];
+    var:boolean debug=true;
+
+    if($HasVenvEnv){
+        vVenv=$VenvActivateCommand;
+    }else{
+        vVenv="";
+    };
+
+    if($Prototype!="pBookFolder"){
+
+        if($Prototype(vRoot)=="pBookFolder"){
+            if($HasVenvEnv(vRoot)){
+                vVenv=$VenvActivateCommand(vRoot);
+            }else{
+                vVenv="";
+            };
+            vCheck=true;
+        };
+    }else{
+        if($HTMLExportFileName){
+            vOutputFolder=$HTMLExportFileName;
+        }else{
+            vOutputFolder=$Name;
+        };
+    };
+
+    if(debug){LogRec("Quarto", "<<mark>>Render: vCheck=" + vCheck + " vOutputFolder=" + vOutputFolder + " vOption=" + vOption + " vVenv=" + vVenv);};
+    if($Prototype=="pBookFolder"|vCheck){
+        fActivateAppName($TerminalApp(vConf));
+        if($TerminalApp(vConf)=="Wezterm"){
+            fQuartoCommnadInWezterm("render", vOutputFolder, "", vVenv);
+        };
+        if($TerminalApp(vConf)=="Terminal"){
+            fQuartoCommnadInTerminal("render", vOutputFolder, "", vVenv);
+        };
+
+        select($Path(vSelected));
+    }else{
+        if(debug){LogRec("TBXConfig", "<<mark>>Render: vCheck=" + vCheck + " vOutputFolder=" + vOutputFolder + " vOption=" + vOption + " vVenv=" + vVenv);};
+        ("Please select the pBookFolder note or any of its descendant notes.").show();
+    };  
+};
+
+
+function fManuscriptPreview(){
+    var:string vOption;
+    var:string vOutputFolder;
+    var:string vVenv;
+    var:string vCheck;
+    var:string vSelected=$ID;
+    var:string vRoot=collect(ancestors,$Path)[-1];
+    var:string vConf="TBXConfig";
+    var:boolean debug=true;
+
+    if($HasVenvEnv){
+        vVenv=$VenvActivateCommand;
+    }else{
+        vVenv="";
+    };
+
+    vOption="--to html";
+
+    if($Prototype!="pManuscriptFolder"){
+        if($Prototype(vRoot)=="pManuscriptFolder"){
+            if($HasVenvEnv(vRoot)){
+                vVenv=$VenvActivateCommand(vRoot);
+            }else{
+                vVenv="";
+            };
+            if($HTMLExportFileName(vRoot)){
+                vOutputFolder=$HTMLExportFileName(vRoot);
+            }else{
+                vOutputFolder=$Name(vRoot);
+            };
+            vCheck=true;
+        };
+    }else{
+        if($HTMLExportFileName){
+            vOutputFolder=$HTMLExportFileName;
+        }else{
+            vOutputFolder=$Name;
+        };
+    };
+
+    if(debug){LogRec("Quarto", "<<mark>>Preview: vCheck=" + vCheck + " vOutputFolder=" + vOutputFolder + " vOption=" + vOption + " vVenv=" + vVenv);};
+    if($Prototype=="pManuscriptFolder"|vCheck){
+        fActivateAppName($TerminalApp(vConf));
+        if($TerminalApp(vConf)=="Wezterm"){
+            fQuartoCommnadInWezterm("preview", vOutputFolder, vOption, vVenv);
+        };
+        if($TerminalApp(vConf)=="Terminal"){
+            fQuartoCommnadInTerminal("preview", vOutputFolder, vOption, vVenv);
+        };
+        select($Path(vSelected));
+    }else{
+        if(debug){LogRec("Quarto", "<<mark>>Render: vCheck=" + vCheck + " vOutputFolder=" + vOutputFolder + " vOption=" + vOption + " vVenv=" + vVenv);};
+        ("Please select the pManuscriptFolder note or any of its descendant notes.").show;
+    };
+};
+
+function fRevealjsPreview(){
+    var:string vSelected=$ID;
+    var:string vOption;
+    var:string vOutputFolder;
+    var:string vVenv;
+    var:string vCheck;
+    var:string vConf="TBXConfig";
+    var:string vRoot=collect(ancestors,$Path)[-1];
+    var:boolean debug=true;
+
+    if($HasVenvEnv){
+        vVenv=$VenvActivateCommand;
+    }else{
+        vVenv="";
+    };
+
+    if($Q_HasQuartoLiveChunk(vRoot)){
+        vOption="--to live-revealjs";
+    }else{  
+        vOption="--to revealjs";
+    };
+
+    if($Prototype!="pRevealjsFolder"){
+        var:string vRoot=collect(ancestors,$Path)[-1];
+        if($Prototype(vRoot)=="pRevealjsFolder"){
+            if($HasVenvEnv(vRoot)){
+                vVenv=$VenvActivateCommand(vRoot);
+            }else{
+                vVenv="";
+            };
+            if($HTMLExportFileName(vRoot)){
+                vOutputFolder=$HTMLExportFileName(vRoot);
+            }else{
+                vOutputFolder=$Name(vRoot);
+            };
+
+            if($Q_HasQuartoLiveChunk(vRoot)){
+                vOption="--to live-revealjs";
+            }else{
+                vOption="--to revealjs";
+            };
+
+        vCheck=true;
+        };
+    }else{
+        if($HTMLExportFileName){
+            vOutputFolder=$HTMLExportFileName;
+        }else{
+            vOutputFolder=$Name;
+        };
+    };
+
+    if($Prototype=="pRevealjsFolder"|vCheck){
+
+        if($TerminalApp(vConf)=="Wezterm"){
+            fQuartoCommnadInWezterm("preview", vOutputFolder, vOption, vVenv);
+        };
+        if($TerminalApp(vConf)=="Terminal"){
+            fQuartoCommnadInTerminal("preview", vOutputFolder, vOption, vVenv);
+        };
+        select($Path(vSelected));
+    }else{
+        ("Please select the pRevealjsFolder note or any of its descendant notes.").show;
+    };
+};
+
+function fQuartoCommnadInTerminal(vQCommand:string, vProjectPath:string, vQuartoOptions:string, vVenvCommand){
+    var:string vVenv;
+    var:string vCommand;
+    var:string vReturn;
+    var:string vConf="TBXConfig";
+    var:boolean debug=true;
+
+    if(vVenvCommand){
+        vCommand="/usr/bin/osascript -e '"+ 'tell application "Terminal" to do script "cd '+ $ExportFolder("TBXConfig") +';'+ vVenvCommand + ' && sleep 0.5; '+ $Quarto_Path("TBXConfig") + " " + vQCommand + " " + vProjectPath + " " + vQuartoOptions + '"' + "'";
+    }else{
+        vCommand="/usr/bin/osascript -e '"+ 'tell application "Terminal" to do script "cd '+ $ExportFolder("TBXConfig") +'; sleep 0.5; '+ $Quarto_Path("TBXConfig") + " " + vQCommand + " " + vProjectPath + " " + vQuartoOptions + '"' + "'";
+    };
+
+    if(debug){LogRec("Quarto", "<<mark>> Terminal vCommand=" + vCommand);};
+    vReturn = runCommand(vCommand);
+    fActivateAppName("Terminal");
+};
+
+function fActivateAppName(vApp:string){
+    var:string vCommand = "/usr/bin/osascript -e '" + 'tell application "' + vApp + '" to activate'+ "'";
+    runCommand(vCommand);
+};
+
+function fActivateAppID(vID:string){
+    var:string vCommand = "/usr/bin/osascript -e '" + 'tell application id"' + vID + '" to activate'+ "'";
+    runCommand(vCommand);
+};
+
+function fQuartoCommnadInWezterm(vQuartoCommand:string, vProjectPath:string, vQuartoOptions:string, vVenvCommand){
+    var:string vCommand = "/opt/homebrew/bin/wezterm cli spawn --cwd " + $ExportFolder("TBXConfig") + " -- zsh -c '";
+    var:string vReturn;
+    var:string vPre;
+    var:boolean debug=true;
+
+    if(vVenvCommand){
+        vPre = "cd " +$ExportFolder("TBXConfig") +"&&export PATH=/usr/local/bin:/opt/homebrew/bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&"+ vVenvCommand +"&&";
+    }else{
+        vPre = "cd " +$ExportFolder("TBXConfig") +"&&export PATH=/usr/local/bin:/opt/homebrew/bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&";
+    };
+    vCommand += vPre + $Quarto_Path("TBXConfig") + " " + vQuartoCommand + " " + vProjectPath + " " + vQuartoOptions +";exec zsh;'";
+
+    if(debug){LogRec("Quarto", "<<mark>>Wezterm: vCommand=" + vCommand);};
+    vReturn = runCommand(vCommand);
+    if(debug){LogRec("Quarto", "<<mark>>Wezterm: vReturn=" + vReturn);};
+    
+    fActivateAppName("Wezterm");
+};
+
+function fQuartoCommnadInKitty(vQuartoCommand:string, vSubProjectPath:string, vQuartoOptions:string, vVenvCommand){
+    var:string vCommand = "/opt/homebrew/bin/kitty --single-instance --instance-group tbx -d " + $ExportFolder("TBXConfig") + " zsh -c '";
+    var:string vReturn;
+    var:string vPre;
+
+    if(vVenvCommand){
+        vPre = "cd " +$ExportFolder("TBXConfig") +"&&export PATH=/usr/local/bin:/opt/homebrew/bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&"+ vVenvCommand +"&&";
+    }else{
+        vPre = "cd " +$ExportFolder("TBXConfig") +"&&export PATH=/usr/local/bin:/opt/homebrew/bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&";
+    };
+    vCommand += vPre + $Quarto_Path("TBXConfig") + " " + vQuartoCommand + " " + vSubProjectPath + " " + vQuartoOptions +";exec zsh&;'"; //$Text(/Log)+= vCommand + "\n";
+    ("This Stamp will remain running until you exit Kitty.app.").show;
+    vReturn = runCommand(vCommand);
+    fActivateAppName("Kitty");
+};
+
+
+
+
+// /Hints/Library/_quarto.yml
+
+function fagentqmd(){
+    var:string vName($AgentNameForQmdFiles("TBXConfig"));
+    var:string vQuote='"';
+    var:string vProjectPath=collect(ancestors,$Path)[-1];
+    var:boolean debug=false;
+
+    if(debug){LogRec("Quarto", "<<mark>>fagentqmd: vName=" + vName + " vProjectPath=" + vProjectPath);};
+
+    $QmdList=collect_if(descendants(vProjectPath),($Prototype=="pNote"|$Prototype($Prototype)=="pNote")&$IsAppendix==false,$ID);
+    
+    $AppendixList=collect_if(descendants(vProjectPath),($Prototype=="pNote"|$Prototype($Prototype)=="pNote")&$IsAppendix==true,$ID);
+};
+
+function fqmdlist(){
+    var:string vName($AgentNameForQmdFiles("TBXConfig"));
+    var:string vNameTOC=$TableOfContaintsNote("TBXConfig");
+    var:string vProjectPath=collect(ancestors,$Path)[-1];
+    $Text="  chapters:\n";
+
+    $QmdList.each(x){
+        x=x.replace('"','');
+        if($Is_Part_qmd(x)){
+            if($Text(x).wordCount==0){
+                    $Text += '    - part: "' + $Name(x) +'"\n      chapters:\n';
+            }else{
+                    $Text += "    - part: " + $HTMLExportFileName(x) + $HTMLExportExtension(x)  + "\n      chapters:\n";
+            };
+        }else{
+            if($Part_file(x)){
+                $Text += "        - " + $HTMLExportFileName(x) + $HTMLExportExtension(x)+ "\n";
+            }else{
+                $Text += "    - " + $HTMLExportFileName(x) + $HTMLExportExtension(x)+ "\n";
+            };
+        };
+    };  
+    if($AppendixList.count>0){
+        $Text +="  appendices:\n";
+        $AppendixList.each(x){
+            x=x.replace('"','');
+            $Text += "    - " + $HTMLExportFileName(x) + $HTMLExportExtension(x)+ "\n";
+        };  
+    };
+};
+
+function fChangeTemplateQuartoYML(){
+    var:string vName="_quarto";
+    var:string vProjectPath=collect(ancestors,$Path)[-1];
+    var:string vYmlPath=$Path(vProjectPath) + "/" + vName;
+
+    if($ID(vYmlPath)&$Prototype(vYmlPath)=="pYML"){
+        if($HTMLExportTemplate(vYmlPath)=="/Templates/tYML_bookhtml"){
+            $HTMLExportTemplate(vYmlPath)="/Templates/tYML_bookpdf";
+            $Q_OutputType(vYmlPath)="pdf";
+        }else{
+            $HTMLExportTemplate(vYmlPath)="/Templates/tYML_bookhtml";
+            $Q_OutputType(vYmlPath)="html";
+        };
+    
+        fChangeQuartoYMLDisplayedAttributes(vYmlPath);
+        $DisplayExpression(vYmlPath) = '$Name + " ( " + $HTMLExportTemplate +" )"';
+        $MyString=$Name($HTMLExportTemplate);
+        $OutlineBackgroundColor = $OutlineBackgroundColor($Name($HTMLExportTemplate));
+        (vYmlPath + " template is set with " + $HTMLExportTemplate(vYmlPath)).show();   
+    }else{
+        (" Please select _quarto.yml or inside of project folder").show();
+    };
+};
+
+
+// /Hints/Library/Table of Contains
+
+function fMakeTOC(){
+	var:string vTOC($TableOfContaintsNote("TBXConfig"));
+	var:string vPath=$ProjectContainer("TBXConfig");
+	var:string vNewNote=  vTOC + "#pTOCQmd";
+	var:string vMessage="Move the TOC note where you want to place it." + vPath;
+	if(!$ToggleTOC){
+		vMessage+="\nPlease set $ToggleTOC ON in TBXConfig note";
+	};
+	//select(vPath);
+	create(vPath, vNewNote);
+	$Text($TableOfContaintsNote("TBXConfig")) = $Text("Index List");
+	vMessage.show(); 
+};
+
+function fMakeIndexList(vProjectPath:string){
+	var:string vNote1=vProjectPath + $SecLabelListContainer("TBXConfig");
+	var:string vNote2=vProjectPath + $IndexListContainer("TBXConfig");
+	var:string vNote3=vProjectPath + "/" + $TableOfContaintsNote("TBXConfig");
+	var:boolean vInJapanese=$IsInJapaneseTOC("TBXConfig");
+	var:number vLevel = $MakeIndexLevel("TBXConfig");
+	var:string vTest;
+	var:string vSectionName;
+	var:string vName;
+
+	$Text(vNote2)="";
+	$Text(vNote1).eachLine(aline){
+		vName = aline.substr(2);
+		if($ChildCount("agent unnumbered") == 0){
+			vSectionName = $Name($MyDictionary(vNote1)[vName]);
+		}else{
+			vSectionName =;
+		};
+		if(aline.beginsWith("1:")){
+
+			if(vInJapanese & $ChildCount("agent unnumbered")== 0){
+				$Text(vNote2) += "第[-"+ vName +"]章 " + vSectionName + "\n  \n";
+			}else{ 
+				$Text(vNote2) += "[" + vName + "] " + vSectionName + "\n  \n";
+			};
+		};
+		if(vLevel>=2){
+			if(aline.beginsWith("2:")){
+				aline = aline.substr(2);
+				if(vInJapanese & $ChildCount("agent unnumbered")== 0){
+					$Text(vNote2) += "- [-"+ vName +"] " + vSectionName + "\n  \n";
+				}else{
+					$Text(vNote2) += "- [" + vName + "] " + vSectionName + "\n  \n";
+				}
+			};
+		};
+			if(vLevel>=3){
+			if(aline.beginsWith("3:")){
+				aline = aline.substr(2);
+				if(vInJapanese & $ChildCount("agent unnumbered")== 0){
+					$Text(vNote2) += "- [-"+ vName +"] " + vSectionName + "\n  \n";
+				}else{
+					$Text(vNote2) += "- [" + vName + "] " + vSectionName + "\n  \n";
+				}
+			};
+		};
+	};
+	vTest = $IDString(vNote3);
+	if(vTest){
+		$Text(vNote3)=$Text(vNote2);
+	};
+};
+
+
+// /Hints/Library/pNote
+
+function fSetExportMode(aPath:string){
+
+		if($Prototype($Prototype(aPath))=="pNote"|$Prototype(aPath)=="pNote"){
+			$HTMLExportExtension(aPath)=".qmd";
+			$HTMLExportTemplate(aPath)="/Templates/tNote";
+		};
+		if($Prototype($Prototype(aPath))=="pSubnote"|$Prototype(aPath)=="pSubnote"){
+			$HTMLExportExtension(aPath)=".txt";
+			$HTMLExportTemplate(aPath)="/Templates/tSubnote";
+		};
+
+		$HTMLMarkdown(aPath)=true;
+		$HTMLMarkupText(aPath)=false;
+
+}
+
+function fSetPreviewMode(aPath:string){
+
+		$HTMLPreviewCommand(aPath)="/opt/homebrew/bin/pandoc -f markdown --quiet --citeproc --bibliography="+ $Q_BibliographyFile("TBXConfig") 
+			 + " --resource-path="+ $ImagePathForPandoc("TBXConfig")  + " --css=" + $PandocCSSPath("TBXConfig") + " -t html";
+		$HTMLExportExtension(aPath)=".html";
+
+		if($Prototype($Prototype(aPath))=="pNote"|$Prototype(aPath)=="pNote"){
+			$HTMLExportTemplate(aPath)="/Templates/tNote_Preview";
+		};
+		if($Prototype($Prototype(aPath))=="pSubnote"|$Prototype(aPath)=="pSubnote"){
+			$HTMLExportTemplate(aPath)="/Templates/tSubnote_Preview";
+		};
+
+		$HTMLMarkdown(aPath)=true;
+		$HTMLMarkupText(aPath)=false;
+
+}
+
+function fSetHTMLExportFileName(){
+	if(!($IsNamesLocked)){
+		if($IsIndexqmd){
+			$HTMLExportFileName="index";
+		}else{
+			$HTMLExportFileName= fDeleteCharacters($Name);
+		};
+
+		if(($SectionLabel=="untitled"|$HTMLExportFileName=="untitled"|!$SectionLabel|!$HTMLExportFileName)&!$IsPrototype){
+				$HTMLExportFileName= fDeleteCharacters($Name);
+				$SectionLabel = $HTMLExportFileName;
+		};
+		if(($SectionLabel!=$HTMLExportFileName)&!$IsPrototype){
+			$SectionLabel = $HTMLExportFileName;
+		};
+		if(($SectionLabel==$HTMLExportFileName)&$SectionLabel!="untitled"&!$IsPrototype){
+			$IsNamesLocked=true;
+		};
+	};
+	if($IsUnnumbered){
+		$HasSectionLabel=false;
+	};
+};
+
+function fSetIsPartQmd(){
+    var:number vBaseOutlineDepth=2;
+	if(($OutlineDepth==vBaseOutlineDepth)&(collect_if(children, $Prototype=="pNote"|$Prototype($Prototype)=="pNote",$Name).count>0)){
+		$Is_Part_qmd = true;
+	}else{
+		$Is_Part_qmd = false;
+	};
+
+	if($OutlineDepth==vBaseOutlineDepth + 1){
+		$Is_Part_qmd = false;
+	};
+};
+
+function fCollectIncludeNotes(){
+	if($Is_Part_qmd){
+		$IncludeNotes= collect_if(children, $Prototype=="pNote"|$Prototype($Prototype)=="pNote", $ID);
+	}else{
+		$IncludeNotes = collect_if(children, $Prototype=="pSubnote"|$Prototype($Prototype)=="pSubnote", $ID);
+
+	};
+};
+
+function fSetPartFileAttribute(){
+	var:number vBaseOutlineDepth=2;
+	if(($OutlineDepth==vBaseOutlineDepth + 1)&($Is_Part_qmd(parent))){
+		$Part_file = $HTMLExportFileName(parent)+$HTMLExportExtension(parent);
+	}else{
+		$Part_file = ;
+	};
+	fCollectIncludeNotes();
+};
+
+function fSetOutlineDepthBaseForpNote(){
+	var:number vOutlineDepthControle=1;
+		if($Part_file){
+			$OutlineDepthBase = $OutlineDepth - 1 - vOutlineDepthControle;
+		}else{
+			$OutlineDepthBase = $OutlineDepth - vOutlineDepthControle;
+		};
+};
+
+
+
+//For pNote
+
+function fSetAttributeForpNote(){
+
+	fSetHTMLExportFileName();
+
+	// Is a part-qmd or not.  	
+	fSetIsPartQmd();
+
+	//Set attribute for Nested qmd file ( Under the Part file ) 
+	fSetPartFileAttribute();
+	//Adjust OutlineDepthBase
+	fSetOutlineDepthBaseForpNote();
+
+};
+
+
+
+
+
+
+// /Hints/Library/pSubNote
+
+function fSetOutlineDepthBaseForpSubnote(){
+		$OutlineDepthBase = $OutlineDepthBase(parent) + 1;
+};
+
+// For pSubnote
+function fSetAttributeForpSubnote(){
+	fSetHTMLExportFileName();
+	fSetOutlineDepthBaseForpSubnote();
+	fCollectIncludeNotes();
+};
+
+
+
+function fSetPreviewForpSubnote(vID:string){
+	if($Prototype(vID)=="pSubnote"|$Prototype($Prototype(vID))=="pSubnote"){
+		if($HTMLExportExtension==".txt"){
+			$HTMLPreviewCommand(vID)="/opt/homebrew/bin/pandoc -f markdown --quiet --citeproc --bibliography="+ $Q_BibliographyFile("TBXConfig") 
+			 + " --resource-path="+ $ImagePathForPandoc("TBXConfig")  + " --css=" + $PandocCSSPath("TBXConfig") + " -t html";
+			$HTMLExportTemplate(vID)="/Templates/tSubnote_all_Preview";
+			$HTMLExportExtension(vID)=".html";
+			$HTMLMarkdown(vID)=false;
+			$HTMLMarkupText(vID)=false;
+		}else{
+			$HTMLPreviewCommand(vAgentExport)="CommonMark";
+			$HTMLExportTemplate(vID)="/Templates/tSubnote";
+			$HTMLExportExtension(vID)=".txt";
+			$HTMLMarkdown(vID)=true;
+			$HTMLMarkupText(vID)=false;
+		};
+	};
+};
+
+
+function fSetPreviewForpSubnoteFromPath(vPath:string){
+	var:list vList = collect_if(descendants(vPath), $Prototype=="pSubnote"|$Prototype($Prototype)=="pSubnote", $ID);
+
+	vList.each(aL){
+		fSetPreviewForpSubnote(aL);
+		update(aL);
+	};
+};
+
+
+// /Hints/Library/Make Section Label List
+
+
+
+function fMakeSectionList(vContainer:string, vPath:string){
+	var:string vName;
+	var:string vTest;
+	var:number vCount(0);
+	var:set vCheck;
+	var:dictionary vDict=;
+	var:string vTemp;
+
+
+	if($IsLabelGenerateON(vPath)&($Prototype(vPath)=="pLabelListContainer"|$Prototype($Prototype(vPath))=="pLabelListContainer")){
+
+		$Text(vPath)=;
+		$MyList(vPath) =;
+		$ListKey(vPath)=;
+		$ListValue(vPath)=;
+		$OutlineDepthBaseDictionary(vPath)=;
+		$MyDictionary(vPath)=;
+
+		$MyList(vPath) = collect_if(descendants(vContainer),$HasSectionLabel&$SectionLabel&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+		$MyList(vPath).each(L){
+			L=L.replace('"',"");
+			if(!(vCheck.contains($Path(L)))){
+				vCheck +=  $Path(L);
+				vDict+=dictionary($SectionLabel(L)+":"+L+";");
+				//$MyString(vPath)=vDict;
+				$ListKey(vPath) += $SectionLabel(L);
+				$ListValue(vPath) += L;
+				
+				if($SectionLabel(L)!=""){
+					$MyDictionary(vPath)+=dictionary("@sec-" + $SectionLabel(L)+":"+ L +";");
+					if($Is_Part_qmd(L)){
+						$OutlineDepthBaseDictionary(vPath) += dictionary("@sec-" + $SectionLabel(L)+":"+ 0 +";");
+					}else{
+						$OutlineDepthBaseDictionary(vPath) += dictionary("@sec-" + $SectionLabel(L)+":"+ $OutlineDepthBase(L) +";");
+					};
+				};
+			};
+		};
+	
+		vCount = 0;
+		$ListKey(vPath).each(S){
+			vName = "@sec-" + S;
+			vTest = $IDString(vName);
+			if(vTest==""){
+				create(vPath, vName+"#pReferenceList");
+				$OutlineBackgroundColor(vName)="blue";
+			};
+			$Text(vName) = exportedString($ListValue(vPath)[vCount], "tNote");
+			//参照元のアウトラインの階層を記録
+			$OutlineDepthBase(vName) = $OutlineDepthBaseDictionary(vPath)[vName];
+			$Text(vPath)+= $OutlineDepthBase(vName) + ":" + vName + "\n";
+			vCount += 1;
+		};
+		vCount = 0;
+
+		$ListKey(vPath).each(K){
+			K = "@sec-" + K;
+			$ToDummyLinkPath(K) += $ListValue(vPath)[vCount];
+			createLink(K, $ListValue(vPath)[vCount], "dummy");
+			vCount += 1;
+		};
+	};
+};
+
+
+
+
+// /Hints/Library/Make Figure Label List
+
+
+function fMakeFigureList(vContainer:string, vPath:string){
+    var:string vName;
+    var:string vTest;
+    var:number vCount(0);
+    var:string vLabel;
+    var:string vTemp;
+    var:list vList;
+
+    LogRec("MakeFigureList", "<<mark>>vContainer=" + vContainer + " vPath=" + vPath);
+
+    if($IsLabelGenerateON(vPath)&($Prototype(vPath)=="pLabelListContainer"|$Prototype($Prototype(vPath))=="pLabelListContainer")){
+
+        $Text(vPath)=;
+        $MyList(vPath)=;
+        $ListKey(vPath)=;
+        $ListValue(vPath)=;
+        $MyDictionary(vPath)=;
+        
+        //Notes contains chunk "fig-" label with style "#| label: fig- "
+        vList = collect_if(descendants(vContainer),$Text.contains("(#\| label: fig-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+
+        // Add Figures From pChunk, pRChunk, pPChunk
+        vList.each(L){
+            L=L.replace('"',"");
+            $Text(L).eachLine(aLine:aLine.contains("(#\| label: fig-[\w\d-]*)+?")){
+                vTemp = $1;
+                vTemp = vTemp.replace("#\| label: ","@");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+            };
+        };
+
+       //Notes contains chunk "fig-" label with style "#fig-"
+        vList = collect_if(descendants(vContainer),$Text.contains("(#fig-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+        vList.each(L){
+            L=L.replace('"',"");
+            $Text(L).eachLine(aLine:aLine.contains(".*(#fig-[\w\d-]*)+?.*")){
+                vTemp = $1;
+                vTemp = vTemp.replace("#fig-","@fig-");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+            };
+        };      
+
+       //Notes contains chunk "fig-" label with style "%%| label: fig-" for Mermaid Flowchart
+
+        vList = collect_if(descendants(vContainer),$Text.contains("(%%\| label: fig-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+        LogRec("MakeFigureList", "<<mark>> vList=" + vList + " vContainer=" + vContainer + " $Path=" + $Path);
+        vList.each(L){
+            L=L.replace('"',"");
+            $Text(L).eachLine(aLine:aLine.contains("(%%\| label: fig-[\w\d-]*)+?")){
+                vTemp = $1;
+                vTemp = vTemp.replace("%%\| label: ","@");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+            };
+        };
+
+        //Notes contains chunk "fig-" label with style "//| label: fig-" for Graphviz
+        vList = collect_if(descendants(vContainer),$Text.contains("(\/\/\| label: fig-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+        vList.each(L){
+            L=L.replace('"',"");
+            $Text(L).eachLine(aLine:aLine.contains("(\/\/\| label: fig-[\w\d-]*)+?")){
+                vTemp = $1;
+                vTemp = vTemp.replace("\/\/\| label: ","@");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+            };
+        };
+        $MySet(vPath)=$MyList(vPath);
+        $MySet(vPath).each(S){
+            vName = S;
+            vLabel = S.replace("@","");
+        
+            vTest = $IDString(vName);
+            if(vTest==""&vName!="@fig-"){
+                LogRec("MakeFigureList", "<<mark>> create vName=" + vName + " vLabel=" + vLabel + " vTest=" + vTest);
+                create(vPath, vName + "#pReferenceList");
+                $OutlineBackgroundColor(vName)="green";
+
+            //  $Text(vName) = fFigureChunk($ListValue(vPath)[vCount], vLabel);
+            };
+            if(vName!="@fig-"){
+                $Text(vPath)+= vName + "\n";
+            };
+        };
+        vCount = 0;
+        $ListKey(vPath).each(K){
+            vName = K;
+            $ToDummyLinkPath(vName) = $ListValue(vPath)[vCount];
+            $Text(vName) = fFigureChunk($ListValue(vPath)[vCount], vName.replace("@",""));
+            createLink(K, $ListValue(vPath)[vCount], "dummy");
+            vCount += 1;
+        };
+    };
+};
+
+function fFigureChunk(vName:string, vLabel:string){
+    var:string vReg1;
+    var:string vReg2;
+    var:string vReg3;
+    var:string vReg4;
+    var:string vTemp;
+    
+    vReg1 = "(```[^`]+#\| label: " + vLabel + "[^`]+```)"; 
+    vReg2 = "(:::[\s\S]*?\{#" + vLabel + "\}[\s\S]*?:::)";
+    vReg3 = "(:::\s*\{#"+ vLabel + "[\s\S]*?\}[\s\S]*?:::)";
+    vReg4 = "(!\[.*?\]\(.*?\)\{#" + vLabel + ".*?\})";
+
+
+    if($Text(vName).contains(vReg1)){
+        vTemp=$1;
+    };
+    if($Text(vName).contains(vReg2)){
+        vTemp=$1;
+    };
+    if($Text(vName).contains(vReg3)){
+        vTemp=$1;
+    };
+    if($Text(vName).contains(vReg4)){
+        vTemp=$1;
+    };
+    return vTemp;
+};
+
+
+
+// /Hints/Library/Make Table Label List
+
+
+function fMakeTableList(vContainer:string, vPath){
+	var:string vName;
+	var:string vTest;
+	var:number vCount(0);
+	var:string vLabel;
+	var:string vTemp;
+	var:list vList;
+
+	if($IsLabelGenerateON(vPath)&($Prototype(vPath)=="pLabelListContainer"|$Prototype($Prototype(vPath))=="pLabelListContainer")){
+
+		$Text(vPath)=;
+		$MyList(vPath)=;
+		$ListKey(vPath)=;
+		$ListValue(vPath)=;
+		$MyDictionary(vPath)=;
+	
+		//Notes contains chunk "tbl-" label 
+		vList = collect_if(descendants(vContainer),$Text.contains("(#tbl-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$ID);
+
+		vList.each(L){
+			//L=L.replace('"',"");
+			$Text(L).eachLine(aLine:aLine.contains("(#tbl-[\w\d-]*)+?")){
+				vTemp = $1;
+				vTemp = vTemp.replace("#tbl-","@tbl-");
+				$MyList(vPath) += vTemp;
+				$ListKey(vPath) += vTemp;
+				$ListValue(vPath) += $Path(L);
+				$MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+			};
+		};
+	
+
+		$MyList(vPath).each(S){
+			vName = S;
+			vLabel = S.replace("@","");
+			vTemp= vPath + "/" + S;
+			vTest = $IDString(vTemp);
+
+			if(vTest==""&vName!="@tbl-"){
+				create(vPath, vName + "#pReferenceList");
+				$OutlineBackgroundColor(vName)="purple";
+			};
+	//		$Text(vName) = fTableChunk($ListValue(vPath)[vCount], vLabel);
+			if(vName!="@tbl-"){	
+				$Text(vPath)+= vName + "\n";
+			};
+			vCount += 1;
+		};
+		vCount = 0;
+		$ListKey(vPath).each(K){
+			vName = vPath +"/"+ K;
+			$ToDummyLinkPath(vName) = $ListValue(vPath)[vCount];
+			$Text(vName) = fTableChunk($ListValue(vPath)[vCount], K.replace("@",""));
+			createLink(K, $ListValue(vPath)[vCount], "dummy");
+			vCount += 1;
+		};
+	};
+};
+
+function fTableChunk(vName:string, vLabel:string){
+	var:string vReg;
+	var:string vTemp;
+	//vReg = ":\s*(.*?)\s*\{#("+ vLabel +")\s*?\}\s*\n(?:\s*\|.*\n)+\n";
+	vReg = ":\s*(.*?)\s*\{#("+vLabel+")\s*?\}\s*\n(?:\s*\|.*\n)+";
+	//vReg = "```([\s\S]*?\{#("+ vLabel + ")\}[\s\S]*?)```";
+	if($Text(vName).contains(vReg)){
+		return $0;
+	};
+
+};
+
+
+// /Hints/Library/Make Equation Label List
+
+
+function fMakeEquationList(vContainer:string,vPath){
+	var:string vName;
+	var:string vTest;
+	var:number vCount(0);
+	var:string vLabel;
+	var:string vTemp;
+	var:list vList;
+
+	if($IsLabelGenerateON(vPath)&($Prototype(vPath)=="pLabelListContainer"|$Prototype($Prototype(vPath))=="pLabelListContainer")){
+	
+		$Text(vPath)=;
+		$MyList(vPath) =;
+		$ListKey(vPath)=;
+		$ListValue(vPath)=;
+		$MyDictionary(vPath)=;
+	
+		//Notes contains chunk "eq-" label 
+		vList = collect_if(descendants(vContainer),$Text.contains("(eq-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+
+		vList.each(L){
+			L=L.replace('"',"");
+			$Text(L).eachLine(aLine:aLine.contains("(#eq-[\w\d-]*)+?")){
+				vTemp = $1;
+				vTemp = vTemp.replace("#eq-","@eq-");
+				$MyList(vPath) += vTemp;
+				$ListKey(vPath) += vTemp;
+				$ListValue(vPath) += L;
+				$MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+			};
+		};
+
+
+		$MyList(vPath).each(S){
+			vName = S;
+			vLabel = S.replace("@","");
+		
+			vTest = $IDString(vName);
+		
+			if(vTest==""&vName!="@eq-"){
+				create(vPath, vName + "#pReferenceList");
+				$OutlineBackgroundColor(vName)="purple";
+				$Text(vName) = fEquationChunk($ListValue(vPath)[vCount], vLabel);
+			};
+
+			if(vName!="@eq-"){	
+				$Text(vPath)+= vName + "\n";
+			};
+		
+			vCount += 1;
+		};
+		vCount = 0;
+		$ListKey(vPath).each(K){
+			vName = K;
+			$ToDummyLinkPath(vName) = $ListValue(vPath)[vCount];
+			$Text(vName) = fEquationChunk($ListValue(vPath)[vCount], vName.replace("@",""));
+			createLink(K, $ListValue(vPath)[vCount], "dummy");
+			vCount += 1;
+		};
+	};
+};
+
+function fEquationChunk(vName:string, vLabel:string){
+	var:string vReg;
+	var:string vTemp;
+	vReg = "(\$\$([\s\S]*?)\$\$)\s*\{#("+ vLabel +")\}";
+	if($Text(vName).contains(vReg)){
+		return $1;
+	};
+
+};
+
+
+// /Hints/Library/Make Chunk and Graph List
+
+//******************* Make Chunk List ***************************************
+function fMakeFigLabelListFrompChunk(){
+   var:string vName;
+    var:string vPath=$FigLabelListContainer("TBXConfig");
+    var:list vList=collect(children(vPath),$ID);
+    var:list vReturn;
+    vList.each(a){
+        vReturn= vReturn +$Q_ChunkFigLabel($ToDummyLinkPath(a));
+    };
+    return vList;
+};
+
+function fMakeChunkList(){
+    var:string vName;
+    var:string vName2;
+    var:string vChunkLabelListPath=$ChunkListContainer("TBXConfig");
+    var:string vProjectLabelListPath;
+    var:string vProjectPath;
+    var:string vTest;
+    var:dictionary vDict;
+    var:list vList;
+    var:string vID;
+
+    if($Container($Path)=="/"){
+        vProjectPath = $Path;
+    }else{
+        vProjectPath = collect(ancestors,$Path)[-1];
+    };
+
+    vProjectLabelListPath = vProjectPath + $ChunkListContainer("TBXConfig");
+
+    if($IsLabelGenerateON(vChunkLabelListPath)&($Prototype(vChunkLabelListPath)=="pLabelListContainer"|$Prototype($Prototype(vChunkLabelListPath))=="pLabelListContainer")){
+
+        $Text(vChunkLabelListPath)="";
+
+        vList=collect_if(all,($Prototype=="pChunk"|$Prototype=="pRChunk"|$Prototype=="pPChunk")&!$IsPrototype&!$IsAlias&($Container!=vChunkLabelListPath),$ID);
+        vList=vList.sort($Q_ChunkLang);
+
+        vList.each(aChunk){
+            var:string vFigRef;
+            if($Q_ChunkFigLabel(aChunk)){
+                vFigRef="➡️fig-"+$Q_ChunkFigLabel(aChunk)+"";
+            };
+            $Name(aChunk)=fDeleteCharacters($Name(aChunk));
+            vName = "<"+$Q_ChunkLang(aChunk)+":" + $Name(aChunk) + vFigRef+">";
+            vName2= "\<"+$Q_ChunkLang(aChunk)+":" + $Name(aChunk) + vFigRef+"\>";
+
+            vTest = $ID(vName);
+
+            if(!vTest){
+                if($Text(aChunk).wordCount>0){
+                    var:string vPrototype;
+                    var:string vPath;
+                    if($Q_ChunkLang(aChunk)=="r"|$Q_ChunkLang(aChunk)=="webr"){
+                        vPrototype="#pRChunkList";
+                    }else{
+                        vPrototype="#pChunkList";
+                    };
+                    vPath = vChunkLabelListPath + "/" + vName2;
+                    LogRec("MakeChunkList", "<<mark>> vPath=" + vPath+vPrototype);
+                    create(vPath + vPrototype);
+                    $Text(vPath) = $Text(aChunk);
+                    createLink($Path(vPath), $Path(aChunk),"dummy");
+                    $ToDummyLinkPath(vPath) = $Path(aChunk);
+                    $Text(vChunkLabelListPath) += vName + ":" + $ToDummyLinkPath(vPath) + "\n";
+                    $Name(vPath) = vName;
+                };
+            };  
+
+            //Create Figure Label
+            var:string vFigName;
+            var:string vLabelPath;
+            var:list vAttributes=$DisplayedAttributes($Prototype(aChunk));
+            var:string vTemp;
+            
+            vFigName="@fig-"+$Q_ChunkFigLabel($Path(aChunk));
+            LogRec("MakeChunkList", "<<mark>> vProjectPath=" + vProjectPath + " vChunkLabelListPath=" + vChunkLabelListPath + " vFigName=" + vFigName);
+            vLabelPath = vProjectPath + vChunkLabelListPath + "/" + vFigName;
+            vTest=$ID(vLabelPath);
+            if(!vTest & vFigName!="@fig-"){
+
+                create(vLabelPath, vFigName + "#pReferenceList");
+                $ToDummyLinkPath(vLabelPath)=$Path(aChunk);
+                $OutlineBackgroundColor(vLabelPath)="light violet";
+                $Text(vLabelPath)=$Text(aChunk);
+                createLink(vChunkLabelListPath+"/"+ vFigName, vLabelPath, "dummy");
+            };
+    
+            vAttributes.each(x){
+                vTemp= "$" + x + "(" + vChunkLabelListPath +"/" + vFigName + ")=$" + x + "(" + $Path(aChunk) + ");";
+                action(vTemp);
+            };
+    
+        };
+    };
+};
+
+function fClearChunkList(){
+    var:string vPath1 =$ChunkListContainer("TBXConfig");
+    var:list vDellist;
+    vDellist = collect(children(vPath1), $Path);
+    if(vDellist.count>0){
+        delete(vDellist);
+        $Text(vPath1)="";
+    };
+};
+
+function fCheckDuplicateChunkName(){
+    var:string vPath1 =$ChunkListContainer("TBXConfig");
+    var:list vList=collect_if(children(vPath1),$Prototype=="pChunkList"&$Name==$Name(this)&$Path!=$Path(this));
+    
+    if(vList.count=>2){
+        $Color="red";
+    }else{
+        $Color=$Color($Prototype);
+    };
+};
+
+//******************* Make Graph Label List ***************************************
+function fMakeFigLabelListFromGraph(){
+    var:string vName;
+    var:string vPath=$FigLabelListContainer("TBXConfig");
+    var:list vList=collect(children(vPath),$ID);
+    var:list vReturn;
+    vList.each(a){
+        vReturn= vReturn + $Q_ChunkFigLabel($ToDummyLinkPath(a));
+    };
+    return vReturn;
+};
+
+function fMakeGraphList(){
+    var:string vName;
+    var:string vName2;
+    var:string vGraphLabelListPath=$GraphListContainer("TBXConfig");
+    var:string vProjectLabelListPath;
+    var:string vProjectPath;
+    var:string vTest;
+    var:dictionary vDict;
+    var:list vList;
+
+    if($Container=="/"){
+        vProjectPath = $Path;
+    }else{
+        vProjectPath = collect(ancestors,$Path)[-1];
+    };
+    vProjectLabelListPath = vProjectPath + $FigLabelListContainer("TBXConfig");
+
+    if($IsLabelGenerateON(vGraphLabelListPath)&($Prototype(vGraphLabelListPath)=="pLabelListContainer"|$Prototype($Prototype(vGraphLabelListPath))=="pLabelListContainer")){
+
+        $Text(vGraphLabelListPath)="";
+
+        vList = collect_if(all,($Prototype=="pMFContainer"|$Prototype=="pGContainer")&!$IsPrototype&!$IsAlias&($Container!=vGraphLabelListPath),$ID);
+
+        vList.each(aGraph){
+            var:string vFigRef;
+            if($Q_ChunkFigLabel(aGraph)){
+                vFigRef="➡️fig-"+$Q_ChunkFigLabel(aGraph)+"";
+            };
+            if(!$Q_ChunkFigCaption(aGraph)){
+                $Q_ChunkFigCaption(aGraph)=$Name(aGraph);
+            };
+            $Name(aGraph)=fDeleteCharacters($Name(aGraph));
+            if($Prototype(aGraph)=="pMFContainer"){
+                vName = "<mermaid:" + $Name(aGraph) + vFigRef+">";
+                vName2= "\<mermaid:" + $Name(aGraph) + vFigRef+"\>";
+            }else{
+                vName = "<dot:" + $Name(aGraph) + vFigRef+">";
+                vName2= "\<dot:" + $Name(aGraph) + vFigRef+"\>";
+            };
+
+            vTest = $ID(vName);
+            if(!vTest & vFigName!="@fig-"){
+                if($Text(aGraph).wordCount>0){
+                    var:string vPrototype;
+                    var:string vPath;
+                if($Prototype(aGraph)=="pMFContainer"){
+                    vPrototype="#pMFGraphList";
+                }else{
+                    vPrototype="#pGGraphList";
+                };
+                vPath = vGraphLabelListPath + "/" + vName2;
+                create(vPath + vPrototype);
+                $Text(vPath) = $Text(aGraph);
+                createLink($Path(vPath), $Path(aGraph),"dummy");
+                $ToDummyLinkPath(vPath) = $Path(aGraph);
+                $Text(vGraphLabelListPath+= vName + ":" + $ToDummyLinkPath(vPath) + "\n");
+                $Name(vPath) = vName;
+                };
+            };  
+            //Create Figure Label
+            var:string vFigName;
+            var:string vLabelPath;
+            var:list   vAttributes = $DisplayedAttributes($Prototype(aGraph));
+            var:string vTemp;
+            
+            vFigName = "@fig-"+$Q_ChunkFigLabel($Path(aGraph));
+
+            vLabelPath = vProjectPath + vGraphLabelListPath + "/"+vFigName;
+            
+            vTest=$ID(vLabelPath);
+            if(!vTest & vFigName!="@fig-"){
+                LogRec("MakeGraphList", "<<mark>> create vLabelPath=" + vLabelPath + " vFigName=" + vFigName + " vGraphLabelListPath=" + vGraphLabelListPath);
+                create(vLabelPath, vFigName + "#pReferenceList");
+                $ToDummyLinkPath(vLabelPath)=$Path(aGraph);
+                $OutlineBackgroundColor(vLabelPath)="light violet";
+                $Text(vLabelPath)=$Text(aGraph);
+                createLink(vGraphLabelListPath+"/"+ vFigName, vLabelPath, "dummy");
+            };
+
+            vAttributes.each(x){
+                vTemp= "$" + x + "(" + vLabelPath + ")=$" + x + "(" + $Path(aGraph) + ");";
+                action(vTemp);
+            };
+        };
+    };
+};
+
+function fClearGraphList(){
+    var:string vPath1 =$GraphListContainer("TBXConfig");
+    var:list vDellist;
+    vDellist = collect(children(vPath1), $Path);
+    if(vDellist.count>0){
+        delete(vDellist);
+        $Text(vPath1)="";
+    };
+};
+
+
+
+// /Hints/Library/Make Link From Reference List
+
+function fMakeLinkSecFromReferenceList(vContainer,vNote){
+	var:string vStrDic;
+//	var:string vNote=$SecLabelListContainer("TBXConfig");
+	var:string vTest;
+	var:number vCount(0);
+
+	$MyList(vNote) =;
+	$MyDictionary(vNote)=;
+	
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@sec-[\w\d-]*)+?"),$ID);
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@sec-[\w\d-]*)+?"),$ID);
+	$MyList(vNote).each(L){
+			$Text(L).eachLine(aLine){
+			vTest=aLine.contains("(@sec-[\w\d-]*)+?");
+			vStrDic = "{"+$1 + ":" + L + "}";
+			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
+			$FromDummyLinkPath($1) += $Path(L);
+			createLink(L, $1, "dummy"); 
+		};
+	};
+};
+
+function fMakeLinkFigFromReferenceList(vContainer,vNote){
+	var:string vStrDic;
+//	var:string vNote=$FigLabelListContainer("TBXConfig");
+	var:string vTest;
+	var:number vCount(0);
+
+	$MyList(vNote) =;
+	$MyDictionary(vNote)=;
+
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@fig-[\w\d-]*)+?"), $ID);
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@fig-[\w\d-]*)+?"), $ID);
+	$MyList(vNote).each(L){
+			$Text(L).eachLine(aLine){
+			vTest=aLine.contains("(@fig-[\w\d-]*)+?");
+			vStrDic = "{" + $1 + ":" + L + "}";
+			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
+			$FromDummyLinkPath($1) += L;
+			createLink(L, $1, "dummy");
+		};
+	};
+
+};
+
+
+function fMakeLinkTableFromReferenceList(vContainer,vNote){
+	var:string vStrDic;
+//	var:string vNote=$TblLabelListContainer("TBXConfig");
+	var:string vTest;
+	var:number vCount(0);
+
+	$MyList(vNote) =;
+	$MyDictionary(vNote)=;
+
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@tbl-[\w\d-]*)+?"), $ID);
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@tbl-[\w\d-]*)+?"), $ID);
+	$MyList(vNote).each(L){
+			$Text(L).eachLine(aLine){
+			vTest=aLine.contains("(@tbl-[\w\d-]*)+?");
+			vStrDic = "{" + $1 + ":" + L + "}";
+			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
+			$FromDummyLinkPath($1) += L;
+			createLink(L, $1, "dummy");
+		};
+	};
+
+};
+
+function fMakeLinkEquationFromReferenceList(vContainer,vNote){
+	var:string vStrDic;
+//	var:string vNote=$EquLabelListContainer("TBXConfig");
+	var:string vTest;
+	var:number vCount(0);
+
+	$MyList(vNote) =;
+	$MyDictionary(vNote)=;
+
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@eq-[\w\d-]*)+?"), $ID)
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@eq-[\w\d-]*)+?"), $ID)	$MyList(vNote).each(L){
+			$Text(L).eachLine(aLine){
+			vTest=aLine.contains("(@eq-[\w\d-]*)+?");
+			vStrDic = "{" + $1 + ":" + L + "}";
+			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
+			$FromDummyLinkPath($1) += L;
+			createLink(L, $1, "dummy");
+		};
+	};
+
+};
+
+
+
+
+// /Hints/Library/Template and Prototype
+
+function fChangeNoteTemplate(){
+	var:string vName1="pNote";
+	var:string vName2="pSubnote";
+	if($HTMLExportTemplate(vName1)=="/Templates/tNote"){
+		$HTMLExportTemplate(vName1)="/Templates/tNote_preview";
+	}else{
+		$HTMLExportTemplate(vName1)="/Templates/tNote";
+	};
+
+	if($HTMLExportTemplate(vName2)=="/Templates/tSubnote"){
+		$HTMLExportTemplate(vName2)="/Templates/tSubnote_preview";
+	}else{
+		$HTMLExportTemplate(vName2)="/Templates/tSubnote";
+	};
+		(vName1 + " template is set with " + $HTMLExportTemplate(vName1) + "\n"+vName2 + " template is set with " + 	$HTMLExportTemplate(vName2) + "\n").show();
+};
+
+function fChangeQuartoYMLDisplayedAttributes(vName){
+	$DisplayedAttributes(vName)=$DisplayedAttributes($HTMLExportTemplate(vName));
+};
+
+function fTranslateStrings(vLang, vStr:string){
+	//you nead install trans-shell
+	//var:string vCommand="export PATH=/opt/homebrew/bin:$PATH;/opt/homebrew/bin/trans -b ";
+	var:string vCommand;
+	var:string vFilePathOfTrans=$PathOfTransExe("TBXConfig");
+	var:string vPathOfTrans;
+	var:string vReturn;
+
+	vFilePathOfTrans.icontains("(.*)/");
+	vPathOfTrans="export PATH=" + $1 + ":$PATH;";
+	vStr="'" + vStr + "'";
+
+	vCommand = vPathOfTrans + vFilePathOfTrans + " -b ";
+	
+	vCommand = vCommand + "{" + vLang + "} ";
+	$MyString = vCommand;
+
+	vReturn = runCommand(vCommand, vStr).replace("\n","").replace('"',"");
+	return vReturn; 
+};
+
+function fRenameIn(vStr:string){
+	var:string vTempName;
+	var:string vLang=$Rename_in("TBXConfig");
+
+	$MyString("TBXConfig")=vLang;
+	vTempName = fTranslateStrings(vLang, vStr);
+	//$MyString = vTempName;
+	if(!($IsNamesLocked)){
+		if($IsIndexqmd){
+			$HTMLExportFileName="index";
+		}else{
+			$HTMLExportFileName=vTempName.deleteCharacters("/\?%*:|<>.&+()!#,’`").lowercase().replace(" ","-").replace("'","");
+			$SectionLabel=$HTMLExportFileName;
+		};
+		("Name Changed to:" + $HTMLExportFileName + $HTMLExportExtension).show();
+	}else{
+		("Name is Locked").show();
+	};
+};
+
+function fGetLanguageYML(vLang:string){
+	var:string vURL;
+	if($Prototype=="pLanguageYML"&!$ReadOnly){
+		if(vLang=="en"|vLang==""){
+			vURL="https://raw.githubusercontent.com/quarto-dev/quarto-cli/main/src/resources/language/_language.yml";
+			$Name = "_language";
+			$HTMLExportExtension = ".yml";
+		}else{
+			vURL="https://raw.githubusercontent.com/quarto-dev/quarto-cli/main/src/resources/language/_language-" + vLang + ".yml";
+			$Name = "_language-" + vLang;
+			$HTMLExportExtension = ".yml";
+		};
+		$URL = vURL;
+
+		$AutoFetch = true;
+		("get from " + vURL).show();
+	};
+};
+
+
+
+
+// /Hints/Library/Bibliography
+
+function fSetReference(){
+	var:string vText=$ReferenceRIS.following("U1  - ");
+	
+	if(($Prototype=="pReference")){
+		if(vText){
+			$CiteKey = vText;
+			$Name = "@" + vText;
+			$DisplayExpression = '$Name + "\n" + $BookTitle + " in " + $PublicationYear.substr(0,4)';
+			$Abstract=$ReferenceRIS.following("AB  - ");
+		};
+		//if($Text=;){
+			$Text = "Abstract: \n" + $Abstract;
+		//}
+		if(!($ReferenceURL)){
+			 $ReferenceURL= $ReferenceRIS.following("U20  - ");
+		};
+	};
+	
+};
+
+
+
+// /Hints/Library/Agent
+
+function fSetIncludeNotesForExportAgent(){
+    $IncludeNotes = collect_if(children, $Prototype=="pNote"|$Prototype($Prototype)=="pNote", $ID);
+};
+
+
+function fCrossRefUpdate(vForce:boolean){
+    var:string vName="TBXConfig";
+    var:string vContainer=$ProjectContainer(vName);
+
+    var:string vChunkPath = $ChunkListContainer(vName);
+    var:string vGraphPath = $GraphListContainer(vName);
+    
+    var:number vInterval;
+    vInterval=interval($CrossRefLastUpdate(vName), date("now")).minute*60+interval($CrossRefLastUpdate(vName), date("now")).second;
+
+
+    if( vForce |(vInterval > $CrossRefListUpdateCycle("TBXConfig") * 60)){
+        //clear Label list, Chunk list and Graph list
+        ("Cross-Res List Update: Start").show("blue");
+
+        fClearChunkList();
+        fClearGraphList();
+
+
+        //Chunk
+        fMakeChunkList();
+        update(vChunkPath);
+        //Graph
+        fMakeGraphList();
+        update(vGraphPath);
+    
+
+        $ProjectList(vName).each(aP){
+            var:string vSecPath =aP + $SecLabelListContainer(vName);
+            var:string vFigPath =aP + $FigLabelListContainer(vName);
+            var:string vTblPath =aP + $TblLabelListContainer(vName);
+            var:string vEquPath =aP + $EquLabelListContainer(vName);
+            fClearReferenceList(aP);
+
+        // Section
+            fMakeSectionList(aP, vSecPath);
+            update(vSecPath);
+
+        //Figure
+            LogRec("Figure","<<mark>> Make Figure List aP:" + aP + " vFigPath:" + vFigPath + "vName:" + vName);
+            fMakeFigureList(aP, vFigPath);
+            update(vFigPath);
+
+        //Table
+            fMakeTableList(aP, vTblPath);
+            update(vTblPath);
+
+        //Equation
+            fMakeEquationList(aP, vEquPath);
+            update(vEquPath);
+
+        //Make dummy links
+            fMakeLinkSecFromReferenceList(aP, vSecPath);
+            fMakeLinkFigFromReferenceList(aP, vFigPath);
+            fMakeLinkTableFromReferenceList(aP, vTblPath);
+            fMakeLinkEquationFromReferenceList(aP, vEquPath);
+
+        };
+
+        $CrossRefLastUpdate("TBXConfig")=date("now");
+        ("Cross-Res List Update: Finish").show("blue");
+    };
+};
+
+function fMakeQmdList(){
+    var:string vName = $AgentNameForQmdFiles("TBXConfig");
+    //$QmdList(vName) = find($AgentQuery(vName));
+    $QmdList(vName) = find($HTMLExportExtension==".qmd"&$Prototype=="pNote");
+    $MyString = $AgentQuery(vName);
+};
+
+function fChangeTemplateOfAgentQmd(){
+    var:string vName = $AgentNameForQmdFiles("TBXConfig");
+    if($HTMLExportTemplate(vName)=="/Templates/tOutputAll_MD"){
+        $HTMLExportTemplate(vName)="/Templates/tOutputAll_QMD";
+        $HTMLExportExtension(vName)=".qmd";
+
+    }else{
+            $HTMLExportTemplate(vName)="/Templates/tOutputAll_MD";
+            $HTMLExportExtension(vName)=".md";
+    };
+
+    (vName + " template is set with " + $HTMLExportTemplate(vName)).show;
+};
+
+function fToggleBookAgent(){
+    var:string vAgentExport=$AgentNameForQmdFiles("TBXConfig");
+//$Text(/Log)+= $BookAgentMode(vAgentExport) + "\n";
+    if($BookAgentMode(vAgentExport)=="Export"){
+        fSetBookAgentPreviewMode();
+    }else{
+        fSetBookAgentExportMode();
+    };
+};
+
+function fSetBookAgentPreviewMode(){
+    var:string vAgentExport=$AgentNameForQmdFiles("TBXConfig");
+    var:string vModeNote="/Mode ➡";
+    var:number vPriority=$ExportAgentPriority("TBXConfig");
+    var:string vAgentQuery;
+    
+//  $AgentPriority(vAgentExport)=-1;
+
+    //Book Agent Condition
+    $BookAgentMode(vAgentExport)="Preview";
+    $Badge(vModeNote)="display";
+    $Badge(vAgentExport)="display";
+    $OutlineBackgroundColor(vAgentExport)="automatic";
+
+    vAgentQuery = 'if($ToggleTOC("TBXConfig")){($HTMLExportExtension==".html")';
+    vAgentQuery+= '&$Container.beginsWith($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))';
+    vAgentQuery+= '&($Prototype=="pNote"|$Prototype($Prototype)=="pNote"|$Prototype=="pYML"|$Prototype=="pDotR"|$Prototype=="pLanguageYML")';
+    vAgentQuery+= '&!$IsPrototype}else{($HTMLExportExtension==".html")';
+    vAgentQuery+= '&$Container.beginsWith($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))';
+    vAgentQuery+= '&($Prototype=="pNote"|$Prototype($Prototype)=="pNote"|$Prototype=="pYML"|$Prototype=="pDotR"|$Prototype=="pLanguageYML")';
+    vAgentQuery+= '&!$IsPrototype&($Name!=$TableOfContaintsNote("TBXConfig"))}';
+
+    $AgentQuery(vAgentExport)=vAgentQuery;
+
+    $AgentPriority(vAgentExport)=0;
+
+    //Export Setting for Book Agent
+    update(vAgentExport);
+    $HTMLPreviewCommand(vAgentExport)="/opt/homebrew/bin/pandoc -f markdown --quiet --citeproc --bibliography="+ $Q_BibliographyFile("TBXConfig") 
+             + " --resource-path="+ $ImagePathForPandoc("TBXConfig")  + " --css=" + $PandocCSSPath("TBXConfig") + " -t html";
+    $HTMLExportExtension(vAgentExport)=".html";
+//  $HTMLExportTemplate(vAgentExport)="/Templates/tOutputAll_Preview";
+    $HTMLExportTemplate(vAgentExport)="/Templates/tOutputAll_Preview";
+
+    $HTMLMarkdown(vAgentExport)=true;
+    $HTMLMarkupText(vAgentExport)=false;
+
+    //Change collected Notes to Preview mode
+    var:list vNoteList = collect_if(descendant($CurrentBookProject($AgentNameForQmdFiles("TBXConfig"))),($Prototype=="pNote"|$Prototype($Prototype)=="pNote")&!$IsPrototype, $ID);
+    vNoteList.each(aList){
+        $HTMLPreviewCommand(aList)="/opt/homebrew/bin/pandoc -f markdown --quiet --citeproc --bibliography="+ $Q_BibliographyFile("TBXConfig") 
+             + " --resource-path="+ $ImagePathForPandoc("TBXConfig")  + " --css=" + $PandocCSSPath("TBXConfig") + " -t html";
+        $HTMLExportExtension(aList)=".html";
+        $HTMLExportTemplate(aList)="/Templates/tNote_Preview";
+        $HTMLMarkdown(aList)=true;
+        $HTMLMarkupText(aList)=false;
+    };
+
+$AgentPriority(vAgentExport)= vPriority;
+    ("Preview is ready.").show;
+    
+    //$AgentPriority(vAgentExport)=1;   
+};
+
+function fSetBookAgentExportMode(){
+    var:string vAgentExport=$AgentNameForQmdFiles("TBXConfig"); 
+    var:string vModeNote="/Mode ➡";
+    var:number vPriority=$ExportAgentPriority("TBXConfig");
+    var:string vAgentQuery;
+    var:string vPath = collect(ancestors(vAgentExport))[-1];
+
+    $AgentPriority(vAgentExport)= 0;
+
+    $BookAgentMode(vAgentExport)="Export";
+    $Badge(vModeNote)="printer";
+    $Badge(vAgentExport)="printer";
+    $OutlineBackgroundColor(vAgentExport)="ff grass green";
+
+    vAgentQuery = 'if($ToggleTOC("TBXConfig")){($HTMLExportExtension==".yml"|$HTMLExportExtension==".R"|$HTMLExportExtension==".qmd")';
+    vAgentQuery+= '&$Container.beginsWith($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))';
+    vAgentQuery+= '&($Prototype=="pNote"|$Prototype($Prototype)=="pNote"|$Prototype=="pYML"|$Prototype=="pDotR"|$Prototype=="pLanguageYML")';
+    vAgentQuery+= '&!$IsPrototype}else{($HTMLExportExtension==".yml"|$HTMLExportExtension==".R"|$HTMLExportExtension==".qmd")';
+    vAgentQuery+= '&$Container.beginsWith($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))';
+    vAgentQuery+= '&($Prototype=="pNote"|$Prototype($Prototype)=="pNote"|$Prototype=="pYML"|$Prototype=="pDotR"|$Prototype=="pLanguageYML")';
+    vAgentQuery+= '&!$IsPrototype&($Name!=$TableOfContaintsNote("TBXConfig"))}';
+    $AgentQuery(vAgentExport)=vAgentQuery;
+
+
+
+    //Export Setting for Book Agent 
+    update(vAgentExport);
+    $HTMLExportExtension(vAgentExport)=".md";
+    $HTMLExportTemplate(vAgentExport)="/Templates/tOutputAll_MD";
+    $HTMLMarkdown(vAgentExport)=true;
+    $HTMLMarkupText(vAgentExport)=false;
+    
+    //Change collected Notes to Export mode
+    var:list vNoteList=collect_if(descendant($CurrentBookProject($AgentNameForQmdFiles("TBXConfig"))), ($Prototype=="pNote"|$Prototype($Prototype)=="pNote")&!$IsPrototype, $ID);
+    vNoteList.each(aList){
+
+        if($Prototype($Prototype(aList))=="pNote"|$Prototype(aList)=="pNote"){
+            $HTMLExportExtension(aList)=".qmd";
+            $HTMLExportTemplate(aList)="/Templates/tNote";
+        };
+        if($Prototype($Prototype(aList))=="pSubnote"|$Prototype(aList)=="pSubnote"){
+            $HTMLExportExtension(aList)=".txt";
+            $HTMLExportTemplate(aList)="/Templates/tSubnote";   
+        };
+
+        $HTMLMarkdown(aList)=true;
+        $HTMLMarkupText(aList)=false;
+    };
+
+    $AgentPriority(vAgentExport)= vPriority;
+
+    
+    ("Export is ready.").show;
+    
+        
+};
+
+
+
+
+
+// /Hints/Library/pFrontmatterManuscript
+
+function fRuleForpFrontmatterManuscript(){
+	//stamp("exportfilename");
+
+	$IncludeNotes = collect_if(children, $Prototype=="pSubnoteManuscript", $ID);
+	$OutlineDepthBase = $OutlineDepth - 1;
+
+};
+
+function fOnAddForpFrontmatterManuscript(){
+	if(!$Prototype|$Prototype=="pFrontmatterManuscript"){
+		$Prototype="pSubnoteManuscript";
+	};
+	if(!($IsNamesLocked)){
+			$HTMLExportFileName=$Name.deleteCharacters("/\?%*:|<>.&+()!#`").lowercase().replace(" ","-").replace("'","");
+		if(!($SectionLabel)&!($IsPrototype)){
+			$SectionLabel = $HTMLExportFileName;
+		};
+	};
+
+	
+	
+};
+
+
+// /Hints/Library/For pFrontmatterRevealjs
+
+function fRuleForpRevealjs(){
+
+	$IncludeNotes = collect_if(children, $Prototype=="pSubnoteRevealjs", $ID);
+	$OutlineDepthBase = $OutlineDepth - 1;
+
+};
+
+function fOnAddForpFrontmatterRevealjs(){
+	if(!$Prototype|$Prototype=="pFrontmatterRevealjs"){
+		$Prototype="pSubnoteRevealjs";
+	};
+	if(!($IsNamesLocked)){
+			$HTMLExportFileName=$Name.deleteCharacters("/\?%*:|<>.&+()!#`").lowercase().replace(" ","-").replace("'","");
+		if(!($SectionLabel)&!($IsPrototype)){
+			$SectionLabel = $HTMLExportFileName;
+		};
+	};
+};
+
+
+function fRuleForpRevealjsFolder(){
+   var:list vList;
+	vList = collect_if(descendants, $Q_ChunkLang=="webr"|$Q_ChunkLang=="pyodide", $ID);
+	if(vList){
+		$Q_HasQuartoLiveChunk=true;
+	}else{
+		$Q_HasQuartoLiveChunk=false;
+	};
+
+};
+
+
+// /Hints/Library/Flowchart Common
+
+function fLinkDirection(iIdNote:string, iIdLink:string){
+	if(iIdNote == iIdLink){
+		return "outbound";
+	}else{
+		return "inbound";
+	}
+};
+
+
+// The function fTypeOfShapeForNode generates a node shape suitable for Mermaid diagrams 
+// based on the given node name (aName), shape (aShape), and shape override (mShapeOverride).
+// - Maps Tinderbox shapes (lowercase) to Mermaid node shapes.
+// - If an override is specified, it takes precedence.
+// - Combines the node shape and name into a final representation.
+function fTypeOfShapeForNode(aName:string, aShape:string, mShapeOverride:string){
+	var:dictionary vShapes;
+	var:string vTemp;
+	var:number vNumOfChar;
+	var:string vReturn;
+
+    // Dictionary that maps Tinderbox shapes to Mermaid node shapes
+    // Lowercase: Tinderbox shapes
+    // Uppercase: Shape override shapes
+	vShapes = dictionary("normal:\[\];rounded:\(\);oval:\(\(\)\);lozenge:'\(\[\]\)';diamond:\{\};hex:\{\{\}\};
+				DoubleCircle:\(\(\(\)\)\);Subroutine:\[\[\]\];Cylindrical:\[\(\)\];Asymmetric:\>\];
+				Parallelogram:\[\/\/];ParallelogramAlt:\[\\\\\];Trapezoid:\[\/\\\];TrapezoidAlt:\[\\\/\]");
+
+    // Use the shape override if it is specified
+	if(mShapeOverride){
+		vTemp = vShapes[mShapeOverride];
+	}else{
+		vTemp = vShapes[aShape];
+	};
+
+    // Calculate the number of characters to split the Mermaid shape string in half
+	vNumOfChar = (vTemp.size())/2;
+　　// If the node name (aName) has associated text, include it with the node name
+	if($M_IsTextDisplayed(aName)&$Text(aName).wordCount>0){
+		vReturn = '"' + aName + '\n'+ $Text(aName) + '"';
+	}else{
+		vReturn = '"' + aName + '"';
+	};
+
+    // Apply the Mermaid shape and return the result
+	if(vTemp){
+		return vTemp.substr(0, vNumOfChar) + vReturn + vTemp.substr(-vNumOfChar);
+	}else{
+		
+		return '[' + vReturn + ']';
+	};
+	
+};
+
+// The function fTyepOfLineForLink generates a link representation based on the provided parameters,
+// including the type of the link (aType), the link properties (aLink), the length of the link (aLength),
+// the style of the line ending (aEnd), and whether the link is bidirectional (aBidirection).
+function fTypeOfLineForLink(aType:string, aLink:dictionary, aLength:number, aEnd:string, aBidirection:bool){
+    // Extract properties from the aLink dictionary
+    var:boolean vVisible = aLink["visible"];  // Whether the link is visible
+    var:boolean vDotted = aLink["dotted"] | aLink["dashed"]; // Check if the link is dotted or dashed
+    var:boolean vBold = aLink["bold"] | aLink["broad"]; // Check if the link is bold or broad
+    var:string vLineType; // To store the type of line: dotted, bold, or normal
+    var:dictionary vEdgeType; // Dictionary mapping line endings
+    var:string vReturn; // The final representation of the link
+
+	//$Text(/Log)= aLink + "\n";
+
+    // Determine the line type and the corresponding edge type mappings
+    // Priority: dotted > bold > normal
+    if (vDotted) {
+        vLineType = "dotted";
+        vEdgeType = dictionary("Arrow:\>;Circle:o;Cross:x;Open:\-");
+    } else {
+        if (vBold) {
+            vLineType = "bold";
+            vEdgeType = dictionary("Arrow:\>;Circle:o;Cross:x;Open:\=");
+        } else {
+            vLineType = "normal";
+            vEdgeType = dictionary("Arrow:\>;Circle:o;Cross:x;Open:\-");
+        }
+    }
+
+    // Generate the link representation based on the line type
+    if (vLineType == "dotted") {
+        // Dotted line style
+        if (aBidirection) {
+            // Bidirectional dotted line
+            if (aEnd == "Arrow") {
+                vReturn = "<-" + "." * (aLength - 2) + "->";
+            } else {
+                vReturn = vEdgeType[aEnd] + "-" + "." * (aLength - 2) + "-" + vEdgeType[aEnd];
+            }
+        } else {
+            // Unidirectional dotted line
+            vReturn = "-" + "." * (aLength - 2) + "-" + vEdgeType[aEnd];
+        }
+    }
+
+    if (vLineType == "bold") {
+        // Bold line style
+        if (aBidirection) {
+            // Bidirectional bold line
+            if (aEnd == "Arrow") {
+                vReturn = "<-" + "-" * (aLength - 2) + "->";
+            } else {
+                vReturn = vEdgeType[aEnd] + "-" * (aLength - 2) + vEdgeType[aEnd];
+            }
+        } else {
+            // Unidirectional bold line
+            vReturn = "-" * (aLength - 1) + vEdgeType[aEnd];
+        }
+        vReturn = vReturn.replace("-", "="); // Replace "-" with "=" for bold lines
+    }
+
+    if (vLineType == "normal") {
+        // Normal line style
+        if (aBidirection) {
+            // Bidirectional normal line
+            if (aEnd == "Arrow") {
+                vReturn = "<-" + "-" * (aLength - 2) + "->";
+            } else {
+                vReturn = vEdgeType[aEnd] + "-" * (aLength - 2) + vEdgeType[aEnd];
+            }
+        } else {
+            // Unidirectional normal line
+            vReturn = "-" * (aLength - 1) + vEdgeType[aEnd];
+        }
+    }
+
+    // Append the link type to the representation if it is specified and not "untitled"
+    if (aType & !(aType == "*untitled")) {
+        vReturn += '|"' + aType + '"|';
+    } else {
+        vReturn += " ";
+    }
+
+    // Handle the visibility of the link
+    if (!vVisible) {
+        // If the link is not visible, use "~" for the line representation
+        vReturn = " ~" + "-" * (aLength - 2) + "~ ";
+        vReturn = vReturn.replace("-", "~");
+    } else {
+        // Add spacing around the link representation for visible links
+        vReturn = " " + vReturn + " ";
+    }
+    return vReturn;
+};
+
+function fSetCustomTheme(aID:string){
+	var:string vConfig;
+	if($M_HasCustomTheme){
+			vConfig = '%%{init: {"theme": "base","themeVariables": {"primaryColor": "' + $Color(aID).format() + '","primaryTextColor": "' + $NameColor(aID).format() + '","primaryBorderColor": "' + $BorderColor(aID).format() + '","lineColor": "' + $M_LinkLineColor(aID).format() + '","secondaryColor": "' + $M_LinkTextBackgroundColor(aID).format() + '","tertiaryColor": "' + $M_SubgraphBackgroundColor(aID).format() + '"}}}%%\n';
+	}else{
+		if($M_HasOutputTheme(aID)){	
+			vConfig = "%%{init: {'theme':'"+ $M_Theme +"'}}%%\n";
+			
+		};
+	};
+	return vConfig;
+}
+
+
+function fNSortDictionary(aDict:dictionary){
+	var:number vCount=0;
+	var:list vKeyList=aDict.keys();
+	var:dictionary vDict;
+	vKeyList = vKeyList.nsort();
+	vKeyList.each(aKey){
+		vDict = vDict.extend("{"+ aKey + ":" + aDict[aKey] + "}");
+	};
+	return vDict;
+};
+
+
+
+
+// /Hints/Library/Flowchart From Outline
+
+// Setting up the header for Quarto label and R chunk
+function fCreateMermaidHeader(vDirection:string, vID:string){
+	var:vHeader;
+	if($Q_HasChunkBlock){
+		vHeader = "```{mermaid} \n";
+		if($Q_ChunkFigLabel){
+			vHeader += "%%| label: fig-" +fDeleteCharacters($Q_ChunkFigLabel) + "\n";
+		};
+		if($Q_ChunkFigCaption){
+			vHeader += "%%| fig-cap: " + $Q_ChunkFigCaption + "\n";
+		};
+		if($Q_ChunkFigWidth){
+			vHeader += "%%| fig-width: " + $Q_ChunkFigWidth + "\n";
+		};
+	};
+
+
+   // Start output text with header and flowchart direction
+	vHeader += fSetCustomTheme(vID);
+	vHeader += "flowchart "+ vDirection +"\n";
+	return vHeader;
+}
+
+function fOutputNodesAndLinks(vID:string, vIDtoName:dictionary){
+	var:number vCount=0;	
+	var:list vTempList;
+   var:dictionary vTempDict;
+	var:string vReturn;
+    // Output main graph nodes and links
+	$M_NoteList(vID).each(aNote){
+		vTempList="";
+		vTempDict="";
+		if($OutboundLinkCount(aNote)>0){
+			eachLink(alink,aNote){
+				var:string vSource =alink["source"];
+				var:string vDest =alink["destID"];
+				vDirection=fLinkDirection($ID(aNote), alink["sourceID"]);
+				// treat outboud link only. 
+				if(vDirection=="outbound"){
+					vTempList+= $OutlineOrder(vDest);
+					vTempDict = vTempDict.extend("{"+$OutlineOrder(vDest)+":"+"    "+vIDtoName[aNote] + fTypeOfShapeForNode($Name(aNote),$Shape(aNote), $M_ShapeOverride(aNote))
+								+ fTypeOfLineForLink(alink["type"], alink, $M_ArrowLength(vSource),$M_ArrowType(vSource),$M_IsBidirectional(vSource))
+								+ vIDtoName[vDest] + fTypeOfShapeForNode($Name(vDest),$Shape(vDest),$M_ShapeOverride(vDest))+"}");
+				};
+			};
+				vTempList=vTempList.nsort();
+				vTempList.each(aOrder){
+					vReturn += vTempDict[aOrder]+"\n";
+				};
+		}else{
+			vReturn += "    "+ vIDtoName[aNote] + fTypeOfShapeForNode($Name(aNote),$Shape(aNote), $M_ShapeOverride(aNote)) + "\n";
+		};
+	};
+	return vReturn;
+}
+
+function fOutputSubgraphs(vID:string, vIDtoName:dictionary){
+	var:string vReturn;
+	$M_Subgraphs(vID).each(aSubID){
+
+		$M_SubgraphName(aSubID) = vIDtoName[aSubID];
+		
+		vReturn += "\n subgraph " + $M_SubgraphName(aSubID) + '["'+ $Name(aSubID) + '"]\n';
+		
+		if($M_SubgraphDirection(aSubID)){
+			vReturn += "    direction " + $M_SubgraphDirection(aSubID) +"\n";
+		};
+		$M_NodeOnSubgraph(aSubID).each(aKey){
+			vReturn += "    " + vIDtoName[aKey] + "\n";
+		};
+		vReturn += "end \n";
+	};
+	vReturn += "\n";
+	return vReturn;
+}
+
+function fOutputSubgraphLinks(vID:string, vIDtoName:dictionary){
+	var:list vTempList;
+   var:dictionary vTempDict;
+	var:string vReturn;
+
+		$M_Subgraphs(vID).each(aSubID){
+		vTempList="";
+		vTempDict="";
+
+		if($OutboundLinkCount(aSubID)>0){
+			eachLink(alink, aSubID){
+				var:string vSource =alink["source"];
+				var:string vDest =alink["destID"];
+
+				vDirection= fLinkDirection(aSubID, alink["sourceID"]);
+				// treat outboud link only. 
+
+				if(vDirection=="outbound"){
+				vTempList+= $OutlineOrder(vDest);
+					vTempDict = vTempDict.extend("{"+$OutlineOrder(vDest)+":"+"    "+vIDtoName[aSubID] + fTypeOfShapeForNode($Name(aSubID),$Shape(aSubID), $M_ShapeOverride(aSubID))
+								+ fTypeOfLineForLink(alink["type"], alink, $M_ArrowLength(vSource),$M_ArrowType(vSource),$M_IsBidirectional(vSource))
+								+ vIDtoName[vDest] + fTypeOfShapeForNode($Name(vDest),$Shape(vDest),$M_ShapeOverride(vDest))+"}");
+				};
+			};
+				vTempList=vTempList.nsort();
+				vTempList.each(aOrder){
+					vReturn += vTempDict[aOrder]+"\n";
+				};
+
+		};
+	};
+	return vReturn;
+}
+
+function fCreateNodeMappings(vIDtoName:dictionary){
+
+}
+
+
+function fApplyStyle(aID:string, vIDtoName:dictionary){
+	var:string vReturn;
+	vReturn += "    style " + vIDtoName[aID] + " fill:" + $Color(aID).format();
+	vReturn += ",color:" + $NameColor(aID).format();
+	vReturn += ",stroke:" + $BorderColor(aID).format() + ",stroke-width:" + $Border +"px";
+	vReturn += fSetBorderDashStyle(aID);
+	return vReturn;
+}
+
+function fSetBorderDashStyle(aID){
+	var:string vReturn;
+	if($BorderDash(aID)>=10){
+		vReturn += ",stroke-dasharray:5 5 \n";
+	}else{
+		if($BorderDash(aID)==0){
+			vReturn += "\n";
+		}else{
+			vReturn += ",stroke-dasharray:"+ $BorderDash(aID)+ " " + (10 - $BorderDash(aID)) +" \n";
+		};
+	};
+	return vReturn;
+}
+
+function fOutputStylesAndLinks(vID:string, vIDtoName:dictionary){
+	var:string vReturn;
+
+	//Styles and Links Section 
+	vReturn += "\n%% Styles & Links\n";
+
+	//Node Style & URL
+	$M_NoteList(vID).each(aID){
+		//Style
+		if($M_HasOutputStyle(aID)){
+			vReturn += fApplyStyle(aID, vIDtoName);
+		};
+		//URL Link
+		if($URL(aID)){
+			vReturn += "    click " + vIDtoName[aID] + " href " + '"' + $URL(aID) + '" _blank\n';
+		};
+	};
+	//Subgraph Style
+	$M_Subgraphs(vID).each(aID){
+		if($M_HasOutputStyle(aID)){
+			vReturn += fApplyStyle(aID, vIDtoName);
+		};
+	};
+	return vReturn;
+} 
+
+
+
+function fWriteMermaidFlowchart(vDirection:string, vID:string, vCopy:boolean){
+	var:string vDestination;
+	var:string vHeader;
+	var:string vTemp;
+	var:set vABC="A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z";
+	var:dictionary vIDtoName;// {$ID: Node & Subgraph Name}
+	var:dictionary vNodeSymboltoName;// {Node Name : $Name}
+	var:dictionary vNodeOnSubgraph;
+	var:list vKeyList;
+	var:list vAllNote;
+	var:list vTempList;
+   var:dictionary vTempDict;
+	
+
+  	$Text(vID) = fCreateMermaidHeader(vDirection, vID);
+	
+	//Find Subgraphs
+	vTempList = collect_if(descendants, $Prototype=="pMFNode" & $ChildCount > 0, $ID);
+	vTempList.each(aID){
+		$Prototype(aID)="pMFSubgraph";
+	};
+	//Find Nodes
+	vTempList = collect_if(descendants, $Prototype=="pMFSubgraph" & $ChildCount == 0, $ID);	vTempList.each(aID){
+		$Prototype(aID)="pMFNode";
+	};
+
+	// Collect node and subgraph lists
+	$M_NoteList = collect_if(descendants, $Prototype=="pMFNode", $ID).nsort($OutlineOrder);
+	$M_Subgraphs = collect_if(descendants, $Prototype=="pMFSubgraph",$ID);
+
+	 // Convert node IDs to simplified names (A, B, ..., Z, A1, B1, etc.)
+	var:number vCount=0;
+	$M_NoteList.each(aID){
+
+		if(vCount <=25){
+			vIDtoName = vIDtoName.extend("{" + aID + ":" + vABC.at(vCount) +"}");
+			$M_Name(aID) = vABC.at(vCount);
+			vNodeSymboltoName = vNodeSymboltoName.extend("{" + $M_Name(aID) + ":" + $Name(aID) +"}");
+		}else{
+		// count of Nodes > 26  
+			vTemp = (vCount/26).floor()+1;
+			vIDtoName = vIDtoName.extend("{" + aID + ":" + vABC.at(mod(vCount,26)) + vTemp +"}");
+			$M_Name(aID) = vABC.at(mod(vCount,26)) + vTemp;
+			vNodeSymboltoName = vNodeSymboltoName.extend("{" + $M_Name(aID) + ":" + $Name(aID) +"}");
+		};
+
+		vCount +=1;
+	};
+	
+    // Similar conversion for subgraphs
+	var:number vCount=1;
+	$M_Subgraphs.each(aSubID){
+		$M_NodeOnSubgraph(aSubID) = collect_if(children(aSubID), $Prototype=="pMFNode"|$Prototype=="pMFSubgraph",$ID);
+		vNodeSymboltoName = vNodeSymboltoName.extend("{Sub" + vCount + ":" + $Name(aSubID) +"}");
+		vIDtoName = vIDtoName.extend("{" + aSubID + ":Sub" + vCount +"}");
+		vCount += 1;
+	};
+	
+   // Output main graph nodes and links
+	$Text(vID) += fOutputNodesAndLinks(vID, vIDtoName);
+
+	//Output Subgraphs
+	$Text(vID) += fOutputSubgraphs(vID, vIDtoName);
+
+	//Output Subgraphs Link
+	$Text(vID) += 	fOutputSubgraphLinks(vID, vIDtoName);
+
+
+///
+	$Text(vID) += 	fOutputStylesAndLinks(vID, vIDtoName);
+
+
+	//For Quarto R chank
+	if($Q_HasChunkBlock){
+		$Text(vID) += "\n```\n\n";
+	};
+	//copy to clipboard
+	if(vCopy){
+		runCommand("export LANG='en_US.UTF-8' && pbcopy", $Text(vID));
+	};
+};
+
+
+
+
+
+// /Hints/Library/Graphviz
+
+function fGenerateGraphviz(vPath:string, vCopy:boolean){
+
+	fGChangePrototype();
+
+	fGLabeling();
+	
+	$Text(vPath)  = fSetHeader(vPath);
+	$Text(vPath) += fGGraphSetting(vPath);
+	$Text(vPath) += fGNodeCommon();
+	$Text(vPath) += fGEdgeCommon();
+
+
+	$GS_Subgraphs(vPath).each(aSub){
+		if(fGenerateSubgraphBlock(aSub, vPath)){
+			$Text(vPath) += fGenerateSubgraphBlock(aSub, vPath)+ "\n";
+		};
+	};
+	$Text(vPath) += "\n";
+
+	$GN_NoteList.each(aNote){
+		var:string vName;
+		if($G_SymbolLabelingOFF(vPath)){
+			vName='"' + $Name(aNote) + '"';
+		}else{
+			vName=$G_IDtoName[aNote];
+		};
+		$Text(vPath) += vName + fGetNodeAttributes(aNote);
+	};
+
+	$Text(vPath) += "\n";	
+
+	$Text(vPath) += fGenerateLinksFromList($GN_NoteList(vPath), vPath);
+	$Text(vPath) += fGenerateLinksFromList($GS_Subgraphs(vPath), vPath);
+	
+	$Text(vPath) += "}"; //"{"
+
+	if($Q_HasChunkBlock){
+		$Text(vPath) += "\n```\n\n";
+	};
+	if(vCopy){
+		runCommand("export LANG='en_US.UTF-8' && pbcopy", $Text(vPath));
+	};
+	
+};
+
+function fSetHeader(vPath:string){
+	var:string vHeader;
+	var:string vSpace= 4 * " ";
+    	if($Q_HasChunkBlock){
+		vHeader = "```{dot} \n";
+		if($Q_ChunkFigLabel){
+			vHeader += "//| label: fig-" +$Q_ChunkFigLabel + "\n";
+		};
+		if($Q_ChunkFigCaption){
+			vHeader += "//| fig-cap: " + $Q_ChunkFigCaption + "\n";
+		};
+		if($Q_ChunkFigWidth){
+			vHeader += "//| fig-width: " + $Q_ChunkFigWidth + "\n";
+		};
+	};
+
+   if($G_KindOfGraph(vPath)=="digraph"){
+   	vHeader += "digraph {\n"; //"}
+		if($GG_Layout){vHeader+= vSpace + "layout=" + $GG_Layout+"\n";};
+	}else{
+   	vHeader += "graph {\n"; //"}
+		if($GG_Layout){vHeader+= vSpace + "layout=" + $GG_Layout+"\n";};	};
+	
+	if($G_HasCompound&$G_KindOfGraph=="digraph"){vHeader += vSpace + "compound=true\n";};
+	return vHeader;
+	
+};
+
+function fGGraphSetting(){
+   var:string vReturn;
+	var:string vSpace= 4 * " ";
+	vReturn = vSpace + "graph [";
+	vReturn+= 'charset="UTF-8" ';
+	if($GG_Splines){vReturn+= 'splines="'+ $GG_Splines+'" ';};
+   if($G_HasCustomAttributes){
+		if($GG_HasLabel){vReturn+= 'label="'+ $Name +'" ';};
+		if($NameAlignment){vReturn+= 'labeljust="'+ $NameAlignment +'" ';};
+		if($NameVerticalAlignment){vReturn+= 'labelloc="'+ $NameVerticalAlignment +'" ';};
+		if($GG_Nodesep){vReturn+= 'nodesep="'+ $GG_Nodesep +'" ';};
+		vReturn+= 'bgcolor="'+ $Color.format() +'" '; 
+		vReturn+= 'fontcolor="'+ $NameColor.format() +'" '; 
+		vReturn+= 'fontsize="'+ 14 * $OutlineNameSize / 100 +'" ';
+	};
+	vReturn+= 'rankdir="'+ $GG_Rankdir +'" '; 
+	vReturn+= '];\n';
+
+	return vReturn; 
+};
+
+function fGNodeCommon(){
+   var:string vReturn;
+	var:string vSpace= 4 * " ";
+	var:string vTemp;
+	if($G_HasCustomAttributes){
+		if($G_ColorScheme){vTemp+= 'colorscheme = "' + $GN_Colorscheme + '" ';};
+		if($GN_Style){vTemp+= 'style = "'+ $GN_Style +'" ';};
+		if($GN_Color){vTemp+= 'color = "'+ $GN_Color.format +'" ';};
+		if($GN_Fillcolor){vTemp+= 'fillcolor = "'+ $GN_Fillcolor.format +'" ';};
+		if($GN_Fontcolor){vTemp+= 'fontcolor = "'+ $GN_Fontcolor.format +'" ';};
+		if($GN_Fontsize){vTemp+= 'fontsize = "'+ 14 * $GN_Fontsize / 100 +'" ';}; 
+		if($GN_Fontname){vTemp+= 'fontname = "'+ $GN_FontName +'" ';};
+		if($GN_Fixedsize){vTemp+= 'style = "'+ $GN_Fixedsize +'" ';};
+	}; 
+
+	if(vTemp.size>0){
+		vReturn = vSpace +"node [";
+		vReturn+= vTemp;
+		vReturn+= '];\n';
+	};
+	return vReturn; 
+};
+
+function fGEdgeCommon(){
+   var:string vReturn;
+	var:string vSpace= 4 * " ";
+	if($G_HasCustomAttributes){
+		vReturn ="  edge [";
+		if($G_ColorScheme){vReturn+= 'colorscheme = "' + $GE_Colorscheme + '" ';};
+		if($GE_Style){vReturn+= 'style = "'+ $GN_Style +'" ';};
+		if($GE_Color){vReturn+= 'color = "'+ $GE_Color.format +'" ';};
+		if($GE_Fillcolor){vReturn+= 'fillcolor = "'+ $GE_Fillcolor.format +'" ';};
+		if($GE_Fontcolor){vReturn+= 'fontcolor = "'+ $GE_Fontcolor.format +'" ';};
+		if($GE_Fontsize){vReturn+= 'fontsize = "'+ 14 * $OutlineNameSize / 100 +'" ';};
+		if($GE_Fontname){vReturn+= 'fontname = "'+ $GE_Fontname +'" ';};
+		vReturn+= '];\n';
+	}; 
+
+	return vReturn; 
+};
+
+
+
+function fGChangePrototype(){
+	var:list vTempList;
+   //Find Subgraphs
+	//vTempList = collect_if(descendants, $Prototype=="pGNode" & $ChildCount > 0 & !$Prototype(grandparent)=="pGSubgraph", $ID);
+	vTempList = collect_if(descendants, $Prototype=="pGNode" & $ChildCount > 0 , $ID);
+	vTempList.each(aID){
+		$Prototype(aID)="pGSubgraph";
+	};
+	//Find Nodes
+	vTempList = collect_if(descendants, $Prototype=="pGSubgraph" & $ChildCount == 0, $ID);	vTempList.each(aID){
+		$Prototype(aID)="pGNode";
+	};
+};
+
+function fGLabeling(){
+   //initilize
+	$G_IDtoName="";
+	$GN_NoteList="";
+	$GS_Subgraphs="";
+	$G_SymboltoName="";
+	fGLabelingNodes();
+	fLabelingSubgraph($G_HasSubgraphOnSubgraph);
+};
+
+function fGLabelingNodes(){
+	var:number vCount=0;
+	var:set vABC="A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z";
+	var:string vTemp;
+
+	// Collect node and subgraph lists
+	$GN_NoteList = collect_if(descendants, $Prototype=="pGNode", $ID).nsort($OutlineOrder);
+
+	 // Convert node IDs to simplified names (A, B, ..., Z, A1, B1, etc.)
+	$GN_NoteList.each(aID){
+		if(vCount <=25){
+			$G_IDtoName = $G_IDtoName.extend("{" + aID + ":" + vABC.at(vCount) +"}");
+			$G_SymboltoName = $G_SymboltoName.extend("{" + $GN_Name(aID) + ":" + $Name(aID) +"}");
+			$GN_Name(aID) = vABC.at(vCount);
+		}else{
+		// count of Nodes > 26  
+			vTemp = (vCount/26).floor()+1;
+			$G_IDtoName = $G_IDtoName.extend("{" + aID + ":" + vABC.at(mod(vCount,26)) + vTemp +"}");
+			$G_SymboltoName = $G_SymboltoName.extend("{" + $GN_Name(aID) + ":" + $Name(aID) +"}");
+			$GN_Name(aID) = vABC.at(mod(vCount,26)) + vTemp;
+		};
+		vCount +=1;
+	};
+};
+
+function fPrefixSubgraph(vID:string){
+   if($GS_IsCluster){
+		return "cluster_";
+	}else{
+		return "sub_";
+	};
+};
+
+
+function fLabelingSubgraph(vHasSubgraph:boolean){
+	var:number vCount=0;
+	var:set vABC="A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z";
+	var:string vTemp;
+
+	$GS_Subgraphs = collect_if(descendants, $Prototype=="pGSubgraph",$ID);
+	$GS_Subgraphs.each(aSubID){
+		if(vHasSubgraph){
+			$GS_NodeOnSubgraph(aSubID) = collect_if(children(aSubID), $Prototype=="pGNode"|$Prototype=="pGSubgraph",$ID);
+		}else{
+			$GS_NodeOnSubgraph(aSubID) = collect_if(children(aSubID), $Prototype=="pGNode",$ID);
+		};
+		
+		if(vCount <=25){
+			$G_IDtoName = $G_IDtoName.extend("{" + aSubID + ":"+ fPrefixSubgraph(aSubID) + vABC.at(vCount) + "}");
+			$G_SymboltoName = $G_SymboltoName.extend("{" + fPrefixSubgraph(aSubID) + vABC.at(vCount)  + ":" + $Name(aSubID) +"}");
+			$GS_SubgraphName(aSubID) = fPrefixSubgraph(aSubID) + vABC.at(vCount);
+		}else{
+		// count of Nodes > 26  
+			vTemp = (vCount/26).floor()+1;
+			$G_IDtoName = $G_IDtoName.extend("{" + aSubID + ":"+ fPrefixSubgraph(aSubID) + vABC.at(vCount) + "}");			$G_SymboltoName = $G_SymboltoName.extend("{" + fPrefixSubgraph(aSubID) + vABC.at(mod(vCount,26)) + vTemp + ":" + $Name(aSubID) +"}");
+			$GS_SubgraphName(aSubID) = fPrefixSubgraph(aSubID) + vABC.at(mod(vCount,26)) + vTemp;
+		};
+		vCount += 1;
+	};
+};
+
+function fGetNodeAttributes(vID:string){
+	var:string vReturn;
+	vReturn  = " [";
+
+	if($GN_IsInvisible(vID)){
+		vReturn += ' style="invis" ';
+	}else{
+		if($GN_Style(vID)){vReturn += ' style="' + $GN_Style(vID) + '" ';};
+	};
+
+	if(!$G_SymbolLabelingOFF){
+		vReturn += ' label="' + $Name(vID) + '" ';
+	};
+	if($G_HasCustomAttributes(vID)){
+		$MyList(vID)=$GN_Attributes.keys.nsort;
+		$MyList(vID).each(x){
+			$GN_Attributes[x].keys.each(y){
+				if(eval($GN_Attributes[x][y]+'('+vID+')').size>0){
+					if($GN_Attributes[x][y](vID).contains("Color")){
+						vReturn += y + '="' + eval($GN_Attributes[x][y]+'('+vID+').format') + '", ';
+					}else{
+						vReturn += y + '=' + eval($GN_Attributes[x][y]+'('+vID+')') + ',';
+					};
+				};
+			};
+		};
+	vReturn = vReturn.substr(0, vReturn.size - 2);
+	};
+
+	vReturn += "]\n";
+	return vReturn;
+};
+
+function fGetSubgraphAttributes(vID:string, vSpacePlus:string){
+	var:string vReturn;
+	var:string vSpace= 4 * $OutlineDepth(vID) * " ";
+	$MyList(vID)=$GG_Attributes.keys.nsort;
+	$MyList(vID).each(x){
+		$GG_Attributes[x].keys.each(y){
+			if(eval($GG_Attributes[x][y]+'('+vID+')').size>0){
+				vReturn += if($GG_Attributes[x][y](vID).contains("Color")){ vSpace + vSpacePlus + y + '="' + eval($GG_Attributes[x][y]+'('+vID+').format') + '"\n';}
+								else{y + '=' + eval($GN_Attributes[x][y]+'('+vID+')') + ',';};
+			};
+		};
+	};
+
+	return vReturn;
+};
+
+function fGetEdgeAttributes(vLink:dictionary, vID:string){
+   var:string vReturn;
+	var:string vSourceParent;
+	var:string vDestParent;
+	vReturn  = " [";
+	
+	if(vLink["type"]!="*untitled"){
+		vReturn += 'label = "'+vLink["type"].replace('"','') + '" ';
+	};
+	$MyList(vID)=$GE_Attributes.keys.nsort;
+	$MyList(vID).each(x){
+		$GE_Attributes[x].keys.each(y){
+			if(eval($GE_Attributes[x][y]+'('+vID+')').size>0){
+			vReturn += if($GE_Attributes[x][y](vID).contains("Color")){y + '="' + eval($GE_Attributes[x][y]+'('+vID+').format') + '" ';}
+							else{y + '=' + eval($GE_Attributes[x][y]+'('+vID+')') + ',';};
+			};
+		};
+	};
+	
+	if($GG_Layout=="dot"){
+		vSourceParent= $ID($Container(vLink["sourceID"]));
+		vDestParent = $ID($Container(vLink["destID"]));
+		if(!vSourceParent==vDestParent){
+			if($GE_HasLHead(vLink["sourceID"])){
+				vReturn += 'lhead = "'+ eval('$G_IDtoName(vID)["'+ vDestParent + '"]') +'" ';
+			};
+			if($GE_HasLTail(vLink["sourceID"])){
+				vReturn += 'ltail = "'+ eval('$G_IDtoName(vID)["'+ vSourceParent + '"]') +'" ';
+			};
+		};
+	};
+	//vReturn = vReturn.substr(0, vReturn.size - 2);
+	vReturn += "]\n";
+	return vReturn;
+};
+
+
+function fGetNodesOnSubgraph(vID:string, vSpace:string, vPath:string){
+	var:string vReturn;
+	var:number vCount=1;
+	//vReturn +=  vSpace;
+   $GS_NodeOnSubgraph(vID).each(aNote){
+		var:string vName;
+		if($G_IDtoName[aNote].beginsWith("cluster")){
+			$G_UsedSubs+=$G_IDtoName[aNote];
+			vReturn += fGenerateSubgraphBlockFromSubgraph(aNote, vSpace);
+		}else{
+			if(vCount==1){
+				vReturn +=  vSpace;
+			};
+
+		if($G_SymbolLabelingOFF(vPath)){
+			vName='"' + $Name(aNote) + '"';
+		}else{
+			vName=$G_IDtoName[aNote];
+		};
+
+			vReturn +=  vName +" ";
+			vCount+=1;
+		};
+	};
+	vReturn += "\n";
+
+	return vReturn;
+};
+
+
+function fGenerateSubgraphBlock(vID:string, vPath:string){
+	var:string vReturn;
+	var:string vTemp;
+	var:string vSpace=4 * $OutlineDepth(vID) * " ";
+
+	if(!$G_UsedSubs(vPath).contains($G_IDtoName[vID])){
+		vReturn  = "subgraph " + $G_IDtoName[vID] + "{\n";
+		vReturn += fGetSubgraphAttributes(vID, vSpace);
+		vReturn += fGetNodesOnSubgraph(vID, vSpace, vPath);
+		vReturn += "}\n";
+	};
+	return vReturn;
+};
+
+function fGenerateSubgraphBlockFromSubgraph(vID:string, vSpace:string){
+	var:string vReturn;
+	var:string vTemp;
+	var:string vSpacePlus= 4 * $OutlineDepth($Container(vID)) * " ";
+	vReturn  = "\n\n" + vSpace +"subgraph " + $G_IDtoName[vID] + "{\n";
+
+	vReturn +=  fGetSubgraphAttributes(vID, vSpace);
+//	if(!$G_IDtoName(vID).beginsWith("cluster")){
+		vReturn +=  fGetNodesOnSubgraph(vID, vSpace, vPath);
+//	}else{
+//		vReturn += vSpace + fGetNodesOnSubgraph(vID, vSpace, vPath);
+//	};
+	vReturn +=  "}\n";
+	return vReturn;
+};
+
+
+function fGenerateLinksFromList(vG_List:list, vPath:string){
+	var:list vTempList;
+   var:dictionary vTempDict;
+	var:string vReturn;
+	var:string vDirection;
+	var:string vArrowType;
+
+	if($G_KindOfGraph(vPath)=="digraph"){
+		vArrowType = " -> ";
+	}else{
+		vArrowType = " -- ";
+	};
+
+
+	vG_List.each(aNote){
+		vTempList="";
+		vTempDict="";
+
+		if($OutboundLinkCount(aNote)>0){
+			var:number vCount=0;	
+			eachLink(alink,aNote){
+				var:string vSource =alink["sourceID"];
+				var:string vDest =alink["destID"];
+				var:string vLabelSource;
+				var:string vLabelDest;
+				if($G_SymbolLabelingOFF(vPath)){
+					vLabelSource='"' + $Name(aNote) + '"';
+					vLabelDest='"' + $Name(vDest) + '"';
+				}else{
+					vLabelSource=$G_IDtoName(vPath)[aNote];
+					vLabelDest=$G_IDtoName(vPath)[vDest];
+				};
+		
+				if(vDest==vSource&vCount==0){
+						vTempList = vTempList.extend($OutlineOrder(vDest));
+						vTempDict = vTempDict.extend("{"+$OutlineOrder(vDest)+":"+ vLabelSource + vArrowType + vLabelDest + fGetEdgeAttributes(alink,vPath) +"}");
+						vCount=1;
+				};
+				if(vDest!=vSource){
+					vDirection=fLinkDirection($ID(aNote), alink["sourceID"]);
+					// treat outboud link only. 
+					if(vDirection=="outbound"){
+						vTempList = vTempList.extend($OutlineOrder(vDest));
+						vTempDict = vTempDict.extend("{"+$OutlineOrder(vDest)+":"+vLabelSource + vArrowType + vLabelDest + fGetEdgeAttributes(alink,vPath) +"}");
+					};
+				};
+			};
+				vTempList=vTempList.nsort();
+				vTempList.each(aOrder){
+			vReturn += vTempDict[aOrder]+"\n";
+		};
+	};
+	};
+
+	return vReturn;
+};
+
+
+
+
+
+
+
+// /Hints/Library/Development Attributes
+
+
+
+function fGetAttributeList(vNote){
+	var:list vKeys;
+	var:string vOutput;
+	var:string vLeft;
+	var:string vRight;
+	$Text(/Log) =;
+	
+	vKeys = $MySet("System Attributes");
+	vKeys.each(aKey){
+		if(!( aKey=="Text" | aKey=="Name")){
+			vLeft = eval("$"+aKey+"(vNote)");
+			vLeft = vLeft.replace("\n","");
+			vRight = attribute(aKey)["default"];
+			vRight = vRight.replace("\n","");
+			if(vLeft != vRight){
+				vOutput += aKey + ":" + eval("$"+aKey+"(vNote)") +"⬅️" + attribute(aKey)["default"] + "\n";
+//				vOutput += aKey + "\n";
+			};
+		};
+	};
+	
+	$Text(/Log) = $Name + "\n\n";
+	$Text(/Log) += "-----System Attribute(changed):value⬅️default\n";
+	$Text(/Log) += vOutput;
+	vOutput="";
+	vKeys = document["user-attributes"];
+
+	vKeys.each(aKey){
+		vLeft = eval("$"+aKey+"(vNote)");
+		vLeft = vLeft.replace("\n","");
+		vRight = attribute(aKey)["default"];
+		vRight = vRight.replace("\n","");
+		if(vLeft != vRight){
+			vOutput += aKey + ":" + eval("$"+aKey+"(vNote)") +"⬅️" + attribute(aKey)["default"] + "\n";
+//			vOutput += aKey + "\n";
+		};
+	};
+	$Text(/Log) += "\n-----User Attribute(changed):value⬅️default\n";
+	$Text(/Log) += vOutput;	
+};
+
+function fGetAttributeList2(vNote){
+	$Text(/Log) =;
+	var:list vKey = document["user-attributes"];
+	$Text(/Log)+= vKey + "\n\n";
+	vKey.each(aKey){
+		$Text(/Log) += aKey +":" + eval("$"+aKey+"(vNote)") +"⬅️" +attribute(aKey)["default"]+"\n";
+	};
+};
+
+
+// /Hints/Library/Output Attributes
+
+function fGetAttributeList(vNote){
+	var:list vKeys;
+	var:string vOutput;
+	var:string vLeft;
+	var:string vRight;
+	$Text(/Log) =;
+	
+	vKeys = $MySet("System Attributes");
+	vKeys.each(aKey){
+		if(!( aKey=="Text" | aKey=="Name")){
+			vLeft = eval("$"+aKey+"(vNote)");
+			vLeft = vLeft.replace("\n","");
+			vRight = attribute(aKey)["default"];
+			vRight = vRight.replace("\n","");
+			if(vLeft != vRight){
+				vOutput += aKey + ":" + eval("$"+aKey+"(vNote)") +"⬅️" + attribute(aKey)["default"] + "\n";
+//				vOutput += aKey + "\n";
+			};
+		};
+	};
+	
+	$Text(/Log) = $Name + "\n\n";
+	$Text(/Log) += "-----System Attribute(changed):value⬅️default\n";
+	$Text(/Log) += vOutput;
+	vOutput="";
+	vKeys = document["user-attributes"];
+
+	vKeys.each(aKey){
+		vLeft = eval("$"+aKey+"(vNote)");
+		vLeft = vLeft.replace("\n","");
+		vRight = attribute(aKey)["default"];
+		vRight = vRight.replace("\n","");
+		if(vLeft != vRight){
+			vOutput += aKey + ":" + eval("$"+aKey+"(vNote)") +"⬅️" + attribute(aKey)["default"] + "\n";
+//			vOutput += aKey + "\n";
+		};
+	};
+	$Text(/Log) += "\n-----User Attribute(changed):value⬅️default\n";
+	$Text(/Log) += vOutput;	
+};
+
+function fGetAttributeList2(vNote){
+	$Text(/Log) =;
+	var:list vKey = document["user-attributes"];
+	$Text(/Log)+= vKey + "\n\n";
+	vKey.each(aKey){
+		$Text(/Log) += aKey +":" + eval("$"+aKey+"(vNote)") +"⬅️" +attribute(aKey)["default"]+"\n";
+	};
+};
+
+
+// /Hints/Library/Attribute Utility
+
+//For Graphviz Attribute
+function fCreateAttributesFromDictionary(vID, vPrototype){
+	// Create User-Attributes from $Text.eachLine of a pAttribute note;
+	// Example
+   // QR_Title:{create:true;type:string;suggested:[];default:;description:'Document title';OptionName:title;}
+   var:dictionary vDict;
+	var:string vTemp;
+	var:string vName;
+	var:list vTempKey=[default;description;suggested];
+	var:string vTempStr;
+	var:list vAttributes = document["user-attributes"];
+	$Text(/Log)="";
+	if($Prototype==vPrototype){
+		if($IsUnLocked(vID)){
+			$Text(vID).eachLine(aLine){
+				var:dictionary vDict=vDict.extend(aline);
+				vTempStr=aLine.captureTo(":",vName);
+				action('vDict=vDict.extend("{' + aLine + '}");');
+				if(vAttributes.contains(vName)){
+					$Text(/Log)+= vName + ": exists" + "\n";
+						vTempKey.each(aKey){
+							action('attribute(' + vName+ ')["'+ aKey +'"] = vDict[vName]["' + aKey +'"];');
+						};
+				}else{
+					$Text(/Log)+= vDict[vName]["create"] + "\n";
+					if(vDict[vName]["create"]){
+						createAttribute(vName,vDict[vName]["type"]);
+						vTempKey.each(aKey){
+							action('attribute(' + vName+ ')["'+ aKey +'"] = vDict[vName]["' + aKey +'"];');
+						};
+						$Text(/Log)+= vName + ":is created" + "\n";
+					}else{
+						$Text(/Log)+= vName + ":except creation" + "\n";
+					};
+				};
+			};
+//			$MyDictionary(vID)=vDict;
+//			$MyString(vID) = 'attribute(' + vName+ ')["'+ vKey +'"] = $MyDictionary(vID)';
+//			action($MyString(vID));
+			$Text(/Log)+= vDict + "\n";
+		}else{
+			($Name(vID) + " is Locked.").show;
+		};
+	}else{
+		("Select " + vPrototype + " note").show;
+		
+	};
+
+};
+
+function fSetupAttibutesDictionary(vID){
+	if($IsUnLocked(vID)){
+		$MyString(vID) = '$'+ $Name(vID)+'('+vID+')'+'="";';
+		
+		action($MyString(vID));
+		$Text(vID).eachLine(aLine){
+			$MyString(vID) = '$'+ $Name(vID)+'('+vID+')'+'='+'$'+ $Name(vID)+'('+vID+')'+'.extend("{' + aLine + '}");';
+			action($MyString(vID));
+		}
+	}else{
+		($Name(vID) + " is Locked.").show;
+	};
+};
+
+function fSetupAttibutesDictionaryDefaultValue(vID, vPrototype, vKey){
+	//$Name(vID)-> a Name of user attribute
+	//vKey= "default" or "description" or "suggested" etc.
+
+	var:dictionary vDict;
+	var:string vTemp;
+	var:number vCount=1;
+	var:string vName=$Name(vID);
+	var:string vTempKey;
+	var:list vAttributes = document["user-attributes"];
+	if($Prototype(vID)==vPrototype){
+		if($IsUnLocked(vID)){
+			$Text(vID).eachLine(aLine){
+				if(vAttributes.contains(vTempKey)){
+					$MyString(vID) = 'vDict=vDict.extend("{'+vCount+':{' + aLine + '}}");';
+					action($MyString(vID));
+					vCount+=1;
+				};
+			};
+			$MyDictionary(vID)=vDict;
+			$MyString(vID) = 'attribute(' + vName+ ')["'+ vKey +'"] = $MyDictionary(vID);';
+			action($MyString(vID));
+		}else{
+			($Name(vID) + " is Locked.").show;
+		};
+	}else{
+		("Select " + vPrototype + " note").show;
+		
+	};
+};
+
+function fSetupAttibutesValue(vID, vPrototype, vKey){
+	//$Name(vID)-> a Name of user attribute
+	//vKey= "default" or "description" or "suggested" etc.
+
+	var:dictionary vDict;
+	var:string vStr;
+	var:string vTempKey;
+	var:string vValue;
+	var:string vTranslated;
+
+	var:list vAttributes = document["user-attributes"];
+	if($Prototype==vPrototype){
+		if($IsUnLocked(vID)){
+			$Text(vID).eachLine(aLine){
+				vValue=aLine.captureTo(":",vTempKey);
+				if(vAttributes.contains(vTempKey)){
+					if($Rename_in(vID)){
+						$Text(/Log)+= vTempKey + " ; ";
+						vTranslated=fTranslateStrings($Rename_in(vID), vValue);
+						if(!vTranslated.contains("Oops!")){
+							vValue=vTranslated.replace("「","").replace("」","");
+						};
+					};
+					vStr = 'attribute(' + vTempKey+ ')["'+ vKey +'"] = vValue';
+					action(vStr);
+				};
+			};
+		}else{
+			($Name(vID) + " is Locked.").show;
+		};
+	}else{
+		("Select " + vPrototype + " note").show;
+		
+	};
+};
+
+
+// /Hints/Library/Graphviz Attributes
+
+
+// /Hints/Library/Revealjs Attributes
+
+
+// /Hints/Library/(Debugging Functions)
+
+Functions used in debugging code include:
+LogRec("Logbook","Log entry string")
+StopWatch(start_time)
+EndStamp("Logbook")
+
+
+// /Hints/Library/(Commons Management)
+
+Functions used in Commons Management include:
+UpdateCommons(commons_path_string)
+GetCommonsItemID(commons_name)
+
+
+// /Hints/Library/(Diagramming)
+
+Functions used in Diagramming include:
+UpdateDiagramReflections(diagram)
+UpdateDiagramLinks(diagram)
+CaptureOutboundPlainLinks(src_note)
+RemoveLinkSet(src_note,links2Remove:dictionary)
+CopyAttributeSet(src_note,dst_note,atr_set:set)
+
+
+// /Hints/Library/(Other Functions)
+
+Place other functions after this note.
+
+
+// /Hints/Library/(Networking Functions)
+
+Place Networking Functions after this note.
+
+
+

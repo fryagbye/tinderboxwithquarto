@@ -1,0 +1,231 @@
+// /Hints/Library/Make Chunk and Graph List
+
+//******************* Make Chunk List ***************************************
+function fMakeFigLabelListFrompChunk(){
+   var:string vName;
+    var:string vPath=$FigLabelListContainer("TBXConfig");
+    var:list vList=collect(children(vPath),$ID);
+    var:list vReturn;
+    vList.each(a){
+        vReturn= vReturn +$Q_ChunkFigLabel($ToDummyLinkPath(a));
+    };
+    return vList;
+};
+
+function fMakeChunkList(){
+    var:string vName;
+    var:string vName2;
+    var:string vChunkLabelListPath=$ChunkListContainer("TBXConfig");
+    var:string vProjectLabelListPath;
+    var:string vProjectPath;
+    var:string vTest;
+    var:dictionary vDict;
+    var:list vList;
+    var:string vID;
+
+    if($Container($Path)=="/"){
+        vProjectPath = $Path;
+    }else{
+        vProjectPath = collect(ancestors,$Path)[-1];
+    };
+
+    vProjectLabelListPath = vProjectPath + $ChunkListContainer("TBXConfig");
+
+    if($IsLabelGenerateON(vChunkLabelListPath)&($Prototype(vChunkLabelListPath)=="pLabelListContainer"|$Prototype($Prototype(vChunkLabelListPath))=="pLabelListContainer")){
+
+        $Text(vChunkLabelListPath)="";
+
+        vList=collect_if(all,($Prototype=="pChunk"|$Prototype=="pRChunk"|$Prototype=="pPChunk")&!$IsPrototype&!$IsAlias&($Container!=vChunkLabelListPath),$ID);
+        vList=vList.sort($Q_ChunkLang);
+
+        vList.each(aChunk){
+            var:string vFigRef;
+            if($Q_ChunkFigLabel(aChunk)){
+                vFigRef="➡️fig-"+$Q_ChunkFigLabel(aChunk)+"";
+            };
+            $Name(aChunk)=fDeleteCharacters($Name(aChunk));
+            vName = "<"+$Q_ChunkLang(aChunk)+":" + $Name(aChunk) + vFigRef+">";
+            vName2= "\<"+$Q_ChunkLang(aChunk)+":" + $Name(aChunk) + vFigRef+"\>";
+
+            vTest = $ID(vName);
+
+            if(!vTest){
+                if($Text(aChunk).wordCount>0){
+                    var:string vPrototype;
+                    var:string vPath;
+                    if($Q_ChunkLang(aChunk)=="r"|$Q_ChunkLang(aChunk)=="webr"){
+                        vPrototype="#pRChunkList";
+                    }else{
+                        vPrototype="#pChunkList";
+                    };
+                    vPath = vChunkLabelListPath + "/" + vName2;
+                    LogRec("MakeChunkList", "<<mark>> vPath=" + vPath+vPrototype);
+                    create(vPath + vPrototype);
+                    $Text(vPath) = $Text(aChunk);
+                    createLink($Path(vPath), $Path(aChunk),"dummy");
+                    $ToDummyLinkPath(vPath) = $Path(aChunk);
+                    $Text(vChunkLabelListPath) += vName + ":" + $ToDummyLinkPath(vPath) + "\n";
+                    $Name(vPath) = vName;
+                };
+            };  
+
+            //Create Figure Label
+            var:string vFigName;
+            var:string vLabelPath;
+            var:list vAttributes=$DisplayedAttributes($Prototype(aChunk));
+            var:string vTemp;
+            
+            vFigName="@fig-"+$Q_ChunkFigLabel($Path(aChunk));
+            LogRec("MakeChunkList", "<<mark>> vProjectPath=" + vProjectPath + " vChunkLabelListPath=" + vChunkLabelListPath + " vFigName=" + vFigName);
+            vLabelPath = vProjectPath + vChunkLabelListPath + "/" + vFigName;
+            vTest=$ID(vLabelPath);
+            if(!vTest & vFigName!="@fig-"){
+
+                create(vLabelPath, vFigName + "#pReferenceList");
+                $ToDummyLinkPath(vLabelPath)=$Path(aChunk);
+                $OutlineBackgroundColor(vLabelPath)="light violet";
+                $Text(vLabelPath)=$Text(aChunk);
+                createLink(vChunkLabelListPath+"/"+ vFigName, vLabelPath, "dummy");
+            };
+    
+            vAttributes.each(x){
+                vTemp= "$" + x + "(" + vChunkLabelListPath +"/" + vFigName + ")=$" + x + "(" + $Path(aChunk) + ");";
+                action(vTemp);
+            };
+    
+        };
+    };
+};
+
+function fClearChunkList(){
+    var:string vPath1 =$ChunkListContainer("TBXConfig");
+    var:list vDellist;
+    vDellist = collect(children(vPath1), $Path);
+    if(vDellist.count>0){
+        delete(vDellist);
+        $Text(vPath1)="";
+    };
+};
+
+function fCheckDuplicateChunkName(){
+    var:string vPath1 =$ChunkListContainer("TBXConfig");
+    var:list vList=collect_if(children(vPath1),$Prototype=="pChunkList"&$Name==$Name(this)&$Path!=$Path(this));
+    
+    if(vList.count=>2){
+        $Color="red";
+    }else{
+        $Color=$Color($Prototype);
+    };
+};
+
+//******************* Make Graph Label List ***************************************
+function fMakeFigLabelListFromGraph(){
+    var:string vName;
+    var:string vPath=$FigLabelListContainer("TBXConfig");
+    var:list vList=collect(children(vPath),$ID);
+    var:list vReturn;
+    vList.each(a){
+        vReturn= vReturn + $Q_ChunkFigLabel($ToDummyLinkPath(a));
+    };
+    return vReturn;
+};
+
+function fMakeGraphList(){
+    var:string vName;
+    var:string vName2;
+    var:string vGraphLabelListPath=$GraphListContainer("TBXConfig");
+    var:string vProjectLabelListPath;
+    var:string vProjectPath;
+    var:string vTest;
+    var:dictionary vDict;
+    var:list vList;
+
+    if($Container=="/"){
+        vProjectPath = $Path;
+    }else{
+        vProjectPath = collect(ancestors,$Path)[-1];
+    };
+    vProjectLabelListPath = vProjectPath + $FigLabelListContainer("TBXConfig");
+
+    if($IsLabelGenerateON(vGraphLabelListPath)&($Prototype(vGraphLabelListPath)=="pLabelListContainer"|$Prototype($Prototype(vGraphLabelListPath))=="pLabelListContainer")){
+
+        $Text(vGraphLabelListPath)="";
+
+        vList = collect_if(all,($Prototype=="pMFContainer"|$Prototype=="pGContainer")&!$IsPrototype&!$IsAlias&($Container!=vGraphLabelListPath),$ID);
+
+        vList.each(aGraph){
+            var:string vFigRef;
+            if($Q_ChunkFigLabel(aGraph)){
+                vFigRef="➡️fig-"+$Q_ChunkFigLabel(aGraph)+"";
+            };
+            if(!$Q_ChunkFigCaption(aGraph)){
+                $Q_ChunkFigCaption(aGraph)=$Name(aGraph);
+            };
+            $Name(aGraph)=fDeleteCharacters($Name(aGraph));
+            if($Prototype(aGraph)=="pMFContainer"){
+                vName = "<mermaid:" + $Name(aGraph) + vFigRef+">";
+                vName2= "\<mermaid:" + $Name(aGraph) + vFigRef+"\>";
+            }else{
+                vName = "<dot:" + $Name(aGraph) + vFigRef+">";
+                vName2= "\<dot:" + $Name(aGraph) + vFigRef+"\>";
+            };
+
+            vTest = $ID(vName);
+            if(!vTest & vFigName!="@fig-"){
+                if($Text(aGraph).wordCount>0){
+                    var:string vPrototype;
+                    var:string vPath;
+                if($Prototype(aGraph)=="pMFContainer"){
+                    vPrototype="#pMFGraphList";
+                }else{
+                    vPrototype="#pGGraphList";
+                };
+                vPath = vGraphLabelListPath + "/" + vName2;
+                create(vPath + vPrototype);
+                $Text(vPath) = $Text(aGraph);
+                createLink($Path(vPath), $Path(aGraph),"dummy");
+                $ToDummyLinkPath(vPath) = $Path(aGraph);
+                $Text(vGraphLabelListPath+= vName + ":" + $ToDummyLinkPath(vPath) + "\n");
+                $Name(vPath) = vName;
+                };
+            };  
+            //Create Figure Label
+            var:string vFigName;
+            var:string vLabelPath;
+            var:list   vAttributes = $DisplayedAttributes($Prototype(aGraph));
+            var:string vTemp;
+            
+            vFigName = "@fig-"+$Q_ChunkFigLabel($Path(aGraph));
+
+            vLabelPath = vProjectPath + vGraphLabelListPath + "/"+vFigName;
+            
+            vTest=$ID(vLabelPath);
+            if(!vTest & vFigName!="@fig-"){
+                LogRec("MakeGraphList", "<<mark>> create vLabelPath=" + vLabelPath + " vFigName=" + vFigName + " vGraphLabelListPath=" + vGraphLabelListPath);
+                create(vLabelPath, vFigName + "#pReferenceList");
+                $ToDummyLinkPath(vLabelPath)=$Path(aGraph);
+                $OutlineBackgroundColor(vLabelPath)="light violet";
+                $Text(vLabelPath)=$Text(aGraph);
+                createLink(vGraphLabelListPath+"/"+ vFigName, vLabelPath, "dummy");
+            };
+
+            vAttributes.each(x){
+                vTemp= "$" + x + "(" + vLabelPath + ")=$" + x + "(" + $Path(aGraph) + ");";
+                action(vTemp);
+            };
+        };
+    };
+};
+
+function fClearGraphList(){
+    var:string vPath1 =$GraphListContainer("TBXConfig");
+    var:list vDellist;
+    vDellist = collect(children(vPath1), $Path);
+    if(vDellist.count>0){
+        delete(vDellist);
+        $Text(vPath1)="";
+    };
+};
+
+
+

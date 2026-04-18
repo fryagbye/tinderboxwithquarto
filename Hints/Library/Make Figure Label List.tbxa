@@ -1,0 +1,138 @@
+// /Hints/Library/Make Figure Label List
+
+
+function fMakeFigureList(vContainer:string, vPath:string){
+    var:string vName;
+    var:string vTest;
+    var:number vCount(0);
+    var:string vLabel;
+    var:string vTemp;
+    var:list vList;
+
+    LogRec("MakeFigureList", "<<mark>>vContainer=" + vContainer + " vPath=" + vPath);
+
+    if($IsLabelGenerateON(vPath)&($Prototype(vPath)=="pLabelListContainer"|$Prototype($Prototype(vPath))=="pLabelListContainer")){
+
+        $Text(vPath)=;
+        $MyList(vPath)=;
+        $ListKey(vPath)=;
+        $ListValue(vPath)=;
+        $MyDictionary(vPath)=;
+        
+        //Notes contains chunk "fig-" label with style "#| label: fig- "
+        vList = collect_if(descendants(vContainer),$Text.contains("(#\| label: fig-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+
+        // Add Figures From pChunk, pRChunk, pPChunk
+        vList.each(L){
+            L=L.replace('"',"");
+            $Text(L).eachLine(aLine:aLine.contains("(#\| label: fig-[\w\d-]*)+?")){
+                vTemp = $1;
+                vTemp = vTemp.replace("#\| label: ","@");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+            };
+        };
+
+       //Notes contains chunk "fig-" label with style "#fig-"
+        vList = collect_if(descendants(vContainer),$Text.contains("(#fig-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+        vList.each(L){
+            L=L.replace('"',"");
+            $Text(L).eachLine(aLine:aLine.contains(".*(#fig-[\w\d-]*)+?.*")){
+                vTemp = $1;
+                vTemp = vTemp.replace("#fig-","@fig-");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+            };
+        };      
+
+       //Notes contains chunk "fig-" label with style "%%| label: fig-" for Mermaid Flowchart
+
+        vList = collect_if(descendants(vContainer),$Text.contains("(%%\| label: fig-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+        LogRec("MakeFigureList", "<<mark>> vList=" + vList + " vContainer=" + vContainer + " $Path=" + $Path);
+        vList.each(L){
+            L=L.replace('"',"");
+            $Text(L).eachLine(aLine:aLine.contains("(%%\| label: fig-[\w\d-]*)+?")){
+                vTemp = $1;
+                vTemp = vTemp.replace("%%\| label: ","@");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+            };
+        };
+
+        //Notes contains chunk "fig-" label with style "//| label: fig-" for Graphviz
+        vList = collect_if(descendants(vContainer),$Text.contains("(\/\/\| label: fig-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+        vList.each(L){
+            L=L.replace('"',"");
+            $Text(L).eachLine(aLine:aLine.contains("(\/\/\| label: fig-[\w\d-]*)+?")){
+                vTemp = $1;
+                vTemp = vTemp.replace("\/\/\| label: ","@");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+            };
+        };
+        $MySet(vPath)=$MyList(vPath);
+        $MySet(vPath).each(S){
+            vName = S;
+            vLabel = S.replace("@","");
+        
+            vTest = $IDString(vName);
+            if(vTest==""&vName!="@fig-"){
+                LogRec("MakeFigureList", "<<mark>> create vName=" + vName + " vLabel=" + vLabel + " vTest=" + vTest);
+                create(vPath, vName + "#pReferenceList");
+                $OutlineBackgroundColor(vName)="green";
+
+            //  $Text(vName) = fFigureChunk($ListValue(vPath)[vCount], vLabel);
+            };
+            if(vName!="@fig-"){
+                $Text(vPath)+= vName + "\n";
+            };
+        };
+        vCount = 0;
+        $ListKey(vPath).each(K){
+            vName = K;
+            $ToDummyLinkPath(vName) = $ListValue(vPath)[vCount];
+            $Text(vName) = fFigureChunk($ListValue(vPath)[vCount], vName.replace("@",""));
+            createLink(K, $ListValue(vPath)[vCount], "dummy");
+            vCount += 1;
+        };
+    };
+};
+
+function fFigureChunk(vName:string, vLabel:string){
+    var:string vReg1;
+    var:string vReg2;
+    var:string vReg3;
+    var:string vReg4;
+    var:string vTemp;
+    
+    vReg1 = "(```[^`]+#\| label: " + vLabel + "[^`]+```)"; 
+    vReg2 = "(:::[\s\S]*?\{#" + vLabel + "\}[\s\S]*?:::)";
+    vReg3 = "(:::\s*\{#"+ vLabel + "[\s\S]*?\}[\s\S]*?:::)";
+    vReg4 = "(!\[.*?\]\(.*?\)\{#" + vLabel + ".*?\})";
+
+
+    if($Text(vName).contains(vReg1)){
+        vTemp=$1;
+    };
+    if($Text(vName).contains(vReg2)){
+        vTemp=$1;
+    };
+    if($Text(vName).contains(vReg3)){
+        vTemp=$1;
+    };
+    if($Text(vName).contains(vReg4)){
+        vTemp=$1;
+    };
+    return vTemp;
+};
+
+
+

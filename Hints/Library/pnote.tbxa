@@ -1,0 +1,124 @@
+// /Hints/Library/pNote
+
+function fSetExportMode(aPath:string){
+
+		if($Prototype($Prototype(aPath))=="pNote"|$Prototype(aPath)=="pNote"){
+			$HTMLExportExtension(aPath)=".qmd";
+			$HTMLExportTemplate(aPath)="/Templates/tNote";
+		};
+		if($Prototype($Prototype(aPath))=="pSubnote"|$Prototype(aPath)=="pSubnote"){
+			$HTMLExportExtension(aPath)=".txt";
+			$HTMLExportTemplate(aPath)="/Templates/tSubnote";
+		};
+
+		$HTMLMarkdown(aPath)=true;
+		$HTMLMarkupText(aPath)=false;
+
+}
+
+function fSetPreviewMode(aPath:string){
+
+		$HTMLPreviewCommand(aPath)="/opt/homebrew/bin/pandoc -f markdown --quiet --citeproc --bibliography="+ $Q_BibliographyFile("TBXConfig") 
+			 + " --resource-path="+ $ImagePathForPandoc("TBXConfig")  + " --css=" + $PandocCSSPath("TBXConfig") + " -t html";
+		$HTMLExportExtension(aPath)=".html";
+
+		if($Prototype($Prototype(aPath))=="pNote"|$Prototype(aPath)=="pNote"){
+			$HTMLExportTemplate(aPath)="/Templates/tNote_Preview";
+		};
+		if($Prototype($Prototype(aPath))=="pSubnote"|$Prototype(aPath)=="pSubnote"){
+			$HTMLExportTemplate(aPath)="/Templates/tSubnote_Preview";
+		};
+
+		$HTMLMarkdown(aPath)=true;
+		$HTMLMarkupText(aPath)=false;
+
+}
+
+function fSetHTMLExportFileName(){
+	if(!($IsNamesLocked)){
+		if($IsIndexqmd){
+			$HTMLExportFileName="index";
+		}else{
+			$HTMLExportFileName= fDeleteCharacters($Name);
+		};
+
+		if(($SectionLabel=="untitled"|$HTMLExportFileName=="untitled"|!$SectionLabel|!$HTMLExportFileName)&!$IsPrototype){
+				$HTMLExportFileName= fDeleteCharacters($Name);
+				$SectionLabel = $HTMLExportFileName;
+		};
+		if(($SectionLabel!=$HTMLExportFileName)&!$IsPrototype){
+			$SectionLabel = $HTMLExportFileName;
+		};
+		if(($SectionLabel==$HTMLExportFileName)&$SectionLabel!="untitled"&!$IsPrototype){
+			$IsNamesLocked=true;
+		};
+	};
+	if($IsUnnumbered){
+		$HasSectionLabel=false;
+	};
+};
+
+function fSetIsPartQmd(){
+    var:number vBaseOutlineDepth=2;
+	if(($OutlineDepth==vBaseOutlineDepth)&(collect_if(children, $Prototype=="pNote"|$Prototype($Prototype)=="pNote",$Name).count>0)){
+		$Is_Part_qmd = true;
+	}else{
+		$Is_Part_qmd = false;
+	};
+
+	if($OutlineDepth==vBaseOutlineDepth + 1){
+		$Is_Part_qmd = false;
+	};
+};
+
+function fCollectIncludeNotes(){
+	if($Is_Part_qmd){
+		$IncludeNotes= collect_if(children, $Prototype=="pNote"|$Prototype($Prototype)=="pNote", $ID);
+	}else{
+		$IncludeNotes = collect_if(children, $Prototype=="pSubnote"|$Prototype($Prototype)=="pSubnote", $ID);
+
+	};
+};
+
+function fSetPartFileAttribute(){
+	var:number vBaseOutlineDepth=2;
+	if(($OutlineDepth==vBaseOutlineDepth + 1)&($Is_Part_qmd(parent))){
+		$Part_file = $HTMLExportFileName(parent)+$HTMLExportExtension(parent);
+	}else{
+		$Part_file = ;
+	};
+	fCollectIncludeNotes();
+};
+
+function fSetOutlineDepthBaseForpNote(){
+	var:number vOutlineDepthControle=1;
+		if($Part_file){
+			$OutlineDepthBase = $OutlineDepth - 1 - vOutlineDepthControle;
+		}else{
+			$OutlineDepthBase = $OutlineDepth - vOutlineDepthControle;
+		};
+};
+
+
+
+//For pNote
+
+function fSetAttributeForpNote(){
+
+	fSetHTMLExportFileName();
+
+	// Is a part-qmd or not.  	
+	fSetIsPartQmd();
+
+	//Set attribute for Nested qmd file ( Under the Part file ) 
+	fSetPartFileAttribute();
+	//Adjust OutlineDepthBase
+	fSetOutlineDepthBaseForpNote();
+
+};
+
+
+
+
+
+

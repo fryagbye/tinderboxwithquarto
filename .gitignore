@@ -31,3 +31,7 @@ TinderboxWithQuarto-0.1.8.tbx
 Document Commons Framework v2•1•1d.tbx
 .Renviron
 .cache/deno
+
+.gemini/
+gha-creds-*.json
+.github

@@ -1,0 +1,26 @@
+// /Hints/Library/pFrontmatterManuscript
+
+function fRuleForpFrontmatterManuscript(){
+	//stamp("exportfilename");
+
+	$IncludeNotes = collect_if(children, $Prototype=="pSubnoteManuscript", $ID);
+	$OutlineDepthBase = $OutlineDepth - 1;
+
+};
+
+function fOnAddForpFrontmatterManuscript(){
+	if(!$Prototype|$Prototype=="pFrontmatterManuscript"){
+		$Prototype="pSubnoteManuscript";
+	};
+	if(!($IsNamesLocked)){
+			$HTMLExportFileName=$Name.deleteCharacters("/\?%*:|<>.&+()!#`").lowercase().replace(" ","-").replace("'","");
+		if(!($SectionLabel)&!($IsPrototype)){
+			$SectionLabel = $HTMLExportFileName;
+		};
+	};
+
+	
+	
+};
+
+

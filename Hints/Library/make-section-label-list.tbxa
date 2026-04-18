@@ -1,0 +1,71 @@
+// /Hints/Library/Make Section Label List
+
+
+
+function fMakeSectionList(vContainer:string, vPath:string){
+	var:string vName;
+	var:string vTest;
+	var:number vCount(0);
+	var:set vCheck;
+	var:dictionary vDict=;
+	var:string vTemp;
+
+
+	if($IsLabelGenerateON(vPath)&($Prototype(vPath)=="pLabelListContainer"|$Prototype($Prototype(vPath))=="pLabelListContainer")){
+
+		$Text(vPath)=;
+		$MyList(vPath) =;
+		$ListKey(vPath)=;
+		$ListValue(vPath)=;
+		$OutlineDepthBaseDictionary(vPath)=;
+		$MyDictionary(vPath)=;
+
+		$MyList(vPath) = collect_if(descendants(vContainer),$HasSectionLabel&$SectionLabel&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+		$MyList(vPath).each(L){
+			L=L.replace('"',"");
+			if(!(vCheck.contains($Path(L)))){
+				vCheck +=  $Path(L);
+				vDict+=dictionary($SectionLabel(L)+":"+L+";");
+				//$MyString(vPath)=vDict;
+				$ListKey(vPath) += $SectionLabel(L);
+				$ListValue(vPath) += L;
+				
+				if($SectionLabel(L)!=""){
+					$MyDictionary(vPath)+=dictionary("@sec-" + $SectionLabel(L)+":"+ L +";");
+					if($Is_Part_qmd(L)){
+						$OutlineDepthBaseDictionary(vPath) += dictionary("@sec-" + $SectionLabel(L)+":"+ 0 +";");
+					}else{
+						$OutlineDepthBaseDictionary(vPath) += dictionary("@sec-" + $SectionLabel(L)+":"+ $OutlineDepthBase(L) +";");
+					};
+				};
+			};
+		};
+	
+		vCount = 0;
+		$ListKey(vPath).each(S){
+			vName = "@sec-" + S;
+			vTest = $IDString(vName);
+			if(vTest==""){
+				create(vPath, vName+"#pReferenceList");
+				$OutlineBackgroundColor(vName)="blue";
+			};
+			$Text(vName) = exportedString($ListValue(vPath)[vCount], "tNote");
+			//参照元のアウトラインの階層を記録
+			$OutlineDepthBase(vName) = $OutlineDepthBaseDictionary(vPath)[vName];
+			$Text(vPath)+= $OutlineDepthBase(vName) + ":" + vName + "\n";
+			vCount += 1;
+		};
+		vCount = 0;
+
+		$ListKey(vPath).each(K){
+			K = "@sec-" + K;
+			$ToDummyLinkPath(K) += $ListValue(vPath)[vCount];
+			createLink(K, $ListValue(vPath)[vCount], "dummy");
+			vCount += 1;
+		};
+	};
+};
+
+
+
+

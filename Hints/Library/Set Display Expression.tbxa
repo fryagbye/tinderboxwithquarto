@@ -1,0 +1,12 @@
+// /Hints/Library/Set Display Expression
+
+function fDisplayExpression(){
+	$DisplayExpression ='$OutlineDepthBase(original)  * $Indent_Charactor("TBXConfig") +" "+ if($Name.size <= 30){$Name +  (30 - $Name.size) * " " }else{$Name} + if(($HasSectionLabel)&($SectionLabel)){" {" + $SectionLabel + "}"};';
+};
+
+
+function fDisplayExpression2(){
+	$DisplayExpression ='$OutlineDepthBase(original)  * $Indent_Charactor("TBXConfig") +" "+ if($Name.size <= 30){$Name +  (30 - $Name.size) * " " }else{$Name} + if(($HasSectionLabel)|($IsUnnumbered)|($IsAppendix)){" {"} + if(($HasSectionLabel)&($SectionLabel)){ $SectionLabel } + if(($HasSectionLabel)|($IsUnnumbered)|($IsAppendix)){"}"};';
+};
+
+

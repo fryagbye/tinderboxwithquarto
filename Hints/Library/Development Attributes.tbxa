@@ -1,0 +1,55 @@
+// /Hints/Library/Development Attributes
+
+
+
+function fGetAttributeList(vNote){
+	var:list vKeys;
+	var:string vOutput;
+	var:string vLeft;
+	var:string vRight;
+	$Text(/Log) =;
+	
+	vKeys = $MySet("System Attributes");
+	vKeys.each(aKey){
+		if(!( aKey=="Text" | aKey=="Name")){
+			vLeft = eval("$"+aKey+"(vNote)");
+			vLeft = vLeft.replace("\n","");
+			vRight = attribute(aKey)["default"];
+			vRight = vRight.replace("\n","");
+			if(vLeft != vRight){
+				vOutput += aKey + ":" + eval("$"+aKey+"(vNote)") +"⬅️" + attribute(aKey)["default"] + "\n";
+//				vOutput += aKey + "\n";
+			};
+		};
+	};
+	
+	$Text(/Log) = $Name + "\n\n";
+	$Text(/Log) += "-----System Attribute(changed):value⬅️default\n";
+	$Text(/Log) += vOutput;
+	vOutput="";
+	vKeys = document["user-attributes"];
+
+	vKeys.each(aKey){
+		vLeft = eval("$"+aKey+"(vNote)");
+		vLeft = vLeft.replace("\n","");
+		vRight = attribute(aKey)["default"];
+		vRight = vRight.replace("\n","");
+		if(vLeft != vRight){
+			vOutput += aKey + ":" + eval("$"+aKey+"(vNote)") +"⬅️" + attribute(aKey)["default"] + "\n";
+//			vOutput += aKey + "\n";
+		};
+	};
+	$Text(/Log) += "\n-----User Attribute(changed):value⬅️default\n";
+	$Text(/Log) += vOutput;	
+};
+
+function fGetAttributeList2(vNote){
+	$Text(/Log) =;
+	var:list vKey = document["user-attributes"];
+	$Text(/Log)+= vKey + "\n\n";
+	vKey.each(aKey){
+		$Text(/Log) += aKey +":" + eval("$"+aKey+"(vNote)") +"⬅️" +attribute(aKey)["default"]+"\n";
+	};
+};
+
+

@@ -1,0 +1,98 @@
+// /Hints/Library/Utility
+
+function fDeleteCharacters(vStr:string){
+	var:string vReturn;
+	vReturn = vStr.deleteCharacters("/\?%*:|<>.&+()!#,’`").lowercase().replace(" ","-").replace("'","");
+	return vReturn;
+};
+
+function fTranslateStrings(vLang, vStr:string){
+	//you nead install trans-shell
+	//var:string vCommand="export PATH=/opt/homebrew/bin:$PATH;/opt/homebrew/bin/trans -b ";
+	var:string vCommand;
+	var:string vFilePathOfTrans=$PathOfTransExe("TBXConfig");
+	var:string vPathOfTrans;
+	var:string vReturn;
+
+	vFilePathOfTrans.icontains("(.*)/");
+	vPathOfTrans="export PATH=" + $1 + ":$PATH;";
+	vStr="'" + vStr + "'";
+
+	vCommand = vPathOfTrans + vFilePathOfTrans + " -b ";
+	
+	vCommand = vCommand + "{" + vLang + "} ";
+	$MyString = vCommand;
+
+	vReturn = runCommand(vCommand, vStr).replace("\n","").replace('"',"");
+	return vReturn; 
+};
+
+function fRenameIn(vStr:string){
+	var:string vTempName;
+	var:string vLang=$Rename_in("TBXConfig");
+
+	$MyString("TBXConfig")=vLang;
+	vTempName = fTranslateStrings(vLang, vStr);
+	//$MyString = vTempName;
+	if(!($IsNamesLocked)){
+		if($IsIndexqmd){
+			$HTMLExportFileName="index";
+		}else{
+			$HTMLExportFileName=vTempName.deleteCharacters("/\?%*:|<>.&+()!#,’`").lowercase().replace(" ","-").replace("'","");
+			$SectionLabel=$HTMLExportFileName;
+		};
+		("Name Changed to:" + $HTMLExportFileName + $HTMLExportExtension).show();
+	}else{
+		("Name is Locked").show();
+	};
+};
+
+function fGetLanguageYML(vLang:string){
+	var:string vURL;
+	var:string vYML="/Prototypes/Quarto Book/pYML";
+	var:string vRoot=collect(ancestors,$Path)[-1];
+	var:string vYMLPath=collect_if(children(vRoot), $Prototype=="pYML", $Path).first;
+
+	if($Prototype=="pLanguageYML"&!$ReadOnly){
+		if(vLang=="en"|vLang==""){
+			vURL="https://raw.githubusercontent.com/quarto-dev/quarto-cli/main/src/resources/language/_language.yml";
+			$Name = "_language";
+			$HTMLExportFileName=$Name;
+			$HTMLExportExtension = ".yml";
+		}else{
+			vURL="https://raw.githubusercontent.com/quarto-dev/quarto-cli/main/src/resources/language/_language-" + vLang + ".yml";
+			$Name = "_language-" + vLang;
+			$HTMLExportFileName=$Name;
+			$HTMLExportExtension = ".yml";
+		};
+		$URL = vURL;
+
+		$AutoFetch = true;
+		$ReadOnly = true;
+		$Q_LanguageYml(vYMLPath)= $HTMLExportFileName + $HTMLExportExtension;
+
+		("Get from " + vURL + ". It may take a little time to autofetch").show();
+	}else{
+		if($Prototype!="pLanguageYML"){
+			("Select pLanguageYML note").show();
+		};
+		if($ReadOnly){
+			($Name +" is read only").show();
+		};
+	};
+};
+
+function fFixDisplayedAttributesWithTemplate(){
+    if($Prototype){
+        $DisplayedAttributes = $DisplayedAttributes($HTMLExportTemplate);
+    };
+};
+
+function fFixDisplayedAttributesWithPrototype(){
+    if($Prototype){
+        $DisplayedAttributes = $DisplayedAttributes($Prototype);
+    };
+};
+
+
+

@@ -1,0 +1,34 @@
+// /Hints/Library/For pFrontmatterRevealjs
+
+function fRuleForpRevealjs(){
+
+	$IncludeNotes = collect_if(children, $Prototype=="pSubnoteRevealjs", $ID);
+	$OutlineDepthBase = $OutlineDepth - 1;
+
+};
+
+function fOnAddForpFrontmatterRevealjs(){
+	if(!$Prototype|$Prototype=="pFrontmatterRevealjs"){
+		$Prototype="pSubnoteRevealjs";
+	};
+	if(!($IsNamesLocked)){
+			$HTMLExportFileName=$Name.deleteCharacters("/\?%*:|<>.&+()!#`").lowercase().replace(" ","-").replace("'","");
+		if(!($SectionLabel)&!($IsPrototype)){
+			$SectionLabel = $HTMLExportFileName;
+		};
+	};
+};
+
+
+function fRuleForpRevealjsFolder(){
+   var:list vList;
+	vList = collect_if(descendants, $Q_ChunkLang=="webr"|$Q_ChunkLang=="pyodide", $ID);
+	if(vList){
+		$Q_HasQuartoLiveChunk=true;
+	}else{
+		$Q_HasQuartoLiveChunk=false;
+	};
+
+};
+
+

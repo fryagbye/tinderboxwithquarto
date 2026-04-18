@@ -1,0 +1,96 @@
+// /Hints/Library/Make Link From Reference List
+
+function fMakeLinkSecFromReferenceList(vContainer,vNote){
+	var:string vStrDic;
+//	var:string vNote=$SecLabelListContainer("TBXConfig");
+	var:string vTest;
+	var:number vCount(0);
+
+	$MyList(vNote) =;
+	$MyDictionary(vNote)=;
+	
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@sec-[\w\d-]*)+?"),$ID);
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@sec-[\w\d-]*)+?"),$ID);
+	$MyList(vNote).each(L){
+			$Text(L).eachLine(aLine){
+			vTest=aLine.contains("(@sec-[\w\d-]*)+?");
+			vStrDic = "{"+$1 + ":" + L + "}";
+			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
+			$FromDummyLinkPath($1) += $Path(L);
+			createLink(L, $1, "dummy"); 
+		};
+	};
+};
+
+function fMakeLinkFigFromReferenceList(vContainer,vNote){
+	var:string vStrDic;
+//	var:string vNote=$FigLabelListContainer("TBXConfig");
+	var:string vTest;
+	var:number vCount(0);
+
+	$MyList(vNote) =;
+	$MyDictionary(vNote)=;
+
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@fig-[\w\d-]*)+?"), $ID);
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@fig-[\w\d-]*)+?"), $ID);
+	$MyList(vNote).each(L){
+			$Text(L).eachLine(aLine){
+			vTest=aLine.contains("(@fig-[\w\d-]*)+?");
+			vStrDic = "{" + $1 + ":" + L + "}";
+			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
+			$FromDummyLinkPath($1) += L;
+			createLink(L, $1, "dummy");
+		};
+	};
+
+};
+
+
+function fMakeLinkTableFromReferenceList(vContainer,vNote){
+	var:string vStrDic;
+//	var:string vNote=$TblLabelListContainer("TBXConfig");
+	var:string vTest;
+	var:number vCount(0);
+
+	$MyList(vNote) =;
+	$MyDictionary(vNote)=;
+
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@tbl-[\w\d-]*)+?"), $ID);
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@tbl-[\w\d-]*)+?"), $ID);
+	$MyList(vNote).each(L){
+			$Text(L).eachLine(aLine){
+			vTest=aLine.contains("(@tbl-[\w\d-]*)+?");
+			vStrDic = "{" + $1 + ":" + L + "}";
+			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
+			$FromDummyLinkPath($1) += L;
+			createLink(L, $1, "dummy");
+		};
+	};
+
+};
+
+function fMakeLinkEquationFromReferenceList(vContainer,vNote){
+	var:string vStrDic;
+//	var:string vNote=$EquLabelListContainer("TBXConfig");
+	var:string vTest;
+	var:number vCount(0);
+
+	$MyList(vNote) =;
+	$MyDictionary(vNote)=;
+
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@eq-[\w\d-]*)+?"), $ID)
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@eq-[\w\d-]*)+?"), $ID)	$MyList(vNote).each(L){
+			$Text(L).eachLine(aLine){
+			vTest=aLine.contains("(@eq-[\w\d-]*)+?");
+			vStrDic = "{" + $1 + ":" + L + "}";
+			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
+			$FromDummyLinkPath($1) += L;
+			createLink(L, $1, "dummy");
+		};
+	};
+
+};
+
+
+
+

@@ -1,0 +1,75 @@
+// /Hints/Library/Make Table Label List
+
+
+function fMakeTableList(vContainer:string, vPath){
+	var:string vName;
+	var:string vTest;
+	var:number vCount(0);
+	var:string vLabel;
+	var:string vTemp;
+	var:list vList;
+
+	if($IsLabelGenerateON(vPath)&($Prototype(vPath)=="pLabelListContainer"|$Prototype($Prototype(vPath))=="pLabelListContainer")){
+
+		$Text(vPath)=;
+		$MyList(vPath)=;
+		$ListKey(vPath)=;
+		$ListValue(vPath)=;
+		$MyDictionary(vPath)=;
+	
+		//Notes contains chunk "tbl-" label 
+		vList = collect_if(descendants(vContainer),$Text.contains("(#tbl-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$ID);
+
+		vList.each(L){
+			//L=L.replace('"',"");
+			$Text(L).eachLine(aLine:aLine.contains("(#tbl-[\w\d-]*)+?")){
+				vTemp = $1;
+				vTemp = vTemp.replace("#tbl-","@tbl-");
+				$MyList(vPath) += vTemp;
+				$ListKey(vPath) += vTemp;
+				$ListValue(vPath) += $Path(L);
+				$MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+			};
+		};
+	
+
+		$MyList(vPath).each(S){
+			vName = S;
+			vLabel = S.replace("@","");
+			vTemp= vPath + "/" + S;
+			vTest = $IDString(vTemp);
+
+			if(vTest==""&vName!="@tbl-"){
+				create(vPath, vName + "#pReferenceList");
+				$OutlineBackgroundColor(vName)="purple";
+			};
+	//		$Text(vName) = fTableChunk($ListValue(vPath)[vCount], vLabel);
+			if(vName!="@tbl-"){	
+				$Text(vPath)+= vName + "\n";
+			};
+			vCount += 1;
+		};
+		vCount = 0;
+		$ListKey(vPath).each(K){
+			vName = vPath +"/"+ K;
+			$ToDummyLinkPath(vName) = $ListValue(vPath)[vCount];
+			$Text(vName) = fTableChunk($ListValue(vPath)[vCount], K.replace("@",""));
+			createLink(K, $ListValue(vPath)[vCount], "dummy");
+			vCount += 1;
+		};
+	};
+};
+
+function fTableChunk(vName:string, vLabel:string){
+	var:string vReg;
+	var:string vTemp;
+	//vReg = ":\s*(.*?)\s*\{#("+ vLabel +")\s*?\}\s*\n(?:\s*\|.*\n)+\n";
+	vReg = ":\s*(.*?)\s*\{#("+vLabel+")\s*?\}\s*\n(?:\s*\|.*\n)+";
+	//vReg = "```([\s\S]*?\{#("+ vLabel + ")\}[\s\S]*?)```";
+	if($Text(vName).contains(vReg)){
+		return $0;
+	};
+
+};
+
+

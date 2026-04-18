@@ -1,0 +1,178 @@
+// /Hints/Library/Flowchart Common
+
+function fLinkDirection(iIdNote:string, iIdLink:string){
+	if(iIdNote == iIdLink){
+		return "outbound";
+	}else{
+		return "inbound";
+	}
+};
+
+
+// The function fTypeOfShapeForNode generates a node shape suitable for Mermaid diagrams 
+// based on the given node name (aName), shape (aShape), and shape override (mShapeOverride).
+// - Maps Tinderbox shapes (lowercase) to Mermaid node shapes.
+// - If an override is specified, it takes precedence.
+// - Combines the node shape and name into a final representation.
+function fTypeOfShapeForNode(aName:string, aShape:string, mShapeOverride:string){
+	var:dictionary vShapes;
+	var:string vTemp;
+	var:number vNumOfChar;
+	var:string vReturn;
+
+    // Dictionary that maps Tinderbox shapes to Mermaid node shapes
+    // Lowercase: Tinderbox shapes
+    // Uppercase: Shape override shapes
+	vShapes = dictionary("normal:\[\];rounded:\(\);oval:\(\(\)\);lozenge:'\(\[\]\)';diamond:\{\};hex:\{\{\}\};
+				DoubleCircle:\(\(\(\)\)\);Subroutine:\[\[\]\];Cylindrical:\[\(\)\];Asymmetric:\>\];
+				Parallelogram:\[\/\/];ParallelogramAlt:\[\\\\\];Trapezoid:\[\/\\\];TrapezoidAlt:\[\\\/\]");
+
+    // Use the shape override if it is specified
+	if(mShapeOverride){
+		vTemp = vShapes[mShapeOverride];
+	}else{
+		vTemp = vShapes[aShape];
+	};
+
+    // Calculate the number of characters to split the Mermaid shape string in half
+	vNumOfChar = (vTemp.size())/2;
+　　// If the node name (aName) has associated text, include it with the node name
+	if($M_IsTextDisplayed(aName)&$Text(aName).wordCount>0){
+		vReturn = '"' + aName + '\n'+ $Text(aName) + '"';
+	}else{
+		vReturn = '"' + aName + '"';
+	};
+
+    // Apply the Mermaid shape and return the result
+	if(vTemp){
+		return vTemp.substr(0, vNumOfChar) + vReturn + vTemp.substr(-vNumOfChar);
+	}else{
+		
+		return '[' + vReturn + ']';
+	};
+	
+};
+
+// The function fTyepOfLineForLink generates a link representation based on the provided parameters,
+// including the type of the link (aType), the link properties (aLink), the length of the link (aLength),
+// the style of the line ending (aEnd), and whether the link is bidirectional (aBidirection).
+function fTypeOfLineForLink(aType:string, aLink:dictionary, aLength:number, aEnd:string, aBidirection:bool){
+    // Extract properties from the aLink dictionary
+    var:boolean vVisible = aLink["visible"];  // Whether the link is visible
+    var:boolean vDotted = aLink["dotted"] | aLink["dashed"]; // Check if the link is dotted or dashed
+    var:boolean vBold = aLink["bold"] | aLink["broad"]; // Check if the link is bold or broad
+    var:string vLineType; // To store the type of line: dotted, bold, or normal
+    var:dictionary vEdgeType; // Dictionary mapping line endings
+    var:string vReturn; // The final representation of the link
+
+	//$Text(/Log)= aLink + "\n";
+
+    // Determine the line type and the corresponding edge type mappings
+    // Priority: dotted > bold > normal
+    if (vDotted) {
+        vLineType = "dotted";
+        vEdgeType = dictionary("Arrow:\>;Circle:o;Cross:x;Open:\-");
+    } else {
+        if (vBold) {
+            vLineType = "bold";
+            vEdgeType = dictionary("Arrow:\>;Circle:o;Cross:x;Open:\=");
+        } else {
+            vLineType = "normal";
+            vEdgeType = dictionary("Arrow:\>;Circle:o;Cross:x;Open:\-");
+        }
+    }
+
+    // Generate the link representation based on the line type
+    if (vLineType == "dotted") {
+        // Dotted line style
+        if (aBidirection) {
+            // Bidirectional dotted line
+            if (aEnd == "Arrow") {
+                vReturn = "<-" + "." * (aLength - 2) + "->";
+            } else {
+                vReturn = vEdgeType[aEnd] + "-" + "." * (aLength - 2) + "-" + vEdgeType[aEnd];
+            }
+        } else {
+            // Unidirectional dotted line
+            vReturn = "-" + "." * (aLength - 2) + "-" + vEdgeType[aEnd];
+        }
+    }
+
+    if (vLineType == "bold") {
+        // Bold line style
+        if (aBidirection) {
+            // Bidirectional bold line
+            if (aEnd == "Arrow") {
+                vReturn = "<-" + "-" * (aLength - 2) + "->";
+            } else {
+                vReturn = vEdgeType[aEnd] + "-" * (aLength - 2) + vEdgeType[aEnd];
+            }
+        } else {
+            // Unidirectional bold line
+            vReturn = "-" * (aLength - 1) + vEdgeType[aEnd];
+        }
+        vReturn = vReturn.replace("-", "="); // Replace "-" with "=" for bold lines
+    }
+
+    if (vLineType == "normal") {
+        // Normal line style
+        if (aBidirection) {
+            // Bidirectional normal line
+            if (aEnd == "Arrow") {
+                vReturn = "<-" + "-" * (aLength - 2) + "->";
+            } else {
+                vReturn = vEdgeType[aEnd] + "-" * (aLength - 2) + vEdgeType[aEnd];
+            }
+        } else {
+            // Unidirectional normal line
+            vReturn = "-" * (aLength - 1) + vEdgeType[aEnd];
+        }
+    }
+
+    // Append the link type to the representation if it is specified and not "untitled"
+    if (aType & !(aType == "*untitled")) {
+        vReturn += '|"' + aType + '"|';
+    } else {
+        vReturn += " ";
+    }
+
+    // Handle the visibility of the link
+    if (!vVisible) {
+        // If the link is not visible, use "~" for the line representation
+        vReturn = " ~" + "-" * (aLength - 2) + "~ ";
+        vReturn = vReturn.replace("-", "~");
+    } else {
+        // Add spacing around the link representation for visible links
+        vReturn = " " + vReturn + " ";
+    }
+    return vReturn;
+};
+
+function fSetCustomTheme(aID:string){
+	var:string vConfig;
+	if($M_HasCustomTheme){
+			vConfig = '%%{init: {"theme": "base","themeVariables": {"primaryColor": "' + $Color(aID).format() + '","primaryTextColor": "' + $NameColor(aID).format() + '","primaryBorderColor": "' + $BorderColor(aID).format() + '","lineColor": "' + $M_LinkLineColor(aID).format() + '","secondaryColor": "' + $M_LinkTextBackgroundColor(aID).format() + '","tertiaryColor": "' + $M_SubgraphBackgroundColor(aID).format() + '"}}}%%\n';
+	}else{
+		if($M_HasOutputTheme(aID)){	
+			vConfig = "%%{init: {'theme':'"+ $M_Theme +"'}}%%\n";
+			
+		};
+	};
+	return vConfig;
+}
+
+
+function fNSortDictionary(aDict:dictionary){
+	var:number vCount=0;
+	var:list vKeyList=aDict.keys();
+	var:dictionary vDict;
+	vKeyList = vKeyList.nsort();
+	vKeyList.each(aKey){
+		vDict = vDict.extend("{"+ aKey + ":" + aDict[aKey] + "}");
+	};
+	return vDict;
+};
+
+
+
+

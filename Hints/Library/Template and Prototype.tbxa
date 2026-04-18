@@ -1,0 +1,86 @@
+// /Hints/Library/Template and Prototype
+
+function fChangeNoteTemplate(){
+	var:string vName1="pNote";
+	var:string vName2="pSubnote";
+	if($HTMLExportTemplate(vName1)=="/Templates/tNote"){
+		$HTMLExportTemplate(vName1)="/Templates/tNote_preview";
+	}else{
+		$HTMLExportTemplate(vName1)="/Templates/tNote";
+	};
+
+	if($HTMLExportTemplate(vName2)=="/Templates/tSubnote"){
+		$HTMLExportTemplate(vName2)="/Templates/tSubnote_preview";
+	}else{
+		$HTMLExportTemplate(vName2)="/Templates/tSubnote";
+	};
+		(vName1 + " template is set with " + $HTMLExportTemplate(vName1) + "\n"+vName2 + " template is set with " + 	$HTMLExportTemplate(vName2) + "\n").show();
+};
+
+function fChangeQuartoYMLDisplayedAttributes(vName){
+	$DisplayedAttributes(vName)=$DisplayedAttributes($HTMLExportTemplate(vName));
+};
+
+function fTranslateStrings(vLang, vStr:string){
+	//you nead install trans-shell
+	//var:string vCommand="export PATH=/opt/homebrew/bin:$PATH;/opt/homebrew/bin/trans -b ";
+	var:string vCommand;
+	var:string vFilePathOfTrans=$PathOfTransExe("TBXConfig");
+	var:string vPathOfTrans;
+	var:string vReturn;
+
+	vFilePathOfTrans.icontains("(.*)/");
+	vPathOfTrans="export PATH=" + $1 + ":$PATH;";
+	vStr="'" + vStr + "'";
+
+	vCommand = vPathOfTrans + vFilePathOfTrans + " -b ";
+	
+	vCommand = vCommand + "{" + vLang + "} ";
+	$MyString = vCommand;
+
+	vReturn = runCommand(vCommand, vStr).replace("\n","").replace('"',"");
+	return vReturn; 
+};
+
+function fRenameIn(vStr:string){
+	var:string vTempName;
+	var:string vLang=$Rename_in("TBXConfig");
+
+	$MyString("TBXConfig")=vLang;
+	vTempName = fTranslateStrings(vLang, vStr);
+	//$MyString = vTempName;
+	if(!($IsNamesLocked)){
+		if($IsIndexqmd){
+			$HTMLExportFileName="index";
+		}else{
+			$HTMLExportFileName=vTempName.deleteCharacters("/\?%*:|<>.&+()!#,’`").lowercase().replace(" ","-").replace("'","");
+			$SectionLabel=$HTMLExportFileName;
+		};
+		("Name Changed to:" + $HTMLExportFileName + $HTMLExportExtension).show();
+	}else{
+		("Name is Locked").show();
+	};
+};
+
+function fGetLanguageYML(vLang:string){
+	var:string vURL;
+	if($Prototype=="pLanguageYML"&!$ReadOnly){
+		if(vLang=="en"|vLang==""){
+			vURL="https://raw.githubusercontent.com/quarto-dev/quarto-cli/main/src/resources/language/_language.yml";
+			$Name = "_language";
+			$HTMLExportExtension = ".yml";
+		}else{
+			vURL="https://raw.githubusercontent.com/quarto-dev/quarto-cli/main/src/resources/language/_language-" + vLang + ".yml";
+			$Name = "_language-" + vLang;
+			$HTMLExportExtension = ".yml";
+		};
+		$URL = vURL;
+
+		$AutoFetch = true;
+		("get from " + vURL).show();
+	};
+};
+
+
+
+

@@ -1,0 +1,101 @@
+// /Hints/Library/Create New Project
+
+function fCreateBookProject(){
+    //var:string vProjectName=$ProjectContainer("TBXConfig");
+    var:string vTempPath;
+    var:string vTempName;
+    var:string vLabelList=[Section;Figure;Table;Equation];
+
+    if($Prototype($ID)=="pBookFolder" & $ChildCount($ID)==0){
+    
+    vLabelList.each(x){
+        vTempName = x+" Label List";
+        vTempPath = $Path($ID)+"/"+vTempName;
+
+        create($Path($ID), vTempName+"#pLabelListContainer");
+        $TypeOfList(vTempPath) = x;
+        $ProjectContainer(vTempPath) = $Path($ID);
+        //$Edict(vTempPath)="$ProjectContainer=collect(ancestors,$Path)[-1];\nfMake"+ x +"List($ProjectContainer,$Path);";
+    };
+
+        create($Path($ID), "_quarto#pYML");
+        create($Path($ID), "index#pIndexQmd");
+        $HTMLExportFileName($Path($ID))=fDeleteCharacters($Name($ID));
+    }else{
+        if($ChildCount($ID)>0){
+            ($Name($ID)+" already has child Notes").show();
+        }else{
+            "Please select a pBookFolder Note".show();
+        };
+    };
+};
+
+function fCreateManuscriptProject(){
+    var:string vTempPath;
+    var:string vTempName;
+    var:string vLabelList=[Section;Figure;Table;Equation];
+
+    if($Prototype($ID)=="pManuscriptFolder" & $ChildCount($ID)==0){
+    
+        vLabelList.each(x){
+            vTempName = x+" Label List";
+            vTempPath = $Path($ID)+"/"+vTempName;
+
+            create($Path($ID), vTempName+"#pLabelListContainer");
+            $TypeOfList(vTempPath) = x;
+            $ProjectContainer(vTempPath) = $Path($ID);
+            //$Edict(vTempPath)="fMake"+ x +"List($ProjectContainer,$Path);\n$ProjectContainer=collect(ancestors,$Path)[-1];";
+        };
+
+        create($Path($ID), "_quarto_manuscript#pYMLmanuscript");
+        create($Path($ID), "main#pFrontmatterManuscript");
+        create($Path($ID) + "/main", "SectionTitle#pSubnoteManuscript");
+        create($Path($ID), "Authors#pAuthorsContainer");
+        create($Path($ID)+"/Authors", "Author#pAuthor");
+        $Q_Title($Path($ID)+"/main")=$Name($ID);
+        $HTMLExportFileName($Path($ID))=fDeleteCharacters($Name($ID));
+
+    }else{
+        if($ChildCount($ID)>0){
+            ($Name($ID)+" already has child Notes").show();
+        }else{
+            "Please select a pManuscriptFolder Note".show();
+        };
+    };
+};
+
+function fCreateRevealjsProject(){
+    var:string vTempPath;
+    var:string vTempName;
+    var:string vLabelList=[Figure;Table;Equation];
+    
+    if($Prototype($ID)=="pRevealjsFolder" & $ChildCount($ID)==0){
+        
+        vLabelList.each(x){
+            vTempName = x+" Label List";
+            vTempPath = $Path($ID)+"/"+vTempName;
+
+            create($Path($ID), vTempName+"#pLabelListContainer");
+            $TypeOfList(vTempPath) = x;
+            $ProjectContainer(vTempPath) = $Path($ID);
+            //$Edict(vTempPath)="fMake"+ x +"List($ProjectContainer,$Path);\n$ProjectContainer=collect(ancestors,$Path)[-1];";
+        };
+
+        create($Path($ID), "_quarto_manuscript#pYMLQuartolive");
+        create($Path($ID), "main#pFrontmatterRevealjs");
+        create($Path($ID) + "/main", "Slide#pSubnoteRevealjs");
+        $Q_Title($Path($ID)+"/main")=$Name($ID);
+        $HTMLExportFileName($Path($ID))=fDeleteCharacters($Name($ID));
+    }else{
+        if($ChildCount($ID)>0){
+            ($Name($ID)+" already has child Notes").show();
+        }else{
+            "Please select a pRevealjsFolder Note".show();
+        };
+    };
+};
+
+
+
+
+

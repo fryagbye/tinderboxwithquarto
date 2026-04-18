@@ -1,0 +1,24 @@
+// /Hints/Library/Bibliography
+
+function fSetReference(){
+	var:string vText=$ReferenceRIS.following("U1  - ");
+	
+	if(($Prototype=="pReference")){
+		if(vText){
+			$CiteKey = vText;
+			$Name = "@" + vText;
+			$DisplayExpression = '$Name + "\n" + $BookTitle + " in " + $PublicationYear.substr(0,4)';
+			$Abstract=$ReferenceRIS.following("AB  - ");
+		};
+		//if($Text=;){
+			$Text = "Abstract: \n" + $Abstract;
+		//}
+		if(!($ReferenceURL)){
+			 $ReferenceURL= $ReferenceRIS.following("U20  - ");
+		};
+	};
+	
+};
+
+
+

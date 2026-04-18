@@ -1,0 +1,217 @@
+// /Hints/Library/Agent
+
+function fSetIncludeNotesForExportAgent(){
+    $IncludeNotes = collect_if(children, $Prototype=="pNote"|$Prototype($Prototype)=="pNote", $ID);
+};
+
+
+function fCrossRefUpdate(vForce:boolean){
+    var:string vName="TBXConfig";
+    var:string vContainer=$ProjectContainer(vName);
+
+    var:string vChunkPath = $ChunkListContainer(vName);
+    var:string vGraphPath = $GraphListContainer(vName);
+    
+    var:number vInterval;
+    vInterval=interval($CrossRefLastUpdate(vName), date("now")).minute*60+interval($CrossRefLastUpdate(vName), date("now")).second;
+
+
+    if( vForce |(vInterval > $CrossRefListUpdateCycle("TBXConfig") * 60)){
+        //clear Label list, Chunk list and Graph list
+        ("Cross-Res List Update: Start").show("blue");
+
+        fClearChunkList();
+        fClearGraphList();
+
+
+        //Chunk
+        fMakeChunkList();
+        update(vChunkPath);
+        //Graph
+        fMakeGraphList();
+        update(vGraphPath);
+    
+
+        $ProjectList(vName).each(aP){
+            var:string vSecPath =aP + $SecLabelListContainer(vName);
+            var:string vFigPath =aP + $FigLabelListContainer(vName);
+            var:string vTblPath =aP + $TblLabelListContainer(vName);
+            var:string vEquPath =aP + $EquLabelListContainer(vName);
+            fClearReferenceList(aP);
+
+        // Section
+            fMakeSectionList(aP, vSecPath);
+            update(vSecPath);
+
+        //Figure
+            LogRec("Figure","<<mark>> Make Figure List aP:" + aP + " vFigPath:" + vFigPath + "vName:" + vName);
+            fMakeFigureList(aP, vFigPath);
+            update(vFigPath);
+
+        //Table
+            fMakeTableList(aP, vTblPath);
+            update(vTblPath);
+
+        //Equation
+            fMakeEquationList(aP, vEquPath);
+            update(vEquPath);
+
+        //Make dummy links
+            fMakeLinkSecFromReferenceList(aP, vSecPath);
+            fMakeLinkFigFromReferenceList(aP, vFigPath);
+            fMakeLinkTableFromReferenceList(aP, vTblPath);
+            fMakeLinkEquationFromReferenceList(aP, vEquPath);
+
+        };
+
+        $CrossRefLastUpdate("TBXConfig")=date("now");
+        ("Cross-Res List Update: Finish").show("blue");
+    };
+};
+
+function fMakeQmdList(){
+    var:string vName = $AgentNameForQmdFiles("TBXConfig");
+    //$QmdList(vName) = find($AgentQuery(vName));
+    $QmdList(vName) = find($HTMLExportExtension==".qmd"&$Prototype=="pNote");
+    $MyString = $AgentQuery(vName);
+};
+
+function fChangeTemplateOfAgentQmd(){
+    var:string vName = $AgentNameForQmdFiles("TBXConfig");
+    if($HTMLExportTemplate(vName)=="/Templates/tOutputAll_MD"){
+        $HTMLExportTemplate(vName)="/Templates/tOutputAll_QMD";
+        $HTMLExportExtension(vName)=".qmd";
+
+    }else{
+            $HTMLExportTemplate(vName)="/Templates/tOutputAll_MD";
+            $HTMLExportExtension(vName)=".md";
+    };
+
+    (vName + " template is set with " + $HTMLExportTemplate(vName)).show;
+};
+
+function fToggleBookAgent(){
+    var:string vAgentExport=$AgentNameForQmdFiles("TBXConfig");
+//$Text(/Log)+= $BookAgentMode(vAgentExport) + "\n";
+    if($BookAgentMode(vAgentExport)=="Export"){
+        fSetBookAgentPreviewMode();
+    }else{
+        fSetBookAgentExportMode();
+    };
+};
+
+function fSetBookAgentPreviewMode(){
+    var:string vAgentExport=$AgentNameForQmdFiles("TBXConfig");
+    var:string vModeNote="/Mode ➡";
+    var:number vPriority=$ExportAgentPriority("TBXConfig");
+    var:string vAgentQuery;
+    
+//  $AgentPriority(vAgentExport)=-1;
+
+    //Book Agent Condition
+    $BookAgentMode(vAgentExport)="Preview";
+    $Badge(vModeNote)="display";
+    $Badge(vAgentExport)="display";
+    $OutlineBackgroundColor(vAgentExport)="automatic";
+
+    vAgentQuery = 'if($ToggleTOC("TBXConfig")){($HTMLExportExtension==".html")';
+    vAgentQuery+= '&$Container.beginsWith($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))';
+    vAgentQuery+= '&($Prototype=="pNote"|$Prototype($Prototype)=="pNote"|$Prototype=="pYML"|$Prototype=="pDotR"|$Prototype=="pLanguageYML")';
+    vAgentQuery+= '&!$IsPrototype}else{($HTMLExportExtension==".html")';
+    vAgentQuery+= '&$Container.beginsWith($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))';
+    vAgentQuery+= '&($Prototype=="pNote"|$Prototype($Prototype)=="pNote"|$Prototype=="pYML"|$Prototype=="pDotR"|$Prototype=="pLanguageYML")';
+    vAgentQuery+= '&!$IsPrototype&($Name!=$TableOfContaintsNote("TBXConfig"))}';
+
+    $AgentQuery(vAgentExport)=vAgentQuery;
+
+    $AgentPriority(vAgentExport)=0;
+
+    //Export Setting for Book Agent
+    update(vAgentExport);
+    $HTMLPreviewCommand(vAgentExport)="/opt/homebrew/bin/pandoc -f markdown --quiet --citeproc --bibliography="+ $Q_BibliographyFile("TBXConfig") 
+             + " --resource-path="+ $ImagePathForPandoc("TBXConfig")  + " --css=" + $PandocCSSPath("TBXConfig") + " -t html";
+    $HTMLExportExtension(vAgentExport)=".html";
+//  $HTMLExportTemplate(vAgentExport)="/Templates/tOutputAll_Preview";
+    $HTMLExportTemplate(vAgentExport)="/Templates/tOutputAll_Preview";
+
+    $HTMLMarkdown(vAgentExport)=true;
+    $HTMLMarkupText(vAgentExport)=false;
+
+    //Change collected Notes to Preview mode
+    var:list vNoteList = collect_if(descendant($CurrentBookProject($AgentNameForQmdFiles("TBXConfig"))),($Prototype=="pNote"|$Prototype($Prototype)=="pNote")&!$IsPrototype, $ID);
+    vNoteList.each(aList){
+        $HTMLPreviewCommand(aList)="/opt/homebrew/bin/pandoc -f markdown --quiet --citeproc --bibliography="+ $Q_BibliographyFile("TBXConfig") 
+             + " --resource-path="+ $ImagePathForPandoc("TBXConfig")  + " --css=" + $PandocCSSPath("TBXConfig") + " -t html";
+        $HTMLExportExtension(aList)=".html";
+        $HTMLExportTemplate(aList)="/Templates/tNote_Preview";
+        $HTMLMarkdown(aList)=true;
+        $HTMLMarkupText(aList)=false;
+    };
+
+$AgentPriority(vAgentExport)= vPriority;
+    ("Preview is ready.").show;
+    
+    //$AgentPriority(vAgentExport)=1;   
+};
+
+function fSetBookAgentExportMode(){
+    var:string vAgentExport=$AgentNameForQmdFiles("TBXConfig"); 
+    var:string vModeNote="/Mode ➡";
+    var:number vPriority=$ExportAgentPriority("TBXConfig");
+    var:string vAgentQuery;
+    var:string vPath = collect(ancestors(vAgentExport))[-1];
+
+    $AgentPriority(vAgentExport)= 0;
+
+    $BookAgentMode(vAgentExport)="Export";
+    $Badge(vModeNote)="printer";
+    $Badge(vAgentExport)="printer";
+    $OutlineBackgroundColor(vAgentExport)="ff grass green";
+
+    vAgentQuery = 'if($ToggleTOC("TBXConfig")){($HTMLExportExtension==".yml"|$HTMLExportExtension==".R"|$HTMLExportExtension==".qmd")';
+    vAgentQuery+= '&$Container.beginsWith($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))';
+    vAgentQuery+= '&($Prototype=="pNote"|$Prototype($Prototype)=="pNote"|$Prototype=="pYML"|$Prototype=="pDotR"|$Prototype=="pLanguageYML")';
+    vAgentQuery+= '&!$IsPrototype}else{($HTMLExportExtension==".yml"|$HTMLExportExtension==".R"|$HTMLExportExtension==".qmd")';
+    vAgentQuery+= '&$Container.beginsWith($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))';
+    vAgentQuery+= '&($Prototype=="pNote"|$Prototype($Prototype)=="pNote"|$Prototype=="pYML"|$Prototype=="pDotR"|$Prototype=="pLanguageYML")';
+    vAgentQuery+= '&!$IsPrototype&($Name!=$TableOfContaintsNote("TBXConfig"))}';
+    $AgentQuery(vAgentExport)=vAgentQuery;
+
+
+
+    //Export Setting for Book Agent 
+    update(vAgentExport);
+    $HTMLExportExtension(vAgentExport)=".md";
+    $HTMLExportTemplate(vAgentExport)="/Templates/tOutputAll_MD";
+    $HTMLMarkdown(vAgentExport)=true;
+    $HTMLMarkupText(vAgentExport)=false;
+    
+    //Change collected Notes to Export mode
+    var:list vNoteList=collect_if(descendant($CurrentBookProject($AgentNameForQmdFiles("TBXConfig"))), ($Prototype=="pNote"|$Prototype($Prototype)=="pNote")&!$IsPrototype, $ID);
+    vNoteList.each(aList){
+
+        if($Prototype($Prototype(aList))=="pNote"|$Prototype(aList)=="pNote"){
+            $HTMLExportExtension(aList)=".qmd";
+            $HTMLExportTemplate(aList)="/Templates/tNote";
+        };
+        if($Prototype($Prototype(aList))=="pSubnote"|$Prototype(aList)=="pSubnote"){
+            $HTMLExportExtension(aList)=".txt";
+            $HTMLExportTemplate(aList)="/Templates/tSubnote";   
+        };
+
+        $HTMLMarkdown(aList)=true;
+        $HTMLMarkupText(aList)=false;
+    };
+
+    $AgentPriority(vAgentExport)= vPriority;
+
+    
+    ("Export is ready.").show;
+    
+        
+};
+
+
+
+
+

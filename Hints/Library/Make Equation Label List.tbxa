@@ -1,0 +1,75 @@
+// /Hints/Library/Make Equation Label List
+
+
+function fMakeEquationList(vContainer:string,vPath){
+	var:string vName;
+	var:string vTest;
+	var:number vCount(0);
+	var:string vLabel;
+	var:string vTemp;
+	var:list vList;
+
+	if($IsLabelGenerateON(vPath)&($Prototype(vPath)=="pLabelListContainer"|$Prototype($Prototype(vPath))=="pLabelListContainer")){
+	
+		$Text(vPath)=;
+		$MyList(vPath) =;
+		$ListKey(vPath)=;
+		$ListValue(vPath)=;
+		$MyDictionary(vPath)=;
+	
+		//Notes contains chunk "eq-" label 
+		vList = collect_if(descendants(vContainer),$Text.contains("(eq-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
+
+		vList.each(L){
+			L=L.replace('"',"");
+			$Text(L).eachLine(aLine:aLine.contains("(#eq-[\w\d-]*)+?")){
+				vTemp = $1;
+				vTemp = vTemp.replace("#eq-","@eq-");
+				$MyList(vPath) += vTemp;
+				$ListKey(vPath) += vTemp;
+				$ListValue(vPath) += L;
+				$MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+			};
+		};
+
+
+		$MyList(vPath).each(S){
+			vName = S;
+			vLabel = S.replace("@","");
+		
+			vTest = $IDString(vName);
+		
+			if(vTest==""&vName!="@eq-"){
+				create(vPath, vName + "#pReferenceList");
+				$OutlineBackgroundColor(vName)="purple";
+				$Text(vName) = fEquationChunk($ListValue(vPath)[vCount], vLabel);
+			};
+
+			if(vName!="@eq-"){	
+				$Text(vPath)+= vName + "\n";
+			};
+		
+			vCount += 1;
+		};
+		vCount = 0;
+		$ListKey(vPath).each(K){
+			vName = K;
+			$ToDummyLinkPath(vName) = $ListValue(vPath)[vCount];
+			$Text(vName) = fEquationChunk($ListValue(vPath)[vCount], vName.replace("@",""));
+			createLink(K, $ListValue(vPath)[vCount], "dummy");
+			vCount += 1;
+		};
+	};
+};
+
+function fEquationChunk(vName:string, vLabel:string){
+	var:string vReg;
+	var:string vTemp;
+	vReg = "(\$\$([\s\S]*?)\$\$)\s*\{#("+ vLabel +")\}";
+	if($Text(vName).contains(vReg)){
+		return $1;
+	};
+
+};
+
+

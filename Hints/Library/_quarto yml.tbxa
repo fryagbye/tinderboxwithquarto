@@ -1,0 +1,71 @@
+// /Hints/Library/_quarto.yml
+
+function fagentqmd(){
+    var:string vName($AgentNameForQmdFiles("TBXConfig"));
+    var:string vQuote='"';
+    var:string vProjectPath=collect(ancestors,$Path)[-1];
+    var:boolean debug=false;
+
+    if(debug){LogRec("Quarto", "<<mark>>fagentqmd: vName=" + vName + " vProjectPath=" + vProjectPath);};
+
+    $QmdList=collect_if(descendants(vProjectPath),($Prototype=="pNote"|$Prototype($Prototype)=="pNote")&$IsAppendix==false,$ID);
+    
+    $AppendixList=collect_if(descendants(vProjectPath),($Prototype=="pNote"|$Prototype($Prototype)=="pNote")&$IsAppendix==true,$ID);
+};
+
+function fqmdlist(){
+    var:string vName($AgentNameForQmdFiles("TBXConfig"));
+    var:string vNameTOC=$TableOfContaintsNote("TBXConfig");
+    var:string vProjectPath=collect(ancestors,$Path)[-1];
+    $Text="  chapters:\n";
+
+    $QmdList.each(x){
+        x=x.replace('"','');
+        if($Is_Part_qmd(x)){
+            if($Text(x).wordCount==0){
+                    $Text += '    - part: "' + $Name(x) +'"\n      chapters:\n';
+            }else{
+                    $Text += "    - part: " + $HTMLExportFileName(x) + $HTMLExportExtension(x)  + "\n      chapters:\n";
+            };
+        }else{
+            if($Part_file(x)){
+                $Text += "        - " + $HTMLExportFileName(x) + $HTMLExportExtension(x)+ "\n";
+            }else{
+                $Text += "    - " + $HTMLExportFileName(x) + $HTMLExportExtension(x)+ "\n";
+            };
+        };
+    };  
+    if($AppendixList.count>0){
+        $Text +="  appendices:\n";
+        $AppendixList.each(x){
+            x=x.replace('"','');
+            $Text += "    - " + $HTMLExportFileName(x) + $HTMLExportExtension(x)+ "\n";
+        };  
+    };
+};
+
+function fChangeTemplateQuartoYML(){
+    var:string vName="_quarto";
+    var:string vProjectPath=collect(ancestors,$Path)[-1];
+    var:string vYmlPath=$Path(vProjectPath) + "/" + vName;
+
+    if($ID(vYmlPath)&$Prototype(vYmlPath)=="pYML"){
+        if($HTMLExportTemplate(vYmlPath)=="/Templates/tYML_bookhtml"){
+            $HTMLExportTemplate(vYmlPath)="/Templates/tYML_bookpdf";
+            $Q_OutputType(vYmlPath)="pdf";
+        }else{
+            $HTMLExportTemplate(vYmlPath)="/Templates/tYML_bookhtml";
+            $Q_OutputType(vYmlPath)="html";
+        };
+    
+        fChangeQuartoYMLDisplayedAttributes(vYmlPath);
+        $DisplayExpression(vYmlPath) = '$Name + " ( " + $HTMLExportTemplate +" )"';
+        $MyString=$Name($HTMLExportTemplate);
+        $OutlineBackgroundColor = $OutlineBackgroundColor($Name($HTMLExportTemplate));
+        (vYmlPath + " template is set with " + $HTMLExportTemplate(vYmlPath)).show();   
+    }else{
+        (" Please select _quarto.yml or inside of project folder").show();
+    };
+};
+
+

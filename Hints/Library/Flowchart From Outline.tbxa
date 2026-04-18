@@ -1,0 +1,254 @@
+// /Hints/Library/Flowchart From Outline
+
+// Setting up the header for Quarto label and R chunk
+function fCreateMermaidHeader(vDirection:string, vID:string){
+	var:vHeader;
+	if($Q_HasChunkBlock){
+		vHeader = "```{mermaid} \n";
+		if($Q_ChunkFigLabel){
+			vHeader += "%%| label: fig-" +fDeleteCharacters($Q_ChunkFigLabel) + "\n";
+		};
+		if($Q_ChunkFigCaption){
+			vHeader += "%%| fig-cap: " + $Q_ChunkFigCaption + "\n";
+		};
+		if($Q_ChunkFigWidth){
+			vHeader += "%%| fig-width: " + $Q_ChunkFigWidth + "\n";
+		};
+	};
+
+
+   // Start output text with header and flowchart direction
+	vHeader += fSetCustomTheme(vID);
+	vHeader += "flowchart "+ vDirection +"\n";
+	return vHeader;
+}
+
+function fOutputNodesAndLinks(vID:string, vIDtoName:dictionary){
+	var:number vCount=0;	
+	var:list vTempList;
+   var:dictionary vTempDict;
+	var:string vReturn;
+    // Output main graph nodes and links
+	$M_NoteList(vID).each(aNote){
+		vTempList="";
+		vTempDict="";
+		if($OutboundLinkCount(aNote)>0){
+			eachLink(alink,aNote){
+				var:string vSource =alink["source"];
+				var:string vDest =alink["destID"];
+				vDirection=fLinkDirection($ID(aNote), alink["sourceID"]);
+				// treat outboud link only. 
+				if(vDirection=="outbound"){
+					vTempList+= $OutlineOrder(vDest);
+					vTempDict = vTempDict.extend("{"+$OutlineOrder(vDest)+":"+"    "+vIDtoName[aNote] + fTypeOfShapeForNode($Name(aNote),$Shape(aNote), $M_ShapeOverride(aNote))
+								+ fTypeOfLineForLink(alink["type"], alink, $M_ArrowLength(vSource),$M_ArrowType(vSource),$M_IsBidirectional(vSource))
+								+ vIDtoName[vDest] + fTypeOfShapeForNode($Name(vDest),$Shape(vDest),$M_ShapeOverride(vDest))+"}");
+				};
+			};
+				vTempList=vTempList.nsort();
+				vTempList.each(aOrder){
+					vReturn += vTempDict[aOrder]+"\n";
+				};
+		}else{
+			vReturn += "    "+ vIDtoName[aNote] + fTypeOfShapeForNode($Name(aNote),$Shape(aNote), $M_ShapeOverride(aNote)) + "\n";
+		};
+	};
+	return vReturn;
+}
+
+function fOutputSubgraphs(vID:string, vIDtoName:dictionary){
+	var:string vReturn;
+	$M_Subgraphs(vID).each(aSubID){
+
+		$M_SubgraphName(aSubID) = vIDtoName[aSubID];
+		
+		vReturn += "\n subgraph " + $M_SubgraphName(aSubID) + '["'+ $Name(aSubID) + '"]\n';
+		
+		if($M_SubgraphDirection(aSubID)){
+			vReturn += "    direction " + $M_SubgraphDirection(aSubID) +"\n";
+		};
+		$M_NodeOnSubgraph(aSubID).each(aKey){
+			vReturn += "    " + vIDtoName[aKey] + "\n";
+		};
+		vReturn += "end \n";
+	};
+	vReturn += "\n";
+	return vReturn;
+}
+
+function fOutputSubgraphLinks(vID:string, vIDtoName:dictionary){
+	var:list vTempList;
+   var:dictionary vTempDict;
+	var:string vReturn;
+
+		$M_Subgraphs(vID).each(aSubID){
+		vTempList="";
+		vTempDict="";
+
+		if($OutboundLinkCount(aSubID)>0){
+			eachLink(alink, aSubID){
+				var:string vSource =alink["source"];
+				var:string vDest =alink["destID"];
+
+				vDirection= fLinkDirection(aSubID, alink["sourceID"]);
+				// treat outboud link only. 
+
+				if(vDirection=="outbound"){
+				vTempList+= $OutlineOrder(vDest);
+					vTempDict = vTempDict.extend("{"+$OutlineOrder(vDest)+":"+"    "+vIDtoName[aSubID] + fTypeOfShapeForNode($Name(aSubID),$Shape(aSubID), $M_ShapeOverride(aSubID))
+								+ fTypeOfLineForLink(alink["type"], alink, $M_ArrowLength(vSource),$M_ArrowType(vSource),$M_IsBidirectional(vSource))
+								+ vIDtoName[vDest] + fTypeOfShapeForNode($Name(vDest),$Shape(vDest),$M_ShapeOverride(vDest))+"}");
+				};
+			};
+				vTempList=vTempList.nsort();
+				vTempList.each(aOrder){
+					vReturn += vTempDict[aOrder]+"\n";
+				};
+
+		};
+	};
+	return vReturn;
+}
+
+function fCreateNodeMappings(vIDtoName:dictionary){
+
+}
+
+
+function fApplyStyle(aID:string, vIDtoName:dictionary){
+	var:string vReturn;
+	vReturn += "    style " + vIDtoName[aID] + " fill:" + $Color(aID).format();
+	vReturn += ",color:" + $NameColor(aID).format();
+	vReturn += ",stroke:" + $BorderColor(aID).format() + ",stroke-width:" + $Border +"px";
+	vReturn += fSetBorderDashStyle(aID);
+	return vReturn;
+}
+
+function fSetBorderDashStyle(aID){
+	var:string vReturn;
+	if($BorderDash(aID)>=10){
+		vReturn += ",stroke-dasharray:5 5 \n";
+	}else{
+		if($BorderDash(aID)==0){
+			vReturn += "\n";
+		}else{
+			vReturn += ",stroke-dasharray:"+ $BorderDash(aID)+ " " + (10 - $BorderDash(aID)) +" \n";
+		};
+	};
+	return vReturn;
+}
+
+function fOutputStylesAndLinks(vID:string, vIDtoName:dictionary){
+	var:string vReturn;
+
+	//Styles and Links Section 
+	vReturn += "\n%% Styles & Links\n";
+
+	//Node Style & URL
+	$M_NoteList(vID).each(aID){
+		//Style
+		if($M_HasOutputStyle(aID)){
+			vReturn += fApplyStyle(aID, vIDtoName);
+		};
+		//URL Link
+		if($URL(aID)){
+			vReturn += "    click " + vIDtoName[aID] + " href " + '"' + $URL(aID) + '" _blank\n';
+		};
+	};
+	//Subgraph Style
+	$M_Subgraphs(vID).each(aID){
+		if($M_HasOutputStyle(aID)){
+			vReturn += fApplyStyle(aID, vIDtoName);
+		};
+	};
+	return vReturn;
+} 
+
+
+
+function fWriteMermaidFlowchart(vDirection:string, vID:string, vCopy:boolean){
+	var:string vDestination;
+	var:string vHeader;
+	var:string vTemp;
+	var:set vABC="A;B;C;D;E;F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Z";
+	var:dictionary vIDtoName;// {$ID: Node & Subgraph Name}
+	var:dictionary vNodeSymboltoName;// {Node Name : $Name}
+	var:dictionary vNodeOnSubgraph;
+	var:list vKeyList;
+	var:list vAllNote;
+	var:list vTempList;
+   var:dictionary vTempDict;
+	
+
+  	$Text(vID) = fCreateMermaidHeader(vDirection, vID);
+	
+	//Find Subgraphs
+	vTempList = collect_if(descendants, $Prototype=="pMFNode" & $ChildCount > 0, $ID);
+	vTempList.each(aID){
+		$Prototype(aID)="pMFSubgraph";
+	};
+	//Find Nodes
+	vTempList = collect_if(descendants, $Prototype=="pMFSubgraph" & $ChildCount == 0, $ID);	vTempList.each(aID){
+		$Prototype(aID)="pMFNode";
+	};
+
+	// Collect node and subgraph lists
+	$M_NoteList = collect_if(descendants, $Prototype=="pMFNode", $ID).nsort($OutlineOrder);
+	$M_Subgraphs = collect_if(descendants, $Prototype=="pMFSubgraph",$ID);
+
+	 // Convert node IDs to simplified names (A, B, ..., Z, A1, B1, etc.)
+	var:number vCount=0;
+	$M_NoteList.each(aID){
+
+		if(vCount <=25){
+			vIDtoName = vIDtoName.extend("{" + aID + ":" + vABC.at(vCount) +"}");
+			$M_Name(aID) = vABC.at(vCount);
+			vNodeSymboltoName = vNodeSymboltoName.extend("{" + $M_Name(aID) + ":" + $Name(aID) +"}");
+		}else{
+		// count of Nodes > 26  
+			vTemp = (vCount/26).floor()+1;
+			vIDtoName = vIDtoName.extend("{" + aID + ":" + vABC.at(mod(vCount,26)) + vTemp +"}");
+			$M_Name(aID) = vABC.at(mod(vCount,26)) + vTemp;
+			vNodeSymboltoName = vNodeSymboltoName.extend("{" + $M_Name(aID) + ":" + $Name(aID) +"}");
+		};
+
+		vCount +=1;
+	};
+	
+    // Similar conversion for subgraphs
+	var:number vCount=1;
+	$M_Subgraphs.each(aSubID){
+		$M_NodeOnSubgraph(aSubID) = collect_if(children(aSubID), $Prototype=="pMFNode"|$Prototype=="pMFSubgraph",$ID);
+		vNodeSymboltoName = vNodeSymboltoName.extend("{Sub" + vCount + ":" + $Name(aSubID) +"}");
+		vIDtoName = vIDtoName.extend("{" + aSubID + ":Sub" + vCount +"}");
+		vCount += 1;
+	};
+	
+   // Output main graph nodes and links
+	$Text(vID) += fOutputNodesAndLinks(vID, vIDtoName);
+
+	//Output Subgraphs
+	$Text(vID) += fOutputSubgraphs(vID, vIDtoName);
+
+	//Output Subgraphs Link
+	$Text(vID) += 	fOutputSubgraphLinks(vID, vIDtoName);
+
+
+///
+	$Text(vID) += 	fOutputStylesAndLinks(vID, vIDtoName);
+
+
+	//For Quarto R chank
+	if($Q_HasChunkBlock){
+		$Text(vID) += "\n```\n\n";
+	};
+	//copy to clipboard
+	if(vCopy){
+		runCommand("export LANG='en_US.UTF-8' && pbcopy", $Text(vID));
+	};
+};
+
+
+
+
+

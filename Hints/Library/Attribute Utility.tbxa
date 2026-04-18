@@ -1,0 +1,134 @@
+// /Hints/Library/Attribute Utility
+
+//For Graphviz Attribute
+function fCreateAttributesFromDictionary(vID, vPrototype){
+	// Create User-Attributes from $Text.eachLine of a pAttribute note;
+	// Example
+   // QR_Title:{create:true;type:string;suggested:[];default:;description:'Document title';OptionName:title;}
+   var:dictionary vDict;
+	var:string vTemp;
+	var:string vName;
+	var:list vTempKey=[default;description;suggested];
+	var:string vTempStr;
+	var:list vAttributes = document["user-attributes"];
+	$Text(/Log)="";
+	if($Prototype==vPrototype){
+		if($IsUnLocked(vID)){
+			$Text(vID).eachLine(aLine){
+				var:dictionary vDict=vDict.extend(aline);
+				vTempStr=aLine.captureTo(":",vName);
+				action('vDict=vDict.extend("{' + aLine + '}");');
+				if(vAttributes.contains(vName)){
+					$Text(/Log)+= vName + ": exists" + "\n";
+						vTempKey.each(aKey){
+							action('attribute(' + vName+ ')["'+ aKey +'"] = vDict[vName]["' + aKey +'"];');
+						};
+				}else{
+					$Text(/Log)+= vDict[vName]["create"] + "\n";
+					if(vDict[vName]["create"]){
+						createAttribute(vName,vDict[vName]["type"]);
+						vTempKey.each(aKey){
+							action('attribute(' + vName+ ')["'+ aKey +'"] = vDict[vName]["' + aKey +'"];');
+						};
+						$Text(/Log)+= vName + ":is created" + "\n";
+					}else{
+						$Text(/Log)+= vName + ":except creation" + "\n";
+					};
+				};
+			};
+//			$MyDictionary(vID)=vDict;
+//			$MyString(vID) = 'attribute(' + vName+ ')["'+ vKey +'"] = $MyDictionary(vID)';
+//			action($MyString(vID));
+			$Text(/Log)+= vDict + "\n";
+		}else{
+			($Name(vID) + " is Locked.").show;
+		};
+	}else{
+		("Select " + vPrototype + " note").show;
+		
+	};
+
+};
+
+function fSetupAttibutesDictionary(vID){
+	if($IsUnLocked(vID)){
+		$MyString(vID) = '$'+ $Name(vID)+'('+vID+')'+'="";';
+		
+		action($MyString(vID));
+		$Text(vID).eachLine(aLine){
+			$MyString(vID) = '$'+ $Name(vID)+'('+vID+')'+'='+'$'+ $Name(vID)+'('+vID+')'+'.extend("{' + aLine + '}");';
+			action($MyString(vID));
+		}
+	}else{
+		($Name(vID) + " is Locked.").show;
+	};
+};
+
+function fSetupAttibutesDictionaryDefaultValue(vID, vPrototype, vKey){
+	//$Name(vID)-> a Name of user attribute
+	//vKey= "default" or "description" or "suggested" etc.
+
+	var:dictionary vDict;
+	var:string vTemp;
+	var:number vCount=1;
+	var:string vName=$Name(vID);
+	var:string vTempKey;
+	var:list vAttributes = document["user-attributes"];
+	if($Prototype(vID)==vPrototype){
+		if($IsUnLocked(vID)){
+			$Text(vID).eachLine(aLine){
+				if(vAttributes.contains(vTempKey)){
+					$MyString(vID) = 'vDict=vDict.extend("{'+vCount+':{' + aLine + '}}");';
+					action($MyString(vID));
+					vCount+=1;
+				};
+			};
+			$MyDictionary(vID)=vDict;
+			$MyString(vID) = 'attribute(' + vName+ ')["'+ vKey +'"] = $MyDictionary(vID);';
+			action($MyString(vID));
+		}else{
+			($Name(vID) + " is Locked.").show;
+		};
+	}else{
+		("Select " + vPrototype + " note").show;
+		
+	};
+};
+
+function fSetupAttibutesValue(vID, vPrototype, vKey){
+	//$Name(vID)-> a Name of user attribute
+	//vKey= "default" or "description" or "suggested" etc.
+
+	var:dictionary vDict;
+	var:string vStr;
+	var:string vTempKey;
+	var:string vValue;
+	var:string vTranslated;
+
+	var:list vAttributes = document["user-attributes"];
+	if($Prototype==vPrototype){
+		if($IsUnLocked(vID)){
+			$Text(vID).eachLine(aLine){
+				vValue=aLine.captureTo(":",vTempKey);
+				if(vAttributes.contains(vTempKey)){
+					if($Rename_in(vID)){
+						$Text(/Log)+= vTempKey + " ; ";
+						vTranslated=fTranslateStrings($Rename_in(vID), vValue);
+						if(!vTranslated.contains("Oops!")){
+							vValue=vTranslated.replace("「","").replace("」","");
+						};
+					};
+					vStr = 'attribute(' + vTempKey+ ')["'+ vKey +'"] = vValue';
+					action(vStr);
+				};
+			};
+		}else{
+			($Name(vID) + " is Locked.").show;
+		};
+	}else{
+		("Select " + vPrototype + " note").show;
+		
+	};
+};
+
+

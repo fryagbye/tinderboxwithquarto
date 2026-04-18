@@ -1,0 +1,70 @@
+// /Hints/Library/Table of Contains
+
+function fMakeTOC(){
+	var:string vTOC($TableOfContaintsNote("TBXConfig"));
+	var:string vPath=$ProjectContainer("TBXConfig");
+	var:string vNewNote=  vTOC + "#pTOCQmd";
+	var:string vMessage="Move the TOC note where you want to place it." + vPath;
+	if(!$ToggleTOC){
+		vMessage+="\nPlease set $ToggleTOC ON in TBXConfig note";
+	};
+	//select(vPath);
+	create(vPath, vNewNote);
+	$Text($TableOfContaintsNote("TBXConfig")) = $Text("Index List");
+	vMessage.show(); 
+};
+
+function fMakeIndexList(vProjectPath:string){
+	var:string vNote1=vProjectPath + $SecLabelListContainer("TBXConfig");
+	var:string vNote2=vProjectPath + $IndexListContainer("TBXConfig");
+	var:string vNote3=vProjectPath + "/" + $TableOfContaintsNote("TBXConfig");
+	var:boolean vInJapanese=$IsInJapaneseTOC("TBXConfig");
+	var:number vLevel = $MakeIndexLevel("TBXConfig");
+	var:string vTest;
+	var:string vSectionName;
+	var:string vName;
+
+	$Text(vNote2)="";
+	$Text(vNote1).eachLine(aline){
+		vName = aline.substr(2);
+		if($ChildCount("agent unnumbered") == 0){
+			vSectionName = $Name($MyDictionary(vNote1)[vName]);
+		}else{
+			vSectionName =;
+		};
+		if(aline.beginsWith("1:")){
+
+			if(vInJapanese & $ChildCount("agent unnumbered")== 0){
+				$Text(vNote2) += "第[-"+ vName +"]章 " + vSectionName + "\n  \n";
+			}else{ 
+				$Text(vNote2) += "[" + vName + "] " + vSectionName + "\n  \n";
+			};
+		};
+		if(vLevel>=2){
+			if(aline.beginsWith("2:")){
+				aline = aline.substr(2);
+				if(vInJapanese & $ChildCount("agent unnumbered")== 0){
+					$Text(vNote2) += "- [-"+ vName +"] " + vSectionName + "\n  \n";
+				}else{
+					$Text(vNote2) += "- [" + vName + "] " + vSectionName + "\n  \n";
+				}
+			};
+		};
+			if(vLevel>=3){
+			if(aline.beginsWith("3:")){
+				aline = aline.substr(2);
+				if(vInJapanese & $ChildCount("agent unnumbered")== 0){
+					$Text(vNote2) += "- [-"+ vName +"] " + vSectionName + "\n  \n";
+				}else{
+					$Text(vNote2) += "- [" + vName + "] " + vSectionName + "\n  \n";
+				}
+			};
+		};
+	};
+	vTest = $IDString(vNote3);
+	if(vTest){
+		$Text(vNote3)=$Text(vNote2);
+	};
+};
+
+
