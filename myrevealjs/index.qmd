@@ -19,8 +19,15 @@ format:
     transition: convex
     
     
+    mermaid-format: png
 
 ---
+
+
+
+
+
+
 {{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
 
 
@@ -51,7 +58,7 @@ The language of chunk code is `webr` for R or `pyodide` for python
 ## R chunk example 1
 
 
-
+ 
 ```{r}
 #| echo: false
 #| label: fig-Graph
@@ -65,7 +72,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-
+ 
 
 
 
@@ -82,7 +89,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 If you want to suppress warning messages, you set `$Q_ChunkSuppressWarning` false.
 
-
+ 
 ```{webr}
 #| echo: false
 #| warning: false
@@ -97,7 +104,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-
+ 
 
 
 
@@ -113,7 +120,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
 ## R chunk example 2
 
 
-
+ 
 ```{webr}
 #| echo: false
 #| fig-width: 5
@@ -125,7 +132,7 @@ abline(mod, col = 'blue')
 summary(mod)
 ```
 
-
+ 
 
 
 
@@ -141,7 +148,7 @@ summary(mod)
 ## Python chunk example
 
 
-
+ 
 ```{python}
 #| echo: true
 #| label: fig-python
@@ -156,7 +163,32 @@ plt.hist(x)
 plt.show()
 ```
 
+ 
 
+
+
+
+
+
+
+
+---
+
+
+
+## 例4: Mermaidで作図
+
+
+ 
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+flowchart TD
+   id1((1))---id2((2))---id3((3)):::current
+   classDef current stroke: #f96, stroke-width: 2px, color: #f96
+
+```
+ 
 
 
 

@@ -1,30 +1,19 @@
-
-
 # Export and Render {#sec-export }
-
-
-
-1. Export `_quarto.yml`
-
+ 
+ 1. Export `_quarto.yml`
 You can change the output format to "pdf" or "html"  with the stamp "Change quarto.yml template".
 If you use a _language.yml, you export "_language" note (optional. See  @sec-setting Setting)
 
-
 2. Export  `.qmd` files ( pNote notes only)
-
 The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to the "output" folder. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
 If you select the pNote notes below "Export Agent" and output it, ~~then execute the "Move qmd files" stamp~~, you can overwrite the qmd file directly to `./output` (=`$HTMLExportFileName` of your project folder) ( @fig-output-tree). This method avoids considering the folder structure when referencing image files with a relative path.
 
+
 ![Folders](screenshots/outputfoldertree01.png){#fig-output-tree}
-
-
+ 
 
 3. Preview HTML output. 
-
-
-
     * Terminal application 
-
 
 ```zsh
 # preview
@@ -33,21 +22,14 @@ e.g.
 > quarto preview output
 ```
 
-
-
     * You can execute the command with the stamp "Quarto: Book Preview ( Select Export Agent )" 
 
 
 ![Example: Quarto Preview](screenshots/quartorenderexample02.png){#fig-quarto-preview}
-
-
+ 
 
 4. Render pdf or html.
-
-
-
     * Terminal application 
-
 
 ```zsh
 > quarto render output
@@ -55,13 +37,10 @@ e.g.
 
 
 ![Example: Quarto Render](screenshots/quartorenderexample01.png){#fig-quarto-render}
-
-
+ 
 
 * You can execute the command with the stamp "Quarto: Book Render ( Select For Export ) 
-
     You can use RStudio for preview and render.
-
 
 
 

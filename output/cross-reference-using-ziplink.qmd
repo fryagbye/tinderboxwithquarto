@@ -1,39 +1,33 @@
-
-
 # Cross-Reference using Ziplink {#sec-cross-reference-using-ziplink }
+ 
+ In Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). [^regrex]
 
-In Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). [^regrex]
 
 ![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](screenshots/WorkingIndicator.png)
+ 
+Convert it to a quotable title (citation name starting with \@) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
 
-Convert it to a quotable title (citation name starting with @) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
 
 [^regrex]: The diagrams and tables are extracted in regular expressions.
+ 
 
 
 [^ziplink]: Please refer to "Text link creation via the Ziplinking method" in [A Tinderbox Reference File](https://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html).(@Anderson2024Tinde)
-
-
-
-
-
-
+ 
 
 ## How to set the label of the diagram {#sec-how-to-set-the-label }
-
-
-
-
-
-
-
+ 
+ 
 ### Image link in markdown format {#sec-image-link-in-markdown-format }
-
-Recognize and collect labels in a format that extends the markdown.
+ 
+ Recognize and collect labels in a format that extends the markdown.
   
 \!\[Test image](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
 
 ![label:@fig-test](screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
+ 
+
+
 
 
 
@@ -44,10 +38,11 @@ Recognize and collect labels in a format that extends the markdown.
 
 
 ## R chunk {#sec-r-chunk }
-
-Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.
-  
-＜r:airquality➡️fig-airquality＞
+ 
+ Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote \@fig-airquality.
+ 
+<r:airquality➡️fig-airquality>
+ 
 
 
 ```{r}
@@ -64,8 +59,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
   geom_smooth(method = "loess")
 ```
 
-
-
+ 
 
 
 
@@ -73,58 +67,16 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 
 ## Python chunk
-
-Automatically recognize and collect Python chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. 
+ 
+ Automatically recognize and collect Python chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. 
 In the following example, you can quote labels like @fig-matplotlib.
   
-＜python:numpy＞
-  
-
-
-```{python}
-#| echo: false
-#| fig-width: 5
-#| fig-pos: H
-#| fig-show: asis
-import numpy as np
-a = np.arange(15).reshape(3, 5)
-a
-```
-
-
-  
-＜python:matplotlib➡️fig-matplotlib＞
-  
-
-
-```{python}
-#| echo: false
-#| label: fig-matplotlib
-#| fig-width: 5
-#| fig-pos: H
-#| fig-show: asis
-import matplotlib.pyplot as plt
-fig = plt.figure()
-x = np.arange(10)
-y = 2.5 * np.sin(x / 20 * np.pi)
-yerr = np.linspace(0.05, 0.2, 10)
-
-plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
-plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
-plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
-             label='uplims=True, lolims=True')
-
-upperlimits = [True, False] * 5
-lowerlimits = [False, True] * 5
-plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
-             label='subsets of uplims and lolims')
-
-plt.legend(loc='lower right')
-plt.show(fig)
-```
-
-
-
+<python:numpy>
+ 
+<python:numpy>
+<python:matplotlib➡️fig-matplotlib>
+ 
+<python:matplotlib➡️fig-matplotlib>
 
 
 
@@ -132,17 +84,16 @@ plt.show(fig)
 
 
 ## How to set the label of the table {#sec-how-to-set-the-label-of-the-table }
-
-There are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.[^table-cross-ref]
+ 
+ There are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.[^table-cross-ref]
+ 
 
 [^table-cross-ref]: For other formats, please refer to [quarto cross-reference](https://quarto.org/docs/authoring/cross-references.html#tables).
+ 
+ 
 
-
-```{.txt}
-
-
+```{.txt code-line-numbers="false"} 
 :明度・彩度の修飾子 {#tbl-brightness-saturation}
-
  
 |項目|効果|
 |----|------------|
@@ -151,19 +102,20 @@ There are multiple ways to specify labels, but they are only supported if it is 
 |darkest|最も暗くする|
 |light| 明るくする|
 ```
-
-
-
-:明度・彩度の修飾子 {#tbl-brightness-saturation}
+ 
+  
 
  
+:明度・彩度の修飾子 {#tbl-brightness-saturation}
+ 
+
 |項目|効果|
 |----|------------|
 |dark|暗くする|
 |darker|より暗くする|
 |darkest|最も暗くする|
 |light| 明るくする|
-
+ 
 
 
 
@@ -171,34 +123,34 @@ There are multiple ways to specify labels, but they are only supported if it is 
 
 
 ## Equations {#sec-equations }
-
-Equation Example
+ 
+ Equation Example
 Black-Scholes (@eq-black-scholes) is a mathematical model that seeks to explain
-
+ 
 
 * Input
+ 
 
-
-```latex
+```{.latex code-line-numbers="false"}
 
 $$
 ma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + 
+\mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
 $$
-
+ 
 ```
-
-
+ 
 
 * Output
-
+ 
 
 $$
 ma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm
+ S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
 $$ {#eq-black-scholes}
-
-
+ 
 
 
 
@@ -206,11 +158,8 @@ $$ {#eq-black-scholes}
 
 
 ## How to quote {#sec-how-to-quote }
-
-If you enter two square brackets "[[", the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.
-
-
-:How to quote
+ 
+ If you enter two square brackets "[[", the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.
 
 |Types of quotations  |Lable  |Quote|
 |---|---|---|
@@ -219,6 +168,8 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 |Charts　|#tbl-|\@tbl-|
 |Equations | #eq-| \@eq-|
 
+ 
+:How to quote
 
 
 
@@ -226,17 +177,11 @@ If you enter two square brackets "[[", the list will be displayed, so please ent
 
 
 ## Dummy links for cross-reference {#sec-add-dummy-links-to-cross-ref }
-
-You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
-
+ 
+ You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
 
 1. execute the "Labels: Make Dummy Link Data For Cross-Reference" stamp
-
-
-
-2. select cross-ref label notes ( start with "@" ) and execute the "Labels: Dummy Link between Reference and Selected notes" stamp.
-
-
+2. select cross-ref label notes ( start with "\@" ) and execute the "Labels: Dummy Link between Reference and Selected notes" stamp.
 
 
 
@@ -244,23 +189,15 @@ You can create dummy links showing where each cross-reference, starting with the
 
 
 ## Restrictions on quoted labels {#sec-restrictions-on-quoted-labels }
-
-
-
-* The label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.
-
-
-
+ 
+ * The label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.
 * Cross-ref detection is carried out by regular expression. If it is executed in the middle of input, it will be duplicated with a short label.
-
 In this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.
 
-
 1. Labels: Clear Cross-Reference List（Delete all citation labels under the Reference List.）
-
-
-
 2. Labels: Make Cross-Reference List（Re-detect the quoted label.）
+
+
 
 
 

@@ -1,0 +1,212 @@
+---
+title: "Quarto Computations"
+date: 2024-06-29
+author:
+
+  - name: Yamada Ichiro SAMPLE
+    degrees: 
+      - B.S.
+      - PhD
+    orcid: xxxx-0001-1234-5678
+    email: yamada.i@example.com
+    phone: +81-xx-555-1234
+    affiliation:
+    - name: Example Company
+      department: Plannng
+      city: Chuo ku
+      state: Tokyo
+      country: Japan
+      url: "https://www.google.com"
+      ringgold: 1
+      isni: 2
+    - name: TEST University
+      department: 
+      city: 
+      state: 
+      country: 
+      url: ""
+      ringgold: 0
+      isni: 
+
+
+  - name: Sato Tadashi SAMPLE
+    degrees: 
+      - PhD
+    orcid: xxxx-0002-1234-5678
+    email: Sato.t@example.com
+    phone: +81-xx-555-1234
+    affiliation:
+    - name: Example Company
+      department: Plannng
+      city: Chuo ku
+      state: Tokyo
+      country: Japan
+      url: "https://www.google.com"
+      ringgold: 1
+      isni: 2
+
+
+
+abstract: >
+  This is a demo of quarto manuscript
+keywords: Plotly,Python,Quarto
+
+
+license: "CC BY"
+copyright:
+  holder: quarto-dev
+  year: [2023,2024]
+citation:
+  container-title: Test
+  volume: 1
+  issue: 1
+  doi: 10.xxxx/12345678
+funding: "The author received no specific funding for this work."
+---
+
+
+
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+
+
+
+ 
+## NumPy
+ 
+
+```{python}
+#| echo: false
+#| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
+import numpy as np
+a = np.arange(15).reshape(3, 5)
+a
+```
+
+ 
+ Reference test @Wickham2016Data
+
+
+
+
+ 
+## Matplotlib { #sec-matplotlib }
+ 
+
+```{python}
+#| echo: false
+#| label: fig-matplotlib
+#| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
+
+import matplotlib.pyplot as plt
+import numpy as np
+fig = plt.figure()
+x = np.arange(10)
+y = 2.5 * np.sin(x / 20 * np.pi)
+yerr = np.linspace(0.05, 0.2, 10)
+
+plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
+plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
+plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
+             label='uplims=True, lolims=True')
+
+upperlimits = [True, False] * 5
+lowerlimits = [False, True] * 5
+plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
+             label='subsets of uplims and lolims')
+
+plt.legend(loc='lower right')
+plt.show(fig)
+```
+
+ 
+ 
+
+
+
+ 
+## Plotly
+ 
+
+```{python}
+#| echo: false
+#| label: fig-plotly
+#| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
+import plotly.express as px
+import pandas as pd
+import numpy as np
+
+# 1. 外部データを使わず、手動でデータを作成
+# （ランダムな100個のデータを作成）
+np.random.seed(42)
+df = pd.DataFrame({
+    "x_val": np.linspace(0, 10, 100),
+    "y_val": np.sin(np.linspace(0, 10, 100)) + np.random.normal(0, 0.1, 100),
+    "category": np.random.choice(["A", "B"], 100)
+})
+
+# 2. 散布図を作成
+fig = px.scatter(
+    df, 
+    x="x_val", 
+    y="y_val", 
+    color="category",
+    title="Local Data Test (No Network)",
+    labels={"x_val": "X Axis", "y_val": "Y Axis"}
+)
+
+# 3. 描画
+fig.show()
+```
+
+ 
+ 
+
+
+
+ 
+## R
+ 
+
+```{r}
+#| echo: false
+#| warning: false
+#| label: fig-airquality
+#| fig-cap: Temperature and ozone level.
+#| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+ 
+ 
+
+
+
+ 
+## References { .unnumbered }
+ 
+
+:::{#refs}
+ 
+ 
+
+:::
+ 
+ 
+
+
+

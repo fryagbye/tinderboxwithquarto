@@ -2,6 +2,8 @@ project:
   type: book
   output-dir: _bookhtml
 
+
+
 book:
   title: Tinderbox file for Quarto
   author: fryagbye
@@ -23,6 +25,7 @@ book:
     pinned: true
   chapters:
     - index.qmd
+    - setup.qmd
     - usage-environment.qmd
     - setting.qmd
     - part: "Book format"
@@ -42,7 +45,7 @@ book:
         - export-and-render.qmd
     - part: "revealjs format"
       chapters:
-        - make-a-new-book-project.qmd
+        - make-a-new-revealjs-project.qmd
         - make-revealjs-subproject.qmd
     - mermaid-flowchart.qmd
     - graphviz-optional.qmd
@@ -57,6 +60,7 @@ format:
       - cosmo
       
     code-link: true
+    code-line-numbers: true
     toc: true
     toc-depth: 2
     number-sections: true
@@ -75,6 +79,12 @@ format:
 
     mainfont: "Noto Sans JP"
     monofont: "Noto Sans Mono"
+    page-layout: full
+    grid: 
+      sidebar-width: 400px
+      body-width: 1000px
+      margin-width: 400px
+      gutter-width: 1.5em
     callout-appearance: default
 
 lightbox:

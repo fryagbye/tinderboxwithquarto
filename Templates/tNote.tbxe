@@ -1,0 +1,210 @@
+^action(
+    var:string vChunkListPath="/Chunk List";
+    var:string vGraphListPath="/Graph List";
+    var:string vText;
+    var:string vPre;
+    var:string vRegChunk="^[ \t]*(\^?)(<((?:webr|r|python|pyodide|osj):.*?)>)";
+    var:string vRegGraph="^[ \t]*(\^?)(<((?:dot|mermaid):.*?)>)";
+    var:string vChunkPath;
+    var:string vChunkName;
+    var:string vGraphPath;
+    var:string vGraphName;
+    var:string vTest;
+    var:boolean vCheck;
+    var:boolean vInEquation=false;
+    var:boolean vInCodeBlock=false;
+    var:boolean vInMDBlock=false;
+    var:string vProjectPath;
+    var:string vTemp;
+	 var:boolean vWarn=false;
+
+    vProjectPath=collect(ancestors(original),$Path)[-1];
+    if($HasOutType(vProjectPath)){
+        vTemp ='out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")\n';
+    };
+    if($HasCommonR(vProjectPath)){
+        vTemp +='source("_common.R")\n';
+    };
+    if($HasOutType(vProjectPath)|$HasCommonR(vProjectPath)){
+        vPre += '```{r, echo=FALSE}\n';
+        vPre += '#| include: false\n';
+        vPre += vTemp;
+        vPre += '```\n';
+    };
+    vPre += $OutlineDepthBase * "#"  + " " + $Name;
+    if($IsUnnumbered|$HasSectionLabel|$IsAppendix){
+        vPre +=" {";
+    };
+    if($HasSectionLabel){
+        vPre +="#sec-" + $SectionLabel;
+    };
+    if($IsUnnumbered){
+        vPre +=" .unnumbered";
+    };
+    if($IsAppendix){
+        vPre +=" .appendix";
+    };
+    if($IsUnnumbered|$HasSectionLabel|$IsAppendix){
+        vPre +=" }\n \n ";
+    }else{
+        vPre +="\n \n ";
+    };
+    vText=vPre;
+    var:number vLineCount = 0;
+
+    $Text.eachLine(aLine){
+        vLineCount += 1;
+        vCheck=true;
+
+        // --- Tinderbox Custom Tags (Chunk / Graph) ---
+        
+        // Chunk Tag
+        if(vCheck & !vInCodeBlock & !vInEquation & aLine.contains(vRegChunk)){
+            if($1 == "^"){
+                // Escaped tag - output as normal line (but stripped)
+                vText += $2 + "\n";
+            } else {
+                vChunkName=$3;
+                vChunkPath=$ToDummyLinkPath($2);
+                $FromDummyLinkPath($2)+=$Path;
+                createLink($Path, $2);
+
+                vTest=$ID(vChunkPath);
+                if(!vTest){
+                    vChunkPath=collect_if(children(vChunkListPath),$Name==vChunkName,$Path).first;
+                };
+                if(!vTest & !$ID(vChunkPath)&vWarn){
+                    ("No Chunk Tag Label Detected").show;
+                };
+                
+                if(vLineCount > 1){ vText += "\n"; };
+                vText += fWriteOptionsForChunk($ID(vChunkPath), false) + "\n \n ";
+            };
+            vCheck=false;
+        };
+
+        // Graph Tag
+        if(vCheck & !vInCodeBlock & !vInEquation & aLine.contains(vRegGraph)){
+            if($1 == "^"){
+                // Escaped tag - output as normal line (but stripped)
+                vText += $2 + "\n";
+            } else {
+                vGraphName=$3;
+                vGraphPath=$ToDummyLinkPath($2);
+                $FromDummyLinkPath($2)+=$Path;
+                createLink($Path, $2);
+
+                vTest=$ID(vGraphPath);
+                if(!vTest & !$ID(vChunkPath)){
+                    vGraphPath=collect_if(children(vGraphListPath),$Name==vGraphName,$Path).first;
+                };
+                if(!vTest & !$ID(vChunkPath)&vWarn){
+                    ("No Graph Tag Label Detected").show;
+                };
+
+                if(vLineCount > 1){ vText += "\n"; };
+                vText += fWriteOptionsForGraph($ID(vGraphPath)) + "\n \n ";
+            };
+            vInMDBlock=false;
+            vCheck=false;
+        };	
+
+        // --- Standard Markdown Blocks ---
+
+        if(vCheck){
+            // Equations ($$)
+            if(aLine.beginsWith("$$")){
+                if(vInEquation){
+                    vText += aLine + "\n ";
+                    vInEquation = false;
+                } else {
+                    if(vLineCount > 1){ vText += "\n"; };
+                    vText += aLine + "\n";
+                    vInEquation = true;
+                };
+                vInMDBlock=false;
+                vCheck=false;
+            };
+            
+            // Code Blocks (```)
+            if(vCheck & aLine.beginsWith("```")){
+                if(vInCodeBlock){
+                    vText += aLine + "\n";
+                    vInCodeBlock = false;
+                } else {
+                    if(vLineCount > 1){ vText += "\n"; };
+                    vText += aLine + "\n";
+                    vInCodeBlock = true;
+                };
+                vInMDBlock=false;
+                vCheck=false;
+            };
+
+            // Headers (#)
+            if(vCheck & !vInCodeBlock & !vInEquation & aLine.contains("^#+[ \t]+")){
+                if(vLineCount > 1){ vText += "\n"; };
+                vText += "\n" + aLine + "\n \n";
+                vInMDBlock=false;
+                vCheck=false;
+            };
+
+            // Divs (:::), Links/Images with attributes ([, ![)
+            if(vCheck & !vInCodeBlock & !vInEquation & (aLine.beginsWith(":::") | aLine.beginsWith("[") | aLine.beginsWith("!["))){
+                if(vLineCount > 1){ vText += "\n"; };
+                vText += "\n" + aLine + "\n \n";
+                vInMDBlock=false;
+                vCheck=false;
+            };
+
+            // Lists (*, -, +, 1.), Blockquotes (>), Tables (|)
+            if(vCheck & !vInCodeBlock & !vInEquation & (aLine.contains("^[ \t]*([*+-]|[0-9]+\.)[ \t]+") | aLine.beginsWith(">") | aLine.beginsWith("|") | aLine.beginsWith("+--"))){
+                if(!vInMDBlock & vLineCount > 1){
+                    vText += "\n";
+                };
+                vText += aLine + "\n";
+                vInMDBlock = true;
+                vCheck=false;
+            };
+
+            // Table Caption (:) - Needs a newline after table
+            if(vCheck & !vInCodeBlock & !vInEquation & aLine.beginsWith(":") & !(aLine.beginsWith(":::"))){
+                vText += "\n " + aLine + "\n";
+                vInMDBlock = false;
+                vCheck = false;
+            };
+
+            // Horizontal Rules (---, ***, ___)
+            if(vCheck & !vInCodeBlock & !vInEquation & (aLine.contains("^---+$") | aLine.contains("^\*\*\*+$") | aLine.contains("^___+$"))){
+                if(vLineCount > 1){ vText += "\n"; };
+                vText += aLine + "\n \n";
+                vInMDBlock=false;
+                vCheck=false;
+            };
+
+            // Shortcodes ({{<)
+            if(vCheck & !vInCodeBlock & !vInEquation & aLine.beginsWith("{{<")){
+                if(vLineCount > 1){ vText += "\n"; };
+                vText += aLine + "\n \n";
+                vInMDBlock=false;
+                vCheck=false;
+            };
+
+            // Footnotes ([^)
+            if(vCheck & !vInCodeBlock & !vInEquation & aLine.beginsWith("[^")){
+                vText += aLine + "\n";
+                vInMDBlock=false;
+                vCheck=false;
+            };
+
+            // Default (Normal line)
+            if(vCheck){
+                vText += aLine + "\n";
+                vInMDBlock=false;
+            };
+        };
+    };
+    if(vLineCount > 0){
+        vText+="\n";
+    };
+)^^value(vText)^^if(^value(!$Is_Part_qmd))^^include(^value($IncludeNotes)^, /Templates/tSubnote)^^endIf^
+

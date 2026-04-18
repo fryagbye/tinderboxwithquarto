@@ -1,0 +1,134 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>
+project:
+  type: book
+  output-dir: _bookhtml
+
+
+
+book:
+  title: 
+  subtitle: 
+  author: 
+
+  page-footer:
+    left: |
+      
+    right: |
+      
+  project:
+  type: ^value($Q_ProjectType)^
+  output-dir: _^value($Q_ProjectType)^^value($Q_OutputType)^
+
+^if($Q_ToggleBrandYML)^brand: ^value($Q_BrandYmlFile)^^endIf^
+
+book:
+  title: ^value($Q_Title)^
+  author: ^value($Q_Author)^
+  reader-mode: ^value($Q_ToggleReaderMode)^
+
+  ^if($Q_HasPageFooter)^page-footer:
+    left: |
+      ^value($Q_PageFooterLeft)^
+    right: |
+      ^value($Q_PageFooterRight)^^endIf^
+  ^if($Q_CoverImage)^cover-image: ^value($Q_CoverImage)^^endIf^
+  ^if($Q_Favicon)^favicon: ^value($Q_Favicon)^^endIf^
+  ^if($Q_SiteUrl)^site-url: ^value($Q_SiteUrl)^^endIf^
+  ^if($Q_RepoUrl)^repo-url: ^value($Q_RepoUrl)^^endIf^
+  ^if($Q_RepoBranch)^repo-branch: ^value($Q_RepoBranch)^^endIf^
+  ^if($Q_RepoActions)^repo-actions: [^value($Q_RepoActions)^]^endIf^
+  ^if($Q_SidebarStyle)^sidebar:
+    style: ^value($Q_SidebarStyle)^
+    ^if($Q_SidebarPinned)^pinned: ^value($Q_SidebarPinned)^^endIf^^endIf^
+^value($Text)^
+
+format:
+  html:
+    theme:
+      - ^value($Q_HtmlTheme)^
+      ^if($Q_HtmlTheme_scss)^- ^value($Q_HtmlTheme_scss)^^endIf^
+    code-link: ^value($Q_CodeLink)^
+    code-line-numbers: ^value($Q_HasCodeLineNumbers)^
+    toc: ^if($Q_HasTOC)^true^else^false^endIf^
+    ^if($Q_HasTOC)^toc-depth: ^value($Q_TOCDepth)^^endIf^
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+    highlight-style: ^value($Q_HighlightStyle)^
+    link-external-newwindow: ^value($Q_LinkExternalNewwindow)^
+    pdf-engine: ^value($Q_PDFEngine(\"TBXConfig\"))^
+    author-meta: \"^value($Q_AuthorMeta)^\"
+    ^if($Q_Indent)^indent: ^value($Q_Indent)^^endIf^
+    ^if($Q_HasIncludeInHeader)^include-in-header:
+     - text: |
+^action($MyString=\"\";$Q_IncludeInHeaderHtml.each(aLine){$MyString += 9*\" \" + aLine + \"\n\"};)^^value($MyString)^^endIf^
+    ^if($Q_Mainfont)^mainfont: ^value($Q_Mainfont)^^endIf^
+    ^if($Q_Monofont)^monofont: ^value($Q_Monofont)^^endIf^
+    page-layout: ^value($Q_PageLayout)^
+    ^if($Q_HasCustomGrid)^grid: 
+      sidebar-width: ^value($Q_GridSidebarWidth)^
+      body-width: ^value($Q_GridBodyWidth)^
+      margin-width: ^value($Q_GridMarginWidth)^
+      gutter-width: ^value($Q_GridGutterWidth)^^endIf^
+    callout-appearance: ^value($Q_CalloutAppearance)^
+
+^if($Q_HasLightbox)^lightbox:
+  match: ^value($Q_LightboxMatch)^
+  effect: ^value($Q_LightboxEffect)^
+  desc-position: ^value($Q_LightboxDescPosition)^
+  loop: ^value($Q_LightboxLoop)^
+^else^lightbox: false
+^endIf^
+
+^if($Q_HasLang)^lang: ^value($Q_Lang)^^endIf^
+^if($Q_BibliographyFile(\"TBXConfig\"))^bibliography: ^value($Q_BibliographyFile(\"TBXConfig\"))^^endIf^
+^if($Q_BibCslFile)^csl: ^value($Q_BibCslFile)^^endIf^
+^if($Q_ReferenceLocation)^reference-location: ^value($Q_ReferenceLocation)^^endIf^
+^if($Q_CitationLocation)^citation-location: ^value($Q_CitationLocation)^^endIf^
+^if($Q_HasLanguageYml)^language: ^value($Q_LanguageYml)^^endIf^
+classoption: ^value($Q_ClassOptionHTML)^
+
+
+execute:
+  cache: ^value($Q_Cache)^
+  ^if($Q_IsKeepmd)^keep-md: ^value($Q_IsKeepmd)^^endIf^
+  freeze: ^value($Q_Freeze)^
+  crossrefs-hover: false	
+
+editor: ^value($Q_Editor)^
+
+format:
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    number-depth: 3
+    pdf-engine: lualatex
+    cite-method: citeproc
+    code-link: true
+
+    code-line-numbers: true
+
+    author-meta: ""
+    indent: true
+    
+    callout-appearance: default
+    
+
+
+
+bibliography: /Users/tk4o2ka/github/tinderboxwithquarto/citation/references.bib
+
+
+
+documentclass: bxjsbook
+classoption: A4paper,9pt,lualatex,ja=standard
+papersize: a4
+
+execute:
+  cache: false
+  
+  freeze: auto
+
+editor: visual
+
+</body></html>

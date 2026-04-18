@@ -1,97 +1,60 @@
-
-
 # Setting {#sec-setting }
-
-
-
-1. Setting up with "TBXConfig" note
+ 
+ 1. Setting up with "TBXConfig" note
 
 
 ![User Attributes in TBXConfig](screenshots/TBXConfig01.png)
-
+ 
     You need to change the values of the following "TBXConfig" attributes for configuration.
-
 
 * `$Indent_Charactor` → Set the symbol representing the depth of indentation. ( default value = ★ )
 
 
-
-* ~~`$ExList` → List of notes excluded from cross-reference search ( default value = "List and Agent etc" )~~
-
-
-
-* `$ProjectContainer`  →  Book Project Path for CrossRef Search and Label Lists 
-
-
 ![Project Contaier Example](screenshots/BookProjectContainerExample.png){#fig-projectcontaierexample fig-alt="Project Contaier Example" fig-align="left" width=80%}  
-
-
+ 
 
 * `$ExportFolder` → File path of exported files.
 
 
 ![Export Folder Setting](screenshots/exportfoldersetting.png){#fig-exportfoldersetting fig-alt="Export Folder Setting" fig-align="left" width=50%}
-
-
+ 
 
 * `$ToggleTOC` → Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml. 
-
-
-
 * `$Q_TableOfContainsNote` → **$Name** of TOC note. ( default value = Table of Contents )
-
-
-
 * `$Rename_in` → [`translate-shell`](https://github.com/soimort/translate-shell) option setting `[SOURCES]:[TAGETS]. ( default value = ja:en )
-
-
-
 * `$Q_PDFEngine` → Setting for [pdf engine](https://quarto.org/docs/output-formats/pdf-engine.html) This file is tested only with lualatex. ( default value = lualatex )
-
-
-
 * ~~`$OutlineBaseControl` → Adjustment of section levels in Markdown. ( default = 1 )~~
-
-    `$OutlineBaseControl` is enabled in Manuscript and revealjs project. This attribute is used in pSubfolderManuscript and pSubfolderRevealjs note.
+    `$OutlineBaseControl` is enabled in Manuscript and revealjs project. This attribute is used in pManuscriptFolder and pRevealjsFolder note.
      e.g. 
 
-
     * $OutlineBaseControl = 1 → \#\# Title
-
     
 
-
     * $OutlineBaseControl = 1 → \# Title 
-
-
-
 * `$RScriptLibraryPath` → R Library Resource Path ( default Value )
-
     ![Rscript Library Path](screenshots/RscriptLibPath.png){#fig-rscript-libpath fig-alt="Rscript Library Path" fig-align="left" width=80%}
 	
 
-
 2. Making a `_quarto.yml`
-
     You can change the values of attributes of the "_quarto" note to change quarto options. The quarto options are attributes that start with "Q" in this file. The initial setting specified in `_quarto.yml` is for Japanese output. Please refer to [Quarto Book Structure](https://quarto.org/docs/books/book-structure.html) and [PDF Basics](https://quarto.org/docs/output-formats/pdf-basics.html) in detail.
     If you use [Custom Translations](https://quarto.org/docs/authoring/language.html#custom-translations), you need to make `$Q_Has_Language_YML` `true` and set `$Q_Language_YML` for the filename.
 The "_language" note in this file is for translating to Japanese.
 
+
 ![_quarto.yml 01](screenshots/quartoyml01.png)
+ 
 
 
 ![_quarto.yml 02](screenshots/quartoyml02.png)
+ 
 
 
 ![_quarto.yml 03](screenshots/quartoyml03.png)
-
-
+ 
 
 3. Changing the `_common.R` file. ( optional )
-
     You can set up `knitr` package options for R chunk.  
     
-
 
 
 

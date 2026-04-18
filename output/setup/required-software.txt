@@ -1,0 +1,23 @@
+
+
+## Required Software {#sec-required-software }
+ 
+ 
+    Ensure the following key software is installed on your system.
+ 
+| Software | Purpose | Official Site |
+|---|---|---|
+| Git | Used for version control and cloning the repository. | [Official Git Site](https://git-scm.com/downloads) |
+| R | Serves as the foundation for data processing and the renv environment. | [CRAN (The Comprehensive R Archive Network) ](https://cran.r-project.org/) |
+| Python | Used for environment management via Poetry and executing Python scripts. | [Official Python Website](https://www.python.org/downloads/) |
+| Quarto | Integrates results from R and Python and renders the final documentation. | [Quarto Official Installation Guide ](https://quarto.org/docs/getting-started/installation.html) |
+| RStudio Desktop | Recommended IDE for R/Quarto development. | [RStudio Desktop Download](https://posit.co/download/rstudio-desktop/) |
+ 
+💡 Recommendation: Using Homebrew makes it easy to install and manage tools like Git from the terminal.
+ 
+ 
+
+
+
+
+

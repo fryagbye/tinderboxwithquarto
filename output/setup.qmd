@@ -1,0 +1,145 @@
+# Software Setup
+ 
+  
+To run the project in your local environment, please follow the steps below to set up the necessary software and environment.
+ 
+
+## Required Software {#sec-required-software }
+ 
+  
+    Ensure the following key software is installed on your system.
+ 
+
+| Software | Purpose | Official Site |
+|---|---|---|
+| Git | Used for version control and cloning the repository. | [Official Git Site](https://git-scm.com/downloads) |
+| R | Serves as the foundation for data processing and the renv environment. | [CRAN (The Comprehensive R Archive Network) ](https://cran.r-project.org/) |
+| Python | Used for environment management via Poetry and executing Python scripts. | [Official Python Website](https://www.python.org/downloads/) |
+| Quarto | Integrates results from R and Python and renders the final documentation. | [Quarto Official Installation Guide ](https://quarto.org/docs/getting-started/installation.html) |
+| RStudio Desktop | Recommended IDE for R/Quarto development. | [RStudio Desktop Download](https://posit.co/download/rstudio-desktop/) |
+ 
+💡 Recommendation: Using Homebrew makes it easy to install and manage tools like Git from the terminal.
+ 
+ 
+
+
+
+
+
+
+## Repository Cloning and Initial Setup {#sec-repository-cloning-and-initial-setup }
+ 
+     Mac users should install Git via Homebrew and clone the repository locally.
+ 
+
+1. Preparing Git (via Homebrew)
+ 
+    For Mac users, installing Git via Homebrew is recommended.
+
+```bash
+# If Homebrew is not installed, install it first
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Install Git using Homebrew
+brew install git
+```
+ 
+ 
+
+2. Cloning the Repository
+ 
+    Execute the following commands to move into the project directory.
+
+```bash
+ # Open the terminal and navigate to your working directory
+git clone https://github.com/fryagbye/tinderboxwithquarto.git
+cd tinderboxwithquarto
+```
+ 
+ 
+ 
+
+### Python Environment Setup (Poetry) {#sec-python-environment-setup-poetry }
+ 
+     Python dependencies within the project are managed using Poetry in an isolated virtual environment.
+ 
+
+1. Install Poetry:
+ 
+    If Poetry is not yet installed on your system, follow the official documentation for installation.
+ 
+
+```bash
+ # Example:
+curl -sSL https://install.python-poetry.org | python -
+```
+ 
+ 
+
+2.  Install Dependencies: Run the following command in the project root folder (where pyproject.toml is located). 
+ 
+        This will install all necessary packages into a dedicated virtual environment.
+
+```bash
+ # Create virtual environment and install dependencies
+ poetry install
+``` 
+ 
+ 
+
+3. Using the Environment:
+ 
+     To run Python scripts or use this environment within Jupyter/Quarto, either activate the virtual environment with poetry.
+
+```bash
+ # To activate the virtual environment
+ eval $(poetry env activate)
+ ```
+       
+
+
+
+
+
+
+
+
+
+
+
+## R Environment Restoration (renv) {#sec-r-environment-restoration-renv }
+ 
+     R package dependencies are managed by renv (Reproducible Environment).
+ 
+
+1. Start an R Session:
+ 
+    Launch the R console or RStudio and navigate to the project root directory.
+ 
+
+2. Restore Dependencies:
+ 
+    Execute the command below to install the exact versions of R packages specified in the renv.lock file.
+ 
+
+```{.r}
+ # Execute inside the R console
+ renv::restore()
+```
+ 
+ 
+
+:::{.callout-note}
+ 
+The first time you run renv::restore(), R may automatically prompt you to install renv itself if it's not present. Please allow the installation if prompted.
+
+:::
+ 
+
+
+
+
+
+
+
+
+

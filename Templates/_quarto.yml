@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>tYML_manuscript</title>
+        <style>
+            
+body{
+    font-family: "Ideal Sans Ssm Book",HelveticaNeue,Helvetica,Arial,sans-serif;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    line-height: 1.4;
+    }
+    
+table {
+    margin: 2em 0;
+    font-size: 0.9em;
+    border: 1px solid #888888;
+}
+
+td{
+    padding: 0.5em;
+    }
+
+img{
+    width: 100%;
+}
+    
+
+        </style>
+    </head>
+    <body>
+        project:
+  type: ^value($Q_ProjectType)^
+
+manuscript:
+  article: ^if($Q_BrandYmlFile)^"^value($Q_BrandYmlFile)^"^else^"index.qmd"^endIf^
+
+^if($Q_ToggleBrandYML)^brand: ^value($Q_BrandYmlFile)^^endIf^
+
+format:
+  pdf:
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+    pdf-engine: ^value($Q_PDFEngine("TBXConfig"))
+    fig-format: pdf
+    fig-dpi: 300
+  html:
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+    comments:
+      hypothesis: ^if($Q_ManuscriptCommentsHypothesis)^true^else^false^endIf^
+    fig-format: svg
+  docx:
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+  jats:
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+    fig-format: png
+
+
+^if($Q_BibliographyFile)^bibliography: ^value($Q_BibliographyFile)^^endIf^
+execute:
+  cache: ^value($Q_Cache)^
+  freeze: ^value($Q_Freeze)^
+
+
+
+    </body>
+</html>

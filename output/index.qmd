@@ -1,24 +1,25 @@
-
-
 # Introduction { .unnumbered }
+ 
+ This Tinderbox file supports creating a book, manuscript (beta), revealjs with [Quarto](https://quarto.org/).
 
-This Tinderbox file supports creating a book, manuscript (beta), revealjs with [Quarto](https://quarto.org/).
 
 [Tinderbox file for Quarto (Web version)](https://fryagbye.quarto.pub/tinderbox-file-for-quarto/)
+ 
 
+
+[Tinderbox file for Quarto (Web version) in Japanese](https://fryagbye.quarto.pub/tinderbox-file-for-quarto-in-japanese)
+ 
 You can easily make qmd files and _quarto.yml with it. 
 Here is an example of books created with Quarto. 
 
-
 * [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
-
 You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz)  in Tinderbox.
 
-[![Tinderbox with Quarto part1](screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
 
+[![Tinderbox with Quarto part1](screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
+ 
 My Workflow is @fig-workflow-graphviz.
 <br>
-
 
 ```{dot}
 //| label: fig-workflow-graphviz
@@ -26,7 +27,7 @@ My Workflow is @fig-workflow-graphviz.
 digraph {
     layout=dot
     compound=true
-    graph [charset = "UTF-8" splines = "spline" ];
+    graph [charset="UTF-8" splines="spline" rankdir="LR" ];
 subgraph cluster_A{
                         label="Applications"
                         spline="curved"
@@ -95,9 +96,9 @@ I [ style="filled"  label="Book" color="#000000", penwidth="1", fillcolor="#93dd
 J [ style="filled"  label="Manuscript" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]
 K [ style="filled"  label="revealjs" color="#d53f8c", penwidth="1", fillcolor="#f2e142", fontcolor="#000000"]
 
-A -> C [label = "*untitled" fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ltail = "cluster_A" ]
-B -> E [label = "*untitled" fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ]
-D -> G [label = "*untitled" fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_D" ltail = "cluster_C" ]
+A -> C [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ltail = "cluster_A" ]
+B -> E [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ]
+D -> G [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_D" ltail = "cluster_C" ]
 F -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]
 G -> F [label = "Read qmd files" fillcolor="#cbd9d7" fontcolor="#000000" ]
 G -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]
@@ -107,9 +108,8 @@ H -> K [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]
 }
 ```
 
-
-
-
+ 
+ 
 
 
 

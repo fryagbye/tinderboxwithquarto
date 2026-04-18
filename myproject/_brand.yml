@@ -1,0 +1,19 @@
+color:
+  palette:
+    dark-grey: "#222222"
+    blue: "#ddeaf1"
+  background: blue
+  foreground: dark-grey
+  primary: black
+
+logo:
+  images:
+    header:
+      path: https://fryagbye.quarto.pub/tinderbox-file-for-quarto-in-japanese/logo.png
+  medium: header
+typography:
+  fonts:
+    - family: Jura
+      source: google
+  base: Jura
+  headings: Jura

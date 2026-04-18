@@ -1,0 +1,42 @@
+
+
+## Repository Cloning and Initial Setup {#sec-repository-cloning-and-initial-setup }
+ 
+ 
+    Mac users should install Git via Homebrew and clone the repository locally.
+ 
+
+ 
+1. Preparing Git (via Homebrew)
+ 
+ 
+    For Mac users, installing Git via Homebrew is recommended.
+
+```bash
+# If Homebrew is not installed, install it first
+# /bin/bash -c "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh](https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh))"
+# Install Git using Homebrew
+brew install git
+```
+ 
+ 
+
+ 
+2. Cloning the Repository
+ 
+ 
+    Execute the following commands to move into the project directory.
+
+```bash
+ # Open the terminal and navigate to your working directory
+git clone [https://github.com/fryagbye/tinderboxwithquarto.git](https://github.com/fryagbye/tinderboxwithquarto.git)
+cd tinderboxwithquarto
+```
+ 
+ 
+ 
+
+
+
+
+

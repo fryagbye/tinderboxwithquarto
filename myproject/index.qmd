@@ -66,21 +66,31 @@ funding: "The author received no specific funding for this work."
 
 
 
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+
+
+
 
 
 
 ## NumPy
 
-
+ 
 ```{python}
-#| label: fig-numpy
+#| echo: false
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 import numpy as np
 a = np.arange(15).reshape(3, 5)
 a
 ```
 
-
+ 
 Reference test @Wickham2016Data
 
 
@@ -92,11 +102,16 @@ Reference test @Wickham2016Data
 
 ## Matplotlib { #sec-matplotlib }
 
-
+ 
 ```{python}
+#| echo: false
 #| label: fig-matplotlib
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
+
 import matplotlib.pyplot as plt
+import numpy as np
 fig = plt.figure()
 x = np.arange(10)
 y = 2.5 * np.sin(x / 20 * np.pi)
@@ -116,7 +131,7 @@ plt.legend(loc='lower right')
 plt.show(fig)
 ```
 
-
+ 
 
 
 
@@ -127,23 +142,41 @@ plt.show(fig)
 
 ## Plotly
 
-
+ 
 ```{python}
+#| echo: false
 #| label: fig-plotly
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 import plotly.express as px
-from IPython.display import Image
-import plotly.io as pio
-gapminder = px.data.gapminder()
-gapminder2007 = gapminder.query("year == 2007")
-fig = px.scatter(gapminder2007, 
-                 x="gdpPercap", y="lifeExp", color="continent", 
-                 size="pop", size_max=60,
-                 hover_name="country")
+import pandas as pd
+import numpy as np
+
+# 1. 外部データを使わず、手動でデータを作成
+# （ランダムな100個のデータを作成）
+np.random.seed(42)
+df = pd.DataFrame({
+    "x_val": np.linspace(0, 10, 100),
+    "y_val": np.sin(np.linspace(0, 10, 100)) + np.random.normal(0, 0.1, 100),
+    "category": np.random.choice(["A", "B"], 100)
+})
+
+# 2. 散布図を作成
+fig = px.scatter(
+    df, 
+    x="x_val", 
+    y="y_val", 
+    color="category",
+    title="Local Data Test (No Network)",
+    labels={"x_val": "X Axis", "y_val": "Y Axis"}
+)
+
+# 3. 描画
 fig.show()
 ```
 
-
+ 
 
 
 
@@ -154,19 +187,22 @@ fig.show()
 
 ## R
 
-
+ 
 ```{r}
+#| echo: false
 #| warning: false
 #| label: fig-airquality
 #| fig-cap: Temperature and ozone level.
 #| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
 library(ggplot2)
 ggplot(airquality, aes(Temp, Ozone)) + 
   geom_point() + 
   geom_smooth(method = "loess")
 ```
 
-
+ 
 
 
 
@@ -178,10 +214,10 @@ ggplot(airquality, aes(Temp, Ozone)) +
 ## References { .unnumbered }
 
 :::{#refs}
-
+ 
 
 :::
-
+ 
 
 
 

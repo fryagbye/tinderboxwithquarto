@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>python-chunk copy - Pyodide Preview</title>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #333; }
+    
+    /* コード表示エリア（デフォルト） */
+    #code-display {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      display: none; /* JSで制御するため初期は非表示 */
+    }
+
+    #output-plot { margin-top: 20px; border: 1px solid #ddd; padding: 10px; min-height: 50px; display: none; }
+    #output-log { background: #f4f4f4; padding: 10px; font-family: monospace; white-space: pre-wrap; margin-top: 20px; border-left: 4px solid #007bff; }
+    
+    .status-msg { color: #666; font-style: italic; }
+    #source-code { display: none; }
+  </style>
+</head>
+<body>
+  <h1>python-chunk copy</h1>
+
+  <pre id="code-display"></pre>
+
+  <div id="output-plot"></div>
+  
+  <div id="output-log" class="status-msg">Initializing Pyodide...</div>
+
+  <script id="source-code" type="text/template">
+```{python}
+#| echo: true
+#| label: fig-python
+#| fig-width: 5
+#| fig-pos: H
+#| fig-show: asis
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.random.normal(170, 10, 250)
+plt.hist(x)
+plt.show()
+```
+
+  </script>
+
+  <script type="text/javascript">
+    // ログ出力用ヘルパー
+    function log(message, isError = false) {
+      const logEl = document.getElementById("output-log");
+      if(logEl.textContent === "Initializing Pyodide...") {
+          logEl.textContent = ""; 
+          logEl.classList.remove("status-msg");
+      }
+      if (isError) {
+        logEl.style.color = "red";
+      }
+      logEl.textContent += message + "\n";
+    }
+
+    async function main() {
+      try {
+        // --- 1. コードの取得と前処理 ---
+        let rawText = document.getElementById("source-code").text;
+        
+        // Quartoのコードブロック ```{python} ... ``` を除去
+        let cleanText = rawText.replace(/```\{python\}|```/g, "").trim();
+
+        // 行ごとに分割して解析
+        let lines = cleanText.split('\n');
+        let finalCodeLines = [];
+        
+        // デフォルト設定 (Quartoの標準挙動に合わせる)
+        let options = {
+          echo: true,   // コードを表示するか
+          eval: true,   // コードを実行するか
+          output: true, // 出力を表示するか (今回は簡易的に実装)
+          warning: true
+        };
+
+        // --- 2. YAMLヘッダー (#| key: value) の解析 ---
+        lines.forEach(line => {
+          let trimmed = line.trim();
+          if (trimmed.startsWith("#|")) {
+            // オプション行の解析 (例: #| echo: false)
+            let parts = trimmed.substring(2).split(":"); // #| を除去して分割
+            if (parts.length >= 2) {
+              let key = parts[0].trim();
+              let val = parts[1].trim().toLowerCase();
+              
+              // true/false の文字列をブール値に変換
+              if (val === 'false') options[key] = false;
+              else if (val === 'true') options[key] = true;
+            }
+          } else {
+            // 通常のコード行のみ配列に残す
+            finalCodeLines.push(line);
+          }
+        });
+
+        let codeToRun = finalCodeLines.join('\n').trim();
+
+        // --- 3. echoオプションの適用（コード表示/非表示） ---
+        const codeDisplay = document.getElementById("code-display");
+        if (options.echo) {
+          codeDisplay.textContent = codeToRun;
+          codeDisplay.style.display = "block";
+        } else {
+          codeDisplay.style.display = "none";
+        }
+
+        // --- 4. evalオプションの確認 ---
+        if (!options.eval) {
+           log("Note: Code evaluation disabled (eval: false).");
+           return; // 実行せずに終了
+        }
+
+        // --- 5. Pyodideのロードと実行 ---
+        let pyodide = await loadPyodide({
+          stdout: (text) => { if(options.output) log(text); },
+          stderr: (text) => { if(options.warning) log("Error: " + text, true); }
+        });
+
+        // 必要なパッケージのロード
+        if (codeToRun.length > 0) {
+           await pyodide.loadPackagesFromImports(codeToRun);
+        }
+
+        // Matplotlib対応
+        if (codeToRun.includes("matplotlib") || codeToRun.includes("plt.")) {
+             // グラフエリアを表示
+             document.getElementById("output-plot").style.display = "block";
+
+             await pyodide.runPythonAsync(`
+                import matplotlib.pyplot as plt
+                from js import document
+                import io, base64
+
+                def show_current_plot():
+                    if plt.get_fignums():
+                        buf = io.BytesIO()
+                        plt.savefig(buf, format='png')
+                        buf.seek(0)
+                        img_str = base64.b64encode(buf.read()).decode('UTF-8')
+                        img_html = f'<img src="data:image/png;base64,{img_str}" style="max-width:100%"/>'
+                        div = document.getElementById('output-plot')
+                        div.innerHTML = img_html
+                        plt.clf()
+            `);
+            
+            await pyodide.runPythonAsync(codeToRun);
+            if(options.output) {
+                await pyodide.runPythonAsync(`show_current_plot()`);
+            }
+
+        } else {
+            // 通常実行
+            let result = await pyodide.runPythonAsync(codeToRun);
+            if(result && options.output) log("Result: " + result);
+        }
+
+      } catch (err) {
+        log("Execution Error: " + err, true);
+        console.error(err);
+      }
+    }
+
+    main();
+  </script>
+</body>
+</html>

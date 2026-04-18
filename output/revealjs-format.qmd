@@ -1,9 +1,5 @@
-
-
 # revealjs format {#sec-revealjs-format }
-
-
-
-
+ 
+ 
 
 

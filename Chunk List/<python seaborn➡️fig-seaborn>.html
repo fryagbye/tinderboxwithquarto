@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title><python:seaborn➡️fig-seaborn> - Pyodide Preview</title>
+  
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.27.1/full/pyodide.js"></script>
+  
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #333; }
+    h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
+    
+    #code-display {
+      background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 4px;
+      padding: 15px; margin-bottom: 15px; font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.9em; overflow-x: auto; color: #495057;
+      white-space: pre-wrap;
+    }
+
+    /* 画像出力エリア */
+    #output-plot { 
+        text-align: center; 
+        margin-top: 10px;
+        min-height: 100px;
+    }
+    #output-plot img {
+        max-width: 100%;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-radius: 4px;
+    }
+
+    #output-log { 
+      background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 4px;
+      font-family: monospace; white-space: pre-wrap; margin-top: 10px; display: none;
+    }
+    
+    #status { font-size: 0.8em; color: #666; margin-bottom: 10px; font-style: italic; min-height: 1.2em;}
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <h1><python:seaborn➡️fig-seaborn></h1>
+  
+  <div id="status">Initializing (v0.27.1)...</div>
+  <div id="code-display" class="hidden"></div>
+  <div id="output-plot"></div>
+  <div id="output-log"></div>
+
+  <script id="source-code" type="text/template">```{python}
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# データの作成
+np.random.seed(42)
+df = pd.DataFrame({
+    "sepal_width": np.random.normal(3, 0.5, 100),
+    "sepal_length": np.random.normal(6, 0.8, 100),
+    "species": np.random.choice(["setosa", "versicolor", "virginica"], 100)
+})
+
+# グラフの作成
+plt.figure(figsize=(6, 4))
+sns.scatterplot(
+    data=df, 
+    x="sepal_width", 
+    y="sepal_length", 
+    hue="species",
+    s=100,
+    alpha=0.7
+)
+
+plt.title("Iris Data (Seaborn on Pyodide v0.27.1)")
+plt.show()
+```
+</script>
+
+  <script type="text/javascript">
+    const SHOW_FULL_ERROR_LOG = true;
+    const statusEl = document.getElementById("status");
+    const logEl = document.getElementById("output-log");
+    const codeEl = document.getElementById("code-display");
+
+    function log(message, isSystem = false) {
+      if (SHOW_FULL_ERROR_LOG) {
+         logEl.style.display = "block";
+         logEl.textContent += message + "\n";
+         if(isSystem) statusEl.textContent = message; 
+      } else {
+         if (!isSystem) {
+           logEl.style.display = "block";
+           logEl.textContent += message + "\n";
+         } else {
+           statusEl.textContent = message;
+         }
+      }
+    }
+
+    function parseQuartoOptions(code) {
+      const options = { echo: true, eval: true, output: true };
+      const lines = code.split('\n');
+      lines.forEach(line => {
+        const trimmed = line.trim();
+        if (trimmed.startsWith("#|")) {
+          const parts = trimmed.replace(/^#\|\s*/, '').split(':');
+          if (parts.length >= 2) {
+            const key = parts[0].trim();
+            const val = parts[1].trim().toLowerCase();
+            if (val === 'false') options[key] = false;
+            else if (val === 'true') options[key] = true;
+          }
+        }
+      });
+      return options;
+    }
+
+    function injectImports(code) {
+        let imports = [];
+        const hasNumpy = code.includes("np.") || code.includes("numpy");
+        const hasPandas = code.includes("pd.") || code.includes("pandas");
+        // Matplotlib検知
+        const hasMatplotlib = code.includes("plt.") || code.includes("matplotlib");
+        // Seaborn検知（またはMatplotlibがある場合も強制的にSeabornを意識させる）
+        const hasSeaborn = code.includes("sns.") || code.includes("seaborn") || hasMatplotlib;
+
+        if (hasNumpy && !code.match(/import\s+numpy/)) imports.push("import numpy as np");
+        if (hasPandas && !code.match(/import\s+pandas/)) imports.push("import pandas as pd");
+        if (hasMatplotlib && !code.match(/import\s+matplotlib\.pyplot/)) imports.push("import matplotlib.pyplot as plt");
+        
+        // 【修正点1】Matplotlibがある場合、Seabornも自動でimportリストに入れる
+        if (hasSeaborn && !code.match(/import\s+seaborn/)) imports.push("import seaborn as sns");
+
+        if (imports.length > 0) return imports.join("\n") + "\n" + code;
+        return code;
+    }
+
+    async function main() {
+      try {
+        let rawCode = document.getElementById("source-code").text;
+        let cleanCode = rawCode.replace(/```\{python\}|```/g, "").trim();
+        const opts = parseQuartoOptions(cleanCode);
+
+        if (opts.echo) {
+          codeEl.textContent = cleanCode;
+          codeEl.classList.remove("hidden");
+        }
+
+        if (!opts.eval) {
+          log("", true);
+          return;
+        }
+
+        let executableCode = injectImports(cleanCode);
+        
+        // 描画系のライブラリを使うかどうかのフラグ
+        const useViz = executableCode.includes("matplotlib") || executableCode.includes("plt.") || executableCode.includes("seaborn") || executableCode.includes("sns.");
+
+        log("Loading Pyodide core...", true);
+        let pyodide = await loadPyodide({
+          stdout: (text) => { 
+              if (text.startsWith("Loading ") || text.startsWith("Loaded ")) {
+                  log(text, true); 
+              } else if (opts.output) {
+                  log(text, false); 
+              }
+          },
+          stderr: (text) => {
+             if (text.includes("font cache") || text.includes("FigureCanvasAgg")) {
+                 log(text, true); 
+             } else {
+                 if(SHOW_FULL_ERROR_LOG) log(text, false);
+                 else log("Error: " + text, false);
+             }
+          }
+        });
+
+        // 1. 標準パッケージロード (Numpy, Pandas, Matplotlib)
+        let packagesToLoad = [];
+        if (executableCode.includes("numpy") || executableCode.includes("np.")) packagesToLoad.push("numpy");
+        if (executableCode.includes("pandas") || executableCode.includes("pd.")) packagesToLoad.push("pandas");
+        
+        // Matplotlibはここでロード
+        if (useViz) {
+            packagesToLoad.push("matplotlib");
+        }
+        
+        if (packagesToLoad.length > 0) {
+            log("Loading standard packages...", true);
+            await pyodide.loadPackage(packagesToLoad);
+        }
+
+        // 2. Seabornのインストール (Matplotlibを使う場合は必ず入れる)
+        // 【修正点2】条件を useViz (Matplotlib含む) に変更
+        if (useViz) {
+            log("Loading micropip...", true);
+            await pyodide.loadPackage("micropip");
+            
+            log("Installing seaborn & dependencies (this takes time)...", true);
+            
+            // 明示的に依存関係(pandas, scipy)を先にロードして安定化
+            // scipyは重いがseabornに必須
+            await pyodide.loadPackage(["pandas", "scipy"]); 
+            
+            await pyodide.runPythonAsync(`
+                import micropip
+                # Matplotlibが入っているならSeabornをインストールしてエラーを防ぐ
+                await micropip.install('seaborn')
+            `);
+            log("Seaborn installed.", true);
+        }
+
+        // 残りのimport
+        await pyodide.loadPackagesFromImports(executableCode);
+
+        // Matplotlib/Seaborn 共通セットアップ
+        if (useViz) {
+             log("Configuring graphics...", true);
+             await pyodide.runPythonAsync(`
+                import matplotlib
+                matplotlib.use("Agg") 
+                import matplotlib.pyplot as plt
+                
+                # Seabornをimportしてデフォルトスタイルを適用可能にする
+                import seaborn as sns
+                
+                from js import document
+                import io, base64
+
+                # デフォルトスタイル設定 (エラー回避のためseabornインストール後に実行)
+                sns.set_theme(style="whitegrid")
+
+                # plt.show() を無効化
+                def custom_plt_show(*args, **kwargs):
+                    pass 
+                plt.show = custom_plt_show
+
+                # 描画関数
+                def show_current_plot_mpl():
+                    if plt.get_fignums():
+                        buf = io.BytesIO()
+                        plt.savefig(buf, format='png', dpi=120, bbox_inches='tight')
+                        buf.seek(0)
+                        img_str = base64.b64encode(buf.read()).decode('UTF-8')
+                        if "${opts.output}" == "true":
+                            img_html = f'<img src="data:image/png;base64,{img_str}" />'
+                            div = document.getElementById('output-plot')
+                            div.innerHTML = img_html
+                        plt.clf()
+            `);
+        }
+
+        // 実行
+        log("Running Python code...", true);
+        let result = await pyodide.runPythonAsync(executableCode);
+
+        // 描画反映
+        if (useViz && opts.output) {
+             await pyodide.runPythonAsync(`show_current_plot_mpl()`);
+        }
+
+        if (!SHOW_FULL_ERROR_LOG) log("", true);
+        if(result && opts.output) log("Result: " + result, false);
+
+      } catch (err) {
+        log("Execution Error: " + err, false);
+        console.error(err);
+      }
+    }
+
+    main();
+  </script>
+</body>
+</html>

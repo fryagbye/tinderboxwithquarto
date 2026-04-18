@@ -1,8 +1,11 @@
-
-
 # Make sub-project folder {#sec-make-manuscript-subproject }
+ 
+ Make a note for the sub-project with **pManuscriptFolder** like this ( _quarto_manuscript ).
 
-Make a note for the sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
+## Make \_quarto.yml for the sub-project {#sec-make-quartoyml }
+ 
+ You have to set a qmd file name.
+Manuscript has only one qmd file.
 
 
 
@@ -10,32 +13,29 @@ Make a note for the sub-project with **pSubfolderManuscript** like this ( _quart
 
 
 ## Make notes
-
-The manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
-
-
-
-
-
+ 
+ The manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
 
 ### Front Matter and Subnote
-
-
-
-1. pFrontmatterManuscript
-
+ 
+ 1. pFrontmatterManuscript
     
     This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.
 You can set data for author(s) with the path of note with pAuther notes. ( like Authors )
 
-
 2. pSubnoteManuscript
-
     This is a dummy file for pFrontmatterManuscript. The markdown level depends on the indent level and `$OutlineBaseControl` of of the subproject folder.
 
 ```
 ($OutlineDepthBase + $OutlineBaseControl(collect(ancestors,$Path)[-1])) * "#" 
 ```
+ 
+
+
+
+
+
+
 
 
 

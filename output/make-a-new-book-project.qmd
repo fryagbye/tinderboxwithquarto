@@ -1,17 +1,22 @@
-
-
 # Make a New Book Project
+ 
+ 1. create a new note for pBookFolder.
+ 
 
-You can start with the stamp that makes a new book project.
-Only one book project is allowed per file.
-The project container is created at the bottom and it has Label lists, _quarto.yml, and an index note.
 
-![New Project](screenshots/newproject01.png)
+![pBookFolder Note](screenshots/newbookfolder01.gif)
+ 
+ 
 
-If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
+2. Execute the "Make a New Book Project" stamp.
+　![New Project](screenshots/newproject01.png)
+ 
+　Label lists, _quarto.yml, and  index note are created.
+ 
+　![New Project](screenshots/newbookfolder02.png)
+ 
+If you use a virtual environment with Python and the stamps about quarto command, please set $VenvActivateCommand.
 Before calling quarto commands, the stamps activate the virtual environment.
-`r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Lclick.png}}", html = "![](screenshots/Lclick.png){fig-alt='左クリック' width=40px}")`：左クリック
-
 
 
 

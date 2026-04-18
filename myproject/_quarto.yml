@@ -4,28 +4,33 @@ project:
 manuscript:
   article: "index.qmd"
 
+
+
 format:
+  pdf:
+    number-sections: true
+    number-depth: 1
+    pdf-engine: lualatex
+    fig-format: pdf
+    fig-dpi: 300
   html:
     number-sections: true
     number-depth: 1
     comments:
       hypothesis: true
+    fig-format: svg
   docx:
     number-sections: true
     number-depth: 1
   jats:
     number-sections: true
     number-depth: 1
-  
+    fig-format: png
 
-  pdf:
-    number-sections: true
-    number-depth: 1
-    pdf-engine: lualatex
 
 bibliography: ../citation/references.bib
 execute:
-  cache: false
+  cache: true
   freeze: auto
 
 

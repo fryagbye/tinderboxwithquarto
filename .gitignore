@@ -35,3 +35,13 @@ Document Commons Framework v2•1•1d.tbx
 .gemini/
 gha-creds-*.json
 .github
+
+*/index_files/*
+*/_extensions/*
+*/_manuscript/index_files/*
+*/*/index_cache/*
+*/*/index_files/*
+*/main_cache/*
+myproject/index_cache/*
+myproject/_manuscript/site_libs/*
+output/_bookhtml
