@@ -1,0 +1,91 @@
+// /Hints/Library/Make Callout Label List;
+
+function fMakeCalloutList(vContainer:string, vPath:string){
+    var:string vName;
+    var:string vTest;
+    var:number vCount(0);
+    var:string vLabel;
+    var:string vTemp;
+    var:list vList;
+
+    LogRec("MakeCalloutList", "<<mark>>vContainer=" + vContainer + " vPath=" + vPath);
+
+    if($IsLabelGenerateON(vPath) & ($Prototype(vPath) == "pLabelListContainer" | $Prototype($Prototype(vPath)) == "pLabelListContainer")){
+
+        $Text(vPath) =;
+        $MyList(vPath) =;
+        $ListKey(vPath) =;
+        $ListValue(vPath) =;
+        $MyDictionary(vPath) =;
+        
+        //Notes contains chunk callout label with style "#| label: "
+        vList = collect_if(descendants(vContainer), $Text.contains("(#\| label: (nte|tip|wrn|imp|cau)-[\w\d-]*)+?") & ! $IsAlias & $Prototype(parent) != "pLabelListContainer", $Path);
+
+        vList.each(L){
+            L = L.replace('"', "");
+            $Text(L).eachLine(aLine:aLine.contains("(#\| label: (nte|tip|wrn|imp|cau)-[\w\d-]*)+?")){
+                vTemp = $1;
+                vTemp = vTemp.replace("#\| label: ", "@");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{" + $ListKey(vPath) + ":" + $ListValue(vPath) + "}");
+            };
+        };
+
+       //Notes contains chunk callout label with style "{#"
+        vList = collect_if(descendants(vContainer), $Text.contains("(\{#(nte|tip|wrn|imp|cau)-[\w\d-]*)+?") & ! $IsAlias & $Prototype(parent) != "pLabelListContainer", $Path);
+        vList.each(L){
+            L = L.replace('"', "");
+            $Text(L).eachLine(aLine:aLine.contains(".*(\{#(nte|tip|wrn|imp|cau)-[\w\d-]*)+?.*")){
+                vTemp = $1;
+                vTemp = vTemp.replace("\{#", "@");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{" + $ListKey(vPath) + ":" + $ListValue(vPath) + "}");
+            };
+        };      
+
+        $MySet(vPath) = $MyList(vPath);
+        $MySet(vPath).each(S){
+            vName = S;
+            vLabel = S.replace("@", "");
+        
+            vTest = $IDString(vName);
+            if(vTest == "" & vName != "@nte-" & vName != "@tip-" & vName != "@wrn-" & vName != "@imp-" & vName != "@cau-"){
+                LogRec("MakeCalloutList", "<<mark>> create vName=" + vName + " vLabel=" + vLabel + " vTest=" + vTest);
+                create(vPath, vName + "#pReferenceList");
+                $OutlineBackgroundColor(vName) = "orange";
+            };
+            if(vName != "@nte-" & vName != "@tip-" & vName != "@wrn-" & vName != "@imp-" & vName != "@cau-"){
+                $Text(vPath) += vName + "\n";
+            };
+        };
+        vCount = 0;
+        $ListKey(vPath).each(K){
+            vName = K;
+            $ToDummyLinkPath(vName) = $ListValue(vPath)[vCount];
+            $Text(vName) = fCalloutChunk($ListValue(vPath)[vCount], vName.replace("@", ""));
+            createLink(K, $ListValue(vPath)[vCount], "dummy");
+            vCount += 1;
+        };
+    };
+};
+
+function fCalloutChunk(vName:string, vLabel:string){
+    var:string vReg1;
+    var:string vReg2;
+    var:string vTemp;
+    
+    vReg1 = "(:::[\s\S]*?\{#" + vLabel + "\}[\s\S]*?:::)";
+    vReg2 = "(:::\s*\{#"+ vLabel + "[\s\S]*?\}[\s\S]*?:::)";
+
+    if($Text(vName).contains(vReg1)){
+        vTemp = $1;
+    };
+    if($Text(vName).contains(vReg2)){
+        vTemp = $1;
+    };
+    return vTemp;
+};

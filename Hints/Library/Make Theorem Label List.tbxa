@@ -1,0 +1,91 @@
+// /Hints/Library/Make Theorem Label List;
+
+function fMakeTheoremList(vContainer:string, vPath:string){
+    var:string vName;
+    var:string vTest;
+    var:number vCount(0);
+    var:string vLabel;
+    var:string vTemp;
+    var:list vList;
+
+    LogRec("MakeTheoremList", "<<mark>>vContainer=" + vContainer + " vPath=" + vPath);
+
+    if($IsLabelGenerateON(vPath) & ($Prototype(vPath) == "pLabelListContainer" | $Prototype($Prototype(vPath)) == "pLabelListContainer")){
+
+        $Text(vPath) =;
+        $MyList(vPath) =;
+        $ListKey(vPath) =;
+        $ListValue(vPath) =;
+        $MyDictionary(vPath) =;
+        
+        //Notes contains chunk theorem label with style "#| label: "
+        vList = collect_if(descendants(vContainer), $Text.contains("(#\| label: (thm|lem|cor|prp|cnj|def|exm|exr|sol|rem|alg)-[\w\d-]*)+?") & ! $IsAlias & $Prototype(parent) != "pLabelListContainer", $Path);
+
+        vList.each(L){
+            L = L.replace('"', "");
+            $Text(L).eachLine(aLine:aLine.contains("(#\| label: (thm|lem|cor|prp|cnj|def|exm|exr|sol|rem|alg)-[\w\d-]*)+?")){
+                vTemp = $1;
+                vTemp = vTemp.replace("#\| label: ", "@");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{" + $ListKey(vPath) + ":" + $ListValue(vPath) + "}");
+            };
+        };
+
+       //Notes contains chunk theorem label with style "{#"
+        vList = collect_if(descendants(vContainer), $Text.contains("(\{#(thm|lem|cor|prp|cnj|def|exm|exr|sol|rem|alg)-[\w\d-]*)+?") & ! $IsAlias & $Prototype(parent) != "pLabelListContainer", $Path);
+        vList.each(L){
+            L = L.replace('"', "");
+            $Text(L).eachLine(aLine:aLine.contains(".*(\{#(thm|lem|cor|prp|cnj|def|exm|exr|sol|rem|alg)-[\w\d-]*)+?.*")){
+                vTemp = $1;
+                vTemp = vTemp.replace("\{#", "@");
+                $MyList(vPath) += vTemp;
+                $ListKey(vPath) += vTemp;
+                $ListValue(vPath) += L;
+                $MyDictionary(vPath) = $MyDictionary(vPath).add("{" + $ListKey(vPath) + ":" + $ListValue(vPath) + "}");
+            };
+        };      
+
+        $MySet(vPath) = $MyList(vPath);
+        $MySet(vPath).each(S){
+            vName = S;
+            vLabel = S.replace("@", "");
+        
+            vTest = $IDString(vName);
+            if(vTest == "" & vName != "@thm-" & vName != "@lem-" & vName != "@cor-" & vName != "@prp-" & vName != "@cnj-" & vName != "@def-" & vName != "@exm-" & vName != "@exr-" & vName != "@sol-" & vName != "@rem-" & vName != "@alg-"){
+                LogRec("MakeTheoremList", "<<mark>> create vName=" + vName + " vLabel=" + vLabel + " vTest=" + vTest);
+                create(vPath, vName + "#pReferenceList");
+                $OutlineBackgroundColor(vName) = "purple";
+            };
+            if(vName != "@thm-" & vName != "@lem-" & vName != "@cor-" & vName != "@prp-" & vName != "@cnj-" & vName != "@def-" & vName != "@exm-" & vName != "@exr-" & vName != "@sol-" & vName != "@rem-" & vName != "@alg-"){
+                $Text(vPath) += vName + "\n";
+            };
+        };
+        vCount = 0;
+        $ListKey(vPath).each(K){
+            vName = K;
+            $ToDummyLinkPath(vName) = $ListValue(vPath)[vCount];
+            $Text(vName) = fTheoremChunk($ListValue(vPath)[vCount], vName.replace("@", ""));
+            createLink(K, $ListValue(vPath)[vCount], "dummy");
+            vCount += 1;
+        };
+    };
+};
+
+function fTheoremChunk(vName:string, vLabel:string){
+    var:string vReg1;
+    var:string vReg2;
+    var:string vTemp;
+    
+    vReg1 = "(:::[\s\S]*?\{#" + vLabel + "\}[\s\S]*?:::)";
+    vReg2 = "(:::\s*\{#"+ vLabel + "[\s\S]*?\}[\s\S]*?:::)";
+
+    if($Text(vName).contains(vReg1)){
+        vTemp = $1;
+    };
+    if($Text(vName).contains(vReg2)){
+        vTemp = $1;
+    };
+    return vTemp;
+};

@@ -45,3 +45,4 @@ gha-creds-*.json
 myproject/index_cache/*
 myproject/_manuscript/site_libs/*
 output/_bookhtml
+**/*.quarto_ipynb

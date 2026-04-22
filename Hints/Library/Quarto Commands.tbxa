@@ -1,11 +1,8 @@
-// /Hints/Library/Quarto Commands;
-
-
 function fBookPreview(){
     var:string vSelected = $ID;
     var:string vOutputFolder;
     var:string vVenv;
-    var:string vCheck;
+    var:string vCheck = false;
     var:string vOption;
     var:string vRoot = collect(ancestors, $Path)[-1];
     var:string vConf = "TBXConfig";
@@ -37,9 +34,9 @@ function fBookPreview(){
             vOutputFolder = $Name;
         };
     };
-    if(debug){LogRec("Quarto", " < < mark > > Preview: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
-    if($Prototype == "pBookFolder"|vCheck){
+    if($Prototype == "pBookFolder" | vCheck){
         fActivateAppName($TerminalApp(vConf));
+        if(debug){LogRec("Quarto", " < < mark > > Preview: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
         if($TerminalApp(vConf) == "Wezterm"){
             fQuartoCommnadInWezterm("preview", vOutputFolder, vOption, vVenv);
         };
@@ -51,7 +48,6 @@ function fBookPreview(){
         };
         select($Path(vSelected));
     }else{
-        if(debug){LogRec("Quarto", " < < mark > > Preview: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
         ("Please select the pBookFolder note or any of its descendant notes.").show;
     };
 };
@@ -74,10 +70,15 @@ function fBookRender(){
     };
     if($Prototype != "pBookFolder"){
         if($Prototype(vRoot) == "pBookFolder"){
-            if($HasVenvEnv(vRoot)){
+            if($HasVenvEnv){
                 vVenv = $VenvActivateCommand(vRoot);
             }else{
                 vVenv = "";
+            };
+            if($HTMLExportFileName(vRoot)){
+                vOutputFolder = $HTMLExportFileName(vRoot);
+            }else{
+                vOutputFolder = $Name(vRoot);
             };
             vCheck = true;
         };
@@ -88,8 +89,8 @@ function fBookRender(){
             vOutputFolder = $Name;
         };
     };
-    if(debug){LogRec("Quarto", " < < mark > > Render: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
-    if($Prototype == "pBookFolder"|vCheck){
+    //    if(debug){LogRec("Quarto", " < < mark > > Render: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
+    if($Prototype == "pBookFolder" | vCheck){
         fActivateAppName($TerminalApp(vConf));
         if($TerminalApp(vConf) == "Wezterm"){
             fQuartoCommnadInWezterm("render", vOutputFolder, "", vVenv);
@@ -100,9 +101,12 @@ function fBookRender(){
         if($TerminalApp(vConf) == "Ghostty"){
             fQuartoCommnadInGhostty("render", vOutputFolder, "", vVenv);
         };
+        if($TerminalApp(vConf) == "Ghostty"){
+            fQuartoCommnadInGhostty("render", vOutputFolder, "", vVenv);
+        };
         select($Path(vSelected));
     }else{
-        if(debug){LogRec("TBXConfig", " < < mark > > Render: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
+        //        if(debug){LogRec("TBXConfig", " < < mark > > Render: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
         ("Please select the pBookFolder note or any of its descendant notes.").show();
     };
 };
@@ -146,7 +150,7 @@ function fManuscriptPreview(){
         };
     };
     if(debug){LogRec("Quarto", " < < mark > > Preview: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
-    if($Prototype == "pManuscriptFolder"|vCheck){
+    if($Prototype == "pManuscriptFolder" | vCheck){
         fActivateAppName($TerminalApp(vConf));
         if($TerminalApp(vConf) == "Wezterm"){
             fQuartoCommnadInWezterm("preview", vOutputFolder, vOption, vVenv);
@@ -213,7 +217,7 @@ function fRevealjsPreview(){
             vOutputFolder = $Name;
         };
     };
-    if($Prototype == "pRevealjsFolder"|vCheck){
+    if($Prototype == "pRevealjsFolder" | vCheck){
         if($TerminalApp(vConf) == "Wezterm"){
             fQuartoCommnadInWezterm("preview", vOutputFolder, vOption, vVenv);
         };
@@ -238,60 +242,60 @@ function fQuartoCommnadInTerminal(vQCommand:string, vProjectPath:string, vQuarto
     var:boolean debug = true;
 
     if(vVenvCommand){
-        vCommand = " / usr / bin / osascript -e '" + 'tell application "Terminal" to do script "cd ' + $ExportFolder("TBXConfig") + ';' + vVenvCommand + ' && sleep 0.5; ' + $Quarto_Path("TBXConfig") + " " + vQCommand + " " + vProjectPath + " " + vQuartoOptions + '"' + "'";
+        vCommand = "/usr/bin/osascript -e '" + 'tell application "Terminal" to do script "cd ' + $ExportFolder("TBXConfig") + ';' + vVenvCommand + ' && sleep 0.5; ' + $Quarto_Path("TBXConfig") + " " + vQCommand + " " + vProjectPath + " " + vQuartoOptions + '"' + "'";
     }else{
-        vCommand = " / usr / bin / osascript -e '" + 'tell application "Terminal" to do script "cd ' + $ExportFolder("TBXConfig") + '; sleep 0.5; ' + $Quarto_Path("TBXConfig") + " " + vQCommand + " " + vProjectPath + " " + vQuartoOptions + '"' + "'";
+        vCommand = "/usr/bin/osascript -e '" + 'tell application "Terminal" to do script "cd ' + $ExportFolder("TBXConfig") + '; sleep 0.5; ' + $Quarto_Path("TBXConfig") + " " + vQCommand + " " + vProjectPath + " " + vQuartoOptions + '"' + "'";
     };
-    if(debug){LogRec("Quarto", " < < mark > > Terminal vCommand = " + vCommand);};
+    if(debug){LogRec("Quarto", "<<mark>> Terminal vCommand=" + vCommand);};
     vReturn = runCommand(vCommand);
     fActivateAppName("Terminal");
 };
 
 
 function fActivateAppName(vApp:string){
-    var:string vCommand = " / usr / bin / osascript -e '" + 'tell application "' + vApp + '" to activate' + "'";
+    var:string vCommand = "/usr/bin/osascript -e '" + 'tell application "' + vApp + '" to activate' + "'";
 
     runCommand(vCommand);
 };
 
 
 function fActivateAppID(vID:string){
-    var:string vCommand = " / usr / bin / osascript -e '" + 'tell application id"' + vID + '" to activate' + "'";
+    var:string vCommand = "/usr/bin/osascript -e '" + 'tell application id"' + vID + '" to activate' + "'";
 
     runCommand(vCommand);
 };
 
 
 function fQuartoCommnadInWezterm(vQuartoCommand:string, vProjectPath:string, vQuartoOptions:string, vVenvCommand){
-    var:string vCommand = " / opt / homebrew / bin / wezterm cli spawn --cwd " + $ExportFolder("TBXConfig") + " -- zsh -c '";
+    var:string vCommand = "/opt/homebrew/bin/wezterm cli spawn --cwd " + $ExportFolder("TBXConfig") + " -- zsh -c '";
     var:string vReturn;
     var:string vPre;
     var:boolean debug = true;
 
     if(vVenvCommand){
-        vPre = "cd " + $ExportFolder("TBXConfig") + "&&export PATH = /usr / local / bin:/opt / homebrew / bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&" + vVenvCommand + "&&";
+        vPre = "cd " + $ExportFolder("TBXConfig") + "&&export PATH=/usr/local/bin:/opt/homebrew/bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&" + vVenvCommand + "&&";
     }else{
-        vPre = "cd " + $ExportFolder("TBXConfig") + "&&export PATH = /usr / local / bin:/opt / homebrew / bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&";
+        vPre = "cd " + $ExportFolder("TBXConfig") + "&&export PATH=/usr/local/bin:/opt/homebrew/bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&";
     };
     vCommand += vPre + $Quarto_Path("TBXConfig") + " " + vQuartoCommand + " " + vProjectPath + " " + vQuartoOptions + ";exec zsh;'";
-    if(debug){LogRec("Quarto", " < < mark > > Wezterm: vCommand = " + vCommand);};
+    if(debug){LogRec("Quarto", "<<mark>>Wezterm: vCommand=" + vCommand);};
     vReturn = runCommand(vCommand);
-    if(debug){LogRec("Quarto", " < < mark > > Wezterm: vReturn = " + vReturn);};
+    if(debug){LogRec("Quarto", "<<mark>>Wezterm: vReturn=" + vReturn);};
     fActivateAppName("Wezterm");
 };
 
 
 function fQuartoCommnadInKitty(vQuartoCommand:string, vSubProjectPath:string, vQuartoOptions:string, vVenvCommand){
-    var:string vCommand = " / opt / homebrew / bin / kitty --single-instance --instance-group tbx -d " + $ExportFolder("TBXConfig") + " zsh -c '";
+    var:string vCommand = "/opt/homebrew/bin/kitty --single-instance --instance-group tbx -d " + $ExportFolder("TBXConfig") + " zsh -c '";
     var:string vReturn;
     var:string vPre;
 
     if(vVenvCommand){
-        vPre = "cd " + $ExportFolder("TBXConfig") + "&&export PATH = /usr / local / bin:/opt / homebrew / bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&" + vVenvCommand + "&&";
+        vPre = "cd " + $ExportFolder("TBXConfig") + "&&export PATH=/usr/local/bin:/opt/homebrew/bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&" + vVenvCommand + "&&";
     }else{
-        vPre = "cd " + $ExportFolder("TBXConfig") + "&&export PATH = /usr / local / bin:/opt / homebrew / bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&";
+        vPre = "cd " + $ExportFolder("TBXConfig") + "&&export PATH=/usr/local/bin:/opt/homebrew/bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH&&";
     };
-    vCommand += vPre + $Quarto_Path("TBXConfig") + " " + vQuartoCommand + " " + vSubProjectPath + " " + vQuartoOptions + ";exec zsh&;'"; //$Text(/Log) += vCommand + "\n";
+    vCommand += vPre + $Quarto_Path("TBXConfig") + " " + vQuartoCommand + " " + vSubProjectPath + " " + vQuartoOptions + ";exec zsh&;'"; //$Text(/Log)+= vCommand + "\n";
     ("This Stamp will remain running until you exit Kitty.app.").show;
     vReturn = runCommand(vCommand);
     fActivateAppName("Kitty");
