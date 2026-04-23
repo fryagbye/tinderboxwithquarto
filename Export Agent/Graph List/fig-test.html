@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>@fig-test</title>
+        <style>
+            
+body{
+    font-family: "Ideal Sans Ssm Book",HelveticaNeue,Helvetica,Arial,sans-serif;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    line-height: 1.4;
+    }
+    
+table {
+    margin: 2em 0;
+    font-size: 0.9em;
+    border: 1px solid #888888;
+}
+
+td{
+    padding: 0.5em;
+    }
+
+img{
+    width: 100%;
+}
+    
+
+        </style>
+    </head>
+    <body>
+        <p>```{mermaid} </p>
+<p>%%| label: fig-test</p>
+<p>%%| fig-cap: Flowchart</p>
+<p>%%| fig-width: 5</p>
+<p>%%{init: {'theme':'dark'}}%%</p>
+<p>flowchart TB</p>
+    <p>A["Starter Guide"] -->  B["Make Flowchart"]</p>
+    <p>B["Make Flowchart"] -->  C["Learn More"]</p>
+    <p>C["Learn More"] ---->  D["Gem"]</p>
+    <p>C["Learn More"] ---->  E{"Use the editor"}</p>
+    <p>C["Learn More"] ---->  F["Many shapes"]</p>
+    <p>D["Gem"]</p>
+    <p>E{"Use the editor"} -->|"Build and Design"| G["Visual Editor"]</p>
+    <p>E{"Use the editor"} -->|"Use AI"| I["AI chat"]</p>
+    <p>E{"Use the editor"} -->|"Mermaid js"| K["Text"]</p>
+    <p>F["Many shapes"]</p>
+    <p>G["Visual Editor"] -->  H["Add node in toolbar"]</p>
+    <p>H["Add node in toolbar"]</p>
+    <p>I["AI chat"] -->  J["Open AI in side menu"]</p>
+    <p>J["Open AI in side menu"]</p>
+    <p>K["Text"] -->  L["Type Mermaid syntax"]</p>
+    <p>L["Type Mermaid syntax"]</p>
+
+
+<p>%% Styles & Links</p>
+    <p>style G fill:#330099,color:#ffffff,stroke:#dc490b,stroke-width:2px</p>
+    <p>style I fill:#009900,color:#ffffff,stroke:#dc490b,stroke-width:2px</p>
+    <p>style K fill:#003366,color:#ffffff,stroke:#dc490b,stroke-width:2px</p>
+
+<p>```</p>
+
+
+    </body>
+</html>

@@ -1,0 +1,78 @@
+project:
+  type: book
+  output-dir: _bookhtml
+
+
+
+book:
+  title: TEST
+  author: TEST
+  reader-mode: true
+
+  page-footer:
+    left: |
+      
+    right: |
+      
+  
+  
+  
+  
+  repo-branch: main
+  repo-actions: [edit, issue]
+  sidebar:
+    style: docked
+    pinned: true
+  chapters:
+    - index.qmd
+
+
+format:
+  html:
+    theme:
+      - cosmo
+      
+    code-link: true
+    code-line-numbers: true
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    number-depth: 0
+    highlight-style: base16-atelier-dune
+    link-external-newwindow: true
+    pdf-engine: lualatex
+    author-meta: ""
+    indent: true
+    include-in-header:
+     - text: |
+
+    
+    
+    page-layout: article
+    
+    callout-appearance: default
+
+lightbox:
+  match: auto
+  effect: zoom
+  desc-position: bottom
+  loop: true
+
+
+
+bibliography: /Users/tk4o2ka/github/tinderboxwithquarto/citation/references.bib
+
+
+
+
+classoption: fleqn
+
+
+execute:
+  cache: false
+  
+  freeze: auto
+  crossrefs-hover: false	
+
+editor: visual
+

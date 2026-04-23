@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>@fig-workflow-mermaid</title>
+        <style>
+            
+body{
+    font-family: "Ideal Sans Ssm Book",HelveticaNeue,Helvetica,Arial,sans-serif;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    line-height: 1.4;
+    }
+    
+table {
+    margin: 2em 0;
+    font-size: 0.9em;
+    border: 1px solid #888888;
+}
+
+td{
+    padding: 0.5em;
+    }
+
+img{
+    width: 100%;
+}
+    
+
+        </style>
+    </head>
+    <body>
+        <p>```{mermaid} </p>
+<p>%%| label: fig-workflow-mermaid</p>
+<p>%%| fig-cap: Tinderbox Work Flow with Quarto.</p>
+<p>%%| fig-width: 5</p>
+<p>%%{init: {'theme':'neutral'}}%%</p>
+<p>flowchart TB</p>
+    <p>A["Bookends"] -->|"opt + drag"| Sub1["Tinderbox"]</p>
+    <p>B["Snippety"] -->  Sub1["Tinderbox"]</p>
+    <p>C["Mermaid"]</p>
+    <p>D["Graphviz"]</p>
+    <p>E["Preview with Rscript"]</p>
+    <p>F["R Studio"] -->|"Call"| H["quarto CLI"]</p>
+    <p>G["RMarkdown ( .qmd )"] -->|"Read qmd files"| F["R Studio"]</p>
+    <p>G["RMarkdown ( .qmd )"] -->|"Call"| H["quarto CLI"]</p>
+    <p>H["quarto CLI"] -->|"Export"| I["Book"]</p>
+    <p>H["quarto CLI"] -->|"Export"| J["Manuscript"]</p>
+    <p>H["quarto CLI"] -->|"Export"| K["revealjs"]</p>
+    <p>I["Book"]</p>
+    <p>J["Manuscript"]</p>
+    <p>K["revealjs"]</p>
+
+ <p>subgraph Sub1["Tinderbox"]</p>
+    <p>Sub5</p>
+<p>end </p>
+
+ <p>subgraph Sub2["Applications"]</p>
+    <p>direction LR</p>
+    <p>A</p>
+    <p>B</p>
+    <p>Sub1</p>
+<p>end </p>
+
+ <p>subgraph Sub3["Quarto"]</p>
+    <p>direction LR</p>
+    <p>F</p>
+    <p>G</p>
+    <p>H</p>
+<p>end </p>
+
+ <p>subgraph Sub4["Output"]</p>
+    <p>direction LR</p>
+    <p>I</p>
+    <p>J</p>
+    <p>K</p>
+<p>end </p>
+
+ <p>subgraph Sub5["Demo_TBX_for_Quarto.tbx"]</p>
+    <p>C</p>
+    <p>D</p>
+    <p>E</p>
+<p>end </p>
+
+ <p>subgraph Sub6["Work Flow"]</p>
+    <p>direction TB</p>
+    <p>Sub2</p>
+    <p>Sub3</p>
+    <p>Sub4</p>
+<p>end </p>
+
+    <p>Sub5["Demo_TBX_for_Quarto.tbx"] -->  G["RMarkdown ( .qmd )"]</p>
+
+<p>%% Styles & Links</p>
+    <p>style A fill:#fcbd63,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>click A href "https://www.sonnysoftware.com/bookends-for-mac" _blank</p>
+    <p>style B fill:#5c9dfe,color:#000000,stroke:#990000,stroke-width:2px,stroke-dasharray:5 5 </p>
+    <p>click B href "https://snippety.app/" _blank</p>
+    <p>style C fill:#c735e9,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>click C href "https://mermaid.js.org/" _blank</p>
+    <p>style D fill:#30638d,color:#ffffff,stroke:#dc490b,stroke-width:2px</p>
+    <p>click D href "https://graphviz.org/" _blank</p>
+    <p>style E fill:#009900,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>style F fill:#80a9d7,color:#000000,stroke:#dc490b,stroke-width:2px,stroke-dasharray:8 2 </p>
+    <p>click F href "https://posit.co/products/open-source/rstudio/" _blank</p>
+    <p>style G fill:#74bbff,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>style H fill:#74bbff,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>click H href "https://quarto.org/" _blank</p>
+    <p>style I fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>style J fill:#93dd93,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>style K fill:#f2e142,color:#000000,stroke:#d53f8c,stroke-width:2px</p>
+    <p>style Sub1 fill:#f6e04d,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>style Sub2 fill:#e7f3e7,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>style Sub3 fill:#fff4e6,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>style Sub4 fill:#ffffff,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>style Sub5 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+    <p>style Sub6 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px</p>
+
+<p>```</p>
+
+
+    </body>
+</html>

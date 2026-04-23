@@ -1,113 +1,53 @@
-function fBookPreview(){
+function fBookAction(vQCommand:string, vQuartoOptions:string){
     var:string vSelected = $ID;
     var:string vOutputFolder;
     var:string vVenv;
     var:string vCheck = false;
-    var:string vOption;
     var:string vRoot = collect(ancestors, $Path)[-1];
     var:string vConf = "TBXConfig";
     var:boolean debug = true;
+    var:string vAgentName = "Export Agent";
+    var:string vProject = "";
 
-    if($HasVenvEnv){
-        vVenv = $VenvActivateCommand;
-    }else{
-        vVenv = "";
-    };
-    if($Prototype != "pBookFolder"){
-        if($Prototype(vRoot) == "pBookFolder"){
-            if($HasVenvEnv){
-                vVenv = $VenvActivateCommand(vRoot);
-            }else{
-                vVenv = "";
-            };
-            if($HTMLExportFileName(vRoot)){
-                vOutputFolder = $HTMLExportFileName(vRoot);
-            }else{
-                vOutputFolder = $Name(vRoot);
-            };
+    // プロジェクトノートの特定
+    if ($Prototype == "pBookFolder") {
+        vProject = $Path;
+    } else {
+        if ($Prototype(vRoot) == "pBookFolder") {
+            vProject = vRoot;
             vCheck = true;
+        } else {
+            if ($IsAgent(vRoot) & $Name(vRoot) == vAgentName) {
+                vProject = $CurrentBookProject(vAgentName);
+                vCheck = true;
+            };
         };
-    }else{
-        if($HTMLExportFileName){
-            vOutputFolder = $HTMLExportFileName;
-        }else{
-            vOutputFolder = $Name;
-        };
+    };
+    // プロジェクト情報の設定
+    if (vProject) {
+        vVenv = $VenvActivateCommand(vProject);
+        vOutputFolder = $HTMLExportFileName(vProject);
+        if ( ! vOutputFolder) { vOutputFolder = $Name(vProject); };
+    } else {
+        vVenv = $VenvActivateCommand;
+        vOutputFolder = $HTMLExportFileName;
+        if ( ! vOutputFolder) { vOutputFolder = $Name; };
     };
     if($Prototype == "pBookFolder" | vCheck){
         fActivateAppName($TerminalApp(vConf));
-        if(debug){LogRec("Quarto", " < < mark > > Preview: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
+        if(debug){LogRec("Quarto", " < < mark > > " + vQCommand + ": vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vQuartoOptions + " vVenv = " + vVenv);};
         if($TerminalApp(vConf) == "Wezterm"){
-            fQuartoCommnadInWezterm("preview", vOutputFolder, vOption, vVenv);
+            fQuartoCommnadInWezterm(vQCommand, vOutputFolder, vQuartoOptions, vVenv);
         };
         if($TerminalApp(vConf) == "Terminal"){
-            fQuartoCommnadInTerminal("preview", vOutputFolder, vOption, vVenv);
+            fQuartoCommnadInTerminal(vQCommand, vOutputFolder, vQuartoOptions, vVenv);
         };
         if($TerminalApp(vConf) == "Ghostty"){
-            fQuartoCommnadInGhostty("preview", vOutputFolder, vOption, vVenv);
+            fQuartoCommnadInGhostty(vQCommand, vOutputFolder, vQuartoOptions, vVenv);
         };
         select($Path(vSelected));
     }else{
         ("Please select the pBookFolder note or any of its descendant notes.").show;
-    };
-};
-
-
-function fBookRender(){
-    var:string vSelected = $ID;
-    var:string vVenv;
-    var:string vCheck;
-    var:string vOption;
-    var:string vOutputFolder;
-    var:string vConf = "TBXConfig";
-    var:string vRoot = collect(ancestors, $Path)[-1];
-    var:boolean debug = true;
-
-    if($HasVenvEnv){
-        vVenv = $VenvActivateCommand;
-    }else{
-        vVenv = "";
-    };
-    if($Prototype != "pBookFolder"){
-        if($Prototype(vRoot) == "pBookFolder"){
-            if($HasVenvEnv){
-                vVenv = $VenvActivateCommand(vRoot);
-            }else{
-                vVenv = "";
-            };
-            if($HTMLExportFileName(vRoot)){
-                vOutputFolder = $HTMLExportFileName(vRoot);
-            }else{
-                vOutputFolder = $Name(vRoot);
-            };
-            vCheck = true;
-        };
-    }else{
-        if($HTMLExportFileName){
-            vOutputFolder = $HTMLExportFileName;
-        }else{
-            vOutputFolder = $Name;
-        };
-    };
-    //    if(debug){LogRec("Quarto", " < < mark > > Render: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
-    if($Prototype == "pBookFolder" | vCheck){
-        fActivateAppName($TerminalApp(vConf));
-        if($TerminalApp(vConf) == "Wezterm"){
-            fQuartoCommnadInWezterm("render", vOutputFolder, "", vVenv);
-        };
-        if($TerminalApp(vConf) == "Terminal"){
-            fQuartoCommnadInTerminal("render", vOutputFolder, "", vVenv);
-        };
-        if($TerminalApp(vConf) == "Ghostty"){
-            fQuartoCommnadInGhostty("render", vOutputFolder, "", vVenv);
-        };
-        if($TerminalApp(vConf) == "Ghostty"){
-            fQuartoCommnadInGhostty("render", vOutputFolder, "", vVenv);
-        };
-        select($Path(vSelected));
-    }else{
-        //        if(debug){LogRec("TBXConfig", " < < mark > > Render: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
-        ("Please select the pBookFolder note or any of its descendant notes.").show();
     };
 };
 
@@ -121,33 +61,27 @@ function fManuscriptPreview(){
     var:string vRoot = collect(ancestors, $Path)[-1];
     var:string vConf = "TBXConfig";
     var:boolean debug = true;
+    var:string vProject = "";
 
-    if($HasVenvEnv){
-        vVenv = $VenvActivateCommand;
-    }else{
-        vVenv = "";
-    };
     vOption = "--to html";
-    if($Prototype != "pManuscriptFolder"){
-        if($Prototype(vRoot) == "pManuscriptFolder"){
-            if($HasVenvEnv(vRoot)){
-                vVenv = $VenvActivateCommand(vRoot);
-            }else{
-                vVenv = "";
-            };
-            if($HTMLExportFileName(vRoot)){
-                vOutputFolder = $HTMLExportFileName(vRoot);
-            }else{
-                vOutputFolder = $Name(vRoot);
-            };
+    // プロジェクトノートの特定
+    if ($Prototype == "pManuscriptFolder") {
+        vProject = $Path;
+    } else {
+        if ($Prototype(vRoot) == "pManuscriptFolder") {
+            vProject = vRoot;
             vCheck = true;
         };
-    }else{
-        if($HTMLExportFileName){
-            vOutputFolder = $HTMLExportFileName;
-        }else{
-            vOutputFolder = $Name;
-        };
+    };
+    // プロジェクト情報の設定
+    if (vProject) {
+        vVenv = $VenvActivateCommand(vProject);
+        vOutputFolder = $HTMLExportFileName(vProject);
+        if ( ! vOutputFolder) { vOutputFolder = $Name(vProject); };
+    } else {
+        vVenv = $VenvActivateCommand;
+        vOutputFolder = $HTMLExportFileName;
+        if ( ! vOutputFolder) { vOutputFolder = $Name; };
     };
     if(debug){LogRec("Quarto", " < < mark > > Preview: vCheck = " + vCheck + " vOutputFolder = " + vOutputFolder + " vOption = " + vOption + " vVenv = " + vVenv);};
     if($Prototype == "pManuscriptFolder" | vCheck){
@@ -178,43 +112,35 @@ function fRevealjsPreview(){
     var:string vConf = "TBXConfig";
     var:string vRoot = collect(ancestors, $Path)[-1];
     var:boolean debug = true;
+    var:string vProject = "";
 
-    if($HasVenvEnv){
-        vVenv = $VenvActivateCommand;
-    }else{
-        vVenv = "";
-    };
-    if($Q_HasQuartoLiveChunk(vRoot)){
-        vOption = "--to live-revealjs";
-    }else{
-        vOption = "--to revealjs";
-    };
-    if($Prototype != "pRevealjsFolder"){
-        var:string vRoot = collect(ancestors, $Path)[-1];
-
-        if($Prototype(vRoot) == "pRevealjsFolder"){
-            if($HasVenvEnv(vRoot)){
-                vVenv = $VenvActivateCommand(vRoot);
-            }else{
-                vVenv = "";
-            };
-            if($HTMLExportFileName(vRoot)){
-                vOutputFolder = $HTMLExportFileName(vRoot);
-            }else{
-                vOutputFolder = $Name(vRoot);
-            };
-            if($Q_HasQuartoLiveChunk(vRoot)){
-                vOption = "--to live-revealjs";
-            }else{
-                vOption = "--to revealjs";
-            };
+    // プロジェクトノートの特定
+    if ($Prototype == "pRevealjsFolder") {
+        vProject = $Path;
+    } else {
+        if ($Prototype(vRoot) == "pRevealjsFolder") {
+            vProject = vRoot;
             vCheck = true;
         };
-    }else{
-        if($HTMLExportFileName){
-            vOutputFolder = $HTMLExportFileName;
-        }else{
-            vOutputFolder = $Name;
+    };
+    // プロジェクト情報の設定
+    if (vProject) {
+        vVenv = $VenvActivateCommand(vProject);
+        vOutputFolder = $HTMLExportFileName(vProject);
+        if ( ! vOutputFolder) { vOutputFolder = $Name(vProject); };
+        if ($Q_HasQuartoLiveChunk(vProject)) {
+            vOption = "--to live-revealjs";
+        } else {
+            vOption = "--to revealjs";
+        };
+    } else {
+        vVenv = $VenvActivateCommand;
+        vOutputFolder = $HTMLExportFileName;
+        if ( ! vOutputFolder) { vOutputFolder = $Name; };
+        if ($Q_HasQuartoLiveChunk) {
+            vOption = "--to live-revealjs";
+        } else {
+            vOption = "--to revealjs";
         };
     };
     if($Prototype == "pRevealjsFolder" | vCheck){
@@ -307,16 +233,34 @@ function fQuartoCommnadInGhostty(vQuartoCommand:string, vSubProjectPath:string, 
     var:string vReturn;
     var:string vPre;
     var:boolean debug = true;
+    var:string vQ = '"';
 
     if(vVenvCommand){
         vPre = "cd " + $ExportFolder("TBXConfig") + " && export PATH=/usr/local/bin:/opt/homebrew/bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH && " + vVenvCommand + " && ";
     }else{
         vPre = "cd " + $ExportFolder("TBXConfig") + " && export PATH=/usr/local/bin:/opt/homebrew/bin:" + $RScriptLibraryPath("TBXConfig") + ":$PATH && ";
     };
-    var:string vFullTerminalCommand = vPre + $Quarto_Path("TBXConfig") + " " + vQuartoCommand + " " + vSubProjectPath + " " + vQuartoOptions + "; exec zsh";
+    var:string vFullTerminalCommand = vPre + $Quarto_Path("TBXConfig") + " " + vQuartoCommand + " " + vSubProjectPath + " " + vQuartoOptions;
 
-    // Use AppleScript to activate Ghostty, open a new tab, and run the command;
-    vCommand = "/usr/bin/osascript -e 'tell application " + '"' + "Ghostty" + '"' + "' -e 'activate' -e 'if (count of windows) is 0 then' -e 'set win to new window' -e 'set tObj to selected tab of win' -e 'else' -e 'set win to front window' -e 'set tObj to new tab in win' -e 'end if' -e 'delay 0.1' -e 'input text " + '"' + vFullTerminalCommand + "\n" + '"' + " to focused terminal of tObj' -e 'end tell'";
+    // Use AppleScript to activate Ghostty, handle window/tab creation based on running state;
+    vCommand = "/usr/bin/osascript -e 'set isRunning to application " + vQ + "Ghostty" + vQ + " is running' ";
+    vCommand += "-e 'tell application " + vQ + "Ghostty" + vQ + "' ";
+    vCommand += "-e 'activate' ";
+    vCommand += "-e 'if not isRunning then' ";
+    vCommand += "-e 'delay 0.5' "; // Wait for Ghostty to initialize window;
+    vCommand += "-e 'set tObj to tab 1 of front window' ";
+    vCommand += "-e 'else' ";
+    vCommand += "-e 'if (count of windows) is 0 then' ";
+    vCommand += "-e 'set win to new window' ";
+    vCommand += "-e 'set tObj to tab 1 of win' ";
+    vCommand += "-e 'else' ";
+    vCommand += "-e 'set win to front window' ";
+    vCommand += "-e 'set tObj to new tab in win' ";
+    vCommand += "-e 'end if' ";
+    vCommand += "-e 'end if' ";
+    vCommand += "-e 'delay 0.1' ";
+    vCommand += "-e 'input text " + vQ + vFullTerminalCommand + vQ + " & return to focused terminal of tObj' ";
+    vCommand += "-e 'end tell'";
     if(debug){LogRec("Quarto", " < < mark > > Ghostty vCommand = " + vCommand);};
     vReturn = runCommand(vCommand);
 };

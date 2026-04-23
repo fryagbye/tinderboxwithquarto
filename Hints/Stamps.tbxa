@@ -1,0 +1,440 @@
+// /Hints/Stamps
+
+
+// /Hints/Stamps/New: New Project ( Book )
+
+fCreateBookProject();
+
+
+// /Hints/Stamps/New: New Project ( Manuscript )
+
+fCreateManuscriptProject();
+
+
+// /Hints/Stamps/New: New Project ( revealjs )
+
+fCreateRevealjsProject();
+
+
+// /Hints/Stamps/Quarto: Book Preview ( Select Export Agent )
+
+fBookAction("preview", "");
+
+
+// /Hints/Stamps/Quarto: Book Render ( Select For Export )
+
+fBookAction("render", "");
+
+
+// /Hints/Stamps/Quarto: Manuscript Preview ( Select manuscipt folder )
+
+fManuscriptPreview();
+
+
+// /Hints/Stamps/Quarto: Revealjs Preveiw( Select Revealjs folder )
+
+fRevealjsPreview();
+
+
+// /Hints/Stamps/Setup: Create TOC note
+
+
+fMakeTOC();
+
+
+// /Hints/Stamps/Notes: Set SectionLabel & HTMLExportFileName
+
+if(!($IsNamesLocked)){
+	if($IsIndexqmd){
+		$HTMLExportFileName="index";
+	}else{
+		$HTMLExportFileName=$Name.deleteCharacters("/\?%*:|<>.&+()!,#`").lowercase().replace(" ","-").replace("'","");
+	};
+
+//	if(!($SectionLabel)){
+		$SectionLabel = $HTMLExportFileName;
+//	};
+}else{
+	("$IsNamesLocked is true.").show();
+};
+
+$HTMLExportExtension=$HTMLExportExtension($Prototype);
+
+
+
+// /Hints/Stamps/Notes: Set Export Mode
+
+fSetExportMode($Path);
+
+
+// /Hints/Stamps/Notes: Set Preview Mode
+
+fSetPreviewMode($Path);
+
+
+// /Hints/Stamps/Notes: Tranlate Section Labels
+
+$IsNamesLocked=false;
+fRenameIn($Name);
+$IsNamesLocked=true;
+$HasSectionLabel=true;
+
+
+// /Hints/Stamps/Notes: Toggle $HasSectionLabel
+
+if($HasSectionLabel){
+	$HasSectionLabel=false;
+}else{
+	if($SectionLabel==""){
+		fRenameIn($Name);
+		$IsNamesLocked=true;
+	};
+	$HasSectionLabel=true;
+};
+
+
+// /Hints/Stamps/Notes: Fix Displayed Attributes ( Prototype )
+
+fFixDisplayedAttributesWithPrototype();
+
+
+// /Hints/Stamps/Notes: Fix Displayed Attributes ( Template )
+
+fFixDisplayedAttributesWithTemplate();
+
+
+// /Hints/Stamps/Notes: Fix display expression
+
+fDisplayExpression();
+
+
+// /Hints/Stamps/Labels: Force update Lists & Cross-Ref
+
+fCrossRefUpdate(true);
+
+
+
+// /Hints/Stamps/Labels: Clear Cross-Reference List in Selected Project
+
+fClearReferenceListFromSelectedProject();
+
+
+
+// /Hints/Stamps/Labels: Make Dummy Links For Cross-Reference
+
+fMakeLinkFigFromReferenceList();
+fMakeLinkSecFromReferenceList();
+fMakeLinkTableFromReferenceList();
+fMakeLinkEquationFromReferenceList();
+
+
+// /Hints/Stamps/Chunk & Graph: Clear Chunk and Graph List
+
+fClearChunkList();
+fClearGraphList();
+
+
+// /Hints/Stamps/Chunk & Graph: Make Chunk and Graph List
+
+fMakeChunkList();
+fMakeGraphList();
+
+
+// /Hints/Stamps/Chunk & Graph: Set Frontmatter and options for Chunk
+
+var:boolean vCheck=true;
+
+if($Prototype=="pRChunk"|$Prototype=="pRChunkList"|$Prototype=="pPChunk"){
+	fSetForChunk($ID, true);
+	fMakeChunkList();
+	vCheck=false;
+};
+
+if($Prototype=="pChunk"){
+
+	vCheck=false;
+};
+
+if(vCheck){
+	("Please select pRChunk, pRChunkList, pPChunk or pChunk note").show();
+};
+
+
+
+// /Hints/Stamps/Chunk & Graph: Set RChunk Preview
+
+if($Prototype=="pRChunk"){
+	fSetPreviewCommandForRChunk();
+}else{
+	("Please select a pRChunk note").show;
+};
+
+
+// /Hints/Stamps/Chunk & Graph: Set PChunk Preview
+
+if($Prototype=="pPChunk"){
+	$HTMLExportTemplate="/Templates/tPChunk_Preview";
+	$HTMLExportExtension=".html";
+}else{
+	("Please select a pPChunk note").show;
+};
+
+
+// /Hints/Stamps/Export: Change quarto.yml template
+
+select(/_quarto);
+fChangeTemplateQuartoYML();
+
+
+// /Hints/Stamps/Export: Toggle Export and Preview mode for Agent
+
+fToggleBookAgent(); 
+
+
+// /Hints/Stamps/Export: Toggle Export and Preview mode for Subnotes
+
+var:string vProject;
+vProject=collect(ancestors,$Path)[-1];
+
+if($Prototype(vProject)=="pBookFolder"|$Prototype(vProject)=="pManuscriptFolder"|$Prototype(vProject)=="pRevealjsFolder"){
+	fSetPreviewForpSubnoteFromPath(vProject);
+};
+
+
+// /Hints/Stamps/Export: Toggle Book Agent Query ON/OFF
+
+var:string vAgentExport=$AgentNameForQmdFiles("TBXConfig");
+if($AgentPriority(vAgentExport)==-1){
+	$AgentPriority(vAgentExport)=1;
+}else{
+	$AgentPriority(vAgentExport)=-1;
+};
+
+
+// /Hints/Stamps/Export: Change a template of "Export Agent"
+
+select(/For Export);
+fChangeTemplateOfAgentQmd();
+
+
+// /Hints/Stamps/Export: Copy Index List to Table Of Contents
+
+$Text($TableOfContaintsNote("TBXConfig")) = $Text("Index List");
+
+
+// /Hints/Stamps/Utilities: _language.yml
+
+fGetLanguageYML($LanguageYMLLang);
+
+
+// /Hints/Stamps/Utilities: Biblography for Bookends
+
+if($Prototype=="Reference"){
+	$Path="/Reference DB";
+	$Prototype="pReference";
+	fSetReference();
+};
+
+
+// /Hints/Stamps/Utilities: Table Order
+
+var:list vlist;
+var:number vsum=0;
+var:number vorder=1;
+if($Prototype=="pTable"){
+	vlist = collect(children,$Path);
+	vsum = sum(children, $TableOrder);
+	$MyNumber = vsum;
+//$MyList= vlist;
+	if(vsum=0){
+		vlist.each(alist){
+			$TableOrder(alist)=vorder;
+			vorder += 1;
+		};
+		$Sort="TableOrder";
+		$SortBackward=false;
+		$SortAlso="";
+		$SortBackwardAlso=false;
+	show("ordered");
+	}else{
+		vlist.each(alist){
+			$TableOrder(alist)=0;
+		};
+		$Sort="";
+		$SortBackward=false;
+		$SortAlso="";
+		$SortBackwardAlso=false;
+	show("reset");		
+	};
+
+};
+
+
+// /Hints/Stamps/Mermaid: Make a Flowchart
+
+if($Prototype="pMFContainer"){
+	fWriteMermaidFlowchart($M_Direction, $ID, $CopyClipboard);
+}else{
+	("Select pMFContainer note").show();
+};
+
+
+// /Hints/Stamps/Mermaid: Toggle Mermaid Poster
+
+if($Prototype=="pMFContainer"){
+if($PosterTemplate){
+	$PosterTemplate=;
+	("Poster OFF").show();
+}else{
+	$PosterTemplate="/Templates/tMermaid";
+	("Poster ON").show();
+};
+};
+
+
+// /Hints/Stamps/Graphviz: Make a Dot graph
+
+if($Prototype=="pGContainer"){
+	fGenerateGraphviz($ID, $CopyClipboard);
+}else{
+	("Select pGContainer note").show;
+};
+
+
+// /Hints/Stamps/Graphviz: Toggle Graphviz Poster
+
+if($Prototype=="pGContainer"){
+	if($PosterTemplate){
+		$PosterTemplate=;
+		("Poster OFF").show();
+	}else{
+		$PosterTemplate="/Templates/tGraphviz";
+		("Poster ON").show();
+	};
+};
+
+
+// /Hints/Stamps/Graphviz: Toggle $G_HasCustomAttributes
+
+if($Prototype=="pGContainer"|$Prototype=="pGSubgraph"|$Prototype=="pGNode"){
+	if($G_HasCustomAttributes){
+		$G_HasCustomAttributes=false;
+		("$G_HasCustomAttributes OFF").show;
+	}else{
+		$G_HasCustomAttributes=true;
+		("$G_HasCustomAttributes ON").show;	};
+};
+
+
+// /Hints/Stamps/Graphviz: Set Attributes Default
+
+//Select pGAttribute 
+fSetupAttibutesDictionaryDefaultValue($ID, "pGAttributeDefault", "default");
+
+
+
+// /Hints/Stamps/Graphviz: Set Attributes Description
+
+//Select pGAttribute 
+fSetupAttibutesValue($ID, "pGAttributeDescription", "description");
+
+
+
+// /Hints/Stamps/Develop: Make Attributes
+
+fSetupAttibutesDictionary($ID);
+
+
+// /Hints/Stamps/Develop: Create Attributes from Note
+
+//Select pGAttribute 
+fCreateAttributesFromDictionary($ID, "pAttribute");
+
+
+
+// /Hints/Stamps/DELETE: DEMO FILES
+
+var:list vList;
+var:string vConf="TBXConfig";
+
+vList+= "/How to use this file";
+vList+= "/myproject";
+vList+= "/myrevealjs";
+vList+= "/myproject";
+vList+= "/Mermaid Flowchart/work-flow-mermaid";
+vList+= "/Mermaid Flowchart/test-flowchart";
+vList+= "/Mermaid Flowchart";
+vList+= "/Graphviz/work-flow-graphviz";
+vList+= "/Graphviz/finite-automaton";
+vList+= "/Graphviz/ltail-lhead";
+vList+= "/Graphviz/demo-clusters";
+vList+= "/Graphviz";
+vList+= "/References DB/@Anderson2024Tinde";
+vList+= "/References DB/@Wickham2016Data";
+vList+= "/Scratch/References Output";
+vList+= "/Scratch";
+vList+= "/Hints/Edict «Attribute Note»";
+vList+= "/Hints/OnVisit «Document Attributes»";
+vList+= "/Hints/OnPaste «Document Commons»";
+vList+= "/Hints/(((((Action Code Library)))))";
+vList+= "/Hints/Link «Reflect Note into Diagram»";
+vList+= "/Hints/OnRemove «Diagram Object Note»";
+vList+= "/Hints/Stamps/For Debug(/Log): get changed attributes list about the selected note.";
+vList+= "/Hints/Stamps/For Debug(/Log): get all user-attributes list about the selected note.";
+vList+= "/Hints/Stamps/Develop: Make Attributes";
+vList+= "/Hints/Stamps/Develop: Create Attributes from Note";
+vList+= "/Hints/Stamps/Logging:Stop Logging";
+vList+= "/Hints/Stamps/Logging:Delete Log Books";
+vList+= "/Hints/Stamps/Logging:Bookmark Entry";
+vList+= "/Hints/Stamps/Logging:Stamp Log Entry";
+vList+= "/Hints/Stamps/Logging:Restart Index Sequencing";
+vList+= "/Hints/Stamps/Logging:Restart Index Sequencing";
+vList+= "/Hints/Stamps/Safe Paths:Construct $SafePath for Note";
+vList+= "/Hints/Stamps/Safe Paths:Update $SafePath for Branch";
+vList+= "/Hints/Stamps/Safe Paths:Update $SafePath for Document";
+vList+= "/Hints/Stamps/Diagram:Set Active Diagram";
+vList+= "/Hints/Stamps/Diagram:Add Notes to Active Diagram";
+vList+= "/Hints/Stamps/Links:Remove Link From";
+vList+= "/Hints/Stamps/Links:Remove Link To";
+vList+= "/Hints/Stamps/Links:Remove Link Set";
+vList+= "/Hints/Stamps/Network:Initialize IP Address Note";
+vList+= "/Hints/Stamps/Network:IP quad to integer";
+vList+= "/Hints/Stamps/Network:Extract IP-MAC info";
+vList+= "/Hints/Stamps/Device: SSH capture";
+vList+= "/Document Commons";
+
+if($DANGEROUSCOMMAND("DELETE: DEMO FILES")=="DELETEDEMOFILES"){
+    vList.each(aL){
+        delete(aL);
+    };
+    $Text(/citation/references)=;
+    $TerminalApp(vConf)="Terminal";
+    $ProjectContainer(vConf)="";
+    $AgentNameForQmdFiles(vConf)="Export Agent";
+    $Q_BibliographyFile(vConf)="";
+    $ImagePathForPandoc(vConf)="";
+    $PandocCSSPath(vConf)="";
+    $ImagePath(vConf)="";
+    $RLibraryListForPreview(vConf)="dplyr;knitr;kableExtra;stats;datasets;graphics;grDevices;rmarkdown";
+    $ExportFolder(vConf)="";
+
+    fCrossRefUpdate(true);
+};
+
+
+
+
+
+// /Hints/Stamps/For Debug(/Log): get changed attributes list about the selected note.
+
+// output-> /Log
+fGetAttributeList($Name);
+
+
+// /Hints/Stamps/For Debug(/Log): get all user-attributes list about the selected note.
+
+// output-> /Log
+fGetAttributeList2();
+
+
+

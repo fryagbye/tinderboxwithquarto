@@ -1,9 +1,6 @@
-
-
 0# <python:numpy>
  
-
-```{python}
+ ```{python}
 #| echo: false
 #| fig-width: 5
 #| fig-pos: H
@@ -12,7 +9,6 @@ import numpy as np
 a = np.arange(15).reshape(3, 5)
 a
 ```
- 
 
 
 

@@ -40,13 +40,12 @@ format:
 
 
 ## Interactive Editor
-
+ 
 You can quote a chunk code block with a tag that has the pChunk child note.  
 The language of chunk code is `webr` for R or `pyodide` for python
 
 
-
-
+ 
 
 
 
@@ -56,9 +55,8 @@ The language of chunk code is `webr` for R or `pyodide` for python
 
 
 ## R chunk example 1
-
-
  
+
 ```{r}
 #| echo: false
 #| label: fig-Graph
@@ -73,10 +71,9 @@ ggplot(airquality, aes(Temp, Ozone)) +
 ```
 
  
+ 
 
-
-
-
+ 
 
 
 
@@ -86,7 +83,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 
 ## R chunk example 1 ( Warning off option )
-
+ 
 If you want to suppress warning messages, you set `$Q_ChunkSuppressWarning` false.
 
  
@@ -105,10 +102,9 @@ ggplot(airquality, aes(Temp, Ozone)) +
 ```
 
  
+ 
 
-
-
-
+ 
 
 
 
@@ -118,9 +114,8 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 
 ## R chunk example 2
-
-
  
+
 ```{webr}
 #| echo: false
 #| fig-width: 5
@@ -133,10 +128,9 @@ summary(mod)
 ```
 
  
+ 
 
-
-
-
+ 
 
 
 
@@ -146,9 +140,8 @@ summary(mod)
 
 
 ## Python chunk example
-
-
  
+
 ```{python}
 #| echo: true
 #| label: fig-python
@@ -164,10 +157,9 @@ plt.show()
 ```
 
  
+ 
 
-
-
-
+ 
 
 
 
@@ -177,8 +169,6 @@ plt.show()
 
 
 ## 例4: Mermaidで作図
-
-
  
 ```{mermaid}
 %%| echo: false
@@ -187,11 +177,11 @@ flowchart TD
    id1((1))---id2((2))---id3((3)):::current
    classDef current stroke: #f96, stroke-width: 2px, color: #f96
 
+
 ```
  
+ 
 
-
-
-
+ 
 
 

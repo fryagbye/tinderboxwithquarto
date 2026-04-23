@@ -1,9 +1,6 @@
-
-
 0# <python:matplotlib➡️fig-matplotlib>
  
-
-```{python}
+ ```{python}
 #| label: fig-matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -22,7 +19,6 @@ plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
 plt.legend(loc='lower right')
 plt.show(fig)
 ```
- 
 
 
 

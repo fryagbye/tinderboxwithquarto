@@ -13,12 +13,12 @@
 %%{init: {'theme':'neutral'}}%%
 flowchart TB
     A["Bookends"] -->|"opt + drag"| Sub1["Tinderbox"]
-    B["Snippety"] -.->  Sub1["Tinderbox"]
+    B["Snippety"] -->  Sub1["Tinderbox"]
     C["Mermaid"]
     D["Graphviz"]
     E["Preview with Rscript"]
     F["R Studio"] -->|"Call"| H["quarto CLI"]
-    G["RMarkdown ( .qmd )"] -->|""Read qmd files""| F["R Studio"]
+    G["RMarkdown ( .qmd )"] -->|"Read qmd files"| F["R Studio"]
     G["RMarkdown ( .qmd )"] -->|"Call"| H["quarto CLI"]
     H["quarto CLI"] -->|"Export"| I["Book"]
     H["quarto CLI"] -->|"Export"| J["Manuscript"]
@@ -65,7 +65,7 @@ end
     Sub4
 end 
 
-    Sub5["Demo_TBX_for_Quarto.tbx"] -->|""*untitled""| G["RMarkdown ( .qmd )"]
+    Sub5["Demo_TBX_for_Quarto.tbx"] -->  G["RMarkdown ( .qmd )"]
 
 %% Styles & Links
     style A fill:#fcbd63,color:#000000,stroke:#dc490b,stroke-width:2px

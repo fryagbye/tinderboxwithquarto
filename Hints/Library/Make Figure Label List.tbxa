@@ -1,6 +1,5 @@
 // /Hints/Library/Make Figure Label List
 
-
 function fMakeFigureList(vContainer:string, vPath:string){
     var:string vName;
     var:string vTest;

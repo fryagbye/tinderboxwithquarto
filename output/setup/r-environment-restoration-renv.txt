@@ -1,0 +1,34 @@
+## R Environment Restoration (renv) {#sec-r-environment-restoration-renv }
+ 
+     R package dependencies are managed by renv (Reproducible Environment).
+ 
+
+1. Start an R Session:
+ 
+    Launch the R console or RStudio and navigate to the project root directory.
+ 
+
+2. Restore Dependencies:
+ 
+    Execute the command below to install the exact versions of R packages specified in the renv.lock file.
+ 
+
+```{.r}
+ # Execute inside the R console
+ renv::restore()
+```
+ 
+ 
+
+:::{.callout-note}
+ 
+The first time you run renv::restore(), R may automatically prompt you to install renv itself if it's not present. Please allow the installation if prompted.
+
+:::
+ 
+
+
+
+
+
+

@@ -6,8 +6,7 @@
 
 
 ## Python chunk example
-
-
+ 
 
 ```{python}
 #| echo: true
@@ -23,9 +22,8 @@ plt.hist(x)
 plt.show()
 ```
 
+ 
+ 
 
-
-
-
-
+ 
 

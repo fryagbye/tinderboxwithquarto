@@ -1,0 +1,101 @@
+# Table of Contents
+ 
+ 第[-@sec-setup]章 Software Setup
+  
+
+- [-@sec-required-software] Required Software
+  
+
+- [-@sec-repository-cloning-and-initial-setup] Repository Cloning and Initial Setup
+  
+
+- [-@sec-python-environment-setup-poetry] Python Environment Setup (Poetry)
+  
+
+- [-@sec-r-environment-restoration-renv] R Environment Restoration (renv)
+  
+
+- [-@sec-installed-packages] Installed packages
+  
+
+- [-@sec-session-information] RStudio Session information
+  
+第[-@sec-setting]章 Setting
+  
+第[-@sec-make-notes]章 Make new notes
+  
+第[-@sec-chunks-and-graphs]章 Chunks and Graphs
+  
+第[-@sec-translate-and-rename]章 Rename HTMLExportFileName of a note with translation
+  
+第[-@sec-part-in-book-format]章 Part in Book format
+  
+第[-@sec-cross-reference-using-ziplink]章 Cross-Reference using Ziplink
+  
+
+- [-@sec-how-to-set-the-label] How to set the label of the diagram
+  
+
+- [-@sec-image-link-in-markdown-format] Image link in markdown format
+  
+
+- [-@sec-r-chunk] R chunk
+  
+
+- [-@sec-how-to-set-the-label-of-the-table] How to set the label of the table
+  
+
+- [-@sec-equations] Equations
+  
+
+- [-@sec-how-to-quote] How to quote
+  
+
+- [-@sec-add-dummy-links-to-cross-ref] Dummy links for cross-reference
+  
+
+- [-@sec-restrictions-on-quoted-labels] Restrictions on quoted labels
+  
+第[-@sec-export]章 Export and Render
+  
+
+- [-@sec-example] Example
+  
+第[-@sec-make-manuscript-subproject]章 Make sub-project folder
+  
+
+- [-@sec-make-quartoyml] Make \_quarto.yml for the sub-project
+  
+第[-@sec-make-revealjs-subproject]章 Make sub-project folder
+  
+第[-@sec-mermaid-flowchart]章 Mermaid flowchart
+  
+
+- [-@sec-how-to-use] How to use
+  
+
+- [-@sec-supported-shapes] Supported shapes
+  
+
+- [-@sec-supported-line-types-priority] Supported line types (Priority)
+  
+
+- [-@sec-supported-arrow-types] Supported arrow types
+  
+
+- [-@sec-example] Example
+  
+第[-@sec-graphviz-optional]章 Graphviz β version
+  
+
+- [-@sec-how-to-use] How to use
+  
+
+- [-@sec-example] Example
+  
+第[-@sec-references]章 References
+  
+
+
+
+

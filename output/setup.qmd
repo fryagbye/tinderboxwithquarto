@@ -1,4 +1,4 @@
-# Software Setup
+# Software Setup { .unnumbered }
  
   
 To run the project in your local environment, please follow the steps below to set up the necessary software and environment.

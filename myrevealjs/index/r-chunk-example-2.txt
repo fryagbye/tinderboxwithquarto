@@ -6,8 +6,7 @@
 
 
 ## R chunk example 2
-
-
+ 
 
 ```{webr}
 #| echo: false
@@ -20,9 +19,8 @@ abline(mod, col = 'blue')
 summary(mod)
 ```
 
+ 
+ 
 
-
-
-
-
+ 
 

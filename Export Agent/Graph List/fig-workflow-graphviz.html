@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>@fig-workflow-graphviz</title>
+        <style>
+            
+body{
+    font-family: "Ideal Sans Ssm Book",HelveticaNeue,Helvetica,Arial,sans-serif;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    line-height: 1.4;
+    }
+    
+table {
+    margin: 2em 0;
+    font-size: 0.9em;
+    border: 1px solid #888888;
+}
+
+td{
+    padding: 0.5em;
+    }
+
+img{
+    width: 100%;
+}
+    
+
+        </style>
+    </head>
+    <body>
+        <p>```{dot} </p>
+<p>//| label: fig-workflow-graphviz</p>
+<p>//| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )</p>
+<p>//| fig-width: 5</p>
+<p>digraph {</p>
+    <p>layout=dot</p>
+    <p>compound=true</p>
+    <p>graph [charset="UTF-8" splines="spline" rankdir="LR" ];</p>
+<p>subgraph cluster_A{</p>
+                        <p>label="Applications"</p>
+                        <p>spline="curved"</p>
+                        <p>color="#000000"</p>
+                        <p>penwidth="1"</p>
+                        <p>style="filled"</p>
+                        <p>fillcolor="#e7f3e7"</p>
+                        <p>fontcolor="#000000"</p>
+            <p>A B </p>
+
+            <p>subgraph cluster_B{</p>
+                            <p>label="Tinderbox"</p>
+                            <p>color="#000000"</p>
+                            <p>penwidth="1"</p>
+                            <p>style="filled"</p>
+                            <p>fillcolor="#f6e04d"</p>
+                            <p>fontcolor="#000000"</p>
+                            <p>URL="https://www.eastgate.com/Tinderbox/"</p>
+
+
+            <p>subgraph cluster_C{</p>
+                                <p>label="Demo_TBX_for_Quarto.tbx"</p>
+                                <p>color="#000000"</p>
+                                <p>penwidth="1"</p>
+                                <p>style="filled"</p>
+                                <p>fillcolor="#ffffff"</p>
+                                <p>fontcolor="#000000"</p>
+                                <p>URL="https://github.com/fryagbye/tinderboxwithquarto"</p>
+            <p>C D E </p>
+<p>}</p>
+
+<p>}</p>
+
+<p>}</p>
+
+<p>subgraph cluster_D{</p>
+                        <p>label="Quarto"</p>
+                        <p>color="#000000"</p>
+                        <p>penwidth="1"</p>
+                        <p>style="filled"</p>
+                        <p>fillcolor="#fff4e6"</p>
+                        <p>fontcolor="#000000"</p>
+            <p>F G H </p>
+<p>}</p>
+
+<p>subgraph cluster_E{</p>
+                        <p>label="Output"</p>
+                        <p>color="#000000"</p>
+                        <p>penwidth="1"</p>
+                        <p>style="filled"</p>
+                        <p>fillcolor="#ffffff"</p>
+                        <p>fontcolor="#000000"</p>
+            <p>I J K </p>
+<p>}</p>
+
+
+<p>A [ style="filled"  label="Bookends" color="#000000", penwidth="1", fillcolor="#fcbd63", fontcolor="#000000", URL="https://www.sonnysoftware.com/bookends-for-mac"]</p>
+<p>B [ style="filled"  label="Snippety" color="#990000", penwidth="1", fillcolor="#5c9dfe", fontcolor="#000000", URL="https://snippety.app/"]</p>
+<p>C [ style="filled"  label="Mermaid" color="#000000", penwidth="1", fillcolor="#c735e9", fontcolor="#ffffff", URL="https://mermaid.js.org/"]</p>
+<p>D [ style="filled"  label="Graphviz" color="#000000", penwidth="1", fillcolor="#30638d", fontcolor="#ffffff", URL="https://graphviz.org/"]</p>
+<p>E [ style="filled"  label="Preview \nwith Rscript" ]</p>
+<p>F [ style="filled"  label="R Studio" color="#000000", penwidth="1", fillcolor="#80a9d7", fontcolor="#000000", URL="https://posit.co/products/open-source/rstudio/"]</p>
+<p>G [ style="filled"  label="RMarkdown ( .qmd )" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000"]</p>
+<p>H [ style="filled"  label="quarto CLI" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000", URL="https://quarto.org/"]</p>
+<p>I [ style="filled"  label="Book" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]</p>
+<p>J [ style="filled"  label="Manuscript" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]</p>
+<p>K [ style="filled"  label="revealjs" color="#d53f8c", penwidth="1", fillcolor="#f2e142", fontcolor="#000000"]</p>
+
+<p>A -> C [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ltail = "cluster_A" ]</p>
+<p>B -> E [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ]</p>
+<p>D -> G [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_D" ltail = "cluster_C" ]</p>
+<p>F -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]</p>
+<p>G -> F [label = "Read qmd files" fillcolor="#cbd9d7" fontcolor="#000000" ]</p>
+<p>G -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]</p>
+<p>H -> I [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]</p>
+<p>H -> J [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]</p>
+<p>H -> K [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]</p>
+<p>}</p>
+<p>```</p>
+
+
+    </body>
+</html>
