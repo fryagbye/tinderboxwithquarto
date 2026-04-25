@@ -62,9 +62,6 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-80cdc49019a9a89e8d6bb5e1fd266b81.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -279,20 +276,8 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mermaid-flowchart.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Mermaid flowchart</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./graphviz-optional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Graphviz β version</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -364,12 +349,7 @@ div.csl-indent {
 <ul>
 <li><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a>(<span class="citation" data-cites="Wickham2016Data">Wickham and Grolemund (<a href="references.html#ref-Wickham2016Data" role="doc-biblioref">2016</a>)</span>) You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz) in Tinderbox.</li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="screenshots/youtube_opening.png" class="img-fluid figure-img"></p>
-<figcaption>Tinderbox with Quarto part1</figcaption>
-</figure>
-</div>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/4BEroHg-F8Y" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <p>My Workflow is <a href="#fig-workflow-graphviz" class="quarto-xref">図&nbsp;<span>1</span></a>. <br></p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -380,6 +360,11 @@ div.csl-indent {
 <svg width="672" height="480" viewbox="0.00 0.00 1148.34 313.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 309)">
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-309 1144.34,-309 1144.34,4 -4,4"></polygon>
+<g id="clust5" class="cluster">
+<title>cluster_E</title>
+<polygon fill="#ffffff" stroke="#000000" points="1006.3,-27 1006.3,-212 1132.34,-212 1132.34,-27 1006.3,-27"></polygon>
+<text text-anchor="middle" x="1069.32" y="-195.4" font-family="Times,serif" font-size="14.00" fill="#000000">Output</text>
+</g>
 <g id="clust1" class="cluster">
 <title>cluster_A</title>
 <polygon fill="#e7f3e7" stroke="#000000" points="8,-8 8,-297 349.3,-297 349.3,-8 8,-8"></polygon>
@@ -405,11 +390,6 @@ div.csl-indent {
 <title>cluster_D</title>
 <polygon fill="#fff4e6" stroke="#000000" points="368.3,-66 368.3,-196 948.19,-196 948.19,-66 368.3,-66"></polygon>
 <text text-anchor="middle" x="658.24" y="-179.4" font-family="Times,serif" font-size="14.00" fill="#000000">Quarto</text>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster_E</title>
-<polygon fill="#ffffff" stroke="#000000" points="1006.3,-27 1006.3,-212 1132.34,-212 1132.34,-27 1006.3,-27"></polygon>
-<text text-anchor="middle" x="1069.32" y="-195.4" font-family="Times,serif" font-size="14.00" fill="#000000">Output</text>
 </g>
 <!-- A -->
 <g id="node1" class="node">
@@ -1005,38 +985,6 @@ Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Ti
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":true,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

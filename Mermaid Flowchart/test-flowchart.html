@@ -6,40 +6,40 @@
   <title></title>
 
   <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.4.0/dist/mermaid.esm.min.mjs';
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs';
     mermaid.initialize({ startOnLoad: true });
   </script>
 </head>
 <body>
 
-<div class=mermaid style="width:752px;height:9px" style="margin:auto">
+<div class=mermaid style="width:1030px;height:9px" style="margin:auto">
 %%| label: fig-test
 %%| fig-cap: Flowchart
 %%| fig-width: 5
 %%{init: {'theme':'dark'}}%%
 flowchart TB
-    A["Starter Guide"] -->  B["Make Flowchart"]
-    B["Make Flowchart"] -->  C["Learn More"]
-    C["Learn More"] ---->  D["Gem"]
-    C["Learn More"] ---->  E{"Use the editor"}
-    C["Learn More"] ---->  F["Many shapes"]
-    D["Gem"]
-    E{"Use the editor"} -->|"Build and Design"| G["Visual Editor"]
-    E{"Use the editor"} -->|"Use AI"| I["AI chat"]
-    E{"Use the editor"} -->|"Mermaid js"| K["Text"]
-    F["Many shapes"]
-    G["Visual Editor"] -->  H["Add node in toolbar"]
+A["Starter Guide"] -->  B["Make Flowchart"]
+    B["Make Flowchart"]
+    C["Learn More"]
+
+
+E{"Use the editor"} -->|"S(b)"| F["Many shapes"]
+E{"Use the editor"} -->|"Build and Design"| G["Visual Editor"]
+E{"Use the editor"} -->|"Use AI"| I["AI chat"]
+E{"Use the editor"} -->|"Mermaid js"| K["Text"]
+F["Many shapes"] -->|"S(b)"| D["Gem"]
+    G["Visual Editor"]
     H["Add node in toolbar"]
-    I["AI chat"] -->  J["Open AI in side menu"]
+I["AI chat"] -->  J["Open AI in side menu"]
     J["Open AI in side menu"]
-    K["Text"] -->  L["Type Mermaid syntax"]
+K["Text"] -->  L["Type Mermaid syntax"]
     L["Type Mermaid syntax"]
 
 
 %% Styles & Links
-    style G fill:#330099,color:#ffffff,stroke:#dc490b,stroke-width:2px
-    style I fill:#009900,color:#ffffff,stroke:#dc490b,stroke-width:2px
-    style K fill:#003366,color:#ffffff,stroke:#dc490b,stroke-width:2px
+    style G fill:#7d5d99,color:#ffffff,stroke:#dc490b,stroke-width:1px
+    style I fill:#184a45,color:#ffffff,stroke:#dc490b,stroke-width:1px
+    style K fill:#4a4843,color:#ffffff,stroke:#dc490b,stroke-width:1px
 
 
 </div>

@@ -47,8 +47,6 @@ book:
       chapters:
         - make-a-new-revealjs-project.qmd
         - make-revealjs-subproject.qmd
-    - mermaid-flowchart.qmd
-    - graphviz-optional.qmd
     - references.qmd
   appendices:
     - restrictions.qmd

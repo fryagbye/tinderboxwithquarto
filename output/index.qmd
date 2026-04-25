@@ -15,8 +15,7 @@ Here is an example of books created with Quarto.
 * [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
 You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz)  in Tinderbox.
 
-
-[![Tinderbox with Quarto part1](screenshots/youtube_opening.png)](https://youtu.be/4BEroHg-F8Y)
+{{< video https://youtu.be/4BEroHg-F8Y >}}
  
 My Workflow is @fig-workflow-graphviz.
 <br>

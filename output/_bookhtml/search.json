@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Tinderbox file for Quarto",
     "section": "",
-    "text": "Introduction\nThis Tinderbox file supports creating a book, manuscript (beta), revealjs with Quarto.\nTinderbox file for Quarto (Web version)\nTinderbox file for Quarto (Web version) in Japanese\nYou can easily make qmd files and _quarto.yml with it. Here is an example of books created with Quarto.\n\nR for Data Science (2e)(Wickham and Grolemund (2016)) You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz) in Tinderbox.\n\n\n\n\nTinderbox with Quarto part1\n\n\nMy Workflow is 図 1. \n\n\n\n\n\n\n\n\n\n\ncluster_A\n\nApplications\n\n\ncluster_B\n\n\nTinderbox\n\n\n\n\ncluster_C\n\n\nDemo_TBX_for_Quarto.tbx\n\n\n\n\ncluster_D\n\nQuarto\n\n\ncluster_E\n\nOutput\n\n\n\nA\n\n\nBookends\n\n\n\n\n\nC\n\n\nMermaid\n\n\n\n\n\nA-&gt;C\n\n\n\n\n\nB\n\n\nSnippety\n\n\n\n\n\nE\n\nPreview \nwith Rscript\n\n\n\nB-&gt;E\n\n\n\n\n\nD\n\n\nGraphviz\n\n\n\n\n\nG\n\nRMarkdown ( .qmd )\n\n\n\nD-&gt;G\n\n\n\n\n\nF\n\n\nR Studio\n\n\n\n\n\nH\n\n\nquarto CLI\n\n\n\n\n\nF-&gt;H\n\n\nCall\n\n\n\nG-&gt;F\n\n\nRead qmd files\n\n\n\nG-&gt;H\n\n\nCall\n\n\n\nI\n\nBook\n\n\n\nH-&gt;I\n\n\nExport\n\n\n\nJ\n\nManuscript\n\n\n\nH-&gt;J\n\n\nExport\n\n\n\nK\n\nrevealjs\n\n\n\nH-&gt;K\n\n\nExport\n\n\n\n\n\n\n図 1: Tinderbox Work Flow with Quarto. ( Graphviz version )\n\n\n\n\n\n\n\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. “O’Reilly Media, Inc.”",
+    "text": "Introduction\nThis Tinderbox file supports creating a book, manuscript (beta), revealjs with Quarto.\nTinderbox file for Quarto (Web version)\nTinderbox file for Quarto (Web version) in Japanese\nYou can easily make qmd files and _quarto.yml with it. Here is an example of books created with Quarto.\n\nR for Data Science (2e)(Wickham and Grolemund (2016)) You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz) in Tinderbox.\n\n\nMy Workflow is 図 1. \n\n\n\n\n\n\n\n\n\n\ncluster_E\n\nOutput\n\n\ncluster_A\n\nApplications\n\n\ncluster_B\n\n\nTinderbox\n\n\n\n\ncluster_C\n\n\nDemo_TBX_for_Quarto.tbx\n\n\n\n\ncluster_D\n\nQuarto\n\n\n\nA\n\n\nBookends\n\n\n\n\n\nC\n\n\nMermaid\n\n\n\n\n\nA-&gt;C\n\n\n\n\n\nB\n\n\nSnippety\n\n\n\n\n\nE\n\nPreview \nwith Rscript\n\n\n\nB-&gt;E\n\n\n\n\n\nD\n\n\nGraphviz\n\n\n\n\n\nG\n\nRMarkdown ( .qmd )\n\n\n\nD-&gt;G\n\n\n\n\n\nF\n\n\nR Studio\n\n\n\n\n\nH\n\n\nquarto CLI\n\n\n\n\n\nF-&gt;H\n\n\nCall\n\n\n\nG-&gt;F\n\n\nRead qmd files\n\n\n\nG-&gt;H\n\n\nCall\n\n\n\nI\n\nBook\n\n\n\nH-&gt;I\n\n\nExport\n\n\n\nJ\n\nManuscript\n\n\n\nH-&gt;J\n\n\nExport\n\n\n\nK\n\nrevealjs\n\n\n\nH-&gt;K\n\n\nExport\n\n\n\n\n\n\n図 1: Tinderbox Work Flow with Quarto. ( Graphviz version )\n\n\n\n\n\n\n\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. “O’Reilly Media, Inc.”",
     "crumbs": [
       "Introduction"
     ]
@@ -376,83 +376,13 @@
     ]
   },
   {
-    "objectID": "mermaid-flowchart.html",
-    "href": "mermaid-flowchart.html",
-    "title": "16  Mermaid flowchart",
-    "section": "",
-    "text": "16.1 How to use\nThis file can generate Mermaid flowchart from notes, links.",
-    "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#sec-how-to-use",
-    "href": "mermaid-flowchart.html#sec-how-to-use",
-    "title": "16  Mermaid flowchart",
-    "section": "",
-    "text": "You make a container noto for Flowchart and set pMFContainer.\nYou make notes ( pMFNode) and links.\nYou choose a direction for drawing like TD or LR.($M_Direction)\nRun the stamp ( Mermaid: Make a Flowchart ).\nPrototypes of container notes has a child note change from pMFNode to pMFContainer automatically by the stamp.\nThe note (pMFContainer) has the code for mermaid flowchart. \n\n\n\n\nTinderbox with Quarto part2 (English & Japanese sub)",
-    "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#sec-supported-shapes",
-    "href": "mermaid-flowchart.html#sec-supported-shapes",
-    "title": "16  Mermaid flowchart",
-    "section": "16.2 Supported shapes",
-    "text": "16.2 Supported shapes\n\nrectangle (&lt;- normal and other shapes)\nrounded\noval\nlozenge\ndiamond\nhex\n\n\n\n\nConvert shapes",
-    "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#sec-supported-line-types-priority",
-    "href": "mermaid-flowchart.html#sec-supported-line-types-priority",
-    "title": "16  Mermaid flowchart",
-    "section": "16.3 Supported line types (Priority)",
-    "text": "16.3 Supported line types (Priority)\n\nnormal –&gt; (4th)\nbold ==&gt; (3rd)\ndotted -.-&gt; (2nd)\ninvisible ~ (1st)",
-    "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#sec-supported-arrow-types",
-    "href": "mermaid-flowchart.html#sec-supported-arrow-types",
-    "title": "16  Mermaid flowchart",
-    "section": "16.4 Supported arrow types",
-    "text": "16.4 Supported arrow types\n\narrow only",
-    "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart</span>"
-    ]
-  },
-  {
-    "objectID": "mermaid-flowchart.html#sec-example",
-    "href": "mermaid-flowchart.html#sec-example",
-    "title": "16  Mermaid flowchart",
-    "section": "16.5 Example",
-    "text": "16.5 Example\n\n\n\n\n\n\nflowchart TB\n    A[\"Christmas\"] --&gt;|\"Get money\"| B[\"Go shopping\"]\n    B[\"Go shopping\"] --&gt;  Sub1[\"Let me think\"]\n    C[\"Laptop\"]\n    D[\"iPhone\"]\n    E[\"Car\"]\n subgraph Sub1[\"Let me think\"]\n    C\n    D\n    E\nend \n subgraph Sub2[\"Subgraph\"]\n    A\n    B\n    Sub1\nend \n    Sub1[\"Let me think\"] --&gt;|\"One\"| C[\"Laptop\"]\n    Sub1[\"Let me think\"] --&gt;|\"Two\"| D[\"iPhone\"]\n    Sub1[\"Let me think\"] --&gt;|\"Three\"| E[\"Car\"]\n%% Styles & Links\n    style Sub2 fill:#eeebe9,color:#000000,stroke:#dc490b,stroke-width:2px\n\n\n\n\n図 16.1",
-    "crumbs": [
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Mermaid flowchart</span>"
-    ]
-  },
-  {
-    "objectID": "graphviz-optional.html",
-    "href": "graphviz-optional.html",
-    "title": "17  Graphviz β version",
-    "section": "",
-    "text": "17.1 Example\n## How to use {#sec-how-to-use }\n図 1 and 図 17.1.\ncluster_A\n\nCluster B\n\n\ncluster_B\n\nCluster A\n\n\n\nnode2\n\nnode2\n\n\n\nnode4\n\nnode4\n\n\n\nnode6\n\nnode6\n\n\n\nnode8\n\nnode8\n\n\n\nnode1\n\nnode1\n\n\n\nnode1-&gt;node2\n\n\n1\n\n\n\nnode3\n\nnode3\n\n\n\nnode3-&gt;node4\n\n\n2\n\n\n\nnode5\n\nnode5\n\n\n\nnode5-&gt;node6\n\n\n3\n\n\n\nnode7\n\nnode7\n\n\n\nnode7-&gt;node8\n\n\n4\n\n\n\n\n\n\n図 17.1: Graphviz Test",
-    "crumbs": [
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Graphviz β version</span>"
-    ]
-  },
-  {
     "objectID": "references.html",
     "href": "references.html",
-    "title": "18  References",
+    "title": "16  References",
     "section": "",
     "text": "Anderson, Mark. 2024. “A Tinderbox Reference File.”\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. “O’Reilly\nMedia, Inc.”",
     "crumbs": [
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>References</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>References</span>"
     ]
   },
   {
