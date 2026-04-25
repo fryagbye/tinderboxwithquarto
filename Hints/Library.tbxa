@@ -398,11 +398,11 @@ function fBookAction(vQCommand:string, vQuartoOptions:string){
 	if (vProject) {
 		vVenv = $VenvActivateCommand(vProject);
 		vOutputFolder = $HTMLExportFileName(vProject);
-		if ( ! vOutputFolder) { vOutputFolder = $Name(vProject); };
+		if (!vOutputFolder) { vOutputFolder = $Name(vProject); };
 	} else {
 		vVenv = $VenvActivateCommand;
 		vOutputFolder = $HTMLExportFileName;
-		if ( ! vOutputFolder) { vOutputFolder = $Name; };
+		if (!vOutputFolder) { vOutputFolder = $Name; };
 	};
 
 	if($Prototype == "pBookFolder" | vCheck){
