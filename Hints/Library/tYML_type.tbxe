@@ -1,0 +1,52 @@
+project:
+  type: ^value($Q_ProjectType)^
+  output-dir: _^value($Q_ProjectType)^^value($Q_OutputType)^
+
+^if($Q_BrandYmlFile)^brand: ^value($Q_BrandYmlFile)^^endIf^
+
+book:
+  title: ^value($Q_Title)^
+  subtitle: ^value($Q_Subtitle)^
+  author: ^value($Q_Author)^
+  ^if($Q_AbstractTitle)^abstract-title: ^value($Q_AbstractTitle)^^endIf^
+  ^if($Q_Date)^date: ^value($Q_Date)^^endIf^
+  ^if($Q_DateFormat)^date-format: ^value($Q_DateFormat)^^endIf^
+
+  ^value(^text^)^
+
+format:
+  typst:
+    toc: ^if($Q_HasTOC)^true^else^false^endIf^
+    ^if($Q_HasTOC)^toc-depth: ^value($Q_TOCDepth)^^endIf^
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+
+    code-link: ^value($Q_CodeLink)^
+
+    code-line-numbers: ^value($Q_HasCodeLineNumbers)^
+
+    author-meta: "^value($Q_AuthorMeta)^"
+    ^if($Q_Indent)^indent: ^value($Q_Indent)^^endIf^
+    ^if($Q_HasIncludeInHeader)^include-in-header:
+     - text: |
+^action($MyString="";$Q_IncludeInHeaderPdf.each(aLine){$MyString += 9*" " + aLine + "\n"};)^^value($MyString)^^endIf^
+    callout-appearance: ^value($Q_CalloutAppearance)^
+    
+
+^if($Q_HasLang)^lang: ^value($Q_Lang)^^endIf^
+
+^if($Q_BibliographyFile("TBXConfig"))^bibliography: ^value($Q_BibliographyFile("TBXConfig"))^^endIf^
+^if($Q_BibCslFile)^csl: ^value($Q_BibCslFile)^^endIf^
+^if($Q_HasLanguageYml)^language: ^value($Q_LanguageYml)^^endIf^
+
+documentclass: ^value($Q_DocumentClass_PDF)^
+classoption: ^value($Q_ClassOptions)^^if(($Q_HasLang & $Q_Lang=="en"))^,english^endif^
+papersize: ^value($Q_Papersize)^
+
+execute:
+  cache: ^value($Q_Cache)^
+  ^if($Q_IsKeepmd)^keep-md: ^value($Q_IsKeepmd)^^endIf^
+  freeze: ^value($Q_Freeze)^
+
+editor: ^value($Q_Editor)^
+

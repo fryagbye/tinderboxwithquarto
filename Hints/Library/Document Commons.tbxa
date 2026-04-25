@@ -1,0 +1,14 @@
+// Force this Note to always be the last Top-Level Note// in the Document.if($OutlineOrder!=$OutlineOrder(lastSibling(cover)))
+{ // Then this is not the last top-level Note/Container
+  // Check that there is not already a lastSibling(cover)
+  // with the same name as this note
+  if($Name!=$Name(lastSibling(cover)))
+  { // Then move this note to its correct position
+  create("/Temp_Gw7WvqP5b_"); // Just a random name, since it willl be tossed
+  $Container="/Temp_Gw7WvqP5b_";  $Container="/";  $Prototype=;  delete("/Temp_Gw7WvqP5b_");
+  } else
+  {
+  show("There is a duplicate "+$Name+" Container—Correct!","poppy","bright blue");
+  $RuleDisabled=true;
+  };
+};

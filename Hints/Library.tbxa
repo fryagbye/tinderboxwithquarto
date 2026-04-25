@@ -612,7 +612,7 @@ function fQuartoCommnadInGhostty(vQuartoCommand:string, vSubProjectPath:string, 
 	var:string vCommand;
 	var:string vReturn;
 	var:string vPre;
-	var:boolean debug = true;
+	var:boolean debug = true;	
 	var:string vQ = '"';
 
 	if(vVenvCommand){
