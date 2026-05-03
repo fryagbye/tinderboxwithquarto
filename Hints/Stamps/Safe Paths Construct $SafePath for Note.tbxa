@@ -1,0 +1,8 @@
+// /Hints/Stamps/Safe Paths:Construct $SafePath for Note
+
+// Construct the $SafePath for current Note/Container where the
+// Path string has all forward and backward slashes escaped.
+
+$SafePath=ConstructSafePath2Note($ID);
+
+

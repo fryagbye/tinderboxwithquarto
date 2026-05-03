@@ -1,0 +1,10 @@
+// /Hints/Stamps/Export: Toggle Export and Preview mode for Subnotes
+
+var:string vProject;
+vProject=collect(ancestors,$Path)[-1];
+
+if($Prototype(vProject)=="pBookFolder"|$Prototype(vProject)=="pManuscriptFolder"|$Prototype(vProject)=="pRevealjsFolder"){
+	fSetPreviewForpSubnoteFromPath(vProject);
+};
+
+

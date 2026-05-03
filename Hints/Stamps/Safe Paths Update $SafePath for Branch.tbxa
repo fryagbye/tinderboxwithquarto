@@ -1,0 +1,36 @@
+// /Hints/Stamps/Safe Paths:Update $SafePath for Branch
+
+// This Stamp will invoke the UpdateSafePaths() function for the
+// currently selected note. This will update the $SafePath 
+// attribute for all descendants of the current note.
+// The ConstructSafePath2Note() function is called to guarantee that
+// the path string supplied to the UpdateSafePaths function is 
+// properly escaped.
+
+// Define debug & logbook variables
+var:boolean debug=false;
+var:string logbook="UpdateSafePaths";
+var:date start_time;
+var:date end_time;
+var:string abs_path_string;
+abs_path_string=ConstructSafePath2Note($ID);
+
+if(debug)
+{ LogRec(logbook,"<<blank>>");
+  start_time=LogRec(logbook,
+    "<<start>>Begin UpdateSafePaths @ Branch="
+      +abs_path_string);
+};
+
+UpdateSafePaths(abs_path_string);
+
+if(debug)
+{
+  LogRec(logbook,"<<blank>>");
+  end_time=LogRec(logbook,"<<end>>"+start_time);
+  $MyDate=end_time;
+};
+
+
+
+

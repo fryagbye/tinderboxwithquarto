@@ -1,0 +1,49 @@
+// /Hints/Stamps/Network:Initialize IP Address Note
+
+// Initialize standard IP Address parameters for a Note that represents a 
+// specific IP address, or an IP Subnet, or an IP range. The IP address
+// will be obtained from the Note's $Name, or if not in the $Name, then
+// the $IP_DotQuad attribute will provide the address. If the address
+// cannot be obtained from these sources, then warning flags will be 
+// raised for this Note.
+
+// Try to extract IP address from Note's $Name
+$IP_Octets=ip_quad2octets($Name);
+if($IP_Octets.empty)
+{ // No IP address found in $Name, so try $IP_DotQuad
+  $IP_Octets=ip_quad2octets($IP_DotQuad);
+};
+if($IP_Octets.empty)
+  { // IP address not found, so mark Note in error
+    $Color="bright red";
+    $Badge=;
+
+} else
+{ // IP address was found so initialize using $IP_Octets
+  if($IP_Octets.count=5)
+  { // A CIDR extension was found appended to IP address
+    // Capture CIDR value (might be numerical zero)
+    $IP_CIDR=$IP_Octets[4];
+    // Force $IP_DotQuad into standard form with CIDR extension
+    $IP_DotQuad=$IP_Octets[0]+"."+$IP_Octets[1]+"."+$IP_Octets[2]+"."+$IP_Octets[3]+"/"+$IP_Octets[4];
+    $IP_Integer=ip_octets2integer($IP_Octets);
+    // If $IP_Range not already defined, set to CIDR range
+    if(!$IP_Range){$IP_Range=-1+pow(2,(32-$IP_CIDR));};
+    $IP_NetBase=$IP_Integer-mod($IP_Integer,pow(2,32-$IP_CIDR));
+    $Color=;
+  } else 
+  { // Set CIDR to empty value (distinct from zero)
+    $IP_CIDR="";
+    // Force $IP_DotQuad into standard form without CIDR extension
+    $IP_DotQuad=$IP_Octets[0]+"."+$IP_Octets[1]+"."+$IP_Octets[2]+"."+$IP_Octets[3];
+    $IP_Integer=ip_octets2integer($IP_Octets);
+    $Color=;
+  }; EndIf CIDR check
+}; EndIf check for IP address found in $Name
+
+// This stamp calls the following functions:
+//   ip_quad2octets
+//   ip_octets2integer
+
+
+

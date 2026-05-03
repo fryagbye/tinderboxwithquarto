@@ -1,0 +1,9 @@
+// /Hints/Stamps/Logging:Stop Logging
+
+// Turn off logging switch to stop all logging done via LogRec() function
+
+var:number log_repository; // Obtain $ID for “LogBooks” container
+log_repository=$MyDictionary(lastSibling(cover))["LogBooks"];
+$LoggingEnabled(log_repository)=false;
+
+

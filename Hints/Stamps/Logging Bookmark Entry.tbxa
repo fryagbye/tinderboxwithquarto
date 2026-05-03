@@ -1,0 +1,11 @@
+// /Hints/Stamps/Logging:Bookmark Entry
+
+// Enter a special Bookmark into the log book for stamp actions
+
+LogRec("StampLog","<<mark>>");
+
+// The resulting bookmark record will look like this:
+// ***** Bookmark: Index=00002: 22-05-19 12:34:07 *****
+
+
+

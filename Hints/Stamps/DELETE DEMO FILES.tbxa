@@ -1,0 +1,73 @@
+// /Hints/Stamps/DELETE: DEMO FILES
+
+var:list vList;
+var:string vConf="TBXConfig";
+
+vList+= "/How to use this file";
+vList+= "/myproject";
+vList+= "/myrevealjs";
+vList+= "/myproject";
+vList+= "/Mermaid Flowchart/work-flow-mermaid";
+vList+= "/Mermaid Flowchart/test-flowchart";
+vList+= "/Mermaid Flowchart";
+vList+= "/Graphviz/work-flow-graphviz";
+vList+= "/Graphviz/finite-automaton";
+vList+= "/Graphviz/ltail-lhead";
+vList+= "/Graphviz/demo-clusters";
+vList+= "/Graphviz";
+vList+= "/References DB/@Anderson2024Tinde";
+vList+= "/References DB/@Wickham2016Data";
+vList+= "/Scratch/References Output";
+vList+= "/Scratch";
+vList+= "/Hints/Edict «Attribute Note»";
+vList+= "/Hints/OnVisit «Document Attributes»";
+vList+= "/Hints/OnPaste «Document Commons»";
+vList+= "/Hints/(((((Action Code Library)))))";
+vList+= "/Hints/Link «Reflect Note into Diagram»";
+vList+= "/Hints/OnRemove «Diagram Object Note»";
+vList+= "/Hints/Stamps/For Debug(/Log): get changed attributes list about the selected note.";
+vList+= "/Hints/Stamps/For Debug(/Log): get all user-attributes list about the selected note.";
+vList+= "/Hints/Stamps/Develop: Make Attributes";
+vList+= "/Hints/Stamps/Develop: Create Attributes from Note";
+vList+= "/Hints/Stamps/Logging:Stop Logging";
+vList+= "/Hints/Stamps/Logging:Delete Log Books";
+vList+= "/Hints/Stamps/Logging:Bookmark Entry";
+vList+= "/Hints/Stamps/Logging:Stamp Log Entry";
+vList+= "/Hints/Stamps/Logging:Restart Index Sequencing";
+vList+= "/Hints/Stamps/Logging:Restart Index Sequencing";
+vList+= "/Hints/Stamps/Safe Paths:Construct $SafePath for Note";
+vList+= "/Hints/Stamps/Safe Paths:Update $SafePath for Branch";
+vList+= "/Hints/Stamps/Safe Paths:Update $SafePath for Document";
+vList+= "/Hints/Stamps/Diagram:Set Active Diagram";
+vList+= "/Hints/Stamps/Diagram:Add Notes to Active Diagram";
+vList+= "/Hints/Stamps/Links:Remove Link From";
+vList+= "/Hints/Stamps/Links:Remove Link To";
+vList+= "/Hints/Stamps/Links:Remove Link Set";
+vList+= "/Hints/Stamps/Network:Initialize IP Address Note";
+vList+= "/Hints/Stamps/Network:IP quad to integer";
+vList+= "/Hints/Stamps/Network:Extract IP-MAC info";
+vList+= "/Hints/Stamps/Device: SSH capture";
+vList+= "/Document Commons";
+
+if($DANGEROUSCOMMAND("DELETE: DEMO FILES")=="DELETEDEMOFILES"){
+    vList.each(aL){
+        delete(aL);
+    };
+    $Text(/citation/references)=;
+    $TerminalApp(vConf)="Terminal";
+    $ProjectContainer(vConf)="";
+    $AgentNameForQmdFiles(vConf)="Export Agent";
+    $Q_BibliographyFile(vConf)="";
+    $ImagePathForPandoc(vConf)="";
+    $PandocCSSPath(vConf)="";
+    $ImagePath(vConf)="";
+    $RLibraryListForPreview(vConf)="dplyr;knitr;kableExtra;stats;datasets;graphics;grDevices;rmarkdown";
+    $ExportFolder(vConf)="";
+
+    fCrossRefUpdate(true);
+};
+
+
+
+
+

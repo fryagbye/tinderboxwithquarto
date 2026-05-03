@@ -1,0 +1,22 @@
+// /Hints/Stamps/Diagram:Set Active Diagram
+
+// A simple stamp to establish a Diagram as a currently active
+// work-in-progress. The idea is that some diagramming procedures
+// will be automated to facilitate assembling a diagram and
+// manipulating aspects of a diagram. 
+
+var:number diagramSettings; 
+if($Prototype(this)=="Diagram")
+{ // Then update “Diagram Settings” to point to (this) selection
+  diagramSettings=GetCommonsItemID("Global Settings");
+  diagramSettings=$ID($Path(diagramSettings)+"/Diagram Settings");
+  $MyString(diagramSettings)=$Path(this);
+  $MyNumber(diagramSettings)=$ID(this);
+  show("The active Diagram is now at “"+$Path(this)+"” with ID="+$ID(this),"cyan","black");
+} else
+{ // This note is not a diagram; advise user…
+  show("The selection is not a Diagram Container; Prototype must be “Diagram”","poppy","bright blue");
+};
+
+
+

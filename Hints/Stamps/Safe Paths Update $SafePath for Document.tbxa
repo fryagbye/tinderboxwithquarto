@@ -1,0 +1,22 @@
+// /Hints/Stamps/Safe Paths:Update $SafePath for Document
+
+// This Stamp will invoke the UpdateSafePaths() function for “root”
+// The result will be that $SafePath will be updated for every 
+// note within the current document.
+
+// Define debug control and timestamp variables
+var:boolean debug=true;
+var:string logbook="PersistentLogBook";
+var:date start_time;
+var:date end_time;
+var:string doc_root="/";
+
+if(debug){start_time=LogRec(logbook,"<<start>>Begin UpdateSafePaths for entire Document");};
+
+UpdateSafePaths(doc_root);
+
+if(debug){end_time=LogRec(logbook,"<<end>>"+start_time);};
+
+
+
+

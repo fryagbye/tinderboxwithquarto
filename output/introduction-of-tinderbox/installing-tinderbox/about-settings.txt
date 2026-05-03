@@ -1,0 +1,27 @@
+## 日本語環境向けの初期設定について {#sec-about-settings }
+ 
+ メニューの**Edit→Document Settings...**もしくは`r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Command.png}}", html = "![Command](screenshots/Command.png){fig-alt='Command' width=30px}")``r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Plus.png}}", html = "![Plus](screenshots/Plus.png){fig-alt='Plus' width=30px}")``r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Num8.png}}", html = "![8](screenshots/Num8.png){fig-alt='8' width=30px}")`を押すと、ドキュメントセッティング（Document Settings）が表示される。**Text**の設定で、スマートクォート（**Smart Quotes**）と日付の設定（**Displayed Attributes Dates**）を @fig-setting01 のように設定を変更することをお勧めします。
+**Smart Quotes**は、引用符の修正を自動で行うかどうかの設定ですが、副作用[^smartquote]があり、日本語では基本的にオンにする必要がないのでオフにしておきましょう。ノート毎に個別に設定できるので、もし必要な場合はそのノートだけオンにしてください。なお、スマートクォートがオンになっていると、ストレートクォート（`"`：**Straight Quotes**)を左右の向きの違いがあるスマートクォート（`“`または`”`：**Smart Quotes**）に自動で修正します。
+
+[^smartquote]:アクションコードを記述するノートでスマートクォートがオンになっていると、ダブルクォーテーションがスマートクォートに変換されて、コードが正常に動作しないが、ぱっと見ても気付かないので、注意が必要です。
+ 
+
+```{r}
+#| label: fig-setting01 
+#| echo: false  
+#| out.width: 80%
+#| fig-cap: |
+#|   Tinderboxのおすすめ設定
+#| fig-alt: |
+#|   
+#| fig-align: center
+#| fig-pos: H
+knitr::include_graphics("screenshots/setting1.png", dpi = 350)
+```
+ 
+
+
+
+
+
+

@@ -101,9 +101,10 @@ function fToggleBookAgent(){
 };
 
 function fSetBookAgentPreviewMode(){
-    var:string vAgentExport=$AgentNameForQmdFiles("TBXConfig");
-    var:string vModeNote="/Mode ➡";
-    var:number vPriority=$ExportAgentPriority("TBXConfig");
+    var:string vAgentExport = $AgentNameForQmdFiles("TBXConfig");
+    var:string vModeNote = "/Mode ➡";
+    var:number vPriority = $ExportAgentPriority(vAgentExport);
+    var:string vCurrentBookProject = $CurrentBookProject(vAgentExport);
     var:string vAgentQuery;
     
 //  $AgentPriority(vAgentExport)=-1;

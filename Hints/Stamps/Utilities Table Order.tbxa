@@ -1,0 +1,34 @@
+// /Hints/Stamps/Utilities: Table Order
+
+var:list vlist;
+var:number vsum=0;
+var:number vorder=1;
+if($Prototype=="pTable"){
+	vlist = collect(children,$Path);
+	vsum = sum(children, $TableOrder);
+	$MyNumber = vsum;
+//$MyList= vlist;
+	if(vsum=0){
+		vlist.each(alist){
+			$TableOrder(alist)=vorder;
+			vorder += 1;
+		};
+		$Sort="TableOrder";
+		$SortBackward=false;
+		$SortAlso="";
+		$SortBackwardAlso=false;
+	show("ordered");
+	}else{
+		vlist.each(alist){
+			$TableOrder(alist)=0;
+		};
+		$Sort="";
+		$SortBackward=false;
+		$SortAlso="";
+		$SortBackwardAlso=false;
+	show("reset");		
+	};
+
+};
+
+

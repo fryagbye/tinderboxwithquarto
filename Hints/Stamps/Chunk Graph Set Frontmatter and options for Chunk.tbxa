@@ -1,0 +1,21 @@
+// /Hints/Stamps/Chunk & Graph: Set Frontmatter and options for Chunk
+
+var:boolean vCheck=true;
+
+if($Prototype=="pRChunk"|$Prototype=="pRChunkList"|$Prototype=="pPChunk"){
+	fSetForChunk($ID, true);
+	fMakeChunkList();
+	vCheck=false;
+};
+
+if($Prototype=="pChunk"){
+
+	vCheck=false;
+};
+
+if(vCheck){
+	("Please select pRChunk, pRChunkList, pPChunk or pChunk note").show();
+};
+
+
+

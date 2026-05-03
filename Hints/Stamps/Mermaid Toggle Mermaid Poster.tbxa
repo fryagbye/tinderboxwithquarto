@@ -1,0 +1,13 @@
+// /Hints/Stamps/Mermaid: Toggle Mermaid Poster
+
+if($Prototype=="pMFContainer"){
+if($PosterTemplate){
+	$PosterTemplate=;
+	("Poster OFF").show();
+}else{
+	$PosterTemplate="/Templates/tMermaid";
+	("Poster ON").show();
+};
+};
+
+

@@ -1,56 +1,59 @@
-// /Hints/Library/Chunk
+// /Hints/Library/Chunk;
+
 
 function fSetPreviewCommandForRChunk(){
-	var:string vConfigPath="TBXConfig";
-	var:string vExportPath=$ExportFolder(vConfigPath);
-	var:string vProjectPath=$HTMLExportFileName(collect(ancestors,$Path)[-1]);
-	var:string vWarn=",warn.conflicts=F";
+	var:string vConfigPath = "TBXConfig";
+	var:string vExportPath = $ExportFolder(vConfigPath);
+	var:string vProjectPath = $HTMLExportFileName(collect(ancestors, $Path)[-1]);
+	var:string vWarn = ",warn.conflicts=F";
 	var:string vCommand;
-	var:string vLibList=$RLibraryListForPreview(vConfigPath);
-	vCommand ="export PATH=$HOME:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin/:$PATH;";
-	vCommand+="cd " + vExportPath +"/" + vProjectPath +";"+'/usr/local/bin/Rscript -e "';
+	var:string vLibList = $RLibraryListForPreview(vConfigPath);
+
+	vCommand = "export PATH=$HOME:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin/:$PATH;";
+	vCommand += "cd " + vExportPath + "/" + vProjectPath + ";" + '/usr/local/bin/Rscript -e "';
 	vLibList.each(al){
 		vCommand += "library(" + al + vWarn + "); ";
 	};
 	vCommand += "lines <- readLines(file('stdin'), warn=FALSE);f <- file('_RchunkPreviewOutput.qmd', 'w');";
 	vCommand += "cat('---\u000A', 'title: \u0022" + $Name + "\u0022\u000A', '---\u000A', file=f, sep='');";
-   vCommand += "for (line in lines) {line <- gsub('\`\`\`{webr','\`\`\`{r',line, fixed=TRUE); cat(line, '\u000A', sep='', file=f); };  close(f);";
+	vCommand += "for (line in lines) {line <- gsub('\`\`\`{webr','\`\`\`{r',line, fixed=TRUE); cat(line, '\u000A', sep='', file=f); };  close(f);";
 	vCommand += "rendered_output <- rmarkdown::render('_RchunkPreviewOutput.qmd', output_format='html_document', quiet=TRUE);";
 	vCommand += "cat(readLines(rendered_output), sep='\u000A');";
 	vCommand += "tmp <- if(file.exists('_RchunkPreviewOutput.qmd')) {file.remove('_RchunkPreviewOutput.qmd')};";
 	vCommand += "tmp <- if(file.exists('_RchunkPreviewOutput.html')) {file.remove('_RchunkPreviewOutput.html')};";
 	vCommand += '"';
-
-//	$Text(/Log)=vCommand;
-	$HTMLPreviewCommand=vCommand;
-
+	//	$Text(/Log)=vCommand;
+	$HTMLPreviewCommand = vCommand;
 };
 
-function fSetForChunk(vID,vForPreview){
-	$Text(vID)=fWriteOptionsForChunk(vID, vForPreview);
+
+function fSetForChunk(vID, vForPreview){
+	$Text(vID) = fWriteOptionsForChunk(vID, vForPreview);
 }
+
 
 function fWriteFrontmatterForRChunk(vID){
 	var:string vPre;
 	var:string vTitle;
+
 	if($Q_ChunkFigLabel(vID)){
-		vTitle=$Q_ChunkFigLabel(vID);
+		vTitle = $Q_ChunkFigLabel(vID);
 	}else{
-		if($Prototype=="pRChunkList"){
+		if($Prototype == "pRChunkList"){
 			$Name(vID).contains("<(?:webr|r|python|pyodide|osj):(.*?)>");
-			vTitle=$1;
+			vTitle = $1;
 		}else{
-			vTitle=$Name(vID);
+			vTitle = $Name(vID);
 		};
 	};
-	vPre ="---\n";
-	vPre+='title: "' + vTitle + '"\n';
-	vPre+="output:\n";
-	vPre+="  html_document:\n";
-	vPre+="    template: " + $RscriptHTMLTemplate("TBXConfig") + "\n";
-	vPre+="engine:\n";
-	vPre+="  cache: false\n";
-	vPre+="---\n\n";
+	vPre = "---\n";
+	vPre += 'title: "' + vTitle + '"\n';
+	vPre += "output:\n";
+	vPre += "  html_document:\n";
+	vPre += "    template: " + $RscriptHTMLTemplate("TBXConfig") + "\n";
+	vPre += "engine:\n";
+	vPre += "  cache: false\n";
+	vPre += "---\n\n";
 	return vPre;
 };
 
@@ -59,118 +62,108 @@ function fWriteOptionsForGraph(vID:string){
 	var:string vPre;
 	var:string vStr;
 	var:string vTemp;
-//	var:string vReg="```\{(?:mermaid|dot)\s*.*?\}\s*(?:#\|.*\n)*([\s\S]*?)\s*```";
-	var:string vReg="```\{(?:mermaid|dot)\s*.*?\}\s*(?:(?:%%\||#\||//\|).*\n)*([\s\S]*?)\s*```";
+
+	//	var:string vReg="```\{(?:mermaid|dot)\s*.*?\}\s*(?:#\|.*\n)*([\s\S]*?)\s*```";
+	var:string vReg = "```\{(?:mermaid|dot)\s*.*?\}\s*(?:(?:%%\||#\||//\|).*\n)*([\s\S]*?)\s*```";
 	var:string vReturn;
-		
+
 	if($Text(vID).contains(vReg)){
-		vTemp=$1;
+		vTemp = $1;
 	}else{
-		vTemp=$Text(vID);
+		vTemp = $Text(vID);
 	};
-
-	if($Prototype(vID)=="pMFContainer"){
-		vStr= "%%";
-		vPre="```{mermaid}\n";
+	if($Prototype(vID) == "pMFContainer"){
+		vStr = "%%";
+		vPre = "```{mermaid}\n";
 	}else{
-		vStr= "//";
-		vPre="```{dot}\n";
+		vStr = "//";
+		vPre = "```{dot}\n";
 	};
-	
-
-   if($Q_ChunkFigLabel(vID)){
-		vPre+= vStr + "| label: fig-" +$Q_ChunkFigLabel(vID)+"\n";
+	if($Q_ChunkFigLabel(vID)){
+		vPre += vStr + "| label: fig-" + $Q_ChunkFigLabel(vID) + "\n";
 	};
-   if($Q_ChunkEcho(vID)){
-		vPre+= vStr + "| echo: " +$Q_ChunkEcho(vID)+"\n";
+	if($Q_ChunkEcho(vID)){
+		vPre += vStr + "| echo: " + $Q_ChunkEcho(vID) + "\n";
 	};
-   if($Q_ChunkFigCaption(vID)){
-		vPre+= vStr + "| fig-cap: " + $Q_ChunkFigCaption(vID)+"\n";
+	if($Q_ChunkFigCaption(vID)){
+		vPre += vStr + "| fig-cap: " + $Q_ChunkFigCaption(vID) + "\n";
 	};
-   if($Q_ChunkFigAlt(vID)){
-		vPre+= vStr + "| fig-alt: " + $Q_ChunkFigAlt(vID)+"\n";
+	if($Q_ChunkFigAlt(vID)){
+		vPre += vStr + "| fig-alt: " + $Q_ChunkFigAlt(vID) + "\n";
 	};
-
 	vReturn += vPre;
 	vReturn += vTemp + "\n";
 	vReturn += "```\n";
 	return vReturn;
 };
+
 
 function fWriteOptionsForChunk(vID:string, vForPreview:boolean){
 	var:string vPre;
 	var:string vStr;
 	var:string vTemp;
-	var:string vReg="```\{[.=]?[webr|r|python|pyodide|ojs]\s*.*?\}\s*(?:#\|.*\n)*([\s\S]*?)\s*```";
+	var:string vReg = "```\{[.=]?[webr|r|python|pyodide|ojs]\s*.*?\}\s*(?:#\|.*\n)*([\s\S]*?)\s*```";
 	var:string vReturn;
-		
-	if($Text(vID).contains(vReg)){
-		vTemp=$1;
-	}else{
-		vTemp=$Text(vID);
-	};
-	
 
-	if(vForPreview&($Prototype=="pRChunk"|$Prototype="pRChunkList")){
-		vReturn+= fWriteFrontmatterForRChunk(vID);
-	};
-	if($Q_ChunkLang(vChunkPath)=="ojs"){
-		vStr= "//";
+	if($Text(vID).contains(vReg)){
+		vTemp = $1;
 	}else{
-		vStr= "#";
+		vTemp = $Text(vID);
+	};
+	if(vForPreview & ($Prototype == "pRChunk" | $Prototype = "pRChunkList")){
+		vReturn += fWriteFrontmatterForRChunk(vID);
+	};
+	if($Q_ChunkLang(vChunkPath) == "ojs"){
+		vStr = "//";
+	}else{
+		vStr = "#";
 	};
 	if($Q_IsCodeBlock(vID)){
-		vPre="\n```{." + $Q_ChunkLang(vID);
+		vPre = "\n```{." + $Q_ChunkLang(vID);
 	}else{
-		vPre="\n```{" + $Q_ChunkLang(vID);
+		vPre = "\n```{" + $Q_ChunkLang(vID);
 	};
-	if($Q_CodeLineNumbers(vID).size>0){
-		vPre+= " code-line-numbers="+$Q_CodeLineNumbers(vID).format(",");
+	if($Q_CodeLineNumbers(vID).size > 0){
+		vPre += " code-line-numbers=" + $Q_CodeLineNumbers(vID).format(",");
 	};
 	if($QR_OutputLocation(vID)){
-		vPre+= " output-location=" + $QR_OutputLocation(vID);
+		vPre += " output-location=" + $QR_OutputLocation(vID);
 	};
-	vPre+="}\n";
+	vPre += "}\n";
 	if($Q_ChunkEcho(vID)){
-		vPre+= vStr + "| echo: " + $Q_ChunkEcho(vID)+"\n";
+		vPre += vStr + "| echo: " + $Q_ChunkEcho(vID) + "\n";
 	}else{
-		vPre+= vStr + "| echo: false\n";
+		vPre += vStr + "| echo: false\n";
 	};
-   if($Q_ChunkSuppressWarning(vID)){
-		vPre+= vStr + "| warning: " + "false"+"\n";
+	if($Q_ChunkSuppressWarning(vID)){
+		vPre += vStr + "| warning: " + "false" + "\n";
 	};
 	if($Q_ChunkAutoRun(vID)){
-		vPre+= vStr + "| autorun: " + $Q_ChunkAutoRun(vID)+"\n";
+		vPre += vStr + "| autorun: " + $Q_ChunkAutoRun(vID) + "\n";
 	};
-   if($Q_ChunkFigLabel(vID)){
-		vPre+= vStr + "| label: fig-" + $Q_ChunkFigLabel(vID)+"\n";
+	if($Q_ChunkFigLabel(vID)){
+		vPre += vStr + "| label: fig-" + $Q_ChunkFigLabel(vID) + "\n";
 	};
-   if($Q_ChunkFigCaption(vID)){
-		vPre+= vStr + "| fig-cap: " + $Q_ChunkFigCaption(vID)+"\n";
+	if($Q_ChunkFigCaption(vID)){
+		vPre += vStr + "| fig-cap: " + $Q_ChunkFigCaption(vID) + "\n";
 	};
-   if($Q_ChunkFigWidth(vID)){
-		vPre+=vStr + "| fig-width: " + $Q_ChunkFigWidth(vID)+"\n";
+	if($Q_ChunkFigWidth(vID)){
+		vPre += vStr + "| fig-width: " + $Q_ChunkFigWidth(vID) + "\n";
 	};
-   if($Q_ChunkFigHeight(vID)){
-		vPre+= vStr + "| fig-height: " + $Q_ChunkFigHeight(vID)+"\n";
+	if($Q_ChunkFigHeight(vID)){
+		vPre += vStr + "| fig-height: " + $Q_ChunkFigHeight(vID) + "\n";
 	};
-
-   if($Q_ChunkFigPos(vID)){
-		vPre+= vStr + "| fig-pos: " + $Q_ChunkFigPos(vID)+"\n";
+	if($Q_ChunkFigPos(vID)){
+		vPre += vStr + "| fig-pos: " + $Q_ChunkFigPos(vID) + "\n";
 	};
-   if($Q_ChunkFigShow(vID)){
-		vPre+= vStr + "| fig-show: " + $Q_ChunkFigShow(vID)+"\n";
+	if($Q_ChunkFigShow(vID)){
+		vPre += vStr + "| fig-show: " + $Q_ChunkFigShow(vID) + "\n";
 	};
-
-   if($Q_ChunkFIgOutWidth(vID)){
-		vPre+= vStr + "| out-width: " + $Q_ChunkFIgOutWidth(vID)+"\n";
+	if($Q_ChunkFIgOutWidth(vID)){
+		vPre += vStr + "| out-width: " + $Q_ChunkFIgOutWidth(vID) + "\n";
 	};
-
-
 	vReturn += vPre;
 	vReturn += vTemp + "\n";
 	vReturn += "```\n";
 	return vReturn;
 };
-
-

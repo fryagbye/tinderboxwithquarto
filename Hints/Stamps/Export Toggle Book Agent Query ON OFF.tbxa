@@ -1,0 +1,10 @@
+// /Hints/Stamps/Export: Toggle Book Agent Query ON/OFF
+
+var:string vAgentExport=$AgentNameForQmdFiles("TBXConfig");
+if($AgentPriority(vAgentExport)==-1){
+	$AgentPriority(vAgentExport)=1;
+}else{
+	$AgentPriority(vAgentExport)=-1;
+};
+
+

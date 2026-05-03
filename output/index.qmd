@@ -1,114 +1,44 @@
-# Introduction { .unnumbered }
+# はじめに {#sec-welcome }
  
- This Tinderbox file supports creating a book, manuscript (beta), revealjs with [Quarto](https://quarto.org/).
+ 世の中には、多種多様なエディタがあります。日本ではほとんど知られていませんが、非常に魅力的な**Tinderbox**というアプリケーションを紹介したいと思います。
+**Tinderbox**は、アウトラインエディタをベースに、マインドマップのようなマップビューやハイパボリックビュー、タイムラインビューなど、ノートを様々な切り口で視覚化することに長けており、考察や新しいアイデアを発見することに役立つアプリケーションです。
+**Tinderbox**のもう一つの特徴として、ノート（メモ）毎に属性（**Attribute**）というものを設定または作成して、必要なデータを記録できる点が挙げられます。そのほか、属性をあらかじめ設定したテンプレート[^templateasprototype]（**Tindåerbox**では、**Prototype**と呼ばれる）を作り、入力を効率化できます。また、手動または自動でアクションコード（**Action Code**）と呼ばれる独自のプログラミング言語を使い、ユーザーが設定した属性を操作することが可能です。プロトタイプとアクションコードを組み合わせることで、自分だけのワークフローが構築できます。アクションコードは、身に付けるまで時間がかかりますが、あまり慣れていない段階でも**Tinderbox**の有用性は高いことと、使いながら少しずつ拡張するような使い方ができるので、まずは簡単なところから使ってみるのがよいと思います。とは言いつつも、使い始めはなかなか取っつきにくいところがあることも確かであり、筆者自身、使い始めた時に挫折してしばらく使っていなかった時期がありました。この**Tinderbox入門**はまだ未完成ですが、**Tinderbox**について日本語でかかれた情報がほとんどないことから、早めに公開しています。そのため、章立てのみで終わっている項目もある点は、予めご了承いただけばと思います。本書を通じて**Tinderbox**の日本人ユーザーが増えれば幸いです。
 
 
-[Tinderbox file for Quarto (Web version)](https://fryagbye.quarto.pub/tinderbox-file-for-quarto/)
+[^templateasprototype]:ここでは、ひな形の意味。**Tinderbox**では、**テンプレート**は、どのようにエクスポート（データ出力）するか設定するためのノートを意味する。
+ 
+本書は、**Tinderbox**と**RStudio**と**Marked2**を使用して執筆しています。**Tinderbox**で書いた文章を出力し、オープンソースの科学技術出版システムである[quarto](https://quarto.org)を利用して、本の形式（Web版）に変換してます。quartoでは、Rmarkdownを拡張したマークダウン（拡張子qmd）を採用しており、Rチャンク（R chunk）を組み込むこともできます。quartoのプロジェクト設定ファイルや目次の自動作成、相互参照の入力補助などを**Tinderbox**のアクションコードで実現しています。
+
+* quartoを利用して本形式のhtmlで出力している例:
+    * [私たちのR（著者:宋財泫、矢内勇生）](https://www.jaysong.net/RBook/)[^citeRbook]
+    * [R for Data Science (2e)](https://r4ds.hadley.nz)[^Rfordatascience]
+
+
+[^Rfordatascience]:[@Long2019Cookb]
  
 
 
-[Tinderbox file for Quarto (Web version) in Japanese](https://fryagbye.quarto.pub/tinderbox-file-for-quarto-in-japanese)
+[^citeRbook]:[@Song2020私たちのR]
  
-You can easily make qmd files and _quarto.yml with it. 
-Here is an example of books created with Quarto. 
 
-* [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
-You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz)  in Tinderbox.
 
-{{< video https://youtu.be/4BEroHg-F8Y >}}
+::: {.callout-note title="文章中の表記について"}
  
-My Workflow is @fig-workflow-graphviz.
-<br>
-
-```{dot}
-//| label: fig-workflow-graphviz
-//| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )
-digraph {
-    layout=dot
-    compound=true
-    graph [charset="UTF-8" splines="spline" rankdir="LR" ];
-subgraph cluster_A{
-                        label="Applications"
-                        spline="curved"
-                        color="#000000"
-                        penwidth="1"
-                        style="filled"
-                        fillcolor="#e7f3e7"
-                        fontcolor="#000000"
-            A B 
-
-            subgraph cluster_B{
-                            label="Tinderbox"
-                            color="#000000"
-                            penwidth="1"
-                            style="filled"
-                            fillcolor="#f6e04d"
-                            fontcolor="#000000"
-                            URL="https://www.eastgate.com/Tinderbox/"
+マウスのアイコンは、それぞれ以下の操作を表します。
+`r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Lclick.png}}", html = "![](screenshots/Lclick.png){fig-alt='左クリック' width=40px}")`：左クリック
+`r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Ldoubleclick.png}}", html = "![](screenshots/Ldoubleclick.png){fig-alt='左ダブルクリック' width=40px}")`：ダブルクリック
+`r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Rclick.png}}", html = "![](screenshots/Rclick.png){fig-alt='右クリック' width=40px}")`：右クリック
+色付き背景の＄付き文字列は、システム属性（第[-@sec-system-attributes]章）を表します。
+例：`$Color`
+色付き背景の＄付き斜体文字列は、ユーザー属性（第[-@sec-user-attributes]章）を表します。
+例：*`$Sample`*
+スラッシュ（/）で始まる文字列は、ノートのパスを表し、スラッシュはノートのルートを表します。
+例：`/Prototypes`
 
 
-            subgraph cluster_C{
-                                label="Demo_TBX_for_Quarto.tbx"
-                                color="#000000"
-                                penwidth="1"
-                                style="filled"
-                                fillcolor="#ffffff"
-                                fontcolor="#000000"
-                                URL="https://github.com/fryagbye/tinderboxwithquarto"
-            C D E 
-}
-
-}
-
-}
-
-subgraph cluster_D{
-                        label="Quarto"
-                        color="#000000"
-                        penwidth="1"
-                        style="filled"
-                        fillcolor="#fff4e6"
-                        fontcolor="#000000"
-            F G H 
-}
-
-subgraph cluster_E{
-                        label="Output"
-                        color="#000000"
-                        penwidth="1"
-                        style="filled"
-                        fillcolor="#ffffff"
-                        fontcolor="#000000"
-            I J K 
-}
-
-
-A [ style="filled"  label="Bookends" color="#000000", penwidth="1", fillcolor="#fcbd63", fontcolor="#000000", URL="https://www.sonnysoftware.com/bookends-for-mac"]
-B [ style="filled"  label="Snippety" color="#990000", penwidth="1", fillcolor="#5c9dfe", fontcolor="#000000", URL="https://snippety.app/"]
-C [ style="filled"  label="Mermaid" color="#000000", penwidth="1", fillcolor="#c735e9", fontcolor="#ffffff", URL="https://mermaid.js.org/"]
-D [ style="filled"  label="Graphviz" color="#000000", penwidth="1", fillcolor="#30638d", fontcolor="#ffffff", URL="https://graphviz.org/"]
-E [ style="filled"  label="Preview \nwith Rscript" ]
-F [ style="filled"  label="R Studio" color="#000000", penwidth="1", fillcolor="#80a9d7", fontcolor="#000000", URL="https://posit.co/products/open-source/rstudio/"]
-G [ style="filled"  label="RMarkdown ( .qmd )" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000"]
-H [ style="filled"  label="quarto CLI" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000", URL="https://quarto.org/"]
-I [ style="filled"  label="Book" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]
-J [ style="filled"  label="Manuscript" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]
-K [ style="filled"  label="revealjs" color="#d53f8c", penwidth="1", fillcolor="#f2e142", fontcolor="#000000"]
-
-A -> C [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ltail = "cluster_A" ]
-B -> E [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ]
-D -> G [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_D" ltail = "cluster_C" ]
-F -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]
-G -> F [label = "Read qmd files" fillcolor="#cbd9d7" fontcolor="#000000" ]
-G -> H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]
-H -> I [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]
-H -> J [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]
-H -> K [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]
-}
-```
-
+:::
  
- 
+
 
 
 

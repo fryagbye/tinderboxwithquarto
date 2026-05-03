@@ -1,0 +1,6 @@
+// /Hints/Stamps/For Debug(/Log): get all user-attributes list about the selected note.
+
+// output-> /Log
+fGetAttributeList2();
+
+

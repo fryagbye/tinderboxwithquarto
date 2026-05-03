@@ -1,0 +1,5 @@
+// /Hints/Stamps/Notes: Set Export Mode
+
+fSetExportMode($Path);
+
+

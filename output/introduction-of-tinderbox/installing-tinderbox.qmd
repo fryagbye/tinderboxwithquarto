@@ -1,0 +1,91 @@
+# Tinderboxのインストール {#sec-installing-tinderbox }
+ 
+ **Tinderbox**の最新バージョンは11.7.0（2026.5.3現在）です。
+動作環境は、MacOS BugSur(11)、Monterey(12)、Ventura(13)対応[^eastgate1]。アプリケーションは、Intel、Apple Silicon(m1等)両対応のユニバーサルバイナリとなっています。
+
+
+[^eastgate1]:[Eastgate Systems](https://www.eastgate.com/Tinderbox/download.html)のホームページより
+ 
+Eastegate Systems社の[ホームページ](htps://www.eastgate.com/Tinderbox/download.html)より、ダウンロードする。
+
+```{r}
+#| label: fig-eastgate-download1 
+#| echo: false  
+#| out.width: 80%
+#| fig-cap: |
+#|   Tinderboxホームページ
+#| fig-alt: |
+#|   
+#| fig-align: center
+#| fig-pos: H
+knitr::include_graphics("screenshots/eastgate-download1.png", dpi = 350)
+```
+インストール方法は、一般的なアプリケーションと同じで、インストール用のイメージファイル（dmg）を開き、@fig-tinderbox-dmg のように、Tinderboxアプリ本体をApplicationフォルダにドラッグ＆ドロップするだけです。バージョンアップは、新しいバージョンのアプリ本体を上書してください。
+
+```{r}
+#| label: fig-tinderbox-dmg 
+#| echo: false  
+#| out.width: 80%
+#| fig-cap: |
+#|   Tiderboxインストール用のdmgファイル
+#| fig-alt: |
+#|   
+#| fig-align: center
+#| fig-pos: H
+knitr::include_graphics("screenshots/tinderboxdmg.png", dpi = 350)
+```
+																																																																								
+
+## ライセンスについて {#sec-about-license }
+ 
+ ライセンスを登録していない状態ではデモ版として動作し、作成できるノート数が24個までに制限されます。
+**購入とアップグレードの仕組み**
+ライセンスはFastSpring社の決済システムを通じて購入可能です。
+
+*   **新規ライセンス：** $289（2026年5月3日現在）
+*   **特典：** 購入から1年間の無償アップグレードが付属します。
+1年間のアップグレード期間が終了した後も、その時点のバージョンをそのまま使い続けることができます。再び最新版へアップグレードしたくなった場合は、任意のタイミングでサブスクリプションを購入することでアップデートを再開できます。
+**お得に購入する方法**
+少しでも安く購入したい場合は、以下のタイミングや方法を検討するとよいでしょう。
+
+*   **季節のセール：** [The Festival Of Artisanal Software](https://www.artisanalsoftwarefestival.com) では、例年夏と冬の2回、25%オフのセールが実施されます。
+*   **メンバーシップ割引：** [TidBITS](https://tidbits.com) の有償メンバーシップに加入すると、特典として25%の割引を受けられる場合があります。[^tidbits]
+
+[^tidbits]: [TidBITS Membership Benefits](https://tidbits.com/membership/benefits/) を参照（2023年11月26日時点の情報）。
+ 
+
+
+
+
+
+
+## 日本語環境向けの初期設定について {#sec-about-settings }
+ 
+ メニューの**Edit→Document Settings...**もしくは`r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Command.png}}", html = "![Command](screenshots/Command.png){fig-alt='Command' width=30px}")``r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Plus.png}}", html = "![Plus](screenshots/Plus.png){fig-alt='Plus' width=30px}")``r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Num8.png}}", html = "![8](screenshots/Num8.png){fig-alt='8' width=30px}")`を押すと、ドキュメントセッティング（Document Settings）が表示される。**Text**の設定で、スマートクォート（**Smart Quotes**）と日付の設定（**Displayed Attributes Dates**）を @fig-setting01 のように設定を変更することをお勧めします。
+**Smart Quotes**は、引用符の修正を自動で行うかどうかの設定ですが、副作用[^smartquote]があり、日本語では基本的にオンにする必要がないのでオフにしておきましょう。ノート毎に個別に設定できるので、もし必要な場合はそのノートだけオンにしてください。なお、スマートクォートがオンになっていると、ストレートクォート（`"`：**Straight Quotes**)を左右の向きの違いがあるスマートクォート（`“`または`”`：**Smart Quotes**）に自動で修正します。
+
+[^smartquote]:アクションコードを記述するノートでスマートクォートがオンになっていると、ダブルクォーテーションがスマートクォートに変換されて、コードが正常に動作しないが、ぱっと見ても気付かないので、注意が必要です。
+ 
+
+```{r}
+#| label: fig-setting01 
+#| echo: false  
+#| out.width: 80%
+#| fig-cap: |
+#|   Tinderboxのおすすめ設定
+#| fig-alt: |
+#|   
+#| fig-align: center
+#| fig-pos: H
+knitr::include_graphics("screenshots/setting1.png", dpi = 350)
+```
+ 
+
+
+
+
+
+
+
+
+

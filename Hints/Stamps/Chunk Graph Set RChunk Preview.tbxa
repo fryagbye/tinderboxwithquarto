@@ -1,0 +1,9 @@
+// /Hints/Stamps/Chunk & Graph: Set RChunk Preview
+
+if($Prototype=="pRChunk"){
+	fSetPreviewCommandForRChunk();
+}else{
+	("Please select a pRChunk note").show;
+};
+
+

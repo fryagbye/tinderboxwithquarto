@@ -1,0 +1,13 @@
+// /Hints/Stamps/Graphviz: Toggle Graphviz Poster
+
+if($Prototype=="pGContainer"){
+	if($PosterTemplate){
+		$PosterTemplate=;
+		("Poster OFF").show();
+	}else{
+		$PosterTemplate="/Templates/tGraphviz";
+		("Poster ON").show();
+	};
+};
+
+

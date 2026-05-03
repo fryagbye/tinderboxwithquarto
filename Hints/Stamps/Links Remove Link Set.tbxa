@@ -1,0 +1,29 @@
+// /Hints/Stamps/Links:Remove Link Set
+
+// This stamp will remove a set of outbound links from the referenced
+// source note (i.e., “this”). $MyDictionary(this) will indicate the 
+// links to be removed with entries of the form:
+//   destination_ID:link_Types
+// The link_Types can be a single type, or a set of link types when
+// there are parallel links between the same source and destination notes. 
+// 
+// The number of links removed will be captured in $MyNumber(this)
+
+var:boolean debug=false;
+var:string  logbook="Debug—RemoveLinkSet";
+
+$MyNumber=0; // Initialize count of links removed
+$MyDictionary.keys.each(destinationID)
+{ // Remove outbound link(s) to “destinationID”
+  $MyDictionary[destinationID].each(linkType)
+  { // Process each Link Type in case of parallel links
+    if(debug){LogRec(logbook,"--> UnLink From "+$ID+" to "+destinationID
+       +" with type: "+linkType);};
+    unlinkTo(destinationID,linkType);
+    $MyNumber+=1;
+    if(debug){LogRec(logbook,"--> # outbound links removed: "+$MyNumber);};
+  }; // End loop for parallel links
+}; // End each link destination loop
+
+
+

@@ -1,0 +1,6 @@
+// /Hints/Stamps/Export: Change a template of "Export Agent"
+
+select(/For Export);
+fChangeTemplateOfAgentQmd();
+
+

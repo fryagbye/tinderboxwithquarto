@@ -1,10 +1,12 @@
-// /Hints/Library/pSubNote
+// /Hints/Library/pSubNote;
+
 
 function fSetOutlineDepthBaseForpSubnote(){
-		$OutlineDepthBase = $OutlineDepthBase(parent) + 1;
+	$OutlineDepthBase = $OutlineDepthBase(parent) + 1;
 };
+// For pSubnote;
 
-// For pSubnote
+
 function fSetAttributeForpSubnote(){
 	fSetHTMLExportFileName();
 	fSetOutlineDepthBaseForpSubnote();
@@ -12,34 +14,42 @@ function fSetAttributeForpSubnote(){
 };
 
 
-
 function fSetPreviewForpSubnote(vID:string){
-	if($Prototype(vID)=="pSubnote"|$Prototype($Prototype(vID))=="pSubnote"){
-		if($HTMLExportExtension==".txt"){
-			$HTMLPreviewCommand(vID)="/opt/homebrew/bin/pandoc -f markdown --quiet --citeproc --bibliography="+ $Q_BibliographyFile("TBXConfig") 
-			 + " --resource-path="+ $ImagePathForPandoc("TBXConfig")  + " --css=" + $PandocCSSPath("TBXConfig") + " -t html";
-			$HTMLExportTemplate(vID)="/Templates/tSubnote_all_Preview";
-			$HTMLExportExtension(vID)=".html";
-			$HTMLMarkdown(vID)=false;
-			$HTMLMarkupText(vID)=false;
+	var:string vRootPath = collect(ancestors, $Path)[-1];
+	var:string vCommandOption = "/opt/homebrew/bin/pandoc -f markdown --quiet";
+
+	if($Prototype(vID) == "pSubnote" | $Prototype($Prototype(vID)) == "pSubnote"){
+		if($HTMLExportExtension == ".txt"){
+			if($Q_BibliographyFile(vRootPath)){
+				vCommandOption += " --citeproc --bibliography=" + $Q_BibliographyFile(vRootPath);
+			};
+			if($Q_ImagepathForPandoc(vRootPath)){
+				vCommandOption += " --resource-path=" + $ImagePathForPandoc(vRootPath);
+			};
+			if($PandocCSSPath(vRootPath)){
+				vCommandOption += " --css=" + $PandocCSSPath(vRootPath);
+			};
+			$HTMLPreviewCommand(vID) = vCommandOption + " -t html";
+			$HTMLExportTemplate(vID) = "/Templates/tSubnote_all_Preview";
+			$HTMLExportExtension(vID) = ".html";
+			$HTMLMarkdown(vID) = false;
+			$HTMLMarkupText(vID) = false;
 		}else{
-			$HTMLPreviewCommand(vAgentExport)="CommonMark";
-			$HTMLExportTemplate(vID)="/Templates/tSubnote";
-			$HTMLExportExtension(vID)=".txt";
-			$HTMLMarkdown(vID)=true;
-			$HTMLMarkupText(vID)=false;
+			$HTMLPreviewCommand(vAgentExport) = "MultiMarkdown";
+			$HTMLExportTemplate(vID) = "/Templates/tSubnote";
+			$HTMLExportExtension(vID) = ".txt";
+			$HTMLMarkdown(vID) = true;
+			$HTMLMarkupText(vID) = false;
 		};
 	};
 };
 
 
 function fSetPreviewForpSubnoteFromPath(vPath:string){
-	var:list vList = collect_if(descendants(vPath), $Prototype=="pSubnote"|$Prototype($Prototype)=="pSubnote", $ID);
+	var:list vList = collect_if(descendants(vPath), $Prototype == "pSubnote" | $Prototype($Prototype) == "pSubnote", $ID);
 
 	vList.each(aL){
 		fSetPreviewForpSubnote(aL);
 		update(aL);
 	};
 };
-
-
