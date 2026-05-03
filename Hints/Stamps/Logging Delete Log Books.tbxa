@@ -1,0 +1,27 @@
+// /Hints/Stamps/Logging:Delete Log Books
+
+// Remove all non-permanent log books contained in the 
+// common log book repository, normally found at:
+// “/Document Commons/LogBooks/”
+
+var:number log_repository; // Obtain $ID for “LogBooks” container
+log_repository=$MyDictionary(lastSibling(cover))["LogBooks"];
+var:list logbooks;
+
+// Construct list of notes that are contained in the LogBook
+// repository and that also have the "Log Book" prototype.
+
+logbooks=collect_if(children(log_repository),$Prototype=="Log Book",$ID);
+
+// Delete each log book in the found list
+logbooks.each(logbook){delete(logbook);};
+
+// Log this delete action in the PersistentLogBook
+LogRec("PersistentLogBook","<<mark>>"
+ +logbooks.count+" logbooks were deleted & Index Reset to Zero!");
+
+// Reset the Log index to zero
+$MyNumber(log_repository)=0;
+ 
+
+

@@ -1,0 +1,17 @@
+// /Hints/Stamps/Logging:Restart Index Sequencing
+
+// Reset the global logging index so that the next log
+// record will start with one (00001)
+
+var:number log_repository; // Obtain $ID for “LogBooks” container
+log_repository=$MyDictionary(lastSibling(cover))["LogBooks"];
+var:string persistent_logbook=$Path(log_repository)+"/PersistentLogBook";
+
+// Record in PersistentLogBook that the index is being reset
+LogRec(persistent_logbook,"<<mark>>Logging Index Reset to Zero!");
+
+// Reset Index Sequence number to zero
+$MyNumber(log_repository)=0;
+
+
+

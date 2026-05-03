@@ -1,0 +1,8 @@
+// /Hints/Stamps/Labels: Make Dummy Links For Cross-Reference
+
+fMakeLinkFigFromReferenceList();
+fMakeLinkSecFromReferenceList();
+fMakeLinkTableFromReferenceList();
+fMakeLinkEquationFromReferenceList();
+
+

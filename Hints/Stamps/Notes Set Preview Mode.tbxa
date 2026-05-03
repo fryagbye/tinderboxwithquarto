@@ -1,0 +1,5 @@
+// /Hints/Stamps/Notes: Set Preview Mode
+
+fSetPreviewMode($Path);
+
+

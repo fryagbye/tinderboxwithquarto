@@ -1,0 +1,6 @@
+// /Hints/Stamps/For Debug(/Log): get changed attributes list about the selected note.
+
+// output-> /Log
+fGetAttributeList($Name);
+
+

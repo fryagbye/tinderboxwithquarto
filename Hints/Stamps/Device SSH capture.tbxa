@@ -1,0 +1,20 @@
+// /Hints/Stamps/Device: SSH capture
+
+// This stamp will invoke a command on a remote system/device using SSH,
+// and return the results in $Text. The start time will be stored in
+// $StartDate, and execution elapsed time will be placed in $MyInterval.
+// 
+// The Stamped note should have these two Attribute assignments:
+//   $SSH_Target: A string that provides either an IP address or a domain
+//     name for the target system/device. This will be used as the
+//     destination for the SSH command. Note that use of SSH keys is 
+//     strongly recommended, though a userid and password could be 
+//     passed directly via this attribute if security is not a concern.
+//   $MyString: The actual command to be invoked by the remote system/device.
+//     
+$StartDate = date(now);
+$Text += "ssh " + $SSH_Target + " '" + $MyString+"'\n";
+$Text += (runCommand("ssh " + $SSH_Target + " '" + $MyString+"'"));
+$MyInterval = interval($StartDate-date(now));
+
+

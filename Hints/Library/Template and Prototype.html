@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Template and Prototype</title>
+        <style>
+            
+body{
+    font-family: "Ideal Sans Ssm Book",HelveticaNeue,Helvetica,Arial,sans-serif;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    line-height: 1.4;
+    }
+    
+table {
+    margin: 2em 0;
+    font-size: 0.9em;
+    border: 1px solid #888888;
+}
+
+td{
+    padding: 0.5em;
+    }
+
+img{
+    width: 100%;
+}
+    
+
+        </style>
+    </head>
+    <body>
+        <p>function fChangeNoteTemplate(){</p>
+<blockquote>	var:string vName1="pNote";</blockquote>
+<blockquote>	var:string vName2="pSubnote";</blockquote>
+<blockquote>	if($HTMLExportTemplate(vName1)=="/Templates/tNote"){</blockquote>
+	<blockquote>	$HTMLExportTemplate(vName1)="/Templates/tNote_preview";</blockquote>
+<blockquote>	}else{</blockquote>
+	<blockquote>	$HTMLExportTemplate(vName1)="/Templates/tNote";</blockquote>
+<blockquote>	};</blockquote>
+
+<blockquote>	if($HTMLExportTemplate(vName2)=="/Templates/tSubnote"){</blockquote>
+	<blockquote>	$HTMLExportTemplate(vName2)="/Templates/tSubnote_preview";</blockquote>
+<blockquote>	}else{</blockquote>
+	<blockquote>	$HTMLExportTemplate(vName2)="/Templates/tSubnote";</blockquote>
+<blockquote>	};</blockquote>
+	<blockquote>	(vName1 + " template is set with " + $HTMLExportTemplate(vName1) + "\n"+vName2 + " template is set with " + 	$HTMLExportTemplate(vName2) + "\n").show();</blockquote>
+<p>};</p>
+
+<p>function fChangeQuartoYMLDisplayedAttributes(vName){</p>
+<blockquote>	$DisplayedAttributes(vName)=$DisplayedAttributes($HTMLExportTemplate(vName));</blockquote>
+<p>};</p>
+
+<p>function fTranslateStrings(vLang, vStr:string){</p>
+<blockquote>	//you nead install trans-shell</blockquote>
+<blockquote>	//var:string vCommand="export PATH=/opt/homebrew/bin:$PATH;/opt/homebrew/bin/trans -b ";</blockquote>
+<blockquote>	var:string vCommand;</blockquote>
+<blockquote>	var:string vFilePathOfTrans=$PathOfTransExe("TBXConfig");</blockquote>
+<blockquote>	var:string vPathOfTrans;</blockquote>
+<blockquote>	var:string vReturn;</blockquote>
+
+<blockquote>	vFilePathOfTrans.icontains("(.*)/");</blockquote>
+<blockquote>	vPathOfTrans="export PATH=" + $1 + ":$PATH;";</blockquote>
+<blockquote>	vStr="'" + vStr + "'";</blockquote>
+
+<blockquote>	vCommand = vPathOfTrans + vFilePathOfTrans + " -b ";</blockquote>
+	
+<blockquote>	vCommand = vCommand + "{" + vLang + "} ";</blockquote>
+<blockquote>	$MyString = vCommand;</blockquote>
+
+<blockquote>	vReturn = runCommand(vCommand, vStr).replace("\n","").replace('"',"");</blockquote>
+<blockquote>	return vReturn; </blockquote>
+<p>};</p>
+
+<p>function fRenameIn(vStr:string){</p>
+<blockquote>	var:string vTempName;</blockquote>
+<blockquote>	var:string vLang=$Rename_in("TBXConfig");</blockquote>
+
+<blockquote>	$MyString("TBXConfig")=vLang;</blockquote>
+<blockquote>	vTempName = fTranslateStrings(vLang, vStr);</blockquote>
+<blockquote>	//$MyString = vTempName;</blockquote>
+<blockquote>	if(!($IsNamesLocked)){</blockquote>
+	<blockquote>	if($IsIndexqmd){</blockquote>
+		<blockquote>	$HTMLExportFileName="index";</blockquote>
+	<blockquote>	}else{</blockquote>
+		<blockquote>	$HTMLExportFileName=vTempName.deleteCharacters("/\?%*:|<>.&+()!#,’`").lowercase().replace(" ","-").replace("'","");</blockquote>
+		<blockquote>	$SectionLabel=$HTMLExportFileName;</blockquote>
+	<blockquote>	};</blockquote>
+	<blockquote>	("Name Changed to:" + $HTMLExportFileName + $HTMLExportExtension).show();</blockquote>
+<blockquote>	}else{</blockquote>
+	<blockquote>	("Name is Locked").show();</blockquote>
+<blockquote>	};</blockquote>
+<p>};</p>
+
+<p>function fGetLanguageYML(vLang:string){</p>
+<blockquote>	var:string vURL;</blockquote>
+<blockquote>	if($Prototype=="pLanguageYML"&!$ReadOnly){</blockquote>
+	<blockquote>	if(vLang=="en"|vLang==""){</blockquote>
+		<blockquote>	vURL="https://raw.githubusercontent.com/quarto-dev/quarto-cli/main/src/resources/language/_language.yml";</blockquote>
+		<blockquote>	$Name = "_language";</blockquote>
+		<blockquote>	$HTMLExportExtension = ".yml";</blockquote>
+	<blockquote>	}else{</blockquote>
+		<blockquote>	vURL="https://raw.githubusercontent.com/quarto-dev/quarto-cli/main/src/resources/language/_language-" + vLang + ".yml";</blockquote>
+		<blockquote>	$Name = "_language-" + vLang;</blockquote>
+		<blockquote>	$HTMLExportExtension = ".yml";</blockquote>
+	<blockquote>	};</blockquote>
+	<blockquote>	$URL = vURL;</blockquote>
+
+	<blockquote>	$AutoFetch = true;</blockquote>
+	<blockquote>	("get from " + vURL).show();</blockquote>
+<blockquote>	};</blockquote>
+<p>};</p>
+
+
+    </body>
+</html>

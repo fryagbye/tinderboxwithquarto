@@ -1,0 +1,5 @@
+// /Hints/Stamps/Export: Copy Index List to Table Of Contents
+
+$Text($TableOfContaintsNote("TBXConfig")) = $Text("Index List");
+
+

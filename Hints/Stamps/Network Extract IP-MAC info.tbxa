@@ -1,0 +1,68 @@
+// /Hints/Stamps/Network:Extract IP-MAC info
+
+//
+var:boolean debug=true; // If debug is true, issue log statements
+var:string  log_books="/Core/LogBooks/";
+var:string  netObjStore="Extract"; // Log Book name for debugging records
+var:string  log_dest=log_books+logbook;
+var:string  current_line;
+var:string  ip_dotQuad;
+var:list    ip_octets;
+var:number  ip_int;
+var:number  ip_CIDR;
+var:number  ip_range;
+var:number  ip_netBase
+var:string  mac_addr;
+//
+$MySet="";
+0...($Text.paragraphCount-1).each(line_no)
+{ // Main loop to process each line/row in $Text
+  current_line=$Text.paragraph(line_no).trim;
+  if(debug){LogRec(logbook,current_line);};
+  // Initialize variables
+  ip_dotQuad ="";
+  ip_int=0;
+  ip_CIDR=0;
+  ip_range=0;
+  ip_netBase=0;
+  mac_addr="";
+  // Capture IP address from current line 
+  ip_octets=ip_quad2octets(current_line);
+  if(!ip_octets.empty)
+  { // IP address found, so capture details
+    ip_int=ip_octets2integer(ip_octets);
+    ip_dotQuad=ip_octets[0]+"."+ip_octets[1]+"."+ip_octets[2]+"."+ip_octets[3];
+    if(ip_octets.count=5)
+      { //CIDR value found with IP address
+        ip_CIDR=ip_octets[4];
+        ip_range=-1+pow(2,(32-ip_CIDR));
+        ip_netBase=ip_int-mod(ip_int,pow(2,32-ip_CIDR));
+        ip_dotQuad=ip_dotQuad+"/"+ip_octets[4];
+      }; // Endif CIDR found
+    // Create new IP Address note
+    
+    // Capture MAC Address from current line
+    mac_addr=captureMAC(current_line);
+
+  } else 
+  {
+  }; // Endif for IP address found
+
+  if(debug){LogRec(logbook,"ip_addr="+ip_addr+"/");};
+  if(!ip_addr.empty)
+  { 
+    ip_octets=ip_addr.extractAll("([0-9]+)");
+    ip_int=ip_octets2integer(ip_octets);
+    $MySet=$MySet+ip_int;
+    if(debug){LogRec(logbook,ip_addr+" | "+ip_octets+" | "+ip_int);}; 
+  };
+};
+
+// This stamp calls the following functions:
+//   logRec
+//   ip_quad2octets
+//   ip_octets2integer
+//   captureMAC
+
+
+

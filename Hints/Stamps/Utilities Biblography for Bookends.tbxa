@@ -1,0 +1,9 @@
+// /Hints/Stamps/Utilities: Biblography for Bookends
+
+if($Prototype=="Reference"){
+	$Path="/Reference DB";
+	$Prototype="pReference";
+	fSetReference();
+};
+
+

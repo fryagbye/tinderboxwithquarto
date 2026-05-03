@@ -1,0 +1,6 @@
+// /Hints/Stamps/Export: Change quarto.yml template
+
+select(/_quarto);
+fChangeTemplateQuartoYML();
+
+

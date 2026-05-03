@@ -1,0 +1,10 @@
+// /Hints/Stamps/Chunk & Graph: Set PChunk Preview
+
+if($Prototype=="pPChunk"){
+	$HTMLExportTemplate="/Templates/tPChunk_Preview";
+	$HTMLExportExtension=".html";
+}else{
+	("Please select a pPChunk note").show;
+};
+
+

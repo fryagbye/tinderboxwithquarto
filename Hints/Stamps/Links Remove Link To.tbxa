@@ -1,0 +1,18 @@
+// /Hints/Stamps/Links:Remove Link To
+
+// This stamp allows a third-party execution context to
+// remove a link to a specified note from the Stamp's target.
+// For this to work, the Stamp target (i.e., “this”) must have
+// these attribute settings:
+//   $MyNumber(target) contains the $ID of the to-note
+//   $MyString(target) optionally provides the Link Type
+//
+// The third-party will set these attributes in the target,
+// and then execute:
+//    stamp(target,"Links:Remove Link To");
+
+// LogRec(StampLog,"source: "+$ID+" dest: "+$MyNumber+" type: "+$MyString);
+
+unlinkTo($MyNumber,$MyString);
+
+

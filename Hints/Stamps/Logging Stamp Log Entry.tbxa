@@ -1,0 +1,8 @@
+// /Hints/Stamps/Logging:Stamp Log Entry
+
+// Record log entry with contents of $MyString from current note
+// in the logbook "StampLog"
+LogRec(StampLog,$MyString);
+
+
+

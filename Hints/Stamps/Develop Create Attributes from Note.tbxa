@@ -1,0 +1,7 @@
+// /Hints/Stamps/Develop: Create Attributes from Note
+
+//Select pGAttribute 
+fCreateAttributesFromDictionary($ID, "pAttribute");
+
+
+

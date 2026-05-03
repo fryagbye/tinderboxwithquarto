@@ -1,0 +1,29 @@
+// /Hints/Stamps/Network:IP quad to integer
+
+// Convert IP dotted quad address to integer and CIDR to size/range.
+// This Stamp is applied to the current Note and uses the “IP_Quad” 
+// attribute as the sources of the IP address with the integer placed 
+// in “IP_Integer”. The “IP_CIDR” attribute is used to compute the 
+// subnet size or range that is placed in “IP_Range,” but only if 
+// “IP_Range” is currently zero (default). This allows a range to be set
+// manually, and not overwritten with the subnet size.
+// Aside: Since Tinderbox numbers are currently signed 32 bit values,
+// this code converts the dotted quad to a signed 32 bit result 
+// noting that 2^31 is 2147483648 and 128.0.0.0 = zero (0).
+
+if($IP_Quad[0]>127)
+{ $IP_Integer=(($IP_Quad[0]-128)*16777216)
+  +($IP_Quad[1]*65536)
+  +($IP_Quad[2]*256)
+  +$IP_Quad[3];
+}else
+{ $IP_Integer=((($IP_Quad[0])*16777216)-2147483648)
+  +($IP_Quad[1]*65536)
+  +($IP_Quad[2]*256)
+  +$IP_Quad[3];
+};
+
+if(!$IP_Range){$IP_Range=-1+pow(2,(32-$IP_CIDR));};
+
+
+

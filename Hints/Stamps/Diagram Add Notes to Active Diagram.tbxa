@@ -1,0 +1,21 @@
+// /Hints/Stamps/Diagram:Add Notes to Active Diagram
+
+// This stamp assumes that the user has previously set an 
+// Active Diagram using the “Diagram:Set Active Diagram” stamp.
+// When invoked, this stamp will then add whatever note or
+// notes are currently selected to the Active Diagram. 
+// This allows adding notes to a diagram in a bulk manner.
+
+var:number diagramSettings; 
+var:number activeDiagram;
+
+// First, get $ID of currently active Diagram from “Diagram Settings”
+diagramSettings=GetCommonsItemID("Global Settings");
+diagramSettings=$ID($Path(diagramSettings)+"/Diagram Settings");
+activeDiagram=$MyNumber(diagramSettings); // Diagram where notes will be added
+
+// Now add selected note to active Diagram
+createLink(this,activeDiagram,"Diagram←Note");
+
+
+

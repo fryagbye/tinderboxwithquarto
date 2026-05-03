@@ -1,0 +1,6 @@
+// /Hints/Stamps/Labels: Force update Lists & Cross-Ref
+
+fCrossRefUpdate(true);
+
+
+

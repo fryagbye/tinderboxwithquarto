@@ -1,0 +1,8 @@
+// /Hints/Stamps/Notes: Tranlate Section Labels
+
+$IsNamesLocked=false;
+fRenameIn($Name);
+$IsNamesLocked=true;
+$HasSectionLabel=true;
+
+

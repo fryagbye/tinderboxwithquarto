@@ -1,0 +1,5 @@
+// /Hints/Stamps/Quarto: Book Render ( Select For Export )
+
+fBookAction("render", "");
+
+

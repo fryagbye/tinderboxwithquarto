@@ -1,0 +1,13 @@
+// /Hints/Stamps/Notes: Toggle $HasSectionLabel
+
+if($HasSectionLabel){
+	$HasSectionLabel=false;
+}else{
+	if($SectionLabel==""){
+		fRenameIn($Name);
+		$IsNamesLocked=true;
+	};
+	$HasSectionLabel=true;
+};
+
+

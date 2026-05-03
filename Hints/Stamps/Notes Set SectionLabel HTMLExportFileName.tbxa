@@ -1,0 +1,20 @@
+// /Hints/Stamps/Notes: Set SectionLabel & HTMLExportFileName
+
+if(!($IsNamesLocked)){
+	if($IsIndexqmd){
+		$HTMLExportFileName="index";
+	}else{
+		$HTMLExportFileName=$Name.deleteCharacters("/\?%*:|<>.&+()!,#`").lowercase().replace(" ","-").replace("'","");
+	};
+
+//	if(!($SectionLabel)){
+		$SectionLabel = $HTMLExportFileName;
+//	};
+}else{
+	("$IsNamesLocked is true.").show();
+};
+
+$HTMLExportExtension=$HTMLExportExtension($Prototype);
+
+
+

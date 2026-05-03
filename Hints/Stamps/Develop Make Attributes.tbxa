@@ -1,0 +1,5 @@
+// /Hints/Stamps/Develop: Make Attributes
+
+fSetupAttibutesDictionary($ID);
+
+
