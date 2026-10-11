@@ -5,12 +5,11 @@ project:
 ^if($Q_BrandYmlFile)^brand: ^value($Q_BrandYmlFile)^^endIf^
 
 book:
-  title: ^value($Q_Title)^
-  subtitle: ^value($Q_Subtitle)^
-  author: ^value($Q_Author)^
+  ^if($Q_Title)^title: ^value($Q_Title)^^endIf^
+  ^if($Q_Subtitle)^subtitle: ^value($Q_Subtitle)^^endIf^
+  ^if($Q_Author)^author: ^value($Q_Author)^^endIf^
   ^if($Q_AbstractTitle)^abstract-title: ^value($Q_AbstractTitle)^^endIf^
   ^if($Q_Date)^date: ^value($Q_Date)^^endIf^
-  ^if($Q_DateFormat)^date-format: ^value($Q_DateFormat)^^endIf^
 
   ^value(^text^)^
 
@@ -20,18 +19,19 @@ format:
     ^if($Q_HasTOC)^toc-depth: ^value($Q_TOCDepth)^^endIf^
     number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
     ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+    ^if($Q_CiteMethod)^cite-method: ^value($Q_CiteMethod)^^endIf^
 
     code-link: ^value($Q_CodeLink)^
 
     code-line-numbers: ^value($Q_HasCodeLineNumbers)^
 
-    author-meta: "^value($Q_AuthorMeta)^"
+    ^if($Q_Mainfont)^mainfont: ^value($Q_Mainfont)^^endIf^
+    ^if($Q_Monofont)^monofont: ^value($Q_Monofont)^^endIf^
     ^if($Q_Indent)^indent: ^value($Q_Indent)^^endIf^
-    ^if($Q_HasIncludeInHeader)^include-in-header:
-     - text: |
-^action($MyString="";$Q_IncludeInHeaderPdf.each(aLine){$MyString += 9*" " + aLine + "\n"};)^^value($MyString)^^endIf^
+    fig-format: svg
+    fig-dpi: 300
     callout-appearance: ^value($Q_CalloutAppearance)^
-    
+
 
 ^if($Q_HasLang)^lang: ^value($Q_Lang)^^endIf^
 
@@ -39,8 +39,6 @@ format:
 ^if($Q_BibCslFile)^csl: ^value($Q_BibCslFile)^^endIf^
 ^if($Q_HasLanguageYml)^language: ^value($Q_LanguageYml)^^endIf^
 
-documentclass: ^value($Q_DocumentClass_PDF)^
-classoption: ^value($Q_ClassOptions)^^if(($Q_HasLang & $Q_Lang=="en"))^,english^endif^
 papersize: ^value($Q_Papersize)^
 
 execute:
@@ -49,4 +47,3 @@ execute:
   freeze: ^value($Q_Freeze)^
 
 editor: ^value($Q_Editor)^
-

@@ -54,8 +54,13 @@ function fChangeTemplateQuartoYML(){
             $HTMLExportTemplate(vYmlPath)="/Templates/tYML_bookpdf";
             $Q_OutputType(vYmlPath)="pdf";
         }else{
-            $HTMLExportTemplate(vYmlPath)="/Templates/tYML_bookhtml";
-            $Q_OutputType(vYmlPath)="html";
+            if($HTMLExportTemplate(vYmlPath)=="/Templates/tYML_bookpdf"){
+                $HTMLExportTemplate(vYmlPath)="/Templates/tYML_typst";
+                $Q_OutputType(vYmlPath)="typst";
+            }else{
+                $HTMLExportTemplate(vYmlPath)="/Templates/tYML_bookhtml";
+                $Q_OutputType(vYmlPath)="html";
+            };
         };
     
         fChangeQuartoYMLDisplayedAttributes(vYmlPath);
