@@ -69,7 +69,7 @@ ggplot(airquality, aes(Temp, Ozone)) +
 ## Python chunk
  
  Automatically recognize and collect Python chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. 
-In the following example, you can quote labels like @fig-matplotlib.
+In the following example, you can quote labels like \@fig-matplotlib.
   
 <python:numpy>
  
