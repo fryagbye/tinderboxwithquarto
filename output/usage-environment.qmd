@@ -73,7 +73,7 @@ installed.packages() |>
  
 <details>
     
-<summery>Package List</summery>
+<summery>Package List</summery>
     
 
 |Name|Version|Built|

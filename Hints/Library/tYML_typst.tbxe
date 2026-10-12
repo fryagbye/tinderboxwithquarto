@@ -2,7 +2,7 @@ project:
   type: ^value($Q_ProjectType)^
   output-dir: _^value($Q_ProjectType)^^value($Q_OutputType)^
 
-^if($Q_BrandYmlFile)^brand: ^value($Q_BrandYmlFile)^^endIf^
+^if($Q_ToggleBrandYML & $Q_BrandYmlFile)^brand: ^value($Q_BrandYmlFile)^^endIf^
 
 book:
   ^if($Q_Title)^title: ^value($Q_Title)^^endIf^
@@ -20,19 +20,15 @@ format:
     number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
     ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
     ^if($Q_CiteMethod)^cite-method: ^value($Q_CiteMethod)^^endIf^
-
-    code-link: ^value($Q_CodeLink)^
-
-    code-line-numbers: ^value($Q_HasCodeLineNumbers)^
-
+    code-link: ^if($Q_CodeLink)^true^else^false^endIf^
+    code-line-numbers: ^if($Q_HasCodeLineNumbers)^true^else^false^endIf^
     ^if($Q_Mainfont | $Q_Monofont)^header-includes:
       ^if($Q_Mainfont)^- '#set text(font: (^value($Q_Mainfont)^))'^endIf^
       ^if($Q_Monofont)^- '#show raw: set text(font: (^value($Q_Monofont)^))'^endIf^^endIf^
     ^if($Q_Indent)^indent: ^value($Q_Indent)^^endIf^
     fig-format: svg
     fig-dpi: 300
-    callout-appearance: ^value($Q_CalloutAppearance)^
-
+    ^if($Q_CalloutAppearance)^callout-appearance: ^value($Q_CalloutAppearance)^^endIf^
 
 ^if($Q_HasLang)^lang: ^value($Q_Lang)^^endIf^
 
@@ -40,11 +36,11 @@ format:
 ^if($Q_BibCslFile)^csl: ^value($Q_BibCslFile)^^endIf^
 ^if($Q_HasLanguageYml)^language: ^value($Q_LanguageYml)^^endIf^
 
-papersize: ^value($Q_Papersize)^
+^if($Q_Papersize)^papersize: ^value($Q_Papersize)^^endIf^
 
 execute:
-  cache: ^value($Q_Cache)^
+  cache: ^if($Q_Cache)^true^else^false^endIf^
   ^if($Q_IsKeepmd)^keep-md: ^value($Q_IsKeepmd)^^endIf^
-  freeze: ^value($Q_Freeze)^
+  freeze: ^if($Q_Freeze)^^value($Q_Freeze)^^else^auto^endIf^
 
-editor: ^value($Q_Editor)^
+editor: ^if($Q_Editor)^^value($Q_Editor)^^else^source^endIf^

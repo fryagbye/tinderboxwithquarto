@@ -1,0 +1,80 @@
+project:
+  type: ^value($Q_ProjectType)^
+  output-dir: _^value($Q_ProjectType)^^value($Q_OutputType)^
+
+^if($Q_ToggleBrandYML & $Q_BrandYmlFile)^brand: ^value($Q_BrandYmlFile)^^endIf^
+
+book:
+  ^if($Q_Title)^title: ^value($Q_Title)^^endIf^
+  ^if($Q_Subtitle)^subtitle: ^value($Q_Subtitle)^^endIf^
+  ^if($Q_Author)^author: ^value($Q_Author)^^endIf^
+  ^if($Q_AbstractTitle)^abstract-title: ^value($Q_AbstractTitle)^^endIf^
+  ^if($Q_Date)^date: ^value($Q_Date)^^endIf^
+  ^if($Q_ToggleReaderMode)^reader-mode: ^value($Q_ToggleReaderMode)^^endIf^
+
+  ^if($Q_HasPageFooter)^page-footer:
+    left: |
+      ^value($Q_PageFooterLeft)^
+    right: |
+      ^value($Q_PageFooterRight)^^endIf^
+  ^if($Q_CoverImage)^cover-image: ^value($Q_CoverImage)^^endIf^
+  ^if($Q_Favicon)^favicon: ^value($Q_Favicon)^^endIf^
+  ^if($Q_SiteUrl)^site-url: ^value($Q_SiteUrl)^^endIf^
+  ^if($Q_RepoUrl)^repo-url: ^value($Q_RepoUrl)^^endIf^
+  ^if($Q_RepoBranch)^repo-branch: ^value($Q_RepoBranch)^^endIf^
+  ^if($Q_RepoActions)^repo-actions: [^value($Q_RepoActions)^]^endIf^
+  ^if($Q_SidebarStyle)^sidebar:
+    style: ^value($Q_SidebarStyle)^
+    ^if($Q_SidebarPinned)^pinned: ^value($Q_SidebarPinned)^^endIf^^endIf^
+
+  ^value(^text^)^
+
+format:
+  html:
+    ^if($Q_HtmlTheme)^theme:
+      - ^value($Q_HtmlTheme)^
+      ^if($Q_HtmlTheme_scss)^- ^value($Q_HtmlTheme_scss)^^endIf^^endIf^
+    toc: ^if($Q_HasTOC)^true^else^false^endIf^
+    ^if($Q_HasTOC)^toc-depth: ^value($Q_TOCDepth)^^endIf^
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+    code-link: ^if($Q_CodeLink)^true^else^false^endIf^
+    code-line-numbers: ^if($Q_HasCodeLineNumbers)^true^else^false^endIf^
+    crossrefs-hover: ^if($Q_HasCitationHover)^true^else^false^endIf^
+    ^if($Q_HighlightStyle)^highlight-style: ^value($Q_HighlightStyle)^^endIf^
+    link-external-newwindow: ^if($Q_LinkExternalNewwindow)^true^else^false^endIf^
+    ^if($Q_Mainfont)^mainfont: '^value($Q_Mainfont)^'^endIf^
+    ^if($Q_Monofont)^monofont: '^value($Q_Monofont)^'^endIf^
+    ^if($Q_PageLayout)^page-layout: ^value($Q_PageLayout)^^endIf^
+    ^if($Q_HasCustomGrid)^grid:
+      ^if($Q_GridSidebarWidth)^sidebar-width: ^value($Q_GridSidebarWidth)^^endIf^
+      ^if($Q_GridBodyWidth)^body-width: ^value($Q_GridBodyWidth)^^endIf^
+      ^if($Q_GridMarginWidth)^margin-width: ^value($Q_GridMarginWidth)^^endIf^
+      ^if($Q_GridGutterWidth)^gutter-width: ^value($Q_GridGutterWidth)^^endIf^^endIf^
+    ^if($Q_CalloutAppearance)^callout-appearance: ^value($Q_CalloutAppearance)^^endIf^
+    ^if($Q_AuthorMeta)^author-meta: "^value($Q_AuthorMeta)^"^endIf^
+    ^if($Q_HasIncludeInHeader)^include-in-header:
+     - text: |
+^action($MyString="";$Q_IncludeInHeaderHtml.each(aLine){$MyString += 9*" " + aLine + "\n"};)^^value($MyString)^^endIf^
+
+^if($Q_HasLightbox)^lightbox:
+  match: ^value($Q_LightboxMatch)^
+  effect: ^value($Q_LightboxEffect)^
+  desc-position: ^value($Q_LightboxDescPosition)^
+  loop: ^value($Q_LightboxLoop)^
+^else^lightbox: false
+^endIf^
+
+^if($Q_HasLang)^lang: ^value($Q_Lang)^^endIf^
+^if($Q_BibliographyFile)^bibliography: ^value($Q_BibliographyFile)^^endIf^
+^if($Q_BibCslFile)^csl: ^value($Q_BibCslFile)^^endIf^
+^if($Q_ReferenceLocation)^reference-location: ^value($Q_ReferenceLocation)^^endIf^
+^if($Q_CitationLocation)^citation-location: ^value($Q_CitationLocation)^^endIf^
+^if($Q_HasLanguageYml)^language: ^value($Q_LanguageYml)^^endIf^
+
+execute:
+  cache: ^if($Q_Cache)^true^else^false^endIf^
+  ^if($Q_IsKeepmd)^keep-md: ^value($Q_IsKeepmd)^^endIf^
+  freeze: ^if($Q_Freeze)^^value($Q_Freeze)^^else^auto^endIf^
+
+editor: ^if($Q_Editor)^^value($Q_Editor)^^else^source^endIf^

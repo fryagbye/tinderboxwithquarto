@@ -1,0 +1,48 @@
+project:
+  type: ^value($Q_ProjectType)^
+  output-dir: _^value($Q_ProjectType)^^value($Q_OutputType)^
+
+^if($Q_ToggleBrandYML & $Q_BrandYmlFile)^brand: ^value($Q_BrandYmlFile)^^endIf^
+
+book:
+  ^if($Q_Title)^title: ^value($Q_Title)^^endIf^
+  ^if($Q_Subtitle)^subtitle: ^value($Q_Subtitle)^^endIf^
+  ^if($Q_Author)^author: ^value($Q_Author)^^endIf^
+  ^if($Q_AbstractTitle)^abstract-title: ^value($Q_AbstractTitle)^^endIf^
+  ^if($Q_Date)^date: ^value($Q_Date)^^endIf^
+
+  ^value(^text^)^
+
+format:
+  pdf:
+    toc: ^if($Q_HasTOC)^true^else^false^endIf^
+    ^if($Q_HasTOC)^toc-depth: ^value($Q_TOCDepth)^^endIf^
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+    ^if($Q_PDFEngine)^pdf-engine: ^value($Q_PDFEngine)^^endIf^
+    ^if($Q_CiteMethod)^cite-method: ^value($Q_CiteMethod)^^endIf^
+    code-link: ^if($Q_CodeLink)^true^else^false^endIf^
+    code-line-numbers: ^if($Q_HasCodeLineNumbers)^true^else^false^endIf^
+    ^if($Q_Indent)^indent: ^value($Q_Indent)^^endIf^
+    ^if($Q_CalloutAppearance)^callout-appearance: ^value($Q_CalloutAppearance)^^endIf^
+    ^if($Q_AuthorMeta)^author-meta: "^value($Q_AuthorMeta)^"^endIf^
+    ^if($Q_HasIncludeInHeader)^include-in-header:
+     - text: |
+^action($MyString="";$Q_IncludeInHeaderPdf.each(aLine){$MyString += 9*" " + aLine + "\n"};)^^value($MyString)^^endIf^
+
+^if($Q_HasLang)^lang: ^value($Q_Lang)^^endIf^
+
+^if($Q_BibliographyFile)^bibliography: ^value($Q_BibliographyFile)^^endIf^
+^if($Q_BibCslFile)^csl: ^value($Q_BibCslFile)^^endIf^
+^if($Q_HasLanguageYml)^language: ^value($Q_LanguageYml)^^endIf^
+
+^if($Q_DocumentClass_PDF)^documentclass: ^value($Q_DocumentClass_PDF)^^endIf^
+^if($Q_ClassOptions)^classoption: ^value($Q_ClassOptions)^^if(($Q_HasLang & $Q_Lang=="en"))^,english^endif^^endIf^
+^if($Q_Papersize)^papersize: ^value($Q_Papersize)^^endIf^
+
+execute:
+  cache: ^if($Q_Cache)^true^else^false^endIf^
+  ^if($Q_IsKeepmd)^keep-md: ^value($Q_IsKeepmd)^^endIf^
+  freeze: ^if($Q_Freeze)^^value($Q_Freeze)^^else^auto^endIf^
+
+editor: ^if($Q_Editor)^^value($Q_Editor)^^else^source^endIf^
