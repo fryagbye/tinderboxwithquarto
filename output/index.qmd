@@ -14,11 +14,11 @@
     * [R for Data Science (2e)](https://r4ds.hadley.nz)[^Rfordatascience]
 
 
-[^Rfordatascience]:[@Long2019Cookb]
+[^Rfordatascience]:[\@Long2019Cookb]
  
 
 
-[^citeRbook]:[@Song2020私たちのR]
+[^citeRbook]:[\@Song2020私たちのR]
  
 
 

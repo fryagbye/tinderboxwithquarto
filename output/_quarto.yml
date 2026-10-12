@@ -1,108 +1,99 @@
 project:
   type: book
-  output-dir: _bookhtml
+  output-dir: _booktypst
 
-
+brand: _brand.yml
 
 book:
-  title: 
-  author: 
-  reader-mode: true
+  title: Tinderbox file for Quarto
+  subtitle: How to use this file
+  author: fryagbye
+  
+  
 
-  page-footer:
-    left: |
-      
-    right: |
-      
-  
-  
-  
-  
-  repo-branch: main
-  repo-actions: [edit, issue]
-  sidebar:
-    style: docked
-    pinned: true
   chapters:
-    - index.qmd
-    - index.qmd
-    - part: "Tinderboxの導入"
-      chapters:
-        - about-tinderbox.qmd
-        - installing-tinderbox.qmd
-    - part: "Tinderboxの基礎"
-      chapters:
-        - components-of-a-note.qmd
-        - understand-tinderboxs-interface.qmd
-        - link.qmd
-        - attributes.qmd
-        - quick-stamp.qmd
-        - display-expression.qmd
-        - prototype-and-inheritance.qmd
-        - other-views.qmd
-        - aliases.qmd
-        - agent.qmd
-        - export.qmd
-    - part: "Tinderboxの応用"
-      chapters:
-        - action-code-basics.qmd
-        - stamps.qmd
-        - automatic-execution.qmd
-        - highlight.qmd
-        - poster.qmd
-        - this-book.qmd
-    - references.qmd
-  appendices:
-    - appendix.qmd
-    - objects-handled-by-tinderbox.qmd
 
+    - index.qmd
+
+    - setup.qmd
+
+    - usage-environment.qmd
+
+    - setting.qmd
+
+    - part: \"Book format\"
+
+      chapters:
+
+        - make-a-new-book-project.qmd
+
+        - make-notes.qmd
+
+        - chunks-and-graphs.qmd
+
+        - rename-htmlexportfilename-of-a-note-with-translation.qmd
+
+        - part-in-book-format.qmd
+
+        - cross-reference-using-ziplink.qmd
+
+        - export.qmd
+
+        - example.qmd
+
+    - part: \"Manuscript format\"
+
+      chapters:
+
+        - make-a-new-manuscript-project.qmd
+
+        - make-manuscript-subproject.qmd
+
+        - export-and-render.qmd
+
+    - part: \"revealjs format\"
+
+      chapters:
+
+        - make-a-new-revealjs-project.qmd
+
+        - make-revealjs-subproject.qmd
+
+    - references.qmd
+
+  appendices:
+
+    - restrictions.qmd
 
 format:
-  html:
-    theme:
-      - cosmo
-      
-    code-link: true
-    code-line-numbers: true
+  typst:
     toc: true
     toc-depth: 2
     number-sections: true
-    number-depth: 0
-    highlight-style: base16-atelier-dune
-    link-external-newwindow: true
-    pdf-engine: lualatex
-    author-meta: ""
-    indent: true
-    include-in-header:
-     - text: |
+    number-depth: 3
+    cite-method: citeproc
 
-    
-    
-    page-layout: article
-    
+    code-link: true
+
+    code-line-numbers: true
+
+    mainfont: "Noto Sans JP"
+    monofont: "Noto Sans Mono"
+    indent: true
+    fig-format: svg
+    fig-dpi: 300
     callout-appearance: default
 
-lightbox:
-  match: auto
-  effect: zoom
-  desc-position: bottom
-  loop: true
 
+lang: en
 
+bibliography: references.bib
 
-
-
-
-
-
-classoption: fleqn
-
+papersize: a4
 
 execute:
   cache: false
   
   freeze: auto
-  crossrefs-hover: false	
 
-editor: visual
-
+editor: source

@@ -35,7 +35,7 @@ format:
 
 ^if($Q_HasLang)^lang: ^value($Q_Lang)^^endIf^
 
-^if($Q_BibliographyFile("TBXConfig"))^bibliography: ^value($Q_BibliographyFile("TBXConfig"))^^endIf^
+^if($Q_BibliographyFile)^bibliography: ^value($Q_BibliographyFile)^^endIf^
 ^if($Q_BibCslFile)^csl: ^value($Q_BibCslFile)^^endIf^
 ^if($Q_HasLanguageYml)^language: ^value($Q_LanguageYml)^^endIf^
 
