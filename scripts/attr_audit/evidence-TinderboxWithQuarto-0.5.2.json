@@ -1,0 +1,2281 @@
+{
+ "document": "TinderboxWithQuarto-0.5.2.tbx",
+ "total": 468,
+ "strong": [
+  "AgentNameForQmdFiles",
+  "AppendixList",
+  "AutoUpdateCrossRef",
+  "BookAgentMode",
+  "ChunkListContainer",
+  "ColorExplain",
+  "CopyClipboard",
+  "CrossRefLastUpdate",
+  "CrossRefListUpdateCycle",
+  "CurrentBookProject",
+  "DANGEROUSCOMMAND",
+  "DatestampLogs",
+  "DiagramAttributesReflection",
+  "DiagramReflectionLocals",
+  "Diagram_ID",
+  "EquLabelListContainer",
+  "ExportAgentPriority",
+  "ExportFolder",
+  "FigLabelListContainer",
+  "FromDummyLinkPath",
+  "GC_Attributes",
+  "GE_Arrowhead",
+  "GE_Arrowtail",
+  "GE_Attributes",
+  "GE_Color",
+  "GE_Fillcolor",
+  "GE_Fontcolor",
+  "GE_Fontname",
+  "GE_Fontsize",
+  "GE_HasLHead",
+  "GE_HasLTail",
+  "GE_Labelangle",
+  "GE_Labeldistance",
+  "GE_Labelfloat",
+  "GE_Penwidth",
+  "GE_Style",
+  "GG_Attributes",
+  "GG_ColorScheme",
+  "GG_FontSize",
+  "GG_HasLabel",
+  "GG_Layout",
+  "GG_Margin",
+  "GG_Nodesep",
+  "GG_Rankdir",
+  "GG_Ranksep",
+  "GG_Splines",
+  "GN_Arrowtype",
+  "GN_Attributes",
+  "GN_Color",
+  "GN_Colorscheme",
+  "GN_Fillcolor",
+  "GN_Fixedsize",
+  "GN_Fontcolor",
+  "GN_Fontname",
+  "GN_Fontsize",
+  "GN_IsBIdirectional",
+  "GN_IsInvisible",
+  "GN_IsTextDisplayed",
+  "GN_Name",
+  "GN_NoteList",
+  "GN_ShapeOverride",
+  "GN_Style",
+  "GS_HasOutputStyle",
+  "GS_IsCluster",
+  "GS_NodeOnSubgraph",
+  "GS_Style",
+  "GS_SubgraphName",
+  "GS_Subgraphs",
+  "G_HasCompound",
+  "G_HasCustomAttributes",
+  "G_HasSubgraphOnSubgraph",
+  "G_IDtoName",
+  "G_KindOfGraph",
+  "G_SymbolLabelingOFF",
+  "G_SymboltoName",
+  "G_UsedSubs",
+  "GraphListContainer",
+  "HasCommonR",
+  "HasOutType",
+  "HasSectionLabel",
+  "HasVenvEnv",
+  "IP_CIDR",
+  "IP_DotQuad",
+  "IP_Octets",
+  "ImagePath",
+  "ImagePathForPandoc",
+  "IncludeNotes",
+  "Indent_Charactor",
+  "IndexListContainer",
+  "IndexLogs",
+  "IsAppendix",
+  "IsInJapaneseTOC",
+  "IsIndexqmd",
+  "IsLabelGenerateON",
+  "IsNamesLocked",
+  "IsNoTitle",
+  "IsRawOutput",
+  "IsUnLocked",
+  "IsUnnumbered",
+  "Is_Part_qmd",
+  "LanguageYMLLang",
+  "ListKey",
+  "ListValue",
+  "LoggingEnabled",
+  "M_Adornments",
+  "M_ArrowLength",
+  "M_ArrowType",
+  "M_Direction",
+  "M_HasCustomTheme",
+  "M_HasOutputStyle",
+  "M_HasOutputTheme",
+  "M_IsBidirectional",
+  "M_IsTextDisplayed",
+  "M_LinkLineColor",
+  "M_LinkTextBackgroundColor",
+  "M_MermaidVersion",
+  "M_Name",
+  "M_NodeOnSubgraph",
+  "M_NoteList",
+  "M_ShapeOverride",
+  "M_SubgraphBackgroundColor",
+  "M_SubgraphDirection",
+  "M_SubgraphLinks",
+  "M_SubgraphName",
+  "M_Subgraphs",
+  "M_Theme",
+  "MakeIndexLevel",
+  "OutlineBaseControl",
+  "OutlineDepthBase",
+  "OutlineDepthBaseDictionary",
+  "PandocCSSPath",
+  "Part_file",
+  "PathOfTransExe",
+  "ProjectContainer",
+  "ProjectList",
+  "PyodideErrorOutput",
+  "PyodideVersion",
+  "QR_Ascii",
+  "QR_Attributes",
+  "QR_Author",
+  "QR_AuthorMeta",
+  "QR_AutoAnimate",
+  "QR_AutoAnimateDuration",
+  "QR_AutoAnimateEasing",
+  "QR_AutoAnimateUnmatched",
+  "QR_AutoPlayMedia",
+  "QR_AutoSlide",
+  "QR_AutoSlideStoppable",
+  "QR_AutoStretch",
+  "QR_BackgroundTransition",
+  "QR_Brand",
+  "QR_Cache",
+  "QR_CapLocation",
+  "QR_Center",
+  "QR_Chalkboard",
+  "QR_Citeproc",
+  "QR_CodeAnnotations",
+  "QR_CodeBlockHeight",
+  "QR_CodeCopy",
+  "QR_CodeFold",
+  "QR_CodeLineNumbers",
+  "QR_CodeOverflow",
+  "QR_CodeSummary",
+  "QR_Controls",
+  "QR_ControlsBackArrows",
+  "QR_ControlsLayout",
+  "QR_ControlsTutorial",
+  "QR_CrossrefsHover",
+  "QR_Css",
+  "QR_Date",
+  "QR_DateMeta",
+  "QR_DefaultTiming",
+  "QR_DescriptionMeta",
+  "QR_DisableLayout",
+  "QR_Dpi",
+  "QR_Echo",
+  "QR_EmailObfuscation",
+  "QR_EmbedResources",
+  "QR_Error",
+  "QR_Eval",
+  "QR_ExtractMedia",
+  "QR_FigAlign",
+  "QR_FigCapLocation",
+  "QR_FigDpi",
+  "QR_FigFormat",
+  "QR_FigResponsive",
+  "QR_FigWidth",
+  "QR_Filters",
+  "QR_Footer",
+  "QR_FragmentInUrl",
+  "QR_Fragments",
+  "QR_Freeze",
+  "QR_From",
+  "QR_Grid",
+  "QR_Hash",
+  "QR_HashOneBasedIndex",
+  "QR_HashType",
+  "QR_Height",
+  "QR_Help",
+  "QR_HideCursorTime",
+  "QR_HideInactiveCursor",
+  "QR_History",
+  "QR_HtmlQTags",
+  "QR_HtmlTableProcessing",
+  "QR_Include",
+  "QR_IncludeInHeader",
+  "QR_Incremental",
+  "QR_Institute",
+  "QR_IpynbFilters",
+  "QR_IpynbShellInteractivity",
+  "QR_IsScrollable",
+  "QR_IsSmaller",
+  "QR_JumpToSlide",
+  "QR_KeepIpynb",
+  "QR_KeepMd",
+  "QR_Keyboard",
+  "QR_Lang",
+  "QR_LinkExternalIcon",
+  "QR_Logo",
+  "QR_Loop",
+  "QR_Margin",
+  "QR_MarginBottom",
+  "QR_MarginLeft",
+  "QR_MarginRight",
+  "QR_MarginTop",
+  "QR_MaxScale",
+  "QR_MaxWidth",
+  "QR_Menu",
+  "QR_MermaidFormat",
+  "QR_MetadataFiles",
+  "QR_MinScale",
+  "QR_MobileViewDistance",
+  "QR_MouseWheel",
+  "QR_Multiplex",
+  "QR_NavigationMode",
+  "QR_NumberDepth",
+  "QR_NumberOffset",
+  "QR_NumberSections",
+  "QR_Output",
+  "QR_OutputExt",
+  "QR_OutputFile",
+  "QR_OutputLocation",
+  "QR_Overview",
+  "QR_Pagetitle",
+  "QR_ParallaxBackgroundHorizontal",
+  "QR_ParallaxBackgroundImage",
+  "QR_ParallaxBackgroundSize",
+  "QR_ParallaxBackgroundVertical",
+  "QR_Pause",
+  "QR_PdfMaxPagesPerSlide",
+  "QR_PdfPageHeightOffset",
+  "QR_PdfSeparateFragments",
+  "QR_PlotlyConnected",
+  "QR_PreloadIframes",
+  "QR_PreviewLinks",
+  "QR_Progress",
+  "QR_QuartoRequired",
+  "QR_ReferenceLocation",
+  "QR_ResourcePath",
+  "QR_Resources",
+  "QR_RespondToHashChanges",
+  "QR_RevealjsUrl",
+  "QR_ScrollView",
+  "QR_Scrollable",
+  "QR_SelfContainedMath",
+  "QR_ShiftHeadingLevelBy",
+  "QR_Shortcodes",
+  "QR_ShowSlideNumber",
+  "QR_SlideLevel",
+  "QR_SlideNumber",
+  "QR_SlideTone",
+  "QR_Smaller",
+  "QR_StripComments",
+  "QR_Subtitle",
+  "QR_TblCapLocation",
+  "QR_Template",
+  "QR_TemplatePartials",
+  "QR_Theme",
+  "QR_Title",
+  "QR_Toc",
+  "QR_TocDepth",
+  "QR_TocTitle",
+  "QR_Touch",
+  "QR_Transition",
+  "QR_TransitionSpeed",
+  "QR_ViewDistance",
+  "QR_Warning",
+  "QR_Width",
+  "Q_Abstract",
+  "Q_Affiliation_City",
+  "Q_Affiliation_Country",
+  "Q_Affiliation_Department",
+  "Q_Affiliation_ID",
+  "Q_Affiliation_ISNI",
+  "Q_Affiliation_Name",
+  "Q_Affiliation_RingGold",
+  "Q_Affiliation_State",
+  "Q_Affiliation_URL",
+  "Q_Author",
+  "Q_AuthorMeta",
+  "Q_AuthorPath",
+  "Q_Author_Acknoledgements",
+  "Q_Author_Correspoding",
+  "Q_Author_Deceased",
+  "Q_Author_Degrees",
+  "Q_Author_EqualContributor",
+  "Q_Author_Note",
+  "Q_Author_ORCID",
+  "Q_Author_Phone",
+  "Q_Author_Roles",
+  "Q_Author_URL",
+  "Q_Author_email",
+  "Q_BibCslFile",
+  "Q_BibliographyFile",
+  "Q_BrandYmlFile",
+  "Q_Cache",
+  "Q_CalloutAppearance",
+  "Q_ChunkAutoRun",
+  "Q_ChunkEcho",
+  "Q_ChunkFIgOutWidth",
+  "Q_ChunkFigAlign",
+  "Q_ChunkFigAlt",
+  "Q_ChunkFigCaption",
+  "Q_ChunkFigHeight",
+  "Q_ChunkFigLabel",
+  "Q_ChunkFigPos",
+  "Q_ChunkFigShow",
+  "Q_ChunkFigWidth",
+  "Q_ChunkLang",
+  "Q_ChunkPackageList",
+  "Q_ChunkSuppressWarning",
+  "Q_CitationContaierTitle",
+  "Q_CitationDOI",
+  "Q_CitationIssue",
+  "Q_CitationLocation",
+  "Q_CitationVolume",
+  "Q_CiteMethod",
+  "Q_ClassOptionHTML",
+  "Q_ClassOptions",
+  "Q_CodeAnnotations",
+  "Q_CodeLineNumbers",
+  "Q_CodeLink",
+  "Q_CopyrightHolder",
+  "Q_CopyrightYear",
+  "Q_CoverImage",
+  "Q_Date",
+  "Q_DocumentClass_PDF",
+  "Q_Editor",
+  "Q_Favicon",
+  "Q_Filters",
+  "Q_Freeze",
+  "Q_Funding",
+  "Q_GridBodyWidth",
+  "Q_GridGutterWidth",
+  "Q_GridMarginWidth",
+  "Q_GridSidebarWidth",
+  "Q_HasChunkBlock",
+  "Q_HasCitationHover",
+  "Q_HasCodeLineNumbers",
+  "Q_HasCustomGrid",
+  "Q_HasIncludeInHeader",
+  "Q_HasLang",
+  "Q_HasLanguageYml",
+  "Q_HasLightbox",
+  "Q_HasNumberSection",
+  "Q_HasPageFooter",
+  "Q_HasQuartoLiveChunk",
+  "Q_HasTOC",
+  "Q_HighlightStyle",
+  "Q_HtmlTheme",
+  "Q_InVenv",
+  "Q_IncludeInHeaderHtml",
+  "Q_IncludeInHeaderPdf",
+  "Q_Indent",
+  "Q_IsCodeBlock",
+  "Q_IsKeepmd",
+  "Q_KeyWords",
+  "Q_Lang",
+  "Q_LanguageYml",
+  "Q_License",
+  "Q_LightboxDescPosition",
+  "Q_LightboxEffect",
+  "Q_LightboxLoop",
+  "Q_LightboxMatch",
+  "Q_LinkExternalNewwindow",
+  "Q_Logo",
+  "Q_Mainfont",
+  "Q_ManuscriptArticleQmd",
+  "Q_ManuscriptCommentsHypothesis",
+  "Q_Monofont",
+  "Q_NumberSection",
+  "Q_OutputType",
+  "Q_PDFEngine",
+  "Q_PageFooterLeft",
+  "Q_PageFooterRight",
+  "Q_PageLayout",
+  "Q_Papersize",
+  "Q_ProjectType",
+  "Q_QuartoLiveExt",
+  "Q_ReferenceLocation",
+  "Q_RepoActions",
+  "Q_RepoBranch",
+  "Q_RepoUrl",
+  "Q_SidebarPinned",
+  "Q_SidebarStyle",
+  "Q_SiteUrl",
+  "Q_Subtitle",
+  "Q_TOCDepth",
+  "Q_Title",
+  "Q_ToggleBrandYML",
+  "Q_ToggleReaderMode",
+  "QmdList",
+  "Quarto_Path",
+  "RLibraryListForPreview",
+  "RScriptPath",
+  "Reflected_ID",
+  "Reflected_LinkTypes",
+  "Reflected_Links",
+  "Reflected_Notes",
+  "Rename_in",
+  "RscriptHTMLTemplate",
+  "SafePath",
+  "SecLabelListContainer",
+  "SectionLabel",
+  "SuppressTagDetectWarning",
+  "TableOfContaintsNote",
+  "TableOrder",
+  "TblLabelListContainer",
+  "TerminalApp",
+  "TimestampLogs",
+  "ToDummyLinkPath",
+  "ToggleTOC",
+  "TypeOfList",
+  "VenvActivateCommand",
+  "Version"
+ ],
+ "weak": [
+  "MinDepth",
+  "Mode",
+  "TranslateOption",
+  "UseWezterm"
+ ],
+ "none": [
+  "Built",
+  "ClassOption",
+  "DocumentClass",
+  "Editor",
+  "GFM_author",
+  "GFM_date",
+  "GFM_title",
+  "GG_K",
+  "G_BrewerColorSchemes",
+  "IP_Address",
+  "Jupyter",
+  "Lang",
+  "MAC_Addr",
+  "MaxDepth",
+  "PDF_Engine",
+  "Package",
+  "QR_SlideTitle",
+  "Q_Bibliography_file",
+  "Q_ChunkLangPrefix",
+  "Q_DocumentClass_HTML",
+  "Q_OnWorkingFolder",
+  "Q_WebRAutoRun",
+  "Q_WebRFigHeight",
+  "Q_WebRFigWidth",
+  "Q_WorkingFolder",
+  "R_EditorType",
+  "StockDisplayedAttribute",
+  "SuffixForAttribute",
+  "session_labels"
+ ],
+ "evidence": {
+  "AgentNameForQmdFiles": [
+   "AgentQuery",
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "AppendixList": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "AutoUpdateCrossRef": [
+   "Rule"
+  ],
+  "BookAgentMode": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "Built": [],
+  "ChunkListContainer": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "ClassOption": [],
+  "ColorExplain": [],
+  "CopyClipboard": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "CrossRefLastUpdate": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "CrossRefListUpdateCycle": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "CurrentBookProject": [
+   "AgentQuery",
+   "DisplayExpression",
+   "Edict",
+   "attribute()",
+   "html",
+   "repo",
+   "text"
+  ],
+  "DANGEROUSCOMMAND": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "DatestampLogs": [
+   "html",
+   "text"
+  ],
+  "DiagramAttributesReflection": [
+   "html",
+   "text"
+  ],
+  "DiagramReflectionLocals": [
+   "html",
+   "text"
+  ],
+  "Diagram_ID": [
+   "OnAdd",
+   "html",
+   "text"
+  ],
+  "DocumentClass": [],
+  "Editor": [],
+  "EquLabelListContainer": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "ExportAgentPriority": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "ExportFolder": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "FigLabelListContainer": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "FromDummyLinkPath": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GC_Attributes": [],
+  "GE_Arrowhead": [],
+  "GE_Arrowtail": [],
+  "GE_Attributes": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GE_Color": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GE_Fillcolor": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GE_Fontcolor": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GE_Fontname": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GE_Fontsize": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GE_HasLHead": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GE_HasLTail": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GE_Labelangle": [],
+  "GE_Labeldistance": [],
+  "GE_Labelfloat": [],
+  "GE_Penwidth": [],
+  "GE_Style": [
+   "attribdef:default",
+   "html",
+   "repo",
+   "text",
+   "valstr:MyDictionary"
+  ],
+  "GFM_author": [],
+  "GFM_date": [],
+  "GFM_title": [],
+  "GG_Attributes": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GG_ColorScheme": [],
+  "GG_FontSize": [],
+  "GG_HasLabel": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GG_K": [],
+  "GG_Layout": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "GG_Margin": [],
+  "GG_Nodesep": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GG_Rankdir": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GG_Ranksep": [],
+  "GG_Splines": [
+   "attribdef:default",
+   "html",
+   "repo",
+   "text",
+   "valstr:MyDictionary"
+  ],
+  "GN_Arrowtype": [],
+  "GN_Attributes": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GN_Color": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GN_Colorscheme": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GN_Fillcolor": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GN_Fixedsize": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GN_Fontcolor": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GN_Fontname": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GN_Fontsize": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GN_IsBIdirectional": [],
+  "GN_IsInvisible": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GN_IsTextDisplayed": [],
+  "GN_Name": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "GN_NoteList": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GN_ShapeOverride": [
+   "attribdef:default",
+   "text",
+   "valstr:MyDictionary"
+  ],
+  "GN_Style": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GS_HasOutputStyle": [],
+  "GS_IsCluster": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GS_NodeOnSubgraph": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GS_Style": [
+   "attribdef:default",
+   "text",
+   "valstr:MyDictionary"
+  ],
+  "GS_SubgraphName": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "GS_Subgraphs": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "G_BrewerColorSchemes": [],
+  "G_HasCompound": [],
+  "G_HasCustomAttributes": [
+   "html",
+   "repo",
+   "text",
+   "valstr:Name"
+  ],
+  "G_HasSubgraphOnSubgraph": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "G_IDtoName": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "G_KindOfGraph": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "G_SymbolLabelingOFF": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "G_SymboltoName": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "G_UsedSubs": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "GraphListContainer": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "HasCommonR": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "HasOutType": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "HasSectionLabel": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text",
+   "valstr:Name"
+  ],
+  "HasVenvEnv": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "IP_Address": [],
+  "IP_CIDR": [
+   "repo"
+  ],
+  "IP_DotQuad": [
+   "repo"
+  ],
+  "IP_Octets": [
+   "repo"
+  ],
+  "ImagePath": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "ImagePathForPandoc": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "IncludeNotes": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Indent_Charactor": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "IndexListContainer": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "IndexLogs": [
+   "html",
+   "text"
+  ],
+  "IsAppendix": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "IsInJapaneseTOC": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "IsIndexqmd": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "IsLabelGenerateON": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "IsNamesLocked": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "IsNoTitle": [],
+  "IsRawOutput": [
+   "html",
+   "text"
+  ],
+  "IsUnLocked": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "IsUnnumbered": [
+   "AgentQuery",
+   "html",
+   "repo",
+   "text"
+  ],
+  "Is_Part_qmd": [
+   "Edict",
+   "html",
+   "repo",
+   "text"
+  ],
+  "Jupyter": [],
+  "Lang": [],
+  "LanguageYMLLang": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "ListKey": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "ListValue": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "LoggingEnabled": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "MAC_Addr": [],
+  "M_Adornments": [
+   "OnRemove"
+  ],
+  "M_ArrowLength": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_ArrowType": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_Direction": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_HasCustomTheme": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_HasOutputStyle": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_HasOutputTheme": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_IsBidirectional": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_IsTextDisplayed": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_LinkLineColor": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_LinkTextBackgroundColor": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_MermaidVersion": [
+   "html",
+   "text"
+  ],
+  "M_Name": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_NodeOnSubgraph": [
+   "OnRemove",
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_NoteList": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_ShapeOverride": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_SubgraphBackgroundColor": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_SubgraphDirection": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_SubgraphLinks": [
+   "Rule"
+  ],
+  "M_SubgraphName": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_Subgraphs": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "M_Theme": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "MakeIndexLevel": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "MaxDepth": [],
+  "MinDepth": [],
+  "Mode": [],
+  "OutlineBaseControl": [
+   "DisplayExpression",
+   "html",
+   "text"
+  ],
+  "OutlineDepthBase": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "OutlineDepthBaseDictionary": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "PDF_Engine": [],
+  "Package": [],
+  "PandocCSSPath": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Part_file": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "PathOfTransExe": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "ProjectContainer": [
+   "AgentQuery",
+   "Edict",
+   "html",
+   "repo",
+   "text"
+  ],
+  "ProjectList": [
+   "Rule",
+   "html",
+   "repo",
+   "text"
+  ],
+  "PyodideErrorOutput": [
+   "html",
+   "text"
+  ],
+  "PyodideVersion": [],
+  "QR_Ascii": [
+   "dict-line"
+  ],
+  "QR_Attributes": [],
+  "QR_Author": [
+   "dict-line",
+   "html",
+   "text"
+  ],
+  "QR_AuthorMeta": [
+   "dict-line"
+  ],
+  "QR_AutoAnimate": [
+   "dict-line"
+  ],
+  "QR_AutoAnimateDuration": [
+   "dict-line"
+  ],
+  "QR_AutoAnimateEasing": [
+   "dict-line"
+  ],
+  "QR_AutoAnimateUnmatched": [
+   "dict-line"
+  ],
+  "QR_AutoPlayMedia": [
+   "dict-line"
+  ],
+  "QR_AutoSlide": [
+   "dict-line"
+  ],
+  "QR_AutoSlideStoppable": [
+   "dict-line"
+  ],
+  "QR_AutoStretch": [
+   "dict-line"
+  ],
+  "QR_BackgroundTransition": [
+   "dict-line",
+   "html",
+   "text"
+  ],
+  "QR_Brand": [
+   "dict-line"
+  ],
+  "QR_Cache": [
+   "dict-line"
+  ],
+  "QR_CapLocation": [
+   "dict-line"
+  ],
+  "QR_Center": [
+   "dict-line"
+  ],
+  "QR_Chalkboard": [
+   "dict-line"
+  ],
+  "QR_Citeproc": [
+   "dict-line"
+  ],
+  "QR_CodeAnnotations": [
+   "dict-line"
+  ],
+  "QR_CodeBlockHeight": [
+   "dict-line"
+  ],
+  "QR_CodeCopy": [
+   "dict-line"
+  ],
+  "QR_CodeFold": [
+   "dict-line"
+  ],
+  "QR_CodeLineNumbers": [
+   "dict-line"
+  ],
+  "QR_CodeOverflow": [
+   "dict-line"
+  ],
+  "QR_CodeSummary": [
+   "dict-line"
+  ],
+  "QR_Controls": [
+   "dict-line"
+  ],
+  "QR_ControlsBackArrows": [
+   "dict-line"
+  ],
+  "QR_ControlsLayout": [
+   "dict-line"
+  ],
+  "QR_ControlsTutorial": [
+   "dict-line"
+  ],
+  "QR_CrossrefsHover": [
+   "dict-line"
+  ],
+  "QR_Css": [
+   "dict-line",
+   "html",
+   "text"
+  ],
+  "QR_Date": [
+   "dict-line"
+  ],
+  "QR_DateMeta": [
+   "dict-line"
+  ],
+  "QR_DefaultTiming": [
+   "dict-line"
+  ],
+  "QR_DescriptionMeta": [
+   "dict-line"
+  ],
+  "QR_DisableLayout": [
+   "dict-line"
+  ],
+  "QR_Dpi": [
+   "dict-line"
+  ],
+  "QR_Echo": [
+   "dict-line"
+  ],
+  "QR_EmailObfuscation": [
+   "dict-line"
+  ],
+  "QR_EmbedResources": [
+   "dict-line"
+  ],
+  "QR_Error": [
+   "dict-line"
+  ],
+  "QR_Eval": [
+   "dict-line"
+  ],
+  "QR_ExtractMedia": [
+   "dict-line"
+  ],
+  "QR_FigAlign": [
+   "dict-line"
+  ],
+  "QR_FigCapLocation": [
+   "dict-line"
+  ],
+  "QR_FigDpi": [
+   "dict-line"
+  ],
+  "QR_FigFormat": [
+   "dict-line"
+  ],
+  "QR_FigResponsive": [
+   "dict-line"
+  ],
+  "QR_FigWidth": [
+   "dict-line"
+  ],
+  "QR_Filters": [
+   "dict-line"
+  ],
+  "QR_Footer": [
+   "dict-line",
+   "html",
+   "text"
+  ],
+  "QR_FragmentInUrl": [
+   "dict-line"
+  ],
+  "QR_Fragments": [
+   "dict-line"
+  ],
+  "QR_Freeze": [
+   "dict-line"
+  ],
+  "QR_From": [
+   "dict-line"
+  ],
+  "QR_Grid": [
+   "dict-line"
+  ],
+  "QR_Hash": [
+   "dict-line"
+  ],
+  "QR_HashOneBasedIndex": [
+   "dict-line"
+  ],
+  "QR_HashType": [
+   "dict-line"
+  ],
+  "QR_Height": [
+   "dict-line"
+  ],
+  "QR_Help": [
+   "dict-line"
+  ],
+  "QR_HideCursorTime": [
+   "dict-line"
+  ],
+  "QR_HideInactiveCursor": [
+   "dict-line"
+  ],
+  "QR_History": [
+   "dict-line"
+  ],
+  "QR_HtmlQTags": [
+   "dict-line"
+  ],
+  "QR_HtmlTableProcessing": [
+   "dict-line"
+  ],
+  "QR_Include": [
+   "dict-line"
+  ],
+  "QR_IncludeInHeader": [
+   "dict-line"
+  ],
+  "QR_Incremental": [
+   "dict-line"
+  ],
+  "QR_Institute": [
+   "dict-line"
+  ],
+  "QR_IpynbFilters": [
+   "dict-line"
+  ],
+  "QR_IpynbShellInteractivity": [
+   "dict-line"
+  ],
+  "QR_IsScrollable": [
+   "html",
+   "text"
+  ],
+  "QR_IsSmaller": [
+   "html",
+   "text"
+  ],
+  "QR_JumpToSlide": [
+   "dict-line"
+  ],
+  "QR_KeepIpynb": [
+   "dict-line"
+  ],
+  "QR_KeepMd": [
+   "dict-line"
+  ],
+  "QR_Keyboard": [
+   "dict-line"
+  ],
+  "QR_Lang": [
+   "dict-line"
+  ],
+  "QR_LinkExternalIcon": [
+   "dict-line"
+  ],
+  "QR_Logo": [
+   "dict-line",
+   "html",
+   "text"
+  ],
+  "QR_Loop": [
+   "dict-line"
+  ],
+  "QR_Margin": [
+   "dict-line"
+  ],
+  "QR_MarginBottom": [
+   "dict-line"
+  ],
+  "QR_MarginLeft": [
+   "dict-line"
+  ],
+  "QR_MarginRight": [
+   "dict-line"
+  ],
+  "QR_MarginTop": [
+   "dict-line"
+  ],
+  "QR_MaxScale": [
+   "dict-line"
+  ],
+  "QR_MaxWidth": [
+   "dict-line"
+  ],
+  "QR_Menu": [
+   "dict-line"
+  ],
+  "QR_MermaidFormat": [
+   "html",
+   "text"
+  ],
+  "QR_MetadataFiles": [
+   "dict-line"
+  ],
+  "QR_MinScale": [
+   "dict-line"
+  ],
+  "QR_MobileViewDistance": [
+   "dict-line"
+  ],
+  "QR_MouseWheel": [
+   "dict-line"
+  ],
+  "QR_Multiplex": [
+   "dict-line"
+  ],
+  "QR_NavigationMode": [
+   "dict-line"
+  ],
+  "QR_NumberDepth": [
+   "dict-line"
+  ],
+  "QR_NumberOffset": [
+   "dict-line"
+  ],
+  "QR_NumberSections": [
+   "dict-line"
+  ],
+  "QR_Output": [
+   "dict-line"
+  ],
+  "QR_OutputExt": [
+   "dict-line"
+  ],
+  "QR_OutputFile": [
+   "dict-line"
+  ],
+  "QR_OutputLocation": [
+   "dict-line",
+   "html",
+   "repo",
+   "text"
+  ],
+  "QR_Overview": [
+   "dict-line"
+  ],
+  "QR_Pagetitle": [
+   "dict-line"
+  ],
+  "QR_ParallaxBackgroundHorizontal": [
+   "dict-line"
+  ],
+  "QR_ParallaxBackgroundImage": [
+   "dict-line"
+  ],
+  "QR_ParallaxBackgroundSize": [
+   "dict-line"
+  ],
+  "QR_ParallaxBackgroundVertical": [
+   "dict-line"
+  ],
+  "QR_Pause": [
+   "dict-line"
+  ],
+  "QR_PdfMaxPagesPerSlide": [
+   "dict-line"
+  ],
+  "QR_PdfPageHeightOffset": [
+   "dict-line"
+  ],
+  "QR_PdfSeparateFragments": [
+   "dict-line"
+  ],
+  "QR_PlotlyConnected": [
+   "dict-line"
+  ],
+  "QR_PreloadIframes": [
+   "dict-line"
+  ],
+  "QR_PreviewLinks": [
+   "dict-line"
+  ],
+  "QR_Progress": [
+   "dict-line"
+  ],
+  "QR_QuartoRequired": [
+   "dict-line"
+  ],
+  "QR_ReferenceLocation": [
+   "dict-line"
+  ],
+  "QR_ResourcePath": [
+   "dict-line"
+  ],
+  "QR_Resources": [
+   "dict-line"
+  ],
+  "QR_RespondToHashChanges": [
+   "dict-line"
+  ],
+  "QR_RevealjsUrl": [
+   "dict-line"
+  ],
+  "QR_ScrollView": [
+   "dict-line"
+  ],
+  "QR_Scrollable": [
+   "dict-line"
+  ],
+  "QR_SelfContainedMath": [
+   "dict-line"
+  ],
+  "QR_ShiftHeadingLevelBy": [
+   "dict-line",
+   "html",
+   "text"
+  ],
+  "QR_Shortcodes": [
+   "dict-line"
+  ],
+  "QR_ShowSlideNumber": [
+   "dict-line"
+  ],
+  "QR_SlideLevel": [
+   "dict-line"
+  ],
+  "QR_SlideNumber": [
+   "dict-line",
+   "html",
+   "text"
+  ],
+  "QR_SlideTitle": [],
+  "QR_SlideTone": [
+   "dict-line"
+  ],
+  "QR_Smaller": [
+   "dict-line"
+  ],
+  "QR_StripComments": [
+   "dict-line"
+  ],
+  "QR_Subtitle": [
+   "dict-line"
+  ],
+  "QR_TblCapLocation": [
+   "dict-line"
+  ],
+  "QR_Template": [
+   "dict-line"
+  ],
+  "QR_TemplatePartials": [
+   "dict-line"
+  ],
+  "QR_Theme": [
+   "dict-line"
+  ],
+  "QR_Title": [
+   "dict-line"
+  ],
+  "QR_Toc": [
+   "dict-line"
+  ],
+  "QR_TocDepth": [
+   "dict-line"
+  ],
+  "QR_TocTitle": [
+   "dict-line"
+  ],
+  "QR_Touch": [
+   "dict-line"
+  ],
+  "QR_Transition": [
+   "dict-line",
+   "html",
+   "text"
+  ],
+  "QR_TransitionSpeed": [
+   "dict-line",
+   "html",
+   "text"
+  ],
+  "QR_ViewDistance": [
+   "dict-line"
+  ],
+  "QR_Warning": [
+   "dict-line"
+  ],
+  "QR_Width": [
+   "dict-line"
+  ],
+  "Q_Abstract": [
+   "html",
+   "text"
+  ],
+  "Q_Affiliation_City": [
+   "html",
+   "text"
+  ],
+  "Q_Affiliation_Country": [
+   "html",
+   "text"
+  ],
+  "Q_Affiliation_Department": [
+   "html",
+   "text"
+  ],
+  "Q_Affiliation_ID": [],
+  "Q_Affiliation_ISNI": [
+   "html",
+   "text"
+  ],
+  "Q_Affiliation_Name": [
+   "DisplayExpression",
+   "html",
+   "text"
+  ],
+  "Q_Affiliation_RingGold": [
+   "html",
+   "text"
+  ],
+  "Q_Affiliation_State": [
+   "html",
+   "text"
+  ],
+  "Q_Affiliation_URL": [
+   "html",
+   "text"
+  ],
+  "Q_Author": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_AuthorMeta": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_AuthorPath": [
+   "html",
+   "text"
+  ],
+  "Q_Author_Acknoledgements": [
+   "html",
+   "text"
+  ],
+  "Q_Author_Correspoding": [
+   "html",
+   "text"
+  ],
+  "Q_Author_Deceased": [],
+  "Q_Author_Degrees": [
+   "html",
+   "text"
+  ],
+  "Q_Author_EqualContributor": [
+   "html",
+   "text"
+  ],
+  "Q_Author_Note": [
+   "html",
+   "text"
+  ],
+  "Q_Author_ORCID": [
+   "html",
+   "text"
+  ],
+  "Q_Author_Phone": [
+   "html",
+   "text"
+  ],
+  "Q_Author_Roles": [
+   "html",
+   "text"
+  ],
+  "Q_Author_URL": [
+   "html",
+   "text"
+  ],
+  "Q_Author_email": [
+   "html",
+   "text"
+  ],
+  "Q_BibCslFile": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_BibliographyFile": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Bibliography_file": [],
+  "Q_BrandYmlFile": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Cache": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_CalloutAppearance": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkAutoRun": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkEcho": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkFIgOutWidth": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkFigAlign": [],
+  "Q_ChunkFigAlt": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkFigCaption": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkFigHeight": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkFigLabel": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkFigPos": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkFigShow": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkFigWidth": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkLang": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ChunkLangPrefix": [],
+  "Q_ChunkPackageList": [
+   "html",
+   "text"
+  ],
+  "Q_ChunkSuppressWarning": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_CitationContaierTitle": [
+   "html",
+   "text"
+  ],
+  "Q_CitationDOI": [
+   "html",
+   "text"
+  ],
+  "Q_CitationIssue": [
+   "html",
+   "text"
+  ],
+  "Q_CitationLocation": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_CitationVolume": [
+   "html",
+   "text"
+  ],
+  "Q_CiteMethod": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ClassOptionHTML": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ClassOptions": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_CodeAnnotations": [],
+  "Q_CodeLineNumbers": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_CodeLink": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_CopyrightHolder": [
+   "html",
+   "text"
+  ],
+  "Q_CopyrightYear": [
+   "html",
+   "text"
+  ],
+  "Q_CoverImage": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Date": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_DocumentClass_HTML": [],
+  "Q_DocumentClass_PDF": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Editor": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Favicon": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Filters": [],
+  "Q_Freeze": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Funding": [
+   "html",
+   "text"
+  ],
+  "Q_GridBodyWidth": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_GridGutterWidth": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_GridMarginWidth": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_GridSidebarWidth": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HasChunkBlock": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HasCitationHover": [
+   "repo"
+  ],
+  "Q_HasCodeLineNumbers": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HasCustomGrid": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HasIncludeInHeader": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HasLang": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HasLanguageYml": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HasLightbox": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HasNumberSection": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HasPageFooter": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HasQuartoLiveChunk": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HasTOC": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HighlightStyle": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_HtmlTheme": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_InVenv": [],
+  "Q_IncludeInHeaderHtml": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_IncludeInHeaderPdf": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Indent": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_IsCodeBlock": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_IsKeepmd": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_KeyWords": [
+   "html",
+   "text"
+  ],
+  "Q_Lang": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_LanguageYml": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_License": [
+   "html",
+   "text"
+  ],
+  "Q_LightboxDescPosition": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_LightboxEffect": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_LightboxLoop": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_LightboxMatch": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_LinkExternalNewwindow": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Logo": [],
+  "Q_Mainfont": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ManuscriptArticleQmd": [
+   "html",
+   "text"
+  ],
+  "Q_ManuscriptCommentsHypothesis": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Monofont": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_NumberSection": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_OnWorkingFolder": [],
+  "Q_OutputType": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_PDFEngine": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_PageFooterLeft": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_PageFooterRight": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_PageLayout": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Papersize": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ProjectType": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_QuartoLiveExt": [
+   "html",
+   "text"
+  ],
+  "Q_ReferenceLocation": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_RepoActions": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_RepoBranch": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_RepoUrl": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_SidebarPinned": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_SidebarStyle": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_SiteUrl": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Subtitle": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_TOCDepth": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_Title": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ToggleBrandYML": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_ToggleReaderMode": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Q_WebRAutoRun": [],
+  "Q_WebRFigHeight": [],
+  "Q_WebRFigWidth": [],
+  "Q_WorkingFolder": [],
+  "QmdList": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Quarto_Path": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "RLibraryListForPreview": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "RScriptPath": [],
+  "R_EditorType": [],
+  "Reflected_ID": [
+   "html",
+   "text"
+  ],
+  "Reflected_LinkTypes": [
+   "html",
+   "text"
+  ],
+  "Reflected_Links": [
+   "html",
+   "text"
+  ],
+  "Reflected_Notes": [
+   "html",
+   "text"
+  ],
+  "Rename_in": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "RscriptHTMLTemplate": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "SafePath": [
+   "html",
+   "repo",
+   "text",
+   "valstr:Name"
+  ],
+  "SecLabelListContainer": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "SectionLabel": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "StockDisplayedAttribute": [],
+  "SuffixForAttribute": [],
+  "SuppressTagDetectWarning": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "TableOfContaintsNote": [
+   "AgentQuery",
+   "Edict",
+   "html",
+   "repo",
+   "text"
+  ],
+  "TableOrder": [
+   "OnAdd",
+   "html",
+   "repo",
+   "text"
+  ],
+  "TblLabelListContainer": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "TerminalApp": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "TimestampLogs": [
+   "html",
+   "text"
+  ],
+  "ToDummyLinkPath": [
+   "DisplayExpression",
+   "html",
+   "repo",
+   "text"
+  ],
+  "ToggleTOC": [
+   "AgentQuery",
+   "Edict",
+   "html",
+   "repo",
+   "text"
+  ],
+  "TranslateOption": [],
+  "TypeOfList": [
+   "Edict",
+   "html",
+   "repo",
+   "text"
+  ],
+  "UseWezterm": [],
+  "VenvActivateCommand": [
+   "html",
+   "repo",
+   "text"
+  ],
+  "Version": [
+   "repo"
+  ],
+  "session_labels": []
+ }
+}
