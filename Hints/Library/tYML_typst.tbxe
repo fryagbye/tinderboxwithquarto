@@ -25,8 +25,9 @@ format:
 
     code-line-numbers: ^value($Q_HasCodeLineNumbers)^
 
-    ^if($Q_Mainfont)^mainfont: ^value($Q_Mainfont)^^endIf^
-    ^if($Q_Monofont)^monofont: ^value($Q_Monofont)^^endIf^
+    ^if($Q_Mainfont | $Q_Monofont)^header-includes:
+      ^if($Q_Mainfont)^- '#set text(font: (^value($Q_Mainfont)^))'^endIf^
+      ^if($Q_Monofont)^- '#show raw: set text(font: (^value($Q_Monofont)^))'^endIf^^endIf^
     ^if($Q_Indent)^indent: ^value($Q_Indent)^^endIf^
     fig-format: svg
     fig-dpi: 300

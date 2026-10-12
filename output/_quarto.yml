@@ -77,8 +77,9 @@ format:
 
     code-line-numbers: true
 
-    mainfont: "Noto Sans JP"
-    monofont: "Noto Sans Mono"
+    header-includes:
+      - '#set text(font: ("Hiragino Sans"))'
+      - '#show raw: set text(font: ("DejaVu Sans Mono", "Osaka"))'
     indent: true
     fig-format: svg
     fig-dpi: 300

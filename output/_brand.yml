@@ -16,4 +16,4 @@ typography:
     - family: Jura
       source: google
   base: Jura
-  headings: Jura
+  headings: Hiragino Sans
