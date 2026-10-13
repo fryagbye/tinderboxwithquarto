@@ -1,23 +1,49 @@
 ^action(
+    // ============================================================
+    // Line separators
+    // ------------------------------------------------------------
+    // A truly empty line (two consecutive newlines) can be dropped
+    // in the Tinderbox export path, so "blank lines" between blocks
+    // are emitted as a line containing a single space. Pandoc treats
+    // a whitespace-only line as a blank line, so the rendered result
+    // is unchanged.
+    //   vNL  - plain newline
+    //   vWSL - whitespace-only "blank" line: a space then a newline
+    //   vBL  - newline plus vWSL: blank line after the current line
+    //   vBLI - vBL plus a space: blank line + 1-space indent on the
+    //          following line (harmless for Pandoc)
+    // NOTE: never write a quoted escape sequence (quote, backslash,
+    // letter) in comments - it corrupts ^action parsing in export
+    // templates.
+    // ============================================================
+    var:string vNL="\n";
+    var:string vWSL=" \n";
+    var:string vBL="\n \n";
+    var:string vBLI="\n \n ";
+
     var:string vChunkListPath="/Chunk List";
     var:string vGraphListPath="/Graph List";
-    var:string vText;
-    var:string vPre;
     var:string vRegChunk="^[ \t]*(\^?)(<((?:webr|r|python|pyodide|osj):.*?)>)";
     var:string vRegGraph="^[ \t]*(\^?)(<((?:dot|mermaid):.*?)>)";
     var:string vChunkPath;
-    var:string vChunkName;
     var:string vGraphPath;
-    var:string vGraphName;
-    var:string vTest;
+
+    // Block state: "none" | "code" | "equation".
+    // A single variable keeps the two states mutually exclusive, so
+    // "```" inside a $$ block or "$$" inside a fenced block can no
+    // longer corrupt the parser state.
+    var:string vBlock="none";
+
+    var:boolean vInMDBlock=false;   // inside list/blockquote/table run
     var:boolean vCheck;
-    var:boolean vInEquation=false;
-    var:boolean vInCodeBlock=false;
-    var:boolean vInMDBlock=false;
+    var:string vText;
+    var:string vPre;
     var:string vProjectPath;
     var:string vTemp;
-	 var:boolean vWarn=false;
+    var:boolean vWarn=false;
+    var:number vLineCount=0;
 
+    // ---- Preamble (R setup chunk + section heading) ----
     vProjectPath=collect(ancestors(original),$Path)[-1];
     if($HasOutType(vProjectPath)){
         vTemp ='out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")\n';
@@ -45,166 +71,195 @@
         vPre +=" .appendix";
     };
     if($IsUnnumbered|$HasSectionLabel|$IsAppendix){
-        vPre +=" }\n \n ";
+        vPre +=" }" + vNL + vNL;
     }else{
-        vPre +="\n \n ";
+        vPre += vNL + vNL;
+    };
+
+    // Extra whitespace-only line between the heading and the body,
+    // only when the note actually has body text.
+    if($Text.size > 0){
+        vPre += vWSL;
     };
     vText=vPre;
-    var:number vLineCount = 0;
 
     $Text.eachLine(aLine){
         vLineCount += 1;
-        vCheck=true;
 
-        // --- Tinderbox Custom Tags (Chunk / Graph) ---
-        
-        // Chunk Tag
-        if(vCheck & !vInCodeBlock & !vInEquation & aLine.contains(vRegChunk)){
-            if($1 == "^"){
-                // Escaped tag - output as normal line (but stripped)
-                vText += $2 + "\n";
-            } else {
-                vChunkName=$3;
-                vChunkPath=$ToDummyLinkPath($2);
-                $FromDummyLinkPath($2)+=$Path;
-                createLink($Path, $2);
-
-                vTest=$ID(vChunkPath);
-                if(!vTest){
-                    vChunkPath=collect_if(children(vChunkListPath),$Name==vChunkName,$Path).first;
-                };
-                if(!vTest & !$ID(vChunkPath)&vWarn){
-                    ("No Chunk Tag Label Detected").show;
-                };
-                
-                if(vLineCount > 1){ vText += "\n"; };
-                vText += fWriteOptionsForChunk($ID(vChunkPath), false) + "\n \n ";
-            };
-            vCheck=false;
-        };
-
-        // Graph Tag
-        if(vCheck & !vInCodeBlock & !vInEquation & aLine.contains(vRegGraph)){
-            if($1 == "^"){
-                // Escaped tag - output as normal line (but stripped)
-                vText += $2 + "\n";
-            } else {
-                vGraphName=$3;
-                vGraphPath=$ToDummyLinkPath($2);
-                $FromDummyLinkPath($2)+=$Path;
-                createLink($Path, $2);
-
-                vTest=$ID(vGraphPath);
-                if(!vTest & !$ID(vChunkPath)){
-                    vGraphPath=collect_if(children(vGraphListPath),$Name==vGraphName,$Path).first;
-                };
-                if(!vTest & !$ID(vChunkPath)&vWarn){
-                    ("No Graph Tag Label Detected").show;
-                };
-
-                if(vLineCount > 1){ vText += "\n"; };
-                vText += fWriteOptionsForGraph($ID(vGraphPath)) + "\n \n ";
+        if(vBlock=="code"){
+        // ============================================================
+        // Inside a fenced code block: every line is literal.
+        // Only a line starting with ``` closes the block.
+        // ============================================================
+            vText += aLine + vNL;
+            if(aLine.beginsWith("```")){
+                vBlock="none";
             };
             vInMDBlock=false;
-            vCheck=false;
-        };	
-
-        // --- Standard Markdown Blocks ---
-
-        if(vCheck){
-            // Equations ($$)
-            if(aLine.beginsWith("$$")){
-                if(vInEquation){
+        }else{
+            if(vBlock=="equation"){
+            // ========================================================
+            // Inside a $$ display-math block: every line is literal.
+            // Only a line starting with $$ closes the block.
+            // ========================================================
+                if(aLine.beginsWith("$$")){
                     vText += aLine + "\n ";
-                    vInEquation = false;
-                } else {
-                    if(vLineCount > 1){ vText += "\n"; };
-                    vText += aLine + "\n";
-                    vInEquation = true;
+                    vBlock="none";
+                }else{
+                    vText += aLine + vNL;
+                };
+                vInMDBlock=false;
+            }else{
+            // ========================================================
+            // Normal line classification (vBlock=="none")
+            // ========================================================
+                vCheck=true;
+
+            // ---- Chunk tag <webr|r|python|pyodide|osj:...> ----
+            // "^<...>" is emitted literally (without the "^").
+            // Otherwise the whole line is replaced by the referenced
+            // chunk; any text after the tag on the same line is lost.
+            if(vCheck & aLine.contains(vRegChunk)){
+                if($1 == "^"){
+                    vText += $2 + vNL;
+                }else{
+                    vChunkPath=$ToDummyLinkPath($2);
+                    $FromDummyLinkPath($2)+=$Path;
+                    createLink($Path, $2);
+                    if(!$ID(vChunkPath)){
+                        // list notes are named with the full tag,
+                        // e.g. "<python:matplotlib>", which is $2.
+                        vChunkPath=collect_if(children(vChunkListPath),$Name==$2,$Path).first;
+                    };
+                    if(!$ID(vChunkPath)&vWarn){
+                        ("No Chunk Tag Label Detected").show;
+                    };
+                    if(vLineCount > 1){ vText += vNL; };
+                    vText += fWriteOptionsForChunk($ID(vChunkPath), false) + vBLI;
+                };
+                vCheck=false;
+            };
+
+            // ---- Graph tag <dot|mermaid:...> ----
+            if(vCheck & aLine.contains(vRegGraph)){
+                if($1 == "^"){
+                    vText += $2 + vNL;
+                }else{
+                    vGraphPath=$ToDummyLinkPath($2);
+                    $FromDummyLinkPath($2)+=$Path;
+                    createLink($Path, $2);
+                    if(!$ID(vGraphPath)){
+                        vGraphPath=collect_if(children(vGraphListPath),$Name==$2,$Path).first;
+                    };
+                    if(!$ID(vGraphPath)&vWarn){
+                        ("No Graph Tag Label Detected").show;
+                    };
+                    if(vLineCount > 1){ vText += vNL; };
+                    vText += fWriteOptionsForGraph($ID(vGraphPath)) + vBLI;
                 };
                 vInMDBlock=false;
                 vCheck=false;
             };
-            
-            // Code Blocks (```)
+
+            // ---- Display math $$ ----
+            if(vCheck & aLine.beginsWith("$$")){
+                if(vLineCount > 1){ vText += vNL; };
+                if(aLine.contains("[$][$].*[$][$]")){
+                    // $$...$$ on one line is already complete
+                    vText += aLine + "\n ";
+                }else{
+                    vText += aLine + vNL;
+                    vBlock="equation";
+                };
+                vInMDBlock=false;
+                vCheck=false;
+            };
+
+            // ---- Fenced code ``` ----
             if(vCheck & aLine.beginsWith("```")){
-                if(vInCodeBlock){
-                    vText += aLine + "\n";
-                    vInCodeBlock = false;
-                } else {
-                    if(vLineCount > 1){ vText += "\n"; };
-                    vText += aLine + "\n";
-                    vInCodeBlock = true;
+                if(vLineCount > 1){ vText += vNL; };
+                vText += aLine + vNL;
+                // Open a block unless this line also closes it, i.e.
+                // a bare fence "```" or "``` info" opens, but
+                // "``` code ```" is complete on one line.
+                if(aLine.contains("^`+$") | !(aLine.contains("```$"))){
+                    vBlock="code";
                 };
                 vInMDBlock=false;
                 vCheck=false;
             };
 
-            // Headers (#)
-            if(vCheck & !vInCodeBlock & !vInEquation & aLine.contains("^#+[ \t]+")){
-                if(vLineCount > 1){ vText += "\n"; };
-                vText += "\n" + aLine + "\n \n";
+            // ---- Footnote definitions [^...]: ----
+            // Checked before the generic "[" branch below so the
+            // intent is explicit. Output is identical (blank lines
+            // keep the definition separated from surrounding text).
+            if(vCheck & aLine.beginsWith("[^")){
+                if(vLineCount > 1){ vText += vNL; };
+                vText += vNL + aLine + vBL;
                 vInMDBlock=false;
                 vCheck=false;
             };
 
-            // Divs (:::), Links/Images with attributes ([, ![)
-            if(vCheck & !vInCodeBlock & !vInEquation & (aLine.beginsWith(":::") | aLine.beginsWith("[") | aLine.beginsWith("!["))){
-                if(vLineCount > 1){ vText += "\n"; };
-                vText += "\n" + aLine + "\n \n";
+            // ---- Headers # ----
+            if(vCheck & aLine.contains("^#+[ \t]+")){
+                if(vLineCount > 1){ vText += vNL; };
+                vText += vNL + aLine + vBL;
                 vInMDBlock=false;
                 vCheck=false;
             };
 
-            // Lists (*, -, +, 1.), Blockquotes (>), Tables (|)
-            if(vCheck & !vInCodeBlock & !vInEquation & (aLine.contains("^[ \t]*([*+-]|[0-9]+\.)[ \t]+") | aLine.beginsWith(">") | aLine.beginsWith("|") | aLine.beginsWith("+--"))){
+            // ---- Divs ::: / link & image refs ([ , ![) ----
+            if(vCheck & (aLine.beginsWith(":::") | aLine.beginsWith("[") | aLine.beginsWith("!["))){
+                if(vLineCount > 1){ vText += vNL; };
+                vText += vNL + aLine + vBL;
+                vInMDBlock=false;
+                vCheck=false;
+            };
+
+            // ---- Lists (*, -, +, 1.), blockquotes (>), tables (|) ----
+            // Consecutive lines of these kinds form one block, so no
+            // separator is inserted between them.
+            if(vCheck & (aLine.contains("^[ \t]*([*+-]|[0-9]+\.)[ \t]+") | aLine.beginsWith(">") | aLine.beginsWith("|") | aLine.beginsWith("+--"))){
                 if(!vInMDBlock & vLineCount > 1){
-                    vText += "\n";
+                    vText += vNL;
                 };
-                vText += aLine + "\n";
-                vInMDBlock = true;
+                vText += aLine + vNL;
+                vInMDBlock=true;
                 vCheck=false;
             };
 
-            // Table Caption (:) - Needs a newline after table
-            if(vCheck & !vInCodeBlock & !vInEquation & aLine.beginsWith(":") & !(aLine.beginsWith(":::"))){
-                vText += "\n " + aLine + "\n";
-                vInMDBlock = false;
-                vCheck = false;
-            };
-
-            // Horizontal Rules (---, ***, ___)
-            if(vCheck & !vInCodeBlock & !vInEquation & (aLine.contains("^---+$") | aLine.contains("^\*\*\*+$") | aLine.contains("^___+$"))){
-                if(vLineCount > 1){ vText += "\n"; };
-                vText += aLine + "\n \n";
+            // ---- Table caption ":" (::: fences handled above) ----
+            if(vCheck & aLine.beginsWith(":") & !aLine.beginsWith(":::")){
+                vText += "\n " + aLine + vNL;
                 vInMDBlock=false;
                 vCheck=false;
             };
 
-            // Shortcodes ({{<)
-            if(vCheck & !vInCodeBlock & !vInEquation & aLine.beginsWith("{{<")){
-                if(vLineCount > 1){ vText += "\n"; };
-                vText += aLine + "\n \n";
+            // ---- Horizontal rules (---, ***, ___) ----
+            if(vCheck & (aLine.contains("^---+$") | aLine.contains("^\*\*\*+$") | aLine.contains("^___+$"))){
+                if(vLineCount > 1){ vText += vNL; };
+                vText += aLine + vBL;
                 vInMDBlock=false;
                 vCheck=false;
             };
 
-            // Footnotes ([^)
-            if(vCheck & !vInCodeBlock & !vInEquation & aLine.beginsWith("[^")){
-                vText += aLine + "\n";
+            // ---- Quarto shortcodes {{< ... >}} ----
+            if(vCheck & aLine.beginsWith("{{<")){
+                if(vLineCount > 1){ vText += vNL; };
+                vText += aLine + vBL;
                 vInMDBlock=false;
                 vCheck=false;
             };
 
-            // Default (Normal line)
+            // ---- Default: plain text line ----
             if(vCheck){
-                vText += aLine + "\n";
+                vText += aLine + vNL;
                 vInMDBlock=false;
+            };
             };
         };
     };
     if(vLineCount > 0){
-        vText+="\n";
+        vText += vNL;
     };
 )^^value(vText)^^if(^value(!$Is_Part_qmd))^^include(^value($IncludeNotes)^, /Templates/tSubnote)^^endIf^
-
