@@ -13,7 +13,7 @@ logo:
   medium: header
 typography:
   fonts:
-    - family: Jura
-      source: google
-  base: Jura
+    - family: Hiragino Sans
+      source: local
+  base: Hiragino Sans
   headings: Hiragino Sans
