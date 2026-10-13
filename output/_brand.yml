@@ -12,8 +12,5 @@ logo:
       path: images/logo.png
   medium: header
 typography:
-  fonts:
-    - family: Hiragino Sans
-      source: local
   base: Hiragino Sans
   headings: Hiragino Sans
