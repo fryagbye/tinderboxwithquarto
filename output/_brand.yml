@@ -1,7 +1,8 @@
 color:
   palette:
-    dark-grey: "#222222"
     blue: "#ddeaf1"
+    dark-grey: "#222222"
+
   background: blue
   foreground: dark-grey
   primary: black
@@ -11,6 +12,7 @@ logo:
     header:
       path: images/logo.png
   medium: header
+
 typography:
   base: Hiragino Sans
   headings: Hiragino Sans

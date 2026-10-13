@@ -1,1 +1,18 @@
-^text^
+color:
+  ^if($QB_ColorPalette)^palette:
+^action(var:string vTemp="";$QB_ColorPalette.keys.each(aK){vTemp += "    " + aK + ": " + '"' + $QB_ColorPalette[aK] + '"' + '\n'};)^^value(vTemp)^^endIf^
+  ^if($QB_ColorBackground)^background: ^value($QB_ColorBackground)^^endIf^
+  ^if($QB_ColorForeground)^foreground: ^value($QB_ColorForeground)^^endIf^
+  ^if($QB_ColorPrimary)^primary: ^value($QB_ColorPrimary)^^endIf^
+
+^if($QB_LogoPath)^logo:
+  images:
+    header:
+      path: ^value($QB_LogoPath)^
+  medium: header^endIf^
+
+typography:
+  ^if($QB_TypographyBase)^base: ^value($QB_TypographyBase)^^endIf^
+  ^if($QB_TypographyHeadings)^headings: ^value($QB_TypographyHeadings)^^endIf^
+
+^value(^text^)^
