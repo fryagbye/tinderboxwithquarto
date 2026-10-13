@@ -1,0 +1,22 @@
+^if($Q_ToggleBrandYML & $Q_BrandYmlFile)^brand: ^value($Q_BrandYmlFile)^^endIf^
+
+^if($Q_HasLang)^lang: ^value($Q_Lang)^^endIf^
+
+format: live-^value($Q_ProjectType)^
+
+^if($Q_ChunkPackageList)^webr:
+  packages:^action(
+	var:string vTemp;
+	$Q_ChunkPackageList.each(aP){
+		vTemp+= 4 * " " + "- " + aP+"\n";
+	};
+)^
+^value(vTemp)^
+^endIf^
+
+^if($Q_BibliographyFile)^bibliography: ^value($Q_BibliographyFile)^^endIf^
+execute:
+  cache: ^if($Q_Cache)^true^else^false^endIf^
+  freeze: ^if($Q_Freeze)^^value($Q_Freeze)^^else^auto^endIf^
+
+editor: ^if($Q_Editor)^^value($Q_Editor)^^else^source^endIf^

@@ -1,0 +1,123 @@
+project:
+  type: ^value($Q_ProjectType)^
+
+^if($Q_ToggleBrandYML & $Q_BrandYmlFile)^brand: ^value($Q_BrandYmlFile)^^endIf^
+
+manuscript:
+  article: ^if($Q_ManuscriptArticleQmd)^^value($Q_ManuscriptArticleQmd)^^else^index.qmd^endIf^
+  ^if($Q_ManuscriptUrl)^manuscript-url: ^value($Q_ManuscriptUrl)^^endIf^
+  ^if($Q_ManuscriptMecaBundle)^meca-bundle: ^value($Q_ManuscriptMecaBundle)^^endIf^
+  ^if($Q_ManuscriptEnvironment)^environment:^action(
+	var:string vTemp;
+	$Q_ManuscriptEnvironment.each(aP){
+		vTemp+= 4 * " " + "- " + aP+"\n";
+	};
+)^
+^value(vTemp)^
+^endIf^
+  ^if($Q_ManuscriptResources)^resources:^action(
+	var:string vTemp;
+	$Q_ManuscriptResources.each(aP){
+		vTemp+= 4 * " " + "- " + aP+"\n";
+	};
+)^
+^value(vTemp)^
+^endIf^
+
+format:
+  html:
+    ^if($Q_HtmlTheme)^theme:
+      - ^value($Q_HtmlTheme)^
+      ^if($Q_HtmlTheme_scss)^- ^value($Q_HtmlTheme_scss)^^endIf^^endIf^
+    toc: ^if($Q_HasTOC)^true^else^false^endIf^
+    ^if($Q_HasTOC)^toc-depth: ^value($Q_TOCDepth)^^endIf^
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+    code-link: ^if($Q_CodeLink)^true^else^false^endIf^
+    code-line-numbers: ^if($Q_HasCodeLineNumbers)^true^else^false^endIf^
+    crossrefs-hover: ^if($Q_HasCitationHover)^true^else^false^endIf^
+    ^if($Q_HighlightStyle)^highlight-style: ^value($Q_HighlightStyle)^^endIf^
+    link-external-newwindow: ^if($Q_LinkExternalNewwindow)^true^else^false^endIf^
+    ^if($Q_Mainfont)^mainfont: '^value($Q_Mainfont)^'^endIf^
+    ^if($Q_Monofont)^monofont: '^value($Q_Monofont)^'^endIf^
+    ^if($Q_PageLayout)^page-layout: ^value($Q_PageLayout)^^endIf^
+    ^if($Q_HasCustomGrid)^grid:
+      ^if($Q_GridSidebarWidth)^sidebar-width: ^value($Q_GridSidebarWidth)^^endIf^
+      ^if($Q_GridBodyWidth)^body-width: ^value($Q_GridBodyWidth)^^endIf^
+      ^if($Q_GridMarginWidth)^margin-width: ^value($Q_GridMarginWidth)^^endIf^
+      ^if($Q_GridGutterWidth)^gutter-width: ^value($Q_GridGutterWidth)^^endIf^^endIf^
+    ^if($Q_CalloutAppearance)^callout-appearance: ^value($Q_CalloutAppearance)^^endIf^
+    ^if($Q_AuthorMeta)^author-meta: "^value($Q_AuthorMeta)^"^endIf^
+    ^if($Q_HasIncludeInHeader)^include-in-header:
+     - text: |
+^action($MyString="";$Q_IncludeInHeaderHtml.each(aLine){$MyString += 9*" " + aLine + "\n"};)^^value($MyString)^^endIf^
+    comments:
+      hypothesis: ^if($Q_ManuscriptCommentsHypothesis)^true^else^false^endIf^
+    fig-format: svg
+  pdf:
+    toc: ^if($Q_HasTOC)^true^else^false^endIf^
+    ^if($Q_HasTOC)^toc-depth: ^value($Q_TOCDepth)^^endIf^
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+    ^if($Q_PDFEngine)^pdf-engine: ^value($Q_PDFEngine)^^endIf^
+    ^if($Q_CiteMethod)^cite-method: ^value($Q_CiteMethod)^^endIf^
+    code-link: ^if($Q_CodeLink)^true^else^false^endIf^
+    code-line-numbers: ^if($Q_HasCodeLineNumbers)^true^else^false^endIf^
+    ^if($Q_Indent)^indent: ^value($Q_Indent)^^endIf^
+    ^if($Q_CalloutAppearance)^callout-appearance: ^value($Q_CalloutAppearance)^^endIf^
+    ^if($Q_AuthorMeta)^author-meta: "^value($Q_AuthorMeta)^"^endIf^
+    ^if($Q_HasIncludeInHeader)^include-in-header:
+     - text: |
+^action($MyString="";$Q_IncludeInHeaderPdf.each(aLine){$MyString += 9*" " + aLine + "\n"};)^^value($MyString)^^endIf^
+    fig-format: pdf
+    fig-dpi: 300
+  typst:
+    toc: ^if($Q_HasTOC)^true^else^false^endIf^
+    ^if($Q_HasTOC)^toc-depth: ^value($Q_TOCDepth)^^endIf^
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+    ^if($Q_CiteMethod)^cite-method: ^value($Q_CiteMethod)^^endIf^
+    code-link: ^if($Q_CodeLink)^true^else^false^endIf^
+    code-line-numbers: ^if($Q_HasCodeLineNumbers)^true^else^false^endIf^
+    ^if($Q_Mainfont | $Q_Monofont)^header-includes:
+      ^if($Q_Mainfont)^- '#set text(font: (^value($Q_Mainfont)^))'^endIf^
+      ^if($Q_Monofont)^- '#show raw: set text(font: (^value($Q_Monofont)^))'^endIf^^endIf^
+    ^if($Q_Indent)^indent: ^value($Q_Indent)^^endIf^
+    fig-format: svg
+    fig-dpi: 300
+    ^if($Q_CalloutAppearance)^callout-appearance: ^value($Q_CalloutAppearance)^^endIf^
+  docx:
+    toc: ^if($Q_HasTOC)^true^else^false^endIf^
+    ^if($Q_HasTOC)^toc-depth: ^value($Q_TOCDepth)^^endIf^
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+  jats:
+    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
+    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
+    fig-format: png
+
+^if($Q_HasLightbox)^lightbox:
+  match: ^value($Q_LightboxMatch)^
+  effect: ^value($Q_LightboxEffect)^
+  desc-position: ^value($Q_LightboxDescPosition)^
+  loop: ^value($Q_LightboxLoop)^
+^else^lightbox: false
+^endIf^
+
+^if($Q_HasLang)^lang: ^value($Q_Lang)^^endIf^
+^if($Q_BibliographyFile)^bibliography: ^value($Q_BibliographyFile)^^endIf^
+^if($Q_BibCslFile)^csl: ^value($Q_BibCslFile)^^endIf^
+^if($Q_ReferenceLocation)^reference-location: ^value($Q_ReferenceLocation)^^endIf^
+^if($Q_CitationLocation)^citation-location: ^value($Q_CitationLocation)^^endIf^
+^if($Q_HasLanguageYml)^language: ^value($Q_LanguageYml)^^endIf^
+
+^if($Q_DocumentClass_PDF)^documentclass: ^value($Q_DocumentClass_PDF)^^endIf^
+^if($Q_ClassOptions)^classoption: ^value($Q_ClassOptions)^^if(($Q_HasLang & $Q_Lang=="en"))^,english^endif^^endIf^
+^if($Q_Papersize)^papersize: ^value($Q_Papersize)^^endIf^
+
+execute:
+  cache: ^if($Q_Cache)^true^else^false^endIf^
+  ^if($Q_IsKeepmd)^keep-md: ^value($Q_IsKeepmd)^^endIf^
+  freeze: ^if($Q_Freeze)^^value($Q_Freeze)^^else^auto^endIf^
+
+editor: ^if($Q_Editor)^^value($Q_Editor)^^else^source^endIf^

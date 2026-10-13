@@ -1,25 +1,88 @@
 project:
   type: manuscript
 
+
+
 manuscript:
-  article: "index.qmd"
-
-
+  article: index.qmd
+  
+  
+  
+  
 
 format:
-  pdf:
-    number-sections: true
-    number-depth: 1
-    pdf-engine: lualatex
-    fig-format: pdf
-    fig-dpi: 300
   html:
+    theme:
+      - cosmo
+      
+    toc: true
+    toc-depth: 2
     number-sections: true
     number-depth: 1
+    code-link: true
+    code-line-numbers: true
+    crossrefs-hover: true
+    highlight-style: atom-one-dark
+    link-external-newwindow: true
+    mainfont: '"Noto Sans JP"'
+    monofont: '"Noto Sans Mono"'
+    page-layout: article
+    
+    callout-appearance: default
+    author-meta: "fryagbye"
+    include-in-header:
+     - text: |
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
+         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
+
     comments:
       hypothesis: true
     fig-format: svg
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    number-depth: 1
+    pdf-engine: lualatex
+    cite-method: citeproc
+    code-link: true
+    code-line-numbers: true
+    indent: true
+    callout-appearance: default
+    author-meta: "fryagbye"
+    include-in-header:
+     - text: |
+         ¥usepackage{float}
+         ¥renewcommand{¥topfraction}{.85}
+         ¥renewcommand{¥bottomfraction}{.7}
+         ¥renewcommand{¥textfraction}{.15}
+         ¥renewcommand{¥floatpagefraction}{.66}
+         ¥setcounter{topnumber}{3}
+         ¥setcounter{bottomnumber}{3}
+         ¥setcounter{totalnumber}{4}
+
+    fig-format: pdf
+    fig-dpi: 300
+  typst:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    number-depth: 1
+    cite-method: citeproc
+    code-link: true
+    code-line-numbers: true
+    header-includes:
+      - '#set text(font: ("Noto Sans JP"))'
+      - '#show raw: set text(font: ("Noto Sans Mono"))'
+    indent: true
+    fig-format: svg
+    fig-dpi: 300
+    callout-appearance: default
   docx:
+    toc: true
+    toc-depth: 2
     number-sections: true
     number-depth: 1
   jats:
@@ -27,10 +90,27 @@ format:
     number-depth: 1
     fig-format: png
 
+lightbox:
+  match: auto
+  effect: zoom
+  desc-position: bottom
+  loop: true
 
+
+lang: en
 bibliography: ../citation/references.bib
+
+
+
+
+
+documentclass: bxjsbook
+classoption: A4paper,10pt,lualatex,ja=standard,textwidth-limit=50,english
+papersize: a4
+
 execute:
   cache: true
+  
   freeze: auto
 
-
+editor: source
