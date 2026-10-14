@@ -149,7 +149,7 @@ function fWriteFrontmatterForRChunk(vID){
 		vTitle = $Q_ChunkFigLabel(vID);
 	}else{
 		if($Prototype == "pRChunkList"){
-			$Name(vID).contains(" < (?:webr|r|python|pyodide|osj):(. * ?) > ");
+			$Name(vID).contains(" < (?:webr|r|python|pyodide|ojs):(. * ?) > ");
 			vTitle = $1;
 		}else{
 			vTitle = $Name(vID);
@@ -219,10 +219,10 @@ function fWriteOptionsForChunk(vID:string, vForPreview:boolean){
 	}else{
 		vTemp = $Text(vID);
 	};
-	if(vForPreview&($Prototype == "pRChunk"|$Prototype = "pRChunkList")){
+	if(vForPreview&($Prototype == "pRChunk"|$Prototype == "pRChunkList")){
 		vReturn += fWriteFrontmatterForRChunk(vID);
 	};
-	if($Q_ChunkLang(vChunkPath) == "ojs"){
+	if($Q_ChunkLang(vID) == "ojs"){
 		vStr = "//";
 	}else{
 		vStr = "#";

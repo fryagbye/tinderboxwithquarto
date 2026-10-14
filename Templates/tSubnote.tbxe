@@ -20,7 +20,7 @@
 
     var:string vChunkListPath="/Chunk List";
     var:string vGraphListPath="/Graph List";
-    var:string vRegChunk="^[ \t]*(\^?)(<((?:webr|r|python|pyodide|osj):.*?)>)";
+    var:string vRegChunk="^[ \t]*(\^?)(<((?:webr|r|python|pyodide|ojs):.*?)>)";
     var:string vRegGraph="^[ \t]*(\^?)(<((?:dot|mermaid):.*?)>)";
     var:string vChunkPath;
     var:string vGraphPath;
@@ -96,7 +96,7 @@
             // ========================================================
                 vCheck=true;
 
-            // ---- Chunk tag <webr|r|python|pyodide|osj:...> ----
+            // ---- Chunk tag <webr|r|python|pyodide|ojs:...> ----
             // "^<...>" is emitted literally (without the "^").
             // Otherwise the whole line is replaced by the referenced
             // chunk; any text after the tag on the same line is lost.

@@ -272,7 +272,7 @@ if($Prototype=="pTable"){
 
 // /Hints/Stamps/Mermaid: Make a Flowchart
 
-if($Prototype="pMFContainer"){
+if($Prototype=="pMFContainer"){
 	fWriteMermaidFlowchart($M_Direction, $ID, $CopyClipboard);
 }else{
 	("Select pMFContainer note").show();
