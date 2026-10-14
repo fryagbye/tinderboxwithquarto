@@ -10,7 +10,7 @@ function fSetPreviewCommandForRChunk(){
 	var:string vLibList = $RLibraryListForPreview(vConfigPath);
 
 	vCommand = "export PATH=$HOME:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin/:$PATH;";
-	vCommand += "cd " + vExportPath + "/" + vProjectPath + ";" + '/usr/local/bin/Rscript -e "';
+	vCommand += 'cd "' + vExportPath + "/" + vProjectPath + '";' + '/usr/local/bin/Rscript -e "';
 	vLibList.each(al){
 		vCommand += "library(" + al + vWarn + "); ";
 	};
@@ -21,7 +21,7 @@ function fSetPreviewCommandForRChunk(){
 	vCommand += "cat(readLines(rendered_output), sep='\u000A');";
 	vCommand += "tmp <- if(file.exists('_RchunkPreviewOutput.qmd')) {file.remove('_RchunkPreviewOutput.qmd')};";
 	vCommand += "tmp <- if(file.exists('_RchunkPreviewOutput.html')) {file.remove('_RchunkPreviewOutput.html')};";
-	vCommand += '"';
+	vCommand += '" 2>&1 | grep -v Deprecated:';
 	//	$Text(/Log)=vCommand;
 	$HTMLPreviewCommand = vCommand;
 };
