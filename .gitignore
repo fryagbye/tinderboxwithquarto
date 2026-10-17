@@ -55,3 +55,4 @@ output/_bookhtml
 output/_booktypst
 **/*.quarto_ipynb
 /.agents/plugins/project-agent-kit
+.smoke_render_*.log

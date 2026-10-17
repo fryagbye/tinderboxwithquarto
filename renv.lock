@@ -3654,6 +3654,12 @@
       "Maintainer": "Jennifer Bryan <jenny@posit.co>",
       "Repository": "cloud"
     },
+    "reticulate": {
+      "Package": "reticulate",
+      "Version": "1.47.0",
+      "Source": "Repository",
+      "Repository": "cloud"
+    },
     "rlang": {
       "Package": "rlang",
       "Version": "1.3.0",

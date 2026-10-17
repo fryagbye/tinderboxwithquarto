@@ -41,6 +41,7 @@ format:
       hypothesis: true
     fig-format: svg
   pdf:
+    output-file: index-lualatex
     toc: true
     toc-depth: 2
     number-sections: true
@@ -54,14 +55,14 @@ format:
     author-meta: "fryagbye"
     include-in-header:
      - text: |
-         ¥usepackage{float}
-         ¥renewcommand{¥topfraction}{.85}
-         ¥renewcommand{¥bottomfraction}{.7}
-         ¥renewcommand{¥textfraction}{.15}
-         ¥renewcommand{¥floatpagefraction}{.66}
-         ¥setcounter{topnumber}{3}
-         ¥setcounter{bottomnumber}{3}
-         ¥setcounter{totalnumber}{4}
+         \usepackage{float}
+         \renewcommand{\topfraction}{.85}
+         \renewcommand{\bottomfraction}{.7}
+         \renewcommand{\textfraction}{.15}
+         \renewcommand{\floatpagefraction}{.66}
+         \setcounter{topnumber}{3}
+         \setcounter{bottomnumber}{3}
+         \setcounter{totalnumber}{4}
 
     fig-format: pdf
     fig-dpi: 300
@@ -98,7 +99,7 @@ lightbox:
 
 
 lang: en
-bibliography: ../citation/references.bib
+bibliography: references.bib
 
 
 

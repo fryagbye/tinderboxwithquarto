@@ -6,10 +6,10 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="index_files/libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+  <meta name="generator" content="quarto-1.10.18">
 
   <title>TinderboxとQuartoの連携</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -281,15 +287,15 @@
 <li><p><code>pRChunk</code> ノートを作成。</p></li>
 <li><p>Textにコード記述:</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href=""></a><span class="in">```{r}</span></span>
-<span id="cb1-2"><a href=""></a><span class="co">#| echo: false</span></span>
-<span id="cb1-3"><a href=""></a><span class="co">#| label: fig-plot1</span></span>
-<span id="cb1-4"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-5"><a href=""></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(Temp, Ozone)) <span class="sc">+</span> </span>
-<span id="cb1-6"><a href=""></a> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb1-7"><a href=""></a> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>)</span>
-<span id="cb1-8"><a href=""></a></span>
-<span id="cb1-9"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="" aria-label="1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="" aria-label="2"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-3"><a href="" aria-label="3"></a><span class="co">#| label: fig-plot1</span></span>
+<span id="cb1-4"><a href="" aria-label="4"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="" aria-label="5"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(Temp, Ozone)) <span class="sc">+</span> </span>
+<span id="cb1-6"><a href="" aria-label="6"></a> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb1-7"><a href="" aria-label="7"></a> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>)</span>
+<span id="cb1-8"><a href="" aria-label="8"></a></span>
+<span id="cb1-9"><a href="" aria-label="9"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="1">
 <li><p>属性 <code>$Q_Label</code> に <code>fig-plot1</code> を設定。</p></li>
 <li><p>本文中で <code>@fig-plot1</code> と入力して引用。</p></li>
@@ -315,81 +321,81 @@ Figure&nbsp;1
 <li><p>Stamp <code>Graphviz: Make a Dot graph</code> を実行。</p></li>
 <li><p>プレビュー画面でグラフを確認。</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {dot} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href=""></a>//| label: fig-workflow-graphviz</span>
-<span id="cb2-2"><a href=""></a>//| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )</span>
-<span id="cb2-3"><a href=""></a>//| fig-width: 5</span>
-<span id="cb2-4"><a href=""></a>digraph {</span>
-<span id="cb2-5"><a href=""></a>    layout=dot</span>
-<span id="cb2-6"><a href=""></a>    compound=true</span>
-<span id="cb2-7"><a href=""></a>    graph [charset="UTF-8" splines="spline" rankdir="LR" ];</span>
-<span id="cb2-8"><a href=""></a>subgraph cluster_A{</span>
-<span id="cb2-9"><a href=""></a>                        label="Applications"</span>
-<span id="cb2-10"><a href=""></a>                        spline="curved"</span>
-<span id="cb2-11"><a href=""></a>                        color="#000000"</span>
-<span id="cb2-12"><a href=""></a>                        penwidth="1"</span>
-<span id="cb2-13"><a href=""></a>                        style="filled"</span>
-<span id="cb2-14"><a href=""></a>                        fillcolor="#e7f3e7"</span>
-<span id="cb2-15"><a href=""></a>                        fontcolor="#000000"</span>
-<span id="cb2-16"><a href=""></a>            A B </span>
-<span id="cb2-17"><a href=""></a>            subgraph cluster_B{</span>
-<span id="cb2-18"><a href=""></a>                            label="Tinderbox"</span>
-<span id="cb2-19"><a href=""></a>                            color="#000000"</span>
-<span id="cb2-20"><a href=""></a>                            penwidth="1"</span>
-<span id="cb2-21"><a href=""></a>                            style="filled"</span>
-<span id="cb2-22"><a href=""></a>                            fillcolor="#f6e04d"</span>
-<span id="cb2-23"><a href=""></a>                            fontcolor="#000000"</span>
-<span id="cb2-24"><a href=""></a>                            URL="https://www.eastgate.com/Tinderbox/"</span>
-<span id="cb2-25"><a href=""></a>            subgraph cluster_C{</span>
-<span id="cb2-26"><a href=""></a>                                label="Demo_TBX_for_Quarto.tbx"</span>
-<span id="cb2-27"><a href=""></a>                                color="#000000"</span>
-<span id="cb2-28"><a href=""></a>                                penwidth="1"</span>
-<span id="cb2-29"><a href=""></a>                                style="filled"</span>
-<span id="cb2-30"><a href=""></a>                                fillcolor="#ffffff"</span>
-<span id="cb2-31"><a href=""></a>                                fontcolor="#000000"</span>
-<span id="cb2-32"><a href=""></a>                                URL="https://github.com/fryagbye/tinderboxwithquarto"</span>
-<span id="cb2-33"><a href=""></a>            C D E </span>
-<span id="cb2-34"><a href=""></a>}</span>
-<span id="cb2-35"><a href=""></a>}</span>
-<span id="cb2-36"><a href=""></a>}</span>
-<span id="cb2-37"><a href=""></a>subgraph cluster_D{</span>
-<span id="cb2-38"><a href=""></a>                        label="Quarto"</span>
-<span id="cb2-39"><a href=""></a>                        color="#000000"</span>
-<span id="cb2-40"><a href=""></a>                        penwidth="1"</span>
-<span id="cb2-41"><a href=""></a>                        style="filled"</span>
-<span id="cb2-42"><a href=""></a>                        fillcolor="#fff4e6"</span>
-<span id="cb2-43"><a href=""></a>                        fontcolor="#000000"</span>
-<span id="cb2-44"><a href=""></a>            F G H </span>
-<span id="cb2-45"><a href=""></a>}</span>
-<span id="cb2-46"><a href=""></a>subgraph cluster_E{</span>
-<span id="cb2-47"><a href=""></a>                        label="Output"</span>
-<span id="cb2-48"><a href=""></a>                        color="#000000"</span>
-<span id="cb2-49"><a href=""></a>                        penwidth="1"</span>
-<span id="cb2-50"><a href=""></a>                        style="filled"</span>
-<span id="cb2-51"><a href=""></a>                        fillcolor="#ffffff"</span>
-<span id="cb2-52"><a href=""></a>                        fontcolor="#000000"</span>
-<span id="cb2-53"><a href=""></a>            I J K </span>
-<span id="cb2-54"><a href=""></a>}</span>
-<span id="cb2-55"><a href=""></a>A [ style="filled"  label="Bookends" color="#000000", penwidth="1", fillcolor="#fcbd63", fontcolor="#000000", URL="https://www.sonnysoftware.com/bookends-for-mac"]</span>
-<span id="cb2-56"><a href=""></a>B [ style="filled"  label="Snippety" color="#990000", penwidth="1", fillcolor="#5c9dfe", fontcolor="#000000", URL="https://snippety.app/"]</span>
-<span id="cb2-57"><a href=""></a>C [ style="filled"  label="Mermaid" color="#000000", penwidth="1", fillcolor="#c735e9", fontcolor="#ffffff", URL="https://mermaid.js.org/"]</span>
-<span id="cb2-58"><a href=""></a>D [ style="filled"  label="Graphviz" color="#000000", penwidth="1", fillcolor="#30638d", fontcolor="#ffffff", URL="https://graphviz.org/"]</span>
-<span id="cb2-59"><a href=""></a>E [ style="filled"  label="Preview \nwith Rscript" ]</span>
-<span id="cb2-60"><a href=""></a>F [ style="filled"  label="R Studio" color="#000000", penwidth="1", fillcolor="#80a9d7", fontcolor="#000000", URL="https://posit.co/products/open-source/rstudio/"]</span>
-<span id="cb2-61"><a href=""></a>G [ style="filled"  label="RMarkdown ( .qmd )" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000"]</span>
-<span id="cb2-62"><a href=""></a>H [ style="filled"  label="quarto CLI" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000", URL="https://quarto.org/"]</span>
-<span id="cb2-63"><a href=""></a>I [ style="filled"  label="Book" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]</span>
-<span id="cb2-64"><a href=""></a>J [ style="filled"  label="Manuscript" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]</span>
-<span id="cb2-65"><a href=""></a>K [ style="filled"  label="revealjs" color="#d53f8c", penwidth="1", fillcolor="#f2e142", fontcolor="#000000"]</span>
-<span id="cb2-66"><a href=""></a>A -&gt; C [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ltail = "cluster_A" ]</span>
-<span id="cb2-67"><a href=""></a>B -&gt; E [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ]</span>
-<span id="cb2-68"><a href=""></a>D -&gt; G [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_D" ltail = "cluster_C" ]</span>
-<span id="cb2-69"><a href=""></a>F -&gt; H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
-<span id="cb2-70"><a href=""></a>G -&gt; F [label = "Read qmd files" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
-<span id="cb2-71"><a href=""></a>G -&gt; H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
-<span id="cb2-72"><a href=""></a>H -&gt; I [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
-<span id="cb2-73"><a href=""></a>H -&gt; J [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
-<span id="cb2-74"><a href=""></a>H -&gt; K [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
-<span id="cb2-75"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {dot} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="" aria-label="1"></a>//| label: fig-workflow-graphviz</span>
+<span id="cb2-2"><a href="" aria-label="2"></a>//| fig-cap: Tinderbox Work Flow with Quarto. ( Graphviz version )</span>
+<span id="cb2-3"><a href="" aria-label="3"></a>//| fig-width: 5</span>
+<span id="cb2-4"><a href="" aria-label="4"></a>digraph {</span>
+<span id="cb2-5"><a href="" aria-label="5"></a>    layout=dot</span>
+<span id="cb2-6"><a href="" aria-label="6"></a>    compound=true</span>
+<span id="cb2-7"><a href="" aria-label="7"></a>    graph [charset="UTF-8" splines="spline" rankdir="LR" ];</span>
+<span id="cb2-8"><a href="" aria-label="8"></a>subgraph cluster_A{</span>
+<span id="cb2-9"><a href="" aria-label="9"></a>                        label="Applications"</span>
+<span id="cb2-10"><a href="" aria-label="10"></a>                        spline="curved"</span>
+<span id="cb2-11"><a href="" aria-label="11"></a>                        color="#000000"</span>
+<span id="cb2-12"><a href="" aria-label="12"></a>                        penwidth="1"</span>
+<span id="cb2-13"><a href="" aria-label="13"></a>                        style="filled"</span>
+<span id="cb2-14"><a href="" aria-label="14"></a>                        fillcolor="#e7f3e7"</span>
+<span id="cb2-15"><a href="" aria-label="15"></a>                        fontcolor="#000000"</span>
+<span id="cb2-16"><a href="" aria-label="16"></a>            A B </span>
+<span id="cb2-17"><a href="" aria-label="17"></a>            subgraph cluster_B{</span>
+<span id="cb2-18"><a href="" aria-label="18"></a>                            label="Tinderbox"</span>
+<span id="cb2-19"><a href="" aria-label="19"></a>                            color="#000000"</span>
+<span id="cb2-20"><a href="" aria-label="20"></a>                            penwidth="1"</span>
+<span id="cb2-21"><a href="" aria-label="21"></a>                            style="filled"</span>
+<span id="cb2-22"><a href="" aria-label="22"></a>                            fillcolor="#f6e04d"</span>
+<span id="cb2-23"><a href="" aria-label="23"></a>                            fontcolor="#000000"</span>
+<span id="cb2-24"><a href="" aria-label="24"></a>                            URL="https://www.eastgate.com/Tinderbox/"</span>
+<span id="cb2-25"><a href="" aria-label="25"></a>            subgraph cluster_C{</span>
+<span id="cb2-26"><a href="" aria-label="26"></a>                                label="Demo_TBX_for_Quarto.tbx"</span>
+<span id="cb2-27"><a href="" aria-label="27"></a>                                color="#000000"</span>
+<span id="cb2-28"><a href="" aria-label="28"></a>                                penwidth="1"</span>
+<span id="cb2-29"><a href="" aria-label="29"></a>                                style="filled"</span>
+<span id="cb2-30"><a href="" aria-label="30"></a>                                fillcolor="#ffffff"</span>
+<span id="cb2-31"><a href="" aria-label="31"></a>                                fontcolor="#000000"</span>
+<span id="cb2-32"><a href="" aria-label="32"></a>                                URL="https://github.com/fryagbye/tinderboxwithquarto"</span>
+<span id="cb2-33"><a href="" aria-label="33"></a>            C D E </span>
+<span id="cb2-34"><a href="" aria-label="34"></a>}</span>
+<span id="cb2-35"><a href="" aria-label="35"></a>}</span>
+<span id="cb2-36"><a href="" aria-label="36"></a>}</span>
+<span id="cb2-37"><a href="" aria-label="37"></a>subgraph cluster_D{</span>
+<span id="cb2-38"><a href="" aria-label="38"></a>                        label="Quarto"</span>
+<span id="cb2-39"><a href="" aria-label="39"></a>                        color="#000000"</span>
+<span id="cb2-40"><a href="" aria-label="40"></a>                        penwidth="1"</span>
+<span id="cb2-41"><a href="" aria-label="41"></a>                        style="filled"</span>
+<span id="cb2-42"><a href="" aria-label="42"></a>                        fillcolor="#fff4e6"</span>
+<span id="cb2-43"><a href="" aria-label="43"></a>                        fontcolor="#000000"</span>
+<span id="cb2-44"><a href="" aria-label="44"></a>            F G H </span>
+<span id="cb2-45"><a href="" aria-label="45"></a>}</span>
+<span id="cb2-46"><a href="" aria-label="46"></a>subgraph cluster_E{</span>
+<span id="cb2-47"><a href="" aria-label="47"></a>                        label="Output"</span>
+<span id="cb2-48"><a href="" aria-label="48"></a>                        color="#000000"</span>
+<span id="cb2-49"><a href="" aria-label="49"></a>                        penwidth="1"</span>
+<span id="cb2-50"><a href="" aria-label="50"></a>                        style="filled"</span>
+<span id="cb2-51"><a href="" aria-label="51"></a>                        fillcolor="#ffffff"</span>
+<span id="cb2-52"><a href="" aria-label="52"></a>                        fontcolor="#000000"</span>
+<span id="cb2-53"><a href="" aria-label="53"></a>            I J K </span>
+<span id="cb2-54"><a href="" aria-label="54"></a>}</span>
+<span id="cb2-55"><a href="" aria-label="55"></a>A [ style="filled"  label="Bookends" color="#000000", penwidth="1", fillcolor="#fcbd63", fontcolor="#000000", URL="https://www.sonnysoftware.com/bookends-for-mac"]</span>
+<span id="cb2-56"><a href="" aria-label="56"></a>B [ style="filled"  label="Snippety" color="#990000", penwidth="1", fillcolor="#5c9dfe", fontcolor="#000000", URL="https://snippety.app/"]</span>
+<span id="cb2-57"><a href="" aria-label="57"></a>C [ style="filled"  label="Mermaid" color="#000000", penwidth="1", fillcolor="#c735e9", fontcolor="#ffffff", URL="https://mermaid.js.org/"]</span>
+<span id="cb2-58"><a href="" aria-label="58"></a>D [ style="filled"  label="Graphviz" color="#000000", penwidth="1", fillcolor="#30638d", fontcolor="#ffffff", URL="https://graphviz.org/"]</span>
+<span id="cb2-59"><a href="" aria-label="59"></a>E [ style="filled"  label="Preview \nwith Rscript" ]</span>
+<span id="cb2-60"><a href="" aria-label="60"></a>F [ style="filled"  label="R Studio" color="#000000", penwidth="1", fillcolor="#80a9d7", fontcolor="#000000", URL="https://posit.co/products/open-source/rstudio/"]</span>
+<span id="cb2-61"><a href="" aria-label="61"></a>G [ style="filled"  label="RMarkdown ( .qmd )" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000"]</span>
+<span id="cb2-62"><a href="" aria-label="62"></a>H [ style="filled"  label="quarto CLI" color="#000000", penwidth="1", fillcolor="#74bbff", fontcolor="#000000", URL="https://quarto.org/"]</span>
+<span id="cb2-63"><a href="" aria-label="63"></a>I [ style="filled"  label="Book" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]</span>
+<span id="cb2-64"><a href="" aria-label="64"></a>J [ style="filled"  label="Manuscript" color="#000000", penwidth="1", fillcolor="#93dd93", fontcolor="#000000"]</span>
+<span id="cb2-65"><a href="" aria-label="65"></a>K [ style="filled"  label="revealjs" color="#d53f8c", penwidth="1", fillcolor="#f2e142", fontcolor="#000000"]</span>
+<span id="cb2-66"><a href="" aria-label="66"></a>A -&gt; C [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ltail = "cluster_A" ]</span>
+<span id="cb2-67"><a href="" aria-label="67"></a>B -&gt; E [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_C" ]</span>
+<span id="cb2-68"><a href="" aria-label="68"></a>D -&gt; G [fillcolor="#cbd9d7" fontcolor="#000000" lhead = "cluster_D" ltail = "cluster_C" ]</span>
+<span id="cb2-69"><a href="" aria-label="69"></a>F -&gt; H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
+<span id="cb2-70"><a href="" aria-label="70"></a>G -&gt; F [label = "Read qmd files" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
+<span id="cb2-71"><a href="" aria-label="71"></a>G -&gt; H [label = "Call" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
+<span id="cb2-72"><a href="" aria-label="72"></a>H -&gt; I [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
+<span id="cb2-73"><a href="" aria-label="73"></a>H -&gt; J [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
+<span id="cb2-74"><a href="" aria-label="74"></a>H -&gt; K [label = "Export" fillcolor="#cbd9d7" fontcolor="#000000" ]</span>
+<span id="cb2-75"><a href="" aria-label="75"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="具体例-66" class="slide level2">
 <h2>具体例 (6/6)</h2>
@@ -399,7 +405,7 @@ Figure&nbsp;1
 <ol type="1">
 <li><p>Export Agent から <code>File -&gt; Export -&gt; as HTML</code> で書き出し。</p></li>
 <li><p>ターミナルまたはStampで:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href=""></a><span class="ex">quarto</span> render output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="" aria-label="1"></a><span class="ex">quarto</span> render output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>生成された <code>index.html</code> をブラウザで確認。</p></li>
 </ol>
 

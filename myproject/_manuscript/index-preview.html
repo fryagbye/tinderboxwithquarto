@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-    <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.9.37">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-    <meta name="author" content="Yamada Ichiro SAMPLE">
-    <meta name="author" content="Sato Tadashi SAMPLE">
-    <meta name="dcterms.date" content="2024-06-29">
-    <meta name="keywords" content="Plotly,Python,Quarto">
-
-    <title>Quarto Computations</title>
-    <style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="fryagbye">
+<meta name="dcterms.date" content="2024-06-29">
+<meta name="keywords" content="Plotly,Python,Quarto">
+<title>Quarto Computations</title>
+<style>
       /* Default styles provided by pandoc.
       ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
       */
-      code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
-      div.columns{display: flex; gap: min(4vw, 1.5em);}
-      div.column{flex: auto; overflow-x: auto;}
+      div.columns{display: flex; gap: 1.5em;}
+      div.column{flex: auto;}
+      @media screen {
+      div.columns{gap: min(4vw, 1.5em);}
+      div.column{overflow-x: auto;}
+      }
       div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
       ul.task-list{list-style: none;}
       ul.task-list li input[type="checkbox"] {
@@ -81,8 +81,7 @@
       div.csl-indent {
         margin-left: 2em;
       }    </style>
-
-    <style>
+<style>
       body.hypothesis-enabled #quarto-embed-header {
         padding-right: 36px;
       }
@@ -131,8 +130,7 @@
           transform: translateY(-100%);
       }      
     </style>
-
-    <script>
+<script>
     window.document.addEventListener("DOMContentLoaded", function () {
 
       var header = window.document.querySelector("#quarto-embed-header");
@@ -170,8 +168,6 @@
       headroom.init();
     });
     </script>
-
-    
 <script src="site_libs/manuscript-notebook/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -180,24 +176,25 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-25dec783d6e1d11f8e0bba9e4fbb47f4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-25dec783d6e1d11f8e0bba9e4fbb47f4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-25dec783d6e1d11f8e0bba9e4fbb47f4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4f1893443ef4dad2f61acbd8b1be6bfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-4f1893443ef4dad2f61acbd8b1be6bfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-4f1893443ef4dad2f61acbd8b1be6bfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dd1b3a1940a0974a3385ce7a7450c45c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-dd1b3a1940a0974a3385ce7a7450c45c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dd1b3a1940a0974a3385ce7a7450c45c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
-     <script async="" src="https://hypothes.is/embed.js"></script>
-<script>
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script async="" src="https://hypothes.is/embed.js"></script><script>
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
-</script>  
-      <meta name="citation_title" content="Quarto Computations">
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<meta name="citation_title" content="Quarto Computations">
 <meta name="citation_abstract" content="This is a demo of quarto manuscript
 ">
 <meta name="citation_keywords" content="Plotly,Python,Quarto">
@@ -215,18 +212,17 @@
 <meta name="citation_reference" content="citation_title=A tinderbox reference file;,citation_author=Mark Anderson;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;">
 <meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Learn how to use R to turn raw data into insight, knowledge, and understanding. This book introduces you to R, RStudio, and the tidyverse, a collection of R packages designed to work together to make data science fast, fluent, and fun. Suitable for readers with no previous programming experience, R for Data Science is designed to get you doing data science as quickly as possible. Authors Hadley Wickham and Garrett Grolemund guide you through the steps of importing, wrangling, exploring, and modeling your data and communicating the results. You’ll get a complete, big-picture understanding of the data science cycle, along with basic tools you need to manage the details. Each section of the book is paired with exercises to help you practice what you’ve learned along the way. You’ll learn how to: Wrangle—transform your datasets into a form convenient for analysis Program—learn powerful R tools for solving data problems with greater clarity and ease Explore—examine your data, generate hypotheses, and quickly test them Model—provide a low-dimensional summary that captures true “signals” in your dataset Communicate—learn R Markdown for integrating prose, code, and results;,citation_author=Hadley Wickham;,citation_author=Garrett Grolemund;,citation_publication_date=2016;,citation_cover_date=2016;,citation_year=2016;">
 </head>
-
-  <body class="quarto-notebook quarto-light">
+<body class="quarto-notebook quarto-light">
     <div id="quarto-embed-header" class="headroom fixed-top bg-primary">
       
       <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
-      <h6><i class="bi bi-journal-code"></i> Article Notebook</h6>
+      <h6>
+<i class="bi bi-journal-code"></i> Article Notebook</h6>
 
             <a href="./index.qmd" class="btn btn-primary quarto-download-embed" download="index.qmd">Download Source</a>
           </div>
 
-     <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
+     <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Quarto Computations</h1>
           </div>
@@ -239,7 +235,7 @@
           <div class="quarto-title-meta-heading">Affiliations</div>
           
                 <div class="quarto-title-meta-contents">
-            <p class="author">Yamada Ichiro SAMPLE, B.S., PhD <a href="mailto:yamada.i@example.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/xxxx-0001-1234-5678" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+            <p class="author">Yamada Ichiro SAMPLE, B.S., PhD <a href="mailto:yamada.i@example.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/xxxx-0001-1234-5678" class="quarto-title-author-orcid" aria-label="ORCID profile for Yamada Ichiro SAMPLE"> <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
           </div>
                 <div class="quarto-title-meta-contents">
                     <p class="affiliation">
@@ -252,7 +248,7 @@
                       </p>
                   </div>
                       <div class="quarto-title-meta-contents">
-            <p class="author">Sato Tadashi SAMPLE, PhD <a href="mailto:Sato.t@example.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/xxxx-0002-1234-5678" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+            <p class="author">Sato Tadashi SAMPLE, PhD <a href="mailto:Sato.t@example.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/xxxx-0002-1234-5678" class="quarto-title-author-orcid" aria-label="ORCID profile for Sato Tadashi SAMPLE"> <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
           </div>
                 <div class="quarto-title-meta-contents">
                     <p class="affiliation">
@@ -298,32 +294,27 @@
     </div>  </div>
 </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
 <div id="quarto-sidebar-toc-left" class="sidebar toc-left">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+  <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
-  <ul>
-  <li><a href="#numpy" id="toc-numpy" class="nav-link active" data-scroll-target="#numpy">NumPy</a></li>
+  <ul class="collapse">
+<li><a href="#numpy" id="toc-numpy" class="nav-link active" data-scroll-target="#numpy">NumPy</a></li>
   <li><a href="#sec-matplotlib" id="toc-sec-matplotlib" class="nav-link" data-scroll-target="#sec-matplotlib">Matplotlib</a></li>
   <li><a href="#plotly" id="toc-plotly" class="nav-link" data-scroll-target="#plotly">Plotly</a></li>
   <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-</nav>
+  </ul></nav>
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
-<main class="content quarto-banner-title-block" id="quarto-document-content">      
-
-       <div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>out_type <span class="ot">&lt;-</span> knitr<span class="sc">::</span>opts_knit<span class="sc">$</span><span class="fu">get</span>(<span class="st">"rmarkdown.pandoc.to"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"_common.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>out_type <span class="ot">&lt;-</span> knitr<span class="sc">::</span>opts_knit<span class="sc">$</span><span class="fu">get</span>(<span class="st">"rmarkdown.pandoc.to"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="fu">source</span>(<span class="st">"_common.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<section id="numpy" class="level2">
-<h2 class="anchored" data-anchor-id="numpy">NumPy</h2>
+<section id="numpy" class="level2"><h2 class="anchored" data-anchor-id="numpy">NumPy</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2"></a>a <span class="op">=</span> np.arange(<span class="dv">15</span>).reshape(<span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python numberLines number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>a <span class="op">=</span> np.arange(<span class="dv">15</span>).reshape(<span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>array([[ 0,  1,  2,  3,  4],
        [ 5,  6,  7,  8,  9],
@@ -331,91 +322,81 @@
 </div>
 </div></div>
 <p>Reference test <span class="citation" data-cites="Wickham2016Data">Wickham and Grolemund (<a href="#ref-Wickham2016Data" role="doc-biblioref">2016</a>)</span></p>
-</section>
-<section id="sec-matplotlib" class="level2">
-<h2 class="anchored" data-anchor-id="sec-matplotlib">Matplotlib</h2>
+</section><section id="sec-matplotlib" class="level2"><h2 class="anchored" data-anchor-id="sec-matplotlib">Matplotlib</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-fig-matplotlib" class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-3"><a href="#cb4-3"></a>fig <span class="op">=</span> plt.figure()</span>
-<span id="cb4-4"><a href="#cb4-4"></a>x <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
-<span id="cb4-5"><a href="#cb4-5"></a>y <span class="op">=</span> <span class="fl">2.5</span> <span class="op">*</span> np.sin(x <span class="op">/</span> <span class="dv">20</span> <span class="op">*</span> np.pi)</span>
-<span id="cb4-6"><a href="#cb4-6"></a>yerr <span class="op">=</span> np.linspace(<span class="fl">0.05</span>, <span class="fl">0.2</span>, <span class="dv">10</span>)</span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a>plt.errorbar(x, y <span class="op">+</span> <span class="dv">3</span>, yerr<span class="op">=</span>yerr, label<span class="op">=</span><span class="st">'both limits (default)'</span>)</span>
-<span id="cb4-9"><a href="#cb4-9"></a>plt.errorbar(x, y <span class="op">+</span> <span class="dv">2</span>, yerr<span class="op">=</span>yerr, uplims<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">'uplims=True'</span>)</span>
-<span id="cb4-10"><a href="#cb4-10"></a>plt.errorbar(x, y <span class="op">+</span> <span class="dv">1</span>, yerr<span class="op">=</span>yerr, uplims<span class="op">=</span><span class="va">True</span>, lolims<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb4-11"><a href="#cb4-11"></a>             label<span class="op">=</span><span class="st">'uplims=True, lolims=True'</span>)</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a>upperlimits <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>] <span class="op">*</span> <span class="dv">5</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>lowerlimits <span class="op">=</span> [<span class="va">False</span>, <span class="va">True</span>] <span class="op">*</span> <span class="dv">5</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>plt.errorbar(x, y, yerr<span class="op">=</span>yerr, uplims<span class="op">=</span>upperlimits, lolims<span class="op">=</span>lowerlimits,</span>
-<span id="cb4-16"><a href="#cb4-16"></a>             label<span class="op">=</span><span class="st">'subsets of uplims and lolims'</span>)</span>
-<span id="cb4-17"><a href="#cb4-17"></a></span>
-<span id="cb4-18"><a href="#cb4-18"></a>plt.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
-<span id="cb4-19"><a href="#cb4-19"></a>plt.show(fig)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python numberLines number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>x <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>y <span class="op">=</span> <span class="fl">2.5</span> <span class="op">*</span> np.sin(x <span class="op">/</span> <span class="dv">20</span> <span class="op">*</span> np.pi)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>yerr <span class="op">=</span> np.linspace(<span class="fl">0.05</span>, <span class="fl">0.2</span>, <span class="dv">10</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a>plt.errorbar(x, y <span class="op">+</span> <span class="dv">3</span>, yerr<span class="op">=</span>yerr, label<span class="op">=</span><span class="st">'both limits (default)'</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a>plt.errorbar(x, y <span class="op">+</span> <span class="dv">2</span>, yerr<span class="op">=</span>yerr, uplims<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">'uplims=True'</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a>plt.errorbar(x, y <span class="op">+</span> <span class="dv">1</span>, yerr<span class="op">=</span>yerr, uplims<span class="op">=</span><span class="va">True</span>, lolims<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a>             label<span class="op">=</span><span class="st">'uplims=True, lolims=True'</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-label="12"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-label="13"></a>upperlimits <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>] <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-label="14"></a>lowerlimits <span class="op">=</span> [<span class="va">False</span>, <span class="va">True</span>] <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-label="15"></a>plt.errorbar(x, y, yerr<span class="op">=</span>yerr, uplims<span class="op">=</span>upperlimits, lolims<span class="op">=</span>lowerlimits,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-label="16"></a>             label<span class="op">=</span><span class="st">'subsets of uplims and lolims'</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-label="17"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-label="18"></a>plt.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-label="19"></a>plt.show(fig)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-matplotlib" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-matplotlib-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-matplotlib-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
 <a href="index_files/figure-html/fig-matplotlib-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: "><img src="index_files/figure-html/fig-matplotlib-1.svg" id="fig-matplotlib" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" data-fig-pos="H"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-matplotlib-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div></div>
-</section>
-<section id="plotly" class="level2">
-<h2 class="anchored" data-anchor-id="plotly">Plotly</h2>
+</section><section id="plotly" class="level2"><h2 class="anchored" data-anchor-id="plotly">Plotly</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-fig-plotly" class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-4"><a href="#cb5-4"></a></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># 1. 外部データを使わず、手動でデータを作成</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co"># （ランダムな100個のデータを作成）</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb5-8"><a href="#cb5-8"></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb5-9"><a href="#cb5-9"></a>    <span class="st">"x_val"</span>: np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>),</span>
-<span id="cb5-10"><a href="#cb5-10"></a>    <span class="st">"y_val"</span>: np.sin(np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="dv">100</span>),</span>
-<span id="cb5-11"><a href="#cb5-11"></a>    <span class="st">"category"</span>: np.random.choice([<span class="st">"A"</span>, <span class="st">"B"</span>], <span class="dv">100</span>)</span>
-<span id="cb5-12"><a href="#cb5-12"></a>})</span>
-<span id="cb5-13"><a href="#cb5-13"></a></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co"># 2. 散布図を作成</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a>fig <span class="op">=</span> px.scatter(</span>
-<span id="cb5-16"><a href="#cb5-16"></a>    df, </span>
-<span id="cb5-17"><a href="#cb5-17"></a>    x<span class="op">=</span><span class="st">"x_val"</span>, </span>
-<span id="cb5-18"><a href="#cb5-18"></a>    y<span class="op">=</span><span class="st">"y_val"</span>, </span>
-<span id="cb5-19"><a href="#cb5-19"></a>    color<span class="op">=</span><span class="st">"category"</span>,</span>
-<span id="cb5-20"><a href="#cb5-20"></a>    title<span class="op">=</span><span class="st">"Local Data Test (No Network)"</span>,</span>
-<span id="cb5-21"><a href="#cb5-21"></a>    labels<span class="op">=</span>{<span class="st">"x_val"</span>: <span class="st">"X Axis"</span>, <span class="st">"y_val"</span>: <span class="st">"Y Axis"</span>}</span>
-<span id="cb5-22"><a href="#cb5-22"></a>)</span>
-<span id="cb5-23"><a href="#cb5-23"></a></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="co"># 3. 描画</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a>fig.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python numberLines number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a><span class="co"># 1. 外部データを使わず、手動でデータを作成</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a><span class="co"># （ランダムな100個のデータを作成）</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>    <span class="st">"x_val"</span>: np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-label="10"></a>    <span class="st">"y_val"</span>: np.sin(np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="dv">100</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-label="11"></a>    <span class="st">"category"</span>: np.random.choice([<span class="st">"A"</span>, <span class="st">"B"</span>], <span class="dv">100</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-label="12"></a>})</span>
+<span id="cb5-13"><a href="#cb5-13" aria-label="13"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-label="14"></a><span class="co"># 2. 散布図を作成</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-label="15"></a>fig <span class="op">=</span> px.scatter(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-label="16"></a>    df, </span>
+<span id="cb5-17"><a href="#cb5-17" aria-label="17"></a>    x<span class="op">=</span><span class="st">"x_val"</span>, </span>
+<span id="cb5-18"><a href="#cb5-18" aria-label="18"></a>    y<span class="op">=</span><span class="st">"y_val"</span>, </span>
+<span id="cb5-19"><a href="#cb5-19" aria-label="19"></a>    color<span class="op">=</span><span class="st">"category"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-label="20"></a>    title<span class="op">=</span><span class="st">"Local Data Test (No Network)"</span>,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-label="21"></a>    labels<span class="op">=</span>{<span class="st">"x_val"</span>: <span class="st">"X Axis"</span>, <span class="st">"y_val"</span>: <span class="st">"Y Axis"</span>}</span>
+<span id="cb5-22"><a href="#cb5-22" aria-label="22"></a>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-label="23"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-label="24"></a><span class="co"># 3. 描画</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-label="25"></a>fig.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-plotly" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-plotly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
-        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>                <div id="e47c1228-c3b2-41d8-b8eb-a2413e2523a8" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("e47c1228-c3b2-41d8-b8eb-a2413e2523a8")) {                    Plotly.newPlot(                        "e47c1228-c3b2-41d8-b8eb-a2413e2523a8",                        [{"hovertemplate":"category=A\u003cbr\u003eX Axis=%{x}\u003cbr\u003eY Axis=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"A","marker":{"color":"#636efa","symbol":"circle"},"mode":"markers","name":"A","orientation":"v","showlegend":true,"x":[0.0,0.20202020202020202,0.30303030303030304,0.40404040404040403,0.8080808080808081,0.9090909090909091,1.4141414141414141,1.6161616161616161,1.8181818181818181,2.323232323232323,2.525252525252525,2.6262626262626263,2.727272727272727,2.8282828282828283,3.0303030303030303,3.131313131313131,3.2323232323232323,3.7373737373737375,3.8383838383838382,4.040404040404041,4.141414141414141,4.242424242424242,4.545454545454545,5.151515151515151,5.353535353535354,5.454545454545454,5.656565656565657,5.757575757575758,5.858585858585858,6.161616161616162,6.666666666666667,6.767676767676767,7.070707070707071,7.171717171717171,7.373737373737374,7.6767676767676765,7.777777777777778,8.080808080808081,8.282828282828282,8.484848484848484,8.585858585858587,8.686868686868687,8.98989898989899,9.191919191919192,9.292929292929292,9.595959595959595,9.8989898989899,10.0],"xaxis":"x","y":[0.04967141530112327,0.26541771033275463,0.4507167900884437,0.3697212746759962,0.6760151228859652,0.8432014672028538,0.8152629091087805,0.8976880596899144,0.8787535416302026,0.5875514113551007,0.5891448440775598,0.3777226848466932,0.44013729250406375,0.24814514849819636,0.050889376901190025,0.19550715969142848,-0.09195586950720112,-0.7571224492031793,-0.7745787425092309,-0.7087408446546611,-0.824237692741873,-0.9031490855739643,-1.0580831953304004,-0.9436317439917684,-0.7402429932848829,-0.6339128060693182,-0.670331734169499,-0.5326616069790328,-0.3788294876905064,-0.13983581820354848,0.3669502184131866,0.5661116968148541,0.7447463582500596,0.9299505049301774,1.0433464676104793,0.9930433647076408,0.967197155897288,0.9524178006917846,1.057235347898614,0.7266671438502438,0.6937457038983907,0.7642827153324722,0.4726273838999425,0.3276245743783407,0.061261679255223175,-0.31669832714130836,-0.45612614196952767,-0.5674798242268845],"yaxis":"y","type":"scatter"},{"hovertemplate":"category=B\u003cbr\u003eX Axis=%{x}\u003cbr\u003eY Axis=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"B","marker":{"color":"#EF553B","symbol":"circle"},"mode":"markers","name":"B","orientation":"v","showlegend":true,"x":[0.10101010101010101,0.5050505050505051,0.6060606060606061,0.7070707070707071,1.0101010101010102,1.1111111111111112,1.2121212121212122,1.3131313131313131,1.5151515151515151,1.7171717171717171,1.9191919191919191,2.0202020202020203,2.121212121212121,2.2222222222222223,2.4242424242424243,2.929292929292929,3.3333333333333335,3.4343434343434343,3.5353535353535355,3.6363636363636362,3.9393939393939394,4.343434343434343,4.444444444444445,4.646464646464646,4.747474747474747,4.848484848484849,4.94949494949495,5.05050505050505,5.252525252525253,5.555555555555555,5.959595959595959,6.0606060606060606,6.262626262626262,6.363636363636363,6.4646464646464645,6.565656565656566,6.8686868686868685,6.96969696969697,7.2727272727272725,7.474747474747475,7.575757575757575,7.878787878787879,7.979797979797979,8.181818181818182,8.383838383838384,8.787878787878787,8.88888888888889,9.09090909090909,9.393939393939394,9.494949494949495,9.696969696969697,9.797979797979798],"xaxis":"x","y":[0.08701199014098614,0.4604379447430166,0.7275553884597048,0.7263529864209974,0.8005437943217372,0.8496192256729307,0.9605589522608882,0.7756595982435198,0.9422234739762922,1.0207309697738676,0.798691281296602,1.0472703230951108,0.8297294878910216,0.8019728774918414,0.6029519742302571,0.18153917309786521,-0.2963390557710754,-0.20633256751011353,-0.5057485568032145,-0.4539437513217639,-0.6961363756422778,-0.9628152250907624,-1.112169315965521,-1.0438916550751913,-0.8936723349905441,-0.956391414048831,-1.1483258404951067,-0.9109728615065201,-0.9253308110186476,-0.5719735030672025,-0.22041715009838275,-0.26866339833959235,-0.1311910936878629,-0.03925636273778535,0.26171951459933074,0.4143538215346395,0.5887810732511694,0.5693309729883933,0.8321919681412637,0.6669739188222769,1.0437349644643459,1.008868418539662,0.7933386674722336,0.982452437734529,0.8110524575544187,0.6275805249904659,0.45762965809757905,0.33740846374830386,-0.0019325355986358449,-0.10932477571386254,-0.23923109820392646,-0.33849320643789976],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"X Axis"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Y Axis"}},"legend":{"title":{"text":"category"},"tracegroupgap":0},"title":{"text":"Local Data Test (No Network)"}},                        {"responsive": true}                    )                };                            </script>        </div>
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script><script charset="utf-8" src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script><div id="e47c1228-c3b2-41d8-b8eb-a2413e2523a8" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("e47c1228-c3b2-41d8-b8eb-a2413e2523a8")) {                    Plotly.newPlot(                        "e47c1228-c3b2-41d8-b8eb-a2413e2523a8",                        [{"hovertemplate":"category=A\u003cbr\u003eX Axis=%{x}\u003cbr\u003eY Axis=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"A","marker":{"color":"#636efa","symbol":"circle"},"mode":"markers","name":"A","orientation":"v","showlegend":true,"x":[0.0,0.20202020202020202,0.30303030303030304,0.40404040404040403,0.8080808080808081,0.9090909090909091,1.4141414141414141,1.6161616161616161,1.8181818181818181,2.323232323232323,2.525252525252525,2.6262626262626263,2.727272727272727,2.8282828282828283,3.0303030303030303,3.131313131313131,3.2323232323232323,3.7373737373737375,3.8383838383838382,4.040404040404041,4.141414141414141,4.242424242424242,4.545454545454545,5.151515151515151,5.353535353535354,5.454545454545454,5.656565656565657,5.757575757575758,5.858585858585858,6.161616161616162,6.666666666666667,6.767676767676767,7.070707070707071,7.171717171717171,7.373737373737374,7.6767676767676765,7.777777777777778,8.080808080808081,8.282828282828282,8.484848484848484,8.585858585858587,8.686868686868687,8.98989898989899,9.191919191919192,9.292929292929292,9.595959595959595,9.8989898989899,10.0],"xaxis":"x","y":[0.04967141530112327,0.26541771033275463,0.4507167900884437,0.3697212746759962,0.6760151228859652,0.8432014672028538,0.8152629091087805,0.8976880596899144,0.8787535416302026,0.5875514113551007,0.5891448440775598,0.3777226848466932,0.44013729250406375,0.24814514849819636,0.050889376901190025,0.19550715969142848,-0.09195586950720112,-0.7571224492031793,-0.7745787425092309,-0.7087408446546611,-0.824237692741873,-0.9031490855739643,-1.0580831953304004,-0.9436317439917684,-0.7402429932848829,-0.6339128060693182,-0.670331734169499,-0.5326616069790328,-0.3788294876905064,-0.13983581820354848,0.3669502184131866,0.5661116968148541,0.7447463582500596,0.9299505049301774,1.0433464676104793,0.9930433647076408,0.967197155897288,0.9524178006917846,1.057235347898614,0.7266671438502438,0.6937457038983907,0.7642827153324722,0.4726273838999425,0.3276245743783407,0.061261679255223175,-0.31669832714130836,-0.45612614196952767,-0.5674798242268845],"yaxis":"y","type":"scatter"},{"hovertemplate":"category=B\u003cbr\u003eX Axis=%{x}\u003cbr\u003eY Axis=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"B","marker":{"color":"#EF553B","symbol":"circle"},"mode":"markers","name":"B","orientation":"v","showlegend":true,"x":[0.10101010101010101,0.5050505050505051,0.6060606060606061,0.7070707070707071,1.0101010101010102,1.1111111111111112,1.2121212121212122,1.3131313131313131,1.5151515151515151,1.7171717171717171,1.9191919191919191,2.0202020202020203,2.121212121212121,2.2222222222222223,2.4242424242424243,2.929292929292929,3.3333333333333335,3.4343434343434343,3.5353535353535355,3.6363636363636362,3.9393939393939394,4.343434343434343,4.444444444444445,4.646464646464646,4.747474747474747,4.848484848484849,4.94949494949495,5.05050505050505,5.252525252525253,5.555555555555555,5.959595959595959,6.0606060606060606,6.262626262626262,6.363636363636363,6.4646464646464645,6.565656565656566,6.8686868686868685,6.96969696969697,7.2727272727272725,7.474747474747475,7.575757575757575,7.878787878787879,7.979797979797979,8.181818181818182,8.383838383838384,8.787878787878787,8.88888888888889,9.09090909090909,9.393939393939394,9.494949494949495,9.696969696969697,9.797979797979798],"xaxis":"x","y":[0.08701199014098614,0.4604379447430166,0.7275553884597048,0.7263529864209974,0.8005437943217372,0.8496192256729307,0.9605589522608882,0.7756595982435198,0.9422234739762922,1.0207309697738676,0.798691281296602,1.0472703230951108,0.8297294878910216,0.8019728774918414,0.6029519742302571,0.18153917309786521,-0.2963390557710754,-0.20633256751011353,-0.5057485568032145,-0.4539437513217639,-0.6961363756422778,-0.9628152250907624,-1.112169315965521,-1.0438916550751913,-0.8936723349905441,-0.956391414048831,-1.1483258404951067,-0.9109728615065201,-0.9253308110186476,-0.5719735030672025,-0.22041715009838275,-0.26866339833959235,-0.1311910936878629,-0.03925636273778535,0.26171951459933074,0.4143538215346395,0.5887810732511694,0.5693309729883933,0.8321919681412637,0.6669739188222769,1.0437349644643459,1.008868418539662,0.7933386674722336,0.982452437734529,0.8110524575544187,0.6275805249904659,0.45762965809757905,0.33740846374830386,-0.0019325355986358449,-0.10932477571386254,-0.23923109820392646,-0.33849320643789976],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"X Axis"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Y Axis"}},"legend":{"title":{"text":"category"},"tracegroupgap":0},"title":{"text":"Local Data Test (No Network)"}},                        {"responsive": true}                    )                };                            </script>
+</div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-plotly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div></div>
-</section>
-<section id="r" class="level2">
-<h2 class="anchored" data-anchor-id="r">R</h2>
+</section><section id="r" class="level2"><h2 class="anchored" data-anchor-id="r">R</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-fig-airquality" class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(Temp, Ozone)) <span class="sc">+</span> </span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r numberLines number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(Temp, Ozone)) <span class="sc">+</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -429,28 +410,22 @@ Figure&nbsp;2
 </div>
 <div class="cell-output-display">
 <div id="fig-airquality" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
 <a href="index_files/figure-html/fig-airquality-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;3: Temperature and ozone level."><img src="index_files/figure-html/fig-airquality-3.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" data-fig-pos="H"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Temperature and ozone level.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div></div>
-</section>
-<section id="references" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+</section><section id="references" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-Wickham2016Data" class="csl-entry" role="listitem">
 Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. <span>“O’Reilly Media, Inc.”</span>
 </div>
 </div>
-</section>
-     </main>
-<!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main column --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -537,6 +512,11 @@ Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Ti
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -849,7 +829,8 @@ Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Ti
       }
     }
   });
-  </script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+  </script>
+</div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
@@ -880,6 +861,7 @@ Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Ti
   };
   
 })();
-          </script> 
-  
+          </script>
+
+
 </body></html>
