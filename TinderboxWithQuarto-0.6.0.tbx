@@ -15043,7 +15043,7 @@ function fDisplayExpression2(){
 <attribute name="Created" >2023-09-10T21:17:52+09:00</attribute>
 <attribute name="DisplayedAttributes" >MyString;MySet;Q_Lang</attribute>
 <attribute name="DominantLanguage" >en</attribute>
-<attribute name="HTMLPreviewCommand" >export PATH=$HOME:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin/:$PATH;cd ~/github/tinderboxwithquarto;/usr/local/bin/Rscript -e &quot;library(datasets,warn.conflicts=F); library(dplyr,warn.conflicts=F); library(grDevices,warn.conflicts=F); library(graphics,warn.conflicts=F); library(kableExtra,warn.conflicts=F); library(knitr,warn.conflicts=F); library(rmarkdown,warn.conflicts=F); library(stats,warn.conflicts=F); lines &lt;- readLines(file(&apos;stdin&apos;), warn=FALSE);f &lt;- file(&apos;_RchunkPreviewOutput.qmd&apos;, &apos;w&apos;);cat(&apos;---\u000A&apos;, &apos;title: \u0022Utility\u0022\u000A&apos;, &apos;---\u000A&apos;, file=f, sep=&apos;&apos;);for (line in lines) {line &lt;- gsub(&apos;\`\`\`{webr&apos;,&apos;\`\`\`{r&apos;,line, fixed=TRUE); cat(line, &apos;\u000A&apos;, sep=&apos;&apos;, file=f); };  close(f);rendered_output &lt;- rmarkdown::render(&apos;_RchunkPreviewOutput.qmd&apos;, output_format=&apos;html_document&apos;, quiet=TRUE);cat(readLines(rendered_output), sep=&apos;\u000A&apos;);&quot;</attribute>
+<attribute name="HTMLPreviewCommand" >export PATH=$HOME:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin/:$PATH;cd &quot;/Users/tk4o2ka/github/tinderboxwithquarto&quot;;/usr/local/bin/Rscript -e &quot;library(datasets,warn.conflicts=F); library(dplyr,warn.conflicts=F); library(grDevices,warn.conflicts=F); library(graphics,warn.conflicts=F); library(kableExtra,warn.conflicts=F); library(knitr,warn.conflicts=F); library(rmarkdown,warn.conflicts=F); library(stats,warn.conflicts=F); lines &lt;- readLines(file(&apos;stdin&apos;), warn=FALSE);f &lt;- file(&apos;_RchunkPreviewOutput.qmd&apos;, &apos;w&apos;);cat(&apos;---\u000A&apos;, &apos;title: \u0022Utility\u0022\u000A&apos;, &apos;---\u000A&apos;, file=f, sep=&apos;&apos;);for (line in lines) {line &lt;- gsub(&apos;\`\`\`{webr&apos;,&apos;\`\`\`{r&apos;,line, fixed=TRUE); cat(line, &apos;\u000A&apos;, sep=&apos;&apos;, file=f); };  close(f);rendered_output &lt;- rmarkdown::render(&apos;_RchunkPreviewOutput.qmd&apos;, output_format=&apos;html_document&apos;, quiet=TRUE);cat(readLines(rendered_output), sep=&apos;\u000A&apos;);&quot; 2&gt;&amp;1 | grep -v Deprecated:</attribute>
 <attribute name="Height" >1.86</attribute>
 <attribute name="IsAction" >true</attribute>
 <attribute name="LastFetched" >2025-04-05T12:20:17+09:00</attribute>
@@ -15340,7 +15340,7 @@ function fFixDisplayedAttributesWithPrototype(){
 	var:string vCommand;
 	var:string vLibList=$RLibraryListForPreview(vConfigPath);
 	vCommand =&quot;export PATH=$HOME:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin/:$PATH;&quot;;
-	vCommand+=&quot;cd &quot; + vExportPath +&quot;/&quot; + vProjectPath +&quot;;&quot;+&apos;/usr/local/bin/Rscript -e &quot;&apos;;
+	vCommand+=&apos;cd &quot;&apos; + vExportPath + &quot;/&quot; + vProjectPath + &apos;&quot;;&apos; +&apos;/usr/local/bin/Rscript -e &quot;&apos;;
 	vLibList.each(al){
 		vCommand += &quot;library(&quot; + al + vWarn + &quot;); &quot;;
 	};
@@ -15351,7 +15351,7 @@ function fFixDisplayedAttributesWithPrototype(){
 	vCommand += &quot;cat(readLines(rendered_output), sep=&apos;\u000A&apos;);&quot;;
 	vCommand += &quot;tmp &lt;- if(file.exists(&apos;_RchunkPreviewOutput.qmd&apos;)) {file.remove(&apos;_RchunkPreviewOutput.qmd&apos;)};&quot;;
 	vCommand += &quot;tmp &lt;- if(file.exists(&apos;_RchunkPreviewOutput.html&apos;)) {file.remove(&apos;_RchunkPreviewOutput.html&apos;)};&quot;;
-	vCommand += &apos;&quot;&apos;;
+	vCommand += &apos;&quot; 2&gt;&amp;1 | grep -v Deprecated:&apos;;
 
 //	$Text(/Log)=vCommand;
 	$HTMLPreviewCommand=vCommand;
@@ -29101,7 +29101,7 @@ $HTMLExportFileName=fDeleteCharacters($Name);
 <attribute name="DominantLanguage" >en</attribute>
 <attribute name="HTMLExportExtension" >.html</attribute>
 <attribute name="HTMLExportTemplate" >/Templates/tRChunk_Preview</attribute>
-<attribute name="HTMLPreviewCommand" >export PATH=$HOME:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin/:$PATH;cd ~/github/tinderboxwithquarto;/usr/local/bin/Rscript -e &quot;library(datasets,warn.conflicts=F); library(dplyr,warn.conflicts=F); library(grDevices,warn.conflicts=F); library(graphics,warn.conflicts=F); library(kableExtra,warn.conflicts=F); library(knitr,warn.conflicts=F); library(rmarkdown,warn.conflicts=F); library(stats,warn.conflicts=F); lines &lt;- readLines(file(&apos;stdin&apos;), warn=FALSE);f &lt;- file(&apos;_RchunkPreviewOutput.qmd&apos;, &apos;w&apos;);cat(&apos;---\u000A&apos;, &apos;title: \u0022pRChunk\u0022\u000A&apos;, &apos;---\u000A&apos;, file=f, sep=&apos;&apos;);for (line in lines) {line &lt;- gsub(&apos;\`\`\`{webr&apos;,&apos;\`\`\`{r&apos;,line, fixed=TRUE); cat(line, &apos;\u000A&apos;, sep=&apos;&apos;, file=f); };  close(f);rendered_output &lt;- rmarkdown::render(&apos;_RchunkPreviewOutput.qmd&apos;, output_format=&apos;html_document&apos;, quiet=TRUE);cat(readLines(rendered_output), sep=&apos;\u000A&apos;);&quot;</attribute>
+<attribute name="HTMLPreviewCommand" >export PATH=$HOME:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin/:$PATH;cd &quot;/Users/tk4o2ka/github/tinderboxwithquarto&quot;;/usr/local/bin/Rscript -e &quot;library(datasets,warn.conflicts=F); library(dplyr,warn.conflicts=F); library(grDevices,warn.conflicts=F); library(graphics,warn.conflicts=F); library(kableExtra,warn.conflicts=F); library(knitr,warn.conflicts=F); library(rmarkdown,warn.conflicts=F); library(stats,warn.conflicts=F); lines &lt;- readLines(file(&apos;stdin&apos;), warn=FALSE);f &lt;- file(&apos;_RchunkPreviewOutput.qmd&apos;, &apos;w&apos;);cat(&apos;---\u000A&apos;, &apos;title: \u0022pRChunk\u0022\u000A&apos;, &apos;---\u000A&apos;, file=f, sep=&apos;&apos;);for (line in lines) {line &lt;- gsub(&apos;\`\`\`{webr&apos;,&apos;\`\`\`{r&apos;,line, fixed=TRUE); cat(line, &apos;\u000A&apos;, sep=&apos;&apos;, file=f); };  close(f);rendered_output &lt;- rmarkdown::render(&apos;_RchunkPreviewOutput.qmd&apos;, output_format=&apos;html_document&apos;, quiet=TRUE);cat(readLines(rendered_output), sep=&apos;\u000A&apos;);&quot; 2&gt;&amp;1 | grep -v Deprecated:</attribute>
 <attribute name="Height" >3</attribute>
 <attribute name="IsPrototype" >true</attribute>
 <attribute name="Modified" >2025-02-21T22:36:04+09:00</attribute>
