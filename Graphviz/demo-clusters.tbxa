@@ -1,0 +1,55 @@
+// /Graphviz/demo-clusters
+
+```{dot} 
+//| label: fig-cluster
+//| fig-cap: Cluster
+//| fig-width: 5
+digraph {
+    layout=dot
+    compound=true
+    graph [charset="UTF-8" rankdir="TB" ];
+subgraph cluster_A{
+                        label="process 1"
+                        color="#a1807d"
+                        penwidth="1"
+                        style="filled"
+                        fillcolor="#a1807d"
+                        fontcolor="#000000"
+            B C D E 
+}
+
+subgraph cluster_B{
+                        label="process 2"
+                        color="#000000"
+                        penwidth="1"
+                        style="filled"
+                        fillcolor="#ffffff"
+                        fontcolor="#000000"
+            F G H I 
+}
+
+
+A [ style="filled"  label="start" shape="Mdiamond", color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+B [ style="filled"  label="a0" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+C [ style="filled"  label="a1" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+D [ style="filled"  label="a2" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+E [ style="filled"  label="a3" color="#000000", penwidth="1", fillcolor="#ffffff", fontcolor="#000000"]
+F [ style="filled"  label="b0" ]
+G [ style="filled"  label="b1" ]
+H [ style="filled"  label="b2" ]
+I [ style="filled"  label="b3" ]
+J [ style="filled"  label="end" ]
+
+A -> B [fillcolor="#ffffff" fontcolor="#000000" ]
+B -> C [fillcolor="#ffffff" fontcolor="#000000" ]
+C -> D [fillcolor="#ffffff" fontcolor="#000000" ]
+D -> E [fillcolor="#ffffff" fontcolor="#000000" ]
+E -> B [fillcolor="#ffffff" fontcolor="#000000" ]
+G -> H [fillcolor="#ffffff" fontcolor="#000000" ]
+H -> E [fillcolor="#ffffff" fontcolor="#000000" ]
+}
+```
+
+
+
+

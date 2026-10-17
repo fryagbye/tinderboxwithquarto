@@ -1,0 +1,23 @@
+
+
+
+---
+
+
+
+## 例4: Mermaidで作図
+ 
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+flowchart TD
+   id1((1))---id2((2))---id3((3)):::current
+   classDef current stroke: #f96, stroke-width: 2px, color: #f96
+
+
+```
+ 
+ 
+
+ 
+

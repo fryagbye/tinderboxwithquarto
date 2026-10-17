@@ -72,11 +72,8 @@ format:
     number-sections: true
     number-depth: 3
     cite-method: citeproc
-
     code-link: true
-
     code-line-numbers: true
-
     header-includes:
       - '#set text(font: ("Hiragino Sans"))'
       - '#show raw: set text(font: ("DejaVu Sans Mono", "Osaka"))'
@@ -85,10 +82,11 @@ format:
     fig-dpi: 300
     callout-appearance: default
 
-
 lang: en
 
 bibliography: references.bib
+
+
 
 papersize: a4
 

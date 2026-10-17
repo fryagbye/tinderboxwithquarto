@@ -34,7 +34,14 @@ Document Commons Framework v2•1•1d.tbx
 
 .gemini/
 gha-creds-*.json
-.github
+.github/*
+!.github/workflows/
+
+antigravity-project-setup.zip
+* copy.html
+*.out.ipynb
+myproject/main-preview.html
+**/execute-results/
 
 */index_files/*
 */_extensions/*
@@ -47,3 +54,4 @@ myproject/_manuscript/site_libs/*
 output/_bookhtml
 output/_booktypst
 **/*.quarto_ipynb
+/.agents/plugins/project-agent-kit
