@@ -41,7 +41,13 @@ if [ -f .venv/bin/activate ]; then
 fi
 
 step "2. R environment (renv)"
-if "$RSCRIPT" -e 'renv::status()' >/dev/null 2>&1; then
+# Sub-project renders (output/, myproject/, ...) spawn Rscript with cwd
+# inside the subdirectory. renv's activate.R falls back to getwd() as the
+# project path, which would point at a nonexistent subdir renv library.
+# RENV_PROJECT pins the project root; activation itself comes from the
+# root .Rprofile (local) or ~/.Rprofile (CI step).
+export RENV_PROJECT="$(pwd)"
+if "$RSCRIPT" -e 'stopifnot(isTRUE(renv::status()$synchronized))' >/dev/null 2>&1; then
   ok "renv::status() clean"
 else
   bad "renv::status() (run renv::restore())"
