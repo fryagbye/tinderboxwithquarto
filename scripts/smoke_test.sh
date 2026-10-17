@@ -74,6 +74,7 @@ render_check() {
     fi
   done
   bad "$label render failed (see $log)"
+  tail -25 "$log" | sed 's/^/    | /'
 }
 
 if [ "${SKIP_RENDER:-0}" = "1" ]; then
