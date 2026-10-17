@@ -1,0 +1,47 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  publish-quarto-pub:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      QUARTO_PUBLISH_TOKEN: ${{ secrets.QUARTO_PUBLISH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Check book is in HTML export state
+        id: htmlcheck
+        run: |
+          if grep -qE '^\s+html:' output/_quarto.yml; then
+            echo "html_ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "html_ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Skip notice
+        if: steps.htmlcheck.outputs.html_ready != 'true'
+        run: |
+          echo "output/_quarto.yml is not in HTML format state (format cycle: html -> pdf -> typst -> html)."
+          echo "Publish the committed _bookhtml/ output is skipped this run."
+          echo "Re-run this workflow after an export that leaves the book in HTML state."
+
+      - name: Publish committed book HTML to quarto.pub
+        if: steps.htmlcheck.outputs.html_ready == 'true'
+        working-directory: output
+        run: |
+          if [ -z "${QUARTO_PUBLISH_TOKEN:-}" ]; then
+            echo "::error::QUARTO_PUBLISH_TOKEN secret is not set."
+            exit 1
+          fi
+          quarto publish quarto-pub . --no-render --no-browser

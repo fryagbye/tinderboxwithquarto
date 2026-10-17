@@ -196,6 +196,18 @@ quarto render myproject   # manuscript
 
 ![Manuscript](output/screenshots/quarto_manuscript.png)
 
+## 検証と CI
+
+エクスポート済みファイル一式を対象とした回帰スモークテストを同梱しています:
+
+```bash
+bash scripts/smoke_test.sh   # 環境確認 + 全プロジェクト render + 未解決参照スキャン
+SMOKE_CI=1 bash scripts/smoke_test.sh   # CI モード（lualatex を除く各フォーマット個別 render）
+```
+
+- `verify.yml` — push/PR ごとに CI モードのスモークテストを実行
+- `publish.yml` — book が HTML 状態のとき、コミット済み `output/_bookhtml/` を quarto.pub に公開（手動実行/リリース時）。**GitHub Secrets に `QUARTO_PUBLISH_TOKEN` の設定が必要**（quarto.pub のトークン。未設定時は公開ステップが失敗します）
+
 ## 既知の注意点
 
 - **パスは絶対パスで**: シェルコマンドに渡すパスはクォートされるため `~` は展開されません。`$ExportFolder`・`$Q_BibliographyFile` 等は `/Users/you/...` 形式で設定してください
@@ -375,6 +387,18 @@ quarto render myproject   # manuscript
 ```
 
 `Quarto: Book Preview` / `Quarto: Book Render` stamps do the same from Tinderbox.
+
+## Verification and CI
+
+A regression smoke test covering the exported files is included:
+
+```bash
+bash scripts/smoke_test.sh   # env checks + render all projects + unresolved-ref scan
+SMOKE_CI=1 bash scripts/smoke_test.sh   # CI mode (per-format renders, no lualatex)
+```
+
+- `verify.yml` — runs the CI-mode smoke test on every push/PR
+- `publish.yml` — publishes the committed `output/_bookhtml/` to quarto.pub when the book is in HTML state (manual run / on release). **Requires a `QUARTO_PUBLISH_TOKEN` GitHub secret** (your quarto.pub token); the publish step fails if unset
 
 ## Known issues
 

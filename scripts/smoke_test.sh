@@ -57,13 +57,14 @@ fi
 render_check() {
   # $1 label, $2 workdir, $3 render target, $4 expected output path
   local label="$1" dir="$2" target="$3" expect="$4"
-  local log=".smoke_render_${label%% *}.log"
+  local log=".smoke_render_$(printf '%s' "$label" | tr ' ()' '___').log"
   if [ ! -d "$dir" ]; then skip "$label (no $dir)"; return; fi
   # Multi-format renders can transiently fail on typst mediabag
   # extraction; retry once before reporting failure.
   local attempt
   for attempt in 1 2; do
-    if (cd "$dir" && "$QUARTO" render "$target" >"$OLDPWD/$log" 2>&1); then
+    # $target is intentionally word-split (contains "--to <fmt>")
+    if (cd "$dir" && "$QUARTO" render $target >"$OLDPWD/$log" 2>&1); then
       if [ -e "$dir/$expect" ]; then
         ok "$label → $dir/$expect"
         rm -f "$log"
@@ -77,6 +78,16 @@ render_check() {
 
 if [ "${SKIP_RENDER:-0}" = "1" ]; then
   skip "render tests (SKIP_RENDER=1)"
+elif [ "${SMOKE_CI:-0}" = "1" ]; then
+  # CI: avoid lualatex (TeX Live) — render manuscript per format.
+  # Typst is bundled with Quarto so no external TeX is needed.
+  step "4. Render smoke tests (CI mode)"
+  render_check "book (typst)"       "output"      "."            "_booktypst/Tinderbox-file-for-Quarto.pdf"
+  render_check "manuscript html"    "myproject"   ". --to html"  "_manuscript/index.html"
+  render_check "manuscript typst"   "myproject"   ". --to typst" "_manuscript/index.pdf"
+  render_check "manuscript docx"    "myproject"   ". --to docx"  "_manuscript/index.docx"
+  render_check "manuscript jats"    "myproject"   ". --to jats"  "_manuscript/index.xml"
+  render_check "revealjs"           "myrevealjs2" "index.qmd"    "index.html"
 else
   step "4. Render smoke tests"
   render_check "book (typst)"  "output"      "."         "_booktypst/Tinderbox-file-for-Quarto.pdf"
