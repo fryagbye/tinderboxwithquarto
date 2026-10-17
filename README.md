@@ -1,2079 +1,389 @@
-# Introduction
- 
-This Tinderbox file supports creating a book, manuscript (beta), revealjs with [Quarto](https://quarto.org/).
+# Tinderbox with Quarto
 
-[Tinderbox file for Quarto (Web version)](https://fryagbye.quarto.pub/tinderbox-file-for-quarto/)
- 
+Tinderbox をエディタ・情報管理ツールとして使い、[Quarto](https://quarto.org/) プロジェクト（`.qmd` / `_quarto.yml`）を生成するワークフロー。
+Use Tinderbox as an authoring front end that generates Quarto projects (`.qmd` / `_quarto.yml`).
 
-[Tinderbox file for Quarto (Web version) in Japanese](https://fryagbye.quarto.pub/tinderbox-file-for-quarto-in-japanese)
- 
-You can easily make qmd files and _quarto.yml with it. 
-Here is an example of books created with Quarto. 
- 
-* [R for Data Science (2e)](https://r4ds.hadley.nz/)(@Wickham2016Data)
- 
-You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz)  in Tinderbox.
+**[日本語](#日本語) | [English](#english)**
 
-<a href="https://youtu.be/4BEroHg-F8Y">
-<img src="output/screenshots/youtube_opening.png" width=70%" />
-</a>
+Demo:
 
-# Software Setup
- 
- 
-To run the project in your local environment, please follow the steps below to set up the necessary software and environment.
- 
-## Required Software
- 
- 
-Ensure the following key software is installed on your system.
- 
-| Software | Purpose | Official Site |
-|---|---|---|
-| Git | Used for version control and cloning the repository. | [Official Git Site](https://git-scm.com/downloads) |
-| R | Serves as the foundation for data processing and the renv environment. | [CRAN (The Comprehensive R Archive Network) ](https://cran.r-project.org/) |
-| Python | Used for environment management via Poetry and executing Python scripts. | [Official Python Website](https://www.python.org/downloads/) |
-| Quarto | Integrates results from R and Python and renders the final documentation. | [Quarto Official Installation Guide ](https://quarto.org/docs/getting-started/installation.html) |
-| RStudio Desktop | Recommended IDE for R/Quarto development. | [RStudio Desktop Download](https://posit.co/download/rstudio-desktop/) |
- 
-💡 Recommendation: Using Homebrew makes it easy to install and manage tools like Git from the terminal.
- 
+- [Tinderbox file for Quarto (Web)](https://fryagbye.quarto.pub/tinderbox-file-for-quarto/)
+- [Tinderbox file for Quarto (Web) in Japanese](https://fryagbye.quarto.pub/tinderbox-file-for-quarto-in-japanese)
+- [live-revealjs example](https://fryagbye.quarto.pub/quarto-presentations/#/title-slide)
+- [YouTube tutorial](https://youtu.be/4BEroHg-F8Y)
 
+![Tinderbox overview](output/screenshots/tinderbox_overview.png)
 
-## Repository Cloning and Initial Setup
- 
-Mac users should install Git via Homebrew and clone the repository locally.
+---
 
- 
-1. Preparing Git (via Homebrew)
- 
- 
-For Mac users, installing Git via Homebrew is recommended.
+<a id="日本語"></a>
+# 日本語
 
-```bash
-# If Homebrew is not installed, install it first
-# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# Install Git using Homebrew
-brew install git
+## 概要
+
+[Tinderbox](https://www.eastgate.com/Tinderbox/) はアウトライン・マップ・属性・ActionCode などを備えた macOS 向けノートツールです。このリポジトリの Tinderbox ファイル（`Demo_TBX_for_Quarto.tbx` / `TinderboxWithQuarto-x.y.z.tbx`）は、ノートの内容を Quarto の `.qmd` ファイルと `_quarto.yml` にエクスポートし、book・manuscript・revealjs の各プロジェクトを生成します。
+
+主な機能:
+
+- Quarto **book**（HTML / PDF / Typst）、**manuscript**（HTML / DOCX / JATS / MECA）、**revealjs** スライドの生成
+- R chunk・Python chunk・Mermaid・Graphviz の **Tinderbox 内レンダリングプレビュー**
+- Ziplink を使った Quarto 相互参照（`@fig-` / `@tbl-` / `@eq-` / `@sec-`）の入力支援とラベル一覧の自動収集
+- 引用（`citation/references.bib` + citeproc）、`_brand.yml`、`_language.yml` による日本語化・ブランド設定
+- 日本語タイトルの自動翻訳で `HTMLExportFileName` を生成（translate-shell / plamo-translate、任意）
+
+![Workflow](output/screenshots/workflow.png)
+
+## プロジェクトの全体像
+
+```text
+Tinderbox (.tbx)
+  ├─ ノート（pNote / pSubnote …プロトタイプで Markdown 構造を制御）
+  ├─ Export Agent ──export──> output/  (.qmd, _quarto.yml, _brand.yml …)
+  └─ Preview モード ──pandoc / Rscript──> Tinderbox 内プレビュー
+                                    │
+quarto preview / quarto render ─────┘
+  ├─ HTML book        (output/_bookhtml/)
+  ├─ PDF / Typst      (output/_bookpdf/, output/_booktypst/)
+  ├─ Manuscript       (myproject/_manuscript/ …HTML/DOCX/JATS)
+  └─ revealjs         (myrevealjs*/ …)
 ```
- 
 
- 
-2. Cloning the Repository
- 
- 
-Execute the following commands to move into the project directory.
+主要ディレクトリ:
+
+| パス | 内容 |
+|---|---|
+| `Demo_TBX_for_Quarto.tbx` | 開発用メインファイル |
+| `TinderboxWithQuarto-*.tbx` | 配布用ファイル |
+| `output/` | book プロジェクトのエクスポート先・レンダリング結果 |
+| `myproject/` | manuscript プロジェクト例 |
+| `myrevealjs/` `myrevealjs2/` | revealjs プロジェクト例 |
+| `Templates/` `Hints/` | エクスポートテンプレート・ライブラリ |
+| `citation/references.bib` | 参考文献データベース |
+| `pyproject.toml` / `uv.lock` | Python 依存関係（uv 管理） |
+| `renv.lock` / `renv/` | R パッケージ（renv 管理） |
+
+## 必要なソフトウェア
+
+| ソフトウェア | 用途 | 必須 | 公式サイト |
+|---|---|---|---|
+| Tinderbox 11.8+ | ノート編集・エクスポート（macOS のみ） | ✔ | [Eastgate](https://www.eastgate.com/Tinderbox/) |
+| Quarto 1.8+ | `.qmd` → 各フォーマットへのレンダリング | ✔ | [quarto.org](https://quarto.org/docs/getting-started/installation.html) |
+| R 4.5+ | R chunk の実行・プレビュー（renv） | ✔ | [CRAN](https://cran.r-project.org/) |
+| Python 3.12+ + uv | Python chunk 実行（`.venv`） | ✔ | [astral.sh/uv](https://docs.astral.sh/uv/) |
+| Git | リポジトリのクローン | ✔ | [git-scm.com](https://git-scm.com/downloads) |
+| MacTeX（lualatex） | 日本語 PDF 出力（`$Q_PDFEngine = lualatex`） | PDF のみ | [tug.org/mactex](https://tug.org/mactex/) |
+| Google Chrome | `quarto check` のヘッドレス確認・プレビュー | 推奨 | — |
+| RStudio Desktop | `.qmd` の編集・レンダリング | 任意 | [posit.co](https://posit.co/download/rstudio-desktop/) |
+| translate-shell / plamo-translate | `HTMLExportFileName` の自動翻訳 | 任意 | [translate-shell](https://github.com/soimort/translate-shell) |
+
+## 環境構築
+
+### 1. リポジトリのクローン
 
 ```bash
- # Open the terminal and navigate to your working directory
 git clone https://github.com/fryagbye/tinderboxwithquarto.git
 cd tinderboxwithquarto
 ```
- 
 
-## Python Environment Setup (Poetry)
-
-Python dependencies within the project are managed using Poetry in an isolated virtual environment.
- 
-
-1. Install Poetry:
- 
- 
-If Poetry is not yet installed on your system, follow the official documentation for installation.
- 
+### 2. Quarto
 
 ```bash
- # Example:
-curl -sSL https://install.python-poetry.org | python -
+brew install quarto
+# または https://quarto.org/docs/getting-started/installation.html のインストーラ
 ```
 
-2.  Install Dependencies: Run the following command in the project root folder (where pyproject.toml is located). 
- 
- 
-This will install all necessary packages into a dedicated virtual environment.
+### 3. Python（uv）
+
+依存関係は `uv.lock` で固定されています。
 
 ```bash
- # Create virtual environment and install dependencies
- poetry install
-``` 
- 
- 
+brew install uv        # 未インストールの場合
+uv sync                # .venv を作成し依存パッケージをインストール
+```
 
- 
-3. Using the Environment:
- 
- 
-To run Python scripts or use this environment within Jupyter/Quarto, either activate the virtual environment with poetry.
+matplotlib / plotly / pandas / jupyter / kaleido / ipykernel 等が `.venv` に入ります。スタンプから Quarto コマンドを呼ぶ場合は `$VenvActivateCommand`（既定: `source .venv/bin/activate`）で仮想環境が有効化されます。
+
+### 4. R + パッケージ（renv）
+
+R を [CRAN](https://cran.r-project.org/) からインストール後、プロジェクトルートで:
+
+```r
+# R コンソールで実行（renv が未インストールなら先に install.packages("renv")）
+renv::restore()
+```
+
+`renv.lock` に記録された全パッケージがプロジェクトローカルに復元されます。プレビューで使用するライブラリは TBXConfig の `$RLibraryListForPreview` で宣言されています（既定: `dplyr; knitr; kableExtra; stats; datasets; graphics; grDevices; rmarkdown`。デモの chunk ではさらに `ggplot2` 等を使用）。
+
+### 5. MacTeX（日本語 PDF を出力する場合）
 
 ```bash
- # To activate the virtual environment
- eval $(poetry env activate)
- ```
-       
-## R Environment Restoration (renv)
- 
-R package dependencies are managed by renv (Reproducible Environment).
- 
-
-1. Start an R Session:
- 
- 
-Launch the R console or RStudio and navigate to the project root directory.
- 
-
-2. Restore Dependencies:
- 
- 
-Execute the command below to install the exact versions of R packages specified in the renv.lock file.
- 
-
-```{.r}
- # Execute inside the R console
- renv::restore()
+brew install --cask mactex
 ```
- 
- 
 
- 
-The first time you run renv::restore(), R may automatically prompt you to install renv itself if it's not present. Please allow the installation if prompted.
+TinyTeX では日本語 PDF に必要な lualatex 環境が不足するため MacTeX を推奨します。
 
+### 6. 動作確認
 
-# Usage environment
- 
-Please refer to the output results of `quato check`.
-
- 
-* Quarto is using the released version 1.8.25 [^noteinstallversion].
- 
-
- 
-* R is version 4.5.1.
- 
-
- 
-* I use luaLatex for output in Japanese. I have installed MacTex because TinyTex doesn't include it.
- 
-
- 
-* It may be better to uninstall TinyTex.
- 
-
- 
-* I have set it to use the `lightbox` extension ( included in Quarto v1.4+.).
- 
-
- 
-* I have set it to use the `quarto-live` extension for revealjs. ([quarto live](https://github.com/r-wasm/quarto-live))
- 
- 
-
-[^noteinstallversion]:~~Since the old headless mode has been removed from Chrome 132, Quarto v1.7.13 or later is required.~~
- 
-`quarto check` 
-<details>
-
-```{.zsh}
-Quarto 1.8.25
-
-[✓] Checking environment information...
- 
-      Quarto cache location: /Users/tk4o2ka/Library/Caches/quarto
-
-[✓] Checking versions of quarto binary dependencies...
- 
-      Pandoc version 3.6.3: OK
-      Dart Sass version 1.87.0: OK
-      Deno version 2.3.1: OK
-      Typst version 0.13.0: OK
-
-[✓] Checking versions of quarto dependencies......OK
- 
-
-[✓] Checking Quarto installation......OK
- 
-      Version: 1.8.25
-      Path: /Applications/quarto/bin
-
-[✓] Checking tools....................OK
- 
-      Chromium: 869685
-      TinyTeX: (not installed)
-
-[✓] Checking LaTeX....................OK
- 
-      Tex:  (not detected)
-
-[✓] Checking Chrome Headless....................OK
- 
-      Using: Chrome found on system
-      Path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
-      Source: MacOS known location
-
-[✓] Checking basic markdown render....OK
- 
-
-[✓] Checking Python 3 installation....OK
- 
-      Version: 3.14.0
-      Path: /opt/homebrew/opt/python@3.14/bin/python3.14
-      Jupyter: (None)
-      Jupyter is not available in this Python installation.
-      Install with python3 -m pip install jupyter
-      There is an unactivated Python environment in .venv. Did you forget to activate it?
-
-[✓] Checking R installation...........OK
- 
-      Version: 4.5.1
-      Path: /Library/Frameworks/R.framework/Resources
-      LibPaths:
-        - /Users/tk4o2ka/github/tinderboxwithquarto/renv/library/macos/R-4.5/aarch64-apple-darwin20
-        - /Users/tk4o2ka/Library/Caches/org.R-project.R/R/renv/sandbox/macos/R-4.5/aarch64-apple-darwin20/4cd76b74
-      knitr: 1.50
-      rmarkdown: 2.30
-
-[✓] Checking Knitr engine render......OK
- 
+```bash
+quarto check
 ```
- 
-</details>
 
+### 7. Tinderbox で開く
 
+`Demo_TBX_for_Quarto.tbx`（または配布用 `TinderboxWithQuarto-x.y.z.tbx`）を Tinderbox 11.8+ で開き、次の `TBXConfig` 設定を行います。
 
+## TBXConfig の設定
 
+ドキュメント内の **TBXConfig** ノートで環境に合わせて属性を設定します。
 
+![TBXConfig](output/screenshots/TBXConfig01.png)
 
-## Installed packages
- 
+| 属性 | 説明 |
+|---|---|
+| `$ExportFolder` | エクスポート先。**絶対パス**を指定（例: `/Users/you/github/tinderboxwithquarto`）。クォートされたコマンド内では `~` が展開されません |
+| `$ProjectContainer` | 相互参照検索対象のプロジェクトコンテナ（例: `/How to use this file`） |
+| `$Quarto_Path` | quarto コマンドのパス（例: `/usr/local/bin/quarto`） |
+| `$TerminalApp` | スタンプ実行に使うターミナルアプリ名 |
+| `$RScriptPath` `$RLibraryListForPreview` `$RscriptHTMLTemplate` | R chunk プレビュー用 |
+| `$ImagePathForPandoc` `$PandocCSSPath` `$ImagePath` | プレビューの pandoc `--resource-path` / `--css` |
+| `$Q_BibliographyFile` | 参考文献 `.bib` のパス（プロジェクトコンテナ側でも設定可） |
+| `$Q_PDFEngine` | PDF エンジン（既定: `lualatex`） |
+| `$Rename_in` / `$PathOfTranslationCli` | 自動翻訳（既定 `ja:en`、translate-shell / plamo-translate、任意） |
+| `$ToggleTOC` `$TableOfContaintsNote` `$MakeIndexLevel` | TOC / 目次関連 |
 
-```{.r}
-#| echo: false
-#| message: false
-pacman::p_load(tidyverse, gt)
-installed.packages() |> 
-  as_tibble() |> 
-  select(Package, Version, Built) |> 
-  gt::gt()
-```
- 
-<details>
-    
-<summery>Package List</summery>
-    
-|Name|Version|Built|
-|----|-------|-----|
-|askpass|1.2.1|4.5.0|
-|backports|1.5.0|4.5.0|
-|base64enc|0.1-3|4.5.0|
-|bigD|0.3.1|4.5.0|
-|bit|4.6.0|4.5.0|
-|bit64|4.6.0-1|4.5.0|
-|bitops|1.0-9|4.5.0|
-|blob|1.2.4|4.5.0|
-|brio|1.1.5|4.5.0|
-|broom|1.0.10|4.5.0|
-|bslib|0.9.0|4.5.0|
-|cachem|1.1.0|4.5.0|
-|callr|3.7.6|4.5.0|
-|cellranger|1.1.0|4.5.0|
-|cli|3.6.5|4.5.0|
-|clipr|0.8.0|4.5.0|
-|commonmark|2.0.0|4.5.0|
-|conflicted|1.2.0|4.5.0|
-|cpp11|0.5.2|4.5.0|
-|crayon|1.5.3|4.5.0|
-|curl|7.0.0|4.5.0|
-|data.table|1.17.8|4.5.0|
-|DBI|1.2.3|4.5.0|
-|dbplyr|2.5.1|4.5.0|
-|desc|1.4.3|4.5.0|
-|digest|0.6.39|4.5.2|
-|downlit|0.4.5|4.5.2|
-|dplyr|1.1.4|4.5.0|
-|dtplyr|1.3.2|4.5.0|
-|evaluate|1.0.5|4.5.0|
-|fansi|1.0.7|4.5.2|
-|farver|2.1.2|4.5.0|
-|fastmap|1.2.0|4.5.0|
-|fontawesome|0.5.3|4.5.0|
-|forcats|1.0.1|4.5.0|
-|fs|1.6.6|4.5.0|
-|gargle|1.6.0|4.5.0|
-|generics|0.1.4|4.5.0|
-|ggplot2|4.0.1|4.5.2|
-|glue|1.8.0|4.5.0|
-|googledrive|2.1.2|4.5.0|
-|googlesheets4|1.1.2|4.5.0|
-|gt|1.1.0|4.5.0|
-|gtable|0.3.6|4.5.0|
-|gtExtras|0.6.1|4.5.0|
-|haven|2.5.5|4.5.0|
-|here|1.0.2|4.5.0|
-|highr|0.11|4.5.0|
-|hms|1.1.4|4.5.0|
-|htmltools|0.5.8.1|4.5.0|
-|htmlwidgets|1.6.4|4.5.0|
-|httr|1.4.7|4.5.0|
-|ids|1.0.1|4.5.0|
-|isoband|0.2.7|4.5.0|
-|jquerylib|0.1.4|4.5.0|
-|jsonlite|2.0.0|4.5.0|
-|juicyjuice|0.1.0|4.5.0|
-|kableExtra|1.4.0|4.5.0|
-|knitr|1.5|4.5.0|
-|labeling|0.4.3|4.5.0|
-|lifecycle|1.0.4|4.5.0|
-|litedown|0.8|4.5.0|
-|lubridate|1.9.4|4.5.0|
-|magrittr|2.0.4|4.5.0|
-|markdown|2|4.5.0|
-|memoise|2.0.1|4.5.0|
-|mime|0.13|4.5.0|
-|modelr|0.1.11|4.5.0|
-|openssl|2.3.4|4.5.0|
-|pacman|0.5.1|4.5.0|
-|paletteer|1.6.0|4.5.0|
-|pillar|1.11.1|4.5.0|
-|pkgconfig|2.0.3|4.5.0|
-|png|0.1-8|4.5.0|
-|prettyunits|1.2.0|4.5.0|
-|prismatic|1.1.2|4.5.0|
-|processx|3.8.6|4.5.0|
-|progress|1.2.3|4.5.0|
-|ps|1.9.1|4.5.0|
-|purrr|1.2.0|4.5.0|
-|R6|2.6.1|4.5.0|
-|ragg|1.5.0|4.5.0|
-|rappdirs|0.3.3|4.5.0|
-|RColorBrewer|1.1-3|4.5.0|
-|Rcpp|1.1.0|4.5.0|
-|RcppTOML|0.2.3|4.5.0|
-|reactable|0.4.4|4.5.0|
-|reactR|0.6.1|4.5.0|
-|readr|2.1.6|4.5.2|
-|readxl|1.4.5|4.5.0|
-|rematch|2.0.0|4.5.0|
-|rematch2|2.1.2|4.5.0|
-|remotes|2.5.0|4.5.0|
-|renv|1.1.5|4.5.0|
-|reprex|2.1.1|4.5.0|
-|reticulate|1.44.1|4.5.2|
-|rlang|1.1.6|4.5.0|
-|rmarkdown|2.3|4.5.0|
-|rprojroot|2.1.1|4.5.0|
-|rstudioapi|0.17.1|4.5.0|
-|rvest|1.0.5|4.5.0|
-|S7|0.2.1|4.5.2|
-|sass|0.4.10|4.5.0|
-|scales|1.4.0|4.5.0|
-|selectr|0.5-0|4.5.2|
-|stringi|1.8.7|4.5.0|
-|stringr|1.6.0|4.5.0|
-|svglite|2.2.2|4.5.0|
-|sys|3.4.3|4.5.0|
-|systemfonts|1.3.1|4.5.0|
-|textshaping|1.0.4|4.5.0|
-|tibble|3.3.0|4.5.0|
-|tidyr|1.3.1|4.5.0|
-|tidyselect|1.2.1|4.5.0|
-|tidyverse|2.0.0|4.5.0|
-|timechange|0.3.0|4.5.0|
-|tinytex|0.58|4.5.2|
-|tzdb|0.5.0|4.5.0|
-|utf8|1.2.6|4.5.0|
-|uuid|1.2-1|4.5.0|
-|V8|8.0.1|4.5.0|
-|vctrs|0.6.5|4.5.0|
-|viridisLite|0.4.2|4.5.0|
-|vroom|1.6.6|4.5.0|
-|withr|3.0.2|4.5.0|
-|xfun|0.54|4.5.0|
-|xml2|1.5.0|4.5.2|
-|yaml|2.3.10|4.5.0|
-|base|4.5.1|4.5.1|
-|boot|1.3-31|4.5.1|
-|class|7.3-23|4.5.1|
-|cluster|2.1.8.1|4.5.1|
-|codetools|0.2-20|4.5.1|
-|compiler|4.5.1|4.5.1|
-|datasets|4.5.1|4.5.1|
-|foreign|0.8-90|4.5.1|
-|graphics|4.5.1|4.5.1|
-|grDevices|4.5.1|4.5.1|
-|grid|4.5.1|4.5.1|
-|KernSmooth|2.23-26|4.5.1|
-|lattice|0.22-7|4.5.1|
-|MASS|7.3-65|4.5.1|
-|Matrix|1.7-3|4.5.1|
-|methods|4.5.1|4.5.1|
-|mgcv|1.9-3|4.5.1|
-|nlme|3.1-168|4.5.1|
-|nnet|7.3-20|4.5.1|
-|parallel|4.5.1|4.5.1|
-|rpart|4.1.24|4.5.1|
-|spatial|7.3-18|4.5.1|
-|splines|4.5.1|4.5.1|
-|stats|4.5.1|4.5.1|
-|stats4|4.5.1|4.5.1|
-|survival|3.8-3|4.5.1|
-|tcltk|4.5.1|4.5.1|
-|tools|4.5.1|4.5.1|
-|utils|4.5.1|4.5.1|
-</details>
+`_quarto.yml` の内容は `_quarto` ノートの `Q_*` 属性から生成されます（例: `$Q_Title`, `$Q_Author`, `$Q_HtmlTheme`）。日本語化する場合は `_language` ノート（`_language.yml`）をエクスポートし `$Q_HasLanguageYml = true`。
 
+## 使い方
 
+### 1. プロジェクト作成（スタンプ）
 
-
-
-
-
-## RStudio Session information
- 
-
-```{.r}
-#| echo: false
-sessionInfo()
-```
- 
-R version 4.5.1 (2025-06-13)
-Platform: aarch64-apple-darwin20
-Running under: macOS Sequoia 15.7.2
-Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
-locale:
-
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
- 
-time zone: Asia/Tokyo
-tzcode source: internal
-attached base packages:
-
-[1] stats     graphics  grDevices datasets  utils     methods   base
- 
-other attached packages:
- [1] gt_1.1.0        lubridate_1.9.4 forcats_1.0.1   stringr_1.6.0
- [5] dplyr_1.1.4     purrr_1.2.0     readr_2.1.6     tidyr_1.3.1
- [9] tibble_3.3.0    ggplot2_4.0.1   tidyverse_2.0.0
-loaded via a namespace (and not attached):
- [1] gtable_0.3.6       compiler_4.5.1     renv_1.1.5         tidyselect_1.2.1
- [5] xml2_1.5.0         scales_1.4.0       fastmap_1.2.0      yaml_2.3.10
- [9] R6_2.6.1           generics_0.1.4     pillar_1.11.1      RColorBrewer_1.1-3
-
-[13] tzdb_0.5.0         rlang_1.1.6        utf8_1.2.6         stringi_1.8.7
- 
-
-[17] sass_0.4.10        fs_1.6.6           S7_0.2.1           timechange_0.3.0
- 
-
-[21] cli_3.6.5          withr_3.0.2        magrittr_2.0.4     digest_0.6.39
- 
-
-[25] grid_4.5.1         hms_1.1.4          lifecycle_1.0.4    vctrs_0.6.5
- 
-
-[29] glue_1.8.0         farver_2.1.2       pacman_0.5.1       tools_4.5.1
- 
-
-[33] pkgconfig_2.0.3    htmltools_0.5.8.1
- 
-
-
-
-
-
-
-
-
-# Setting
- 
-
- 
-1. Setting up with "TBXConfig" note
- 
-
-![User Attributes in TBXConfig](output/screenshots/TBXConfig01.png)
- 
-    You need to change the values of the following "TBXConfig" attributes for configuration.
-
- 
-* `$Indent_Charactor` → Set the symbol representing the depth of indentation. ( default value = ★ )
- 
-
- 
-* ~~`$ExList` → List of notes excluded from cross-reference search ( default value = "List and Agent etc" )~~
- 
-
- 
-* `$ProjectContainer`  →  Book Project Path for CrossRef Search and Label Lists 
- 
-
-![Project Contaier Example](output/screenshots/BookProjectContainerExample.png)
- 
-
- 
-* `$ExportFolder` → File path of exported files.
- 
-
-![Export Folder Setting](output/screenshots/exportfoldersetting.png)
- 
-
- 
-* `$ToggleTOC` → Toggle for Generating TOC. ( default value = false ) You can use quarto option for TOC in _quarto.yml. 
- 
-
- 
-* `$Q_TableOfContainsNote` → **$Name** of TOC note. ( default value = Table of Contents )
- 
-
- 
-* `$Rename_in` → [`translate-shell`](https://github.com/soimort/translate-shell) option setting `[SOURCES]:[TAGETS]. ( default value = ja:en )
- 
-
- 
-* `$Q_PDFEngine` → Setting for [pdf engine](https://quarto.org/docs/output-formats/pdf-engine.html) This file is tested only with lualatex. ( default value = lualatex )
- 
-
- 
-* ~~`$OutlineBaseControl` → Adjustment of section levels in Markdown. ( default = 1 )~~
- 
-    `$OutlineBaseControl` is enabled in Manuscript and revealjs project. This attribute is used in pSubfolderManuscript and pSubfolderRevealjs note.
-     e.g. 
-
- 
-    * $OutlineBaseControl = 1 → \#\# Title
- 
-    
-
- 
-    * $OutlineBaseControl = 1 → \# Title 
- 
-
- 
-* `$RScriptLibraryPath` → R Library Resource Path ( default Value )
- 
-![Rscript Library Path](output/screenshots/RscriptLibpath.png)
-	
-
- 
-2. Making a `_quarto.yml`
- 
-    You can change the values of attributes of the "_quarto" note to change quarto options. The quarto options are attributes that start with "Q" in this file. The initial setting specified in `_quarto.yml` is for Japanese output. Please refer to [Quarto Book Structure](https://quarto.org/docs/books/book-structure.html) and [PDF Basics](https://quarto.org/docs/output-formats/pdf-basics.html) in detail.
-    If you use [Custom Translations](https://quarto.org/docs/authoring/language.html#custom-translations), you need to make `$Q_Has_Language_YML` `true` and set `$Q_Language_YML` for the filename.
-The "_language" note in this file is for translating to Japanese.
-
-![_quarto.yml 01](output/screenshots/quartoyml01.png)
- 
-
-![_quarto.yml 02](output/screenshots/quartoyml02.png)
- 
-
-![_quarto.yml 03](output/screenshots/quartoyml03.png)
- 
-
- 
-3. Changing the `_common.R` file. ( optional )
- 
-    You can set up `knitr` package options for R chunk.  
-    
-
-
-# Book format
- 
- 
-
-# Make a New Book Project
- 
-You can start with the stamp that makes a new book project.
-Only one book project is allowed per file.
-The project container is created at the bottom and it has Label lists, _quarto.yml, and an index note.
+- `New: New Project ( Book )` — book プロジェクト（1ファイルに1つ）
+- `New: New Project ( Manuscript )` — manuscript プロジェクト（複数可）
+- `New: New Project ( revealjs )` — revealjs プロジェクト（複数可）
 
 ![New Project](output/screenshots/newproject01.png)
- 
-If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
-Before calling quarto commands, the stamps activate the virtual environment.
 
+### 2. ノートを書く
 
-# Make new notes
- 
+- タイトルの末尾に `#pNote` / `#pSubnote` を付ける（またはプロトタイプを適用）。`pNote` = セクション、`pSubnote` = サブセクション。階層に応じて見出しレベルが自動調整されます
+- `index.qmd` は `pIndexQmd` プロトタイプまたは `$IsIndexqmd = true`
+- book では `pNote` の入れ子が Quarto の **Part / Chapter** に対応します
 
- 
-1. Make notes with Prototype pNote and pSubnote
- 
-    pNote is for Sections and pSubnote is for Subsections.
-Please set the Prototype of pNote to level 1 and pSubnote below level.
+### 3. chunk・グラフ・相互参照
 
- 
- * When creating a note, please enter "#pNote" or "#pSubnote" following the title. (or apply the pNote Prototype or pSubnote to notes you make )
- 
-    e.g. Note title -> わが輩は猫である#pSubnote
+- `pRChunk` / `pPChunk` ノートにコードを書き、`Chunk & Graph: Make Chunk and Graph List` スタンプで `＜r:tag➡️fig-label＞` 形式のタグを生成
+- ラベルは `#| label: fig-xxx` 形式で記述（`{r fig-xxx}` 形式は非対応）
+- 相互参照は Ziplink（`[[` 入力）で `@fig-` / `@tbl-` / `@eq-` / `@sec-` ラベルを挿入
+- Preview モード（`Notes: Set Preview Mode`）で R/Python chunk・Mermaid・Graphviz の結果を Tinderbox 内で確認できます
 
- 
-     * The note title (`$Name`) is the header for pNote or pSubnote.
- 
+![R chunk preview](output/screenshots/rchunkpreview.png)
 
- 
- * Depending on the hierarchy level, the level of the header also changes.
- 
-     e.g. If the title of pSubnote in level 2 depth is "わが輩は猫である", it will be output as follows when exporting.
-     > \#\# わが輩は猫である
+### 4. エクスポートとレンダリング
 
+1. `_quarto` ノートをエクスポート → `output/_quarto.yml`
+2. Export Agent 配下の `pNote` をエクスポート → `output/*.qmd`
+3. ターミナルまたはスタンプでレンダリング:
 
- 
-
-![Make new pNote](output/screenshots/makenewnote01.png)
- 
-
-![Make new pSubnote](output/screenshots/makenewnote02.png)
- 
-
-
- 
-
- 
-2. Index.qmd
- 
-    In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of the index.qmd is set to `true`.
-You can make the note for index.qmd with the pIndexQmd Prototype or make `$IsIndexqmd` of pNote  `true`.
-
-![Make the Index.qmd](output/screenshots/makeindexqmd.png)
- 
-
-
-
-
-
-
-## Special Notes Prototype
- 
-
- 
-1. pReferenceQmd
- 
- 
-    This prototype is inherited from pNote and $Text has a div with id `refs` to call a works cited list (below). ([Quarto Bibliography Generation](https://quarto.org/docs/authoring/citations.html#bibliography-generation))
-    `::: {#refs}`
-    `:::`
-
-![Make a reference note](output/screenshots/makereferenceqmd.png)
- 
-
- 
-2. pAppendixQmd
- 
-     This prototype is inherited from pNote and $IsAppendix is `true`.
-
-![Make a appendix note](output/screenshots/makeappendix.png)
- 
-
-
-
-
-
-
-
-
-# Chunks and Graphs
- 
-
- 
-1. R chunk and Python chunk notes
- 
-    You can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The “Chunk & Graph: Make Chunk List” stamp generates a tag like ＜Lang:Tag Label➡️Figure Label＞.
-These tags can be used to reference R chunks, Python chunks, Mermaid diagrams, or Graphviz code.
-    Please do not insert tags in the middle of a sentence.
-
-![Chunk Tag Example](output/screenshots/ChunkLabel.png)
- 
-If tags called in your notes are changed or deleted, the warning is shown.
-You can suppress the warning with  `$SuppresTagDetectWaring` in the project container note.
-
- 
-2. Rendered Preview in Text Pane(R chunks, Python chunks, Mermaid diagrams, and Graphviz only)
- 
-You can check the results of the code executed within an R chunk in the Preview screen. Similarly, the results of Python chunk and Mermaid and Graphviz code can also be displayed.
-Since the Python preview runs on Pyodide, errors will occur during the preview if your code includes libraries like Plotly that are not supported by Pyodide. 
-
-
-
-
-
-
-
-# Rename HTMLExportFileName of a note with translation
- 
-There is a stamp **"Notes: Tranlate Section Labels"** that translates the Japanese title (`$Name`) into English and automatically sets `$HTMLExportFileName` [^translate-shell]. and you can set `$SectionLabel` with stamp "Set: Section Label". The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with `$Rename_in` in the TBX configuration note (**TBXConfig**). ( By default, from Japanese to English).
-
-[^translate-shell]: [Translate-shell](https://github.com/soimort/translate-shell) installation required. 
- 
-
-```zsh
-> brew install translate-shell
-```
- 
-
-
-
-
-
-
-
-# Part in Book format
- 
-For Part, please refer to [Quarto's "Book Structure" reference](https://quarto.org/docs/books/book-structure.html).
-pNote is compatible with quarto's **Part** or **Chapter**.
-If pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1. 
-In this case, the hierarchy level and header level are different, so the header level is set based on the user attribute `$OutlineDepthBase`.
-pNote, which is treated as a Part, is turned on (`true`) for `$Is_Part_qmd`. The lower pNote contains the export file name (e.g. filename.qmd) of the pNote, which is Part, in `$Part_file`.
-If a Part note is empty, only the title (`$Name`) of the note is reflected in _quarto.yml, as shown in the **"Dice"** in the example below. 
-If the dice.qmd is not empty, the part title (as a level one header) as well as some introductory content for the part. 
-
-```yml 
-#_quarto.yml
-chapters:
-  - index.qmd
-  - preface.qmd
-  - part: "Dice" # if $Text("Dice").wordCount == 0 
-  chapters: 
-    - basics.qmd
-    - packages.qmd
-```
- 
-
-```yml
-#_quarto.yml
-chapters:
-  - index.qmd
-  - preface.qmd
-  - part: dice.qmd # if $Text("Dice").wordCount >0 
-    chapters: 
-      - basics.qmd
-      - packages.qmd
-```
- 
-The figure below shows the export example when Part is supported and the output result of _quarto.yml.
-
-![Folder configuration at the time of output and _quarto.yml](output/screenshots/PartandChapter.png)
- 
-
-
-
-
-
-
-
-# Cross-Reference using Ziplink
- 
-In Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). [^regrex]
-
-![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](output/screenshots/WorkingIndicator.png)
- 
-Convert it to a quotable title (citation name starting with \@) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
-
-[^regrex]: The diagrams and tables are extracted in regular expressions.
- 
-
-[^ziplink]: Please refer to "Text link creation via the Ziplinking method" in [A Tinderbox Reference File](https://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html).(@Anderson2024Tinde)
- 
-
-
-
-
-
-
-## How to set the label of the diagram
- 
-
-
-
-
-
-
-### Image link in markdown format
- 
-Recognize and collect labels in a format that extends the markdown.
-  
-\!\[Test image](output/screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
-
-![label:@fig-test](output/screenshots/toolbar.png)
- 
-
-
-
-
-
-
-
-
-## R chunk
- 
-Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.
-  
-＜r:airquality➡️fig-airquality＞
-
- 
-```{r}
-#| echo: false
-#| warning: false
-#| label: fig-airquality
-#| fig-cap: Temperature and ozone level.
-#| fig-width: 5
-#| fig-pos: H
-#| fig-show: asis
-library(ggplot2)
-ggplot(airquality, aes(Temp, Ozone)) + 
-  geom_point() + 
-  geom_smooth(method = "loess")
+```bash
+quarto preview output     # HTML プレビュー
+quarto render output      # book（html / pdf / typst）
+quarto render myproject   # manuscript
 ```
 
- 
+`Quarto: Book Preview` / `Quarto: Book Render` スタンプからも実行できます。
 
+![Rendered book](output/screenshots/quarto_book_html.png)
 
+![Manuscript](output/screenshots/quarto_manuscript.png)
 
+## 既知の注意点
 
+- **パスは絶対パスで**: シェルコマンドに渡すパスはクォートされるため `~` は展開されません。`$ExportFolder`・`$Q_BibliographyFile` 等は `/Users/you/...` 形式で設定してください
+- **Pandoc `--mathjax` 警告**: rmarkdown（≤2.32）が pandoc 3.11+ に非推奨の `--mathjax` を渡す警告が出ます。R chunk プレビューコマンド側でフィルタ済みです
+- **whitespace-only 行**: エクスポートテンプレート内の空白行は Quarto 出力での段落区切り維持のため意図的です
+- **`$IsUnnumbered` + `$HasSectionLabel`**: セクションラベルカスタマイズに既知の制約あり（[quarto-cli#5946](https://github.com/quarto-dev/quarto-cli/issues/5946)）
+- **Python プレビュー**: Pyodide ベースのため、Pyodide 非対応ライブラリ（plotly 等）はエラーになります
 
+## ライセンス
 
+MIT
 
-## Python chunk
- 
-Automatically recognize and collect Python chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. 
-In the following example, you can quote labels like @fig-matplotlib.
-  
-＜python:numpy＞
-  
+---
 
- 
-```{python}
-#| echo: false
-#| fig-width: 5
-#| fig-pos: H
-#| fig-show: asis
-import numpy as np
-a = np.arange(15).reshape(3, 5)
-a
+<a id="english"></a>
+# English
+
+## Overview
+
+[Tinderbox](https://www.eastgate.com/Tinderbox/) is a macOS note-taking tool with outlines, maps, attributes, and ActionCode. The Tinderbox files in this repository (`Demo_TBX_for_Quarto.tbx` / `TinderboxWithQuarto-x.y.z.tbx`) export notes into Quarto `.qmd` files and `_quarto.yml`, generating book, manuscript, and revealjs projects.
+
+Key features:
+
+- Generate Quarto **book** (HTML / PDF / Typst), **manuscript** (HTML / DOCX / JATS / MECA), and **revealjs** slides
+- **In-Tinderbox rendered preview** of R chunks, Python chunks, Mermaid diagrams, and Graphviz graphs
+- Ziplink-assisted Quarto cross-references (`@fig-` / `@tbl-` / `@eq-` / `@sec-`) with automatic label collection
+- Citations (`citation/references.bib` + citeproc), `_brand.yml`, and `_language.yml` localization
+- Automatic `HTMLExportFileName` translation of Japanese titles (translate-shell / plamo-translate, optional)
+
+## Project structure
+
+```text
+Tinderbox (.tbx)
+  ├─ Notes (pNote / pSubnote … prototypes control Markdown structure)
+  ├─ Export Agent ──export──> output/  (.qmd, _quarto.yml, _brand.yml …)
+  └─ Preview mode ──pandoc / Rscript──> in-Tinderbox preview
+                                    │
+quarto preview / quarto render ─────┘
+  ├─ HTML book        (output/_bookhtml/)
+  ├─ PDF / Typst      (output/_bookpdf/, output/_booktypst/)
+  ├─ Manuscript       (myproject/_manuscript/ …HTML/DOCX/JATS)
+  └─ revealjs         (myrevealjs*/ …)
 ```
 
- 
-  
-＜python:matplotlib➡️fig-matplotlib＞
-  
+| Path | Contents |
+|---|---|
+| `Demo_TBX_for_Quarto.tbx` | Main development file |
+| `TinderboxWithQuarto-*.tbx` | Distributable file |
+| `output/` | Book export destination & rendered results |
+| `myproject/` | Manuscript project example |
+| `myrevealjs/` `myrevealjs2/` | revealjs project examples |
+| `Templates/` `Hints/` | Export templates & library |
+| `citation/references.bib` | Bibliography database |
+| `pyproject.toml` / `uv.lock` | Python dependencies (uv) |
+| `renv.lock` / `renv/` | R packages (renv) |
 
- 
-```{python}
-#| echo: false
-#| label: fig-matplotlib
-#| fig-width: 5
-#| fig-pos: H
-#| fig-show: asis
+## Requirements
 
-import matplotlib.pyplot as plt
-import numpy as np
-fig = plt.figure()
-x = np.arange(10)
-y = 2.5 * np.sin(x / 20 * np.pi)
-yerr = np.linspace(0.05, 0.2, 10)
+| Software | Purpose | Required | Official site |
+|---|---|---|---|
+| Tinderbox 11.8+ | Note editing & export (macOS only) | ✔ | [Eastgate](https://www.eastgate.com/Tinderbox/) |
+| Quarto 1.8+ | Renders `.qmd` to all formats | ✔ | [quarto.org](https://quarto.org/docs/getting-started/installation.html) |
+| R 4.5+ | R chunk execution & preview (renv) | ✔ | [CRAN](https://cran.r-project.org/) |
+| Python 3.12+ + uv | Python chunks (`.venv`) | ✔ | [astral.sh/uv](https://docs.astral.sh/uv/) |
+| Git | Clone the repository | ✔ | [git-scm.com](https://git-scm.com/downloads) |
+| MacTeX (lualatex) | Japanese PDF output (`$Q_PDFEngine = lualatex`) | PDF only | [tug.org/mactex](https://tug.org/mactex/) |
+| Google Chrome | `quarto check` headless check / preview | Recommended | — |
+| RStudio Desktop | `.qmd` editing & rendering | Optional | [posit.co](https://posit.co/download/rstudio-desktop/) |
+| translate-shell / plamo-translate | `HTMLExportFileName` auto-translation | Optional | [translate-shell](https://github.com/soimort/translate-shell) |
 
-plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
-plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
-plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
-             label='uplims=True, lolims=True')
+## Setup
 
-upperlimits = [True, False] * 5
-lowerlimits = [False, True] * 5
-plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
-             label='subsets of uplims and lolims')
+### 1. Clone
 
-plt.legend(loc='lower right')
-plt.show(fig)
+```bash
+git clone https://github.com/fryagbye/tinderboxwithquarto.git
+cd tinderboxwithquarto
 ```
 
- 
-
-
-
-
-
-
-
-## How to set the label of the table
- 
-There are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.[^table-cross-ref]
-
-[^table-cross-ref]: For other formats, please refer to [quarto cross-reference](https://quarto.org/docs/authoring/cross-references.html#tables).
- 
-
-```{.txt}
-
- 
-:明度・彩度の修飾子 {#tbl-brightness-saturation}
- 
- 
-|項目|効果|
-|----|------------|
-|dark|暗くする|
-|darker|より暗くする|
-|darkest|最も暗くする|
-|light| 明るくする|
-```
- 
-
- 
-:明度・彩度の修飾子 {#tbl-brightness-saturation}
- 
- 
-|項目|効果|
-|----|------------|
-|dark|暗くする|
-|darker|より暗くする|
-|darkest|最も暗くする|
-|light| 明るくする|
-
-
-
-
-
-
-
-## Equations
- 
-Equation Example
-Black-Scholes (@eq-black-scholes) is a mathematical model that seeks to explain
-
- 
-* Input
- 
-
-```latex
-
-$$
-ma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$
- 
-```
- 
-
- 
-* Output
- 
-
-$$
-ma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$
- 
-
-
-
-
-
-
-
-## How to quote
- 
-If you enter two square brackets "[[", the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.
-
- 
-:How to quote
- 
-|Types of quotations  |Lable  |Quote|
-|---|---|---|
-|Chapters, Sections etc.   |#sec-   |\@sec-|
-|Figures  |#fig- <br>#\| label:fig-<br>%%\| label:fig-<br> \/\/\| label:fig-<br>   |\@fig-|
-|Charts　|#tbl-|\@tbl-|
-|Equations | #eq-| \@eq-|
-
-
-
-
-
-
-
-## Dummy links for cross-reference
- 
-You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
-
- 
-1. execute the "Labels: Make Dummy Link Data For Cross-Reference" stamp
- 
-
- 
-2. select cross-ref label notes ( start with "\@" ) and execute the "Labels: Dummy Link between Reference and Selected notes" stamp.
- 
-
-
-
-
-
-
-
-## Restrictions on quoted labels
- 
-
- 
-* The label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.
- 
-
- 
-* Cross-ref detection is carried out by regular expression. If it is executed in the middle of input, it will be duplicated with a short label.
- 
-In this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.
-
- 
-1. Labels: Clear Cross-Reference List（Delete all citation labels under the Reference List.）
- 
-
- 
-2. Labels: Make Cross-Reference List（Re-detect the quoted label.）
- 
-
-
-
-
-
-
-
-
-# Export and Render
- 
-
- 
-1. Export `_quarto.yml`
- 
-You can change the output format to "pdf" or "html"  with the stamp "Change quarto.yml template".
-If you use a _language.yml, you export "_language" note (optional. See  @sec-setting Setting)
-
- 
-2. Export  `.qmd` files ( pNote notes only)
- 
-The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to the "output" folder. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
-If you select the pNote notes below "Export Agent" and output it, ~~then execute the "Move qmd files" stamp~~, you can overwrite the qmd file directly to `./output` (=`$HTMLExportFileName` of your project folder) ( @fig-output-tree). This method avoids considering the folder structure when referencing image files with a relative path.
-
-![Folders](output/screenshots/outputfoldertree01.png)
- 
-
- 
-3. Preview HTML output. 
- 
-
- 
-    * Terminal application 
- 
-
-```zsh
-# preview
-# quarto preview "project name" (quarto command options)
-e.g. 
-> quarto preview output
-```
- 
-
- 
-    * You can execute the command with the stamp "Quarto: Book Preview ( Select Export Agent )" 
- 
-
-![Example: Quarto Preview](output/screenshots/quartorenderexample02.png)
- 
-
- 
-4. Render pdf or html.
- 
-
- 
-    * Terminal application 
- 
-
-```zsh
-> quarto render output
-```
- 
-
-![Example: Quarto Render](output/screenshots/quartorenderexample01.png)
- 
-
- 
-* You can execute the command with the stamp "Quarto: Book Render ( Select For Export ) 
- 
-    You can use RStudio for preview and render.
-
-
-
-
-
-
-
-# Example
- 
-
-[Example HTML](https://fryagbye.quarto.pub/tinderbox-file-for-quarto/)
- 
-
-[Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/61f3d4e8e09e16c57ac3382f63d8f12af2dc7f3a/output/_bookpdf/Tinderbox-file-for-Quarto.pdf) 
- 
-
-
-
-
-
-
-
-
-# Make a New Book Project
- 
-You can start with the stamp that makes a new book project.
-Only one book project is allowed per file.
-The project container is created at the bottom and it has Label lists, _quarto.yml, and an index note.
-
-![New Project](output/screenshots/newproject01.png)
- 
-If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
-Before calling quarto commands, the stamps activate the virtual environment.
-
-
-
-
-
-
-
-# Make new notes
- 
-
- 
-1. Make notes with Prototype pNote and pSubnote
- 
-    pNote is for Sections and pSubnote is for Subsections.
-Please set the Prototype of pNote to level 1 and pSubnote below level.
-
- 
- * When creating a note, please enter "#pNote" or "#pSubnote" following the title. (or apply the pNote Prototype or pSubnote to notes you make )
- 
-    e.g. Note title -> わが輩は猫である#pSubnote
-
- 
-     * The note title (`$Name`) is the header for pNote or pSubnote.
- 
-
- 
- * Depending on the hierarchy level, the level of the header also changes.
- 
-     e.g. If the title of pSubnote in level 2 depth is "わが輩は猫である", it will be output as follows when exporting.
-     > \#\# わが輩は猫である
-
-
- 
-
-![Make new pNote](output/screenshots/makenewnote01.png)
- 
-
-![Make new pSubnote](output/screenshots/makenewnote02.png)
- 
-
- 
-
- 
-2. Index.qmd
- 
-    In the quarto book format, **only one index.qmd is required**,  `$IsIndexqmd` of the index.qmd is set to `true`.
-You can make the note for index.qmd with the pIndexQmd Prototype or make `$IsIndexqmd` of pNote  `true`.
-
-![Make the Index.qmd](output/screenshots/makeindexqmd.png)
- 
-
-
-
-
-
-
-## Special Notes Prototype
- 
-
- 
-1. pReferenceQmd
- 
- 
-    This prototype is inherited from pNote and $Text has a div with id `refs` to call a works cited list (below). ([Quarto Bibliography Generation](https://quarto.org/docs/authoring/citations.html#bibliography-generation))
-    `::: {#refs}`
-    `:::`
-
-![Make a reference note](output/screenshots/makereferenceqmd.png)
- 
-
- 
-2. pAppendixQmd
- 
-     This prototype is inherited from pNote and $IsAppendix is `true`.
-
-![Make a appendix note](output/screenshots/makeappendix.png)
- 
-
-
-
-
-
-
-
-
-# Chunks and Graphs
- 
-
- 
-1. R chunk and Python chunk notes
- 
-    You can create a pRChunk for an R chunk and a pPChunk for a Python chunk. The “Chunk & Graph: Make Chunk List” stamp generates a tag like ＜Lang:Tag Label➡️Figure Label＞.
-These tags can be used to reference R chunks, Python chunks, Mermaid diagrams, or Graphviz code.
-    Please do not insert tags in the middle of a sentence.
-
-![Chunk Tag Example](output/screenshots/ChunkLabel.png)
- 
-If tags called in your notes are changed or deleted, the warning is shown.
-You can suppress the warning with  `$SuppresTagDetectWaring` in the project container note.
-
- 
-2. Rendered Preview in Text Pane(R chunks, Python chunks, Mermaid diagrams, and Graphviz only)
- 
-You can check the results of the code executed within an R chunk in the Preview screen. Similarly, the results of Python chunk and Mermaid and Graphviz code can also be displayed.
-Since the Python preview runs on Pyodide, errors will occur during the preview if your code includes libraries like Plotly that are not supported by Pyodide. 
-
-
-
-
-
-
-
-# Rename HTMLExportFileName of a note with translation
- 
-There is a stamp **"Notes: Tranlate Section Labels"** that translates the Japanese title (`$Name`) into English and automatically sets `$HTMLExportFileName` [^translate-shell]. and you can set `$SectionLabel` with stamp "Set: Section Label". The labels of the section cannot be duplicated, so please modify them manually if necessary. In addition, you can change the language to be translated with `$Rename_in` in the TBX configuration note (**TBXConfig**). ( By default, from Japanese to English).
-
-[^translate-shell]: [Translate-shell](https://github.com/soimort/translate-shell) installation required. 
- 
-
-```zsh
-> brew install translate-shell
-```
- 
-
-
-
-
-
-
-
-# Part in Book format
- 
-For Part, please refer to [Quarto's "Book Structure" reference](https://quarto.org/docs/books/book-structure.html).
-pNote is compatible with quarto's **Part** or **Chapter**.
-If pNote is at the bottom of pNote, the top pNote will be Part (Part ○), and the lower pNote will be Chapter (Chapter ○). You can place pNote at hierarchical level 2 only if you are under pNote of hierarchy level 1. 
-In this case, the hierarchy level and header level are different, so the header level is set based on the user attribute `$OutlineDepthBase`.
-pNote, which is treated as a Part, is turned on (`true`) for `$Is_Part_qmd`. The lower pNote contains the export file name (e.g. filename.qmd) of the pNote, which is Part, in `$Part_file`.
-If a Part note is empty, only the title (`$Name`) of the note is reflected in _quarto.yml, as shown in the **"Dice"** in the example below. 
-If the dice.qmd is not empty, the part title (as a level one header) as well as some introductory content for the part. 
-
-```yml 
-#_quarto.yml
-chapters:
-  - index.qmd
-  - preface.qmd
-  - part: "Dice" # if $Text("Dice").wordCount == 0 
-  chapters: 
-    - basics.qmd
-    - packages.qmd
-```
- 
-
-```yml
-#_quarto.yml
-chapters:
-  - index.qmd
-  - preface.qmd
-  - part: dice.qmd # if $Text("Dice").wordCount >0 
-    chapters: 
-      - basics.qmd
-      - packages.qmd
-```
- 
-The figure below shows the export example when Part is supported and the output result of _quarto.yml.
-
-![Folder configuration at the time of output and _quarto.yml](output/screenshots/PartandChapter.png)
- 
-
-
-
-
-
-
-
-# Cross-Reference using Ziplink
- 
-In Quarto, labeled diagrams, tables, etc., can be mutually quoted. Label Lists are collected automatically (or manually). [^regrex]
-
-![Label Lists and Working indicator(⏩ or ⏹️) for collecting automatically or not.](output/screenshots/WorkingIndicator.png)
- 
-Convert it to a quotable title (citation name starting with \@) and create a note for the corresponding part. **Tinderbox**'s **Ziplink** function [^ziplink] is a function for easily pasting links to notebooks. It is diverted to make it easy to enter the quoted name. This makes it relatively easy to find and enter the quoted label even if the number increases.
-
-[^regrex]: The diagrams and tables are extracted in regular expressions.
- 
-
-[^ziplink]: Please refer to "Text link creation via the Ziplinking method" in [A Tinderbox Reference File](https://acrobatfaq.com/atbref10/index/Automating_Tinderbox/Coding/Links/Text_Links/Text_link_creation_via_the_Ziplinking_method.html).(@Anderson2024Tinde)
- 
-
-
-
-
-
-
-## How to set the label of the diagram
- 
-
-
-
-
-
-
-### Image link in markdown format
- 
-Recognize and collect labels in a format that extends the markdown.
-  
-\!\[Test image](output/screenshots/toolbar.png){#fig-test fig-alt="test" fig-align="left" width=100%}
-
-![label:@fig-test](output/screenshots/toolbar.png)
- 
-
-
-
-
-
-
-
-
-## R chunk
- 
-Automatically recognize and collect R chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. In the following example, you can quote @fig-airquality.
-  
-＜r:airquality➡️fig-airquality＞
-
- 
-```{r}
-#| echo: false
-#| warning: false
-#| label: fig-airquality
-#| fig-cap: Temperature and ozone level.
-#| fig-width: 5
-#| fig-pos: H
-#| fig-show: asis
-library(ggplot2)
-ggplot(airquality, aes(Temp, Ozone)) + 
-  geom_point() + 
-  geom_smooth(method = "loess")
+### 2. Quarto
+
+```bash
+brew install quarto
+# or use the installer from https://quarto.org/docs/getting-started/installation.html
 ```
 
- 
+### 3. Python (uv)
 
+Dependencies are pinned in `uv.lock`.
 
-
-
-
-
-
-## Python chunk
- 
-Automatically recognize and collect Python chunk labels in the following format (#| label: fig-xxx-ooo, etc.). The method of specifying a label in the curly bracket ({r fig-xxx-ooo}) is not supported. 
-In the following example, you can quote labels like @fig-matplotlib.
-  
-＜python:numpy＞
-  
-
- 
-```{python}
-#| echo: false
-#| fig-width: 5
-#| fig-pos: H
-#| fig-show: asis
-import numpy as np
-a = np.arange(15).reshape(3, 5)
-a
+```bash
+brew install uv        # if not installed
+uv sync                # creates .venv and installs dependencies
 ```
 
- 
-  
-＜python:matplotlib➡️fig-matplotlib＞
-  
+matplotlib / plotly / pandas / jupyter / kaleido / ipykernel etc. are installed into `.venv`. Stamps that call Quarto activate the virtualenv via `$VenvActivateCommand` (default: `source .venv/bin/activate`).
 
- 
-```{python}
-#| echo: false
-#| label: fig-matplotlib
-#| fig-width: 5
-#| fig-pos: H
-#| fig-show: asis
+### 4. R + packages (renv)
 
-import matplotlib.pyplot as plt
-import numpy as np
-fig = plt.figure()
-x = np.arange(10)
-y = 2.5 * np.sin(x / 20 * np.pi)
-yerr = np.linspace(0.05, 0.2, 10)
+After installing R from [CRAN](https://cran.r-project.org/), run in the project root:
 
-plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
-plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
-plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
-             label='uplims=True, lolims=True')
-
-upperlimits = [True, False] * 5
-lowerlimits = [False, True] * 5
-plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
-             label='subsets of uplims and lolims')
-
-plt.legend(loc='lower right')
-plt.show(fig)
+```r
+# in an R console (install renv first if needed: install.packages("renv"))
+renv::restore()
 ```
 
- 
+All packages recorded in `renv.lock` are restored project-locally. Libraries used by the in-Tinderbox preview are declared in `$RLibraryListForPreview` (default: `dplyr; knitr; kableExtra; stats; datasets; graphics; grDevices; rmarkdown`; demo chunks also use `ggplot2` etc.).
 
+### 5. MacTeX (for Japanese PDF)
 
-
-
-
-
-
-## How to set the label of the table
- 
-There are multiple ways to specify labels, but they are only supported if it is a table in markdown format and the label name is above, as shown in the example below.[^table-cross-ref]
-
-[^table-cross-ref]: For other formats, please refer to [quarto cross-reference](https://quarto.org/docs/authoring/cross-references.html#tables).
- 
-
-```{.txt}
-
- 
-:明度・彩度の修飾子 {#tbl-brightness-saturation}
- 
- 
-|項目|効果|
-|----|------------|
-|dark|暗くする|
-|darker|より暗くする|
-|darkest|最も暗くする|
-|light| 明るくする|
+```bash
+brew install --cask mactex
 ```
- 
 
- 
-:明度・彩度の修飾子 {#tbl-brightness-saturation}
- 
- 
-|項目|効果|
-|----|------------|
-|dark|暗くする|
-|darker|より暗くする|
-|darkest|最も暗くする|
-|light| 明るくする|
+MacTeX is recommended because TinyTeX lacks the lualatex setup needed for Japanese PDF.
 
+### 6. Verify
 
-
-
-
-
-
-## Equations
- 
-Equation Example
-Black-Scholes (@eq-black-scholes) is a mathematical model that seeks to explain
-
- 
-* Input
- 
-
-```latex
-
-$$
-ma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$
- 
+```bash
+quarto check
 ```
- 
 
- 
-* Output
- 
+### 7. Open in Tinderbox
 
-$$
-ma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =  \mathrm r \mathrm C 
-$$
+Open `Demo_TBX_for_Quarto.tbx` (or the distributable `TinderboxWithQuarto-x.y.z.tbx`) in Tinderbox 11.8+ and configure `TBXConfig` as below.
 
+## TBXConfig settings
 
+Configure attributes on the **TBXConfig** note for your environment.
 
-## How to quote
- 
-If you enter two square brackets "[[", the list will be displayed, so please enter a part of the label name. As the candidates are narrowed down, select the citation label you want to enter.
+| Attribute | Description |
+|---|---|
+| `$ExportFolder` | Export destination — use an **absolute path** (e.g. `/Users/you/github/tinderboxwithquarto`); `~` is not expanded inside quoted commands |
+| `$ProjectContainer` | Project container for cross-reference search (e.g. `/How to use this file`) |
+| `$Quarto_Path` | Path to quarto (e.g. `/usr/local/bin/quarto`) |
+| `$TerminalApp` | Terminal app used by stamps |
+| `$RScriptPath` `$RLibraryListForPreview` `$RscriptHTMLTemplate` | R chunk preview settings |
+| `$ImagePathForPandoc` `$PandocCSSPath` `$ImagePath` | pandoc `--resource-path` / `--css` for preview |
+| `$Q_BibliographyFile` | Path to `.bib` (can also be set on the project container) |
+| `$Q_PDFEngine` | PDF engine (default: `lualatex`) |
+| `$Rename_in` / `$PathOfTranslationCli` | Auto-translation (default `ja:en`, translate-shell / plamo-translate, optional) |
+| `$ToggleTOC` `$TableOfContaintsNote` `$MakeIndexLevel` | TOC / index settings |
 
- 
-:How to quote
- 
-|Types of quotations  |Lable  |Quote|
-|---|---|---|
-|Chapters, Sections etc.   |#sec-   |\@sec-|
-|Figures  |#fig- <br>#\| label:fig-<br>%%\| label:fig-<br> \/\/\| label:fig-<br>   |\@fig-|
-|Charts　|#tbl-|\@tbl-|
-|Equations | #eq-| \@eq-|
+`_quarto.yml` is generated from the `Q_*` attributes of the `_quarto` note. For Japanese localization, export the `_language` note (`_language.yml`) and set `$Q_HasLanguageYml = true`.
 
+## Usage
 
+### 1. Create a project (stamps)
 
+- `New: New Project ( Book )` — one book project per file
+- `New: New Project ( Manuscript )` — multiple projects allowed
+- `New: New Project ( revealjs )` — multiple projects allowed
 
+### 2. Write notes
 
+- Append `#pNote` / `#pSubnote` to the title (or apply the prototype). `pNote` = section, `pSubnote` = subsection; heading levels follow the outline depth
+- `index.qmd` via the `pIndexQmd` prototype or `$IsIndexqmd = true`
+- In books, nested `pNote` maps to Quarto **Part / Chapter**
 
+### 3. Chunks, graphs, and cross-references
 
-## Dummy links for cross-reference
- 
-You can create dummy links showing where each cross-reference, starting with the @ symbol in the section, figure, and table label lists, is cited.
+- Write code in `pRChunk` / `pPChunk` notes, then run `Chunk & Graph: Make Chunk and Graph List` to generate `＜r:tag➡️fig-label＞` tags
+- Labels use `#| label: fig-xxx` syntax (`{r fig-xxx}` is not supported)
+- Cross-references: insert `@fig-` / `@tbl-` / `@eq-` / `@sec-` labels via Ziplink (`[[`)
+- Preview mode (`Notes: Set Preview Mode`) renders R/Python chunks, Mermaid, and Graphviz inside Tinderbox
 
- 
-1. execute the "Labels: Make Dummy Link Data For Cross-Reference" stamp
- 
+### 4. Export and render
 
- 
-2. select cross-ref label notes ( start with "\@" ) and execute the "Labels: Dummy Link between Reference and Selected notes" stamp.
- 
+1. Export the `_quarto` note → `output/_quarto.yml`
+2. Export `pNote` notes under the Export Agent → `output/*.qmd`
+3. Render via terminal or stamps:
 
-
-
-
-
-
-
-## Restrictions on quoted labels
- 
-
- 
-* The label before change or deletion remains because it cannot be detected even if the quoted label name is changed or deleted.
- 
-
- 
-* Cross-ref detection is carried out by regular expression. If it is executed in the middle of input, it will be duplicated with a short label.
- 
-In this case, if necessary, delete the quoted label name in Stamp and perform the detection manually by following the steps below.
-
- 
-1. Labels: Clear Cross-Reference List（Delete all citation labels under the Reference List.）
- 
-
- 
-2. Labels: Make Cross-Reference List（Re-detect the quoted label.）
- 
-
-
-
-
-
-
-
-
-# Export and Render
- 
-
- 
-1. Export `_quarto.yml`
- 
-You can change the output format to "pdf" or "html"  with the stamp "Change quarto.yml template".
-If you use a _language.yml, you export "_language" note (optional. See  @sec-setting Setting)
-
- 
-2. Export  `.qmd` files ( pNote notes only)
- 
-The pSubnote at the bottom of pNote at the time of output is all output as one qmd file in the state contained when pNote is exported. Therefore, it is OK to export by selecting only pNote to the "output" folder. In addition, pSubnote does not require output, but if you export, it is set to output as a text file (extension .txt).
-If you select the pNote notes below "Export Agent" and output it, ~~then execute the "Move qmd files" stamp~~, you can overwrite the qmd file directly to `./output` (=`$HTMLExportFileName` of your project folder) ( @fig-output-tree). This method avoids considering the folder structure when referencing image files with a relative path.
-
-![Folders](output/screenshots/outputfoldertree01.png)
- 
-
- 
-3. Preview HTML output. 
- 
-
- 
-    * Terminal application 
- 
-
-```zsh
-# preview
-# quarto preview "project name" (quarto command options)
-e.g. 
-> quarto preview output
+```bash
+quarto preview output     # HTML preview
+quarto render output      # book (html / pdf / typst)
+quarto render myproject   # manuscript
 ```
- 
 
- 
-    * You can execute the command with the stamp "Quarto: Book Preview ( Select Export Agent )" 
- 
+`Quarto: Book Preview` / `Quarto: Book Render` stamps do the same from Tinderbox.
 
-![Example: Quarto Preview](output/screenshots/quartorenderexample02.png)
- 
+## Known issues
 
- 
-4. Render pdf or html.
- 
+- **Use absolute paths**: paths passed to shell commands are quoted, so `~` is not expanded. Set `$ExportFolder`, `$Q_BibliographyFile`, etc. as `/Users/you/...`
+- **Pandoc `--mathjax` warning**: rmarkdown (≤2.32) passes deprecated `--mathjax` to pandoc 3.11+; the generated preview command filters this warning
+- **Whitespace-only lines** in export templates are intentional — they preserve paragraph separation in Quarto output
+- **`$IsUnnumbered` + `$HasSectionLabel`**: known limitation ([quarto-cli#5946](https://github.com/quarto-dev/quarto-cli/issues/5946))
+- **Python preview** runs on Pyodide; unsupported libraries (e.g. plotly) will error
 
- 
-    * Terminal application 
- 
+## License
 
-```zsh
-> quarto render output
-```
- 
-
-![Example: Quarto Render](output/screenshots/quartorenderexample01.png)
- 
-
- 
-* You can execute the command with the stamp "Quarto: Book Render ( Select For Export ) 
- 
-    You can use RStudio for preview and render.
-
-
-
-
-
-
-
-# Example
- 
-
-[Example HTML](https://fryagbye.quarto.pub/tinderbox-file-for-quarto/)
- 
-
-[Example PDF](https://github.com/fryagbye/tinderboxwithquarto/blob/61f3d4e8e09e16c57ac3382f63d8f12af2dc7f3a/output/_bookpdf/Tinderbox-file-for-Quarto.pdf) 
- 
-
-
-
-
-
-
-
-# Manuscript format
- 
-
-
-
-
-
-
-# Make a New Manuscript Project
- 
-you can start with the stamp that makes a new manuscript project.
-A Manuscript project can have multiple projects in one file.
-
-![New Project](output/screenshots/newproject02.png)
- 
-If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
-Before calling quarto commands, the stamps activate the virtual environment.
-
-
-
-
-
-
-
-# Make sub-project folder
- 
-Make a note for the sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
-
-
-
-
-
-
-## Make \_quarto.yml for the sub-project
- 
-You have to set a qmd file name.
-Manuscript has only one qmd file.
-
-
-
-
-
-
-
-## Make notes
- 
-The manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
-
-
-
-
-
-
-### Front Matter and Subnote
- 
-
- 
-1. pFrontmatterManuscript
- 
-    
-    This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.
-You can set data for author(s) with the path of note with pAuther notes. ( like Authors )
-
- 
-2. pSubnoteManuscript
- 
-    This is a dummy file for pFrontmatterManuscript. The markdown level depends on the indent level and `$OutlineBaseControl` of of the subproject folder.
-
-```
-($OutlineDepthBase + $OutlineBaseControl(collect(ancestors,$Path)[-1])) * "#" 
-```
- 
-
-
-
-
-
-
-
-
-
-# Export and Render
- 
-
- 
-1. Export
- 
-    You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in the sub-project folder.
-
- 
-2. Activate a virtual environment for python.
- 
-if you use a virtual environment, activate it for loading python library.
-This demo file needs some libraries ( numpy, matplotlib, etc.).
-e.g.
-
-```zsh
-> poetry env activate
-```
- 
-
- 
-3. Render sub-project
- 
-
-```zsh
-# quarto render "your project name"
-> quarto render myproject
-# For preview
-> quarto preview myproject --to html 
-```
- 
-
-
-
-
-
-
-
-
-# Make a New Manuscript Project
- 
-you can start with the stamp that makes a new manuscript project.
-A Manuscript project can have multiple projects in one file.
-
-![New Project](output/screenshots/newproject02.png)
- 
-If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
-Before calling quarto commands, the stamps activate the virtual environment.
-
-
-
-
-
-
-
-# Make sub-project folder
- 
-Make a note for the sub-project with **pSubfolderManuscript** like this ( _quarto_manuscript ).
-
-
-
-
-
-
-## Make \_quarto.yml for the sub-project
- 
-You have to set a qmd file name.
-Manuscript has only one qmd file.
-
-
-
-
-
-
-
-## Make notes
- 
-The manuscript has only one qmd file. The qmd file name is set in _quarto.yml (_quarto_manuscript).
-
-
-
-
-
-
-### Front Matter and Subnote
- 
-
- 
-1. pFrontmatterManuscript
- 
-    
-    This is a qmd file that contains a Front Matter. When you export, it has contents of descendants.
-You can set data for author(s) with the path of note with pAuther notes. ( like Authors )
-
- 
-2. pSubnoteManuscript
- 
-    This is a dummy file for pFrontmatterManuscript. The markdown level depends on the indent level and `$OutlineBaseControl` of of the subproject folder.
-
-```
-($OutlineDepthBase + $OutlineBaseControl(collect(ancestors,$Path)[-1])) * "#" 
-```
- 
-
-
-
-
-
-
-
-
-
-# Export and Render
- 
-
- 
-1. Export
- 
-    You have to export _quarto.yml ( _quarto_manuscript ) and one qmd ( main ) in the sub-project folder.
-
- 
-2. Activate a virtual environment for python.
- 
-if you use a virtual environment, activate it for loading python library.
-This demo file needs some libraries ( numpy, matplotlib, etc.).
-e.g.
-
-```zsh
-> poetry env activate
-```
- 
-
- 
-3. Render sub-project
- 
-
-```zsh
-# quarto render "your project name"
-> quarto render myproject
-# For preview
-> quarto preview myproject --to html 
-```
- 
-
-
-
-
-
-
-
-# revealjs format
- 
-
-
-
-
-
-
-# Make a New revealjs Project
- 
-you can start with the stamp that makes a new revealjs project.
-A revealjs project can have multiple projects in one file.
-
-![New Project](output/screenshots/newproject03.png)
- 
-If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
-Before calling quarto commands, the stamps activate the virtual environment.
-
-
-
-
-
-
-
-# Make sub-project folder
- 
-Make a note for the sub-project with **pSubfolderRevealjs** .
-
-
-
-
-
-
-## Front Matter and Subnote
- 
-
- 
-1. pFrontmatterRevealjs
- 
-    
-    This is a qmd file that contains a Front Matter. When you export, it has descendants' contents.
-
- 
-2. pSubnoteRevealjs
- 
-    This is a dummy file for pFrontmatterRevealjs. The markdown level depends on the indent level and `$OutlineBaseControl` of the subproject folder.
-
-```
-($OutlineDepthBase + $OutlineBaseControl(collect(ancestors,$Path)[-1])) * "#" 
-```
- 
-
- 
-3. Quote chunk code blocks
- 
-    You can chunk code blocks with a quote tag like the one below from a child note (pRChunk or pPChunk).
-    <Lang:chunknotename>
- 
-
-
-
-
-
-
-
-## quarto-live extention (β version)
- 
-This file supports [quarto-live](https://r-wasm.github.io/quarto-live/).
-You add the quarto-live extension to your subproject path.
-(If you add it to the project root folder and call it with a relative path, an error will occur.)
-
-
-
-
-
-
-
-## Example
- 
-
-[Example live-revealjs](https://fryagbye.quarto.pub/quarto-presentations/#/title-slide)
- 
-
-
-
-
-
-
-
-
-
-# Make a New revealjs Project
- 
-you can start with the stamp that makes a new revealjs project.
-A revealjs project can have multiple projects in one file.
-
-![New Project](output/screenshots/newproject03.png)
- 
-If you use a virtual environment with Python and the stamps about quarto command, please set $Q_VenvActivateBinPath.
-Before calling quarto commands, the stamps activate the virtual environment.
-
-
-
-
-
-
-
-# Make sub-project folder
- 
-Make a note for the sub-project with **pSubfolderRevealjs** .
-
-
-
-
-
-
-## Front Matter and Subnote
- 
-
- 
-1. pFrontmatterRevealjs
- 
-    
-    This is a qmd file that contains a Front Matter. When you export, it has descendants' contents.
-
- 
-2. pSubnoteRevealjs
- 
-    This is a dummy file for pFrontmatterRevealjs. The markdown level depends on the indent level and `$OutlineBaseControl` of the subproject folder.
-
-```
-($OutlineDepthBase + $OutlineBaseControl(collect(ancestors,$Path)[-1])) * "#" 
-```
- 
-
- 
-3. Quote chunk code blocks
- 
-    You can chunk code blocks with a quote tag like the one below from a child note (pRChunk or pPChunk).
-    <Lang:chunknotename>
- 
-
-
-
-
-
-
-
-## quarto-live extention (β version)
- 
-This file supports [quarto-live](https://r-wasm.github.io/quarto-live/).
-You add the quarto-live extension to your subproject path.
-(If you add it to the project root folder and call it with a relative path, an error will occur.)
-
-
-
-
-
-
-
-## Example
- 
-
-[Example live-revealjs](https://fryagbye.quarto.pub/quarto-presentations/#/title-slide)
- 
-
-
-
-
-
-# References
- 
-Anderson, Mark. 2024. “A Tinderbox Reference File.” 2024.
-Wickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize,
-and Model Data. “O’Reilly Media, Inc.”
- 
-
-
-
-
-
-
-
-# Restrictions
- 
-It seems that the section label customization function cannot be used in the latest release [ref. Cross-references on unnumbered pages fail (PDF) or are mislabeled (HTML)](https://github.com/quarto-dev/quarto-cli/issues/5946). 
-If you turn on `$IsUnnumbered` and `$HasSectionLabel`, the display of the quote will be fixed to the number + title, so please turn off `$IsUnnumbered`.
-Please do not use parentheses in note titles. The section label list is not being generated correctly.
-
-
-
-
-
-
-
+MIT
