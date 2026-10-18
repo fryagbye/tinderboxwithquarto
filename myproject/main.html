@@ -1,0 +1,37 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>
+---
+title: "Quarto Computations"
+date: 2024-06-29
+author:
+^include(^value(find(inside($Q_AuthorPath)))^,)::template not found, or template includes itself^include(^value(find(inside($Q_AuthorPath)))^,)::template not found, or template includes itself
+
+
+abstract: >
+  This is a demo of quarto manuscript
+
+keywords: Plotly,Python,Quarto
+
+
+license: "CC BY"
+copyright:
+  holder: quarto-dev
+  year: [2023,2024]
+citation:
+  container-title: Test
+  volume: 1
+  issue: 1
+  doi: 10.xxxx/12345678
+funding: "The author received no specific funding for this work."
+---
+
+
+
+```{r, echo=FALSE}
+#| include: false
+out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+source("_common.R")
+```
+
+
+^include(^value($IncludeNotes)^,)::template not found, or template includes itself^include(^value($IncludeNotes)^,)::template not found, or template includes itself^include(^value($IncludeNotes)^,)::template not found, or template includes itself^include(^value($IncludeNotes)^,)::template not found, or template includes itself^include(^value($IncludeNotes)^,)::template not found, or template includes itself
+</body></html>

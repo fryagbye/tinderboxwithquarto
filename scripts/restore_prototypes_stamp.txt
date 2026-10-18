@@ -1,0 +1,355 @@
+// ================================================================
+// Restore prototypes — 消失した $Prototype 割当の一括復元
+// 出典: コミット 65dec6c（消失前の正解状態）との全件突合結果
+// 合計 238 行 = 未復元 226 件 + 誤設定修正 12 件
+//
+// 使い方:
+//   1. Tinderbox で任意のノートを1つだけ選択
+//   2. Stamps インスペクタで新規スタンプ作成（例: "Restore prototypes"）
+//   3. このファイルの内容をスタンプの Action に全て貼り付け
+//   4. Apply — 選択中のノート1つに対して1回だけ実行すれば完了
+//      （各行は $ID を明示しているので、どのノートに適用しても結果は同じ）
+//   5. 実行後、このスタンプは削除してよい
+//
+// 注意:
+//   - $Prototype(ID)="値"; という形式で、ID を持つノートの
+//     プロトタイプを直接設定する（現在値が違っていても上書き）。
+//   - 1765002634(pSubnote) と 1765002413(pReferenceList) は
+//     65dec6c に存在しない手動追加の割当。意図的な可能性がある
+//     ため、このスタンプでは変更しない。
+// ================================================================
+
+// ---- 誤設定の修正（proto が違う値に付いている 12 件）----
+
+// book 部: pSubnote → pNote
+$Prototype(1765002605)="pNote";
+$Prototype(1765002606)="pNote";
+$Prototype(1765002608)="pNote";
+$Prototype(1765002609)="pNote";
+$Prototype(1765002610)="pNote";
+$Prototype(1765002611)="pNote";
+$Prototype(1765002622)="pNote";
+
+// manuscript 部: pSubnoteManuscript → チャンク系
+$Prototype(1765002687)="pPChunk";
+$Prototype(1765002689)="pPChunk";
+$Prototype(1765596426)="pPChunk";
+$Prototype(1765002691)="pPChunk";
+$Prototype(1765002693)="pRChunk";
+
+// ---- 未復元の復元（proto なし 226 件）----
+
+// pNote
+$Prototype(1765002440)="pNote";
+$Prototype(1765002448)="pNote";
+
+// revealjs 部
+$Prototype(1765002728)="pYMLQuartolive";
+$Prototype(1765002729)="pFrontmatterRevealjs";
+$Prototype(1765002730)="pSubnoteRevealjs";
+$Prototype(1765002731)="pSubnoteRevealjs";
+$Prototype(1765002733)="pSubnoteRevealjs";
+$Prototype(1765002735)="pSubnoteRevealjs";
+$Prototype(1765002737)="pSubnoteRevealjs";
+
+// チャンク本体
+$Prototype(1765002732)="pRChunk";
+$Prototype(1765002734)="pRChunk";
+$Prototype(1765002736)="pRChunk";
+$Prototype(1765002417)="pRChunk";
+$Prototype(1765002738)="pPChunk";
+$Prototype(1765002422)="pChunk";
+$Prototype(1765002423)="pChunk";
+
+// チャンク/グラフリスト（エージェント）
+$Prototype(1776695279)="pChunkList";
+$Prototype(1776695280)="pChunkList";
+$Prototype(1776695284)="pChunkList";
+$Prototype(1776695287)="pChunkList";
+$Prototype(1776695290)="pChunkList";
+$Prototype(1776695293)="pRChunkList";
+$Prototype(1776695296)="pRChunkList";
+$Prototype(1776695299)="pRChunkList";
+$Prototype(1776695300)="pRChunkList";
+$Prototype(1776698187)="pMFGraphList";
+$Prototype(1776698191)="pMFGraphList";
+$Prototype(1791987717)="pMFGraphList";
+$Prototype(1776698194)="pGGraphList";
+$Prototype(1776698197)="pGGraphList";
+$Prototype(1776698198)="pGGraphList";
+$Prototype(1776698201)="pGGraphList";
+
+// 設定 / YML 系
+$Prototype(1765002596)="pYML";
+$Prototype(1765002439)="pYML";
+$Prototype(1765002447)="pYML";
+$Prototype(1765002597)="pLanguageYML";
+$Prototype(1765002598)="pDotR";
+
+// ラベル・コンテナ系
+$Prototype(1765001750)="pLabelListContainer";
+$Prototype(1765001798)="pLabelListContainer";
+$Prototype(1765002414)="pLabelListContainer";
+$Prototype(1765002722)="pLabelListContainer";
+$Prototype(1765002723)="pLabelListContainer";
+$Prototype(1765002726)="pLabelListContainer";
+$Prototype(1765002727)="pLabelListContainer";
+$Prototype(1765001941)="pMFContainer";
+$Prototype(1791982584)="pMFContainer";
+$Prototype(1765002418)="pMFContainer";
+$Prototype(1765002325)="pGContainer";
+$Prototype(1765002342)="pGContainer";
+$Prototype(1765002352)="pGContainer";
+$Prototype(1765002419)="pGContainer";
+
+// Reference DB
+$Prototype(1765001920)="pReference";
+$Prototype(1765001921)="pReference";
+$Prototype(1765001922)="pReference";
+$Prototype(1776949820)="pReferenceList";
+$Prototype(1776949822)="pReferenceList";
+$Prototype(1776949824)="pReferenceList";
+$Prototype(1776949826)="pReferenceList";
+$Prototype(1776949828)="pReferenceList";
+$Prototype(1776949830)="pReferenceList";
+$Prototype(1776949834)="pReferenceList";
+$Prototype(1776949836)="pReferenceList";
+$Prototype(1776949838)="pReferenceList";
+$Prototype(1776949840)="pReferenceList";
+$Prototype(1776949842)="pReferenceList";
+$Prototype(1767340203)="pReferenceList";
+$Prototype(1767340204)="pReferenceList";
+$Prototype(1767340205)="pReferenceList";
+$Prototype(1767340206)="pReferenceList";
+$Prototype(1767340207)="pReferenceList";
+$Prototype(1767340208)="pReferenceList";
+$Prototype(1767340209)="pReferenceList";
+$Prototype(1767340210)="pReferenceList";
+$Prototype(1767340211)="pReferenceList";
+$Prototype(1767340212)="pReferenceList";
+$Prototype(1767340213)="pReferenceList";
+$Prototype(1767340214)="pReferenceList";
+$Prototype(1767340215)="pReferenceList";
+$Prototype(1767340216)="pReferenceList";
+$Prototype(1767340217)="pReferenceList";
+$Prototype(1767340218)="pReferenceList";
+$Prototype(1767340219)="pReferenceList";
+$Prototype(1767340220)="pReferenceList";
+$Prototype(1767340221)="pReferenceList";
+$Prototype(1767340222)="pReferenceList";
+$Prototype(1767340223)="pReferenceList";
+$Prototype(1767340224)="pReferenceList";
+$Prototype(1767340225)="pReferenceList";
+$Prototype(1767340226)="pReferenceList";
+$Prototype(1767340227)="pReferenceList";
+$Prototype(1767340228)="pReferenceList";
+$Prototype(1767340229)="pReferenceList";
+$Prototype(1767340230)="pReferenceList";
+$Prototype(1767340231)="pReferenceList";
+$Prototype(1767340232)="pReferenceList";
+$Prototype(1767340233)="pReferenceList";
+$Prototype(1767340234)="pReferenceList";
+$Prototype(1767340235)="pReferenceList";
+$Prototype(1767340236)="pReferenceList";
+$Prototype(1767340237)="pReferenceList";
+$Prototype(1776777530)="pReferenceList";
+$Prototype(1778303768)="pReferenceList";
+$Prototype(1767340238)="pReferenceList";
+$Prototype(1767340239)="pReferenceList";
+$Prototype(1767340240)="pReferenceList";
+$Prototype(1767340241)="pReferenceList";
+$Prototype(1767340242)="pReferenceList";
+$Prototype(1767340243)="pReferenceList";
+$Prototype(1767340244)="pReferenceList";
+$Prototype(1767340245)="pReferenceList";
+$Prototype(1767340246)="pReferenceList";
+$Prototype(1767340247)="pReferenceList";
+$Prototype(1767340248)="pReferenceList";
+$Prototype(1767323967)="pReferenceList";
+$Prototype(1767323968)="pReferenceList";
+$Prototype(1767323969)="pReferenceList";
+$Prototype(1767324027)="pReferenceList";
+$Prototype(1767327057)="pReferenceList";
+$Prototype(1767327058)="pReferenceList";
+$Prototype(1767318317)="pReferenceList";
+$Prototype(1767318319)="pReferenceList";
+$Prototype(1767318321)="pReferenceList";
+$Prototype(1767318324)="pReferenceList";
+$Prototype(1767318326)="pReferenceList";
+$Prototype(1767341079)="pReferenceList";
+$Prototype(1767341082)="pReferenceList";
+$Prototype(1767341085)="pReferenceList";
+$Prototype(1767341088)="pReferenceList";
+$Prototype(1767341091)="pReferenceList";
+$Prototype(1767341094)="pReferenceList";
+$Prototype(1767341100)="pReferenceList";
+$Prototype(1767341103)="pReferenceList";
+$Prototype(1767341106)="pReferenceList";
+$Prototype(1767341110)="pReferenceList";
+$Prototype(1767341113)="pReferenceList";
+
+// スタンプ（Hints/Stamps 配下）
+$Prototype(1765002377)="pStamp";
+$Prototype(1765002378)="pStamp";
+$Prototype(1765002379)="pStamp";
+$Prototype(1765002380)="pStamp";
+$Prototype(1765002381)="pStamp";
+$Prototype(1765002382)="pStamp";
+$Prototype(1765002383)="pStamp";
+$Prototype(1765002384)="pStamp";
+$Prototype(1765002385)="pStamp";
+$Prototype(1765100868)="pStamp";
+$Prototype(1765100870)="pStamp";
+$Prototype(1765002387)="pStamp";
+$Prototype(1765002388)="pStamp";
+$Prototype(1765002389)="pStamp";
+$Prototype(1765002390)="pStamp";
+$Prototype(1765002391)="pStamp";
+$Prototype(1765002392)="pStamp";
+$Prototype(1765002393)="pStamp";
+$Prototype(1765002394)="pStamp";
+$Prototype(1765002397)="pStamp";
+$Prototype(1765002398)="pStamp";
+$Prototype(1765002399)="pStamp";
+$Prototype(1765002400)="pStamp";
+$Prototype(1765002401)="pStamp";
+$Prototype(1765002402)="pStamp";
+$Prototype(1765002403)="pStamp";
+$Prototype(1765002404)="pStamp";
+$Prototype(1765002405)="pStamp";
+$Prototype(1765002406)="pStamp";
+$Prototype(1765002407)="pStamp";
+$Prototype(1765002408)="pStamp";
+$Prototype(1765002409)="pStamp";
+$Prototype(1767291044)="pStamp";
+$Prototype(1767291045)="pStamp";
+$Prototype(1767291046)="pStamp";
+$Prototype(1767291047)="pStamp";
+$Prototype(1767291048)="pStamp";
+$Prototype(1767291049)="pStamp";
+$Prototype(1767291050)="pStamp";
+$Prototype(1767291051)="pStamp";
+$Prototype(1767291181)="pStamp";
+$Prototype(1767291182)="pStamp";
+$Prototype(1767291183)="pStamp";
+$Prototype(1767291184)="pStamp";
+$Prototype(1767291185)="pStamp";
+$Prototype(1767291228)="pStamp";
+$Prototype(1767291229)="pStamp";
+$Prototype(1767291230)="pStamp";
+$Prototype(1767291231)="pStamp";
+
+// 関数（Hints/Functions 配下）
+$Prototype(1767291035)="pActionCode";
+$Prototype(1767291037)="pActionCode";
+$Prototype(1767291038)="pActionCode";
+$Prototype(1767291041)="pActionCode";
+$Prototype(1767291042)="pActionCode";
+$Prototype(1767291174)="pActionCode";
+$Prototype(1767291175)="pActionCode";
+$Prototype(1767291176)="pActionCode";
+$Prototype(1767291177)="pActionCode";
+$Prototype(1767291179)="pActionCode";
+$Prototype(1767291222)="pActionCode";
+$Prototype(1767291223)="pActionCode";
+$Prototype(1767291224)="pActionCode";
+$Prototype(1767291225)="pActionCode";
+$Prototype(1767291226)="pActionCode";
+
+// Document Commons 基盤
+$Prototype(1765002007)="Action";
+$Prototype(1767291152)="Action";
+$Prototype(1767291153)="Action";
+$Prototype(1776577819)="Action";
+$Prototype(1776577873)="Action";
+$Prototype(1777941932)="Action";
+$Prototype(1777942027)="Action";
+$Prototype(1767291163)="Action";
+$Prototype(1767291164)="Action";
+$Prototype(1767291165)="Action";
+$Prototype(1767291031)="Log Book";
+$Prototype(1767291170)="Diagram Object";
+
+// Document Commons テンプレート類
+$Prototype(1765002481)="HTML";
+$Prototype(1765002482)="HTML";
+$Prototype(1777084808)="HTML";
+$Prototype(1765002486)="HTML";
+$Prototype(1765002489)="HTML";
+$Prototype(1765002490)="HTML";
+$Prototype(1765002483)="HTML";
+$Prototype(1765002484)="HTML";
+$Prototype(1765002485)="HTML";
+$Prototype(1765002421)="Markdown";
+$Prototype(1765002424)="Markdown";
+$Prototype(1765002429)="Markdown";
+$Prototype(1765002434)="Markdown";
+$Prototype(1765002435)="Markdown";
+$Prototype(1765002453)="pAttribute";
+
+// ---- 第2弾追加分（初回リストで取りこぼしていた 58 件）----
+// ※ スタンプは冪等なので、このファイル全体を貼り直して再実行しても安全。
+
+// HTML テンプレート（Document Commons / Templates 配下）
+$Prototype(1765002487)="HTML";
+$Prototype(1765002488)="HTML";
+$Prototype(1765002491)="HTML";
+$Prototype(1765002492)="HTML";
+$Prototype(1765002493)="HTML";
+$Prototype(1765002494)="HTML";
+$Prototype(1765002495)="HTML";
+$Prototype(1765002496)="HTML";
+$Prototype(1765002497)="HTML";
+$Prototype(1765002498)="HTML";
+$Prototype(1765002499)="HTML";
+$Prototype(1765002500)="HTML";
+$Prototype(1765002501)="HTML";
+$Prototype(1765002502)="HTML";
+$Prototype(1765002503)="HTML";
+$Prototype(1765002504)="HTML";
+$Prototype(1765002505)="HTML";
+$Prototype(1765002506)="HTML";
+$Prototype(1765002507)="HTML";
+$Prototype(1765002508)="HTML";
+$Prototype(1765002509)="HTML";
+$Prototype(1765002512)="HTML";
+$Prototype(1765002513)="HTML";
+$Prototype(1765002514)="HTML";
+$Prototype(1765002515)="HTML";
+$Prototype(1765002516)="HTML";
+$Prototype(1765002517)="HTML";
+$Prototype(1765379407)="HTML";
+$Prototype(1772250408)="HTML";
+$Prototype(1772255300)="HTML";
+$Prototype(1776500040)="HTML";
+$Prototype(1776500042)="HTML";
+$Prototype(1776516138)="HTML";
+$Prototype(1791900149)="HTML";
+
+// ExportCode テンプレート
+$Prototype(1765002511)="pExportCode";
+
+// Document Commons 基盤（Action / Log Book / Diagram）
+$Prototype(1767291080)="Action";
+$Prototype(1767291084)="Action";
+$Prototype(1767291085)="Action";
+$Prototype(1767291103)="Action";
+$Prototype(1767291113)="Action";
+$Prototype(1767291114)="Action";
+$Prototype(1767291115)="Action";
+$Prototype(1767291147)="Action";
+$Prototype(1767291206)="Action";
+$Prototype(1767291216)="Action";
+$Prototype(1767291217)="Action";
+$Prototype(1767291218)="Action";
+$Prototype(1767291241)="Action";
+$Prototype(1767291116)="Log Book";
+$Prototype(1767291117)="Log Book";
+$Prototype(1777868355)="Log Book";
+$Prototype(1777868356)="Log Book";
+$Prototype(1778295259)="Log Book";
+$Prototype(1778301539)="Log Book";
+$Prototype(1767291252)="Log Book";
+$Prototype(1767291253)="Persistent Log Book";
+$Prototype(1767291254)="Persistent Log Book";
+$Prototype(1767291190)="Diagram";
