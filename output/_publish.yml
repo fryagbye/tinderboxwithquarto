@@ -1,0 +1,6 @@
+- source: project
+  quarto-pub:
+    - id: 1d8c8448-d05d-4bca-a940-e9de5a500e8c
+      url: https://fryagbye.quarto.pub/tinderbox-file-for-quarto
+    - id: 0330805b-e78b-49d9-b5ef-c02768ad69ef
+      url: https://fryagbye.quarto.pub/tinderbox-file-for-quarto-in-japanese

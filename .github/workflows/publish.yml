@@ -44,4 +44,6 @@ jobs:
             echo "::error::QUARTO_PUBLISH_TOKEN secret is not set."
             exit 1
           fi
-          quarto publish quarto-pub . --no-render --no-browser
+          # --id pins the English book site; output/_publish.yml lists both
+          # English and Japanese destinations for this project.
+          quarto publish quarto-pub . --no-render --no-browser --id 1d8c8448-d05d-4bca-a940-e9de5a500e8c
