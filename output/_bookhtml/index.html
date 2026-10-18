@@ -27,7 +27,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -46,9 +65,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet" class="quarto-color-scheme-extra">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fe167940ccc1aec24f43a26f43506d8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-fe167940ccc1aec24f43a26f43506d8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-fe167940ccc1aec24f43a26f43506d8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6b63e7d21d5ce15d1bf645eb4c028a9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6b63e7d21d5ce15d1bf645eb4c028a9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6b63e7d21d5ce15d1bf645eb4c028a9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -76,15 +95,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "サーチ"
   }
 }</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Noto+Sans+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 
 
 </head>
 
-<body class="nav-sidebar docked slimcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -93,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">はじめに</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
@@ -103,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
@@ -114,7 +129,6 @@ ul.task-list li input[type="checkbox"] {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Tinderbox file for Quarto</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/fryagbye/tinderboxwithquarto" title="ソースコード" class="quarto-navigation-tool px-1" aria-label="ソースコード"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="リーダーモードの切り替え">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -133,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">はじめに</span></span></a>
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -145,13 +159,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./usage-environment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Usage environment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Usage environment</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./setting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -166,49 +180,49 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./make-a-new-book-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Make a New Book Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Make a New Book Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./make-notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Make new notes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Make new notes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chunks-and-graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Chunks and Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chunks and Graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rename-htmlexportfilename-of-a-note-with-translation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Rename HTMLExportFileName of a note with translation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./part-in-book-format.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Part in Book format</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Part in Book format</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cross-reference-using-ziplink.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Cross-Reference using Ziplink</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Cross-Reference using Ziplink</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./example.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Example</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Example</span></span></a>
   </div>
 </li>
       </ul>
@@ -225,19 +239,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./make-a-new-manuscript-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Make a New Manuscript Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Make a New Manuscript Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./make-manuscript-subproject.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./export-and-render.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Export and Render</span></span></a>
   </div>
 </li>
       </ul>
@@ -254,13 +268,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./make-a-new-revealjs-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Make a New revealjs Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Make a New revealjs Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./make-revealjs-subproject.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Make sub-project folder</span></span></a>
   </div>
 </li>
       </ul>
@@ -268,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -298,12 +312,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">目次</h2>
    
   <ul class="collapse">
-  <li><a href="#sec-welcome" id="toc-sec-welcome" class="nav-link active" data-scroll-target="#sec-welcome"><span class="header-section-number">1</span> はじめに</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>編集</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>問題を報告</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full column-body" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -313,7 +327,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta column-body">
+<div class="quarto-title-meta">
 
     <div>
     <div class="quarto-title-meta-heading">作者</div>
@@ -331,35 +345,221 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-
-<section id="sec-welcome" class="level1 page-columns page-full" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> はじめに</h1><p><img src="images/cover.png" title="Tinderbox file for Quarto" class="quarto-cover-image nolightbox img-fluid"></p>
-<p>世の中には、多種多様なエディタがあります。日本ではほとんど知られていませんが、非常に魅力的な<strong>Tinderbox</strong>というアプリケーションを紹介したいと思います。 <strong>Tinderbox</strong>は、アウトラインエディタをベースに、マインドマップのようなマップビューやハイパボリックビュー、タイムラインビューなど、ノートを様々な切り口で視覚化することに長けており、考察や新しいアイデアを発見することに役立つアプリケーションです。 <strong>Tinderbox</strong>のもう一つの特徴として、ノート（メモ）毎に属性（<strong>Attribute</strong>）というものを設定または作成して、必要なデータを記録できる点が挙げられます。そのほか、属性をあらかじめ設定したテンプレート<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>（<strong>Tindåerbox</strong>では、<strong>Prototype</strong>と呼ばれる）を作り、入力を効率化できます。また、手動または自動でアクションコード（<strong>Action Code</strong>）と呼ばれる独自のプログラミング言語を使い、ユーザーが設定した属性を操作することが可能です。プロトタイプとアクションコードを組み合わせることで、自分だけのワークフローが構築できます。アクションコードは、身に付けるまで時間がかかりますが、あまり慣れていない段階でも<strong>Tinderbox</strong>の有用性は高いことと、使いながら少しずつ拡張するような使い方ができるので、まずは簡単なところから使ってみるのがよいと思います。とは言いつつも、使い始めはなかなか取っつきにくいところがあることも確かであり、筆者自身、使い始めた時に挫折してしばらく使っていなかった時期がありました。この<strong>Tinderbox入門</strong>はまだ未完成ですが、<strong>Tinderbox</strong>について日本語でかかれた情報がほとんどないことから、早めに公開しています。そのため、章立てのみで終わっている項目もある点は、予めご了承いただけばと思います。本書を通じて<strong>Tinderbox</strong>の日本人ユーザーが増えれば幸いです。</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;ここでは、ひな形の意味。<strong>Tinderbox</strong>では、<strong>テンプレート</strong>は、どのようにエクスポート（データ出力）するか設定するためのノートを意味する。</p></div></div><p>本書は、<strong>Tinderbox</strong>と<strong>RStudio</strong>と<strong>Marked2</strong>を使用して執筆しています。<strong>Tinderbox</strong>で書いた文章を出力し、オープンソースの科学技術出版システムである<a href="https://quarto.org">quarto</a>を利用して、本の形式（Web版）に変換してます。quartoでは、Rmarkdownを拡張したマークダウン（拡張子qmd）を採用しており、Rチャンク（R chunk）を組み込むこともできます。quartoのプロジェクト設定ファイルや目次の自動作成、相互参照の入力補助などを<strong>Tinderbox</strong>のアクションコードで実現しています。</p>
+<section id="introduction" class="level1 unnumbered">
+<h1 class="unnumbered">Introduction</h1>
+<p>This Tinderbox file supports creating a book, manuscript (beta), revealjs with <a href="https://quarto.org/">Quarto</a>.</p>
+<p><a href="https://fryagbye.quarto.pub/tinderbox-file-for-quarto/">Tinderbox file for Quarto (Web version)</a></p>
+<p><a href="https://fryagbye.quarto.pub/tinderbox-file-for-quarto-in-japanese">Tinderbox file for Quarto (Web version) in Japanese</a></p>
+<p>You can easily make qmd files and _quarto.yml with it. Here is an example of books created with Quarto.</p>
 <ul>
-<li>quartoを利用して本形式のhtmlで出力している例:
-<ul>
-<li><a href="https://www.jaysong.net/RBook/">私たちのR（著者:宋財泫、矢内勇生）</a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
-<li><a href="https://r4ds.hadley.nz">R for Data Science (2e)</a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
-</ul></li>
+<li><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a>(<span class="citation" data-cites="Wickham2016Data">Wickham and Grolemund (<a href="references.html#ref-Wickham2016Data" role="doc-biblioref">2016</a>)</span>) You can preview Rchunk and Graphs (Mermaid Flowchart and Graphviz) in Tinderbox.</li>
 </ul>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;[@Song2020私たちのR]</p></div><div id="fn3"><p><sup>3</sup>&nbsp;[@Long2019Cookb]</p></div></div><div class="callout callout-style-default callout-note callout-titled" title="文章中の表記について">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/4BEroHg-F8Y" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>My Workflow is <a href="#fig-workflow-graphviz" class="quarto-xref">図&nbsp;<span>1</span></a>. <br></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-workflow-graphviz" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-workflow-graphviz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 1148.34 313.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 309)">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-309 1144.34,-309 1144.34,4 -4,4"></polygon>
+<g id="clust1" class="cluster">
+<title>cluster_A</title>
+<polygon fill="#e7f3e7" stroke="#000000" points="8,-8 8,-297 349.3,-297 349.3,-8 8,-8"></polygon>
+<text text-anchor="middle" x="178.65" y="-280.4" font-family="Times,serif" font-size="14.00" fill="#000000">Applications</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_B</title>
+<g id="a_clust2"><a href="https://www.eastgate.com/Tinderbox/" title="Tinderbox">
+<polygon fill="#f6e04d" stroke="#000000" points="150.33,-16 150.33,-264 341.3,-264 341.3,-16 150.33,-16"></polygon>
+<text text-anchor="middle" x="245.81" y="-247.4" font-family="Times,serif" font-size="14.00" fill="#000000">Tinderbox</text>
+</a>
+</g>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_C</title>
+<g id="a_clust3"><a href="https://github.com/fryagbye/tinderboxwithquarto" title="Demo_TBX_for_Quarto.tbx">
+<polygon fill="#ffffff" stroke="#000000" points="158.33,-24 158.33,-231 333.3,-231 333.3,-24 158.33,-24"></polygon>
+<text text-anchor="middle" x="245.81" y="-214.4" font-family="Times,serif" font-size="14.00" fill="#000000">Demo_TBX_for_Quarto.tbx</text>
+</a>
+</g>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_D</title>
+<polygon fill="#fff4e6" stroke="#000000" points="368.3,-66 368.3,-196 948.19,-196 948.19,-66 368.3,-66"></polygon>
+<text text-anchor="middle" x="658.24" y="-179.4" font-family="Times,serif" font-size="14.00" fill="#000000">Quarto</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_E</title>
+<polygon fill="#ffffff" stroke="#000000" points="1006.3,-27 1006.3,-212 1132.34,-212 1132.34,-27 1006.3,-27"></polygon>
+<text text-anchor="middle" x="1069.32" y="-195.4" font-family="Times,serif" font-size="14.00" fill="#000000">Output</text>
+</g>
+<!-- A -->
+<g id="node1" class="node">
+<title>A</title>
+<g id="a_node1"><a href="https://www.sonnysoftware.com/bookends-for-mac" title="Bookends">
+<ellipse fill="#fcbd63" stroke="#000000" cx="65.66" cy="-180" rx="49.83" ry="18"></ellipse>
+<text text-anchor="middle" x="65.66" y="-175.8" font-family="Times,serif" font-size="14.00" fill="#000000">Bookends</text>
+</a>
+</g>
+</g>
+<!-- C -->
+<g id="node3" class="node">
+<title>C</title>
+<g id="a_node3"><a href="https://mermaid.js.org/" title="Mermaid">
+<ellipse fill="#c735e9" stroke="#000000" cx="245.31" cy="-180" rx="46.37" ry="18"></ellipse>
+<text text-anchor="middle" x="245.31" y="-175.8" font-family="Times,serif" font-size="14.00" fill="#ffffff">Mermaid</text>
+</a>
+</g>
+</g>
+<!-- A&#45;&gt;C -->
+<g id="edge1" class="edge">
+<title>A-&gt;C</title>
+<path fill="none" stroke="black" d="M115.68,-180C125.83,-180 136.85,-180 148.04,-180"></path>
+<polygon fill="#cbd9d7" stroke="black" points="148.33,-183.5 158.33,-180 148.33,-176.5 148.33,-183.5"></polygon>
+</g>
+<!-- B -->
+<g id="node2" class="node">
+<title>B</title>
+<g id="a_node2"><a href="https://snippety.app/" title="Snippety">
+<ellipse fill="#5c9dfe" stroke="#990000" cx="65.66" cy="-61" rx="45.25" ry="18"></ellipse>
+<text text-anchor="middle" x="65.66" y="-56.8" font-family="Times,serif" font-size="14.00" fill="#000000">Snippety</text>
+</a>
+</g>
+</g>
+<!-- E -->
+<g id="node5" class="node">
+<title>E</title>
+<ellipse fill="lightgrey" stroke="black" cx="245.31" cy="-61" rx="59.97" ry="29.33"></ellipse>
+<text text-anchor="middle" x="245.31" y="-65.2" font-family="Times,serif" font-size="14.00">Preview </text>
+<text text-anchor="middle" x="245.31" y="-48.4" font-family="Times,serif" font-size="14.00">with Rscript</text>
+</g>
+<!-- B&#45;&gt;E -->
+<g id="edge2" class="edge">
+<title>B-&gt;E</title>
+<path fill="none" stroke="black" d="M111.49,-61C122.77,-61 135.32,-61 148.08,-61"></path>
+<polygon fill="#cbd9d7" stroke="black" points="148.33,-64.5 158.33,-61 148.33,-57.5 148.33,-64.5"></polygon>
+</g>
+<!-- D -->
+<g id="node4" class="node">
+<title>D</title>
+<g id="a_node4"><a href="https://graphviz.org/" title="Graphviz">
+<ellipse fill="#30638d" stroke="#000000" cx="245.31" cy="-126" rx="46.93" ry="18"></ellipse>
+<text text-anchor="middle" x="245.31" y="-121.8" font-family="Times,serif" font-size="14.00" fill="#ffffff">Graphviz</text>
+</a>
+</g>
+</g>
+<!-- G -->
+<g id="node7" class="node">
+<title>G</title>
+<ellipse fill="#74bbff" stroke="#000000" cx="469.41" cy="-126" rx="93.22" ry="18"></ellipse>
+<text text-anchor="middle" x="469.41" y="-121.8" font-family="Times,serif" font-size="14.00" fill="#000000">RMarkdown ( .qmd )</text>
+</g>
+<!-- D&#45;&gt;G -->
+<g id="edge3" class="edge">
+<title>D-&gt;G</title>
+<path fill="none" stroke="black" d="M333.29,-126C344.01,-126 355.04,-126 365.95,-126"></path>
+<polygon fill="#cbd9d7" stroke="black" points="358.3,-129.5 368.3,-126 358.3,-122.5 358.3,-129.5"></polygon>
+</g>
+<!-- F -->
+<g id="node6" class="node">
+<title>F</title>
+<g id="a_node6"><a href="https://posit.co/products/open-source/rstudio/" title="R Studio">
+<ellipse fill="#80a9d7" stroke="#000000" cx="728.39" cy="-92" rx="45.23" ry="18"></ellipse>
+<text text-anchor="middle" x="728.39" y="-87.8" font-family="Times,serif" font-size="14.00" fill="#000000">R Studio</text>
+</a>
+</g>
+</g>
+<!-- H -->
+<g id="node8" class="node">
+<title>H</title>
+<g id="a_node8"><a href="https://quarto.org/" title="quarto CLI">
+<ellipse fill="#74bbff" stroke="#000000" cx="886.51" cy="-107" rx="53.85" ry="18"></ellipse>
+<text text-anchor="middle" x="886.51" y="-102.8" font-family="Times,serif" font-size="14.00" fill="#000000">quarto CLI</text>
+</a>
+</g>
+</g>
+<!-- F&#45;&gt;H -->
+<g id="edge4" class="edge">
+<title>F-&gt;H</title>
+<path fill="none" stroke="black" d="M772.47,-96.14C788.61,-97.69 807.28,-99.48 824.73,-101.16"></path>
+<polygon fill="#cbd9d7" stroke="black" points="824.55,-104.66 834.83,-102.13 825.22,-97.69 824.55,-104.66"></polygon>
+<text text-anchor="middle" x="803.17" y="-103.2" font-family="Times,serif" font-size="14.00" fill="#000000">Call</text>
+</g>
+<!-- G&#45;&gt;F -->
+<g id="edge5" class="edge">
+<title>G-&gt;F</title>
+<path fill="none" stroke="black" d="M546.82,-115.89C588.2,-110.42 638.26,-103.79 675.16,-98.91"></path>
+<polygon fill="#cbd9d7" stroke="black" points="675.75,-102.36 685.21,-97.58 674.83,-95.42 675.75,-102.36"></polygon>
+<text text-anchor="middle" x="622.9" y="-115.2" font-family="Times,serif" font-size="14.00" fill="#000000">Read qmd files</text>
+</g>
+<!-- G&#45;&gt;H -->
+<g id="edge6" class="edge">
+<title>G-&gt;H</title>
+<path fill="none" stroke="black" d="M558.74,-131.24C566.1,-131.54 573.44,-131.81 580.52,-132 684.76,-134.84 711.45,-133.62 814.84,-120 819.81,-119.34 824.97,-118.57 830.13,-117.74"></path>
+<polygon fill="#cbd9d7" stroke="black" points="830.72,-121.19 840,-116.08 829.56,-114.29 830.72,-121.19"></polygon>
+<text text-anchor="middle" x="728.39" y="-136.2" font-family="Times,serif" font-size="14.00" fill="#000000">Call</text>
+</g>
+<!-- I -->
+<g id="node9" class="node">
+<title>I</title>
+<ellipse fill="#93dd93" stroke="#000000" cx="1069.32" cy="-161" rx="31.93" ry="18"></ellipse>
+<text text-anchor="middle" x="1069.32" y="-156.8" font-family="Times,serif" font-size="14.00" fill="#000000">Book</text>
+</g>
+<!-- H&#45;&gt;I -->
+<g id="edge7" class="edge">
+<title>H-&gt;I</title>
+<path fill="none" stroke="black" d="M927.19,-118.85C958.11,-128.08 1000.72,-140.81 1031.01,-149.86"></path>
+<polygon fill="#cbd9d7" stroke="black" points="1030.19,-153.27 1040.78,-152.77 1032.2,-146.56 1030.19,-153.27"></polygon>
+<text text-anchor="middle" x="977.24" y="-142.2" font-family="Times,serif" font-size="14.00" fill="#000000">Export</text>
+</g>
+<!-- J -->
+<g id="node10" class="node">
+<title>J</title>
+<ellipse fill="#93dd93" stroke="#000000" cx="1069.32" cy="-107" rx="55.04" ry="18"></ellipse>
+<text text-anchor="middle" x="1069.32" y="-102.8" font-family="Times,serif" font-size="14.00" fill="#000000">Manuscript</text>
+</g>
+<!-- H&#45;&gt;J -->
+<g id="edge8" class="edge">
+<title>H-&gt;J</title>
+<path fill="none" stroke="black" d="M940.3,-107C960.27,-107 983.23,-107 1004.14,-107"></path>
+<polygon fill="#cbd9d7" stroke="black" points="1004.21,-110.5 1014.21,-107 1004.21,-103.5 1004.21,-110.5"></polygon>
+<text text-anchor="middle" x="977.24" y="-111.2" font-family="Times,serif" font-size="14.00" fill="#000000">Export</text>
+</g>
+<!-- K -->
+<g id="node11" class="node">
+<title>K</title>
+<ellipse fill="#f2e142" stroke="#d53f8c" cx="1069.32" cy="-53" rx="41.13" ry="18"></ellipse>
+<text text-anchor="middle" x="1069.32" y="-48.8" font-family="Times,serif" font-size="14.00" fill="#000000">revealjs</text>
+</g>
+<!-- H&#45;&gt;K -->
+<g id="edge9" class="edge">
+<title>H-&gt;K</title>
+<path fill="none" stroke="black" d="M927.19,-95.15C956.14,-86.5 995.36,-74.79 1025.1,-65.91"></path>
+<polygon fill="#cbd9d7" stroke="black" points="1026.22,-69.23 1034.8,-63.01 1024.21,-62.52 1026.22,-69.23"></polygon>
+<text text-anchor="middle" x="977.24" y="-88.2" font-family="Times,serif" font-size="14.00" fill="#000000">Export</text>
+</g>
+</g>
+</svg>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">ノート</span>文章中の表記について
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-workflow-graphviz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;1: Tinderbox Work Flow with Quarto. ( Graphviz version )
+</figcaption>
+</figure>
 </div>
-<div class="callout-body-container callout-body">
-<p>マウスのアイコンは、それぞれ以下の操作を表します。 <code>r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Lclick.png}}", html = "![](screenshots/Lclick.png){fig-alt='左クリック' width=40px}")</code>：左クリック <code>r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Ldoubleclick.png}}", html = "![](screenshots/Ldoubleclick.png){fig-alt='左ダブルクリック' width=40px}")</code>：ダブルクリック <code>r switch(out_type, latex = "\\raisebox{1ex -\\height/2}{\\includegraphics[height=2em]{screenshots/Rclick.png}}", html = "![](screenshots/Rclick.png){fig-alt='右クリック' width=40px}")</code>：右クリック 色付き背景の＄付き文字列は、システム属性（第<span class="quarto-unresolved-ref">?sec-system-attributes</span>章）を表します。 例：<code>$Color</code> 色付き背景の＄付き斜体文字列は、ユーザー属性（第<span class="quarto-unresolved-ref">?sec-user-attributes</span>章）を表します。 例：<em><code>$Sample</code></em> スラッシュ（/）で始まる文字列は、ノートのパスを表し、スラッシュはノートのルートを表します。 例：<code>/Prototypes</code></p>
 </div>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Wickham2016Data" class="csl-entry" role="listitem">
+Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. <span>“O’Reilly Media, Inc.”</span>
+</div>
+</div>
 </section>
-
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -767,7 +967,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation column-body">
+<nav class="page-navigation">
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
@@ -777,19 +977,6 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>footer left</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/fryagbye/tinderboxwithquarto/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>編集</a></li><li><a href="https://github.com/fryagbye/tinderboxwithquarto/issues/new" class="toc-action"><i class="bi empty"></i>問題を報告</a></li></ul></div></div>
-    <div class="nav-footer-right">
-<p>footer right</p>
-</div>
-  </div>
-</footer>
 
 
 

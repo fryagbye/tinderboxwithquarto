@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: _booktypst
+  output-dir: _bookhtml
 
 brand: _brand.yml
 
@@ -8,6 +8,10 @@ book:
   title: Tinderbox file for Quarto
   subtitle: How to use this file
   author: fryagbye
+  reader-mode: true
+  sidebar:
+    style: docked
+    pinned: true
   
   
 
@@ -66,18 +70,17 @@ book:
     - restrictions.qmd
 
 format:
-  typst:
+  html:
+    theme:
+      - cosmo
+    code-link: true
+    code-line-numbers: true
     toc: true
     toc-depth: 2
     number-sections: true
     number-depth: 3
-    cite-method: citeproc
-    code-link: true
-    code-line-numbers: true
-    header-includes:
-      - '#set text(font: ("Hiragino Sans"))'
-      - '#show raw: set text(font: ("DejaVu Sans Mono", "Osaka"))'
-    indent: true
+    highlight-style: base16-atelier-dune
+    link-external-newwindow: true
     fig-format: svg
     fig-dpi: 300
     callout-appearance: default
