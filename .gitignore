@@ -56,3 +56,6 @@ output/_booktypst
 **/*.quarto_ipynb
 /.agents/plugins/project-agent-kit
 .smoke_render_*.log
+
+# Tinderbox framework document (local only)
+Document Commons Framework v2*.tbx
