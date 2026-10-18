@@ -67,6 +67,7 @@
   - `No specific custom constraints.`
   - 外部APIへの直接呼び出しは避け、必ず定義されたラッパーモジュールを経由すること。
   - テストコードは本番環境や外部接続に依存せず、冪等性を担保してモックやインメモリDB等で動作するように設計すること。
+  - **.tbx ファイルの取り扱い（重要）**: Tinderbox 11.8.0(beta) で再オープン時に `proto=` 割当が消失する不具合を確認済み。.tbx への直接編集は Tinderbox クローズ時のみ実施し、保存後は `scripts/check_proto_baseline.sh <file.tbx> <baseline.tsv>` で消失がないか確認すること。proto 割当を意図的に変更した場合は `scripts/gen_proto_baseline.sh` で `scripts/baselines/*.proto.tsv` を再生成してコミットすること。
 
 ## 6. セカンドオピニオンレビュー方針
 - 状態遷移、非同期の排他制御、認証、データ暗号化など、潜在バグや脆弱性が深刻な影響を及ぼす箇所を変更した場合、または実装方針の確信度が 99% 未満の場合は、自律的に `.agents/plugins/project-agent-kit/skills/second-opinion-skill/SKILL.md` を読み込んで実行してください。

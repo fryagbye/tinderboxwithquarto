@@ -60,6 +60,32 @@ else
   bad "quarto not usable ($QUARTO)"
 fi
 
+proto_check() {
+  # $1 label, $2 tbx file, $3 baseline tsv
+  local label="$1" tbx="$2" base="$3"
+  if [ ! -f "$tbx" ] || [ ! -f "$base" ]; then
+    skip "$label (missing $tbx or $base)"
+    return
+  fi
+  if scripts/check_proto_baseline.sh "$tbx" "$base" > ".smoke_proto_$$.log" 2>&1; then
+    if grep -q '  EXTRA' ".smoke_proto_$$.log"; then
+      ok "$label (extra protos — regenerate baseline if intentional)"
+      grep '  EXTRA' ".smoke_proto_$$.log" | sed 's/^/    | /'
+    else
+      ok "$label"
+    fi
+    rm -f ".smoke_proto_$$.log"
+  else
+    bad "$label — proto assignments lost/changed (see below)"
+    sed 's/^/    | /' ".smoke_proto_$$.log"
+    rm -f ".smoke_proto_$$.log"
+  fi
+}
+
+step "4. .tbx prototype integrity"
+proto_check "Demo_TBX_for_Quarto.tbx"     "Demo_TBX_for_Quarto.tbx"     "scripts/baselines/Demo_TBX_for_Quarto.proto.tsv"
+proto_check "TinderboxWithQuarto-0.6.0"   "TinderboxWithQuarto-0.6.0.tbx" "scripts/baselines/TinderboxWithQuarto-0.6.0.proto.tsv"
+
 render_check() {
   # $1 label, $2 workdir, $3 render target, $4 expected output path
   local label="$1" dir="$2" target="$3" expect="$4"
@@ -88,7 +114,7 @@ if [ "${SKIP_RENDER:-0}" = "1" ]; then
 elif [ "${SMOKE_CI:-0}" = "1" ]; then
   # CI: avoid lualatex (TeX Live) — render manuscript per format.
   # Typst is bundled with Quarto so no external TeX is needed.
-  step "4. Render smoke tests (CI mode)"
+  step "5. Render smoke tests (CI mode)"
   render_check "book (typst)"       "output"      "."            "_booktypst/Tinderbox-file-for-Quarto.pdf"
   render_check "manuscript html"    "myproject"   ". --to html"  "_manuscript/index.html"
   render_check "manuscript typst"   "myproject"   ". --to typst" "_manuscript/index.pdf"
@@ -96,13 +122,13 @@ elif [ "${SMOKE_CI:-0}" = "1" ]; then
   render_check "manuscript jats"    "myproject"   ". --to jats"  "_manuscript/index.xml"
   render_check "revealjs"           "myrevealjs2" "index.qmd"    "index.html"
 else
-  step "4. Render smoke tests"
+  step "5. Render smoke tests"
   render_check "book (typst)"  "output"      "."         "_booktypst/Tinderbox-file-for-Quarto.pdf"
   render_check "manuscript"    "myproject"   "."         "_manuscript/index.html"
   render_check "revealjs"      "myrevealjs2" "index.qmd" "index.html"
 fi
 
-step "5. Unresolved cross-reference scan"
+step "6. Unresolved cross-reference scan"
 UNRESOLVED=0
 # "?@label" left in rendered html — real unresolved refs (FAIL)
 LIT_HTML=$(grep -rln '?@\(fig\|tbl\|eq\|sec\|lst\)-' --include='*.html' output/_bookhtml output/_booktypst myproject/_manuscript 2>/dev/null || true)

@@ -207,6 +207,23 @@ SMOKE_CI=1 bash scripts/smoke_test.sh   # CI モード（lualatex を除く各�
 
 - `verify.yml` — push/PR ごとに CI モードのスモークテストを実行
 - `publish.yml` — book が HTML 状態のとき、コミット済み `output/_bookhtml/` を quarto.pub に公開（手動実行/リリース時）。**GitHub Secrets に `QUARTO_PUBLISH_TOKEN` の設定が必要**（quarto.pub のトークン。未設定時は公開ステップが失敗します）
+  - トークン設定手順: `quarto publish token` で作成 → リポジトリの Settings → Secrets and variables → Actions → `QUARTO_PUBLISH_TOKEN` として登録
+
+## Tinderbox 運用ルール
+
+Tinderbox 11.8.0（beta）で、ドキュメント再オープン時にプロトタイプ割当（`proto=`）が大量に消失する不具合を確認しています。以下の運用を推奨します:
+
+- **単一インスタンスで作業する**: 同じ .tbx を複数の Tinderbox プロセスで同時に開かない（旧メモリ状態の上書き保存による消失を防ぐため）
+- **外部から .tbx を編集しない**: Devin/他ツールによる .tbx へのパッチは Tinderbox が閉じているときだけ行う
+- **保存前後で割当数を確認する**:
+  ```bash
+  grep -c 'proto="' Demo_TBX_for_Quarto.tbx   # 現在の正常値: 408
+  ```
+- **.tbx 整合性チェック**: `smoke_test.sh` が `scripts/baselines/*.proto.tsv`（ID→proto の正解マップ）と照合し、消失・不一致を FAIL で検出します。意図的にプロトタイプ割当を変更した場合は baseline を再生成してコミットしてください:
+  ```bash
+  scripts/gen_proto_baseline.sh Demo_TBX_for_Quarto.tbx > scripts/baselines/Demo_TBX_for_Quarto.proto.tsv
+  ```
+- **消失した場合**: `scripts/restore_prototypes_stamp.txt` の ActionCode をスタンプに貼って実行（$ID 直接指定で一括復元）、または git 履歴から復旧
 
 ## 既知の注意点
 
@@ -399,6 +416,23 @@ SMOKE_CI=1 bash scripts/smoke_test.sh   # CI mode (per-format renders, no lualat
 
 - `verify.yml` — runs the CI-mode smoke test on every push/PR
 - `publish.yml` — publishes the committed `output/_bookhtml/` to quarto.pub when the book is in HTML state (manual run / on release). **Requires a `QUARTO_PUBLISH_TOKEN` GitHub secret** (your quarto.pub token); the publish step fails if unset
+  - To set it up: create a token with `quarto publish token` → repo Settings → Secrets and variables → Actions → add as `QUARTO_PUBLISH_TOKEN`
+
+## Tinderbox operations rules
+
+Tinderbox 11.8.0 (beta) can silently drop large numbers of prototype assignments (`proto=`) when a document is reopened. Recommended practices:
+
+- **Run a single instance**: never open the same .tbx in multiple Tinderbox processes (a stale in-memory copy can overwrite the file)
+- **Don't edit .tbx externally while open**: apply Devin/other-tool patches only when Tinderbox is closed
+- **Check assignment count before/after saving**:
+  ```bash
+  grep -c 'proto="' Demo_TBX_for_Quarto.tbx   # current expected value: 408
+  ```
+- **.tbx integrity check**: `smoke_test.sh` compares the file against `scripts/baselines/*.proto.tsv` (the ID→proto map) and fails on missing/mismatched assignments. After intentional prototype changes, regenerate and commit the baseline:
+  ```bash
+  scripts/gen_proto_baseline.sh Demo_TBX_for_Quarto.tbx > scripts/baselines/Demo_TBX_for_Quarto.proto.tsv
+  ```
+- **If assignments are lost**: run the ActionCode in `scripts/restore_prototypes_stamp.txt` as a stamp (restores by explicit $ID), or recover from git history
 
 ## Known issues
 
