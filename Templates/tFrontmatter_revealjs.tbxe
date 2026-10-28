@@ -1,0 +1,158 @@
+^action(
+    // ============================================================
+    // Line separators
+    // ------------------------------------------------------------
+    // A truly empty line (two consecutive newlines) can be dropped
+    // in the Tinderbox export path, so "blank lines" between blocks
+    // are emitted as a line containing a single space. Pandoc treats
+    // a whitespace-only line as a blank line, so the rendered result
+    // is unchanged.
+    //   vNL  - plain newline
+    //   vWSL - whitespace-only "blank" line: a space then a newline
+    //   vBL  - newline plus vWSL: blank line after the current line
+    //   vBLI - vBL plus a space: blank line + 1-space indent on the
+    //          following line (harmless for Pandoc)
+    // NOTE: never write a quoted escape sequence (quote, backslash,
+    // letter) in comments - it corrupts ^action parsing in export
+    // templates.
+    // ============================================================
+    var:string vNL="\n";
+    var:string vWSL=" \n";
+    var:string vBL="\n \n";
+    var:string vBLI="\n \n ";
+
+    var:string vProjectPath;
+    var:string vTemp;
+    var:string vText;
+
+    // ---- YAML frontmatter ----
+    vText += "---" + vNL;
+    vText += 'title: "' + $Q_Title + '"' + vNL;
+    if($Q_Subtitle){
+        vText += 'subtitle: "' + $Q_Subtitle + '"' + vNL;
+    };
+    if($Q_Date!="never"){
+        vText += "date: " + $Q_Date.format("y-M0-D") + vNL;
+    };
+    if($QR_Author){
+        vText += "author: " + $QR_Author + vNL;
+    };
+    if($Q_Affiliation_Name){
+        vText += 'institute: "' + $Q_Affiliation_Name + '"' + vNL;
+    };
+    vText += "format:" + vNL;
+    vText += "   ";
+    if($Q_QuartoLiveExt){
+        vText += "live-";
+    };
+    vText += "revealjs:" + vNL;
+    vText += "    number-sections: ";
+    if($Q_HasNumberSection){
+        vText += "true";
+    }else{
+        vText += "false";
+    };
+    vText += vNL;
+    if($Q_HasNumberSection){
+        vText += "    number-depth: " + $Q_NumberSection + vNL;
+    };
+    if($QR_ShiftHeadingLevelBy){
+        vText += "    shift-heading-level-by: " + $QR_ShiftHeadingLevelBy + vNL;
+    };
+    if($QR_Css){
+        vText += "    css: " + $QR_Css + vNL;
+    };
+    if($QR_SlideNumber){
+        vText += "    slide-number: " + $QR_SlideNumber + vNL;
+    };
+    if($QR_Logo){
+        vText += "    logo: " + $QR_Logo + vNL;
+    };
+    if($QR_Footer){
+        vText += "    footer: " + $QR_Footer + vNL;
+    };
+    if($QR_IsScrollable){
+        vText += "    scrollable: true" + vNL;
+    };
+    if($QR_IsSmaller){
+        vText += "    smaller: true" + vNL;
+    };
+    if($QR_OutputLocation){
+        vText += "    output-location: " + $QR_OutputLocation + vNL;
+    };
+    if($QR_Transition){
+        vText += "    transition: " + $QR_Transition + vNL;
+    };
+    if($QR_TransitionSpeed){
+        vText += "    transition-speed: " + $QR_TransitionSpeed + vNL;
+    };
+    if($QR_BackgroundTransition){
+        vText += "    background-transition: " + $QR_BackgroundTransition + vNL;
+    };
+    if($QR_MermaidFormat){
+        vText += "    mermaid-format: " + $QR_MermaidFormat + vNL;
+    };
+    if($QR_Theme){
+        vText += "    theme: " + $QR_Theme + vNL;
+    };
+    if($QR_Width){
+        vText += "    width: " + $QR_Width + vNL;
+    };
+    if($QR_Height){
+        vText += "    height: " + $QR_Height + vNL;
+    };
+    if($QR_Margin){
+        vText += "    margin: " + $QR_Margin + vNL;
+    };
+    if($QR_Center){
+        vText += "    center: true" + vNL;
+    };
+    if($QR_Controls){
+        vText += "    controls: " + $QR_Controls + vNL;
+    };
+    if($QR_Progress){
+        vText += "    progress: true" + vNL;
+    };
+    if($QR_History){
+        vText += "    history: true" + vNL;
+    };
+    if($QR_Hash){
+        vText += "    hash: true" + vNL;
+    };
+    if($QR_Incremental){
+        vText += "    incremental: true" + vNL;
+    };
+    if($QR_AutoAnimate){
+        vText += "    auto-animate: true" + vNL;
+    };
+    if($QR_Chalkboard){
+        vText += "    chalkboard: true" + vNL;
+    };
+    if($QR_Menu){
+        vText += "    menu: true" + vNL;
+    };
+    if($QR_Echo){
+        vText += "    echo: true" + vNL;
+    };
+    if($QR_CodeLineNumbers){
+        vText += "    code-line-numbers: " + $QR_CodeLineNumbers + vNL;
+    };
+    vText += "---" + vNL;
+
+    // ---- Preamble (R setup chunk) ----
+    vProjectPath=collect(ancestors(original),$Path)[-1];
+    if($HasOutType(vProjectPath)){
+        vTemp ='out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")\n';
+    };
+    if($HasCommonR(vProjectPath)){
+        vTemp +='source("_common.R")\n';
+    };
+    if($HasOutType(vProjectPath)|$HasCommonR(vProjectPath)){
+        vText += vWSL;
+        vText += '```{r, echo=FALSE}\n';
+        vText += '#| include: false\n';
+        vText += vTemp;
+        vText += '```\n';
+    };
+    vText += vWSL;
+)^^value(vText)^^if($Q_QuartoLiveExt)^{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}^endIf^^include(^value($IncludeNotes)^,"tSubnote_revealjs")^

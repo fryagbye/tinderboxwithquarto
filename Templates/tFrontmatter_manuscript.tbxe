@@ -1,0 +1,100 @@
+^action(
+    // ============================================================
+    // Line separators
+    // ------------------------------------------------------------
+    // A truly empty line (two consecutive newlines) can be dropped
+    // in the Tinderbox export path, so "blank lines" between blocks
+    // are emitted as a line containing a single space. Pandoc treats
+    // a whitespace-only line as a blank line, so the rendered result
+    // is unchanged.
+    //   vNL  - plain newline
+    //   vWSL - whitespace-only "blank" line: a space then a newline
+    //   vBL  - newline plus vWSL: blank line after the current line
+    //   vBLI - vBL plus a space: blank line + 1-space indent on the
+    //          following line (harmless for Pandoc)
+    // NOTE: never write a quoted escape sequence (quote, backslash,
+    // letter) in comments - it corrupts ^action parsing in export
+    // templates.
+    // ============================================================
+    var:string vNL="\n";
+    var:string vWSL=" \n";
+    var:string vBL="\n \n";
+    var:string vBLI="\n \n ";
+
+    var:string vProjectPath;
+    var:string vTemp;
+    var:string vText;
+    var:string vText2;
+
+    // ---- YAML frontmatter (part 1: above "author:") ----
+    // The author block itself is an ^include of the author list
+    // container, so it must stay in literal template code between
+    // ^value(vText) and ^value(vText2).
+    vText += "---" + vNL;
+    if($Q_Title){
+        vText += 'title: "' + $Q_Title + '"' + vNL;
+    };
+    if($Q_Date){
+        vText += "date: " + $Q_Date.format("y-M0-D") + vNL;
+    };
+
+    // ---- YAML frontmatter (part 2: below the author block) ----
+    vText2 += vNL;
+    if($Q_Abstract){
+        vText2 += "abstract: >" + vNL + "  " + $Q_Abstract + vNL;
+    };
+    if($Q_KeyWords){
+        vText2 += "keywords: " + $Q_KeyWords.format(",") + vNL;
+    };
+    vText2 += vNL;
+    if($Q_License){
+        vText2 += 'license: "' + $Q_License + '"' + vNL;
+    };
+    if($Q_CopyrightHolder | $Q_CopyrightYear){
+        vText2 += "copyright:" + vNL;
+        if($Q_CopyrightHolder){
+            vText2 += "  holder: " + $Q_CopyrightHolder + vNL;
+        };
+        if($Q_CopyrightYear){
+            vText2 += "  year: [" + $Q_CopyrightYear.format(",") + "]" + vNL;
+        };
+    };
+    if($Q_CitationContaierTitle | $Q_CitationVolume | $Q_CitationIssue | $Q_CitationDOI){
+        vText2 += "citation:" + vNL;
+        if($Q_CitationContaierTitle){
+            vText2 += "  container-title: " + $Q_CitationContaierTitle + vNL;
+        };
+        if($Q_CitationVolume){
+            vText2 += "  volume: " + $Q_CitationVolume + vNL;
+        };
+        if($Q_CitationIssue){
+            vText2 += "  issue: " + $Q_CitationIssue + vNL;
+        };
+        if($Q_CitationDOI){
+            vText2 += "  doi: " + $Q_CitationDOI + vNL;
+        };
+    };
+    if($Q_Funding){
+        vText2 += 'funding: "' + $Q_Funding + '"' + vNL;
+    };
+    vText2 += "---" + vNL;
+
+    // ---- Preamble (R setup chunk) ----
+    vProjectPath=collect(ancestors(original),$Path)[-1];
+    if($HasOutType(vProjectPath)){
+        vTemp ='out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")\n';
+    };
+    if($HasCommonR(vProjectPath)){
+        vTemp +='source("_common.R")\n';
+    };
+    if($HasOutType(vProjectPath)|$HasCommonR(vProjectPath)){
+        vText2 += vWSL;
+        vText2 += '```{r, echo=FALSE}\n';
+        vText2 += '#| include: false\n';
+        vText2 += vTemp;
+        vText2 += '```\n';
+    };
+    vText2 += vWSL;
+)^^value(vText)^^if($Q_AuthorPath)^author:
+^include(^value(find(inside($Q_AuthorPath)))^)^
+^endIf^^value(vText2)^^include(^value($IncludeNotes)^)^

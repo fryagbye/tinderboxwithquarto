@@ -1,6 +1,7 @@
 0# <python:matplotlib➡️fig-matplotlib>
+
  
- ```{python}
+```{python}
 #| label: fig-matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -17,7 +18,7 @@ lowerlimits = [False, True] * 5
 plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
              label='subsets of uplims and lolims')
 plt.legend(loc='lower right')
-plt.show(fig)
+plt.show()
 ```
 
 

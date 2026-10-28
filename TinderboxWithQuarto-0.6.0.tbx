@@ -32277,55 +32277,106 @@ execute:
 <attribute name="Width" >5</attribute>
 <attribute name="Xpos" >11</attribute>
 <attribute name="Ypos" >3.5</attribute>
-<text >---
-title: &quot;^value($Q_Title)^&quot;
-date: ^value($Q_Date.format(&quot;y-M0-D&quot;))^
-author:
+<text >^action(
+    // ============================================================
+    // Line separators
+    // ------------------------------------------------------------
+    // A truly empty line (two consecutive newlines) can be dropped
+    // in the Tinderbox export path, so &quot;blank lines&quot; between blocks
+    // are emitted as a line containing a single space. Pandoc treats
+    // a whitespace-only line as a blank line, so the rendered result
+    // is unchanged.
+    //   vNL  - plain newline
+    //   vWSL - whitespace-only &quot;blank&quot; line: a space then a newline
+    //   vBL  - newline plus vWSL: blank line after the current line
+    //   vBLI - vBL plus a space: blank line + 1-space indent on the
+    //          following line (harmless for Pandoc)
+    // NOTE: never write a quoted escape sequence (quote, backslash,
+    // letter) in comments - it corrupts ^action parsing in export
+    // templates.
+    // ============================================================
+    var:string vNL=&quot;\n&quot;;
+    var:string vWSL=&quot; \n&quot;;
+    var:string vBL=&quot;\n \n&quot;;
+    var:string vBLI=&quot;\n \n &quot;;
+
+    var:string vProjectPath;
+    var:string vTemp;
+    var:string vText;
+    var:string vText2;
+
+    // ---- YAML frontmatter (part 1: above &quot;author:&quot;) ----
+    // The author block itself is an ^include of the author list
+    // container, so it must stay in literal template code between
+    // ^value(vText) and ^value(vText2).
+    vText += &quot;---&quot; + vNL;
+    if($Q_Title){
+        vText += &apos;title: &quot;&apos; + $Q_Title + &apos;&quot;&apos; + vNL;
+    };
+    if($Q_Date){
+        vText += &quot;date: &quot; + $Q_Date.format(&quot;y-M0-D&quot;) + vNL;
+    };
+
+    // ---- YAML frontmatter (part 2: below the author block) ----
+    vText2 += vNL;
+    if($Q_Abstract){
+        vText2 += &quot;abstract: &gt;&quot; + vNL + &quot;  &quot; + $Q_Abstract + vNL;
+    };
+    if($Q_KeyWords){
+        vText2 += &quot;keywords: &quot; + $Q_KeyWords.format(&quot;,&quot;) + vNL;
+    };
+    vText2 += vNL;
+    if($Q_License){
+        vText2 += &apos;license: &quot;&apos; + $Q_License + &apos;&quot;&apos; + vNL;
+    };
+    if($Q_CopyrightHolder | $Q_CopyrightYear){
+        vText2 += &quot;copyright:&quot; + vNL;
+        if($Q_CopyrightHolder){
+            vText2 += &quot;  holder: &quot; + $Q_CopyrightHolder + vNL;
+        };
+        if($Q_CopyrightYear){
+            vText2 += &quot;  year: [&quot; + $Q_CopyrightYear.format(&quot;,&quot;) + &quot;]&quot; + vNL;
+        };
+    };
+    if($Q_CitationContaierTitle | $Q_CitationVolume | $Q_CitationIssue | $Q_CitationDOI){
+        vText2 += &quot;citation:&quot; + vNL;
+        if($Q_CitationContaierTitle){
+            vText2 += &quot;  container-title: &quot; + $Q_CitationContaierTitle + vNL;
+        };
+        if($Q_CitationVolume){
+            vText2 += &quot;  volume: &quot; + $Q_CitationVolume + vNL;
+        };
+        if($Q_CitationIssue){
+            vText2 += &quot;  issue: &quot; + $Q_CitationIssue + vNL;
+        };
+        if($Q_CitationDOI){
+            vText2 += &quot;  doi: &quot; + $Q_CitationDOI + vNL;
+        };
+    };
+    if($Q_Funding){
+        vText2 += &apos;funding: &quot;&apos; + $Q_Funding + &apos;&quot;&apos; + vNL;
+    };
+    vText2 += &quot;---&quot; + vNL;
+
+    // ---- Preamble (R setup chunk) ----
+    vProjectPath=collect(ancestors(original),$Path)[-1];
+    if($HasOutType(vProjectPath)){
+        vTemp =&apos;out_type &lt;- knitr::opts_knit$get(&quot;rmarkdown.pandoc.to&quot;)\n&apos;;
+    };
+    if($HasCommonR(vProjectPath)){
+        vTemp +=&apos;source(&quot;_common.R&quot;)\n&apos;;
+    };
+    if($HasOutType(vProjectPath)|$HasCommonR(vProjectPath)){
+        vText2 += vWSL;
+        vText2 += &apos;```{r, echo=FALSE}\n&apos;;
+        vText2 += &apos;#| include: false\n&apos;;
+        vText2 += vTemp;
+        vText2 += &apos;```\n&apos;;
+    };
+    vText2 += vWSL;
+)^^value(vText)^^if($Q_AuthorPath)^author:
 ^include(^value(find(inside($Q_AuthorPath)))^)^
-
-abstract: &gt;
-  ^value($Q_Abstract)^
-keywords: ^value($Q_KeyWords.format(&quot;,&quot;))^
-
-
-license: &quot;^value($Q_License)^&quot;
-copyright:
-  holder: ^value($Q_CopyrightHolder)^
-  year: [^value($Q_CopyrightYear.format(&quot;,&quot;))^]
-citation:
-  container-title: ^value($Q_CitationContaierTitle)^
-  volume: ^value($Q_CitationVolume)^
-  issue: ^value($Q_CitationIssue)^
-  doi: ^value($Q_CitationDOI)^
-funding: &quot;^value($Q_Funding)^&quot;
----
-
-^action(
-	var:string vProjectPath;
-	var:string vTemp;
-	var:string vPre;
-
-	vProjectPath=collect(ancestors(original),$Path)[-1];
-
-	if($HasOutType(vProjectPath)){
-		vTemp =&apos;out_type &lt;- knitr::opts_knit$get(&quot;rmarkdown.pandoc.to&quot;)\n&apos;;
-	};
-	if($HasCommonR(vProjectPath)){
-		vTemp +=&apos;source(&quot;_common.R&quot;)\n&apos;;
-	};
-
-	if($HasOutType(vProjectPath)|$HasCommonR(vProjectPath)){
-		vPre += &apos;```{r, echo=FALSE}\n&apos;;
-		vPre += &apos;#| include: false\n&apos;;
-		vPre += vTemp;
-		vPre += &apos;```\n&apos;;
-	};
-)^
-
-^value(vPre)^
-
-^include(^value($IncludeNotes)^)^
-</text>
+^endIf^^value(vText2)^^include(^value($IncludeNotes)^)^</text>
 <rtfd >cnRmZAAAAAADAAAAAgAAAAcAAABUWFQucnRmAQAAAC5SCQAAKwAAAAEAAABKCQAAe1xydGYxXGFuc2lcYW5zaWNwZzkzMlxjb2NvYXJ0ZjI4MjIKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJsXGYwXGZuaWxcZmNoYXJzZXQwIEFuZGFsZU1vbm87fQp7XGNvbG9ydGJsO1xyZWQyNTVcZ3JlZW4yNTVcYmx1ZTI1NTtccmVkMFxncmVlbjBcYmx1ZTA7XHJlZDI1NVxncmVlbjI1NVxibHVlMjU1O1xyZWQyNTJcZ3JlZW4zM1xibHVlMzc7ClxyZWQxMFxncmVlbjk2XGJsdWUyNTU7XHJlZDE1N1xncmVlbjUxXGJsdWUyMTQ7XHJlZDQxXGdyZWVuMTk5XGJsdWU1MDtccmVkMjUzXGdyZWVuMTMwXGJsdWU4O30Ke1wqXGV4cGFuZGVkY29sb3J0Ymw7O1xjc3NyZ2JcYzBcYzBcYzBcYzg0NzA2XGNuYW1lIGNvbnRyb2xUZXh0Q29sb3I7XGNzc3JnYlxjMTAwMDAwXGMxMDAwMDBcYzEwMDAwMFxjbmFtZSB0ZXh0QmFja2dyb3VuZENvbG9yO1xjc3NyZ2JcYzEwMDAwMFxjMjMxMzdcYzE4ODI0XGNuYW1lIHN5c3RlbVJlZENvbG9yOwpcY3NzcmdiXGMwXGM0Nzg0M1xjMTAwMDAwXGNuYW1lIHN5c3RlbUJsdWVDb2xvcjtcY3NzcmdiXGM2ODYyN1xjMzIxNTdcYzg3MDU5XGNuYW1lIHN5c3RlbVB1cnBsZUNvbG9yO1xjc3NyZ2JcYzE1Njg2XGM4MDM5MlxjMjU0OTBcY25hbWUgc3lzdGVtR3JlZW5Db2xvcjtcY3NzcmdiXGMxMDAwMDBcYzU4NDMxXGMwXGNuYW1lIHN5c3RlbU9yYW5nZUNvbG9yO30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMzMiBcY2YyIFxjYjMgLS0tXAp0aXRsZTogXGNmNCAiXnZhbHVlKCRRX1RpdGxlKV4iXGNmMiBcClxjZjUgZGF0ZVxjZjIgOiBedmFsdWUoXGNmNiAkUV9EYXRlXGNmMiAuXGNmNSBmb3JtYXRcY2YyIChcY2Y0ICJ5LU0wLUQiXGNmMiApKV5cCmF1dGhvcjpcCl5pbmNsdWRlKF52YWx1ZShcY2Y1IGZpbmRcY2YyIChcY2Y1IGluc2lkZVxjZjIgKFxjZjYgJFFfQXV0aG9yUGF0aFxjZjIgKSkpXileXApcCmFic3RyYWN0OiA+XAogIF52YWx1ZShcY2Y2ICRRX0Fic3RyYWN0XGNmMiApXlwKa2V5d29yZHM6IF52YWx1ZShcY2Y2ICRRX0tleVdvcmRzXGNmMiAuXGNmNSBmb3JtYXRcY2YyIChcY2Y0ICIsIlxjZjIgKSleXApcClwKbGljZW5zZTogXGNmNCAiXnZhbHVlKCRRX0xpY2Vuc2UpXiJcY2YyIFwKY29weXJpZ2h0OlwKICBob2xkZXI6IF52YWx1ZShcY2Y2ICRRX0NvcHlyaWdodEhvbGRlclxjZjIgKV5cCiAgXGNmNSB5ZWFyXGNmMiA6IFtedmFsdWUoXGNmNiAkUV9Db3B5cmlnaHRZZWFyXGNmMiAuXGNmNSBmb3JtYXRcY2YyIChcY2Y0ICIsIlxjZjIgKSleXVwKY2l0YXRpb246XAogIGNvbnRhaW5lci10aXRsZTogXnZhbHVlKFxjZjYgJFFfQ2l0YXRpb25Db250YWllclRpdGxlXGNmMiApXlwKICB2b2x1bWU6IF52YWx1ZShcY2Y2ICRRX0NpdGF0aW9uVm9sdW1lXGNmMiApXlwKICBpc3N1ZTogXnZhbHVlKFxjZjYgJFFfQ2l0YXRpb25Jc3N1ZVxjZjIgKV5cCiAgZG9pOiBedmFsdWUoXGNmNiAkUV9DaXRhdGlvbkRPSVxjZjIgKV5cCmZ1bmRpbmc6IFxjZjQgIl52YWx1ZSgkUV9GdW5kaW5nKV4iXGNmMiBcCi0tLVwKXApeXGNmNSBhY3Rpb25cY2YyIChcCglcY2Y3IHZhcjpzdHJpbmdcY2YyICB2UHJvamVjdFBhdGg7XAoJXGNmNyB2YXI6c3RyaW5nXGNmMiAgdlRlbXA7XAoJXGNmNyB2YXI6c3RyaW5nXGNmMiAgdlByZTtcClwKCXZQcm9qZWN0UGF0aD1cY2Y1IGNvbGxlY3RcY2YyIChhbmNlc3RvcnMob3JpZ2luYWwpLFxjZjYgJFBhdGhcY2YyIClbLTFdO1wKXAoJXGNmNSBpZlxjZjIgKFxjZjYgJEhhc091dFR5cGVcY2YyICh2UHJvamVjdFBhdGgpKVx7XAoJCXZUZW1wID1cY2Y4ICdvdXRfdHlwZSA8LSBrbml0cjo6b3B0c19rbml0JGdldCgicm1hcmtkb3duLnBhbmRvYy50byIpXFxuJ1xjZjIgO1wKCVx9O1wKCVxjZjUgaWZcY2YyIChcY2Y2ICRIYXNDb21tb25SXGNmMiAodlByb2plY3RQYXRoKSlce1wKCQl2VGVtcCArPVxjZjggJ3NvdXJjZSgiX2NvbW1vbi5SIilcXG4nXGNmMiA7XAoJXH07XApcCglcY2Y1IGlmXGNmMiAoXGNmNiAkSGFzT3V0VHlwZVxjZjIgKHZQcm9qZWN0UGF0aCl8XGNmNiAkSGFzQ29tbW9uUlxjZjIgKHZQcm9qZWN0UGF0aCkpXHtcCgkJdlByZSArPSBcY2Y4ICdgYGBce3IsIGVjaG89RkFMU0VcfVxcbidcY2YyIDtcCgkJdlByZSArPSBcY2Y4ICcjfCBpbmNsdWRlOiBmYWxzZVxcbidcY2YyIDtcCgkJdlByZSArPSB2VGVtcDtcCgkJdlByZSArPSBcY2Y4ICdgYGBcXG4nXGNmMiA7XAoJXH07XAopXlwKXApedmFsdWUodlByZSleXApcCl5pbmNsdWRlKF52YWx1ZShcY2Y2ICRJbmNsdWRlTm90ZXNcY2YyICleKV5cCn0BAAAAIwAAAAEAAAAHAAAAVFhULnJ0ZhAAAAAAayRotgEAAAAAAAAAAAAA</rtfd>
 <html ><![CDATA[<p>---</p>
 <p>title: "^value($Q_Title)^"</p>
@@ -32622,62 +32673,164 @@ funding: &quot;^value($Q_Funding)^&quot;
 <attribute name="Width" >5</attribute>
 <attribute name="Xpos" >11</attribute>
 <attribute name="Ypos" >7</attribute>
-<text >---
-title: &quot;^value($Q_Title)^&quot;
-^if($Q_Subtitle)^subtitle: &quot;^value($Q_Subtitle)^&quot;^endIf^
-^if($Q_Date!=&quot;never&quot;)^date: ^value($Q_Date.format(&quot;y-M0-D&quot;))^^endIf^
-^if($QR_Author)^author: ^value($Q_Author)^^endIf^
-^if($Q_Affiliation_Name)^institute: &quot;^value($Q_Affiliation_Name)^&quot;^endIf^
-format:
-   ^if($Q_QuartoLiveExt)^live-^endIf^revealjs:
-    number-sections: ^if($Q_HasNumberSection)^true^else^false^endIf^
-    ^if($Q_HasNumberSection)^number-depth: ^value($Q_NumberSection)^^endIf^
-    ^if($QR_ShiftHeadingLevelBy)^shift-heading-level-by: ^value($QR_ShiftHeadingLevelBy)^^endIf^
-    ^if($QR_Css)^css: ^value($QR_Css)^^endIf^
-    ^if($QR_SlideNumber)^slide-number: ^value($QR_SlideNumber)^^endIf^
-    ^if($QR_Logo)^logo: ^value($QR_Logo)^^endIf^
-    ^if($QR_Footer)^footer: ^value($QR_Footer)^^endIf^
-    ^if($QR_IsScrollable)^scrollable: true^endIf^
-    ^if($QR_IsSmaller)^smaller: true^endIf^
-    ^if($QR_OutputLocation)^output-location: ^value($QR_OutputLocation)^^endIf^
-    ^if($QR_Transition)^transition: ^value($QR_Transition)^^endIf^
-    ^if($QR_TransitionSpeed)^transition-speed: ^value($QR_TransitionSpeed)^^endIf^
-    ^if($QR_BackgroundTransition)^background-transition: ^value($QR_BackgroundTransition)^^endIf^
-    ^if($QR_MermaidFormat)^mermaid-format: ^value($QR_MermaidFormat)^^endIf^
+<text >^action(
+    // ============================================================
+    // Line separators
+    // ------------------------------------------------------------
+    // A truly empty line (two consecutive newlines) can be dropped
+    // in the Tinderbox export path, so &quot;blank lines&quot; between blocks
+    // are emitted as a line containing a single space. Pandoc treats
+    // a whitespace-only line as a blank line, so the rendered result
+    // is unchanged.
+    //   vNL  - plain newline
+    //   vWSL - whitespace-only &quot;blank&quot; line: a space then a newline
+    //   vBL  - newline plus vWSL: blank line after the current line
+    //   vBLI - vBL plus a space: blank line + 1-space indent on the
+    //          following line (harmless for Pandoc)
+    // NOTE: never write a quoted escape sequence (quote, backslash,
+    // letter) in comments - it corrupts ^action parsing in export
+    // templates.
+    // ============================================================
+    var:string vNL=&quot;\n&quot;;
+    var:string vWSL=&quot; \n&quot;;
+    var:string vBL=&quot;\n \n&quot;;
+    var:string vBLI=&quot;\n \n &quot;;
 
----
+    var:string vProjectPath;
+    var:string vTemp;
+    var:string vText;
 
-^action(
-	var:string vProjectPath;
-	var:string vTemp;
-	var:string vPre;
+    // ---- YAML frontmatter ----
+    vText += &quot;---&quot; + vNL;
+    vText += &apos;title: &quot;&apos; + $Q_Title + &apos;&quot;&apos; + vNL;
+    if($Q_Subtitle){
+        vText += &apos;subtitle: &quot;&apos; + $Q_Subtitle + &apos;&quot;&apos; + vNL;
+    };
+    if($Q_Date!=&quot;never&quot;){
+        vText += &quot;date: &quot; + $Q_Date.format(&quot;y-M0-D&quot;) + vNL;
+    };
+    if($QR_Author){
+        vText += &quot;author: &quot; + $QR_Author + vNL;
+    };
+    if($Q_Affiliation_Name){
+        vText += &apos;institute: &quot;&apos; + $Q_Affiliation_Name + &apos;&quot;&apos; + vNL;
+    };
+    vText += &quot;format:&quot; + vNL;
+    vText += &quot;   &quot;;
+    if($Q_QuartoLiveExt){
+        vText += &quot;live-&quot;;
+    };
+    vText += &quot;revealjs:&quot; + vNL;
+    vText += &quot;    number-sections: &quot;;
+    if($Q_HasNumberSection){
+        vText += &quot;true&quot;;
+    }else{
+        vText += &quot;false&quot;;
+    };
+    vText += vNL;
+    if($Q_HasNumberSection){
+        vText += &quot;    number-depth: &quot; + $Q_NumberSection + vNL;
+    };
+    if($QR_ShiftHeadingLevelBy){
+        vText += &quot;    shift-heading-level-by: &quot; + $QR_ShiftHeadingLevelBy + vNL;
+    };
+    if($QR_Css){
+        vText += &quot;    css: &quot; + $QR_Css + vNL;
+    };
+    if($QR_SlideNumber){
+        vText += &quot;    slide-number: &quot; + $QR_SlideNumber + vNL;
+    };
+    if($QR_Logo){
+        vText += &quot;    logo: &quot; + $QR_Logo + vNL;
+    };
+    if($QR_Footer){
+        vText += &quot;    footer: &quot; + $QR_Footer + vNL;
+    };
+    if($QR_IsScrollable){
+        vText += &quot;    scrollable: true&quot; + vNL;
+    };
+    if($QR_IsSmaller){
+        vText += &quot;    smaller: true&quot; + vNL;
+    };
+    if($QR_OutputLocation){
+        vText += &quot;    output-location: &quot; + $QR_OutputLocation + vNL;
+    };
+    if($QR_Transition){
+        vText += &quot;    transition: &quot; + $QR_Transition + vNL;
+    };
+    if($QR_TransitionSpeed){
+        vText += &quot;    transition-speed: &quot; + $QR_TransitionSpeed + vNL;
+    };
+    if($QR_BackgroundTransition){
+        vText += &quot;    background-transition: &quot; + $QR_BackgroundTransition + vNL;
+    };
+    if($QR_MermaidFormat){
+        vText += &quot;    mermaid-format: &quot; + $QR_MermaidFormat + vNL;
+    };
+    if($QR_Theme){
+        vText += &quot;    theme: &quot; + $QR_Theme + vNL;
+    };
+    if($QR_Width){
+        vText += &quot;    width: &quot; + $QR_Width + vNL;
+    };
+    if($QR_Height){
+        vText += &quot;    height: &quot; + $QR_Height + vNL;
+    };
+    if($QR_Margin){
+        vText += &quot;    margin: &quot; + $QR_Margin + vNL;
+    };
+    if($QR_Center){
+        vText += &quot;    center: true&quot; + vNL;
+    };
+    if($QR_Controls){
+        vText += &quot;    controls: &quot; + $QR_Controls + vNL;
+    };
+    if($QR_Progress){
+        vText += &quot;    progress: true&quot; + vNL;
+    };
+    if($QR_History){
+        vText += &quot;    history: true&quot; + vNL;
+    };
+    if($QR_Hash){
+        vText += &quot;    hash: true&quot; + vNL;
+    };
+    if($QR_Incremental){
+        vText += &quot;    incremental: true&quot; + vNL;
+    };
+    if($QR_AutoAnimate){
+        vText += &quot;    auto-animate: true&quot; + vNL;
+    };
+    if($QR_Chalkboard){
+        vText += &quot;    chalkboard: true&quot; + vNL;
+    };
+    if($QR_Menu){
+        vText += &quot;    menu: true&quot; + vNL;
+    };
+    if($QR_Echo){
+        vText += &quot;    echo: true&quot; + vNL;
+    };
+    if($QR_CodeLineNumbers){
+        vText += &quot;    code-line-numbers: &quot; + $QR_CodeLineNumbers + vNL;
+    };
+    vText += &quot;---&quot; + vNL;
 
-	vProjectPath=collect(ancestors(original),$Path)[-1];
-
-	if($HasOutType(vProjectPath)){
-		vTemp =&apos;out_type &lt;- knitr::opts_knit$get(&quot;rmarkdown.pandoc.to&quot;)\n&apos;;
-	};
-	if($HasCommonR(vProjectPath)){
-		vTemp +=&apos;source(&quot;_common.R&quot;)\n&apos;;
-	};
-
-	if($HasOutType(vProjectPath)|$HasCommonR(vProjectPath)){
-		vPre += &apos;```{r, echo=FALSE}\n&apos;;
-		vPre += &apos;#| include: false\n&apos;;
-		vPre += vTemp;
-		vPre += &apos;```\n&apos;;
-	};
-)^
-
-^value(vPre)^
-
-
-^if($Q_QuartoLiveExt)^{{&lt; include ./_extensions/r-wasm/live/_knitr.qmd &gt;}}^endIf^
-
-
-
-^include(^value($IncludeNotes)^,&quot;tSubnote_revealjs&quot;)^
-</text>
+    // ---- Preamble (R setup chunk) ----
+    vProjectPath=collect(ancestors(original),$Path)[-1];
+    if($HasOutType(vProjectPath)){
+        vTemp =&apos;out_type &lt;- knitr::opts_knit$get(&quot;rmarkdown.pandoc.to&quot;)\n&apos;;
+    };
+    if($HasCommonR(vProjectPath)){
+        vTemp +=&apos;source(&quot;_common.R&quot;)\n&apos;;
+    };
+    if($HasOutType(vProjectPath)|$HasCommonR(vProjectPath)){
+        vText += vWSL;
+        vText += &apos;```{r, echo=FALSE}\n&apos;;
+        vText += &apos;#| include: false\n&apos;;
+        vText += vTemp;
+        vText += &apos;```\n&apos;;
+    };
+    vText += vWSL;
+)^^value(vText)^^if($Q_QuartoLiveExt)^{{&lt; include ./_extensions/r-wasm/live/_knitr.qmd &gt;}}^endIf^^include(^value($IncludeNotes)^,&quot;tSubnote_revealjs&quot;)^</text>
 <rtfd >cnRmZAAAAAADAAAAAgAAAAcAAABUWFQucnRmAQAAAC6gDgAAKwAAAAEAAACYDgAAe1xydGYxXGFuc2lcYW5zaWNwZzkzMlxjb2NvYXJ0ZjI4MjIKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJsXGYwXGZuaWxcZmNoYXJzZXQwIEFuZGFsZU1vbm87fQp7XGNvbG9ydGJsO1xyZWQyNTVcZ3JlZW4yNTVcYmx1ZTI1NTtccmVkMFxncmVlbjBcYmx1ZTA7XHJlZDI1NVxncmVlbjI1NVxibHVlMjU1O1xyZWQyNTJcZ3JlZW4zM1xibHVlMzc7ClxyZWQxMFxncmVlbjk2XGJsdWUyNTU7XHJlZDE1N1xncmVlbjUxXGJsdWUyMTQ7XHJlZDQxXGdyZWVuMTk5XGJsdWU1MDtccmVkMjUzXGdyZWVuMTMwXGJsdWU4O30Ke1wqXGV4cGFuZGVkY29sb3J0Ymw7O1xjc3NyZ2JcYzBcYzBcYzBcYzg0NzA2XGNuYW1lIGNvbnRyb2xUZXh0Q29sb3I7XGNzc3JnYlxjMTAwMDAwXGMxMDAwMDBcYzEwMDAwMFxjbmFtZSB0ZXh0QmFja2dyb3VuZENvbG9yO1xjc3NyZ2JcYzEwMDAwMFxjMjMxMzdcYzE4ODI0XGNuYW1lIHN5c3RlbVJlZENvbG9yOwpcY3NzcmdiXGMwXGM0Nzg0M1xjMTAwMDAwXGNuYW1lIHN5c3RlbUJsdWVDb2xvcjtcY3NzcmdiXGM2ODYyN1xjMzIxNTdcYzg3MDU5XGNuYW1lIHN5c3RlbVB1cnBsZUNvbG9yO1xjc3NyZ2JcYzE1Njg2XGM4MDM5MlxjMjU0OTBcY25hbWUgc3lzdGVtR3JlZW5Db2xvcjtcY3NzcmdiXGMxMDAwMDBcYzU4NDMxXGMwXGNuYW1lIHN5c3RlbU9yYW5nZUNvbG9yO30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMzMiBcY2YyIFxjYjMgLS0tXAp0aXRsZTogXGNmNCAiXnZhbHVlKCRRX1RpdGxlKV4iXGNmMiBcCl5cY2Y1IGlmXGNmMiAoXGNmNiAkUV9TdWJ0aXRsZVxjZjIgKV5zdWJ0aXRsZTogXGNmNCAiXnZhbHVlKCRRX1N1YnRpdGxlKV4iXGNmMiBeZW5kSWZeXApeXGNmNSBpZlxjZjIgKFxjZjYgJFFfRGF0ZVxjZjIgIT1cY2Y0ICJuZXZlciJcY2YyICleXGNmNSBkYXRlXGNmMiA6IF52YWx1ZShcY2Y2ICRRX0RhdGVcY2YyIC5cY2Y1IGZvcm1hdFxjZjIgKFxjZjQgInktTTAtRCJcY2YyICkpXl5lbmRJZl5cCl5cY2Y1IGlmXGNmMiAoXGNmNiAkUVJfQXV0aG9yXGNmMiApXmF1dGhvcjogXnZhbHVlKFxjZjYgJFFfQXV0aG9yXGNmMiApXl5lbmRJZl5cCl5cY2Y1IGlmXGNmMiAoXGNmNiAkUV9BZmZpbGlhdGlvbl9OYW1lXGNmMiApXmluc3RpdHV0ZTogXGNmNCAiXnZhbHVlKCRRX0FmZmlsaWF0aW9uX05hbWUpXiJcY2YyIF5lbmRJZl5cClxjZjUgZm9ybWF0XGNmMiA6XAogICBeXGNmNSBpZlxjZjIgKFxjZjYgJFFfUXVhcnRvTGl2ZUV4dFxjZjIgKV5saXZlLV5lbmRJZl5yZXZlYWxqczpcCiAgICBudW1iZXItc2VjdGlvbnM6IF5cY2Y1IGlmXGNmMiAoXGNmNiAkUV9IYXNOdW1iZXJTZWN0aW9uXGNmMiApXlxjZjcgdHJ1ZVxjZjIgXlxjZjcgZWxzZVxjZjIgXlxjZjcgZmFsc2VcY2YyIF5lbmRJZl5cCiAgICBeXGNmNSBpZlxjZjIgKFxjZjYgJFFfSGFzTnVtYmVyU2VjdGlvblxjZjIgKV5udW1iZXItZGVwdGg6IF52YWx1ZShcY2Y2ICRRX051bWJlclNlY3Rpb25cY2YyICleXmVuZElmXlwKICAgIF5cY2Y1IGlmXGNmMiAoXGNmNiAkUVJfU2hpZnRIZWFkaW5nTGV2ZWxCeVxjZjIgKV5zaFxjZjcgaWZcY2YyIHQtaGVhZGluZy1sZXZlbC1ieTogXnZhbHVlKFxjZjYgJFFSX1NoaWZ0SGVhZGluZ0xldmVsQnlcY2YyICleXmVuZElmXlwKICAgIF5cY2Y1IGlmXGNmMiAoXGNmNiAkUVJfQ3NzXGNmMiApXmNzczogXnZhbHVlKFxjZjYgJFFSX0Nzc1xjZjIgKV5eZW5kSWZeXAogICAgXlxjZjUgaWZcY2YyIChcY2Y2ICRRUl9TbGlkZU51bWJlclxjZjIgKV5zbGlkZS1udW1iZXI6IF52YWx1ZShcY2Y2ICRRUl9TbGlkZU51bWJlclxjZjIgKV5eZW5kSWZeXAogICAgXlxjZjUgaWZcY2YyIChcY2Y2ICRRUl9Mb2dvXGNmMiApXmxvZ286IF52YWx1ZShcY2Y2ICRRUl9Mb2dvXGNmMiApXl5lbmRJZl5cCiAgICBeXGNmNSBpZlxjZjIgKFxjZjYgJFFSX0Zvb3RlclxjZjIgKV5mb290ZXI6IF52YWx1ZShcY2Y2ICRRUl9Gb290ZXJcY2YyICleXmVuZElmXlwKICAgIF5cY2Y1IGlmXGNmMiAoXGNmNiAkUVJfSXNTY3JvbGxhYmxlXGNmMiApXnNjcm9sbGFibGU6IFxjZjcgdHJ1ZVxjZjIgXmVuZElmXlwKICAgIF5cY2Y1IGlmXGNmMiAoXGNmNiAkUVJfSXNTbWFsbGVyXGNmMiApXnNtYWxsZXI6IFxjZjcgdHJ1ZVxjZjIgXmVuZElmXlwKICAgIF5cY2Y1IGlmXGNmMiAoXGNmNiAkUVJfT3V0cHV0TG9jYXRpb25cY2YyICleb3V0cHV0LWxvY2F0aW9uOiBedmFsdWUoXGNmNiAkUVJfT3V0cHV0TG9jYXRpb25cY2YyICleXmVuZElmXlwKICAgIF5cY2Y1IGlmXGNmMiAoXGNmNiAkUVJfVHJhbnNpdGlvblxjZjIgKV50cmFuc2l0aW9uOiBedmFsdWUoXGNmNiAkUVJfVHJhbnNpdGlvblxjZjIgKV5eZW5kSWZeXAogICAgXlxjZjUgaWZcY2YyIChcY2Y2ICRRUl9UcmFuc2l0aW9uU3BlZWRcY2YyICledHJhbnNpdGlvbi1zcGVlZDogXnZhbHVlKFxjZjYgJFFSX1RyYW5zaXRpb25TcGVlZFxjZjIgKV5eZW5kSWZeXAogICAgXlxjZjUgaWZcY2YyIChcY2Y2ICRRUl9CYWNrZ3JvdW5kVHJhbnNpdGlvblxjZjIgKV5iYWNrZ3JvdW5kLXRyYW5zaXRpb246IF52YWx1ZShcY2Y2ICRRUl9CYWNrZ3JvdW5kVHJhbnNpdGlvblxjZjIgKV5eZW5kSWZeXAogICAgXlxjZjUgaWZcY2YyIChcY2Y2ICRRUl9NZXJtYWlkRm9ybWF0XGNmMiApXm1lcm1haWQtXGNmNSBmb3JtYXRcY2YyIDogXnZhbHVlKFxjZjYgJFFSX01lcm1haWRGb3JtYXRcY2YyICleXmVuZElmXlwKXAotLS1cClwKXlxjZjUgYWN0aW9uXGNmMiAoXAoJXGNmNyB2YXI6XGNmNSBzdHJpbmdcY2YyICB2UHJvamVjdFBhdGg7XAoJXGNmNyB2YXI6XGNmNSBzdHJpbmdcY2YyICB2VGVtcDtcCglcY2Y3IHZhcjpcY2Y1IHN0cmluZ1xjZjIgIHZQcmU7XApcCgl2UHJvamVjdFBhdGg9XGNmNSBjb2xsZWN0XGNmMiAoYW5jZXN0b3JzKG9yaWdpbmFsKSxcY2Y2ICRQYXRoXGNmMiApWy0xXTtcClwKCVxjZjUgaWZcY2YyIChcY2Y2ICRIYXNPdXRUeXBlXGNmMiAodlByb2plY3RQYXRoKSlce1wKCQl2VGVtcCA9XGNmOCAnb3V0X3R5cGUgPC0ga25pdHI6Om9wdHNfa25pdCRnZXQoInJtYXJrZG93bi5wYW5kb2MudG8iKVxcbidcY2YyIDtcCglcfTtcCglcY2Y1IGlmXGNmMiAoXGNmNiAkSGFzQ29tbW9uUlxjZjIgKHZQcm9qZWN0UGF0aCkpXHtcCgkJdlRlbXAgKz1cY2Y4ICdzb3VyY2UoIl9jb21tb24uUiIpXFxuJ1xjZjIgO1wKCVx9O1wKXAoJXGNmNSBpZlxjZjIgKFxjZjYgJEhhc091dFR5cGVcY2YyICh2UHJvamVjdFBhdGgpfFxjZjYgJEhhc0NvbW1vblJcY2YyICh2UHJvamVjdFBhdGgpKVx7XAoJCXZQcmUgKz0gXGNmOCAnYGBgXHtyLCBlY2hvPUZBTFNFXH1cXG4nXGNmMiA7XAoJCXZQcmUgKz0gXGNmOCAnI3wgaW5jbHVkZTogZmFsc2VcXG4nXGNmMiA7XAoJCXZQcmUgKz0gdlRlbXA7XAoJCXZQcmUgKz0gXGNmOCAnYGBgXFxuJ1xjZjIgO1wKCVx9O1wKKV5cClwKXnZhbHVlKHZQcmUpXlwKXApcCl5cY2Y1IGlmXGNmMiAoXGNmNiAkUV9RdWFydG9MaXZlRXh0XGNmMiApXlx7XHs8IGluY2x1ZGUgLi9fZXh0ZW5zaW9ucy9yLXdhc20vbGl2ZS9fa25pdHIucW1kID5cfVx9XmVuZElmXlwKXApcClwKXmluY2x1ZGUoXnZhbHVlKFxjZjYgJEluY2x1ZGVOb3Rlc1xjZjIgKV4sXGNmNCAidFN1Ym5vdGVfcmV2ZWFsanMiXGNmMiApXlwKfQEAAAAjAAAAAQAAAAcAAABUWFQucnRmEAAAACCrS2m2AQAAAAAAAAAAAAA=</rtfd>
 <html ><![CDATA[<p>---</p>
 <p>title: "^value($Q_Title)^"</p>
