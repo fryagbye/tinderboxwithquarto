@@ -109,13 +109,22 @@ render_check() {
   tail -25 "$log" | sed 's/^/    | /'
 }
 
+# The book's export state cycles (html -> pdf -> typst), so derive the
+# expected artifact from output/_quarto.yml instead of hardcoding one.
+BOOK_DIR=$(sed -n 's/^[[:space:]]*output-dir:[[:space:]]*//p' output/_quarto.yml 2>/dev/null | head -1)
+if grep -qE '^[[:space:]]+html:' output/_quarto.yml 2>/dev/null; then
+  BOOK_LABEL="book (html)"; BOOK_EXPECT="${BOOK_DIR:-_bookhtml}/index.html"
+else
+  BOOK_LABEL="book (pdf)";  BOOK_EXPECT="${BOOK_DIR:-_booktypst}/Tinderbox-file-for-Quarto.pdf"
+fi
+
 if [ "${SKIP_RENDER:-0}" = "1" ]; then
   skip "render tests (SKIP_RENDER=1)"
 elif [ "${SMOKE_CI:-0}" = "1" ]; then
   # CI: avoid lualatex (TeX Live) — render manuscript per format.
   # Typst is bundled with Quarto so no external TeX is needed.
   step "5. Render smoke tests (CI mode)"
-  render_check "book (typst)"       "output"      "."            "_booktypst/Tinderbox-file-for-Quarto.pdf"
+  render_check "$BOOK_LABEL"        "output"      "."            "$BOOK_EXPECT"
   render_check "manuscript html"    "myproject"   ". --to html"  "_manuscript/index.html"
   render_check "manuscript typst"   "myproject"   ". --to typst" "_manuscript/index.pdf"
   render_check "manuscript docx"    "myproject"   ". --to docx"  "_manuscript/index.docx"
@@ -123,7 +132,7 @@ elif [ "${SMOKE_CI:-0}" = "1" ]; then
   render_check "revealjs"           "myrevealjs2" "index.qmd"    "index.html"
 else
   step "5. Render smoke tests"
-  render_check "book (typst)"  "output"      "."         "_booktypst/Tinderbox-file-for-Quarto.pdf"
+  render_check "$BOOK_LABEL"   "output"      "."         "$BOOK_EXPECT"
   render_check "manuscript"    "myproject"   "."         "_manuscript/index.html"
   render_check "revealjs"      "myrevealjs2" "index.qmd" "index.html"
 fi
