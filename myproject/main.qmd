@@ -51,7 +51,6 @@ abstract: >
   This is a demo of quarto manuscript
 keywords: Plotly,Python,Quarto
 
-
 license: "CC BY"
 copyright:
   holder: quarto-dev
@@ -63,16 +62,13 @@ citation:
   doi: 10.xxxx/12345678
 funding: "The author received no specific funding for this work."
 ---
-
-
-
+ 
 ```{r, echo=FALSE}
 #| include: false
 out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 source("_common.R")
 ```
-
-
+ 
 
  
 ## NumPy
@@ -123,7 +119,7 @@ plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
              label='subsets of uplims and lolims')
 
 plt.legend(loc='lower right')
-plt.show(fig)
+plt.show()
 ```
 
  
@@ -207,6 +203,5 @@ ggplot(airquality, aes(Temp, Ozone)) +
 :::
  
  
-
 
 

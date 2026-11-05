@@ -29,6 +29,8 @@ function fMakeChunkList(){
         vProjectPath = collect(ancestors,$Path)[-1];
     };
 
+    if(vProjectPath=="/"){ vProjectPath=""; };
+
     vProjectLabelListPath = vProjectPath + $ChunkListContainer("TBXConfig");
 
     if($IsLabelGenerateON(vChunkLabelListPath)&($Prototype(vChunkLabelListPath)=="pLabelListContainer"|$Prototype($Prototype(vChunkLabelListPath))=="pLabelListContainer")){
@@ -89,7 +91,7 @@ function fMakeChunkList(){
             };
     
             vAttributes.each(x){
-                vTemp= "$" + x + "(" + vChunkLabelListPath +"/" + vFigName + ")=$" + x + "(" + $Path(aChunk) + ");";
+                vTemp= "$" + x + "(\"" + vChunkLabelListPath +"/" + vFigName + "\")=$" + x + "(\"" + $Path(aChunk) + "\");";
                 action(vTemp);
             };
     
@@ -145,6 +147,7 @@ function fMakeGraphList(){
     }else{
         vProjectPath = collect(ancestors,$Path)[-1];
     };
+    if(vProjectPath=="/"){ vProjectPath=""; };
     vProjectLabelListPath = vProjectPath + $FigLabelListContainer("TBXConfig");
 
     if($IsLabelGenerateON(vGraphLabelListPath)&($Prototype(vGraphLabelListPath)=="pLabelListContainer"|$Prototype($Prototype(vGraphLabelListPath))=="pLabelListContainer")){
@@ -170,6 +173,9 @@ function fMakeGraphList(){
                 vName2= "\<dot:" + $Name(aGraph) + vFigRef+"\>";
             };
 
+            var:string vFigName;
+            var:string vLabelPath;
+            vFigName = "@fig-"+$Q_ChunkFigLabel($Path(aGraph));
             vTest = $ID(vName);
             if(!vTest & vFigName!="@fig-"){
                 if($Text(aGraph).wordCount>0){
@@ -185,18 +191,14 @@ function fMakeGraphList(){
                 $Text(vPath) = $Text(aGraph);
                 createLink($Path(vPath), $Path(aGraph),"dummy");
                 $ToDummyLinkPath(vPath) = $Path(aGraph);
-                $Text(vGraphLabelListPath+= vName + ":" + $ToDummyLinkPath(vPath) + "\n");
+                $Text(vGraphLabelListPath) += vName + ":" + $ToDummyLinkPath(vPath) + "\n";
                 $Name(vPath) = vName;
                 };
             };  
             //Create Figure Label
-            var:string vFigName;
-            var:string vLabelPath;
             var:list   vAttributes = $DisplayedAttributes($Prototype(aGraph));
             var:string vTemp;
             
-            vFigName = "@fig-"+$Q_ChunkFigLabel($Path(aGraph));
-
             vLabelPath = vProjectPath + vGraphLabelListPath + "/"+vFigName;
             
             vTest=$ID(vLabelPath);
@@ -210,7 +212,7 @@ function fMakeGraphList(){
             };
 
             vAttributes.each(x){
-                vTemp= "$" + x + "(" + vLabelPath + ")=$" + x + "(" + $Path(aGraph) + ");";
+                vTemp= "$" + x + "(\"" + vLabelPath + "\")=$" + x + "(\"" + $Path(aGraph) + "\");";
                 action(vTemp);
             };
         };

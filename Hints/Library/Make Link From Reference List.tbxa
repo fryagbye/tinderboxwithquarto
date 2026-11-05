@@ -9,11 +9,10 @@ function fMakeLinkSecFromReferenceList(vContainer,vNote){
 	$MyList(vNote) =;
 	$MyDictionary(vNote)=;
 	
-//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@sec-[\w\d-]*)+?"),$ID);
-	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@sec-[\w\d-]*)+?"),$ID);
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@sec-[\w\d-]+)+?"),$ID);
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@sec-[\w\d-]+)+?"),$ID);
 	$MyList(vNote).each(L){
-			$Text(L).eachLine(aLine){
-			vTest=aLine.contains("(@sec-[\w\d-]*)+?");
+			$Text(L).eachLine(aLine:aLine.contains("(@sec-[\w\d-]+)+?")){
 			vStrDic = "{"+$1 + ":" + L + "}";
 			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
 			$FromDummyLinkPath($1) += $Path(L);
@@ -31,11 +30,10 @@ function fMakeLinkFigFromReferenceList(vContainer,vNote){
 	$MyList(vNote) =;
 	$MyDictionary(vNote)=;
 
-//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@fig-[\w\d-]*)+?"), $ID);
-	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@fig-[\w\d-]*)+?"), $ID);
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@fig-[\w\d-]+)+?"), $ID);
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@fig-[\w\d-]+)+?"), $ID);
 	$MyList(vNote).each(L){
-			$Text(L).eachLine(aLine){
-			vTest=aLine.contains("(@fig-[\w\d-]*)+?");
+			$Text(L).eachLine(aLine:aLine.contains("(@fig-[\w\d-]+)+?")){
 			vStrDic = "{" + $1 + ":" + L + "}";
 			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
 			$FromDummyLinkPath($1) += L;
@@ -55,11 +53,10 @@ function fMakeLinkTableFromReferenceList(vContainer,vNote){
 	$MyList(vNote) =;
 	$MyDictionary(vNote)=;
 
-//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@tbl-[\w\d-]*)+?"), $ID);
-	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@tbl-[\w\d-]*)+?"), $ID);
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@tbl-[\w\d-]+)+?"), $ID);
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@tbl-[\w\d-]+)+?"), $ID);
 	$MyList(vNote).each(L){
-			$Text(L).eachLine(aLine){
-			vTest=aLine.contains("(@tbl-[\w\d-]*)+?");
+			$Text(L).eachLine(aLine:aLine.contains("(@tbl-[\w\d-]+)+?")){
 			vStrDic = "{" + $1 + ":" + L + "}";
 			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
 			$FromDummyLinkPath($1) += L;
@@ -78,10 +75,9 @@ function fMakeLinkEquationFromReferenceList(vContainer,vNote){
 	$MyList(vNote) =;
 	$MyDictionary(vNote)=;
 
-//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@eq-[\w\d-]*)+?"), $ID)
-	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@eq-[\w\d-]*)+?"), $ID)	$MyList(vNote).each(L){
-			$Text(L).eachLine(aLine){
-			vTest=aLine.contains("(@eq-[\w\d-]*)+?");
+//	$MyList(vNote) = collect_if(descendants($Container.contains($CurrentBookProject($AgentNameForQmdFiles("TBXConfig")))), $Text.contains("(@eq-[\w\d-]+)+?"), $ID)
+	$MyList(vNote) = collect_if(descendants(vContainer), $Text.contains("(@eq-[\w\d-]+)+?"), $ID)	$MyList(vNote).each(L){
+			$Text(L).eachLine(aLine:aLine.contains("(@eq-[\w\d-]+)+?")){
 			vStrDic = "{" + $1 + ":" + L + "}";
 			$MyDictionary(vNote)=$MyDictionary(vNote).add(vStrDic);
 			$FromDummyLinkPath($1) += L;

@@ -22,20 +22,20 @@ function fMakeSectionList(vContainer:string, vPath:string){
 
 		$MyList(vPath) = collect_if(descendants(vContainer),$HasSectionLabel&$SectionLabel&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$Path);
 		$MyList(vPath).each(L){
-			L=L.replace('"',"");
-			if(!(vCheck.contains($Path(L)))){
-				vCheck +=  $Path(L);
-				vDict+=dictionary($SectionLabel(L)+":"+L+";");
+			var:string vLPath=L.replace('"',"");
+			if(!(vCheck.contains($Path(vLPath)))){
+				vCheck +=  $Path(vLPath);
+				vDict+=dictionary($SectionLabel(vLPath)+":"+vLPath+";");
 				//$MyString(vPath)=vDict;
-				$ListKey(vPath) += $SectionLabel(L);
-				$ListValue(vPath) += L;
+				$ListKey(vPath) += $SectionLabel(vLPath);
+				$ListValue(vPath) += vLPath;
 				
-				if($SectionLabel(L)!=""){
-					$MyDictionary(vPath)+=dictionary("@sec-" + $SectionLabel(L)+":"+ L +";");
-					if($Is_Part_qmd(L)){
-						$OutlineDepthBaseDictionary(vPath) += dictionary("@sec-" + $SectionLabel(L)+":"+ 0 +";");
+				if($SectionLabel(vLPath)!=""){
+					$MyDictionary(vPath)+=dictionary("@sec-" + $SectionLabel(vLPath)+":"+ vLPath +";");
+					if($Is_Part_qmd(vLPath)){
+						$OutlineDepthBaseDictionary(vPath) += dictionary("@sec-" + $SectionLabel(vLPath)+":"+ 0 +";");
 					}else{
-						$OutlineDepthBaseDictionary(vPath) += dictionary("@sec-" + $SectionLabel(L)+":"+ $OutlineDepthBase(L) +";");
+						$OutlineDepthBaseDictionary(vPath) += dictionary("@sec-" + $SectionLabel(vLPath)+":"+ $OutlineDepthBase(vLPath) +";");
 					};
 				};
 			};

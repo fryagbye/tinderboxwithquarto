@@ -18,17 +18,17 @@ function fMakeTableList(vContainer:string, vPath){
 		$MyDictionary(vPath)=;
 	
 		//Notes contains chunk "tbl-" label 
-		vList = collect_if(descendants(vContainer),$Text.contains("(#tbl-[\w\d-]*)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$ID);
+		vList = collect_if(descendants(vContainer),$Text.contains("(#tbl-[\w\d-]+)+?")&!$IsAlias&$Prototype(parent)!="pLabelListContainer",$ID);
 
 		vList.each(L){
 			//L=L.replace('"',"");
-			$Text(L).eachLine(aLine:aLine.contains("(#tbl-[\w\d-]*)+?")){
+			$Text(L).eachLine(aLine:aLine.contains("(#tbl-[\w\d-]+)+?")){
 				vTemp = $1;
 				vTemp = vTemp.replace("#tbl-","@tbl-");
 				$MyList(vPath) += vTemp;
 				$ListKey(vPath) += vTemp;
 				$ListValue(vPath) += $Path(L);
-				$MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ $ListKey(vPath) +":"+ $ListValue(vPath) +"}");
+				$MyDictionary(vPath) = $MyDictionary(vPath).add("{"+ vTemp +":"+ $Path(L) +"}");
 			};
 		};
 	
